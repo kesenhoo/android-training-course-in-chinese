@@ -5,7 +5,7 @@
 
 欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
 
-## **Android Training Course:**
+## Android Training Course
 <http://developer.android.com/training/index.html>
 
 这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程。这真的是一份学习Android应用开发绝佳一手资料。
@@ -14,12 +14,14 @@
 
 整个课程的目录已经搭建完毕，大部分课程都有分了好几个篇章，期待大家的加入！
 
+<a name="online_reading"></a>
 ## 在线阅读
 
 点击在线阅读<http://hukai.me/android-training-course-in-chinese/index.html>
 
 Power by [Gitbook](https://www.gitbook.io/)
 
+<a name="courses"></a>
 ## 待认领的课程结构如下
 
 **Note：**大部分课程都分有好几个章节，请参考第一课：“建立你得第一个App”，进行输出。
@@ -32,7 +34,14 @@ Power by [Gitbook](https://www.gitbook.io/)
        * [启动另外的Activity](basics/firstapp/starting-activity.md)
    * [添加ActionBar](basics/actionbar/index.md)
    * [兼容不同的设备](basics/supporting-devices/index.md)
-   * [管理Activity的生命周期](basics/activity-lifecycle/index.md)
+       * [适配不同的语言](basics/supporting-devices/languages.md)
+   	   * [适配不同的屏幕](basics/supporting-deivces/screens.md)
+   	   * [适配不同的系统版本](basics/supporting-devices/platforms.md)
+   * [管理Activity的生命周期](basics/activity-lifecycle/index.md) (@kesenhoo翻译完成，待校验)
+       * [启动与销毁Activity](basics/activity-lifecycle/starting.md)
+       * [暂停与恢复Activity](basics/activity-lifecycle/pausing.md)
+       * [停止与重启Activity](basics/activity-lifecycle/stopping.md)
+       * [重新创建Activity](basics/activity-lifecycle/recreating.md)
    * [使用Fragment建立动态的UI](basics/fragments/index.md)
    * [数据保存](basics/data-storage/index.md)
    * [与其他应用的交互](basics/intents/index.md)
@@ -157,5 +166,16 @@ Power by [Gitbook](https://www.gitbook.io/)
 
 此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
 
+## MarkDown简明语法
 
+<http://jianshu.io/p/q81RER>
 
+Ps:
+* [点击链接跳到首页的待认领列表](index.html#courses)。
+`[点击链接跳到首页](index.html#course)`
+* [点击链接跳到本页面的在线阅读模块](#online_reading)
+`[点击链接跳到页面内部](#online_reading)`
+* 插入图片(请把图片统一放到images/articles目录下)
+` ![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)`
+
+有不清楚的地方请直接查看现成的源码示例。

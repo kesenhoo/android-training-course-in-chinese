@@ -1,9 +1,9 @@
 CACHE MANIFEST
-# Revision 1402815332884
+# Revision 1402826938677
 
 CACHE:
-animations/cardflip.html
 index.html
+animations/cardflip.html
 animations/crossfade.html
 animations/index.html
 animations/layout.html
@@ -15,6 +15,10 @@ background-jobs/run-background-service/index.html
 background-jobs/scheduling/index.html
 basics/actionbar/index.html
 basics/activity-lifecycle/index.html
+basics/activity-lifecycle/pausing.html
+basics/activity-lifecycle/recreating.html
+basics/activity-lifecycle/starting.html
+basics/activity-lifecycle/stopping.html
 basics/data-storage/index.html
 basics/firstapp/building-ui.html
 basics/firstapp/creating-project.html
@@ -68,8 +72,8 @@ multimedia/printing/index.html
 performance/improving-layouts/index.html
 performance/index.html
 performance/memory.html
-performance/multi-threads/index.html
 performance/monitor-device-state/index.html
+performance/multi-threads/index.html
 performance/perf-anr/index.html
 performance/perf-jni/index.html
 performance/performance-tips.html
@@ -86,8 +90,8 @@ ui/custom-view/index.html
 ui/index.html
 ui/multiscreen/index.html
 ui/system-ui/index.html
-ux/app-indexing/index.html
 ui/tv/index.html
+ux/app-indexing/index.html
 ux/design-nav/index.html
 ux/implement-nav/index.html
 ux/index.html
