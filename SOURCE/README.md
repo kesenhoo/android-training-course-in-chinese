@@ -1,6 +1,9 @@
 # Android Training Course in Chinese
 
-Android Training学习交流群：348663273，欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
+* Android Training翻译组：363415744
+* Android Training交流群：348663273
+
+欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
 
 ## **Android Training Course:**
 <http://developer.android.com/training/index.html>
@@ -11,9 +14,13 @@ Android Training学习交流群：348663273，欢迎所有学习Android开发的
 
 整个课程的目录已经搭建完毕，大部分课程都有分了好几个篇章，期待大家的加入！
 
+## 在线阅读
 
+点击在线阅读<http://hukai.me/android-training-course-in-chinese/index.html>
 
-**待认领的课程结构如下：**
+Power by [Gitbook](https://www.gitbook.io/)
+
+## 待认领的课程结构如下
 
 **Note：**大部分课程都分有好几个章节，请参考第一课：“建立你得第一个App”，进行输出。
 
@@ -107,5 +114,48 @@ Android Training学习交流群：348663273，欢迎所有学习Android开发的
    * [售卖App内置产品](distribute/in-app-billing/index.md)
    * [维护多个APK](distribute/multi-apks/index.md)
    * [App盈利](distribute/monetization/index.md)
+
+## 认领流程
+先申请加入Android Training翻译组，和我说明认领的章节，我会及时更新认领进度到项目主页。
+
+## 校验流程
+翻译完毕之后，难免有些地方不流畅，欢迎愿意一起学习的同学加入帮忙校验，提升这份文档的质量，谢谢！
+
+申请加入翻译组，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
+
+## 贡献流程
+
+* 1)fork我的项目到自己的账户下
+
+`https://github.com/kesenhoo/android-training-course-in-chinese`
+
+* 2)把fork之后的项目clone到本地
+
+`git clone https://github.com/{user_name}/android-training-course-in-chinese`
+
+* 3)创建一个新的分支并切换到该分支下
+
+`git branch dev`
+
+`git checkout dev`
+
+* 4)为本地的工作分支添加将合并的远程仓库
+
+`git remote add uploadrepo https://github.com/kesenhoo/android-training-course-in-chinese.git`
+
+* 5)抓取远程合并仓库的更新，再与本地进行Merge
+
+`git remote update`
+
+`git fetch uploadrepo gh-pages`
+
+`git rebase uploadrepo/gh-pages`
+
+前面1-5的是首次初始化的步骤，想要再次获取远程仓库uploadrepo的更新，需要再次执行步骤5)。
+
+后续本地的所有修改都在dev分支进行，编写好的文档，commit到本地之后，先PUSH到自己的远程仓库，然后登入Github账户，，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
+
+此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
+
 
 
