@@ -14,4 +14,7 @@
 
 整个课程的目录已经搭建完毕，大部分课程都有分了好几个篇章，期待大家的加入！
 
-## 项目源码<https://github.com/kesenhoo/android-training-course-in-chinese>
+## 项目主页
+<https://github.com/kesenhoo/android-training-course-in-chinese>
+
+麻烦Star，Watch，谢谢支持！
