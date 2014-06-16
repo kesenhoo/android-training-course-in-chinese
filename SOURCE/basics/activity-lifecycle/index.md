@@ -1,4 +1,5 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
+
 > 校对:
 
 # 管理Activity的生命周期(Managing the Activity Lifecycle)

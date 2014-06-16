@@ -24,6 +24,8 @@ Power by [Gitbook](https://www.gitbook.io/)
 <a name="courses"></a>
 ## 课程结构
 
+**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名**
+
 * [序言](README.md)
 * [开始](basics/index.md)
    * [建立你的第一个App](basics/firstapp/index.md)
@@ -39,12 +41,12 @@ Power by [Gitbook](https://www.gitbook.io/)
        * [适配不同的语言](basics/supporting-devices/languages.md)
        * [适配不同的屏幕](basics/supporting-devices/screens.md)
        * [适配不同的系统版本](basics/supporting-devices/platforms.md)
-   * **[管理Activity的生命周期](basics/activity-lifecycle/index.md)(待校验，由@kesenhoo翻译)**
+   * **[管理Activity的生命周期](basics/activity-lifecycle/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [启动与销毁Activity](basics/activity-lifecycle/starting.md)
        * [暂停与恢复Activity](basics/activity-lifecycle/pausing.md)
        * [停止与重启Activity](basics/activity-lifecycle/stopping.md)
        * [重新创建Activity](basics/activity-lifecycle/recreating.md)
-   * [使用Fragment建立动态的UI](basics/fragments/index.md)
+   * **[使用Fragment建立动态的UI](basics/fragments/index.md)(编写进行中@[fastcome1985](https://github.com/fastcome1985))**
        * [创建一个Fragment](basics/fragments/creating.md)
        * [建立灵活动态的UI](basics/fragments/fragment-ui.md)
        * [Fragments之间的交互](basics/fragments/communicating.md)
@@ -96,7 +98,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [运用投影与相机视图](graphics/opengl/projection.md)
       * [添加移动](graphics/opengl/motion.md)
       * [响应触摸事件](graphics/opengl/touch.md)
-* [动画](animations/index.md)
+* **[动画](animations/index.md)(编写进行中:@[wangyan3]((https://github.com/wangyan3))**
    * [淡入淡出两个View](animations/crossfade.md)
    * [使用ViewPager实现屏幕滑动](animations/screen-slide.md)
    * [卡片翻转的动画](animations/cardflip.md)
@@ -131,7 +133,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [使用备份API](cloud/cloudsync/backupapi.md)
       * [使用Google Cloud Messaging](cloud/cloudsync/gcm.md)
    * [解决云同步的保存冲突](cloud/cloudsave/index.md)
-* **[用户信息](contacts-provider/index.md)(翻译进行中:@spencer198711)**
+* **[用户信息](contacts-provider/index.md)(编写进行中:@[spencer198711]((https://github.com/spencer198711))**
    * [获取联系人列表](contacts-provider/retrieve-names.md)
    * [获取联系人详情](contacts-provider/retrieve-detail.md)
    * [修改联系人信息](contacts-provider/modify-data.md)
@@ -273,14 +275,14 @@ Power by [Gitbook](https://www.gitbook.io/)
       
 
 ## 认领流程
-先申请加入Android Training翻译组或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节，我会及时更新认领进度到项目主页。
-
-## 校验流程
-翻译完毕之后，难免有些地方不流畅，欢迎愿意一起学习的同学加入帮忙校验，提升这份文档的质量，谢谢！
-
-申请加入翻译组，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
+先申请加入Android Training翻译组或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节与你的Github账户名，我会及时更新认领进度到项目主页。
 
 ## 贡献流程
+
+* 存放路径：所有的源文件放在项目根目录的`SOURCE`目录下，按照上面的目录结构，找到对应的md文件(可以通过打开`SOURCE`目录下的`SUMMARY.md`文件查看章节对应的路径与文件名)
+* 编写要求：使用[markdown](http://jianshu.io/p/q81RER)的格式进行编写
+
+### 会Git操作的请参考下面的流程(推荐)：
 
 * 1)fork我的项目到自己的账户下
 
@@ -313,6 +315,15 @@ Power by [Gitbook](https://www.gitbook.io/)
 后续本地的所有修改都在dev分支进行，编写好的文档，commit到本地之后，先PUSH到自己的远程仓库，然后登入Github账户，，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
 
 此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
+
+### 不会Git的同学操作流程
+认领之后，找到目录文件，打开编写。之后把文件直接传递给我，我来进行提交提交！
+
+
+## 校验流程
+翻译完毕之后，难免有些地方不流畅，欢迎愿意一起学习的同学加入帮忙校验，提升这份文档的质量，谢谢！
+
+申请加入翻译组，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
 
 ## MarkDown简明语法
 
