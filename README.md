@@ -29,7 +29,7 @@
        * [执行你的程序](basics/firstapp/running-app.md)
        * [建立一个简单的用户界面](basics/firstapp/building-ui.md)
        * [启动另外的Activity](basics/firstapp/starting-activity.md)
-   * [添加ActionBar](basics/actionbar/index.md)
+   * **[添加ActionBar](basics/actionbar/index.md)(编写进行中@[vincent4j](https://github.com/vincent4j))**
        * [建立ActionBar](basics/actionbar/setting-up.md)
        * [添加Action按钮](basics/actionbar/adding-buttons.md)
        * [ActionBar的风格化](basics/actionbar/styling.md)
