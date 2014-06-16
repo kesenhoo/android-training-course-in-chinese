@@ -288,7 +288,7 @@ git clone https://github.com/{user_name}/android-training-course-in-chinese
 
 ```
 git remote add upstream https://github.com/kesenhoo/android-training-course-in-chinese.git
-git fetch upstream`
+git fetch upstream
 ```
 
 * 4)使用Gitbook编辑器进行编写
@@ -313,7 +313,7 @@ git push origin gh-pages
 ```
 git fetch upstream
 # Fetches any new changes from the original repository
-git merge upstream/master
+git merge upstream/gh-pages
 # Merges any changes fetched into your working files
 ```
 
