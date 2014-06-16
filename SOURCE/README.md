@@ -1,6 +1,6 @@
 # Android Training Course in Chinese
 
-* Android Training交流组：363415744,欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
+* Android Training交流组：363415744，欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
 
 ## Android Training Course
 <http://developer.android.com/training/index.html>
