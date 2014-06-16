@@ -24,7 +24,7 @@
 
 * [序言](README.md)
 * [开始](basics/index.md)
-   * **[建立你的第一个App](basics/firstapp/index.md)(编写进行中@[yuanfentiank789](https://github.com/yuanfentiank789))****
+   * **[建立你的第一个App](basics/firstapp/index.md)(编写进行中@[yuanfentiank789](https://github.com/yuanfentiank789))**
        * [创建一个Android项目](basics/firstapp/creating-project.md)
        * [执行你的程序](basics/firstapp/running-app.md)
        * [建立一个简单的用户界面](basics/firstapp/building-ui.md)
@@ -134,7 +134,7 @@
    * [获取联系人详情](contacts-provider/retrieve-detail.md)
    * [修改联系人信息](contacts-provider/modify-data.md)
    * [显示联系人头像](contacts-provider/display-badge.md)
-* [位置信息](location/index.md)
+* **[位置信息](location/index.md)(编写进行中@[penkzhou](https://github.com/penkzhou))**
    * [获取当前位置](location/retrieve-current.md)
    * [获取位置更新](location/retrieve-location-updates.md)
    * [显示位置地址](location/display-address.md)
