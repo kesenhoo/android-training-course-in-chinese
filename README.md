@@ -276,43 +276,48 @@
 ## 协作流程
 * 1)fork我的项目到自己的账户下
 
-`https://github.com/kesenhoo/android-training-course-in-chinese`
+https://github.com/kesenhoo/android-training-course-in-chinese`
 
 * 2)把fork之后的项目clone到本地
 
-`git clone https://github.com/{user_name}/android-training-course-in-chinese`
+```
+git clone https://github.com/{user_name}/android-training-course-in-chinese`
+```
 
-* 3)创建一个新的分支并切换到该分支下
+* 3)为本地的分支添加原始的远程仓库
 
-`git branch dev`
+```
+git remote add upstream https://github.com/kesenhoo/android-training-course-in-chinese.git`
+git fetch upstream`
+```
 
-`git checkout dev`
-
-* 4)为本地的工作分支添加将合并的远程仓库
-
-`git remote add uploadrepo https://github.com/kesenhoo/android-training-course-in-chinese.git`
-
-* 5)抓取远程合并仓库的更新，再与本地进行Merge
-
-`git remote update`
-
-`git fetch uploadrepo gh-pages`
-
-`git rebase uploadrepo/gh-pages`
-
-**前面1-5的是首次初始化的步骤，想要再次获取远程仓库uploadrepo的更新，需要再次执行步骤5)**
-
-* 6)使用Gitbook编辑器进行编写
+* 4)使用Gitbook编辑器进行编写
 
    * Mac版<http://url.cn/LddkKy>
    * PC版<http://url.cn/LLOySy>
    * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 
 
-* 7)编写好文档之后，相应的md文件已经被修改，确认之后，commit到本地，再PUSH到自己的远程仓库
+* 5)编写好文档之后，相应的md文件已经被修改，确认之后，commit到本地，再PUSH到自己的远程仓库
 
-* 8)登入Github账户，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
+```
+git add . 
+# 把当前修改的所有文件提交到工作区
+git commit
+# 提交修改到本地仓库
+git push origin gh-pages
+#PUSH修改到远程仓库
+```
 
-此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
+* 6)若是在编写文件的过程中，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地
+
+```
+git fetch upstream
+# Fetches any new changes from the original repository
+git merge upstream/master
+# Merges any changes fetched into your working files
+```
+
+* 7)登入Github账户，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
 
 ## MarkDown简明语法
 
