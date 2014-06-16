@@ -1,7 +1,6 @@
 # Android Training Course in Chinese
 
-* Android Training翻译组：363415744
-* Android Training交流群：348663273
+* Android Training学习交流组：363415744
 
 欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。请看到的同学Star支持，感谢！
 
@@ -275,14 +274,13 @@ Power by [Gitbook](https://www.gitbook.io/)
       
 
 ## 认领流程
-先申请加入Android Training翻译组或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节与你的Github账户名，我会及时更新认领进度到项目主页。
+先申请加入群或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节与你的Github账户名，我会及时更新认领进度到项目主页。
 
-## 贡献流程
+## 协作流程
 
-* 存放路径：所有的源文件放在项目根目录的`SOURCE`目录下，按照上面的目录结构，找到对应的md文件(可以通过打开`SOURCE`目录下的`SUMMARY.md`文件查看章节对应的路径与文件名)
-* 编写要求：使用[markdown](http://jianshu.io/p/q81RER)的格式进行编写
+**存放路径：**所有的源文件放在项目根目录的`SOURCE`目录下，按照上面的目录结构，找到对应的md文件(可以通过打开`SOURCE`目录下的`SUMMARY.md`文件查看章节对应的路径与文件名)
 
-### 会Git操作的请参考下面的流程(推荐)：
+**编写要求：**使用[markdown](http://jianshu.io/p/q81RER)的格式进行编写
 
 * 1)fork我的项目到自己的账户下
 
@@ -310,27 +308,31 @@ Power by [Gitbook](https://www.gitbook.io/)
 
 `git rebase uploadrepo/gh-pages`
 
-前面1-5的是首次初始化的步骤，想要再次获取远程仓库uploadrepo的更新，需要再次执行步骤5)。
+**前面1-5的是首次初始化的步骤，想要再次获取远程仓库uploadrepo的更新，需要再次执行步骤5)**
 
-后续本地的所有修改都在dev分支进行，编写好的文档，commit到本地之后，先PUSH到自己的远程仓库，然后登入Github账户，，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
+* 6)使用Gitbook编辑器进行编写
+
+   * Mac版<http://url.cn/LddkKy>
+   * PC版<http://url.cn/LLOySy>
+   * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 
+
+* 7)编写好文档之后，相应的md文件已经被修改，确认之后，commit到本地，再PUSH到自己的远程仓库
+
+* 8)登入Github账户，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
 
 此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
-
-### 不会Git的同学操作流程
-认领之后，找到目录文件，打开编写。之后把文件直接传递给我，我来进行提交提交！
-
 
 ## 校验流程
 翻译完毕之后，难免有些地方不流畅，欢迎愿意一起学习的同学加入帮忙校验，提升这份文档的质量，谢谢！
 
-申请加入翻译组，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
+申请加入群，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
 
 ## MarkDown简明语法
 
 <http://jianshu.io/p/q81RER>
 
 Ps:
-* [点击链接跳到首页的待认领列表](index.html#courses)。
+* [点击链接跳到本地其他页面的待认领列表](index.html#courses)。
 `[点击链接跳到首页](index.html#course)`
 * [点击链接跳到本页面的在线阅读模块](#online_reading)
 `[点击链接跳到页面内部](#online_reading)`
@@ -338,3 +340,7 @@ Ps:
 ` ![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)`
 
 有不清楚的地方请直接查看现成的源码示例。
+
+## Training离线文档
+近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
+我把所有的Google Android文档打包存在云端，有需要的同学点击下载<http://url.cn/OTdU3a>
