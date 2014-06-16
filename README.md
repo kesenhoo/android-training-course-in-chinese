@@ -98,7 +98,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [运用投影与相机视图](graphics/opengl/projection.md)
       * [添加移动](graphics/opengl/motion.md)
       * [响应触摸事件](graphics/opengl/touch.md)
-* **[动画](animations/index.md)(编写进行中:@[wangyan3]((https://github.com/wangyan3))**
+* **[动画](animations/index.md)(编写进行中:@[wangyan3](https://github.com/wangyan3))**
    * [淡入淡出两个View](animations/crossfade.md)
    * [使用ViewPager实现屏幕滑动](animations/screen-slide.md)
    * [卡片翻转的动画](animations/cardflip.md)
@@ -133,7 +133,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [使用备份API](cloud/cloudsync/backupapi.md)
       * [使用Google Cloud Messaging](cloud/cloudsync/gcm.md)
    * [解决云同步的保存冲突](cloud/cloudsave/index.md)
-* **[用户信息](contacts-provider/index.md)(编写进行中:@[spencer198711]((https://github.com/spencer198711))**
+* **[用户信息](contacts-provider/index.md)(编写进行中:@[spencer198711](https://github.com/spencer198711))**
    * [获取联系人列表](contacts-provider/retrieve-names.md)
    * [获取联系人详情](contacts-provider/retrieve-detail.md)
    * [修改联系人信息](contacts-provider/modify-data.md)
