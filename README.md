@@ -225,7 +225,7 @@
       * [执行重复的闹钟任务](background-jobs/scheduling/alarms.md)
 * [性能优化](performance/index.md)
    * [管理应用的内存](performance/memory.md)
-   * [性能优化Tips](performance/performance-tips.md)
+   * **[性能优化Tips](performance/performance-tips.md)(编写进行中@[kesenhoo](https://github.com/kesenhoo))**
    * [提升Layout的性能](performance/improving-layouts/index.md)
       * [优化layout的层级](performance/improving-layouts/optimizing-layout.md)
       * [使用include标签重用layouts](performance/improving-layouts/reuse-layouts.md)
