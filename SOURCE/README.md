@@ -1,9 +1,6 @@
 # Android Training Course in Chinese
 
-* Android Training翻译组：363415744
-* Android Training交流群：348663273
-
-欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
+* Android Training交流组：363415744,欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
 
 ## Android Training Course
 <http://developer.android.com/training/index.html>
@@ -12,9 +9,9 @@
 
 很可惜，这么一份很好的资料一直没有一份完整的中文版，个人从2012年发现Training课程开始，一直断断续续的在学习Android官方的Training课程，并很拙劣的输出了不少学习翻译笔记，个人实力与精力有限，很期待这次能够发起这个项目，借助大家的力量，一起尽快完成所有课程的中文版，更好的为学习Android开发贡献力量。
 
-整个课程的目录已经搭建完毕，大部分课程都有分了好几个篇章，期待大家的加入！
+期待大家的加入！
 
 ## 项目主页
 <https://github.com/kesenhoo/android-training-course-in-chinese>
 
-麻烦Star，Watch，谢谢支持！
+麻烦点击Star进行支持！
