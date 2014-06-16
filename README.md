@@ -24,7 +24,7 @@
 
 * [序言](README.md)
 * [开始](basics/index.md)
-   * [建立你的第一个App](basics/firstapp/index.md)
+   * **[建立你的第一个App](basics/firstapp/index.md)(编写进行中@[yuanfentiank789](https://github.com/yuanfentiank789))****
        * [创建一个Android项目](basics/firstapp/creating-project.md)
        * [执行你的程序](basics/firstapp/running-app.md)
        * [建立一个简单的用户界面](basics/firstapp/building-ui.md)
