@@ -276,18 +276,18 @@
 ## 协作流程
 * 1)fork我的项目到自己的账户下
 
-https://github.com/kesenhoo/android-training-course-in-chinese`
+https://github.com/kesenhoo/android-training-course-in-chinese
 
 * 2)把fork之后的项目clone到本地
 
 ```
-git clone https://github.com/{user_name}/android-training-course-in-chinese`
+git clone https://github.com/{user_name}/android-training-course-in-chinese
 ```
 
 * 3)为本地的分支添加原始的远程仓库
 
 ```
-git remote add upstream https://github.com/kesenhoo/android-training-course-in-chinese.git`
+git remote add upstream https://github.com/kesenhoo/android-training-course-in-chinese.git
 git fetch upstream`
 ```
 
