@@ -46,7 +46,7 @@
        * [创建一个Fragment](basics/fragments/creating.md)
        * [建立灵活动态的UI](basics/fragments/fragment-ui.md)
        * [Fragments之间的交互](basics/fragments/communicating.md)
-   * [数据保存](basics/data-storage/index.md)
+   * **[数据保存](basics/data-storage/index.md)(校验进行中@[K0ST](https://github.com/K0ST)，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [保存到Preference](basics/data-storage/shared-preference.md)
        * [保存到文件](basics/data-storage/files.md)
        * [保存到数据库](basics/data-storage/database.md)
