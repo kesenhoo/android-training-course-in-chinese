@@ -80,7 +80,7 @@
       * [打印照片](multimedia/printing/photos.md)
       * [打印HTML文档](multimedia/printing/html-docs.md)
       * [打印自定义文档](multimedia/printing/custom-docs.md)
-* [图像](graphics/index.md)
+* **[图像](graphics/index.md)(编写进行中@[kesenhoo](https://github.com/kesenhoo))**
    * [高效显示Bitmap](graphics/displaying-bitmaps/index.md)
       * [高效加载大图](graphics/displaying-bitmaps/load-bitmap.md)
       * [非UI线程处理Bitmap](graphics/displaying-bitmaps/process-bitmap.md)
@@ -297,7 +297,18 @@ git fetch upstream
    * PC版<http://url.cn/LLOySy>
    * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 
 
-* 5)编写好文档之后，相应的md文件已经被修改，确认之后，commit到本地，再PUSH到自己的远程仓库
+* 5)若是在编写文件之前或者提交编写文件之前，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地，再把本地的更新提交到自己的远程仓库，这样才能让自己的远程仓库与原始的Fork仓库保持一致。
+
+```
+git fetch upstream
+# 拉取把原始远程仓库的更新
+git merge upstream/gh-pages
+# 把原始远程仓库的更新合并到本地
+git push origin gh-pages
+# 提交更新到自己的远程仓库
+```
+
+* 5)编写好文档之后，相应的md文件已经被修改，commit到本地，再PUSH到自己的远程仓库
 
 ```
 git add . 
@@ -305,19 +316,10 @@ git add .
 git commit
 # 提交修改到本地仓库
 git push origin gh-pages
-#PUSH修改到远程仓库
+# 把本地修改提交到自己的远程仓库
 ```
 
-* 6)若是在编写文件的过程中，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地
-
-```
-git fetch upstream
-# Fetches any new changes from the original repository
-git merge upstream/gh-pages
-# Merges any changes fetched into your working files
-```
-
-* 7)登入Github账户，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
+* 7)登入Github账户，找到自己的远程仓库，在右边的Pull Request里面提交与原始Fork仓库的合并的请求，提交之后，我会进行处理再合并到项目主仓库。
 
 ## MarkDown简明语法
 
