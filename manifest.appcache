@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1402982905174
+# Revision 1403019376620
 
 CACHE:
 distribute/in-app-billing/index.html
@@ -15,8 +15,8 @@ distribute/multi-apks/api.html
 distribute/multi-apks/multiple.html
 distribute/multi-apks/screen-size.html
 distribute/multi-apks/texture.html
-index.html
 animations/cardflip.html
+index.html
 animations/crossfade.html
 animations/index.html
 animations/layout.html
@@ -25,25 +25,25 @@ animations/zoom.html
 background-jobs/index.html
 background-jobs/load-data-background/handle-result.html
 background-jobs/load-data-background/index.html
-background-jobs/run-background-service/create-service.html
 background-jobs/load-data-background/setup-loader.html
+background-jobs/run-background-service/create-service.html
 background-jobs/run-background-service/index.html
 background-jobs/run-background-service/report-status.html
 background-jobs/run-background-service/send-request.html
 background-jobs/scheduling/alarms.html
 background-jobs/scheduling/index.html
 background-jobs/scheduling/wake-lock.html
-basics/actionbar/adding-buttons.html
 basics/actionbar/index.html
+basics/actionbar/adding-buttons.html
 basics/actionbar/setting-up.html
 basics/actionbar/styling.html
 basics/activity-lifecycle/index.html
 basics/activity-lifecycle/pausing.html
 basics/activity-lifecycle/recreating.html
 basics/activity-lifecycle/starting.html
+basics/data-storage/files.html
 basics/activity-lifecycle/stopping.html
 basics/data-storage/database.html
-basics/data-storage/files.html
 basics/data-storage/index.html
 basics/data-storage/shared-preference.html
 basics/firstapp/building-ui.html
@@ -71,8 +71,8 @@ cloud/cloudsync/index.html
 cloud/index.html
 connectivity/connect-devices-wireless/index.html
 connectivity/connect-devices-wireless/nsd-wifi-index.html
-connectivity/connect-devices-wireless/wifi-direct.html
 connectivity/connect-devices-wireless/nsd.html
+connectivity/connect-devices-wireless/wifi-direct.html
 connectivity/efficient-downloads/connectivity-patterns.html
 connectivity/efficient-downloads/efficient-network-access.html
 connectivity/efficient-downloads/index.html
@@ -111,8 +111,8 @@ content-sharing/sharing/index.html
 content-sharing/sharing/receive.html
 content-sharing/sharing/send.html
 content-sharing/sharing/shareaction.html
-graphics/displaying-bitmaps/display-bitmap.html
 graphics/displaying-bitmaps/cache-bitmap.html
+graphics/displaying-bitmaps/display-bitmap.html
 graphics/displaying-bitmaps/index.html
 graphics/displaying-bitmaps/load-bitmap.html
 graphics/displaying-bitmaps/manage-bitmap-memory.html
@@ -135,8 +135,8 @@ input/gestures/movement.html
 input/gestures/multi.html
 input/gestures/scale.html
 input/gestures/scroll.html
-input/gestures/viewgroup.html
 input/index.html
+input/gestures/viewgroup.html
 input/keyboard-input/commands.html
 input/keyboard-input/index.html
 input/keyboard-input/navigation.html
@@ -144,8 +144,8 @@ input/keyboard-input/type.html
 input/keyboard-input/visibility.html
 location/activity-recognition.html
 location/display-address.html
-location/index.html
 location/geofencing.html
+location/index.html
 location/location-testing.html
 location/retrieve-current.html
 location/retrieve-location-updates.html
@@ -161,9 +161,9 @@ multimedia/index.html
 multimedia/printing/custom-docs.html
 multimedia/printing/html-docs.html
 multimedia/printing/index.html
-multimedia/printing/photos.html
 performance/improving-layouts/index.html
 performance/improving-layouts/loading-ondemand.html
+multimedia/printing/photos.html
 performance/improving-layouts/optimizing-layout.html
 performance/improving-layouts/reuse-layouts.html
 performance/improving-layouts/smooth-scrolling.html
@@ -181,12 +181,12 @@ performance/multi-threads/index.html
 performance/multi-threads/run-code.html
 performance/perf-anr/index.html
 performance/perf-jni/index.html
+performance/performance-tips.html
 performance/smp/index.html
 security/enterprise.html
 security/index.html
 security/security-ssl.html
 security/security-tips.html
-performance/performance-tips.html
 testing/activity-testing/activity-basic-testing.html
 testing/activity-testing/activity-function-testing.html
 testing/activity-testing/activity-ui-testing.html
@@ -204,8 +204,8 @@ ui/backward-compatible-ui/older-impl.html
 ui/backward-compatible-ui/using-component.html
 ui/custom-view/create-view.html
 ui/custom-view/custom-draw.html
-ui/custom-view/index.html
 ui/custom-view/make-interactive.html
+ui/custom-view/index.html
 ui/custom-view/optimize-view.html
 ui/index.html
 ui/multiscreen/adapt-ui.html

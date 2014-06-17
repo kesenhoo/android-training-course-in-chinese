@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.2" data-basepath="../.." data-revision="1402982905173">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.2" data-basepath="../.." data-revision="1403019376620">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,133 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_774">
+                    <section class="normal" id="section-gitbook_117">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-ui-bitmap">非UI线程处理Bitmap</h1>
+<p>在上一课中有介绍一系列的BitmapFactory.decode* 方法，当数据源是网络或者是磁盘时(或者是任何实际源不在内存的)，这些方法都不应该在main UI 线程中执行。那些情况下加载数据是不可以预知的，它依赖于许多因素(从网络或者硬盘读取数据的速度, 图片的大小, CPU的速度, etc.)。如果其中任何一个任务卡住了UI thread, 系统会出现ANR的错误。</p>
+<p>这一节课会介绍如何使用 AsyncTask 在后台线程中处理bitmap并且演示了如何处理并发(concurrency)的问题。</p>
+<h2 id="use-an-asynctask-asynctask-">Use an AsyncTask(使用AsyncTask)</h2>
+<p>AsyncTask 类提供了一个简单的方法来在后台线程执行一些操作，并且可以把后台的结果呈现到UI线程。下面是一个加载大图的示例：</p>
+<pre><code class="lang-java">class BitmapWorkerTask extends AsyncTask {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> WeakReference imageViewReference;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> data = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">BitmapWorkerTask</span>(ImageView imageView) {
+        <span class="hljs-comment">// Use a WeakReference to ensure the ImageView can be garbage collected</span>
+        imageViewReference = <span class="hljs-keyword">new</span> WeakReference(imageView);
+    }
+
+    <span class="hljs-comment">// Decode image in background.</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> Bitmap <span class="hljs-title">doInBackground</span>(Integer... params) {
+        data = params[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">return</span> decodeSampledBitmapFromResource(getResources(), data, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>));
+    }
+
+    <span class="hljs-comment">// Once complete, see if ImageView is still around and set bitmap.</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPostExecute</span>(Bitmap bitmap) {
+        <span class="hljs-keyword">if</span> (imageViewReference != <span class="hljs-keyword">null</span> &amp;&amp; bitmap != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">final</span> ImageView imageView = imageViewReference.get();
+            <span class="hljs-keyword">if</span> (imageView != <span class="hljs-keyword">null</span>) {
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+    }
+}
+</code></pre>
+<p>为ImageView使用WeakReference 确保了 AsyncTask 所引用的资源可以被GC(garbage collected)。因为当任务结束时不能确保 ImageView 仍然存在，因此你必须在 onPostExecute() 里面去检查引用.  这个ImageView 也许已经不存在了，例如，在任务结束时用户已经不在那个Activity或者是设备已经发生配置改变(旋转屏幕等)。</p>
+<p>开始异步加载位图，只需要创建一个新的任务并执行它即可:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadBitmap</span>(<span class="hljs-keyword">int</span> resId, ImageView imageView) {
+    BitmapWorkerTask task = <span class="hljs-keyword">new</span> BitmapWorkerTask(imageView);
+    task.execute(resId);
+}
+</code></pre>
+<h2 id="handle-concurrency-">Handle Concurrency(处理并发问题)</h2>
+<p>通常类似 ListView 与 GridView 等视图组件在使用上面演示的AsyncTask 方法时会同时带来另外一个问题。为了更有效的处理内存，那些视图的子组件会在用户滑动屏幕时被循环使用。如果每一个子视图都触发一个AsyncTask ，那么就无法确保当前视图在结束task时，分配的视图已经进入循环队列中给另外一个子视图进行重用。而且, 无法确保所有的异步任务能够按顺序执行完毕。</p>
+<p><a href="http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html" target="_blank">Multithreading for Performance</a> 这篇博文更进一步的讨论了如何处理并发并且提供了一种解决方法，当任务结束时ImageView 保存一个最近常使用的AsyncTask引用。使用类似的方法,  AsyncTask 可以扩展出一个类似的模型。创建一个专用的 Drawable 子类来保存一个可以回到当前工作任务的引用。在这种情况下，BitmapDrawable 被用来作为占位图片，它可以在任务结束时显示到ImageView中。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> class AsyncDrawable extends BitmapDrawable {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> WeakReference bitmapWorkerTaskReference;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">AsyncDrawable</span>(Resources res, Bitmap bitmap,
+            BitmapWorkerTask bitmapWorkerTask) {
+        <span class="hljs-keyword">super</span>(res, bitmap);
+        bitmapWorkerTaskReference =
+            <span class="hljs-keyword">new</span> WeakReference(bitmapWorkerTask);
+    }
+
+    <span class="hljs-keyword">public</span> BitmapWorkerTask <span class="hljs-title">getBitmapWorkerTask</span>() {
+        <span class="hljs-keyword">return</span> bitmapWorkerTaskReference.get();
+    }
+}
+</code></pre>
+<p>在执行BitmapWorkerTask 之前，你需要创建一个 AsyncDrawable 并且绑定它到目标组件 ImageView 中：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadBitmap</span>(<span class="hljs-keyword">int</span> resId, ImageView imageView) {
+    <span class="hljs-keyword">if</span> (cancelPotentialWork(resId, imageView)) {
+        <span class="hljs-keyword">final</span> BitmapWorkerTask task = <span class="hljs-keyword">new</span> BitmapWorkerTask(imageView);
+        <span class="hljs-keyword">final</span> AsyncDrawable asyncDrawable =
+                <span class="hljs-keyword">new</span> AsyncDrawable(getResources(), mPlaceHolderBitmap, task);
+        imageView.setImageDrawable(asyncDrawable);
+        task.execute(resId);
+    }
+}
+</code></pre>
+<p>在上面的代码示例中，cancelPotentialWork 方法检查确保了另外一个在ImageView中运行的任务得以取消。如果是这样，它通过执行 cancel() 方法来取消之前的一个任务. 在小部分情况下, New出来的任务有可能已经存在，这样就不需要执行这个任务了。下面演示了如何实现一个 cancelPotentialWork 。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">cancelPotentialWork</span>(<span class="hljs-keyword">int</span> data, ImageView imageView) {
+    <span class="hljs-keyword">final</span> BitmapWorkerTask bitmapWorkerTask = getBitmapWorkerTask(imageView);
+
+    <span class="hljs-keyword">if</span> (bitmapWorkerTask != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> bitmapData = bitmapWorkerTask.data;
+        <span class="hljs-keyword">if</span> (bitmapData != data) {
+            <span class="hljs-comment">// Cancel previous task</span>
+            bitmapWorkerTask.cancel(<span class="hljs-keyword">true</span>);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// The same work is already in progress</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+    <span class="hljs-comment">// No task associated with the ImageView, or an existing task was cancelled</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</code></pre>
+<p>在上面有一个帮助方法， getBitmapWorkerTask(), 被用作检索任务是否已经被分配到指定的 ImageView:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> BitmapWorkerTask <span class="hljs-title">getBitmapWorkerTask</span>(ImageView imageView) {
+   <span class="hljs-keyword">if</span> (imageView != <span class="hljs-keyword">null</span>) {
+       <span class="hljs-keyword">final</span> Drawable drawable = imageView.getDrawable();
+       <span class="hljs-keyword">if</span> (drawable <span class="hljs-keyword">instanceof</span> AsyncDrawable) {
+           <span class="hljs-keyword">final</span> AsyncDrawable asyncDrawable = (AsyncDrawable) drawable;
+           <span class="hljs-keyword">return</span> asyncDrawable.getBitmapWorkerTask();
+       }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+}
+</code></pre>
+<p>最后一步是在BitmapWorkerTask 的onPostExecute() 方法里面做更新操作:</p>
+<pre><code class="lang-java">class BitmapWorkerTask extends AsyncTask {
+    ...
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPostExecute</span>(Bitmap bitmap) {
+        <span class="hljs-keyword">if</span> (isCancelled()) {
+            bitmap = <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (imageViewReference != <span class="hljs-keyword">null</span> &amp;&amp; bitmap != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">final</span> ImageView imageView = imageViewReference.get();
+            <span class="hljs-keyword">final</span> BitmapWorkerTask bitmapWorkerTask =
+                    getBitmapWorkerTask(imageView);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == bitmapWorkerTask &amp;&amp; imageView != <span class="hljs-keyword">null</span>) {
+                imageView.setImageBitmap(bitmap);
+            }
+        }
+    }
+}
+</code></pre>
+<p>这个方法不仅仅适用于 ListView 与 GridView 组件，在那些需要循环利用子视图的组件中同样适用。只需要在设置图片到ImageView的地方调用 loadBitmap 方法。例如，在GridView 中实现这个方法会是在 getView() 方法里面调用。</p>
 
                     
                     </section>
