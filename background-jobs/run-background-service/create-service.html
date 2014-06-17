@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建后台Service | Android Training Course in Chinese</title>
+        <title>创建IntentService | Android Training Course in Chinese</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.1.1" data-basepath="../.." data-revision="1403019376620">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.1.1" data-basepath="../.." data-revision="1403022063839">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter done " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter done " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter done " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter done " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter done " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,13 +3234,57 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_27">
+                    <section class="normal" id="section-gitbook_670">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-service">创建后台Service</h1>
+<h1 id="creating-a-background-service-intentservice">Creating a Background Service:创建IntentService</h1>
+<p>IntentService为执行一个操作在单个后台线程，提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。</p>
+<p>IntentService有下面几个局限性：</p>
+<ul>
+<li>不可以直接和UI做交互。为了把他执行的结果体现在UI上，需要发送给Activity。</li>
+<li>工作任务队列是顺序执行的，如果一个任务正在IntentService中执行，此时你再发送一个任务请求，这个任务会一直等待直到前面一个任务执行完毕。</li>
+<li>正在执行的任务无法打断。</li>
+</ul>
+<p>然而，在大多数情况下，IntentService都是简单后台任务操作的理想选择。</p>
+<p>这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调<a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a>)。最后，还会解释如何在manifest文件中定义这个IntentService。</p>
+<!-- More -->
+
+<h2 id="1-intentservice">1)创建IntentService</h2>
+<p>为了给你的app创建一个IntentService，定义一个类，extends IntentService，在里面override onHandleIntent()方法，如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RSSPullService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span> {</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHandleIntent</span>(Intent workIntent) {
+        <span class="hljs-comment">// Gets data from the incoming Intent</span>
+        String dataString = workIntent.getDataString();
+        ...
+        <span class="hljs-comment">// Do work here, based on the contents of dataString</span>
+        ...
+    }
+}
+</code></pre>
+<p>注意一个普通Service组件的其他回调，例如<code>onStartCommand()</code>会被IntentService自动触发。在IntentService中，要避免override那些回调。</p>
+<h2 id="2-manifest-intentservice">2)在Manifest文件中定义IntentService</h2>
+<p>IntentService需要在manifest文件的<application>标签下进行定义，如下所示：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application
+</span>        <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/icon"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>&gt;</span>
+        ...
+        <span class="hljs-comment">&lt;!--
+            Because android:exported is set to "false",
+            the service is only available to this app.
+        --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">service
+</span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".RSSPullService"</span>
+            <span class="hljs-attribute">android:exported</span>=<span class="hljs-value">"false"</span>/&gt;</span>
+        ...
+<span class="hljs-tag">&lt;<span class="hljs-title">application</span>/&gt;</span>
+</code></pre>
+<p><code>android:name</code>属性指明了IntentService的名字。</p>
+<p>注意<service>标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。</p>
+<p>至此，已经学习了IntentService的基础知识，下节会学习如何发送任务到IntentService。</p>
 
                     
                     </section>
@@ -3250,10 +3294,10 @@
         </div>
 
         
-        <a href="../../background-jobs/run-background-service/index.html" class="navigation navigation-prev " aria-label="Previous page: 执行一个后台Service"><i class="fa fa-angle-left"></i></a>
+        <a href="../../background-jobs/run-background-service/index.html" class="navigation navigation-prev " aria-label="Previous page: 在IntentService中执行后台任务"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../background-jobs/run-background-service/send-request.html" class="navigation navigation-next " aria-label="Next page: 发送任务到后台Service"><i class="fa fa-angle-right"></i></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" class="navigation navigation-next " aria-label="Next page: 发送工作任务到IntentService"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
