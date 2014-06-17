@@ -80,8 +80,8 @@
       * [打印照片](multimedia/printing/photos.md)
       * [打印HTML文档](multimedia/printing/html-docs.md)
       * [打印自定义文档](multimedia/printing/custom-docs.md)
-* **[图像](graphics/index.md)(编写进行中@[kesenhoo](https://github.com/kesenhoo))**
-   * [高效显示Bitmap](graphics/displaying-bitmaps/index.md)
+* [图像](graphics/index.md)
+   * **[高效显示Bitmap](graphics/displaying-bitmaps/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [高效加载大图](graphics/displaying-bitmaps/load-bitmap.md)
       * [非UI线程处理Bitmap](graphics/displaying-bitmaps/process-bitmap.md)
       * [缓存Bitmap](graphics/displaying-bitmaps/cache-bitmap.md)
