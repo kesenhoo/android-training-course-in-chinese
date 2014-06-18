@@ -50,7 +50,7 @@
        * [保存到Preference](basics/data-storage/shared-preference.md)
        * [保存到文件](basics/data-storage/files.md)
        * [保存到数据库](basics/data-storage/database.md)
-   * [与其他应用的交互](basics/intents/index.md)
+   * **[与其他应用的交互](basics/intents/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [Intent的发送](basics/intents/sending.md)
        * [接收Activity返回的结果](basics/intents/result.md)
        * [Intent过滤](basics/intents/filters.md)

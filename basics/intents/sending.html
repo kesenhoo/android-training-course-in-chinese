@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.1" data-basepath="../.." data-revision="1403069096409">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.1" data-basepath="../.." data-revision="1403071179909">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,110 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_99">
+                    <section class="normal" id="section-gitbook_1804">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="intent-">Intent的发送</h1>
+<p>Android中最重要的功能之一就是可以利用一个带有<code>action</code>的<code>intent</code>使得当前app能够跳转到其他的app。例如：如果你的app拥有一个地址想要显示在地图上，你并不需要在你的app里面创建一个activity用来显示地图。你只需要使用Intent来发出查看地址的请求。Android系统则会启动能够显示地图的程序来呈现那个地址。</p>
+<p>正如在2.1章节:<a href="basics/firstapp/index.html">Building Your First App:建立你的第一个App</a>中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显示（explicit）的intent，它指定了需要叫起组件。然而，当你想要叫起不同的app来执行那个动作，则必须使用隐式（implicit）的intent。</p>
+<p>这节课会介绍如何为特殊的动作创建一个implicit intent，并使用它来启动另外一个app去执行intent中的action。</p>
+<h2 id="build-an-implicit-intent-intent-">Build an Implicit Intent[建立一个隐式的Intent]</h2>
+<p>Implicit intents并不会声明需要启动的组件的类名，它使用的是声明一个需要执行的动作。这个action指定了你想做的事情，例如查看，编辑，发送或者是获取什么。Intents通常会在发送action的同时附带一些数据，例如你想要查看的地址或者是你想要发送的邮件信息。依赖于你想要创建的Intent，这些数据需要是Uri, 或者是其他规定的数据类型。如果你的数据是一个Uri, 会有一个简单的 Intent() constructor 用来定义action与data。</p>
+<p>例如，下面是一个带有指定电话号码的intent。</p>
+<pre><code class="lang-java">Uri number = Uri.parse(<span class="hljs-string">"tel:5551234"</span>);
+Intent callIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_DIAL, number);
+</code></pre>
+<p>当你的app通过执行startActivity()来启动这个intent时，Phone app会使用之前的电话号码来拨出这个电话。</p>
+<p>下面是一些其他intent的例子：</p>
+<ul>
+<li>View a map:</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-comment">// Map point based on address</span>
+Uri location = Uri.parse(<span class="hljs-string">"geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California"</span>);
+<span class="hljs-comment">// Or map point based on latitude/longitude</span>
+<span class="hljs-comment">// Uri location = Uri.parse("geo:37.422219,-122.08364?z=14"); // z param is zoom level</span>
+Intent mapIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_VIEW, location);
+</code></pre>
+<ul>
+<li>View a web page:</li>
+</ul>
+<pre><code class="lang-java">Uri webpage = Uri.parse(<span class="hljs-string">"http://www.android.com"</span>);
+Intent webIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_VIEW, webpage);
+</code></pre>
+<p>另外一些需要&quot;extra&quot;数据的implicit intent。你可以使用 putExtra() 方法来添加那些数据。
+默认的，系统会根据Uri数据类型来决定需要哪些合适的MIME type。如果你没有在intent中包含一个Uri, 则通常需要使用 setType() 方法来指定intent附带的数据类型。设置MIME type 是为了指定哪些activity可以应该接受这个intent。例如：</p>
+<ul>
+<li>Send an email with an attachment:</li>
+</ul>
+<pre><code class="lang-java">Intent emailIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_SEND);
+<span class="hljs-comment">// The intent does not have a URI, so declare the "text/plain" MIME type</span>
+emailIntent.setType(HTTP.PLAIN_TEXT_TYPE);
+emailIntent.putExtra(Intent.EXTRA_EMAIL, <span class="hljs-keyword">new</span> String[] {<span class="hljs-string">"jon@example.com"</span>}); <span class="hljs-comment">// recipients</span>
+emailIntent.putExtra(Intent.EXTRA_SUBJECT, <span class="hljs-string">"Email subject"</span>);
+emailIntent.putExtra(Intent.EXTRA_TEXT, <span class="hljs-string">"Email message text"</span>);
+emailIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(<span class="hljs-string">"content://path/to/email/attachment"</span>));
+<span class="hljs-comment">// You can also attach multiple items by passing an ArrayList of Uris</span>
+</code></pre>
+<ul>
+<li>Create a calendar event:</li>
+</ul>
+<pre><code class="lang-java">Intent calendarIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_INSERT, Events.CONTENT_URI);
+Calendar beginTime = Calendar.getInstance().set(<span class="hljs-number">2012</span>, <span class="hljs-number">0</span>, <span class="hljs-number">19</span>, <span class="hljs-number">7</span>, <span class="hljs-number">30</span>);
+Calendar endTime = Calendar.getInstance().set(<span class="hljs-number">2012</span>, <span class="hljs-number">0</span>, <span class="hljs-number">19</span>, <span class="hljs-number">10</span>, <span class="hljs-number">30</span>);
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis());
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
+calendarIntent.putExtra(Events.TITLE, <span class="hljs-string">"Ninja class"</span>);
+calendarIntent.putExtra(Events.EVENT_LOCATION, <span class="hljs-string">"Secret dojo"</span>);
+</code></pre>
+<p><strong>Note:</strong> 这个intent for Calendar的例子只使用于&gt;=API Level 14。</p>
+<p><strong>Note:</strong> 请尽可能的定义你的intent更加确切。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为 image/*.这样能够阻止其他能够 &quot;查看&quot; 其他数据类型的app（like a map app) 被这个intent叫起。</p>
+<h2 id="verify-there-is-an-app-to-receive-the-intent-app-intent-">Verify There is an App to Receive the Intent[验证是否有App去接收这个Intent]</h2>
+<p>尽管Android系统会确保每一个确定的intent会被系统内置的app(such as the Phone, Email, or Calendar app)之一接收，但是你还是应该在触发一个intent之前做验证是否有App接受这个intent的步骤。</p>
+<p><strong>Caution: 如果你触发了一个intent，而且没有任何一个app会去接收这个intent，那么你的app会crash。</strong></p>
+<p>为了验证是否有合适的activity会响应这个intent,需要执行 queryIntentActivities() 来获取到能够接收这个intent的所有activity的list。如果返回的List非空，那么你才可以安全的使用这个intent。例如：</p>
+<pre><code class="lang-java">PackageManager packageManager = getPackageManager();
+List&lt;ResolveInfo&gt; activities = packageManager.queryIntentActivities(intent, <span class="hljs-number">0</span>);
+<span class="hljs-keyword">boolean</span> isIntentSafe = activities.size() &gt; <span class="hljs-number">0</span>;
+</code></pre>
+<p>如果 isIntentSafe 是 true, 那么至少有一个app可以响应这个intent。如果是 false则说明没有app可以handle这个intent。</p>
+<p><strong>Note:</strong>你必须在第一次使用之前做这个检查，若是不可行，则应该关闭这个功能。如果你知道某个确切的app能够handle这个intent，你也应该提供给用户去下载这个app的链接。（<a href="http://developer.android.com/distribute/googleplay/promote/linking.html" target="_blank">see how to link to your product on Google Play</a>).</p>
+<h2 id="start-an-activity-with-the-intent-intent-activity-">Start an Activity with the Intent [使用Intent来启动Activity]</h2>
+<p>当你创建好了intent并且设置好了extra数据，通过执行startActivity() 来发送到系统。如果系统确定有多个activity可以handle这个intent,它会显示出一个dialog，让用户选择启动哪个app。如果系统发现只有一个app可以handle这个intent，那么就会直接启动这个app。</p>
+<pre><code class="lang-java">startActivity(intent);
+</code></pre>
+<p><img src="/images/intents-choice.png" alt="intents-choice.png" title="Figure 1. Example of the selection dialog that appears when more than one app can handle an intent"></p>
+<p>下面是一个完整的例子，演示了如何创建一个intent来查看地图，验证有app可以handle这个intent,然后启动它。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Build the intent</span>
+Uri location = Uri.parse(<span class="hljs-string">"geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California"</span>);
+Intent mapIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_VIEW, location);
+
+<span class="hljs-comment">// Verify it resolves</span>
+PackageManager packageManager = getPackageManager();
+List&lt;ResolveInfo&gt; activities = packageManager.queryIntentActivities(mapIntent, <span class="hljs-number">0</span>);
+<span class="hljs-keyword">boolean</span> isIntentSafe = activities.size() &gt; <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Start an activity if it's safe</span>
+<span class="hljs-keyword">if</span> (isIntentSafe) {
+    startActivity(mapIntent);
+}
+</code></pre>
+<h2 id="show-an-app-chooser-app-">Show an App Chooser[显示一个App选择界面]</h2>
+<p>请注意，当你发送一个intent，有多个app可以handle的情况，用户可以在弹出dialog的时候，选择默认启动的app（通过勾选dialog下面的选择框，如上图所示）。这个功能对于用户有特殊偏好的时候非常有用（例如用户总是喜欢启动某个app来查看网页，总是喜欢启动某个camera来拍照）。</p>
+<p>然而，如果用户希望每次都弹出选择界面，而且每次都不确定会选择哪个app启动，例如分享功能，用户选择分享到哪个app都是不确定的，这个时候，需要强制弹出选择的对话框。（这种情况下用户不能选择默认启动的app）。</p>
+<p><img src="/images/intent-chooser.png" alt="intent-chooser.png" title="Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent."></p>
+<p>为了显示chooser, 需要使用createChooser()来创建Intent</p>
+<pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_SEND);
+...
+
+<span class="hljs-comment">// Always use string resources for UI text. This says something like "Share this photo with"</span>
+String title = getResources().getText(R.string.chooser_title);
+<span class="hljs-comment">// Create and start the chooser</span>
+Intent chooser = Intent.createChooser(intent, title);
+startActivity(chooser);
+</code></pre>
 
                     
                     </section>
