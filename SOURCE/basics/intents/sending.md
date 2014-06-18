@@ -96,7 +96,7 @@ boolean isIntentSafe = activities.size() > 0;
 startActivity(intent);
 ```
 
-![intents-choice.png](/images/intents-choice.png "Figure 1. Example of the selection dialog that appears when more than one app can handle an intent")
+![intents-choice.png](images/intents-choice.png "Figure 1. Example of the selection dialog that appears when more than one app can handle an intent")
 
 下面是一个完整的例子，演示了如何创建一个intent来查看地图，验证有app可以handle这个intent,然后启动它。
 
@@ -121,7 +121,7 @@ if (isIntentSafe) {
 
 然而，如果用户希望每次都弹出选择界面，而且每次都不确定会选择哪个app启动，例如分享功能，用户选择分享到哪个app都是不确定的，这个时候，需要强制弹出选择的对话框。（这种情况下用户不能选择默认启动的app）。
 
-![intent-chooser.png](/images/intent-chooser.png "Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent.")
+![intent-chooser.png](images/intent-chooser.png "Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent.")
 
 为了显示chooser, 需要使用createChooser()来创建Intent
 

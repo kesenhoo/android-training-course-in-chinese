@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.1" data-basepath="../.." data-revision="1403071179909">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.1" data-basepath="../.." data-revision="1403071863297">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1784">
+                    <section class="normal" id="section-gitbook_2522">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3251,7 +3251,7 @@
 <li>当用户开始离开这个activity,为了卸载这个activity，系统会调用其它方法来向下一阶移动activity状态。在某些情况下，activity会隐藏在金字塔下等待(例如当用户切换到其他app),这个时候activity可以重新回到顶端(如果用户回到这个activity)并且恢复用户离开时的状态。</li>
 <li>Figure 1. 下面这张图讲解了activity的生命周期：<em>(显然，这个金字塔模型要比之前Dev Guide里面的生命周期图更加容易理解，更加形象)</em></li>
 </ul>
-<p><img src="/images/basic-lifecycle.png" alt="basic-lifecycle"></p>
+<p><img src="images/basic-lifecycle.png" alt="basic-lifecycle"></p>
 <ul>
 <li>根据你的activity的复杂度，你也许不需要实现所有的生命周期方法。然而，你需要知道每一个方法的功能并确保你的app能够像用户期望的那样执行。如何实现一个符合用户期待的app，你需要注意下面几点：<ul>
 <li>当使用你的app的时候，不会因为有来电通话或者切换到其他app而导致程序crash。</li>
@@ -3318,7 +3318,7 @@ file
 <li>在后面的课程中，你讲看到其他方法是如何使用的，onStart() 与 onResume()在用户从Paused or Stopped状态中恢复的时候非常有用。</li>
 <li><strong>Note:</strong> onCreate() 方法包含了一个参数叫做savedInstanceState，这将会在后面的课程：重新创建一个activity的时候涉及到。</li>
 </ul>
-<p><img src="/images/basic-lifecycle-create.png" alt="basic_lifecycle-create"></p>
+<p><img src="images/basic-lifecycle-create.png" alt="basic_lifecycle-create"></p>
 <ul>
 <li>Figure 2. 上图显示了onCreate(), onStart(), and onResume()是如何执行的。当这三个顺序执行的回调函数完成后，activity会到达Resumed状态。</li>
 </ul>
