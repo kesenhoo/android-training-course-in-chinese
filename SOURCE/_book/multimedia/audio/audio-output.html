@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.3" data-basepath="../.." data-revision="1403071527327">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.3" data-basepath="../.." data-revision="1403107666234">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,52 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2392">
+                    <section class="normal" id="section-gitbook_161">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">兼容音频输出设备</h1>
+<p>用户在播放音乐的时候有多个选择，可以使用内置的扬声器，有线耳机或者是支持A2DP的蓝牙耳机。
+【补充：A2DP全名是Advanced Audio Distribution Profile 蓝牙音频传输模型协定! A2DP是能够采用耳机内的芯片来堆栈数据，达到声音的高清晰度。有A2DP的耳机就是蓝牙立体声耳机。声音能达到44.1kHz，一般的耳机只能达到8kHz。如果手机支持蓝牙，只要装载A2DP协议，就能使用A2DP耳机了。还有消费者看到技术参数提到蓝牙V1.0 V1.1 V1.2 V2.0——这些是指蓝牙的技术版本，是指通过蓝牙传输的速度，他们是否支持A2DP具体要看蓝牙产品制造商是否使用这个技术。来自<a href="http://baike.baidu.com/view/551149.htm" target="_blank">百度百科</a>】</p>
+<!-- more -->
+
+<h2 id="check-what-hardware-is-being-used-">Check What Hardware is Being Used(检测目前正在使用的硬件设备)</h2>
+<p>选择的播放设备会影响App的行为。可以使用AudioManager来查询某个音频输出到扬声器，有线耳机还是蓝牙上。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">if</span> (isBluetoothA2dpOn()) {
+    <span class="hljs-comment">// Adjust output for Bluetooth.</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isSpeakerphoneOn()) {
+    <span class="hljs-comment">// Adjust output for Speakerphone.</span>
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isWiredHeadsetOn()) {
+    <span class="hljs-comment">// Adjust output for headsets</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// If audio plays and noone can hear it, is it still playing?</span>
+}
+</code></pre>
+<h2 id="handle-changes-in-the-audio-output-hardware-">Handle Changes in the Audio Output Hardware(处理音频输出设备的改变)</h2>
+<p>当有线耳机被拔出或者蓝牙设备断开连接的时候，音频流会自动输出到内置的扬声器上。假设之前播放声音很大，这个时候突然转到扬声器播放会显得非常嘈杂。</p>
+<p>幸运的是，系统会在那种事件发生时会广播带有ACTION_AUDIO_BECOMING_NOISY的intent。无论何时播放音频去注册一个BroadcastReceiver来监听这个intent会是比较好的做法。</p>
+<p>在音乐播放器下，用户通常希望发生那样事情的时候能够暂停当前歌曲的播放。在游戏里，通常会选择减低音量。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NoisyAudioStreamReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> {</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span>(Context context, Intent intent) {
+        <span class="hljs-keyword">if</span> (AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(intent.getAction())) {
+            <span class="hljs-comment">// Pause the playback</span>
+        }
+    }
+}
+
+<span class="hljs-keyword">private</span> IntentFilter intentFilter = <span class="hljs-keyword">new</span> IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY);
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startPlayback</span>() {
+    registerReceiver(myNoisyAudioStreamReceiver(), intentFilter);
+}
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">stopPlayback</span>() {
+    unregisterReceiver(myNoisyAudioStreamReceiver);
+}
+</code></pre>
 
                     
                     </section>

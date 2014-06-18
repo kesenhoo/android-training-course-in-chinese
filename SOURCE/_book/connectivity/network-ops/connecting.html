@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.1" data-basepath="../.." data-revision="1403071527327">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.1" data-basepath="../.." data-revision="1403107666234">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,161 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2308">
+                    <section class="normal" id="section-gitbook_71">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">连接到网络</h1>
+<h1 id="-connecting-to-the-network">连接到网络Connecting to the Network</h1>
+<p>这一课会演示如何实现一个简单的连接到网络的程序。它提供了一些你应该follow的最好示例，用来创建最简单的网络连接程序。请注意，想要执行网络操作首先需要在程序的manifest文件中添加下面的permissions:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.INTERNET"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
+</code></pre>
+<h2 id="choose-an-http-client-http-client-">Choose an HTTP Client(选择一个HTTP Client)</h2>
+<p>大多数连接网络的Android app会使用HTTP来发送与接受数据。Android提供了两种HTTP clients: <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 与Apache <a href="http://developer.android.com/reference/org/apache/http/client/HttpClient.html" target="_blank">HttpClient</a>。他们二者均支持HTTPS ，都以流方式进行上传与下载，都有可配置timeout, IPv6 与连接池（connection pooling）. <strong>推荐从Gingerbread版本开始使用 HttpURLConnection</strong> 。关于这部分的更多详情，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</p>
+<h2 id="check-the-network-connection-">Check the Network Connection(检测网络连接)</h2>
+<p>在你的app尝试进行网络连接之前，需要检测当前是否有可用的网络。请注意，设备可能会不在网络覆盖范围内，或者用户可能关闭Wi-Fi与移动网络连接。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myClickHandler</span>(View view) {
+    ...
+    ConnectivityManager connMgr = (ConnectivityManager)
+        getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    <span class="hljs-keyword">if</span> (networkInfo != <span class="hljs-keyword">null</span> &amp;&amp; networkInfo.isConnected()) {
+        <span class="hljs-comment">// fetch data</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// display error</span>
+    }
+    ...
+}
+</code></pre>
+<h2 id="perform-network-operations-on-a-separate-thread-thread-">Perform Network Operations on a Separate Thread(在另外一个Thread执行网络操作)</h2>
+<p>网络操作会遇到不可预期的延迟。显然为了避免一个不好的用户体验，总是在UI Thread之外去执行网络操作。AsyncTask 类提供了一种简单的方式来处理这个问题。关于更多的详情，请参考:<a href="http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html" target="_blank">Multithreading For Performance</a>.</p>
+<p>在下面的代码示例中，myClickHandler() 方法会触发一个新的DownloadWebpageTask().execute(stringUrl). 它继承自AsyncTask，实现了下面两个方法:</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>) 执行 downloadUrl()方法。Web URL作为参数，方法downloadUrl() 获取并处理网页返回的数据，执行完毕后，传递结果到onPostExecute()。参数类型为String.</li>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>) 获取到返回数据并显示到UI上。</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpExampleActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DEBUG_TAG = <span class="hljs-string">"HttpExample"</span>;
+    <span class="hljs-keyword">private</span> EditText urlText;
+    <span class="hljs-keyword">private</span> TextView textView;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        urlText = (EditText) findViewById(R.id.myUrl);
+        textView = (TextView) findViewById(R.id.myText);
+    }
+
+    <span class="hljs-comment">// When user clicks button, calls AsyncTask.</span>
+    <span class="hljs-comment">// Before attempting to fetch the URL, makes sure that there is a network connection.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myClickHandler</span>(View view) {
+        <span class="hljs-comment">// Gets the URL from the UI's text field.</span>
+        String stringUrl = urlText.getText().toString();
+        ConnectivityManager connMgr = (ConnectivityManager)
+            getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        <span class="hljs-keyword">if</span> (networkInfo != <span class="hljs-keyword">null</span> &amp;&amp; networkInfo.isConnected()) {
+            <span class="hljs-keyword">new</span> DownloadWebpageText().execute(stringUrl);
+        } <span class="hljs-keyword">else</span> {
+            textView.setText(<span class="hljs-string">"No network connection available."</span>);
+        }
+    }
+
+     <span class="hljs-comment">// Uses AsyncTask to create a task away from the main UI thread. This task takes a</span>
+     <span class="hljs-comment">// URL string and uses it to create an HttpUrlConnection. Once the connection</span>
+     <span class="hljs-comment">// has been established, the AsyncTask downloads the contents of the webpage as</span>
+     <span class="hljs-comment">// an InputStream. Finally, the InputStream is converted into a string, which is</span>
+     <span class="hljs-comment">// displayed in the UI by the AsyncTask's onPostExecute method.</span>
+     <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DownloadWebpageText</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AsyncTask</span> {</span>
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">protected</span> String <span class="hljs-title">doInBackground</span>(String... urls) {
+
+            <span class="hljs-comment">// params comes from the execute() call: params[0] is the url.</span>
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-keyword">return</span> downloadUrl(urls[<span class="hljs-number">0</span>]);
+            } <span class="hljs-keyword">catch</span> (IOException e) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"Unable to retrieve web page. URL may be invalid."</span>;
+            }
+        }
+        <span class="hljs-comment">// onPostExecute displays the results of the AsyncTask.</span>
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPostExecute</span>(String result) {
+            textView.setText(result);
+       }
+    }
+    ...
+}
+</code></pre>
+<p>关于上面那段代码的示例详解，请参考下面:</p>
+<ul>
+<li>When users click the button that invokes myClickHandler(), the app passes the specified URL to the AsyncTask subclass DownloadWebpageTask.</li>
+<li>The AsyncTask method doInBackground() calls the downloadUrl() method.</li>
+<li>The downloadUrl() method takes a URL string as a parameter and uses it to create a URL object.</li>
+<li>The URL object is used to establish an HttpURLConnection.</li>
+<li>Once the connection has been established, the HttpURLConnection object fetches the web page content as an InputStream.</li>
+<li>The InputStream is passed to the readIt() method, which converts the stream to a string.</li>
+<li>Finally, the AsyncTask&#39;s onPostExecute() method displays the string in the main activity&#39;s UI.</li>
+</ul>
+<h2 id="connect-and-download-data-">Connect and Download Data(连接并下载数据)</h2>
+<p>在执行网络交互的线程里面，你可以使用 HttpURLConnection 来执行一个 GET 类型的操作并下载数据。在你调用 connect()之后，你可以通过调用getInputStream()来得到一个包含数据的<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 对象。</p>
+<p>在下面的代码示例中， doInBackground() 方法会调用downloadUrl(). 这个 downloadUrl() 方法使用给予的URL，通过 HttpURLConnection 连接到网络。一旦建立连接，app使用 getInputStream() 来获取数据。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Given a URL, establishes an HttpUrlConnection and retrieves</span>
+<span class="hljs-comment">// the web page content as a InputStream, which it returns as</span>
+<span class="hljs-comment">// a string.</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">downloadUrl</span>(String myurl) <span class="hljs-keyword">throws</span> IOException {
+    InputStream is = <span class="hljs-keyword">null</span>;
+    <span class="hljs-comment">// Only display the first 500 characters of the retrieved</span>
+    <span class="hljs-comment">// web page content.</span>
+    <span class="hljs-keyword">int</span> len = <span class="hljs-number">500</span>;
+
+    <span class="hljs-keyword">try</span> {
+        URL url = <span class="hljs-keyword">new</span> URL(myurl);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setReadTimeout(<span class="hljs-number">10000</span> <span class="hljs-comment">/* milliseconds */</span>);
+        conn.setConnectTimeout(<span class="hljs-number">15000</span> <span class="hljs-comment">/* milliseconds */</span>);
+        conn.setRequestMethod(<span class="hljs-string">"GET"</span>);
+        conn.setDoInput(<span class="hljs-keyword">true</span>);
+        <span class="hljs-comment">// Starts the query</span>
+        conn.connect();
+        <span class="hljs-keyword">int</span> response = conn.getResponseCode();
+        Log.d(DEBUG_TAG, <span class="hljs-string">"The response is: "</span> + response);
+        is = conn.getInputStream();
+
+        <span class="hljs-comment">// Convert the InputStream into a string</span>
+        String contentAsString = readIt(is, len);
+        <span class="hljs-keyword">return</span> contentAsString;
+
+    <span class="hljs-comment">// Makes sure that the InputStream is closed after the app is</span>
+    <span class="hljs-comment">// finished using it.</span>
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-keyword">if</span> (is != <span class="hljs-keyword">null</span>) {
+            is.close();
+        }
+    }
+}
+</code></pre>
+<p>请注意，getResponseCode() 会返回连接状态码( status code). 这是一种获知额外网络连接信息的有效方式。status code 是 200 则意味着连接成功.</p>
+<h2 id="convert-the-inputstream-to-a-string-inputstream-string-">Convert the InputStream to a String(把InputStream的数据转换为String)</h2>
+<p>InputStream 是一种可读的byte数据源。如果你获得了一个 InputStream, 通常会进行decode或者转换为制定的数据类型。例如，如果你是在下载一张image数据，你可能需要像下面一下进行decode：</p>
+<pre><code class="lang-java">InputStream is = <span class="hljs-keyword">null</span>;
+...
+Bitmap bitmap = BitmapFactory.decodeStream(is);
+ImageView imageView = (ImageView) findViewById(R.id.image_view);
+imageView.setImageBitmap(bitmap);
+</code></pre>
+<p>在上面演示的示例中， InputStream 包含的是web页面的文本内容。下面会演示如何把 InputStream 转换为string，以便显示在UI上。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Reads an InputStream and converts it to a String.</span>
+<span class="hljs-keyword">public</span> String <span class="hljs-title">readIt</span>(InputStream stream, <span class="hljs-keyword">int</span> len) <span class="hljs-keyword">throws</span> IOException, UnsupportedEncodingException {
+    Reader reader = <span class="hljs-keyword">null</span>;
+    reader = <span class="hljs-keyword">new</span> InputStreamReader(stream, <span class="hljs-string">"UTF-8"</span>);
+    <span class="hljs-keyword">char</span>[] buffer = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[len];
+    reader.read(buffer);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> String(buffer);
+}
+</code></pre>
 
                     
                     </section>

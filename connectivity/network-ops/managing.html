@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath="../.." data-revision="1403071863297">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,260 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2563">
+                    <section class="normal" id="section-gitbook_330">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">管理使用的网络</h1>
+<h1 id="-managing-network-usage">管理使用的网络Managing Network Usage</h1>
+<p>这一课会介绍如何细化管理使用的网络资源。如果你的程序需要执行很多网络操作，你应该提供用户设置选项来允许用户控制程序的数据偏好。例如，同步数据的频率，是否只在连接到WiFi才进行下载与上传操作，是否在漫游时使用套餐数据流量等等。这样用户才能在快到达流量上限时关闭你的程序获取数据功能。</p>
+<p>关于如何编写一个最小化下载与网络操作对电量影响的程序，请参考：</p>
+<ul>
+<li><a href="http://developer.android.com/training/monitoring-device-state/index.html" target="_blank">Optimizing Battery Life</a>:</li>
+<li><a href="http://developer.android.com/training/efficient-downloads/index.html" target="_blank">Transferring Data Without Draining the Battery</a>:</li>
+</ul>
+<!-- more -->
+
+<h2 id="check-a-device-s-network-connection-">Check a Device&#39;s Network Connection(检查设备的网络连接信息)</h2>
+<p>设备可以有许多种网络连接。关于所有可能的网络连接类型，请看<a href="http://developer.android.com/reference/android/net/ConnectivityManager.html" target="_blank">ConnectivityManager</a>.</p>
+<p>通常Wi-Fi是比较快的。移动数据通常都是需要按流量计费，会比较贵. 通常我们会选择让app在连接到WiFi时去获取大量的数据。</p>
+<p>那么，我们就需要在执行网络操作之前检查当前连接的网络信息。这样可以防止你的程序不经意连接使用了非意向的网络频道。为了实现这个目的，我们需要使用到下面两个类：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/net/ConnectivityManager.html" target="_blank">ConnectivityManager</a>: Answers queries about the state of network connectivity. It also notifies applications when network connectivity changes.</li>
+<li><a href="http://developer.android.com/reference/android/net/NetworkInfo.html" target="_blank">NetworkInfo</a>: Describes the status of a network interface of a given type (currently either Mobile or Wi-Fi).</li>
+</ul>
+<p>下面示例了检查WiFi与Mobile是否连接上(请注意available与isConnected的区别)：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DEBUG_TAG = <span class="hljs-string">"NetworkStatusExample"</span>;
+...
+ConnectivityManager connMgr = (ConnectivityManager)
+        getSystemService(Context.CONNECTIVITY_SERVICE);
+NetworkInfo networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+<span class="hljs-keyword">boolean</span> isWifiConn = networkInfo.isConnected();
+networkInfo = connMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+<span class="hljs-keyword">boolean</span> isMobileConn = networkInfo.isConnected();
+Log.d(DEBUG_TAG, <span class="hljs-string">"Wifi connected: "</span> + isWifiConn);
+Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobileConn);
+</code></pre>
+<p>一个更简单的检查网络是否可用的示例如下：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isOnline</span>() {
+    ConnectivityManager connMgr = (ConnectivityManager)
+            getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+    <span class="hljs-keyword">return</span> (networkInfo != <span class="hljs-keyword">null</span> &amp;&amp; networkInfo.isConnected());
+}
+</code></pre>
+<p>你可以使用<a href="http://developer.android.com/reference/android/net/NetworkInfo.DetailedState.html" target="_blank">NetworkInfo.DetailedState</a>, 来获取更加详细的网络信息。</p>
+<h2 id="manage-network-usage-">Manage Network Usage(管理网络使用)</h2>
+<p>你可以实现一个偏好设置的activity ，来允许用户设置程序的网络资源的使用。例如:</p>
+<ul>
+<li>你可以允许用户在仅仅连接到WiFi时上传视频。</li>
+<li>你可以根据诸如网络可用等条件来选择是否做同步的操作。</li>
+</ul>
+<p>网络操作需要添加下面的权限：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/Manifest.permission.html#INTERNET" target="_blank">android.permission.INTERNET</a>—Allows applications to open network sockets.</li>
+<li><a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_NETWORK_STATE" target="_blank">android.permission.ACCESS_NETWORK_STATE</a>—Allows applications to access information about networks.</li>
+</ul>
+<p>你可以为你的设置Activity声明intent filter for the <code>ACTION_MANAGE_NETWORK_USAGE</code> action (introduced in Android 4.0),这样你的这个activity就可以提供数据控制的选项了。在章节概览提供的Sample中，这个action is handled by the class SettingsActivity, 它提供了偏好设置UI来让用户决定何时进行下载。</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">package</span>=<span class="hljs-value">"com.example.android.networkusage"</span>
+    <span class="hljs-attribute">...</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"4"</span>
+           <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"14"</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.INTERNET"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">application
+</span>        <span class="hljs-attribute">...</span>&gt;</span>
+        ...
+        <span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"SettingsActivity"</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".SettingsActivity"</span>&gt;</span>
+             <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.MANAGE_NETWORK_USAGE"</span> /&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span> /&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<h2 id="implement-a-preferences-activity-activity-">Implement a Preferences Activity(实现一个偏好设置activity)</h2>
+<p>正如上面看到的那样，SettingsActivity is a subclass ofPreferenceActivity.</p>
+<p>所实现的功能见下图：</p>
+<p><img src="/images/articles/network-settings1.png" alt="network-settings1.png">
+<img src="/images/articles/network-settings2.png" alt="network-settings2.png"></p>
+<p>下面是一个 SettingsActivity. 请注意它实现了OnSharedPreferenceChangeListener. 当用户改变了他的偏好，就会触发 onSharedPreferenceChanged(), 这个方法会设置refreshDisplay 为true(这里的变量存在于自己定义的activity，见下一部分的代码示例). 这会使的当用户返回到main activity的时候进行refresh。(请注意，代码中的注释，不得不说，Googler写的Code看起来就是舒服)</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SettingsActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">PreferenceActivity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnSharedPreferenceChangeListener</span> {</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+
+        <span class="hljs-comment">// Loads the XML preferences file</span>
+        addPreferencesFromResource(R.xml.preferences);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span>() {
+        <span class="hljs-keyword">super</span>.onResume();
+
+        <span class="hljs-comment">// Registers a listener whenever a key changes</span>
+        getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(<span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPause</span>() {
+        <span class="hljs-keyword">super</span>.onPause();
+
+       <span class="hljs-comment">// Unregisters the listener set in onResume().</span>
+       <span class="hljs-comment">// It's best practice to unregister listeners when your app isn't using them to cut down on</span>
+       <span class="hljs-comment">// unnecessary system overhead. You do this in onPause().</span>
+       getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(<span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-comment">// When the user changes the preferences selection,</span>
+    <span class="hljs-comment">// onSharedPreferenceChanged() restarts the main activity as a new</span>
+    <span class="hljs-comment">// task. Sets the the refreshDisplay flag to "true" to indicate that</span>
+    <span class="hljs-comment">// the main activity should update its display.</span>
+    <span class="hljs-comment">// The main activity queries the PreferenceManager to get the latest settings.</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSharedPreferenceChanged</span>(SharedPreferences sharedPreferences, String key) {
+        <span class="hljs-comment">// Sets refreshDisplay to true so that when the user returns to the main</span>
+        <span class="hljs-comment">// activity, the display refreshes to reflect the new settings.</span>
+        NetworkActivity.refreshDisplay = <span class="hljs-keyword">true</span>;
+    }
+}
+</code></pre>
+<h2 id="respond-to-preference-changes-">Respond to Preference Changes(对偏好改变进行响应)</h2>
+<p>当用户在设置界面改变了偏好，它通常都会对app的行为产生影响。
+在下面的代码示例中，app会在onStart(). 方法里面检查偏好设置。如果设置的类型与当前设备的网络连接类型相一致，那么程序就会下载数据并刷新显示。(for example, if the setting is &quot;Wi-Fi&quot; and the device has a Wi-Fi connection)。(这是一个很好的代码示例，如何选择合适的网络类型进行下载操作)</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String WIFI = <span class="hljs-string">"Wi-Fi"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ANY = <span class="hljs-string">"Any"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String URL = <span class="hljs-string">"http://stackoverflow.com/feeds/tag?tagnames=android&amp;sort=newest"</span>;
+
+    <span class="hljs-comment">// Whether there is a Wi-Fi connection.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> wifiConnected = <span class="hljs-keyword">false</span>;
+    <span class="hljs-comment">// Whether there is a mobile connection.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> mobileConnected = <span class="hljs-keyword">false</span>;
+    <span class="hljs-comment">// Whether the display should be refreshed.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> refreshDisplay = <span class="hljs-keyword">true</span>;
+
+    <span class="hljs-comment">// The user's current network preference setting.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String sPref = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-comment">// The BroadcastReceiver that tracks network connectivity changes.</span>
+    <span class="hljs-keyword">private</span> NetworkReceiver receiver = <span class="hljs-keyword">new</span> NetworkReceiver();
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+
+        <span class="hljs-comment">// Registers BroadcastReceiver to track network connection changes.</span>
+        IntentFilter filter = <span class="hljs-keyword">new</span> IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        receiver = <span class="hljs-keyword">new</span> NetworkReceiver();
+        <span class="hljs-keyword">this</span>.registerReceiver(receiver, filter);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDestroy</span>() {
+        <span class="hljs-keyword">super</span>.onDestroy();
+        <span class="hljs-comment">// Unregisters BroadcastReceiver when app is destroyed.</span>
+        <span class="hljs-keyword">if</span> (receiver != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">this</span>.unregisterReceiver(receiver);
+        }
+    }
+
+    <span class="hljs-comment">// Refreshes the display if the network connection and the</span>
+    <span class="hljs-comment">// pref settings allow it.</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStart</span> () {
+        <span class="hljs-keyword">super</span>.onStart();
+
+        <span class="hljs-comment">// Gets the user's network preference settings</span>
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(<span class="hljs-keyword">this</span>);
+
+        <span class="hljs-comment">// Retrieves a string value for the preferences. The second parameter</span>
+        <span class="hljs-comment">// is the default value to use if a preference value is not found.</span>
+        sPref = sharedPrefs.getString(<span class="hljs-string">"listPref"</span>, <span class="hljs-string">"Wi-Fi"</span>);
+
+        updateConnectedFlags();
+
+        <span class="hljs-keyword">if</span>(refreshDisplay){
+            loadPage();
+        }
+    }
+
+    <span class="hljs-comment">// Checks the network connection and sets the wifiConnected and mobileConnected</span>
+    <span class="hljs-comment">// variables accordingly.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateConnectedFlags</span>() {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
+        <span class="hljs-keyword">if</span> (activeInfo != <span class="hljs-keyword">null</span> &amp;&amp; activeInfo.isConnected()) {
+            wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
+            mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
+        } <span class="hljs-keyword">else</span> {
+            wifiConnected = <span class="hljs-keyword">false</span>;
+            mobileConnected = <span class="hljs-keyword">false</span>;
+        }
+    }
+
+    <span class="hljs-comment">// Uses AsyncTask subclass to download the XML feed from stackoverflow.com.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadPage</span>() {
+        <span class="hljs-keyword">if</span> (((sPref.equals(ANY)) &amp;&amp; (wifiConnected || mobileConnected))
+                || ((sPref.equals(WIFI)) &amp;&amp; (wifiConnected))) {
+            <span class="hljs-comment">// AsyncTask subclass</span>
+            <span class="hljs-keyword">new</span> DownloadXmlTask().execute(URL);
+        } <span class="hljs-keyword">else</span> {
+            showErrorPage();
+        }
+    }
+...
+
+}
+</code></pre>
+<h2 id="detect-connection-changes-">Detect Connection Changes(监测网络连接的改变)</h2>
+<p>最后一部分是关于 BroadcastReceiver 的子类： NetworkReceiver. 当设备网络连接改变时，NetworkReceiver会监听到 CONNECTIVITY_ACTION, 这时需要判断当前网络连接类型并相应的设置好 wifiConnected 与 mobileConnected .</p>
+<p>我们需要控制好BroadcastReceiver的使用，不必要的声明注册会浪费系统资源。通常是在 onCreate() 去registers 这个BroadcastReceiver ， 在onPause()或者onDestroy() 时unregisters它。这样做会比直接在manifest里面直接注册 <receiver> 更轻量. 当你在manifest里面注册了一个 <receiver> ，你的程序可以在任何时候被唤醒, 即使你已经好几个星期没有使用这个程序了。而通过前面的办法进行注册，可以确保用户离开你的程序之后，不会因为那个Broadcast而被唤起。如果你确保知道何时需要使用到它，你可以在合适的地方使用 <a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#setComponentEnabledSetting(android.content.ComponentName, int, int" target="_blank">setComponentEnabledSetting()</a>) 来开启或者关闭它。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> {</span>
+
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span>(Context context, Intent intent) {
+    ConnectivityManager conn =  (ConnectivityManager)
+        context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = conn.getActiveNetworkInfo();
+
+    <span class="hljs-comment">// Checks the user prefs and the network connection. Based on the result, decides whether</span>
+    <span class="hljs-comment">// to refresh the display or keep the current display.</span>
+    <span class="hljs-comment">// If the userpref is Wi-Fi only, checks to see if the device has a Wi-Fi connection.</span>
+    <span class="hljs-keyword">if</span> (WIFI.equals(sPref) &amp;&amp; networkInfo != <span class="hljs-keyword">null</span> &amp;&amp; networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+        <span class="hljs-comment">// If device has its Wi-Fi connection, sets refreshDisplay</span>
+        <span class="hljs-comment">// to true. This causes the display to be refreshed when the user</span>
+        <span class="hljs-comment">// returns to the app.</span>
+        refreshDisplay = <span class="hljs-keyword">true</span>;
+        Toast.makeText(context, R.string.wifi_connected, Toast.LENGTH_SHORT).show();
+
+    <span class="hljs-comment">// If the setting is ANY network and there is a network connection</span>
+    <span class="hljs-comment">// (which by process of elimination would be mobile), sets refreshDisplay to true.</span>
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (ANY.equals(sPref) &amp;&amp; networkInfo != <span class="hljs-keyword">null</span>) {
+        refreshDisplay = <span class="hljs-keyword">true</span>;
+
+    <span class="hljs-comment">// Otherwise, the app can't download content--either because there is no network</span>
+    <span class="hljs-comment">// connection (mobile or Wi-Fi), or because the pref setting is WIFI, and there</span>
+    <span class="hljs-comment">// is no Wi-Fi connection.</span>
+    <span class="hljs-comment">// Sets refreshDisplay to false.</span>
+    } <span class="hljs-keyword">else</span> {
+        refreshDisplay = <span class="hljs-keyword">false</span>;
+        Toast.makeText(context, R.string.lost_connection, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre>
 
                     
                     </section>
