@@ -224,7 +224,7 @@
       * [保持设备的唤醒](background-jobs/scheduling/wake-lock.md)
       * [执行重复的闹钟任务](background-jobs/scheduling/alarms.md)
 * [性能优化](performance/index.md)
-   * [管理应用的内存](performance/memory.md)
+   * **[管理应用的内存](performance/memory.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
    * **[性能优化Tips](performance/performance-tips.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
    * [提升Layout的性能](performance/improving-layouts/index.md)
       * [优化layout的层级](performance/improving-layouts/optimizing-layout.md)
