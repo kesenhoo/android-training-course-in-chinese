@@ -5,7 +5,7 @@
 # Intent的发送
 Android中最重要的功能之一就是可以利用一个带有`action`的`intent`使得当前app能够跳转到其他的app。例如：如果你的app拥有一个地址想要显示在地图上，你并不需要在你的app里面创建一个activity用来显示地图。你只需要使用Intent来发出查看地址的请求。Android系统则会启动能够显示地图的程序来呈现那个地址。
 
-正如在2.1章节:[Building Your First App:建立你的第一个App](basics/firstapp/index.html)中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显示（explicit）的intent，它指定了需要叫起组件。然而，当你想要叫起不同的app来执行那个动作，则必须使用隐式（implicit）的intent。
+正如在2.1章节:[Building Your First App:建立你的第一个App](/basics/firstapp/index.html)中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显示（explicit）的intent，它指定了需要叫起组件。然而，当你想要叫起不同的app来执行那个动作，则必须使用隐式（implicit）的intent。
 
 这节课会介绍如何为特殊的动作创建一个implicit intent，并使用它来启动另外一个app去执行intent中的action。
 
@@ -96,7 +96,7 @@ boolean isIntentSafe = activities.size() > 0;
 startActivity(intent);
 ```
 
-![intents-choice.png](images/intents-choice.png "Figure 1. Example of the selection dialog that appears when more than one app can handle an intent")
+![intents-choice.png](/images/intents-choice.png "Figure 1. Example of the selection dialog that appears when more than one app can handle an intent")
 
 下面是一个完整的例子，演示了如何创建一个intent来查看地图，验证有app可以handle这个intent,然后启动它。
 
@@ -121,7 +121,7 @@ if (isIntentSafe) {
 
 然而，如果用户希望每次都弹出选择界面，而且每次都不确定会选择哪个app启动，例如分享功能，用户选择分享到哪个app都是不确定的，这个时候，需要强制弹出选择的对话框。（这种情况下用户不能选择默认启动的app）。
 
-![intent-chooser.png](images/intent-chooser.png "Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent.")
+![intent-chooser.png](/images/intent-chooser.png "Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent.")
 
 为了显示chooser, 需要使用createChooser()来创建Intent
 
