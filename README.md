@@ -55,7 +55,7 @@
        * [接收Activity返回的结果](basics/intents/result.md)
        * [Intent过滤](basics/intents/filters.md)
 * [分享](content-sharing/index.md)
-   * [分享简单的数据](content-sharing/sharing/index.md)
+   * **[分享简单的数据](content-sharing/sharing/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [给其他App发送简单的数据](content-sharing/sharing/send.md)
       * [接收从其他App返回的数据](content-sharing/sharing/receive.md)
       * [添加一个简便的分享动作](content-sharing/sharing/shareaction.md)
@@ -68,7 +68,7 @@
       * [发送文件给其他设备](content-sharing/beam-files/sending-files.md)
       * [接收其他设备的文件](content-sharing/beam-files/receive-files.md)
 * [多媒体](multimedia/index.md)
-   * [管理音频播放](multimedia/audio/index.md)
+   * **[管理音频播放](multimedia/audio/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [控制你得应用的音量与播放](multimedia/audio/volume-playback.md)
       * [管理音频焦点](multimedia/audio/audio-focus.md)
       * [兼容音频输出设备](multimedia/audio/audio-output.md)
@@ -105,11 +105,11 @@
       * [使得网络服务可发现](connectivity/connect-devices-wireless/nsd.md)
       * [使用WiFi建立P2P连接](connectivity/connect-devices-wireless/wifi-direct.md)
       * [使用WiFi P2P服务](connectivity/connect-devices-wireless/nsd-wifi-index.md)
-   * [网络连接操作](connectivity/network-ops/index.md)
+   * **[网络连接操作](connectivity/network-ops/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [连接到网络](connectivity/network-ops/connecting.md)
       * [管理使用的网络](connectivity/network-ops/managing.md)
       * [解析XML数据](connectivity/network-ops/xml.md)
-   * [高效下载](connectivity/efficient-downloads/index.md)
+   * **[高效下载](connectivity/efficient-downloads/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [为网络访问更加高效而优化下载](connectivity/efficient-downloads/efficient-network-access.md)
       * [最小化更新操作的影响](connectivity/efficient-downloads/regular-update.md)
       * [避免下载多余的数据](connectivity/efficient-downloads/redundant-redundant.md)
@@ -126,7 +126,7 @@
       * [实现自定义的网络请求](connectivity/volley/request-custom.md)
 * [云服务](cloud/index.md)
    * [云同步](cloud/cloudsync/index.md)
-      * [使用备份API](cloud/cloudsync/backupapi.md)
+      * **[使用备份API](cloud/cloudsync/backupapi.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [使用Google Cloud Messaging](cloud/cloudsync/gcm.md)
    * [解决云同步的保存冲突](cloud/cloudsave/index.md)
 * **[用户信息](contacts-provider/index.md)(编写进行中:@[spencer198711](https://github.com/spencer198711))**
@@ -231,7 +231,7 @@
       * [使用include标签重用layouts](performance/improving-layouts/reuse-layouts.md)
       * [按需加载视图](performance/improving-layouts/loading-ondemand.md)
       * [使得ListView滑动顺畅](performance/improving-layouts/smooth-scrolling.md)
-   * [优化电池寿命](performance/monitor-device-state/index.md)
+   * **[优化电池寿命](performance/monitor-device-state/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [监测电量与充电状态](performance/monitor-device-state/battery-monitor.md)
       * [判断与监测Docking状态](performance/monitor-device-state/docking-monitor.md)
       * [判断与监测网络连接状态](performance/monitor-device-state/connectivity-monitor.md)
