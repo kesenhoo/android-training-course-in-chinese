@@ -72,7 +72,7 @@
       * [控制你得应用的音量与播放](multimedia/audio/volume-playback.md)
       * [管理音频焦点](multimedia/audio/audio-focus.md)
       * [兼容音频输出设备](multimedia/audio/audio-output.md)
-   * [拍照](multimedia/camera/index.md)
+   * **[拍照](multimedia/camera/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [简单的拍照](multimedia/camera/photobasic.md)
       * [简单的录像](multimedia/camera/videobasic.md)
       * [控制相机硬件](multimedia/camera/cameradirect.md)
@@ -176,7 +176,7 @@
       * [为TV优化Layout](ui/tv/optimize-layouts-tv.md)
       * [为TV优化导航](ui/tv/optimize-nav-tv.md)
       * [处理不支持TV的功能](ui/tv/unsupport-features-tv.md)
-   * [创建自定义View](ui/custom-view/index.md)
+   * **[创建自定义View](ui/custom-view/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [创建自定义的View类](ui/custom-view/create-view.md)
       * [实现自定义View的绘制](ui/custom-view/custom-draw.md)
       * [使得View可交互](ui/custom-view/make-interactive.md)

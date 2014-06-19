@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.2.1" data-basepath="../.." data-revision="1403184124982">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.2.1" data-basepath="../.." data-revision="1403191351025">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,115 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_194">
+                    <section class="normal" id="section-gitbook_571">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">简单的拍照</h1>
+<p>假设你想通过你的客户端程序实现一个聚合全球天气的地图，上面会有各地的当前天气图片。那么集合图片只是你程序的一部分。你想要最简单的动作来获取图片，而不是重新发明（reinvent）一个camera。幸运的是，大多数Android设备都已经至少安装了一款相机程序。在这节课中，你会学习，如何拍照</p>
+<!-- more -->
+
+<h2 id="request-camera-permission-">Request Camera Permission(请求使用相机权限)</h2>
+<p>在写程序之前，需要在你的程序的manifest文件中添加下面的权限：</p>
+<pre><code class="lang-xml"> <span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
+</code></pre>
+<p>如果你的程序并不需要一定有Camera，可以添加<code>android:required=&quot;false&quot;</code> 的tag属性。这样的话，Google Play 也会允许没有camera的设备下载这个程序。当然你有必要在使用Camera之前通过hasSystemFeature(PackageManager.FEATURE_CAMERA)方法来检查设备上是否有Camera。如果没有，你应该关闭你的Camera相关的功能！</p>
+<h2 id="take-a-photo-with-the-camera-app-">Take a Photo with the Camera App(使用相机应用程序进行拍照]</h2>
+<p>Android中的方法是：启动一个Intent来完成你想要的动作。这个步骤包含三部分： Intent 本身，启动的外部 Activity, 与一些处理返回照片的代码。如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakePictureIntent</span>(<span class="hljs-keyword">int</span> actionCode) {
+    Intent takePictureIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    startActivityForResult(takePictureIntent, actionCode);
+}
+</code></pre>
+<p>当然在发出Intent之前，你需要检查是否有app会来handle这个intent，否则会引起启动失败：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isIntentAvailable</span>(Context context, String action) {
+    <span class="hljs-keyword">final</span> PackageManager packageManager = context.getPackageManager();
+    <span class="hljs-keyword">final</span> Intent intent = <span class="hljs-keyword">new</span> Intent(action);
+    List&lt;ResolveInfo&gt; list =
+            packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+    <span class="hljs-keyword">return</span> list.size() &gt; <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="view-the-photo-">View the Photo(查看照片)</h2>
+<p>Android的Camera程序会把拍好的照片编码为bitmap，使用extra value的方式添加到返回的 Intent 当中， 对应的key为data。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleSmallCameraPhoto</span>(Intent intent) {
+    Bundle extras = intent.getExtras();
+    mImageBitmap = (Bitmap) extras.get(<span class="hljs-string">"data"</span>);
+    mImageView.setImageBitmap(mImageBitmap);
+}
+</code></pre>
+<p><strong>Note:</strong> 这仅仅是处理一张很少的缩略图而已，如果是大的全图，需要做更多的事情来避免ANR。</p>
+<h2 id="save-the-photo-">Save the Photo(保存照片)</h2>
+<p>如果你提供一个file对象给Android的Camera程序，它会保存这张全图到给定的路径下。你必须提供存储的卷名，文件夹名与文件名。对于2.2以上的系统，如下操作即可：</p>
+<pre><code class="lang-java">storageDir = <span class="hljs-keyword">new</span> File(
+    Environment.getExternalStoragePublicDirectory(
+        Environment.DIRECTORY_PICTURES
+    ),
+    getAlbumName()
+);
+</code></pre>
+<h2 id="set-the-file-name-">Set the file name(设置文件名)</h2>
+<p>正如上面描述的那样，文件的路径会有设备的系统环境决定。你自己需要做的只是定义个不会引起文件名冲突的命名scheme。下面会演示一种解决方案：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> File <span class="hljs-title">createImageFile</span>() <span class="hljs-keyword">throws</span> IOException {
+    <span class="hljs-comment">// Create an image file name</span>
+    String timeStamp =
+        <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMdd_HHmmss"</span>).format(<span class="hljs-keyword">new</span> Date());
+    String imageFileName = JPEG_FILE_PREFIX + timeStamp + <span class="hljs-string">"_"</span>;
+    File image = File.createTempFile(
+        imageFileName,
+        JPEG_FILE_SUFFIX,
+        getAlbumDir()
+    );
+    mCurrentPhotoPath = image.getAbsolutePath();
+    <span class="hljs-keyword">return</span> image;
+}
+</code></pre>
+<h2 id="append-the-file-name-onto-the-intent-">Append the file name onto the Intent(把文件名添加到网络上)</h2>
+<p>Once you have a place to save your image, pass that location to the camera application via the Intent.</p>
+<pre><code class="lang-java">File f = createImageFile();
+takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+</code></pre>
+<h2 id="add-the-photo-to-a-gallery-">Add the Photo to a Gallery(添加照片到相册)</h2>
+<p>对于大多数人来说，最简单查看你的照片的方式是通过系统的Media Provider。下面会演示如何触发系统的Media Scanner来添加你的照片到Media Provider的DB中，这样使得相册程序与其他程序能够读取到那些图片。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">galleryAddPic</span>() {
+    Intent mediaScanIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+    File f = <span class="hljs-keyword">new</span> File(mCurrentPhotoPath);
+    Uri contentUri = Uri.fromFile(f);
+    mediaScanIntent.setData(contentUri);
+    <span class="hljs-keyword">this</span>.sendBroadcast(mediaScanIntent);
+}
+</code></pre>
+<h2 id="decode-a-scaled-image-">Decode a Scaled Image(解码缩放图片)</h2>
+<p>在有限的内存下，管理全尺寸的图片会很麻烦。下面会介绍如何缩放图片来适应程序的显示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPic</span>() {
+    <span class="hljs-comment">// Get the dimensions of the View</span>
+    <span class="hljs-keyword">int</span> targetW = mImageView.getWidth();
+    <span class="hljs-keyword">int</span> targetH = mImageView.getHeight();
+
+    <span class="hljs-comment">// Get the dimensions of the bitmap</span>
+    BitmapFactory.Options bmOptions = <span class="hljs-keyword">new</span> BitmapFactory.Options();
+    bmOptions.inJustDecodeBounds = <span class="hljs-keyword">true</span>;
+    BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+    <span class="hljs-keyword">int</span> photoW = bmOptions.outWidth;
+    <span class="hljs-keyword">int</span> photoH = bmOptions.outHeight;
+
+    <span class="hljs-comment">// Determine how much to scale down the image</span>
+    <span class="hljs-keyword">int</span> scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+    <span class="hljs-comment">// Decode the image file into a Bitmap sized to fill the View</span>
+    bmOptions.inJustDecodeBounds = <span class="hljs-keyword">false</span>;
+    bmOptions.inSampleSize = scaleFactor;
+    bmOptions.inPurgeable = <span class="hljs-keyword">true</span>;
+
+    Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+    mImageView.setImageBitmap(bitmap);
+}
+</code></pre>
 
                     
                     </section>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.3.1" data-basepath="../.." data-revision="1403184124982">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.3.1" data-basepath="../.." data-revision="1403191351025">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,110 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_243">
+                    <section class="normal" id="section-gitbook_619">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-view-">创建自定义的View类</h1>
+<p>设计良好的类总是相似的。它使用一个好用的接口来封装一个特定的功能，它有效的使用CPU与内存，等等。为了成为一个设计良好的类，自定义的view应该:</p>
+<ul>
+<li>遵守Android标准规则。</li>
+<li>提供自定义的风格属性值并能够被Android XML Layout所识别。</li>
+<li>发出可访问的事件。</li>
+<li>能够兼容Android的不同平台。</li>
+</ul>
+<p>Android的framework提供了许多基类与XML标签用来帮助你创建一个符合上面要求的View。这节课会介绍如何使用Android framework来创建一个view的核心功能。</p>
+<!-- more -->
+
+<h2 id="subclass-a-view">Subclass a View</h2>
+<p>Android framework里面定义的view类都继承自View。你自定义的view也可以直接继承View，或者你可以通过继承既有的一个子类(例如Button)来节约一点时间。</p>
+<p>为了允许Android Developer Tools能够识别你的view，你必须至少提供一个constructor，它包含一个Contenx与一个AttributeSet对象作为参数。这个constructor允许layout editor创建并编辑你的view的实例。</p>
+<pre><code class="lang-java">class PieChart extends View {
+    <span class="hljs-keyword">public</span> <span class="hljs-title">PieChart</span>(Context context, AttributeSet attrs) {
+        <span class="hljs-keyword">super</span>(context, attrs);
+    }
+}
+</code></pre>
+<h2 id="define-custom-attributes">Define Custom Attributes</h2>
+<p>为了添加一个内置的View到你的UI上，你需要通过XML属性来指定它的样式与行为。为了实现自定义的view的行为，你应该:</p>
+<ul>
+<li>为你的view在<declare-styleable>资源标签下定义自设的属性</li>
+<li>在你的XML layout中指定属性值</li>
+<li>在运行时获取属性值</li>
+<li>把获取到的属性值应用在你的view上</li>
+</ul>
+<p>为了定义自设的属性，添加 <declare-styleable> 资源到你的项目中。放置于res/values/attrs.xml文件中。下面是一个attrs.xml文件的示例:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">declare-styleable</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"PieChart"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">attr</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"showText"</span> <span class="hljs-attribute">format</span>=<span class="hljs-value">"boolean"</span> /&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-title">attr</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"labelPosition"</span> <span class="hljs-attribute">format</span>=<span class="hljs-value">"enum"</span>&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-title">enum</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"left"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"0"</span>/&gt;</span>
+           <span class="hljs-tag">&lt;<span class="hljs-title">enum</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"right"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"1"</span>/&gt;</span>
+       <span class="hljs-tag">&lt;/<span class="hljs-title">attr</span>&gt;</span>
+   <span class="hljs-tag">&lt;/<span class="hljs-title">declare-styleable</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<p>上面的代码声明了2个自设的属性，<strong>showText</strong>与<strong>labelPosition</strong>，它们都归属于PieChart的项目下的styleable实例。styleable实例的名字，通常与自定义的view名字一致。尽管这并没有严格规定要遵守这个convention，但是许多流行的代码编辑器都依靠这个命名规则来提供statement completion。</p>
+<p>一旦你定义了自设的属性，你可以在layout XML文件中使用它们。唯一不同的是你自设的属性是归属于不同的命名空间。不是属于<code>http://schemas.android.com/apk/res/android</code>的命名空间，它们归属于<code>http://schemas.android.com/apk/res/[your package name]</code>。例如，下面演示了如何为PieChart使用上面定义的属性：</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+   <span class="hljs-attribute">xmlns:custom</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/com.example.customviews"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">com.example.customviews.charting.PieChart
+</span>     <span class="hljs-attribute">custom:showText</span>=<span class="hljs-value">"true"</span>
+     <span class="hljs-attribute">custom:labelPosition</span>=<span class="hljs-value">"left"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>为了避免输入长串的namespace名字，示例上面使用了:custom作为别名，你也可以选择其他的名称所为你的namespace。</p>
+<p>请注意，如果你的view是一个inner class，你必须指定这个view的outer class。同样的，如果PieChart有一个inner class叫做PieView。为了使用这个类中自设的属性，你应该使用com.example.customviews.charting.PieChart$PieView.</p>
+<h2 id="apply-custom-attributes">Apply Custom Attributes</h2>
+<p>当view从XML layout被创建的时候，在xml标签下的属性值都是从resource下读取出来并传递到view的constructor作为一个AttributeSet参数。尽管可以从AttributeSet中直接读取数值，可是这样做有些弊端（<em>没有看懂下面的两个原因</em>）：</p>
+<ul>
+<li>拥有属性的资源并没有经过分解</li>
+<li>Styles并没有运用上</li>
+</ul>
+<p>取而代之的是，通过obtainStyledAttributes()来获取属性值。这个方法会传递一个<a href="http://developer.android.com/reference/android/content/res/TypedArray.html" target="_blank">TypedArray</a>对象，它是间接referenced并且styled的。</p>
+<p>请看下面的示例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-title">PieChart</span>(Context context, AttributeSet attrs) {
+   <span class="hljs-keyword">super</span>(context, attrs);
+   TypedArray a = context.getTheme().obtainStyledAttributes(
+        attrs,
+        R.styleable.PieChart,
+        <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+   <span class="hljs-keyword">try</span> {
+       mShowText = a.getBoolean(R.styleable.PieChart_showText, <span class="hljs-keyword">false</span>);
+       mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, <span class="hljs-number">0</span>);
+   } <span class="hljs-keyword">finally</span> {
+       a.recycle();
+   }
+}
+</code></pre>
+<p>清注意TypedArray对象是一个shared资源，必须被在使用后进行回收。</p>
+<h2 id="add-properties-and-events">Add Properties and Events</h2>
+<p>Attributes是一个强大的控制view的行为与外观的方法，但是他们仅仅能够在view被初始化的时候被读取到。为了提供一个动态的行为，需要暴露出一些合适的getter 与setter方法。下面的代码演示了如何使用这个技巧:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isShowText</span>() {
+   <span class="hljs-keyword">return</span> mShowText;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setShowText</span>(<span class="hljs-keyword">boolean</span> showText) {
+   mShowText = showText;
+   invalidate();
+   requestLayout();
+}
+</code></pre>
+<p>请注意，在setShowText方法里面有调用<a href="http://developer.android.com/reference/android/view/View.html#invalidate(" target="_blank">invalidate()</a>) and <a href="http://developer.android.com/reference/android/view/View.html#requestLayout(" target="_blank">requestLayout()</a>). 当view的某些内容发生变化的时候，需要调用invalidate来通知系统对这个view进行redraw，当某些元素变化会引起组件大小变化时，需要调用requestLayout方法。</p>
+<p>自定义的view也需要能够支持响应事件的监听器。例如，PieChart暴露了一个自设的事件OnCurrentItemChanged来通知监听器，用户已经切换了焦点到一个新的组件上。</p>
+<p>我们很容易忘记了暴露属性与事件，特别是当你是这个view的唯一用户时。请花费一些时间来仔细定义你的view的交互。一个好的规则是总是暴露任何属性与事件。</p>
+<h2 id="design-for-accessibility">Design For Accessibility</h2>
+<p>Your custom view should support the widest range of users. This includes users with disabilities that prevent them from seeing or using a touchscreen. To support users with disabilities, you should:</p>
+<ul>
+<li>Label your input fields using the android:contentDescription attribute</li>
+<li>Send accessibility events by calling sendAccessibilityEvent() when appropriate.</li>
+<li>Support alternate controllers, such as D-pad and trackball</li>
+</ul>
+<p>For more information on creating accessible views, see <a href="http://developer.android.com/guide/topics/ui/accessibility/apps.html#custom-views" target="_blank">Making Applications Accessible</a> in the Android Developers Guide.</p>
 
                     
                     </section>

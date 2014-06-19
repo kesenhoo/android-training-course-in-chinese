@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.2.2" data-basepath="../.." data-revision="1403184124982">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.2.2" data-basepath="../.." data-revision="1403191351025">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,44 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_196">
+                    <section class="normal" id="section-gitbook_573">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">简单的录像</h1>
+<p>这节课会介绍如何使用现有的Camera程序来录制一个视频。和拍照一样，我们没有必要去重新发明录像程序。大多数的Android程序都有自带Camera来进行录像。(<em>这一课的内容大多数与前面一课类似，简要带过，一些细节不赘述了</em>)</p>
+<h2 id="request-camera-permission-">Request Camera Permission [请求权限]</h2>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
+</code></pre>
+<p>与上一课的拍照一样，你可以在启动Camera之前，使用hasSystemFeature(PackageManager.FEATURE_CAMERA).来检查是否存在Camera。</p>
+<!-- more -->
+
+<h2 id="record-a-video-with-a-camera-app-">Record a Video with a Camera App(使用相机程序来录制视频)</h2>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakeVideoIntent</span>() {
+    Intent takeVideoIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+    startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isIntentAvailable</span>(Context context, String action) {
+    <span class="hljs-keyword">final</span> PackageManager packageManager = context.getPackageManager();
+    <span class="hljs-keyword">final</span> Intent intent = <span class="hljs-keyword">new</span> Intent(action);
+    List&lt;ResolveInfo&gt; list =
+        packageManager.queryIntentActivities(intent,
+            PackageManager.MATCH_DEFAULT_ONLY);
+    <span class="hljs-keyword">return</span> list.size() &gt; <span class="hljs-number">0</span>;
+}
+</code></pre>
+<h2 id="view-the-video-">View the Video(查看视频)</h2>
+<p>Android的Camera程序会把拍好的视频地址返回。下面的代码演示了，如何查询到这个视频并显示到VideoView.</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleCameraVideo</span>(Intent intent) {
+    mVideoUri = intent.getData();
+    mVideoView.setVideoURI(mVideoUri);
+}
+</code></pre>
 
                     
                     </section>
