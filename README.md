@@ -168,7 +168,7 @@
       * [为App内容开启深度链接](ux/app-indexing/deep-linking.md)
       * [为索引指定App内容](ux/app-indexing/enable-app-indexing.md)
 * [UI](ui/index.md)
-   * [为多屏幕设计](ui/multiscreen/index.md)
+   * **[为多屏幕设计](ui/multiscreen/index.md)(编写进行中@[riverfeng](https://github.com/riverfeng))**
       * [兼容不同的屏幕大小](ui/multiscreen/screen-sizes.md)
       * [兼容不同的屏幕密度](ui/multiscreen/screen-desities.md)
       * [实现可适应的UI](ui/multiscreen/adapt-ui.md)
