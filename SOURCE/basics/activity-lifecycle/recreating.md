@@ -1,4 +1,5 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
+
 > 校对:
 
 # 重新创建Activity
@@ -9,7 +10,7 @@
 * 默认情况下, 系统使用 Bundle 实例来保存每一个视图对象中的信息(例如输入EditText 中的文本内容)。因此，如果你的Activity被destroyed与recreated, 那么layout的状态信息会自动恢复到之前的状态。然而，你的activity也许存在更多你想要恢复的状态信息，例如记录用户Progress的成员变量(member variables).。
 * **请注意**为了让你可以保存额外更多的数据到saved instance state。在Activity的声明周期里面存在一个添加的回调函数。这个回调函数并没有在前面课程的图片示例中显示。这个方法是 onSaveInstanceState() ，当用户离开你的Activity时，系统会调用它。当系统调用这个函数时，系统会在你的Activity被异常Destory时传递 Bundle 对象，这样你可以增加额外的信息到Bundle中并保存与系统中。然后如果系统在Activity被Destory之后想重新创建这个Activity实例时，之前的那个Bundle对象会(系统)被传递到你的activity的 onRestoreInstanceState() 方法与 onCreate() 方法中。
 
-![basic-lifecycle-savestate](/images/articles/basic-lifecycle-savestate.png)
+![basic-lifecycle-savestate](/images/basic-lifecycle-savestate.png)
 
 上图：当系统开始停止你的Activity时，会调用到[onSaveInstanceState()](http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)) (1) ，因此你可以在Activity实例需要重新创建的情况下，指定特定的附加状态数据到Bunde中。如果这个Activity被destroyed而且同样的实例被重新创建，系统会传递在 (1) 中的状态数据到 onCreate()  (2) 与 [onRestoreInstanceState()](http://developer.android.com/reference/android/app/Activity.html#onRestoreInstanceState(android.os.Bundle))(3).
 

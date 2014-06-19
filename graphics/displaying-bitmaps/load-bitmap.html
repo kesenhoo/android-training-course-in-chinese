@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.1" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.1" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,76 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_365">
+                    <section class="normal" id="section-gitbook_381">
                     
-                        <h1 id="-">高效加载大图</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="loading-large-bitmaps-efficiently-">Loading Large Bitmaps Efficiently(有效地加载大尺寸位图)</h1>
+<p>图片有不同的形状与大小。在大多数情况下它们的实际大小都比需要呈现出来的要大很多。例如，系统的Gallery程序会显示那些你使用设备camera拍摄的图片，但是那些图片的分辨率通常都比你的设备屏幕分辨率要高很多。</p>
+<p>考虑到程序是在有限的内存下工作，理想情况是你只需要在内存中加载一个低分辨率的版本即可。这个低分辨率的版本应该是与你的UI大小所匹配的，这样才便于显示。一个高分辨率的图片不会提供任何可见的好处，却会占用宝贵的(precious)的内存资源，并且会在快速滑动图片时导致(incurs)附加的效率问。</p>
+<p>这一课会介绍如何通过加载一个低版本的图片到内存中去decoding大的bitmaps，从而避免超出程序的内存限制。</p>
+<h2 id="read-bitmap-dimensions-and-type-">Read Bitmap Dimensions and Type(读取位图的尺寸与类型)</h2>
+<p>BitmapFactory 类提供了一些decode的方法 (<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options" target="_blank">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options" target="_blank">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options" target="_blank">decodeResource()</a>, etc.) 用来从不同的资源中创建一个Bitmap. 根据你的图片数据源来选择合适的decode方法. 那些方法在构造位图的时候会尝试分配内存，因此会容易导致OutOfMemory的异常。每一种decode方法都提供了通过<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html" target="_blank">BitmapFactory.Options</a> 来设置一些附加的标记来指定decode的选项。设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds" target="_blank">inJustDecodeBounds</a> 属性为true可以在decoding的时候避免内存的分配，它会返回一个null的bitmap，但是 outWidth, outHeight 与 outMimeType 还是可以获取。这个技术可以允许你在构造bitmap之前优先读图片的尺寸与类型。</p>
+<pre><code class="lang-java">BitmapFactory.Options options = <span class="hljs-keyword">new</span> BitmapFactory.Options();
+options.inJustDecodeBounds = <span class="hljs-keyword">true</span>;
+BitmapFactory.decodeResource(getResources(), R.id.myimage, options);
+<span class="hljs-keyword">int</span> imageHeight = options.outHeight;
+<span class="hljs-keyword">int</span> imageWidth = options.outWidth;
+String imageType = options.outMimeType;
+</code></pre>
+<p>为了避免java.lang.OutOfMemory 的异常，我们在真正decode图片之前检查它的尺寸，除非你确定这个数据源提供了准确无误的图片且不会导致占用过多的内存。</p>
+<h2 id="load-a-scaled-down-version-into-memory-">Load a Scaled Down Version into Memory(加载一个按比例缩小的版本到内存中)</h2>
+<p>通过上面的步骤我们已经知道了图片的尺寸，那些数据可以用来决定是应该加载整个图片到内存中还是加一个缩小的版本。下面有一些因素需要考虑：</p>
+<ul>
+<li>评估加载完整图片所需要耗费的内存。</li>
+<li>程序在加载这张图片时会涉及到其他内存需求。</li>
+<li>呈现这张图片的组件的尺寸大小。</li>
+<li>屏幕大小与当前设备的屏幕密度。</li>
+</ul>
+<p>例如，如果把一个原图是<code>1024*768</code> pixel的图片显示到ImageView为<code>128*96</code> pixel的缩略图就没有必要把整张图片都加载到内存中。</p>
+<p>为了告诉decoder去加载一个低版本的图片到内存，需要在你的BitmapFactory.Options 中设置 inSampleSize 为 true 。For example, 一个分辨率为2048x1536 的图片，如果设置 inSampleSize 为4，那么会产出一个大概为512x384的bitmap。加载这张小的图片仅仅使用大概0.75MB，如果是加载全图那么大概要花费12MB(前提都是bitmap的配置是 ARGB_8888). 下面有一段根据目标图片大小来计算Sample图片大小的Sample Code:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateInSampleSize</span>(
+            BitmapFactory.Options options, <span class="hljs-keyword">int</span> reqWidth, <span class="hljs-keyword">int</span> reqHeight) {
+    <span class="hljs-comment">// Raw height and width of image</span>
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> height = options.outHeight;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> width = options.outWidth;
+    <span class="hljs-keyword">int</span> inSampleSize = <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">if</span> (height &gt; reqHeight || width &gt; reqWidth) {
+        <span class="hljs-keyword">if</span> (width &gt; height) {
+            inSampleSize = Math.round((<span class="hljs-keyword">float</span>)height / (<span class="hljs-keyword">float</span>)reqHeight);
+        } <span class="hljs-keyword">else</span> {
+            inSampleSize = Math.round((<span class="hljs-keyword">float</span>)width / (<span class="hljs-keyword">float</span>)reqWidth);
+        }
+    }
+    <span class="hljs-keyword">return</span> inSampleSize;
+}
+</code></pre>
+<p><strong>Note:</strong> 设置 inSampleSize 为2的幂对于decoder会更加的有效率，然而，如果你打算把调整过大小的图片Cache到磁盘上，设置为更加接近的合适大小则能够更加有效的节省缓存的空间.</p>
+<p>为了使用这个方法，首先需要设置 inJustDecodeBounds 为 true, 把options的值传递过来，然后使用 inSampleSize 的值并设置 inJustDecodeBounds 为 false 来重新Decode一遍。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bitmap <span class="hljs-title">decodeSampledBitmapFromResource</span>(Resources res, <span class="hljs-keyword">int</span> resId,
+        <span class="hljs-keyword">int</span> reqWidth, <span class="hljs-keyword">int</span> reqHeight) {
+
+    <span class="hljs-comment">// First decode with inJustDecodeBounds=true to check dimensions</span>
+    <span class="hljs-keyword">final</span> BitmapFactory.Options options = <span class="hljs-keyword">new</span> BitmapFactory.Options();
+    options.inJustDecodeBounds = <span class="hljs-keyword">true</span>;
+    BitmapFactory.decodeResource(res, resId, options);
+
+    <span class="hljs-comment">// Calculate inSampleSize</span>
+    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+    <span class="hljs-comment">// Decode bitmap with inSampleSize set</span>
+    options.inJustDecodeBounds = <span class="hljs-keyword">false</span>;
+    <span class="hljs-keyword">return</span> BitmapFactory.decodeResource(res, resId, options);
+}
+</code></pre>
+<p>使用上面这个方法可以简单的加载一个任意大小的图片并显示为100*100 pixel的缩略图形式。像下面演示的一样:</p>
+<pre><code class="lang-java">mImageView.setImageBitmap(
+    decodeSampledBitmapFromResource(getResources(), R.id.myimage, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>));
+</code></pre>
+<p>你可以通过替换合适的BitmapFactory.decode* 方法来写一个类似的方法从其他的数据源进行decode bitmap。</p>
 
                     
                     </section>

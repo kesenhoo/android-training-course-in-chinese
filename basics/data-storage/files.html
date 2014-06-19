@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.6.2" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.6.2" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,151 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_280">
+                    <section class="normal" id="section-gitbook_288">
                     
-                        <h1 id="-">保存到文件</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:<a href="https://github.com/K0ST" target="_blank">KOST</a></p>
+</blockquote>
+<h1 id="saving-to-files-">Saving to Files保存到文件</h1>
+<p>Android使用与其他平台类似的基于磁盘文件系统(disk-based file systems)。这节课会描述如何在Android文件系统上使用 <a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a> 的读写APIs。File 对象非常适合用来读写那种流式顺序的数据。例如，很适合用来读写图片文件或者是网络中交换的数据。这节课会演示在app中如何执行基本的文件操作任务。假定你已经对linux的文件系统与java.io中标准的I/O APIs有一定认识。</p>
+<h2 id="choose-internal-or-external-storage-internal-external-">Choose Internal or External Storage[选择Internal还是External存储]</h2>
+<p>所有的Android设备都有两个文件存储区域：&quot;internal&quot; 与 &quot;external&quot; 存储。 那两个名称来自与早先的Android系统中，那个时候大多数的设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把&quot;internal&quot; 与 &quot;external&quot; 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为&quot;internal&quot;与&quot;external&quot;的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：</p>
+<ul>
+<li><p><strong>Internal storage:</strong></p>
+<ul>
+<li>总是可用的</li>
+<li>这里的文件默认是只能被你的app所访问的。</li>
+<li>当用户卸载你的app的时候，系统会把internal里面的相关文件都清除干净。</li>
+<li>Internal是在你想确保不被用户与其他app所访问的最佳存储区域。</li>
+</ul>
+</li>
+<li><p><strong>External storage:</strong></p>
+<ul>
+<li>并不总是可用的，因为用户可以选择把这部分作为USB存储模式，这样就不可以访问了。</li>
+<li>是大家都可以访问的，因此保存到这里的文件是失去访问控制权限的。</li>
+<li>当用户卸载你的app时，系统仅仅会删除external根目录（getExternalFilesDir()）下的相关文件。</li>
+<li>External是在你不需要严格的访问权限并且你希望这些文件能够被其他app所共享或者是允许用户通过电脑访问时的最佳存储区域。</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tip:</strong> 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明android:installLocation 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大，用户会倾向这个程序能够提供安装到external storage的选项。更多安装信息，请参考<a href="http://developer.android.com/guide/topics/data/install-location.html" target="_blank">App Install Location</a>。</p>
+<h2 id="obtain-permissions-for-external-storage-external-">obtain Permissions for External Storage [获取External存储的权限]</h2>
+<p>为了写数据到external storage, 你必须在你的manifest文件中请求<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<p><strong>Caution:</strong>目前，所有的apps都可以在不指定<strong>写</strong>的权限下做<strong>读</strong>external storage的动作。但是，这会在以后的版本中被修正。如果你的app需要<strong>读</strong>的权限(不是写), 那么你需要声明 <a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a> 权限。为了确保你的app能够在正常工作，你需要现在就声明读权限。但是，如果你的程序有声明<strong>写</strong>的权限，那么就默认有了<strong>读</strong>的权限。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<p>对于internal storage，你不需要声明任何权限，因为你的程序默认就有读写程序目录下的文件的权限。</p>
+<h2 id="save-a-file-on-internal-storage-internal-storage-">Save a File on Internal Storage[保存文件到Internal Storage]</h2>
+<p>当保存文件到internal storage时，你可以通过执行下面两个方法之一来获取合适的目录作为File的对象：</p>
+<ul>
+<li><strong>getFilesDir()</strong> : 返回一个 File ，代表了你的app的internal目录。</li>
+<li><strong>getCacheDir()</strong> : 返回一个 File ，代表了你的app的internal缓存目录。请确保这个目录下的文件在一旦不再需要的时候能够马上被删除，还有请给予一个合理的大小，例如1MB 。如果系统的内存不够，会自行选择删除缓存文件。为了在那些目录下创建一个新的文件，你可以使用 File() 构造器，如下：</li>
+</ul>
+<pre><code class="lang-java">File file = <span class="hljs-keyword">new</span> File(context.getFilesDir(), filename);
+</code></pre>
+<p>同样，你也可以执行<a href="http://developer.android.com/reference/android/content/Context.html#openFileOutput(java.lang.String, int" target="_blank">openFileOutput()</a>) 来获取一个 FileOutputStream 用来写文件到internal目录。如下：</p>
+<pre><code class="lang-java">String filename = <span class="hljs-string">"myfile"</span>;
+String string = <span class="hljs-string">"Hello world!"</span>;
+FileOutputStream outputStream;
+
+<span class="hljs-keyword">try</span> {
+  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+  outputStream.write(string.getBytes());
+  outputStream.close();
+} <span class="hljs-keyword">catch</span> (Exception e) {
+  e.printStackTrace();
+}
+</code></pre>
+<p>如果，你需要缓存一些文件，你可以使用<a href="http://developer.android.com/reference/java/io/File.html#createTempFile(java.lang.String, java.lang.String" target="_blank">createTempFile()</a>)。例如：下面的方法从URL中抽取了一个文件名，然后再创建了一个以这个文件名命名的文件。</p>
+<pre><code class="lang-java"> <span class="hljs-keyword">public</span> File <span class="hljs-title">getTempFile</span>(Context context, String url) {
+    File file;
+    <span class="hljs-keyword">try</span> {
+        String fileName = Uri.parse(url).getLastPathSegment();
+        file = File.createTempFile(fileName, <span class="hljs-keyword">null</span>, context.getCacheDir());
+    <span class="hljs-keyword">catch</span> (IOException e) {
+        <span class="hljs-comment">// Error while creating file</span>
+    }
+    <span class="hljs-keyword">return</span> file;
+}
+</code></pre>
+<p><strong>Note:</strong> 你的app的internal storage 目录是以你的app的包名作为标识存放在Android文件系统的特定目录下[data/data/com.example.xx]。 从技术上讲，如果你设置文件为可读的，那么其他app就可以读取你的internal文件。然而，其他app需要知道你的包名与文件名。若是你没有设置为可读或者可写，其他app是没有办法读写的。因此只要你使用<a href="http://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE" target="_blank">MODE_PRIVATE</a> ，那么这些文件就不可能被其他app所访问。</p>
+<h2 id="save-a-file-on-external-storage-external-storage-">Save a File on External Storage [保存文件到External Storage]</h2>
+<p>因为external storage可能是不可用的，那么你应该在访问之前去检查是否可用。你可以通过执行 getExternalStorageState() 来查询external storage的状态。如果返回的状态是MEDIA_MOUNTED, 那么你可以读写。示例如下：</p>
+<pre><code class="lang-java"> <span class="hljs-comment">/* Checks if external storage is available for read and write */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isExternalStorageWritable</span>() {
+    String state = Environment.getExternalStorageState();
+    <span class="hljs-keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+
+<span class="hljs-comment">/* Checks if external storage is available to at least read */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isExternalStorageReadable</span>() {
+    String state = Environment.getExternalStorageState();
+    <span class="hljs-keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state) ||
+        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+</code></pre>
+<p>尽管external storage对与用户与其他app是可修改的，那么你可能会保存下面两种类型的文件。</p>
+<ul>
+<li><strong>Public files</strong> :这些文件对与用户与其他app来说是public的，当用户卸载你的app时，这些文件应该保留。例如，那些被你的app拍摄的图片或者下载的文件。</li>
+<li><strong>Private files</strong>: 这些文件应该是被你的app所拥有的，它们应该在你的app被卸载时删除掉。尽管那些文件从技术上可以被用户与其他app所访问，实际上那些文件对于其他app是没有意义的。所以，当用户卸载你的app时，系统会删除你的app的private目录。例如，那些被你的app下载的缓存文件。</li>
+</ul>
+<p>如果你想要保存文件为public形式的，请使用<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String" target="_blank">getExternalStoragePublicDirectory()</a>)方法来获取一个 File 对象来表示存储在external storage的目录。这个方法会需要你带有一个特定的参数来指定这些public的文件类型，以便于与其他public文件进行分类。参数类型包括<a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_MUSIC" target="_blank">DIRECTORY_MUSIC</a> 或者 <a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES" target="_blank">DIRECTORY_PICTURES</a>. 如下:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> File <span class="hljs-title">getAlbumStorageDir</span>(String albumName) {
+    <span class="hljs-comment">// Get the directory for the user's public pictures directory.</span>
+    File file = <span class="hljs-keyword">new</span> File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), albumName);
+    <span class="hljs-keyword">if</span> (!file.mkdirs()) {
+        Log.e(LOG_TAG, <span class="hljs-string">"Directory not created"</span>);
+    }
+    <span class="hljs-keyword">return</span> file;
+}
+</code></pre>
+<p>如果你想要保存文件为私有的方式，你可以通过执行<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String" target="_blank">getExternalFilesDir()</a>) 来获取相应的目录，并且传递一个指示文件类型的参数。每一个以这种方式创建的目录都会被添加到external storage封装你的app目录下的参数文件夹下（如下则是albumName）。这下面的文件会在用户卸载你的app时被系统删除。如下示例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> File <span class="hljs-title">getAlbumStorageDir</span>(Context context, String albumName) {
+    <span class="hljs-comment">// Get the directory for the app's private pictures directory.</span>
+    File file = <span class="hljs-keyword">new</span> File(context.getExternalFilesDir(
+            Environment.DIRECTORY_PICTURES), albumName);
+    <span class="hljs-keyword">if</span> (!file.mkdirs()) {
+        Log.e(LOG_TAG, <span class="hljs-string">"Directory not created"</span>);
+    }
+    <span class="hljs-keyword">return</span> file;
+}
+</code></pre>
+<p>如果刚开始的时候，没有预定义的子目录存放你的文件，你可以在 getExternalFilesDir()方法中传递 null. 它会返回你的app在external storage下的private的根目录。</p>
+<p>请记住， getExternalFilesDir() 方法会创建的目录会在app被卸载时被系统删除。如果你的文件想在app被删除时仍然保留，请使用getExternalStoragePublicDirectory().</p>
+<p>不管你是使用 getExternalStoragePublicDirectory() 来存储可以共享的文件，还是使用 getExternalFilesDir() 来储存那些对与你的app来说是私有的文件，有一点很重要，那就是你要使用那些类似DIRECTORY_PICTURES 的API的常量。那些目录类型参数可以确保那些文件被系统正确的对待。例如，那些以DIRECTORY_RINGTONES 类型保存的文件就会被系统的media scanner认为是ringtone而不是音乐。</p>
+<h2 id="query-free-space-">Query Free Space[查询剩余空间]</h2>
+<p>如果你事先知道你想要保存的文件大小，你可以通过执行<a href="http://developer.android.com/reference/java/io/File.html#getFreeSpace(" target="_blank">getFreeSpace()</a>) or <a href="http://developer.android.com/reference/java/io/File.html#getTotalSpace(" target="_blank">getTotalSpace()</a>) 来判断是否有足够的空间来保存文件，从而避免发生IOException。那些方法提供了当前可用的空间还有存储系统的总容量。</p>
+<p>然而，系统并不会授权你写入通过getFreeSpace().查询到的容量文件， 如果查询的剩余容易比你的文件大小多几MB，或者说文件系统使用率还不足90%，这样则可以继续进行写的操作，否则你最好不要写进去。</p>
+<p><strong>Note:</strong>你并没有强制要求在写文件之前一定有要去检查剩余容量。你可以尝试先做写的动作，然后通过捕获 IOException 。这种做法仅适合于你并不知道你想要写的文件的确切大小。</p>
+<h2 id="delete-a-file-">Delete a File [删除文件]</h2>
+<p>你应该在不需要使用某些文件的时候，删除它。删除文件最直接的方法是直接执行文件的 delete() 方法。</p>
+<pre><code class="lang-java">myFile.delete();
+</code></pre>
+<p>如果文件是保存在internal storage，你可以通过 Context 来访问并通过执行deleteFile()进行删除</p>
+<pre><code class="lang-java">myContext.deleteFile(fileName);
+</code></pre>
+<p><strong>Note:</strong> 当用户卸载你的app时，android系统会删除下面的文件：</p>
+<ul>
+<li>所有保存到internal storage的文件。</li>
+<li>所有使用getExternalFilesDir()方式保存在external storage的文件
+然而，你应该手动删除所有通过 getCacheDir() 方式创建的缓存文件，还有那些通常来说不会再用的文件。</li>
+</ul>
 
                     
                     </section>

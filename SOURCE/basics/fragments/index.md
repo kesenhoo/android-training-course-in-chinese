@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 > 编写:[fastcome1985](https://github.com/fastcome1985 "fastcome1985")
 
 > 校对:
@@ -27,3 +28,10 @@
 * [与其他fragments通信](communicating.html)    
           学习fragment与activity以及其他fragments之间通信。
  
+=======
+> 编写:[fastcome1985](https://github.com/fastcome1985)
+
+> 校对:
+
+# 使用Fragment建立动态的UI
+>>>>>>> upstream/gh-pages

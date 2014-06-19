@@ -1,37 +1,35 @@
 # Android Training Course in Chinese
 
-* Android Training翻译组：363415744
-* Android Training交流群：348663273
+* Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入，更欢迎有意向参与到这个课程汉化项目中的同学。请看到的同学点击Star支持，感谢！
 
-欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。请看到的同学Star支持，感谢！
-
-## Android Training Course
+## Google Android官方培训课程
 <http://developer.android.com/training/index.html>
 
-这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程。这真的是一份学习Android应用开发绝佳一手资料。
+这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程，200篇左右的文章。这真的是一份学习Android应用开发的绝佳资料。
 
-很可惜，这么一份很好的资料一直没有一份完整的中文版，个人从2012年发现Training课程开始，一直断断续续的在学习Android官方的Training课程，并很拙劣的输出了不少学习翻译笔记，个人实力与精力有限，很期待这次能够发起这个项目，借助大家的力量，一起尽快完成所有课程的中文版，更好的为学习Android开发贡献力量。
+很可惜，这么一份很好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，一直断断续续的在学习Android官方的Training课程，并很拙劣的输出了不少[学习翻译笔记](http://hukai.me/blog/categories/android-training/)，个人实力与精力有限，很期待能够通过发起这个项目，借助大家的力量，一起尽快完成所有课程的中文版，更好的为学习Android开发贡献力量。
 
-整个课程的目录已经搭建完毕，大部分课程都有分了好几个篇章，期待大家的加入！
+期待大家的加入！
 
 <a name="online_reading"></a>
 ## 在线阅读
 
-点击在线阅读<http://hukai.me/android-training-course-in-chinese/index.html>
-
-Power by [Gitbook](https://www.gitbook.io/)
+* 很多文章还没有翻译完毕，等待大家添砖加瓦。
+* 点击链接<http://hukai.me/android-training-course-in-chinese/index.html>
 
 <a name="courses"></a>
 ## 课程结构
 
+**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名**
+
 * [序言](README.md)
 * [开始](basics/index.md)
-   * [建立你的第一个App](basics/firstapp/index.md)
+   * **[建立你的第一个App](basics/firstapp/index.md)(编写进行中@[yuanfentiank789](https://github.com/yuanfentiank789))**
        * [创建一个Android项目](basics/firstapp/creating-project.md)
        * [执行你的程序](basics/firstapp/running-app.md)
        * [建立一个简单的用户界面](basics/firstapp/building-ui.md)
        * [启动另外的Activity](basics/firstapp/starting-activity.md)
-   * [添加ActionBar](basics/actionbar/index.md)
+   * **[添加ActionBar](basics/actionbar/index.md)(编写进行中@[vincent4j](https://github.com/vincent4j))**
        * [建立ActionBar](basics/actionbar/setting-up.md)
        * [添加Action按钮](basics/actionbar/adding-buttons.md)
        * [ActionBar的风格化](basics/actionbar/styling.md)
@@ -39,25 +37,25 @@ Power by [Gitbook](https://www.gitbook.io/)
        * [适配不同的语言](basics/supporting-devices/languages.md)
        * [适配不同的屏幕](basics/supporting-devices/screens.md)
        * [适配不同的系统版本](basics/supporting-devices/platforms.md)
-   * **[管理Activity的生命周期](basics/activity-lifecycle/index.md)(待校验，由@kesenhoo翻译)**
+   * **[管理Activity的生命周期](basics/activity-lifecycle/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [启动与销毁Activity](basics/activity-lifecycle/starting.md)
        * [暂停与恢复Activity](basics/activity-lifecycle/pausing.md)
        * [停止与重启Activity](basics/activity-lifecycle/stopping.md)
        * [重新创建Activity](basics/activity-lifecycle/recreating.md)
-   * [使用Fragment建立动态的UI](basics/fragments/index.md)
+   * **[使用Fragment建立动态的UI](basics/fragments/index.md)(编写进行中@[fastcome1985](https://github.com/fastcome1985))**
        * [创建一个Fragment](basics/fragments/creating.md)
        * [建立灵活动态的UI](basics/fragments/fragment-ui.md)
        * [Fragments之间的交互](basics/fragments/communicating.md)
-   * [数据保存](basics/data-storage/index.md)
+   * **[数据保存](basics/data-storage/index.md)(校验进行中@[K0ST](https://github.com/K0ST)，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [保存到Preference](basics/data-storage/shared-preference.md)
        * [保存到文件](basics/data-storage/files.md)
        * [保存到数据库](basics/data-storage/database.md)
-   * [与其他应用的交互](basics/intents/index.md)
+   * **[与其他应用的交互](basics/intents/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
        * [Intent的发送](basics/intents/sending.md)
        * [接收Activity返回的结果](basics/intents/result.md)
        * [Intent过滤](basics/intents/filters.md)
 * [分享](content-sharing/index.md)
-   * [分享简单的数据](content-sharing/sharing/index.md)
+   * **[分享简单的数据](content-sharing/sharing/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [给其他App发送简单的数据](content-sharing/sharing/send.md)
       * [接收从其他App返回的数据](content-sharing/sharing/receive.md)
       * [添加一个简便的分享动作](content-sharing/sharing/shareaction.md)
@@ -70,7 +68,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [发送文件给其他设备](content-sharing/beam-files/sending-files.md)
       * [接收其他设备的文件](content-sharing/beam-files/receive-files.md)
 * [多媒体](multimedia/index.md)
-   * [管理音频播放](multimedia/audio/index.md)
+   * **[管理音频播放](multimedia/audio/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [控制你得应用的音量与播放](multimedia/audio/volume-playback.md)
       * [管理音频焦点](multimedia/audio/audio-focus.md)
       * [兼容音频输出设备](multimedia/audio/audio-output.md)
@@ -83,7 +81,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [打印HTML文档](multimedia/printing/html-docs.md)
       * [打印自定义文档](multimedia/printing/custom-docs.md)
 * [图像](graphics/index.md)
-   * [高效显示Bitmap](graphics/displaying-bitmaps/index.md)
+   * **[高效显示Bitmap](graphics/displaying-bitmaps/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [高效加载大图](graphics/displaying-bitmaps/load-bitmap.md)
       * [非UI线程处理Bitmap](graphics/displaying-bitmaps/process-bitmap.md)
       * [缓存Bitmap](graphics/displaying-bitmaps/cache-bitmap.md)
@@ -96,7 +94,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [运用投影与相机视图](graphics/opengl/projection.md)
       * [添加移动](graphics/opengl/motion.md)
       * [响应触摸事件](graphics/opengl/touch.md)
-* [动画](animations/index.md)
+* **[动画](animations/index.md)(编写进行中:@[wangyan3](https://github.com/wangyan3))**
    * [淡入淡出两个View](animations/crossfade.md)
    * [使用ViewPager实现屏幕滑动](animations/screen-slide.md)
    * [卡片翻转的动画](animations/cardflip.md)
@@ -107,11 +105,11 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [使得网络服务可发现](connectivity/connect-devices-wireless/nsd.md)
       * [使用WiFi建立P2P连接](connectivity/connect-devices-wireless/wifi-direct.md)
       * [使用WiFi P2P服务](connectivity/connect-devices-wireless/nsd-wifi-index.md)
-   * [网络连接操作](connectivity/network-ops/index.md)
+   * **[网络连接操作](connectivity/network-ops/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [连接到网络](connectivity/network-ops/connecting.md)
       * [管理使用的网络](connectivity/network-ops/managing.md)
       * [解析XML数据](connectivity/network-ops/xml.md)
-   * [高效下载](connectivity/efficient-downloads/index.md)
+   * **[高效下载](connectivity/efficient-downloads/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [为网络访问更加高效而优化下载](connectivity/efficient-downloads/efficient-network-access.md)
       * [最小化更新操作的影响](connectivity/efficient-downloads/regular-update.md)
       * [避免下载多余的数据](connectivity/efficient-downloads/redundant-redundant.md)
@@ -128,15 +126,15 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [实现自定义的网络请求](connectivity/volley/request-custom.md)
 * [云服务](cloud/index.md)
    * [云同步](cloud/cloudsync/index.md)
-      * [使用备份API](cloud/cloudsync/backupapi.md)
+      * **[使用备份API](cloud/cloudsync/backupapi.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [使用Google Cloud Messaging](cloud/cloudsync/gcm.md)
    * [解决云同步的保存冲突](cloud/cloudsave/index.md)
-* **[用户信息](contacts-provider/index.md)(翻译进行中:@spencer198711)**
+* **[用户信息](contacts-provider/index.md)(编写进行中:@[spencer198711](https://github.com/spencer198711))**
    * [获取联系人列表](contacts-provider/retrieve-names.md)
    * [获取联系人详情](contacts-provider/retrieve-detail.md)
    * [修改联系人信息](contacts-provider/modify-data.md)
    * [显示联系人头像](contacts-provider/display-badge.md)
-* [位置信息](location/index.md)
+* **[位置信息](location/index.md)(编写进行中@[penkzhou](https://github.com/penkzhou))**
    * [获取当前位置](location/retrieve-current.md)
    * [获取位置更新](location/retrieve-location-updates.md)
    * [显示位置地址](location/display-address.md)
@@ -170,7 +168,7 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [为App内容开启深度链接](ux/app-indexing/deep-linking.md)
       * [为索引指定App内容](ux/app-indexing/enable-app-indexing.md)
 * [UI](ui/index.md)
-   * [为多屏幕设计](ui/multiscreen/index.md)
+   * **[为多屏幕设计](ui/multiscreen/index.md)(编写进行中@[riverfeng](https://github.com/riverfeng))**
       * [兼容不同的屏幕大小](ui/multiscreen/screen-sizes.md)
       * [兼容不同的屏幕密度](ui/multiscreen/screen-desities.md)
       * [实现可适应的UI](ui/multiscreen/adapt-ui.md)
@@ -215,10 +213,10 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [支持不同的Android系统版本](input/game-controller/compatibility.md)
       * [支持多个控制器](input/game-controller/multi-controller.md)
 * [后台任务](background-jobs/index.md)
-   * [执行一个后台Service](background-jobs/run-background-service/index.md)
-      * [创建后台Service](background-jobs/run-background-service/create-service.md)
-      * [发送任务到后台Service](background-jobs/run-background-service/send-request.md)
-      * [后台Service报告执行状态](background-jobs/run-background-service/report-status.md)
+    * **[在IntentService中执行后台任务](background-jobs/run-background-service/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
+       * [创建IntentService](background-jobs/run-background-service/create-service.md)
+       * [发送工作任务到IntentService](background-jobs/run-background-service/send-request.md)
+       * [报告后台任务执行状态](background-jobs/run-background-service/report-status.md)
    * [在后台加载数据](background-jobs/load-data-background/index.md)
       * [使用CursorLoader执行查询任务](background-jobs/load-data-background/setup-loader.md)
       * [处理查询的结果](background-jobs/load-data-background/handle-result.md)    
@@ -226,14 +224,14 @@ Power by [Gitbook](https://www.gitbook.io/)
       * [保持设备的唤醒](background-jobs/scheduling/wake-lock.md)
       * [执行重复的闹钟任务](background-jobs/scheduling/alarms.md)
 * [性能优化](performance/index.md)
-   * [管理应用的内存](performance/memory.md)
-   * [性能优化Tips](performance/performance-tips.md)
+   * **[管理应用的内存](performance/memory.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
+   * **[性能优化Tips](performance/performance-tips.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
    * [提升Layout的性能](performance/improving-layouts/index.md)
       * [优化layout的层级](performance/improving-layouts/optimizing-layout.md)
       * [使用include标签重用layouts](performance/improving-layouts/reuse-layouts.md)
       * [按需加载视图](performance/improving-layouts/loading-ondemand.md)
       * [使得ListView滑动顺畅](performance/improving-layouts/smooth-scrolling.md)
-   * [优化电池寿命](performance/monitor-device-state/index.md)
+   * **[优化电池寿命](performance/monitor-device-state/index.md)(待校验，由@[kesenhoo](https://github.com/kesenhoo)编写)**
       * [监测电量与充电状态](performance/monitor-device-state/battery-monitor.md)
       * [判断与监测Docking状态](performance/monitor-device-state/docking-monitor.md)
       * [判断与监测网络连接状态](performance/monitor-device-state/connectivity-monitor.md)
@@ -273,57 +271,75 @@ Power by [Gitbook](https://www.gitbook.io/)
       
 
 ## 认领流程
-先申请加入Android Training翻译组或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节，我会及时更新认领进度到项目主页。
+先申请加入群或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节与你的Github账户名，我会及时更新认领进度到项目主页。
 
-## 校验流程
-翻译完毕之后，难免有些地方不流畅，欢迎愿意一起学习的同学加入帮忙校验，提升这份文档的质量，谢谢！
-
-申请加入翻译组，对翻译完成的文章进行校验梳理，我会及时更新状态到项目主页。
-
-## 贡献流程
-
+## 协作流程
 * 1)fork我的项目到自己的账户下
 
-`https://github.com/kesenhoo/android-training-course-in-chinese`
+https://github.com/kesenhoo/android-training-course-in-chinese
 
 * 2)把fork之后的项目clone到本地
 
-`git clone https://github.com/{user_name}/android-training-course-in-chinese`
+```
+git clone https://github.com/{user_name}/android-training-course-in-chinese
+```
 
-* 3)创建一个新的分支并切换到该分支下
+* 3)为本地的分支添加原始的远程仓库
 
-`git branch dev`
+```
+git remote add upstream https://github.com/kesenhoo/android-training-course-in-chinese.git
+git fetch upstream
+```
 
-`git checkout dev`
+* 4)使用Gitbook编辑器进行编写
 
-* 4)为本地的工作分支添加将合并的远程仓库
+   * Mac版<http://url.cn/LddkKy>
+   * PC版<http://url.cn/LLOySy>
+   * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 
 
-`git remote add uploadrepo https://github.com/kesenhoo/android-training-course-in-chinese.git`
+* 5)若是在编写文件之前或者提交编写文件之前，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地，再把本地的更新提交到自己的远程仓库，这样才能让自己的远程仓库与原始的Fork仓库保持一致。
 
-* 5)抓取远程合并仓库的更新，再与本地进行Merge
+```
+git fetch upstream
+# 拉取把原始远程仓库的更新
+git merge upstream/gh-pages
+# 把原始远程仓库的更新合并到本地
+git push origin gh-pages
+# 提交更新到自己的远程仓库
+```
 
-`git remote update`
+* 5)编写好文档之后，相应的md文件已经被修改，commit到本地，再PUSH到自己的远程仓库
 
-`git fetch uploadrepo gh-pages`
+```
+git add . 
+# 把当前修改的所有文件提交到工作区
+git commit
+# 提交修改到本地仓库
+git push origin gh-pages
+# 把本地修改提交到自己的远程仓库
+```
 
-`git rebase uploadrepo/gh-pages`
-
-前面1-5的是首次初始化的步骤，想要再次获取远程仓库uploadrepo的更新，需要再次执行步骤5)。
-
-后续本地的所有修改都在dev分支进行，编写好的文档，commit到本地之后，先PUSH到自己的远程仓库，然后登入Github账户，，找到Fork的Repo，在右边的Pull Request里面进行拉取合并的请求，提交之后，我会进行处理再合并到主干。
-
-此流程参考自<https://github.com/numbbbbb/the-swift-programming-language-in-chinese>
+* 7)登入Github账户，找到自己的远程仓库，在右边的Pull Request里面提交与原始Fork仓库的合并的请求，提交之后，我会进行处理再合并到项目主仓库。
 
 ## MarkDown简明语法
 
 <http://jianshu.io/p/q81RER>
 
-Ps:
-* [点击链接跳到首页的待认领列表](index.html#courses)。
+附加技巧：
+* [点击链接跳到本地其他页面的待认领列表](index.html#courses)。
+
 `[点击链接跳到首页](index.html#course)`
+
 * [点击链接跳到本页面的在线阅读模块](#online_reading)
+
 `[点击链接跳到页面内部](#online_reading)`
-* 插入图片(请把图片统一放到images/articles目录下)
-` ![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)`
+
+* 插入的图片请放到你编辑的md文件的同一层级目录下，用法如下
+
+` ![basic-lifecycle-paused](basic-lifecycle-paused.png "这张图演示了Activity生命周期中的暂停状态")`
 
 有不清楚的地方请直接查看现成的源码示例。
+
+## Training离线文档
+近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
+我把所有的Google Android文档打包存在云端，有需要的同学点击下载http://url.cn/OTdU3a

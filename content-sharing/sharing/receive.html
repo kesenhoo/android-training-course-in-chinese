@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1.2" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1.2" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,84 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_346">
+                    <section class="normal" id="section-gitbook_359">
                     
-                        <h1 id="-app-">接收从其他App返回的数据</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="-app-">接收从其他App返回的数据</h1>
+<p>就像你的程序能够发送数据到其他程序一样，其他程序也能够方便的接收发送过来的数据。需要考虑的是用户与你的程序如何进行交互，你想要从其他程序接收哪些数据类型。例如，一个社交网络程序会希望能够从其他程序接受文本数据，像一个有趣的网址链接。Google+的Android客户端会接受文本数据与单张或者多张图片。用这个app，用户可以简单的从Gallery程序选择一张图片来启动Google+进行发布。</p>
+<p><!-- more --></p>
+<h2 id="update-your-manifest-manifest-">Update Your Manifest[更新你的manifest文件]</h2>
+<p>Intent filters通知了Android系统说，一个程序会接受哪些数据。像上一课一样，你可以创建intent filters来表明程序能够接收哪些action。下面是个例子，对三个activit分别指定接受单张图片，文本与多张图片。(这里有不清楚Intent filter的，请参考<a href="http://developer.android.com/guide/topics/intents/intents-filters.html#ifs" target="_blank">Intents and Intent Filters</a>)</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".ui.MyActivity"</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.SEND"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:mimeType</span>=<span class="hljs-value">"image/*"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.SEND"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:mimeType</span>=<span class="hljs-value">"text/plain"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.SEND_MULTIPLE"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:mimeType</span>=<span class="hljs-value">"image/*"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<p>当另外一个程序尝试分享一些东西的时候，你的程序会被呈现在一个列表里面让用户进行选择。如果用户选择了你的程序，相应的activity就应该被调用开启，这个时候就是你如何处理获取到的数据的问题了。</p>
+<h2 id="handle-the-incoming-content-">Handle the Incoming Content[处理接受到的数据]</h2>
+<p>为了处理从Intent带过来的数据，可以通过调用getIntent()方法来获取到Intent对象。一旦你拿到这个对象，你可以对里面的数据进行判断，从而决定下一步应该做什么。请记住，如果一个activity可以被其他的程序启动，你需要在检查intent的时候考虑这种情况(是被其他程序而调用启动的)。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">void</span> onCreate (Bundle savedInstanceState) {
+    ...
+    <span class="hljs-comment">// Get intent, action and MIME type</span>
+    Intent intent = getIntent();
+    String action = intent.getAction();
+    String type = intent.getType();
+
+    <span class="hljs-keyword">if</span> (Intent.ACTION_SEND.equals(action) &amp;&amp; type != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-string">"text/plain"</span>.equals(type)) {
+            handleSendText(intent); <span class="hljs-comment">// Handle text being sent</span>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (type.startsWith(<span class="hljs-string">"image/"</span>)) {
+            handleSendImage(intent); <span class="hljs-comment">// Handle single image being sent</span>
+        }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (Intent.ACTION_SEND_MULTIPLE.equals(action) &amp;&amp; type != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">if</span> (type.startsWith(<span class="hljs-string">"image/"</span>)) {
+            handleSendMultipleImages(intent); <span class="hljs-comment">// Handle multiple images being sent</span>
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Handle other intents, such as being started from the home screen</span>
+    }
+    ...
+}
+
+<span class="hljs-keyword">void</span> handleSendText(Intent intent) {
+    String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+    <span class="hljs-keyword">if</span> (sharedText != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Update UI to reflect text being shared</span>
+    }
+}
+
+<span class="hljs-keyword">void</span> handleSendImage(Intent intent) {
+    Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+    <span class="hljs-keyword">if</span> (imageUri != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Update UI to reflect image being shared</span>
+    }
+}
+
+<span class="hljs-keyword">void</span> handleSendMultipleImages(Intent intent) {
+    ArrayList&lt;Uri&gt; imageUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+    <span class="hljs-keyword">if</span> (imageUris != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Update UI to reflect multiple images being shared</span>
+    }
+}
+</code></pre>
+<p>请注意，因为你无法知道其他程序发送过来的数据内容是文本还是其他的数据，因此你需要避免在UI线程里面去处理那些获取到的数据。
+更新UI可以像更新EditText一样简单，也可以是更加复杂一点的操作，例如过滤出感兴趣的图片。It&#39;s really specific to your application what happens next.</p>
 
                     
                     </section>

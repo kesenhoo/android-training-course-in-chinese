@@ -1,4 +1,5 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
+
 > 校对:
 
 # 暂停与恢复Activity
@@ -10,7 +11,7 @@
 <!-- more -->
 * **Figure 1.**下图显示了，当一个半透明的activity阻塞你的activity时，系统会调用onPause()方法并且这个activity会停留在Paused state (1). 如果用户在这个activity还是在Paused State时回到这个activity，系统则会调用它的onResume() (2).
 
-![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)
+![basic-lifecycle-paused](/images/basic-lifecycle-paused.png)
 
 ## Pause Your Activity[暂停你的Activity]
 * 当系统调用你的activity中的onPause(),从技术上讲，那意味着你的activity仍然处于部分可见的状态，当时大多数时候，那意味着用户正在离开这个activity并马上会进入Stopped state. 你通常应该在onPause()回调方法里面做下面的事情:

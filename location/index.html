@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10" data-basepath=".." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10" data-basepath=".." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,33 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_396">
+                    <section class="normal" id="section-gitbook_412">
                     
-                        <h1 id="-">位置信息</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="-">位置信息</h1>
+<p>移动应用一个独特的特征就是对地址的感知。移动用户把他们的设备带到各个地方，这时将位置的感知能力添加到你的应用里可以让用户有更多的地理位置相关的体验。最新的位置服务API集成在Google Play服务里面，内置有自动位置记录，地理围栏，用户活动识别。这个API让Android平台的位置API优势更加突出了。</p>
+<p>这个课程教你如何在你的应用里使用位置服务，获取周期性的位置更新，查询地址，创建并监视地理围栏以及探测用户的活动。这个课程包括示例应用和代码片段，你可以使用它们让你的应用拥有位置感知能力。</p>
+<blockquote>
+<p>注意: 因为这个课程基于Google Play services client library，在使用这些示例应用和代码段之前确保你安装了最新版本的Google Play services client library。要想学习如何安装最新版的client library，请参考<a href="/google/play-services/setup.html">安装Google Play services 向导</a>。</p>
+</blockquote>
+<h2 id="-">分集课程</h2>
+<ul>
+<li><a href="retrieve-current.html">获取当前的位置</a>
+学习如何获取用户当前的位置。</li>
+<li><a href="receive-location-updates.html">接收位置更新</a>
+学习如何请求和接收周期性的位置更新。</li>
+<li><a href="display-address.html">显示一个地点位置</a>
+学习如何讲一个位置的经纬度转化成一个地址（反向 geocoding）。</li>
+<li><a href="geofencing.html">创建和监视Geofences</a>
+学习如何将一个或多个地理区域定义成一个兴趣位置集合，称为地理围栏。学习如何探测用户靠近或者进入地理围栏事件。</li>
+<li><a href="activity-recognition.html">识别用户当前的活动</a>
+学习如何识别用户当前的活动，比如步行，骑行，或者驾车行驶。学习如何使用这些信息去更改你应用的位置策略。</li>
+<li><a href="location-testing.html">使用Mock Locations测试你的应用</a>
+学习如何使用虚拟的位置数据来测试一个位置应用。在mock模式里面，，位置服务将会发送一些虚拟的位置数据。</li>
+</ul>
 
                     
                     </section>

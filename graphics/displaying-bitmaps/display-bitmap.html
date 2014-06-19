@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.5" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.1.5" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,307 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_363">
+                    <section class="normal" id="section-gitbook_379">
                     
-                        <h1 id="-ui-bitmap">在UI上显示Bitmap</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="-ui-bitmap">在UI上显示Bitmap</h1>
+<p>这一课会演示如何运用前面几节课的内容，使用后台线程与Cache机制来加载图片到 ViewPager 与 GridView 组件，并且学习处理并发与配置改变问题。</p>
+<!-- more -->
+
+<h2 id="load-bitmaps-into-a-viewpager-implementation-viewpager-">Load Bitmaps into a ViewPager Implementation(实现加载图片到ViewPager)</h2>
+<p><a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">swipe view pattern</a>是一个用来切换显示不同详情界面的很好的方法。(关于这种效果请先参看<a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Android Design: Swipe Views</a>).</p>
+<p>你可以通过 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a> 与 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 组件来实现这个效果. 然而，一个更加合适的Adapter是PagerAdapter 的子类 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a>:它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。</p>
+<p><strong>Note:</strong> 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。</p>
+<p>下面是一个使用ViewPager与ImageView作为子视图的示例。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String EXTRA_IMAGE = <span class="hljs-string">"extra_image"</span>;
+
+    <span class="hljs-keyword">private</span> ImagePagerAdapter mAdapter;
+    <span class="hljs-keyword">private</span> ViewPager mPager;
+
+    <span class="hljs-comment">// A static dataset to back the ViewPager adapter</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> Integer[] imageResIds = <span class="hljs-keyword">new</span> Integer[] {
+            R.drawable.sample_image_1, R.drawable.sample_image_2, R.drawable.sample_image_3,
+            R.drawable.sample_image_4, R.drawable.sample_image_5, R.drawable.sample_image_6,
+            R.drawable.sample_image_7, R.drawable.sample_image_8, R.drawable.sample_image_9};
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.image_detail_pager); <span class="hljs-comment">// Contains just a ViewPager</span>
+
+        mAdapter = <span class="hljs-keyword">new</span> ImagePagerAdapter(getSupportFragmentManager(), imageResIds.length);
+        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager.setAdapter(mAdapter);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImagePagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentStatePagerAdapter</span> {</span>
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> mSize;
+
+        <span class="hljs-keyword">public</span> <span class="hljs-title">ImagePagerAdapter</span>(FragmentManager fm, <span class="hljs-keyword">int</span> size) {
+            <span class="hljs-keyword">super</span>(fm);
+            mSize = size;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span>() {
+            <span class="hljs-keyword">return</span> mSize;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getItem</span>(<span class="hljs-keyword">int</span> position) {
+            <span class="hljs-keyword">return</span> ImageDetailFragment.newInstance(position);
+        }
+    }
+}
+</code></pre>
+<p>Fragment 里面包含了ImageView 的子组件:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> {</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String IMAGE_DATA_EXTRA = <span class="hljs-string">"resId"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mImageNum;
+    <span class="hljs-keyword">private</span> ImageView mImageView;
+
+    <span class="hljs-keyword">static</span> ImageDetailFragment newInstance(<span class="hljs-keyword">int</span> imageNum) {
+        <span class="hljs-keyword">final</span> ImageDetailFragment f = <span class="hljs-keyword">new</span> ImageDetailFragment();
+        <span class="hljs-keyword">final</span> Bundle args = <span class="hljs-keyword">new</span> Bundle();
+        args.putInt(IMAGE_DATA_EXTRA, imageNum);
+        f.setArguments(args);
+        <span class="hljs-keyword">return</span> f;
+    }
+
+    <span class="hljs-comment">// Empty constructor, required as per Fragment docs</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">ImageDetailFragment</span>() {}
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        mImageNum = getArguments() != <span class="hljs-keyword">null</span> ? getArguments().getInt(IMAGE_DATA_EXTRA) : -<span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span>(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        <span class="hljs-comment">// image_detail_fragment.xml contains just an ImageView</span>
+        <span class="hljs-keyword">final</span> View v = inflater.inflate(R.layout.image_detail_fragment, container, <span class="hljs-keyword">false</span>);
+        mImageView = (ImageView) v.findViewById(R.id.imageView);
+        <span class="hljs-keyword">return</span> v;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityCreated</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onActivityCreated(savedInstanceState);
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> resId = ImageDetailActivity.imageResIds[mImageNum];
+        mImageView.setImageResource(resId); <span class="hljs-comment">// Load image into ImageView</span>
+    }
+}
+</code></pre>
+<p>希望你有发现上面示例存在的问题：在UI Thread中读取图片可能会导致程序ANR。使用在Lesson 2中学习的 AsyncTask 会比较好。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+    ...
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadBitmap</span>(<span class="hljs-keyword">int</span> resId, ImageView imageView) {
+        mImageView.setImageResource(R.drawable.image_placeholder);
+        BitmapWorkerTask task = <span class="hljs-keyword">new</span> BitmapWorkerTask(mImageView);
+        task.execute(resId);
+    }
+
+    ... <span class="hljs-comment">// include BitmapWorkerTask class</span>
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> {</span>
+    ...
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityCreated</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onActivityCreated(savedInstanceState);
+        <span class="hljs-keyword">if</span> (ImageDetailActivity.class.isInstance(getActivity())) {
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> resId = ImageDetailActivity.imageResIds[mImageNum];
+            <span class="hljs-comment">// Call out to ImageDetailActivity to load the bitmap in a background thread</span>
+            ((ImageDetailActivity) getActivity()).loadBitmap(resId, mImageView);
+        }
+    }
+}
+</code></pre>
+<p>在 BitmapWorkerTask 中做一些例如resizing or fetching images from the network，不会卡到UI Thread。如果后台线程不仅仅是做个简单的直接加载动作，增加一个内存Cache或者磁盘Cache会比较好[参考Lesson 3] ,下面是一些为了内存Cache而附加的内容:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+    ...
+    <span class="hljs-keyword">private</span> LruCache mMemoryCache;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// initialize LruCache as per Use a Memory Cache section</span>
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadBitmap</span>(<span class="hljs-keyword">int</span> resId, ImageView imageView) {
+        <span class="hljs-keyword">final</span> String imageKey = String.valueOf(resId);
+
+        <span class="hljs-keyword">final</span> Bitmap bitmap = mMemoryCache.get(imageKey);
+        <span class="hljs-keyword">if</span> (bitmap != <span class="hljs-keyword">null</span>) {
+            mImageView.setImageBitmap(bitmap);
+        } <span class="hljs-keyword">else</span> {
+            mImageView.setImageResource(R.drawable.image_placeholder);
+            BitmapWorkerTask task = <span class="hljs-keyword">new</span> BitmapWorkerTask(mImageView);
+            task.execute(resId);
+        }
+    }
+
+    ... <span class="hljs-comment">// include updated BitmapWorkerTask from Use a Memory Cache section</span>
+}
+</code></pre>
+<h2 id="load-bitmaps-into-a-gridview-implementation-gridview-">Load Bitmaps into a GridView Implementation(实现加载图片到GridView)</h2>
+<p><a href="http://developer.android.com/design/building-blocks/grid-lists.html" target="_blank">Grid list building block</a> 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。</p>
+<p>下面是一个在Fragment里面内置了ImageView作为GridView子视图的示例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageGridFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AdapterView</span>.<span class="hljs-title">OnItemClickListener</span> {</span>
+    <span class="hljs-keyword">private</span> ImageAdapter mAdapter;
+
+    <span class="hljs-comment">// A static dataset to back the GridView adapter</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> Integer[] imageResIds = <span class="hljs-keyword">new</span> Integer[] {
+            R.drawable.sample_image_1, R.drawable.sample_image_2, R.drawable.sample_image_3,
+            R.drawable.sample_image_4, R.drawable.sample_image_5, R.drawable.sample_image_6,
+            R.drawable.sample_image_7, R.drawable.sample_image_8, R.drawable.sample_image_9};
+
+    <span class="hljs-comment">// Empty constructor as per Fragment docs</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">ImageGridFragment</span>() {}
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        mAdapter = <span class="hljs-keyword">new</span> ImageAdapter(getActivity());
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span>(
+            LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        <span class="hljs-keyword">final</span> View v = inflater.inflate(R.layout.image_grid_fragment, container, <span class="hljs-keyword">false</span>);
+        <span class="hljs-keyword">final</span> GridView mGridView = (GridView) v.findViewById(R.id.gridView);
+        mGridView.setAdapter(mAdapter);
+        mGridView.setOnItemClickListener(<span class="hljs-keyword">this</span>);
+        <span class="hljs-keyword">return</span> v;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span>(AdapterView parent, View v, <span class="hljs-keyword">int</span> position, <span class="hljs-keyword">long</span> id) {
+        <span class="hljs-keyword">final</span> Intent i = <span class="hljs-keyword">new</span> Intent(getActivity(), ImageDetailActivity.class);
+        i.putExtra(ImageDetailActivity.EXTRA_IMAGE, position);
+        startActivity(i);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseAdapter</span> {</span>
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Context mContext;
+
+        <span class="hljs-keyword">public</span> <span class="hljs-title">ImageAdapter</span>(Context context) {
+            <span class="hljs-keyword">super</span>();
+            mContext = context;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span>() {
+            <span class="hljs-keyword">return</span> imageResIds.length;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> Object <span class="hljs-title">getItem</span>(<span class="hljs-keyword">int</span> position) {
+            <span class="hljs-keyword">return</span> imageResIds[position];
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getItemId</span>(<span class="hljs-keyword">int</span> position) {
+            <span class="hljs-keyword">return</span> position;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> View <span class="hljs-title">getView</span>(<span class="hljs-keyword">int</span> position, View convertView, ViewGroup container) {
+            ImageView imageView;
+            <span class="hljs-keyword">if</span> (convertView == <span class="hljs-keyword">null</span>) { <span class="hljs-comment">// if it's not recycled, initialize some attributes</span>
+                imageView = <span class="hljs-keyword">new</span> ImageView(mContext);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setLayoutParams(<span class="hljs-keyword">new</span> GridView.LayoutParams(
+                        LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            } <span class="hljs-keyword">else</span> {
+                imageView = (ImageView) convertView;
+            }
+        <span class="hljs-comment">//请注意下面的代码</span>
+        imageView.setImageResource(imageResIds[position]); <span class="hljs-comment">// Load image into ImageView</span>
+        <span class="hljs-keyword">return</span> imageView;
+    }
+}
+</code></pre>
+<p>与前面加载到图片到ViewPager一样，如果setImageResource的操作会比较耗时，有可能会卡到UI Thread。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新的解决方案：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageGridFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AdapterView</span>.<span class="hljs-title">OnItemClickListener</span> {</span>
+    ...
+
+    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseAdapter</span> {</span>
+        ...
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> View <span class="hljs-title">getView</span>(<span class="hljs-keyword">int</span> position, View convertView, ViewGroup container) {
+            ...
+            loadBitmap(imageResIds[position], imageView)
+            <span class="hljs-keyword">return</span> imageView;
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadBitmap</span>(<span class="hljs-keyword">int</span> resId, ImageView imageView) {
+        <span class="hljs-keyword">if</span> (cancelPotentialWork(resId, imageView)) {
+            <span class="hljs-keyword">final</span> BitmapWorkerTask task = <span class="hljs-keyword">new</span> BitmapWorkerTask(imageView);
+            <span class="hljs-keyword">final</span> AsyncDrawable asyncDrawable =
+                    <span class="hljs-keyword">new</span> AsyncDrawable(getResources(), mPlaceHolderBitmap, task);
+            imageView.setImageDrawable(asyncDrawable);
+            task.execute(resId);
+        }
+    }
+
+    <span class="hljs-keyword">static</span> class AsyncDrawable extends BitmapDrawable {
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> WeakReference bitmapWorkerTaskReference;
+
+        <span class="hljs-keyword">public</span> <span class="hljs-title">AsyncDrawable</span>(Resources res, Bitmap bitmap,
+                BitmapWorkerTask bitmapWorkerTask) {
+            <span class="hljs-keyword">super</span>(res, bitmap);
+            bitmapWorkerTaskReference =
+                <span class="hljs-keyword">new</span> WeakReference(bitmapWorkerTask);
+        }
+
+        <span class="hljs-keyword">public</span> BitmapWorkerTask <span class="hljs-title">getBitmapWorkerTask</span>() {
+            <span class="hljs-keyword">return</span> bitmapWorkerTaskReference.get();
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">cancelPotentialWork</span>(<span class="hljs-keyword">int</span> data, ImageView imageView) {
+        <span class="hljs-keyword">final</span> BitmapWorkerTask bitmapWorkerTask = getBitmapWorkerTask(imageView);
+
+        <span class="hljs-keyword">if</span> (bitmapWorkerTask != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> bitmapData = bitmapWorkerTask.data;
+            <span class="hljs-keyword">if</span> (bitmapData != data) {
+                <span class="hljs-comment">// Cancel previous task</span>
+                bitmapWorkerTask.cancel(<span class="hljs-keyword">true</span>);
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// The same work is already in progress</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+            }
+        }
+        <span class="hljs-comment">// No task associated with the ImageView, or an existing task was cancelled</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> BitmapWorkerTask <span class="hljs-title">getBitmapWorkerTask</span>(ImageView imageView) {
+       <span class="hljs-keyword">if</span> (imageView != <span class="hljs-keyword">null</span>) {
+           <span class="hljs-keyword">final</span> Drawable drawable = imageView.getDrawable();
+           <span class="hljs-keyword">if</span> (drawable <span class="hljs-keyword">instanceof</span> AsyncDrawable) {
+               <span class="hljs-keyword">final</span> AsyncDrawable asyncDrawable = (AsyncDrawable) drawable;
+               <span class="hljs-keyword">return</span> asyncDrawable.getBitmapWorkerTask();
+           }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+
+    ... <span class="hljs-comment">// include updated BitmapWorkerTask class</span>
+</code></pre>
+<p><strong>Note:</strong>对于 ListView 同样可以套用上面的方法。</p>
+<p>上面的方法提供了足够的弹性，使得你可以做从网络加载与Resize大的数码照片等操作而不至于卡到UI Thread。</p>
 
                     
                     </section>

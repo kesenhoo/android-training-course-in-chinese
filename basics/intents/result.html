@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.2" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.2" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,53 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_296">
+                    <section class="normal" id="section-gitbook_303">
                     
-                        <h1 id="-activity-">接收Activity返回的结果</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="-activity-">接收Activity返回的结果</h1>
+<p>启动另外一个activity并不一定是单向的。你也可以启动另外一个activity然后接受一个result回来。为了接受这个result,你需要使用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int" target="_blank">startActivityForResult()</a>) (而不是<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent" target="_blank">startActivity()</a>))。</p>
+<p>例如，你的app可以启动一个camera程序并接受拍的照片作为result。或者你可以启动People程序并获取其中联系的人的详情作为result。</p>
+<p>当然，被启动的activity需要指定返回的result。它需要把这个result作为另外一个intent对象返回，你的activity需要在<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)的回调方法里面去接收result。</p>
+<p><strong>Note:</strong>在执行 startActivityForResult()时，你可以使用explicit 或者 implicit 的intent。当你启动另外一个位于你的程序中的activity时，你应该使用explicit intent来确保你可以接收到期待的结果。</p>
+<!-- more -->
+
+<h2 id="start-the-activity-activity-">Start the Activity(启动Activity)</h2>
+<p>对于startActivityForResult() 方法中的intent与之前介绍的并没有什么差异，只不过是需要在这个方法里面多添加一个int类型的参数。这个integer的参数叫做&quot;request code&quot;，它标识了你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。</p>
+<p>例如，下面是一个启动activity来选择联系人的例子：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> PICK_CONTACT_REQUEST = <span class="hljs-number">1</span>;  <span class="hljs-comment">// The request code</span>
+...
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pickContact</span>() {
+    Intent pickContactIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_PICK, <span class="hljs-keyword">new</span> Uri(<span class="hljs-string">"content://contacts"</span>));
+    pickContactIntent.setType(Phone.CONTENT_TYPE); <span class="hljs-comment">// Show user only contacts w/ phone numbers</span>
+    startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
+}
+</code></pre>
+<h2 id="receive-the-result-result-">Receive the Result(接收Result)</h2>
+<p>当用户完成了启动之后activity操作之后，系统会调用你的activity的onActivityResult() 回调方法。这个方法有三个参数：</p>
+<ul>
+<li>你通过startActivityForResult()传递的request code。</li>
+<li>第二个activity指定的result code。如果操作成功则是RESULT_OK ，如果用户没有操作成功，而是直接点击回退或者其他什么原因，那么则是RESULT_CANCELED</li>
+<li>第三个参数则是intent,它包含了返回的result数据部分。</li>
+</ul>
+<p>例如，下面是如何处理pick a contact的result的例子：对应上面的例子</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span>(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data) {
+    <span class="hljs-comment">// Check which request we're responding to</span>
+    <span class="hljs-keyword">if</span> (requestCode == PICK_CONTACT_REQUEST) {
+        <span class="hljs-comment">// Make sure the request was successful</span>
+        <span class="hljs-keyword">if</span> (resultCode == RESULT_OK) {
+            <span class="hljs-comment">// The user picked a contact.</span>
+            <span class="hljs-comment">// The Intent's data Uri identifies which contact was selected.</span>
+
+            <span class="hljs-comment">// Do something with the contact here (bigger example below)</span>
+        }
+    }
+}
+</code></pre>
+<p>为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contack，Camera app 则是在data数据区返回一个 Bitmap （see the class about <a href="http://developer.android.com/training/camera/index.html" target="_blank">Capturing Photos</a>).</p>
 
                     
                     </section>

@@ -1,4 +1,5 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
+
 > 校对:
 
 # 停止与重启Activity
@@ -10,7 +11,7 @@
 * **Note:**因为系统在activity停止时会在内存中保存了Activity实例。有些时候你不需要实现onStop(),onRestart()甚至是onStart()方法. 因为大多数的activity相对比较简单，activity会自己停止与重启，你只需要使用onPause()来停止正在运行的动作并断开系统资源链接。
 <!-- more -->
 
-![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)
+![basic-lifecycle-paused](/images/basic-lifecycle-paused.png)
 
 * **Figure 1.**上图显示：当用户离开你的activity，系统会调用onStop()来停止activity (1). 这个时候如果用户返回，系统会调用onRestart()(2), 之后会迅速调用[onStart()](3) 与onResume()(4). 请注意：无论什么原因导致activity停止，系统总是会在onStop()之前调用onPause()方法。
 

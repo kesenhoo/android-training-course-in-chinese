@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="15.4.3" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="15.4.3" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter done " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter done " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter done " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter done " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter done " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter done " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter done " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter done " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter done " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter done " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,36 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_421">
+                    <section class="normal" id="section-gitbook_437">
                     
-                        <h1 id="-">判断与监测网络连接状态</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="determining-and-monitoring-the-connectivity-status-">Determining and Monitoring the Connectivity Status[判断并监测网络连接状态]</h1>
+<p>通常我们会有一些计划的任务，比如重复闹钟，后台定时启动的任务等。但是如果我们的网络没有连接上，那么就没有必要启动那些需要连接网络的任务。我们可以使用ConnectivityManager来检查是否连接上网络，是何种网络。[通过网络的连接状况改变，相应的改变app的行为，减少无谓的操作，从而延长设备的续航能力]</p>
+<h2 id="1-determine-if-you-have-an-internet-connection-">1)Determine if You Have an Internet Connection[判断当前是否有网络连接]</h2>
+<p>显然如果没有网络连接，那么就没有必要做那些需要联网的事情。下面是一个检查是否有网络连接的例子：</p>
+<!-- More -->
+
+<pre><code class="lang-java">ConnectivityManager cm =
+        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+<span class="hljs-keyword">boolean</span> isConnected = activeNetwork.isConnectedOrConnecting();
+</code></pre>
+<h2 id="2-determine-the-type-of-your-internet-connection-">2)Determine the Type of your Internet Connection[判断连接网络的类型]</h2>
+<p>设备通常可以有移动网络，WiMax,Wi-Fi与以太网连接等类型。通过查询当前活动的网络类型，可以根据网络的带宽做适合的事情。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">boolean</span> isWiFi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+</code></pre>
+<p>使用移动网络会比Wi-Fi花费代价更大，所以多数情况下，在移动网络情况下减少一些数据的获取操作，同样，一些像下载文件等操作需要等有Wi-Fi的情况下才开始。
+如果已经关闭了更新操作，那么需要监听网络切换，当有比较好的网络时重新启动之前取消的操作。</p>
+<h2 id="3-monitor-for-changes-in-connectivity-">3)Monitor for Changes in Connectivity[监测网络连接的切换]</h2>
+<p>当网络连接被改变的时候， ConnectivityManager会broadcast CONNECTIVITY_ACTION (&quot;android.net.conn.CONNECTIVITY_CHANGE&quot;) 的动作消息。
+我们需要在manifest文件里面注册一个带有像下面action一样的Receiver:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.net.conn.CONNECTIVITY_CHANGE"</span>/&gt;</span>
+</code></pre>
+<p>通常网络的改变会比较频繁，我们没有必要不间断的注册监听网络的改变。通常我们会在有Wi-Fi的时候进行下载动作，若是网络切换到移动网络则通常会暂停当前下载，监听到恢复到Wi-Fi的情况则开始恢复下载。</p>
 
                     
                     </section>

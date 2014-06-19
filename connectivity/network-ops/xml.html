@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.3" data-basepath="../.." data-revision="1402853676793">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.3" data-basepath="../.." data-revision="1403107685318">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2136,7 +2136,7 @@
         <li class="chapter " data-level="14.1" data-path="background-jobs/run-background-service/index.html">
             
             <a href="../../background-jobs/run-background-service/index.html">
-                <i class="fa fa-check"></i> <b>14.1.</b> 执行一个后台Service
+                <i class="fa fa-check"></i> <b>14.1.</b> 在IntentService中执行后台任务
             </a>
             
             
@@ -2146,7 +2146,7 @@
         <li class="chapter " data-level="14.1.1" data-path="background-jobs/run-background-service/create-service.html">
             
             <a href="../../background-jobs/run-background-service/create-service.html">
-                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建后台Service
+                <i class="fa fa-check"></i> <b>14.1.1.</b> 创建IntentService
             </a>
             
             
@@ -2155,7 +2155,7 @@
         <li class="chapter " data-level="14.1.2" data-path="background-jobs/run-background-service/send-request.html">
             
             <a href="../../background-jobs/run-background-service/send-request.html">
-                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送任务到后台Service
+                <i class="fa fa-check"></i> <b>14.1.2.</b> 发送工作任务到IntentService
             </a>
             
             
@@ -2164,7 +2164,7 @@
         <li class="chapter " data-level="14.1.3" data-path="background-jobs/run-background-service/report-status.html">
             
             <a href="../../background-jobs/run-background-service/report-status.html">
-                <i class="fa fa-check"></i> <b>14.1.3.</b> 后台Service报告执行状态
+                <i class="fa fa-check"></i> <b>14.1.3.</b> 报告后台任务执行状态
             </a>
             
             
@@ -3119,13 +3119,13 @@
     
         <a href="../../background-jobs/index.html" title="后台任务" class="chapter  " data-progress="14" style="left: 77.55102040816327%;"></a>
     
-        <a href="../../background-jobs/run-background-service/index.html" title="执行一个后台Service" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
+        <a href="../../background-jobs/run-background-service/index.html" title="在IntentService中执行后台任务" class="chapter  " data-progress="14.1" style="left: 77.95918367346938%;"></a>
     
-        <a href="../../background-jobs/run-background-service/create-service.html" title="创建后台Service" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
+        <a href="../../background-jobs/run-background-service/create-service.html" title="创建IntentService" class="chapter  " data-progress="14.1.1" style="left: 78.36734693877551%;"></a>
     
-        <a href="../../background-jobs/run-background-service/send-request.html" title="发送任务到后台Service" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
+        <a href="../../background-jobs/run-background-service/send-request.html" title="发送工作任务到IntentService" class="chapter  " data-progress="14.1.2" style="left: 78.77551020408163%;"></a>
     
-        <a href="../../background-jobs/run-background-service/report-status.html" title="后台Service报告执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
+        <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.18367346938776%;"></a>
     
         <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.59183673469387%;"></a>
     
@@ -3234,9 +3234,359 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_320">
+                    <section class="normal" id="section-gitbook_332">
                     
-                        <h1 id="-xml-">解析XML数据</h1>
+                        <blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>校对:</p>
+</blockquote>
+<h1 id="-xml-parsing-xml-data">解析XML数据Parsing XML Data</h1>
+<p>Extensible Markup Language (XML) .很多网站或博客上都提供XML feed来记录更新的信息，以便用户进行订阅读取。</p>
+<p>那么上传[?]与解析XML数据就成了app的一个常见的功能。 这一课会介绍如何解析XML文档并使用他们的数据。</p>
+<p><em>([?]这里很奇怪，为什么是Upload，看文章最后一段代码示例的注释，应该是Download才对)</em></p>
+<h2 id="choose-a-parser-">Choose a Parser(选择一个解析器)</h2>
+<p>我们推荐<a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html" target="_blank">XmlPullParser</a>, 它是在Android上一个高效且可维护的解析XML方法。 Android 上有这个接口的两种实现方式：</p>
+<ul>
+<li><a href="http://kxml.sourceforge.net/" target="_blank">KXmlParser</a> via <a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParserFactory.html#newPullParser(" target="_blank">XmlPullParserFactory.newPullParser()</a>).</li>
+<li>ExpatPullParser, via <a href="http://developer.android.com/reference/android/util/Xml.html#newPullParser(" target="_blank">Xml.newPullParser()</a>).</li>
+</ul>
+<p>两个选择都是比较好的。下面的示例中是使用ExpatPullParser, via Xml.newPullParser().</p>
+<!-- more -->
+
+<h2 id="analyze-the-feed-feed-">Analyze the Feed(分析Feed)</h2>
+<p>解析一个feed的第一步是决定需要获取哪些字段。这样解析器才去抽取出那些需要的字段而忽视剩下的。
+下面一段章节概览Sample app中截取的一段代码示例.</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">feed</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://www.w3.org/2005/Atom"</span> <span class="hljs-attribute">xmlns:creativeCommons</span>=<span class="hljs-value">"http://backend.userland.com/creativeCommonsRssModule"</span> <span class="hljs-attribute">...</span>"&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">title</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span>newest questions tagged android - Stack Overflow<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+...
+    <span class="hljs-tag">&lt;<span class="hljs-title">entry</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;/<span class="hljs-title">entry</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">entry</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">id</span>&gt;</span>http://stackoverflow.com/q/9439999<span class="hljs-tag">&lt;/<span class="hljs-title">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">re:rank</span> <span class="hljs-attribute">scheme</span>=<span class="hljs-value">"http://stackoverflow.com"</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">re:rank</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span>Where is my data file?<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">scheme</span>=<span class="hljs-value">"http://stackoverflow.com/feeds/tag?tagnames=android&amp;sort=newest/tags"</span> <span class="hljs-attribute">term</span>=<span class="hljs-value">"android"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">scheme</span>=<span class="hljs-value">"http://stackoverflow.com/feeds/tag?tagnames=android&amp;sort=newest/tags"</span> <span class="hljs-attribute">term</span>=<span class="hljs-value">"file"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">author</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">name</span>&gt;</span>cliff2310<span class="hljs-tag">&lt;/<span class="hljs-title">name</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">uri</span>&gt;</span>http://stackoverflow.com/users/1128925<span class="hljs-tag">&lt;/<span class="hljs-title">uri</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">author</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"alternate"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://stackoverflow.com/questions/9439999/where-is-my-data-file"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">published</span>&gt;</span>2012-02-25T00:30:54Z<span class="hljs-tag">&lt;/<span class="hljs-title">published</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">updated</span>&gt;</span>2012-02-25T00:30:54Z<span class="hljs-tag">&lt;/<span class="hljs-title">updated</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">summary</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"html"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>I have an Application that requires a data file...<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;/<span class="hljs-title">summary</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">entry</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">entry</span>&gt;</span>
+    ...
+    <span class="hljs-tag">&lt;/<span class="hljs-title">entry</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-title">feed</span>&gt;</span>
+</code></pre>
+<p>在sample app中抽取了entry 标签与它的子标签 title, link,summary.</p>
+<h2 id="instantiate-the-parser-">Instantiate the Parser(实例化解析器)</h2>
+<p>下一步就是实例化一个parser并开始解析的操作。请看下面的示例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StackOverflowXmlParser</span> {</span>
+    <span class="hljs-comment">// We don't use namespaces</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ns = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-keyword">public</span> List <span class="hljs-title">parse</span>(InputStream in) <span class="hljs-keyword">throws</span> XmlPullParserException, IOException {
+        <span class="hljs-keyword">try</span> {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, <span class="hljs-keyword">false</span>);
+            parser.setInput(in, <span class="hljs-keyword">null</span>);
+            parser.nextTag();
+            <span class="hljs-keyword">return</span> readFeed(parser);
+        } <span class="hljs-keyword">finally</span> {
+            in.close();
+        }
+    }
+ ...
+}
+</code></pre>
+<h2 id="read-the-feed-feed-">Read the Feed(读取Feed)</h2>
+<p>The readFeed() 实际上并没有处理feed的内容。它只是在寻找一个 &quot;entry&quot; 的标签作为递归（recursively）处理整个feed的起点。如果一个标签它不是&quot;entry&quot;, readFeed()方法会跳过它. 当整个feed都被递归处理后，readFeed() 会返回一个包含了entry标签（包括里面的数据成员）的 List 。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> List <span class="hljs-title">readFeed</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> XmlPullParserException, IOException {
+    List entries = <span class="hljs-keyword">new</span> ArrayList();
+
+    parser.require(XmlPullParser.START_TAG, ns, <span class="hljs-string">"feed"</span>);
+    <span class="hljs-keyword">while</span> (parser.next() != XmlPullParser.END_TAG) {
+        <span class="hljs-keyword">if</span> (parser.getEventType() != XmlPullParser.START_TAG) {
+            <span class="hljs-keyword">continue</span>;
+        }
+        String name = parser.getName();
+        <span class="hljs-comment">// Starts by looking for the entry tag</span>
+        <span class="hljs-keyword">if</span> (name.equals(<span class="hljs-string">"entry"</span>)) {
+            entries.add(readEntry(parser));
+        } <span class="hljs-keyword">else</span> {
+            skip(parser);
+        }
+    }
+    <span class="hljs-keyword">return</span> entries;
+}
+</code></pre>
+<h2 id="parse-xml-xml-">Parse XML(解析XML)</h2>
+<p>解析步骤如下：</p>
+<ul>
+<li>正如在上面“ 分析Feed”所说的, 判断出你想要的tag。这个example抽取了 entry 标签与它的内部标签 title, link,summary.</li>
+<li>创建下面的方法:<ul>
+<li>为每一个你想要获取的标签创建一个 &quot;read&quot; 方法。例如 readEntry(), readTitle() 等等. 解析器从input stream中读取tag . 当读取到 entry, title, link 或者 summary 标签时，它会为那些标签调用相应的方法，否则，跳过这个标签。</li>
+<li>为每一个不同的标签的提取数据方法进行优化，例如：<ul>
+<li>对于 title and summary tags, 解析器调用 readText(). 通过调用parser.getText().来获取返回数据。</li>
+<li>对于 link tag,解析器先判断这个link是否是我们想要的类型，然后再读取数据。可以使用 parser.getAttributeValue() 来获取返回数据。</li>
+<li>对于 entry tag, 解析起调用 readEntry(). 这个方法解析entry的内部标签并返回一个带有title, link, and summary数据成员的Entry对象。</li>
+</ul>
+</li>
+<li>一个帮助方法： skip() . 关于这部分的讨论，请看下面一部分内容：Skip Tags You Don&#39;t Care About</li>
+</ul>
+</li>
+</ul>
+<p>下面的代码演示了如何解析 entries, titles, links, 与 summaries.</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Entry</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String title;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String link;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String summary;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-title">Entry</span>(String title, String summary, String link) {
+        <span class="hljs-keyword">this</span>.title = title;
+        <span class="hljs-keyword">this</span>.summary = summary;
+        <span class="hljs-keyword">this</span>.link = link;
+    }
+}
+
+<span class="hljs-comment">// Parses the contents of an entry. If it encounters a title, summary, or link tag, hands them off</span>
+<span class="hljs-comment">// to their respective "read" methods for processing. Otherwise, skips the tag.</span>
+<span class="hljs-keyword">private</span> Entry <span class="hljs-title">readEntry</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> XmlPullParserException, IOException {
+    parser.require(XmlPullParser.START_TAG, ns, <span class="hljs-string">"entry"</span>);
+    String title = <span class="hljs-keyword">null</span>;
+    String summary = <span class="hljs-keyword">null</span>;
+    String link = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">while</span> (parser.next() != XmlPullParser.END_TAG) {
+        <span class="hljs-keyword">if</span> (parser.getEventType() != XmlPullParser.START_TAG) {
+            <span class="hljs-keyword">continue</span>;
+        }
+        String name = parser.getName();
+        <span class="hljs-keyword">if</span> (name.equals(<span class="hljs-string">"title"</span>)) {
+            title = readTitle(parser);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (name.equals(<span class="hljs-string">"summary"</span>)) {
+            summary = readSummary(parser);
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (name.equals(<span class="hljs-string">"link"</span>)) {
+            link = readLink(parser);
+        } <span class="hljs-keyword">else</span> {
+            skip(parser);
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Entry(title, summary, link);
+}
+
+<span class="hljs-comment">// Processes title tags in the feed.</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">readTitle</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> IOException, XmlPullParserException {
+    parser.require(XmlPullParser.START_TAG, ns, <span class="hljs-string">"title"</span>);
+    String title = readText(parser);
+    parser.require(XmlPullParser.END_TAG, ns, <span class="hljs-string">"title"</span>);
+    <span class="hljs-keyword">return</span> title;
+}
+
+<span class="hljs-comment">// Processes link tags in the feed.</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">readLink</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> IOException, XmlPullParserException {
+    String link = <span class="hljs-string">""</span>;
+    parser.require(XmlPullParser.START_TAG, ns, <span class="hljs-string">"link"</span>);
+    String tag = parser.getName();
+    String relType = parser.getAttributeValue(<span class="hljs-keyword">null</span>, <span class="hljs-string">"rel"</span>);
+    <span class="hljs-keyword">if</span> (tag.equals(<span class="hljs-string">"link"</span>)) {
+        <span class="hljs-keyword">if</span> (relType.equals(<span class="hljs-string">"alternate"</span>)){
+            link = parser.getAttributeValue(<span class="hljs-keyword">null</span>, <span class="hljs-string">"href"</span>);
+            parser.nextTag();
+        }
+    }
+    parser.require(XmlPullParser.END_TAG, ns, <span class="hljs-string">"link"</span>);
+    <span class="hljs-keyword">return</span> link;
+}
+
+<span class="hljs-comment">// Processes summary tags in the feed.</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">readSummary</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> IOException, XmlPullParserException {
+    parser.require(XmlPullParser.START_TAG, ns, <span class="hljs-string">"summary"</span>);
+    String summary = readText(parser);
+    parser.require(XmlPullParser.END_TAG, ns, <span class="hljs-string">"summary"</span>);
+    <span class="hljs-keyword">return</span> summary;
+}
+
+<span class="hljs-comment">// For the tags title and summary, extracts their text values.</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">readText</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> IOException, XmlPullParserException {
+    String result = <span class="hljs-string">""</span>;
+    <span class="hljs-keyword">if</span> (parser.next() == XmlPullParser.TEXT) {
+        result = parser.getText();
+        parser.nextTag();
+    }
+    <span class="hljs-keyword">return</span> result;
+}
+  ...
+}
+</code></pre>
+<h2 id="skip-tags-you-don-t-care-about-">Skip Tags You Don&#39;t Care About(跳过你不在意标签)</h2>
+<p>下面演示解析器的 skip() 方法:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">skip</span>(XmlPullParser parser) <span class="hljs-keyword">throws</span> XmlPullParserException, IOException {
+    <span class="hljs-keyword">if</span> (parser.getEventType() != XmlPullParser.START_TAG) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalStateException();
+    }
+    <span class="hljs-keyword">int</span> depth = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (depth != <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">switch</span> (parser.next()) {
+        <span class="hljs-keyword">case</span> XmlPullParser.END_TAG:
+            depth--;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> XmlPullParser.START_TAG:
+            depth++;
+            <span class="hljs-keyword">break</span>;
+        }
+    }
+}
+</code></pre>
+<p>上面这个方法是如何工作的呢？</p>
+<ul>
+<li>It throws an exception if the current event isn&#39;t a START_TAG.</li>
+<li>It consumes the START_TAG, and all events up to and including the matching END_TAG.</li>
+<li>To make sure that it stops at the correct END_TAG and not at the first tag it encounters after the original START_TAG, it keeps track of the nesting depth.</li>
+</ul>
+<p>因此如果目前的标签有子标签, depth 的值就不会为 0，直到解析器已经处理了所有位于START_TAG与END_TAG之间的事件。例如，看解析器如何跳过 <author> 标签，它有2个子标签，<name> 与 <uri>：</p>
+<ul>
+<li>The first time through the while loop, the next tag the parser encounters after <author> is the START_TAG for <name>. The value for depth is incremented to 2.</li>
+<li>The second time through the while loop, the next tag the parser encounters is the END_TAG </name>. The value for depth is decremented to 1.</li>
+<li>The third time through the while loop, the next tag the parser encounters is the START_TAG <uri>. The value for depth is incremented to 2.</li>
+<li>The fourth time through the while loop, the next tag the parser encounters is the END_TAG </uri>. The value for depth is decremented to 1.</li>
+<li>The fifth time and final time through the while loop, the next tag the parser encounters is the END_TAG </author>. The value for depth is decremented to 0, indicating that the <author>element has been successfully skipped.</li>
+</ul>
+<h2 id="consume-xml-data-xml-">Consume XML Data(使用XML数据)</h2>
+<p>示例程序是在 AsyncTask 中获取与解析XML数据的。当获取到数据后，程序会在main activity(NetworkActivity)里面进行更新操作。</p>
+<p>在下面示例代码中，loadPage() 方法做了下面的事情：</p>
+<ul>
+<li>初始化一个带有URL地址的String变量，用来订阅XML feed。</li>
+<li>如果用户设置与网络连接都允许，会触发 new DownloadXmlTask().execute(url). 这会初始化一个新的 DownloadXmlTask(AsyncTask subclass)  对象并且开始执行它的 execute() 方法。</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String WIFI = <span class="hljs-string">"Wi-Fi"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ANY = <span class="hljs-string">"Any"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String URL = <span class="hljs-string">"http://stackoverflow.com/feeds/tag?tagnames=android&amp;sort=newest"</span>;
+
+    <span class="hljs-comment">// Whether there is a Wi-Fi connection.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> wifiConnected = <span class="hljs-keyword">false</span>;
+    <span class="hljs-comment">// Whether there is a mobile connection.</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> mobileConnected = <span class="hljs-keyword">false</span>;
+    <span class="hljs-comment">// Whether the display should be refreshed.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> refreshDisplay = <span class="hljs-keyword">true</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String sPref = <span class="hljs-keyword">null</span>;
+
+    ...
+
+    <span class="hljs-comment">// Uses AsyncTask to download the XML feed from stackoverflow.com.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadPage</span>() {
+
+        <span class="hljs-keyword">if</span>((sPref.equals(ANY)) &amp;&amp; (wifiConnected || mobileConnected)) {
+            <span class="hljs-keyword">new</span> DownloadXmlTask().execute(URL);
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((sPref.equals(WIFI)) &amp;&amp; (wifiConnected)) {
+            <span class="hljs-keyword">new</span> DownloadXmlTask().execute(URL);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// show error</span>
+        }
+    }
+</code></pre>
+<p>下面是DownloadXmlTask是怎么工作的：</p>
+<pre><code class="lang-java">// Implementation of AsyncTask used to download XML feed from stackoverflow.com.
+private class DownloadXmlTask extends AsyncTask&lt;String, Void, String&gt; {
+    @Override
+    protected String doInBackground(String... urls) {
+        try {
+            return loadXmlFromNetwork(urls[0]);
+        } catch (IOException e) {
+            return getResources().getString(R.string.connection_error);
+        } catch (XmlPullParserException e) {
+            return getResources().getString(R.string.xml_error);
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        setContentView(R.layout.main);
+        // Displays the HTML string in the UI via a WebView
+        WebView myWebView = (WebView) findViewById(R.id.webview);
+        myWebView.loadData(result, "text/html", null);
+    }
+}
+</code></pre>
+<p>下面是loadXmlFromNetwork是怎么工作的：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Uploads XML from stackoverflow.com, parses it, and combines it with</span>
+<span class="hljs-comment">// HTML markup. Returns HTML string.【这里可以看出应该是Download】</span>
+<span class="hljs-keyword">private</span> String <span class="hljs-title">loadXmlFromNetwork</span>(String urlString) <span class="hljs-keyword">throws</span> XmlPullParserException, IOException {
+    InputStream stream = <span class="hljs-keyword">null</span>;
+    <span class="hljs-comment">// Instantiate the parser</span>
+    StackOverflowXmlParser stackOverflowXmlParser = <span class="hljs-keyword">new</span> StackOverflowXmlParser();
+    List&lt;Entry&gt; entries = <span class="hljs-keyword">null</span>;
+    String title = <span class="hljs-keyword">null</span>;
+    String url = <span class="hljs-keyword">null</span>;
+    String summary = <span class="hljs-keyword">null</span>;
+    Calendar rightNow = Calendar.getInstance();
+    DateFormat formatter = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"MMM dd h:mmaa"</span>);
+
+    <span class="hljs-comment">// Checks whether the user set the preference to include summary text</span>
+    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(<span class="hljs-keyword">this</span>);
+    <span class="hljs-keyword">boolean</span> pref = sharedPrefs.getBoolean(<span class="hljs-string">"summaryPref"</span>, <span class="hljs-keyword">false</span>);
+
+    StringBuilder htmlString = <span class="hljs-keyword">new</span> StringBuilder();
+    htmlString.append(<span class="hljs-string">"&lt;h3&gt;"</span> + getResources().getString(R.string.page_title) + <span class="hljs-string">"&lt;/h3&gt;"</span>);
+    htmlString.append(<span class="hljs-string">"&lt;em&gt;"</span> + getResources().getString(R.string.updated) + <span class="hljs-string">" "</span> +
+            formatter.format(rightNow.getTime()) + <span class="hljs-string">"&lt;/em&gt;"</span>);
+
+    <span class="hljs-keyword">try</span> {
+        stream = downloadUrl(urlString);
+        entries = stackOverflowXmlParser.parse(stream);
+    <span class="hljs-comment">// Makes sure that the InputStream is closed after the app is</span>
+    <span class="hljs-comment">// finished using it.</span>
+    } <span class="hljs-keyword">finally</span> {
+        <span class="hljs-keyword">if</span> (stream != <span class="hljs-keyword">null</span>) {
+            stream.close();
+        }
+     }
+
+    <span class="hljs-comment">// StackOverflowXmlParser returns a List (called "entries") of Entry objects.</span>
+    <span class="hljs-comment">// Each Entry object represents a single post in the XML feed.</span>
+    <span class="hljs-comment">// This section processes the entries list to combine each entry with HTML markup.</span>
+    <span class="hljs-comment">// Each entry is displayed in the UI as a link that optionally includes</span>
+    <span class="hljs-comment">// a text summary.</span>
+    <span class="hljs-keyword">for</span> (Entry entry : entries) {
+        htmlString.append(<span class="hljs-string">"&lt;p&gt;&lt;a href='"</span>);
+        htmlString.append(entry.link);
+        htmlString.append(<span class="hljs-string">"'&gt;"</span> + entry.title + <span class="hljs-string">"&lt;/a&gt;&lt;/p&gt;"</span>);
+        <span class="hljs-comment">// If the user set the preference to include summary text,</span>
+        <span class="hljs-comment">// adds it to the display.</span>
+        <span class="hljs-keyword">if</span> (pref) {
+            htmlString.append(entry.summary);
+        }
+    }
+    <span class="hljs-keyword">return</span> htmlString.toString();
+}
+
+<span class="hljs-comment">// Given a string representation of a URL, sets up a connection and gets</span>
+<span class="hljs-comment">// an input stream.</span>
+【关于Timeout具体应该设置多少，可以借鉴这里的数据，当然前提是一般情况下】
+<span class="hljs-comment">// Given a string representation of a URL, sets up a connection and gets</span>
+<span class="hljs-comment">// an input stream.</span>
+<span class="hljs-keyword">private</span> InputStream <span class="hljs-title">downloadUrl</span>(String urlString) <span class="hljs-keyword">throws</span> IOException {
+    URL url = <span class="hljs-keyword">new</span> URL(urlString);
+    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    conn.setReadTimeout(<span class="hljs-number">10000</span> <span class="hljs-comment">/* milliseconds */</span>);
+    conn.setConnectTimeout(<span class="hljs-number">15000</span> <span class="hljs-comment">/* milliseconds */</span>);
+    conn.setRequestMethod(<span class="hljs-string">"GET"</span>);
+    conn.setDoInput(<span class="hljs-keyword">true</span>);
+    <span class="hljs-comment">// Starts the query</span>
+    conn.connect();
+    <span class="hljs-keyword">return</span> conn.getInputStream();
+}
+</code></pre>
 
                     
                     </section>
