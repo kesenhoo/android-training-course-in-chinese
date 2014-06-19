@@ -334,12 +334,12 @@ git push origin gh-pages
 
 `[点击链接跳到页面内部](#online_reading)`
 
-* 插入的图片请统一放到images/articles目录下
+* 插入的图片请放到你编辑的md文件的同一层级目录下，用法如下
 
-` ![basic-lifecycle-paused](/images/articles/basic-lifecycle-paused.png)`
+` ![basic-lifecycle-paused](basic-lifecycle-paused.png "这张图演示了Activity生命周期中的暂停状态")`
 
 有不清楚的地方请直接查看现成的源码示例。
 
 ## Training离线文档
 近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
-我把所有的Google Android文档打包存在云端，有需要的同学点击下载<http://url.cn/OTdU3a>
+我把所有的Google Android文档打包存在云端，有需要的同学点击下载http://url.cn/OTdU3a
