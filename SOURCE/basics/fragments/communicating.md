@@ -4,19 +4,15 @@
 
 # Fragments之间的交互
 
-
-
 * 为了重用Fragment UI组件，你应该把每一个都构建成完全的自包含的的、模块化的组件，定义他们自己的布局与行为。当你定义好这些模块化的Fragments的时，你就可以让他们关联acticvity，使他们与Application的逻辑结合起来，实现全局的复合的UI。
 
-
-* 经常地，你想fragment之间能相互交互，比如基于用户事件改变fragment的内容。所有fragment之间的交互需要通过他们关联的activity，两个fragment之间不应该直接交互。 
-
+* 经常地，你想fragment之间能相互交互，比如基于用户事件改变fragment的内容。所有fragment之间的交互需要通过他们关联的activity，两个fragment之间不应该直接交互。
 
 ## 定义一个接口
 
 * 为了让fragment与activity交互，你可以在Fragment 类中定义一个接口，并且在activity中实现这个接口。Fragment在他们生命周期的onAttach()方法中捕获接口的实现，然后调用接口的方法来与Activity交互。
 
-*下面是一个fragment与activity交互的例子：
+下面是一个fragment与activity交互的例子：
 
 ```java
 public class HeadlinesFragment extends ListFragment {
@@ -30,7 +26,7 @@ public class HeadlinesFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        
+
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -40,7 +36,7 @@ public class HeadlinesFragment extends ListFragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-    
+
     ...
 }
 ```
@@ -67,7 +63,7 @@ public class HeadlinesFragment extends ListFragment {
 public static class MainActivity extends Activity
         implements HeadlinesFragment.OnHeadlineSelectedListener{
     ...
-    
+
     public void onArticleSelected(int position) {
         // The user selected the headline of an article from the HeadlinesFragment
         // Do something here to display that article
@@ -78,7 +74,7 @@ public static class MainActivity extends Activity
 
 ## 传消息给Fragment
 
-* 宿主activity通过[findFragmentById()](developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int))方法来获取[fragment](developer.android.com/reference/android/support/v4/app/Fragment.html)的实例，然后直接调用Fragment的public方法来向fragment传递消息。 
+* 宿主activity通过[findFragmentById()](developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int))方法来获取[fragment](developer.android.com/reference/android/support/v4/app/Fragment.html)的实例，然后直接调用Fragment的public方法来向fragment传递消息。
 
 
 * 例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息船体给那个展示数据的Fragment.
@@ -109,7 +105,7 @@ public static class MainActivity extends Activity
             Bundle args = new Bundle();
             args.putInt(ArticleFragment.ARG_POSITION, position);
             newFragment.setArguments(args);
-        
+
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
             // Replace whatever is in the fragment_container view with this fragment,

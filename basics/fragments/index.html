@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.5" data-basepath="../.." data-revision="1403107685318">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.5" data-basepath="../.." data-revision="1403182592047">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,35 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_298">
+                    <section class="normal" id="section-gitbook_43">
                     
                         <blockquote>
-<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
+<p>编写:<a href="https://github.com/fastcome1985" title="fastcome1985" target="_blank">fastcome1985</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-fragment-ui">使用Fragment建立动态的UI</h1>
+<h1 id="-fragment-ui">使用Fragment建立动态UI</h1>
+<ul>
+<li><p>为了在Android上创建动态的、多窗口的用户交互体验，你需将UI组件进行封装，作为模块使用,在activity中你可以对这些模块进行切入切出操作。你可以用<a href="http://developer.android.com/intl/zh-cn/reference/android/app/Fragment.html" title="fragment" target="_blank">Fragment</a>来创建这些模块，Fragment就像一个嵌套的activity,拥有自己的布局（layout）以及管理自己的生命周期。</p>
+</li>
+<li><p>如果一个fragment定义了自己的布局，那么在activity中它可以与其他的fragments生成不同的组合，从而为不同的屏幕尺寸生成不同的布局（一个小的屏幕一次只放一个fragment，大的屏幕则可以两个或以上的fragment）。</p>
+</li>
+<li><p>这一章将向你展示如何用fragment来创建动态的用户体检，以及在不同屏幕尺寸的设备上优化你的APP的用户体验。像运行着android1.6这样老版本的设备，也都将继续得到支持。</p>
+</li>
+<li><p>完整的Demo示例：<a href="developer.android.com/shareables/training/FragmentBasics.zip" title="FragmentBasics.zip">FragmentBasics.zip</a></p>
+</li>
+</ul>
+<h2 id="lessons">Lessons</h2>
+<ul>
+<li><p><a href="creating.html">创建一个fragment</a>
+学习如何创建一个fragment，以及实现它生命周期内的基本功能。</p>
+</li>
+<li><p><a href="fragment-ui.html">构建复杂的UI</a>
+学习在APP内，对不同的屏幕尺寸用fragments构建不同的布局。</p>
+</li>
+<li><p><a href="communicating.html">与其他fragments通信</a>
+学习fragment与activity以及其他fragments之间通信。</p>
+</li>
+</ul>
 
                     
                     </section>

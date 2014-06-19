@@ -5,25 +5,21 @@
 
 # 建立灵活动态的UI
 
-
-
-
 * 如果你的APP设计成要支持范围广泛的屏幕尺寸时，在可利用的屏幕空间内，你可以通过在不同的布局配置中重用你的fragment来优化你的用户体验。
 
 * 比如，一个手机设备可能适合一次只有一个fragment的单面板用户交互。相反，在更宽屏幕尺寸的平板电脑上，你可能更想要两个fragment并排在一起，用来向用户展示更多信息。
 
-![](fragments-screen-mock.png)
+![fragments-screen-mock](fragments-screen-mock.png)
 
 **图1：**两个fragments，在同一个activity不同屏幕尺寸中用不同的配置来展示。在大屏幕上，两个fragment被并排放置，但是在手机上，一次只放置一个fragment，所以在用户导航中，两个fragment必须进行替换。
 
-*[FragmentManager](developer.android.com/reference/android/support/v4/app/FragmentManager.html)类提供了方法，让你在activity运行时能够对fragment进行添加，移除，替换，以创建动态的体验。
+* [FragmentManager](developer.android.com/reference/android/support/v4/app/FragmentManager.html)类提供了方法，让你在activity运行时能够对fragment进行添加，移除，替换，以创建动态的体验。
 
 
 ## 在activity运行时添加fragment
-   
-    
-* 比起在activity的布局文件中定义fragments,就像[上节课](creating.html)说的用<fragment>标签,你也可以在activity运行时动态添加fragment,如果你在打算在activity的生命周期内替换fragment，这是必须的。
 
+
+* 比起在activity的布局文件中定义fragments,就像[上节课](creating.html)说的用<fragment>标签,你也可以在activity运行时动态添加fragment,如果你在打算在activity的生命周期内替换fragment，这是必须的。
 
 * 为了执行fragment的增加或者移除操作，你必须用 [FragmentManager](developer.android.com/reference/android/support/v4/app/FragmentManager.html) 创建一个[FragmentTransaction](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html), FragmentTransaction提供了用来增加、移除、替换以及其它一些操作的APIs。
 
@@ -33,10 +29,9 @@
 
 * 下面的这个布局是[上节课](creating.html)的一次只显示一个fragment的布局的替代布局。为了从一个布局替换为另外一个布局，activity的布局包含了一个空的 [FrameLayout](developer.android.com/reference/android/widget/FrameLayout.html)作为fragment的容器。
 
-*注意文件名与上节课的布局一样，但是的文件目录没有large标识， 所以你的将会在比large小的屏幕上被使用，因为这个屏幕无法满足同时防止两个fragments
+* 注意文件名与上节课的布局一样，但是的文件目录没有large标识， 所以你的将会在比large小的屏幕上被使用，因为这个屏幕无法满足同时防止两个fragments
 
 res/layout/news_articles.xml:
-
 
 ```java
 
@@ -47,9 +42,9 @@ res/layout/news_articles.xml:
 
 ```
 
-*在你的activity里面。用Support Library APIs调用 [getSupportFragmentManager()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29)方法获取[FragmentManager](developer.android.com/reference/android/support/v4/app/FragmentManager.html) 对象，然后调用 [beginTransaction()](developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()) 方法创建一个[FragmentTransaction](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)对象，然后调用[add()](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String))方法添加一个fragment.
+* 在你的activity里面。用Support Library APIs调用 [getSupportFragmentManager()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29)方法获取[FragmentManager](developer.android.com/reference/android/support/v4/app/FragmentManager.html) 对象，然后调用 [beginTransaction()](developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()) 方法创建一个[FragmentTransaction](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)对象，然后调用[add()](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String))方法添加一个fragment.
 
-*你可以使用同一个 [FragmentTransaction](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)进行多次fragment事物。当你完成这些变化操作的时候，必须调用[commit()](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit())方法。
+* 你可以使用同一个 [FragmentTransaction](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)进行多次fragment事物。当你完成这些变化操作的时候，必须调用[commit()](developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit())方法。
 
 ```java
 
@@ -75,11 +70,11 @@ public class MainActivity extends FragmentActivity {
 
             // Create a new Fragment to be placed in the activity layout
             HeadlinesFragment firstFragment = new HeadlinesFragment();
-            
+
             // In case this activity was started with special instructions from an
             // Intent, pass the Intent's extras to the fragment as arguments
             firstFragment.setArguments(getIntent().getExtras());
-            
+
             // Add the fragment to the 'fragment_container' FrameLayout
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
@@ -88,7 +83,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-*当fragment在activity运行时被添加进来时（不是在XML布局中用<fragment>定义的），activity 可以移除这个fragment或者用另外一个来替换它。
+* 当fragment在activity运行时被添加进来时（不是在XML布局中用<fragment>定义的），activity 可以移除这个fragment或者用另外一个来替换它。
 
 ## Fragment替换
 
@@ -99,9 +94,7 @@ public class MainActivity extends FragmentActivity {
 
 **注意：**当你移除或者替换一个fragment并把它放入返回栈中时，被移除的fragment的生命周期是stopped(不是destoryed).当用户返回重新恢复这个fragment,它的生命周期是restarts。如果你没把fragment放入返回栈中，那么当他被移除或者替换时，它的生命周期是 destoryed。
 
-
 * 下面是一个fragment替换的例子
-
 
 ```java
 

@@ -42,7 +42,7 @@
        * [暂停与恢复Activity](basics/activity-lifecycle/pausing.md)
        * [停止与重启Activity](basics/activity-lifecycle/stopping.md)
        * [重新创建Activity](basics/activity-lifecycle/recreating.md)
-   * **[使用Fragment建立动态的UI](basics/fragments/index.md)(编写进行中@[fastcome1985](https://github.com/fastcome1985))**
+   * **[使用Fragment建立动态的UI](basics/fragments/index.md)(待校验，由[fastcome1985](https://github.com/fastcome1985)编写)**
        * [创建一个Fragment](basics/fragments/creating.md)
        * [建立灵活动态的UI](basics/fragments/fragment-ui.md)
        * [Fragments之间的交互](basics/fragments/communicating.md)
