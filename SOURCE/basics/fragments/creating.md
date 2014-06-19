@@ -5,7 +5,6 @@
 # 创建一个Fragment
 
 
-----------
 
 
 * 你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像"子activity"，你可以在不同的activities里面重复使用）。这一课教你继承[Support Library ](developer.android.com/tools/support-library/index.html)中的[Fragment](developer.android.com/reference/android/support/v4/app/Fragment.html)，以使你的应用在Android1.6这样的低版本上扔能保持兼容。    
