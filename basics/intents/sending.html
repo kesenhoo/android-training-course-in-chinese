@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.1" data-basepath="../.." data-revision="1403182592047">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.1" data-basepath="../.." data-revision="1403184124982">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_48">
+                    <section class="normal" id="section-gitbook_77">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3308,7 +3308,7 @@ List&lt;ResolveInfo&gt; activities = packageManager.queryIntentActivities(intent
 <p>当你创建好了intent并且设置好了extra数据，通过执行startActivity() 来发送到系统。如果系统确定有多个activity可以handle这个intent,它会显示出一个dialog，让用户选择启动哪个app。如果系统发现只有一个app可以handle这个intent，那么就会直接启动这个app。</p>
 <pre><code class="lang-java">startActivity(intent);
 </code></pre>
-<p><img src="/images/intents-choice.png" alt="intents-choice.png" title="Figure 1. Example of the selection dialog that appears when more than one app can handle an intent"></p>
+<p><img src="intents-choice.png" alt="intents-choice.png" title="Figure 1. Example of the selection dialog that appears when more than one app can handle an intent"></p>
 <p>下面是一个完整的例子，演示了如何创建一个intent来查看地图，验证有app可以handle这个intent,然后启动它。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Build the intent</span>
 Uri location = Uri.parse(<span class="hljs-string">"geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California"</span>);
@@ -3327,7 +3327,7 @@ List&lt;ResolveInfo&gt; activities = packageManager.queryIntentActivities(mapInt
 <h2 id="show-an-app-chooser-app-">Show an App Chooser[显示一个App选择界面]</h2>
 <p>请注意，当你发送一个intent，有多个app可以handle的情况，用户可以在弹出dialog的时候，选择默认启动的app（通过勾选dialog下面的选择框，如上图所示）。这个功能对于用户有特殊偏好的时候非常有用（例如用户总是喜欢启动某个app来查看网页，总是喜欢启动某个camera来拍照）。</p>
 <p>然而，如果用户希望每次都弹出选择界面，而且每次都不确定会选择哪个app启动，例如分享功能，用户选择分享到哪个app都是不确定的，这个时候，需要强制弹出选择的对话框。（这种情况下用户不能选择默认启动的app）。</p>
-<p><img src="/images/intent-chooser.png" alt="intent-chooser.png" title="Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent."></p>
+<p><img src="intent-chooser.png" alt="intent-chooser.png" title="Example of the chooser dialog that appears when you use createChooser() to ensure that the user is always shown a list of apps that respond to your intent."></p>
 <p>为了显示chooser, 需要使用createChooser()来创建Intent</p>
 <pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_SEND);
 ...

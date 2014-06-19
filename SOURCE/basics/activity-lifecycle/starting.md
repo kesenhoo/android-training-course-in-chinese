@@ -12,7 +12,7 @@
 * 当用户开始离开这个activity,为了卸载这个activity，系统会调用其它方法来向下一阶移动activity状态。在某些情况下，activity会隐藏在金字塔下等待(例如当用户切换到其他app),这个时候activity可以重新回到顶端(如果用户回到这个activity)并且恢复用户离开时的状态。
 * Figure 1. 下面这张图讲解了activity的生命周期：*(显然，这个金字塔模型要比之前Dev Guide里面的生命周期图更加容易理解，更加形象)*
 
-![basic-lifecycle](/images/basic-lifecycle.png)
+![basic-lifecycle](basic-lifecycle.png)
 
 * 根据你的activity的复杂度，你也许不需要实现所有的生命周期方法。然而，你需要知道每一个方法的功能并确保你的app能够像用户期望的那样执行。如何实现一个符合用户期待的app，你需要注意下面几点：
   * 当使用你的app的时候，不会因为有来电通话或者切换到其他app而导致程序crash。
@@ -75,7 +75,7 @@ file
 * 在后面的课程中，你讲看到其他方法是如何使用的，onStart() 与 onResume()在用户从Paused or Stopped状态中恢复的时候非常有用。
 * **Note:** onCreate() 方法包含了一个参数叫做savedInstanceState，这将会在后面的课程：重新创建一个activity的时候涉及到。
 
-![basic_lifecycle-create](/images/basic-lifecycle-create.png)
+![basic_lifecycle-create](basic-lifecycle-create.png)
 
 * Figure 2. 上图显示了onCreate(), onStart(), and onResume()是如何执行的。当这三个顺序执行的回调函数完成后，activity会到达Resumed状态。
 

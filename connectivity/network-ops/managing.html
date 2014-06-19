@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath="../.." data-revision="1403182592047">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath="../.." data-revision="1403184124982">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_74">
+                    <section class="normal" id="section-gitbook_103">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3316,8 +3316,8 @@ Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobil
 <h2 id="implement-a-preferences-activity-activity-">Implement a Preferences Activity(实现一个偏好设置activity)</h2>
 <p>正如上面看到的那样，SettingsActivity is a subclass ofPreferenceActivity.</p>
 <p>所实现的功能见下图：</p>
-<p><img src="/images/articles/network-settings1.png" alt="network-settings1.png">
-<img src="/images/articles/network-settings2.png" alt="network-settings2.png"></p>
+<p><img src="network-settings1.png" alt="network-settings1.png">
+<img src="network-settings2.png" alt="network-settings2.png"></p>
 <p>下面是一个 SettingsActivity. 请注意它实现了OnSharedPreferenceChangeListener. 当用户改变了他的偏好，就会触发 onSharedPreferenceChanged(), 这个方法会设置refreshDisplay 为true(这里的变量存在于自己定义的activity，见下一部分的代码示例). 这会使的当用户返回到main activity的时候进行refresh。(请注意，代码中的注释，不得不说，Googler写的Code看起来就是舒服)</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SettingsActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">PreferenceActivity</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">OnSharedPreferenceChangeListener</span> {</span>
 

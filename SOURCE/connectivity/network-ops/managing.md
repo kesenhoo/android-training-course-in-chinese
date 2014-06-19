@@ -93,8 +93,8 @@ public boolean isOnline() {
 
 所实现的功能见下图：
 
-![network-settings1.png](/images/articles/network-settings1.png)
-![network-settings2.png](/images/articles/network-settings2.png)
+![network-settings1.png](network-settings1.png)
+![network-settings2.png](network-settings2.png)
 
 下面是一个 SettingsActivity. 请注意它实现了OnSharedPreferenceChangeListener. 当用户改变了他的偏好，就会触发 onSharedPreferenceChanged(), 这个方法会设置refreshDisplay 为true(这里的变量存在于自己定义的activity，见下一部分的代码示例). 这会使的当用户返回到main activity的时候进行refresh。(请注意，代码中的注释，不得不说，Googler写的Code看起来就是舒服)
 

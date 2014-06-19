@@ -33,7 +33,7 @@ startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.s
 
 效果图如下：
 
-![share-text-screenshot.png](/images/articles/share-text-screenshot.png "Figure 1. Screenshot of ACTION_SEND intent chooser on a handset.")
+![share-text-screenshot.png](share-text-screenshot.png "Figure 1. Screenshot of ACTION_SEND intent chooser on a handset.")
 
 Optionally,你可以为intent设置一些标准的附加值，例如：EXTRA_EMAIL, EXTRA_CC, EXTRA_BCC, EXTRA_SUBJECT.然而，如果接收程序没有针对那些做特殊的处理，则不会有对应的反应。你也可以使用自定义的附加值，但是除非接收的程序能够识别出来，不然没有任何效果。典型的做法是，你使用被接受程序定义的附加值。
 

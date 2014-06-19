@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1.1" data-basepath="../.." data-revision="1403182592047">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1.1" data-basepath="../.." data-revision="1403184124982">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_105">
+                    <section class="normal" id="section-gitbook_134">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3263,7 +3263,7 @@ sendIntent.setType(<span class="hljs-string">"text/plain"</span>);
 startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to));
 </code></pre>
 <p>效果图如下：</p>
-<p><img src="/images/articles/share-text-screenshot.png" alt="share-text-screenshot.png" title="Figure 1. Screenshot of ACTION_SEND intent chooser on a handset."></p>
+<p><img src="share-text-screenshot.png" alt="share-text-screenshot.png" title="Figure 1. Screenshot of ACTION_SEND intent chooser on a handset."></p>
 <p>Optionally,你可以为intent设置一些标准的附加值，例如：EXTRA_EMAIL, EXTRA_CC, EXTRA_BCC, EXTRA_SUBJECT.然而，如果接收程序没有针对那些做特殊的处理，则不会有对应的反应。你也可以使用自定义的附加值，但是除非接收的程序能够识别出来，不然没有任何效果。典型的做法是，你使用被接受程序定义的附加值。</p>
 <p><strong>注意:</strong>一些e-mail程序，例如Gmail,对应接收的是EXTRA_EMAIL与EXTRA_CC，他们都是String类型的，可以使用putExtra(string,string[])方法来添加到intent里面。</p>
 <h2 id="send-binary-content-">Send Binary Content(分享二进制内容)</h2>

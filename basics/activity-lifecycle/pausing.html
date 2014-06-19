@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.2" data-basepath="../.." data-revision="1403182592047">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.2" data-basepath="../.." data-revision="1403184124982">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_27">
+                    <section class="normal" id="section-gitbook_56">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3248,7 +3248,7 @@
 <li><strong>Note:</strong>当你的activity接受到调用onPause()信息 ，那可能意味者activity将被暂停一段时间，并且用户很可能回到你的activity。然而，那也是用户要离开你的activtiy的第一个信号。<!-- more --></li>
 <li><strong>Figure 1.</strong>下图显示了，当一个半透明的activity阻塞你的activity时，系统会调用onPause()方法并且这个activity会停留在Paused state (1). 如果用户在这个activity还是在Paused State时回到这个activity，系统则会调用它的onResume() (2).</li>
 </ul>
-<p><img src="/images/basic-lifecycle-paused.png" alt="basic-lifecycle-paused"></p>
+<p><img src="basic-lifecycle-paused.png" alt="basic-lifecycle-paused"></p>
 <h2 id="pause-your-activity-activity-">Pause Your Activity[暂停你的Activity]</h2>
 <ul>
 <li>当系统调用你的activity中的onPause(),从技术上讲，那意味着你的activity仍然处于部分可见的状态，当时大多数时候，那意味着用户正在离开这个activity并马上会进入Stopped state. 你通常应该在onPause()回调方法里面做下面的事情:<ul>

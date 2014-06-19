@@ -18,7 +18,7 @@
 这里需要介绍一延时(latency)的机制，从low status返回到full status大概需要花费1.5秒，从idle status返回到full status需要花费2秒。
 为了最小化延迟，状态机使用了一种后滞过渡到更低能量状态的机制。下图是一个典型的3G无线电波状态机的图示(AT&T电信的一种制式).
 
-![mobile_radio_state_machine.png](/images/articles/mobile_radio_state_machine.png "Figure 1. Typical 3G wireless radio state machine.")
+![mobile_radio_state_machine.png](mobile_radio_state_machine.png "Figure 1. Typical 3G wireless radio state machine.")
 
 * 在每一台设备上的无线状态机都会根据无线电波的制式(2G,3G,LTE等)而改变，并且由设备本身自己所使用的网络进行定义与配置。
 * 这一课描述了一种典型的3G无线电波状态机，[data provided by AT&T](http://www.research.att.com/articles/featured_stories/2011_03/201102_Energy_efficient?fbid=SYuI20FzBum)。这些原理是具有通用性的，在其他的无线电波上同样适用。
@@ -33,7 +33,7 @@
 通过比较，如果每分钟app会传输bundle的data持续3秒的话，其中会使得无线电波持续在high power状态仅仅8秒钟，在low power状态仅仅12秒钟。
 上面第二种传输bundle data的例子，可以看到减少了大量的电量消耗。图示如下：
 
-![graphs.png](/images/articles/graphs.png "Figure 2. Relative wireless radio power use for bundled versus unbundled transfers.")
+![graphs.png](graphs.png "Figure 2. Relative wireless radio power use for bundled versus unbundled transfers.")
 
 ## Prefetch Data(预取数据)
 预取(Prefetching)数据是一种减少独立数据传输会话数量的有效方法。预取技术允许你在单次操作的时候，通过一次连接，在最大能力下，根据给出的时间下载到所有的数据。
@@ -88,7 +88,7 @@ The Android [DDMS (Dalvik Debug Monitor Server)](http://developer.android.com/gu
 
 下图显示了传输少量的网络模型，可以看到每次差不多相隔15秒，这意味着可以通过预取技术或者批量上传来大幅提高效率。
 
-![DDMS.png](/images/articles/DDMS.png "Figure 3. Tracking network usage with DDMS.")
+![DDMS.png](DDMS.png "Figure 3. Tracking network usage with DDMS.")
 
 通过监测数据传输的频率与每次传输的数据量，可以查看出哪些位置应该进行优化，通常的，图中显示的短小的类似钉子形状的位置，可以进行与附近位置的请求进行做merge的动作。
 

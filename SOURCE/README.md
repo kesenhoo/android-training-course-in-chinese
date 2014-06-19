@@ -1,8 +1,9 @@
 # Android Training Course in Chinese
 
-* Android Training交流组：363415744，欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
+Android Training交流组：363415744，欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
 
-## Android Training Course
+![Android Training](android_training.jpg)
+
 <http://developer.android.com/training/index.html>
 
 这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程。这真的是一份学习Android应用开发绝佳一手资料。
