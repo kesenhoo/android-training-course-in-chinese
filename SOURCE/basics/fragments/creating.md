@@ -32,7 +32,7 @@ public class ArticleFragment extends Fragment {
 }
 ```
 
-* 就像activity一样，当fragment从activity添加或者移除、当activity生命周期发生变化时，fragment应该是实现生命周期回调来管理它的状态。例如，当activity的[onPause()](developer.android.com/reference/android/app/Activity.html#onPause())被调用时，它里面的所有fragment的[onPause(](developer.android.com/reference/android/app/Activity.html#onPause()))方法也会被触发。
+* 就像activity一样，当fragment从activity添加或者移除、当activity生命周期发生变化时，fragment应该是实现生命周期回调来管理它的状态。例如，当activity的[onPause()](developer.android.com/reference/android/app/Activity.html#onPause())被调用时，它里面的所有fragment的[onPause()](developer.android.com/reference/android/app/Activity.html#onPause())方法也会被触发。
 
 
 ## 用XML将fragment添加到activity
@@ -88,4 +88,4 @@ public class MainActivity extends FragmentActivity {
 
 * 如果你用的是[ v7 appcompat library](http://developer.android.com/intl/zh-cn/tools/support-library/features.html#v7-appcompat)，你的activity应该改为继承[ActionBarActivity](developer.android.com/reference/android/support/v7/app/ActionBarActivity.html)，ActionBarActivity是FragmentActivity的一个子类（更多关于这方面的内容，请阅读[Adding the Action Bar](developer.android.com/training/basics/actionbar/index.html)）。
 
-**注意：**当你用XML布局文件的方式将Fragment添加进activity时，你的Fragment是不能被动态移除的。如果你想要再用户交互的时候把fragment切入与切出，你必须在activity启动后，将fragment添加进activity.这将在下节课讲到。
+**注意：**当你用XML布局文件的方式将Fragment添加进activity时，你的Fragment是不能被动态移除的。如果你想要在用户交互的时候把fragment切入与切出，你必须在activity启动后，将fragment添加进activity.这将在下节课讲到。
