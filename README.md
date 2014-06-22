@@ -119,7 +119,7 @@
       * [创建Stub Content Provider](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-stub-provider.html)
       * [创建Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-sync-adapter.html)
       * [执行Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/running-sync-adapter.html)
-   * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html)
+   * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html) - 编写进行中@[kesenhoo](https://github.com/kesenhoo)
       * [发送简单的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/simple.html)
       * [建立请求队列](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request-queue.html)
       * [创建标准的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request.html)
