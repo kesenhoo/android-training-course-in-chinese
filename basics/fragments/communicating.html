@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.5.3" data-basepath="../.." data-revision="1403191351025">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.5.3" data-basepath="../.." data-revision="1403573589769">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,7 +3234,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_446">
+                    <section class="normal" id="section-gitbook_8966">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
@@ -3242,7 +3242,7 @@
 </blockquote>
 <h1 id="fragments-">Fragments之间的交互</h1>
 <ul>
-<li><p>为了重用Fragment UI组件，你应该把每一个都构建成完全的自包含的的、模块化的组件，定义他们自己的布局与行为。当你定义好这些模块化的Fragments的时，你就可以让他们关联acticvity，使他们与Application的逻辑结合起来，实现全局的复合的UI。</p>
+<li><p>为了重用Fragment UI组件，你应该把每一个fragment都构建成完全的自包含的、模块化的组件，定义他们自己的布局与行为。当你定义好这些模块化的Fragments的时，你就可以让他们关联acticvity，使他们与Application的逻辑结合起来，实现全局的复合的UI。</p>
 </li>
 <li><p>经常地，你想fragment之间能相互交互，比如基于用户事件改变fragment的内容。所有fragment之间的交互需要通过他们关联的activity，两个fragment之间不应该直接交互。</p>
 </li>
@@ -3311,7 +3311,7 @@
 <li>宿主activity通过<a href="developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int">findFragmentById()</a>)方法来获取<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">fragment</a>的实例，然后直接调用Fragment的public方法来向fragment传递消息。</li>
 </ul>
 <ul>
-<li>例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息船体给那个展示数据的Fragment.</li>
+<li>例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息传递给这个展示数据的Fragment.</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span>
         <span class="hljs-keyword">implements</span> <span class="hljs-title">HeadlinesFragment</span>.<span class="hljs-title">OnHeadlineSelectedListener</span>{</span>

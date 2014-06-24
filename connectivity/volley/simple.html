@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.1" data-basepath="../.." data-revision="1403191351025">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.1" data-basepath="../.." data-revision="1403573589769">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,81 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_492">
+                    <section class="normal" id="section-gitbook_9015">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>(2014-06-24)</p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">发送简单的网络请求</h1>
+<h1 id="-sending-a-simple-request-">发送简单的网络请求(Sending a Simple Request)</h1>
+<p>使用Volley的方式是，你通过创建一个<code>RequestQueue</code>并传递<code>Request</code>对象给它。RequestQueue管理工作线程用来执行网络操作，从Cache中读取与写入数据，以及解析Http的响应内容。<code>Requests</code>执行raw responses的解析，Volley会把响应的数据分发给主线程。</p>
+<p>这节课会介绍如何使用<code>Volley.newRequestQueue</code>这个建立请求队列的方法来发送一个请求，在下一节课<a href="request-queue.html">建立一个请求队列Setting Up a RequestQueue</a>中会介绍你自己如何建立一个请求队列。</p>
+<p>这节课也会介绍如何添加一个请求到RequesutQueue以及如何取消一个请求。</p>
+<h2 id="add-the-internet-permission">Add the INTERNET Permission</h2>
+<p>为了使用Volley，你必须添加<code>android.permission.INTERNET</code>权限到你的manifest文件中。没有这个权限，你的app将无法访问网络。</p>
+<h2 id="use-newrequestqueue">Use newRequestQueue</h2>
+<p>Volley提供了一个简便的方法：<code>Volley.newRequestQueue</code>用来为你建立一个<code>RequestQueue</code>，使用默认值，并启动这个队列。例如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">final</span> TextView mTextView = (TextView) findViewById(R.id.text);
+...
+
+<span class="hljs-comment">// Instantiate the RequestQueue.</span>
+RequestQueue queue = Volley.newRequestQueue(<span class="hljs-keyword">this</span>);
+String url =<span class="hljs-string">"http://www.google.com"</span>;
+
+<span class="hljs-comment">// Request a string response from the provided URL.</span>
+StringRequest stringRequest = <span class="hljs-keyword">new</span> StringRequest(Request.Method.GET, url,
+            <span class="hljs-keyword">new</span> Response.Listener() {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span>(String response) {
+        <span class="hljs-comment">// Display the first 500 characters of the response string.</span>
+        mTextView.setText(<span class="hljs-string">"Response is: "</span>+ response.substring(<span class="hljs-number">0</span>,<span class="hljs-number">500</span>));
+    }
+}, <span class="hljs-keyword">new</span> Response.ErrorListener() {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onErrorResponse</span>(VolleyError error) {
+        mTextView.setText(<span class="hljs-string">"That didn't work!"</span>);
+    }
+});
+<span class="hljs-comment">// Add the request to the RequestQueue.</span>
+queue.add(stringRequest);
+</code></pre>
+<p>Volley总是把解析过后的数据返回到主线程中。在主线程中更加合适使用接收到到的数据用来操作UI控件，这样你可以在响应的handler中轻松的修改UI，但是对于库提供的一些其他方法是有些特殊的，例如与取消有关的。</p>
+<p>关于如何创建你自己的请求队列，不要使用Volley.newRequestQueue方法，请查看<a href="request-queue.html">建立一个请求队列Setting Up a RequestQueue</a>。</p>
+<h2 id="send-a-request">Send a Request</h2>
+<p>为了发送一个请求，你只需要构造一个请求并通过<code>add()</code>方法添加到<code>RequestQueue</code>中。一旦你添加了这个请求，它会通过队列，得到处理，然后得到原始的响应数据并返回。</p>
+<p>当你执行<code>add()</code>方法时，Volley触发执行一个缓存处理线程以及网络一系列的网络处理线程。当你添加一个请求到队列中，它将被缓存线程所捕获并触发：如果这个请求可以被缓存处理，那么会在缓存线程中执行响应数据的解析并返回到主线程。如果请求不能被缓存所处理，它会被放到网络队列中。网络线程池中的第一个可用的网络线程会从队列中获取到这个请求并执行HTTP操作，解析响应数据，把数据写到缓存中之后再把解析之后的数据返回到主线程。</p>
+<p>请注意那些比较耗时的操作，例如I/O与解析parsing/decoding都是执行在工作线程。<strong>你可以在任何线程中添加一个请求，但是响应结果都是返回到主线程的。</strong></p>
+<p>下图1，演示了一个请求的生命周期：</p>
+<p><img src="volley-request.png" alt="volley-request"></p>
+<h2 id="cancel-a-request">Cancel a Request</h2>
+<p>为了取消一个请求，对你的请求对象执行<code>cancel()</code>方法。一旦取消，Volley会确保你的响应Handler不会被执行。这意味着在实际操作中你可以在activity的<code>onStop()</code>方法中取消所有pending在队列中的请求。你不需要通过检测<code>getActivity() == null</code>来丢弃你的响应handler，其他类似<code>onSaveInstanceState()</code>等保护性的方法里面也都不需要检测。</p>
+<p>为了利用这种优势，你应该跟踪所有已经发送的请求，以便在需要的时候，可以取消他们。<strong>有一个简便的方法</strong>：你可以为每一个请求对象都绑定一个tag对象。你可以使用这个tag来提供取消的范围。例如，你可以为你的所有请求都绑定到执行的Activity上，然后你可以在<code>onStop()</code>方法执行<code>requestQueue.cancelAll(this)</code> 。同样的，你可以为ViewPager中的所有请求缩略图Request对象分别打上对应Tab的tag。并在滑动时取消这些请求，用来确保新生成的tab不会被前面tab的请求任务所卡到。</p>
+<p>下面一个使用String来打Tag的例子：</p>
+<ol>
+<li>定义你的tag并添加到你的请求任务中。</li>
+</ol>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TAG = <span class="hljs-string">"MyTag"</span>;
+StringRequest stringRequest; <span class="hljs-comment">// Assume this exists.</span>
+RequestQueue mRequestQueue;  <span class="hljs-comment">// Assume this exists.</span>
+
+<span class="hljs-comment">// Set the tag on the request.</span>
+stringRequest.setTag(TAG);
+
+<span class="hljs-comment">// Add the request to the RequestQueue.</span>
+mRequestQueue.add(stringRequest);
+</code></pre>
+<ol>
+<li>在activity的onStop()方法里面，取消所有的包含这个tag的请求任务。</li>
+</ol>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStop</span> () {
+    <span class="hljs-keyword">super</span>.onStop();
+    <span class="hljs-keyword">if</span> (mRequestQueue != <span class="hljs-keyword">null</span>) {
+        mRequestQueue.cancelAll(TAG);
+    }
+}
+</code></pre>
+<p>当取消请求时请注意：如果你依赖你的响应handler来标记状态或者触发另外一个进程，你需要为此给出有力的解释。再说一次，response handler是不会被执行的。</p>
 
                     
                     </section>
