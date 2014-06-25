@@ -341,4 +341,9 @@ git push origin gh-pages
 
 ## Training离线文档
 近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
-我把所有的Google Android文档打包存在云端，有需要的同学点击下载http://url.cn/OTdU3a
+我把所有的Google Android文档打包存在云端，有需要的同学点击下面的链接进行下载：
+
+* [微云,点击下载](http://url.cn/PuW5f1)
+* [百度云,点击下载](http://pan.baidu.com/s/1qWscYZU)
+
+仍然无法下载的同学，可以加入交流群，资料已经在群共享中。
