@@ -5,11 +5,10 @@
 ## Google Android官方培训课程
 <http://developer.android.com/training/index.html>
 
-这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程，200篇左右的文章。这真的是一份学习Android应用开发的绝佳资料。
+Google Android团队在2012年起开设了Training板块，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
 
-很可惜，这么一份很好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，一直断断续续的在学习Android官方的Training课程，并很拙劣的输出了不少[学习翻译笔记](http://hukai.me/blog/categories/android-training/)，个人实力与精力有限，很期待能够通过发起这个项目，借助大家的力量，一起尽快完成所有课程的中文版，更好的为学习Android开发贡献力量。
-
-期待大家的加入！
+这么好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，断断续续的在学习Android官方的Training课程，并的输出了不少翻译[学习笔记](http://hukai.me)，因个人实力与精力有限，很期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。
+这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
 
 <a name="online_reading"></a>
 ## 在线阅读
@@ -27,7 +26,7 @@
    * [建立你的第一个App](http://hukai.me/android-training-course-in-chinese/basics/firstapp/index.html) - 编写中@[yuanfentiank789](https://github.com/yuanfentiank789)
        * [创建一个Android项目](http://hukai.me/android-training-course-in-chinese/basics/firstapp/creating-project.html)
        * [执行你的程序](http://hukai.me/android-training-course-in-chinese/basics/firstapp/running-app.html)
-       * [建立一个简单的用户界面](bhttp://hukai.me/android-training-course-in-chinese/asics/firstapp/building-ui.html)
+       * [建立一个简单的用户界面](http://hukai.me/android-training-course-in-chinese/asics/firstapp/building-ui.html)
        * [启动另外的Activity](http://hukai.me/android-training-course-in-chinese/basics/firstapp/starting-activity.html)
    * [添加ActionBar](http://hukai.me/android-training-course-in-chinese/basics/actionbar/index.html) - 编写中@[vincent4j](https://github.com/vincent4j)
        * [建立ActionBar](http://hukai.me/android-training-course-in-chinese/basics/actionbar/setting-up.html)
@@ -46,7 +45,7 @@
        * [创建一个Fragment](http://hukai.me/android-training-course-in-chinese/basics/fragments/creating.html)
        * [建立灵活动态的UI](http://hukai.me/android-training-course-in-chinese/basics/fragments/fragment-ui.html)
        * [Fragments之间的交互](http://hukai.me/android-training-course-in-chinese/basics/fragments/communicating.html)
-   * [数据保存](http://hukai.me/android-training-course-in-chinese/basics/data-storage/index.html) - 校验中@[K0ST](https://github.com/K0ST)，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [数据保存](http://hukai.me/android-training-course-in-chinese/basics/data-storage/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
        * [保存到Preference](http://hukai.me/android-training-course-in-chinese/basics/data-storage/shared-preference.html)
        * [保存到文件](http://hukai.me/android-training-course-in-chinese/basics/data-storage/files.html)
        * [保存到数据库](http://hukai.me/android-training-course-in-chinese/basics/data-storage/database.html)
@@ -186,10 +185,10 @@
       * [代理至新的APIs](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/new-impl.html)
       * [使用旧的APIs实现新API的效果](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/older-impl.html)
       * [使用版本敏感的组件](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/using-component.html)
-   * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html)
+   * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - 编写中@[K0ST](https://github.com/K0ST)
       * [开发辅助程序](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-app.html)
       * [开发辅助服务](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-service.html)
-   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html)
+   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - 编写中@[K0ST](https://github.com/K0ST)
       * [淡化系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/dim.html)
       * [隐藏系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-ui.html)
       * [隐藏导航Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-nav.html)
