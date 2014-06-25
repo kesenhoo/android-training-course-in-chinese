@@ -36,8 +36,100 @@ icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之�
 
 >注释：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](https://developer.android.com/training/basics/supporting-devices/screens.html) 课程中将会更详细地讨论。
 
+如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
 
+res/menu/main_activity_actions.xml
+```xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/ic_action_search"
+          android:title="@string/action_search"
+          yourapp:showAsAction="ifRoom"  />
+    ...
+</menu>
+```
 
+## 为 Action Bar 添加操作
 
+为 action bar 布局菜单条目，是通过在 activity 中实现 [onCreateOptionsMenu()](https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)) 回调方法来 `inflate` 菜单资源获取 [Menu](https://developer.android.com/reference/android/view/Menu.html) 对象。例如：
 
+```java
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu items for use in the action bar
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.main_activity_actions, menu);
+    return super.onCreateOptionsMenu(menu);
+}
+```
+
+## 为操作按钮添加响应事件
+
+当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中 [ onOptionsItemSelected()](https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)) 回调方法。在该方法的实现里面调用 [getItemId()]() 获取 [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) 来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
+
+```java
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle presses on the action bar items
+    switch (item.getItemId()) {
+        case R.id.action_search:
+            openSearch();
+            return true;
+        case R.id.action_settings:
+            openSettings();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+}
+```
+
+## 为下级 Activity 添加向上按钮
+
+在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的向上按钮。
+
+当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
+
+如何在 mainfest 中声明一个 activity 的父辈，例如：
+
+```xml
+<application ... >
+    ...
+    <!-- The main/home activity (it has no parent activity) -->
+    <activity
+        android:name="com.example.myfirstapp.MainActivity" ...>
+        ...
+    </activity>
+    <!-- A child of the main activity -->
+    <activity
+        android:name="com.example.myfirstapp.DisplayMessageActivity"
+        android:label="@string/title_activity_display_message"
+        android:parentActivityName="com.example.myfirstapp.MainActivity" >
+        <!-- Parent activity meta-data to support 4.0 and lower -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.myfirstapp.MainActivity" />
+    </activity>
+</application>
+```
+
+然后，通过调用 [setDisplayHomeAsUpEnabled()](https://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled(boolean)) 来把 app icon 设置成可用的向上按钮：
+
+```java
+@Override
+public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_displaymessage);
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    // If your minSdkVersion is 11 or higher, instead use:
+    // getActionBar().setDisplayHomeAsUpEnabled(true);
+}
+```
+
+由于系统已经知道 `MainActivity` 是 `DisplayMessageActivity` 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。
+
+更多关于向上导航的信息，请见 [提供向上导航](https://developer.android.com/training/implementing-navigation/ancestral.html)。
 
