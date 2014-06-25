@@ -39,6 +39,77 @@ Android 包含两个基本的 activity 主题，这两个主题决定了 action 
 
 一定要确保你使用的 action bar icon 的颜色与 action bar 本身的颜色有差异。为了能帮助到你，[Action Bar Icon Pack](https://developer.android.com/design/downloads/index.html#action-bar-icon-pack) 为 Holo “暗”和“淡”的 action bar 提供了标准的 action icon。
 
+## 自定义背景
+
+为 activity 创建一个自定义主题，通过重写 [actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 属性来改变 action bar 的背景。[actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 属性指向另一个式样；在该式样里，通过指定一个 drawable 资源来重写 [background](https://developer.android.com/reference/android/R.attr.html#background) 属性。
+
+如果你的 app 使用了 [navigation tabs](https://developer.android.com/guide/topics/ui/actionbar.html#Tabs) 或 [split action bar](https://developer.android.com/guide/topics/ui/actionbar.html#SplitBar) ，你也可以通过分别设置 [backgroundStacked](https://developer.android.com/reference/android/R.attr.html#backgroundStacked) 和 [backgroundSplit](https://developer.android.com/reference/android/R.attr.html#backgroundSplit) 属性来为这些条指定背景。
+
+>注意：声明一个合适的父主题，进而你的自定义主题和式样可以继承父主题的式样，这点很重要。如果没有父式样，你的 action bar 将会失去很多式样属性，除非你自己显式的对他们进行声明。
+
+### 仅支持 Android 3.0 和更高
+
+当仅支持 Android 3.0 和更高版本时，你可以像这样定义 action bar 的背景：
+
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+           parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/actionbar_background</item>
+    </style>
+</resources>
+```
+
+然后，将你的主题应该到你的 app 全局或单个的 activity 之中：
+```xml
+<application android:theme="@style/CustomActionBarTheme" ... />
+```
+
+### 支持 Android 2.1 和更高
+
+当使用 Support 库时，上面同样的主题必须被替代成如下：
+
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+           parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/actionbar_background</item>
+
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/actionbar_background</item>
+    </style>
+</resources>
+```
+然后，将你的主题应该到你的 app 全局或单个的 activity 之中：
+```xml
+<application android:theme="@style/CustomActionBarTheme" ... />
+```
+
+
+
+
+
 
 
 
