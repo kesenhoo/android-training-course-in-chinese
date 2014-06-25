@@ -43,6 +43,8 @@ Android 包含两个基本的 activity 主题，这两个主题决定了 action 
 
 为 activity 创建一个自定义主题，通过重写 [actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 属性来改变 action bar 的背景。[actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 属性指向另一个式样；在该式样里，通过指定一个 drawable 资源来重写 [background](https://developer.android.com/reference/android/R.attr.html#background) 属性。
 
+![actionbar-theme-custom@2x.png](actionbar-theme-custom@2x.png)
+
 如果你的 app 使用了 [navigation tabs](https://developer.android.com/guide/topics/ui/actionbar.html#Tabs) 或 [split action bar](https://developer.android.com/guide/topics/ui/actionbar.html#SplitBar) ，你也可以通过分别设置 [backgroundStacked](https://developer.android.com/reference/android/R.attr.html#backgroundStacked) 和 [backgroundSplit](https://developer.android.com/reference/android/R.attr.html#backgroundSplit) 属性来为这些条指定背景。
 
 >注意：声明一个合适的父主题，进而你的自定义主题和式样可以继承父主题的式样，这点很重要。如果没有父式样，你的 action bar 将会失去很多式样属性，除非你自己显式的对他们进行声明。
