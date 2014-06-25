@@ -53,7 +53,7 @@ res/menu/main_activity_actions.xml
 
 ## 为 Action Bar 添加操作
 
-为 action bar 布局菜单条目，是通过在 activity 中实现 [onCreateOptionsMenu()](https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)) 回调方法来 `inflate` 菜单资源获取 [Menu](https://developer.android.com/reference/android/view/Menu.html) 对象。例如：
+为 action bar 布局菜单条目，是通过在 activity 中实现 [onCreateOptionsMenu()](https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)) 回调方法来 `inflate` 菜单资源从而获取 [Menu](https://developer.android.com/reference/android/view/Menu.html) 对象。例如：
 
 ```java
 @Override
@@ -67,7 +67,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 ## 为操作按钮添加响应事件
 
-当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中 [ onOptionsItemSelected()](https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)) 回调方法。在该方法的实现里面调用 [getItemId()]() 获取 [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) 来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
+当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中 [ onOptionsItemSelected()](https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)) 回调方法。在该方法的实现里面调用 [getItemId()](https://developer.android.com/reference/android/view/MenuItem.html#getItemId()) 获取 [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) 来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
 
 ```java
 @Override
@@ -89,6 +89,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
 ## 为下级 Activity 添加向上按钮
 
 在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的向上按钮。
+
+![actionbar-up.png](actionbar-up.png)  
+图 2. Gmail 中向上按钮
 
 当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
 
