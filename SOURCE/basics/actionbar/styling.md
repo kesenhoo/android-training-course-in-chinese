@@ -105,18 +105,202 @@ res/values/themes.xml
 ```xml
 <application android:theme="@style/CustomActionBarTheme" ... />
 ```
+## 自定义文本颜色
+
+修改 action bar 中的文本颜色，你需要分别重写每个元素的属性：
+- Action bar 的标题：创建一种自定义式样，并指定 `textColor` 属性；同时，在你的自定义 [actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 中为 [titleTextStyle](https://developer.android.com/reference/android/R.attr.html#titleTextStyle) 属性指定为刚才的自定义式样。
+
+>注释：被应用到 [titleTextStyle](https://developer.android.com/reference/android/R.attr.html#titleTextStyle) 的自定义式样应该使用 [TextAppearance.Holo.Widget.ActionBar.Title](https://developer.android.com/reference/android/R.style.html#TextAppearance_Holo_Widget_ActionBar_Title) 作为父式样。
+
+- Action bar 的页签：在你的 activity 主题中重写 [ actionBarTabTextStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabTextStyle)
+- Action 按钮：在你的 activity 主题中重写 [actionMenuTextColor](https://developer.android.com/reference/android/R.attr.html#actionMenuTextColor)
+
+### 仅支持 Android 3.0 和更高
+
+当仅支持 Android 3.0 和更高时，你的式样 XML 文件应该是这样的：
+
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/actionbar_text</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+           parent="@style/Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText"
+           parent="@style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/actionbar_text</item>
+    </style>
+
+    <!-- ActionBar tabs text styles -->
+    <style name="MyActionBarTabText"
+           parent="@style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/actionbar_text</item>
+    </style>
+</resources>
+```
+
+### 支持 Android 2.1 和更高
+
+当使用 Support 库时，你的式样 XML 文件应该是这样的：
+
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="android:actionMenuTextColor">@color/actionbar_text</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
+        <item name="actionMenuTextColor">@color/actionbar_text</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+           parent="@style/Widget.AppCompat.ActionBar">
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+
+        <!-- Support library compatibility -->
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText"
+           parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/actionbar_text</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
+
+    <!-- ActionBar tabs text -->
+    <style name="MyActionBarTabText"
+           parent="@style/Widget.AppCompat.ActionBar.TabText">
+        <item name="android:textColor">@color/actionbar_text</item>
+        <!-- The textColor property is backward compatible with the Support Library -->
+    </style>
+</resources>
+```
+
+## 自定义 Tab Indicator
+
+为 activity 创建一个自定义主题，通过重写 [actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性来改变 [navigation tabs](https://developer.android.com/guide/topics/ui/actionbar.html#Tabs) 使用的指示器。[actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性指向另一个式样资源；在该式样资源里，通过指定一个状态列表 drawable 来重写 [background](https://developer.android.com/reference/android/R.attr.html#background) 属性。
+
+>注释：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) 文档。
+
+例如，这是一个状态列表 drawable，为一个 action bar tab 的多种不同状态分别指定背景图片：
+
+res/drawable/actionbar_tab_indicator.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+<!-- STATES WHEN BUTTON IS NOT PRESSED -->
+
+    <!-- Non focused states -->
+    <item android:state_focused="false" android:state_selected="false"
+          android:state_pressed="false"
+          android:drawable="@drawable/tab_unselected" />
+    <item android:state_focused="false" android:state_selected="true"
+          android:state_pressed="false"
+          android:drawable="@drawable/tab_selected" />
+
+    <!-- Focused states (such as when focused with a d-pad or mouse hover) -->
+    <item android:state_focused="true" android:state_selected="false"
+          android:state_pressed="false"
+          android:drawable="@drawable/tab_unselected_focused" />
+    <item android:state_focused="true" android:state_selected="true"
+          android:state_pressed="false"
+          android:drawable="@drawable/tab_selected_focused" />
 
 
+<!-- STATES WHEN BUTTON IS PRESSED -->
 
+    <!-- Non focused states -->
+    <item android:state_focused="false" android:state_selected="false"
+          android:state_pressed="true"
+          android:drawable="@drawable/tab_unselected_pressed" />
+    <item android:state_focused="false" android:state_selected="true"
+        android:state_pressed="true"
+        android:drawable="@drawable/tab_selected_pressed" />
 
+    <!-- Focused states (such as when focused with a d-pad or mouse hover) -->
+    <item android:state_focused="true" android:state_selected="false"
+          android:state_pressed="true"
+          android:drawable="@drawable/tab_unselected_pressed" />
+    <item android:state_focused="true" android:state_selected="true"
+          android:state_pressed="true"
+          android:drawable="@drawable/tab_selected_pressed" />
+</selector>
+```
+### 仅支持 Android 3.0 和更高
 
+当仅支持 Android 3.0 和更高时，你的式样 XML 文件应该是这样的：
 
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.Holo">
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>
+    </style>
 
+    <!-- ActionBar tabs styles -->
+    <style name="MyActionBarTabs"
+           parent="@style/Widget.Holo.ActionBar.TabView">
+        <!-- tab indicator -->
+        <item name="android:background">@drawable/actionbar_tab_indicator</item>
+    </style>
+</resources>
+```
 
+### 支持 Android 2.1 和更高
 
+当使用 Support 库时，你的式样 XML 文件应该是这样的：
 
+res/values/themes.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme"
+           parent="@style/Theme.AppCompat">
+        <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>
 
+        <!-- Support library compatibility -->
+        <item name="actionBarTabStyle">@style/MyActionBarTabs</item>
+    </style>
 
+    <!-- ActionBar tabs styles -->
+    <style name="MyActionBarTabs"
+           parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <!-- tab indicator -->
+        <item name="android:background">@drawable/actionbar_tab_indicator</item>
 
+        <!-- Support library compatibility -->
+        <item name="background">@drawable/actionbar_tab_indicator</item>
+    </style>
+</resources>
+```
 
-
+>**更多资源**
+- 关于 action bar 的更多式样属性，请查看 [Action Bar](https://developer.android.com/guide/topics/ui/actionbar.html#Style) 指南
+- 学习更多式样的工作机制，请查看 [式样和主题](https://developer.android.com/guide/topics/ui/themes.html) 指南
+- 全面的 action bar 式样，请尝试 [Android Action Bar 式样生成器](http://www.actionbarstylegenerator.com/)
