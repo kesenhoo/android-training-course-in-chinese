@@ -154,7 +154,7 @@
       * [提供向上的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/ancestral.html)
       * [提供向后的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/temporal.html)
       * [实现向下的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/descendant.html)
-   * [通知提示用户](http://hukai.me/android-training-course-in-chinese/ux/notify-user/index.html)
+   * [通知提示用户](http://hukai.me/android-training-course-in-chinese/ux/notify-user/index.html) - 编写中@[fastcome1985](https://github.com/fastcome1985)
       * [建立Notification](http://hukai.me/android-training-course-in-chinese/ux/notify-user/build-notification.html)
       * [当启动Activity时保留导航](http://hukai.me/android-training-course-in-chinese/ux/notify-user/nav.html)
       * [更新Notification](http://hukai.me/android-training-course-in-chinese/ux/notify-user/update-notification.html)
