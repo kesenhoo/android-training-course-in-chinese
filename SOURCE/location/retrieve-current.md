@@ -252,3 +252,4 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 下一课，[获取位置更新](receive-location-updates.html)，教你如果周期性地从Location Services获取位置信息更新。
+
