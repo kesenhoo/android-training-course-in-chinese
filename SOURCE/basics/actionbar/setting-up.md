@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity { ... }
 <activity android:theme="@style/Theme.AppCompat.Light" ... >
 ```
 
->注释：如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请参加 [Action bar 的式样](styling.md)
+>注释：如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请参见 [Action bar 的式样](styling.md)
 
 当 app 运行在 Android 2.1(API level 7) 或者以上时，activity 将包含 action bar。
 
