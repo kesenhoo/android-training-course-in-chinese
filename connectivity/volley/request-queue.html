@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.2" data-basepath="../.." data-revision="1403573589769">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.2" data-basepath="../.." data-revision="1403693670875">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,134 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_9013">
+                    <section class="normal" id="section-gitbook_87">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">建立请求队列</h1>
+<h1 id="-setting-up-a-requestqueue-">建立请求队列(Setting Up a RequestQueue)</h1>
+<p>前一节课演示了如何使用<code>Volley.newRequestQueue</code>这一简便的方法来建立一个<code>RequestQueue</code>，这是利用了Volley默认的优势。这节课会介绍如何显式的建立一个RequestQueue，以便满足你自定义的需求。</p>
+<p>这节课同样会介绍一种推荐的实现方式：创建一个单例的RequestQueue，这使得RequestQueue能够持续保持在你的app的生命周期中。</p>
+<h2 id="set-up-a-network-and-cache">Set Up a Network and Cache</h2>
+<p>一个RequestQueue需要两部分来支持它的工作：一部分是网络操作用来执行请求的数据传输，另外一个是用来处理缓存操作的Cache。在Volley的工具箱中包含了标准的实现方式：<code>DiskBasedCache</code>提供了每个文件与对应响应数据一一映射的缓存实现。 <code>BasicNetwork</code>提供了一个网络传输的实现，连接方式可以是<a href="http://developer.android.com/reference/android/net/http/AndroidHttpClient.html" target="_blank">AndroidHttpClient</a> 或者是 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>.</p>
+<p><code>BasicNetwork</code>是Volley默认的网络操作实现方式。一个BasicNetwork必须使用HTTP Client进行初始化。这个Client通常是AndroidHttpClient 或者 HttpURLConnection:</p>
+<ul>
+<li>对于app target API level低于API 9(Gingerbread)的使用AndroidHttpClient。在Gingerbread之前，HttpURLConnection是不可靠的。对于这个的细节，请参考<a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</li>
+<li>对于API Level 9以及以上的，会使用HttpURLConnection。</li>
+</ul>
+<p>为了创建一个能够执行在所有Android版本上的应用，你可以通过检查系统版本选择合适的HTTP Client。例如：</p>
+<pre><code class="lang-java">HttpStack stack;
+...
+<span class="hljs-comment">// If the device is running a version &gt;= Gingerbread...</span>
+<span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.GINGERBREAD) {
+    <span class="hljs-comment">// ...use HttpURLConnection for stack.</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// ...use AndroidHttpClient for stack.</span>
+}
+Network network = <span class="hljs-keyword">new</span> BasicNetwork(stack);
+</code></pre>
+<p>下面的代码片段会掩饰如何一步步建立一个RequestQueue:</p>
+<pre><code class="lang-java">RequestQueue mRequestQueue;
+
+<span class="hljs-comment">// Instantiate the cache</span>
+Cache cache = <span class="hljs-keyword">new</span> DiskBasedCache(getCacheDir(), <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>); <span class="hljs-comment">// 1MB cap</span>
+
+<span class="hljs-comment">// Set up the network to use HttpURLConnection as the HTTP client.</span>
+Network network = <span class="hljs-keyword">new</span> BasicNetwork(<span class="hljs-keyword">new</span> HurlStack());
+
+<span class="hljs-comment">// Instantiate the RequestQueue with the cache and network.</span>
+mRequestQueue = <span class="hljs-keyword">new</span> RequestQueue(cache, network);
+
+<span class="hljs-comment">// Start the queue</span>
+mRequestQueue.start();
+
+String url =<span class="hljs-string">"http://www.myurl.com"</span>;
+
+<span class="hljs-comment">// Formulate the request and handle the response.</span>
+StringRequest stringRequest = <span class="hljs-keyword">new</span> StringRequest(Request.Method.GET, url,
+        <span class="hljs-keyword">new</span> Response.Listener&lt;String&gt;() {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span>(String response) {
+        <span class="hljs-comment">// Do something with the response</span>
+    }
+},
+    <span class="hljs-keyword">new</span> Response.ErrorListener() {
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onErrorResponse</span>(VolleyError error) {
+            <span class="hljs-comment">// Handle error</span>
+    }
+});
+
+<span class="hljs-comment">// Add the request to the RequestQueue.</span>
+mRequestQueue.add(stringRequest);
+...
+</code></pre>
+<p>如果你仅仅是想做一个单次的请求并且不想要线程池一直保留，你可以通过使用在前面一课：<a href="simple.html">发送一个简单的请求(Sending a Simple Request)</a>文章中提到<code>Volley.newRequestQueue()</code>方法在任何需要的时刻创建RequestQueue，然后在你的响应回调里面执行<code>stop()</code>方法来停止操作。但是更通常的做法是创建一个RequestQueue并设置为一个单例。下面将演示这种做法。</p>
+<h2 id="use-a-singleton-pattern">Use a Singleton Pattern</h2>
+<p>如果你的程序需要持续的使用网络，更加高效的方式应该是建立一个RequestQueue的单例，这样它能够持续保持在整个app的生命周期中。你可以通过多种方式来实现这个单例。推荐的方式是实现一个单例类，里面封装了RequestQueue对象与其他Volley的方法。另外一个方法是继承Application类，并在<code>Application.OnCreate()</code>方法里面建立RequestQueue。但是这个方法是不推荐的。因为一个static的单例能够以一种更加模块化的方式提供同样的功能。</p>
+<p>一个关键的概念是RequestQueue必须和Application context所关联的。而不是Activity的context。这可以确保RequestQueue可以在你的app生命周期中一直存活，而不会因为activity的重新创建而重新创建RequestQueue。(例如，当用户旋转设备时)。</p>
+<p>下面是一个单例类，提供了RequestQueue与ImageLoader的功能：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> MySingleton mInstance;
+    <span class="hljs-keyword">private</span> RequestQueue mRequestQueue;
+    <span class="hljs-keyword">private</span> ImageLoader mImageLoader;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Context mCtx;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-title">MySingleton</span>(Context context) {
+        mCtx = context;
+        mRequestQueue = getRequestQueue();
+
+        mImageLoader = <span class="hljs-keyword">new</span> ImageLoader(mRequestQueue,
+                <span class="hljs-keyword">new</span> ImageLoader.ImageCache() {
+            <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> LruCache&lt;String, Bitmap&gt;
+                    cache = <span class="hljs-keyword">new</span> LruCache&lt;String, Bitmap&gt;(<span class="hljs-number">20</span>);
+
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> Bitmap <span class="hljs-title">getBitmap</span>(String url) {
+                <span class="hljs-keyword">return</span> cache.get(url);
+            }
+
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">putBitmap</span>(String url, Bitmap bitmap) {
+                cache.put(url, bitmap);
+            }
+        });
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">synchronized</span> MySingleton <span class="hljs-title">getInstance</span>(Context context) {
+        <span class="hljs-keyword">if</span> (mInstance == <span class="hljs-keyword">null</span>) {
+            mInstance = <span class="hljs-keyword">new</span> MySingleton(context);
+        }
+        <span class="hljs-keyword">return</span> mInstance;
+    }
+
+    <span class="hljs-keyword">public</span> RequestQueue <span class="hljs-title">getRequestQueue</span>() {
+        <span class="hljs-keyword">if</span> (mRequestQueue == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// getApplicationContext() is key, it keeps you from leaking the</span>
+            <span class="hljs-comment">// Activity or BroadcastReceiver if someone passes one in.</span>
+            mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
+        }
+        <span class="hljs-keyword">return</span> mRequestQueue;
+    }
+
+    <span class="hljs-keyword">public</span> &lt;T&gt; <span class="hljs-keyword">void</span> <span class="hljs-title">addToRequestQueue</span>(Request&lt;T&gt; req) {
+        getRequestQueue().add(req);
+    }
+
+    <span class="hljs-keyword">public</span> ImageLoader <span class="hljs-title">getImageLoader</span>() {
+        <span class="hljs-keyword">return</span> mImageLoader;
+    }
+}
+</code></pre>
+<p>下面演示了利用单例类来执行RequestQueue的操作：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Get a RequestQueue</span>
+RequestQueue queue = MySingleton.getInstance(<span class="hljs-keyword">this</span>.getApplicationContext()).
+    getRequestQueue();
+...
+
+<span class="hljs-comment">// Add a request (in this example, called stringRequest) to your RequestQueue.</span>
+MySingleton.getInstance(<span class="hljs-keyword">this</span>).addToRequestQueue(stringRequest);
+</code></pre>
 
                     
                     </section>

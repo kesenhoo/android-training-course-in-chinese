@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.3" data-basepath="../.." data-revision="1403573589769">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.5.3" data-basepath="../.." data-revision="1403693670875">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3234,13 +3234,176 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_9014">
+                    <section class="normal" id="section-gitbook_88">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">创建标准的网络请求</h1>
+<h1 id="-making-a-standard-request-">创建标准的网络请求(Making a Standard Request)</h1>
+<p>这一课会介绍如何使用Volley支持的常用请求类型：</p>
+<ul>
+<li><code>StringRequest</code>。指定一个URL并在相应回调中接受一个原始的raw string数据。请参考前一课的示例。</li>
+<li><code>ImageRequest</code>。指定一个URL并在相应回调中接受一个image。</li>
+<li><code>JsonObjectRequest</code>与<code>JsonArrayRequest</code> (均为<code>JsonRequest</code>的子类)。指定一个URL并在相应回调中获取到一个JSON对象或者JSON数组。</li>
+</ul>
+<p>如果你需要的是上面演示的请求类型，那么你应该不需要自己实现一个自定义的请求。这节课会演示如何使用那些标准的请求类型。关于如何实现自定义的请求，请看下一课：<a href="request-costom.html">实现自定义的请求</a>。</p>
+<h2 id="1-request-an-image">1)Request an Image</h2>
+<p>Volley为请求图片提供了如下的类。这些类依次有着依赖关系，用来支持在不同的层级进行图片处理：</p>
+<ul>
+<li><p><code>ImageRequest</code> - 一个封装好的，用来处理URL请求图片并且返回一张decode好的bitmap的类。它同样提供了一些简便的接口方法，例如指定一个大小进行重新裁剪。它的主要好处是Volley回确保类似decode，resize等耗时的操作执行在工作线程中。</p>
+</li>
+<li><p><code>ImageLoader</code> - 一个用来处理加载与缓存从网络上获取到的图片的帮助类。ImageLoader是管理协调大量的ImageRequest的类。例如，在ListView中需要显示大量缩略图的时候。ImageLoader为通常的Volley cache提供了更加前瞻的内存缓存，这个缓存对于防止图片抖动非常有用。。这还使得能够在避免阻挡或者延迟主线程的前提下在缓存中能够被Hit到。ImageLoader还能够实现响应联合Coalescing，每一个响应回调里面都可以设置bitmap到view上面。联合Coalescing使得能够同时提交多个响应，这提升了性能。</p>
+</li>
+<li><p><code>NetworkImageView</code> - 在ImageLoader的基础上建立，替换ImageView进行使用。对于需要对ImageView设置网络图片的情况下使用很有效。NetworkImageView同样可以在view被detached的时候取消pending的请求。</p>
+</li>
+</ul>
+<h3 id="1-1-use-imagerequest">1.1)Use ImageRequest</h3>
+<p>下面是一个使用ImageRequest的示例。它会获取指定URL的image病显示到app上。里面演示的RequestQueue是通过上一课提到的单例类实现的。</p>
+<pre><code class="lang-java">ImageView mImageView;
+String url = <span class="hljs-string">"http://i.imgur.com/7spzG.png"</span>;
+mImageView = (ImageView) findViewById(R.id.myImage);
+...
+
+<span class="hljs-comment">// Retrieves an image specified by the URL, displays it in the UI.</span>
+ImageRequest request = <span class="hljs-keyword">new</span> ImageRequest(url,
+    <span class="hljs-keyword">new</span> Response.Listener() {
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span>(Bitmap bitmap) {
+            mImageView.setImageBitmap(bitmap);
+        }
+    }, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">null</span>,
+    <span class="hljs-keyword">new</span> Response.ErrorListener() {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onErrorResponse</span>(VolleyError error) {
+            mImageView.setImageResource(R.drawable.image_load_error);
+        }
+    });
+<span class="hljs-comment">// Access the RequestQueue through your singleton class.</span>
+MySingleton.getInstance(<span class="hljs-keyword">this</span>).addToRequestQueue(request);
+</code></pre>
+<h3 id="1-2-use-imageloader-and-networkimageview">1.2)Use ImageLoader and NetworkImageView</h3>
+<p>你可以使用ImageLoader与NetworkImageView用来处理类似ListView等大量显示图片的情况。在你的layout XML文件中，你可以使用NetworkImageView来替代通常的ImageView， 例如:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">com.android.volley.toolbox.NetworkImageView
+</span>        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/networkImageView"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"150dp"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"170dp"</span>
+        <span class="hljs-attribute">android:layout_centerHorizontal</span>=<span class="hljs-value">"true"</span> /&gt;</span>
+</code></pre>
+<p>你可以使用ImageLoader来显示一张图片，例如：</p>
+<pre><code class="lang-java">ImageLoader mImageLoader;
+ImageView mImageView;
+<span class="hljs-comment">// The URL for the image that is being loaded.</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String IMAGE_URL =
+    <span class="hljs-string">"http://developer.android.com/images/training/system-ui.png"</span>;
+...
+mImageView = (ImageView) findViewById(R.id.regularImageView);
+
+<span class="hljs-comment">// Get the ImageLoader through your singleton class.</span>
+mImageLoader = MySingleton.getInstance(<span class="hljs-keyword">this</span>).getImageLoader();
+mImageLoader.get(IMAGE_URL, ImageLoader.getImageListener(mImageView,
+         R.drawable.def_image, R.drawable.err_image));
+</code></pre>
+<p>然而，如果你要做得是为ImageView进行图片设置，你可以使用NetworkImageView来实现，例如：</p>
+<pre><code class="lang-java">ImageLoader mImageLoader;
+NetworkImageView mNetworkImageView;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String IMAGE_URL =
+    <span class="hljs-string">"http://developer.android.com/images/training/system-ui.png"</span>;
+...
+
+<span class="hljs-comment">// Get the NetworkImageView that will display the image.</span>
+mNetworkImageView = (NetworkImageView) findViewById(R.id.networkImageView);
+
+<span class="hljs-comment">// Get the ImageLoader through your singleton class.</span>
+mImageLoader = MySingleton.getInstance(<span class="hljs-keyword">this</span>).getImageLoader();
+
+<span class="hljs-comment">// Set the URL of the image that should be loaded into this view, and</span>
+<span class="hljs-comment">// specify the ImageLoader that will be used to make the request.</span>
+mNetworkImageView.setImageUrl(IMAGE_URL, mImageLoader);
+</code></pre>
+<p>上面的代码是通过前一节课的单例模式来实现访问到RequestQueue与ImageLoader的。之所以这样做得原因是：对于ImageLoader(一个用来处理加载与缓存图片的帮助类)来说，单例模式可以避免旋转所带来的抖动。使用单例模式可以使得bitmap的缓存与activity的生命周期无关。如果你在activity中创建ImageLoader，这个ImageLoader有可能会在手机进行旋转的时候被重新创建。这可能会导致抖动。</p>
+<h3 id="1-3-example-lru-cache">1.3)Example LRU cache</h3>
+<p>Volley工具箱中提供了通过DiskBasedCache实现的一种标准缓存。这个类能够缓存文件到磁盘的制定目录。但是为了使用ImageLoader，你应该提供一个自定义的内存LRC缓存，这个缓存需要实现<code>ImageLoader.ImageCache</code>的接口。你可能想把你的缓存设置成一个单例。关于更多的有关内容，请参考<a href="request.html">建立请求队列Setting Up a RequestQueue</a>.</p>
+<p>下面是一个内存LRU Cache的实例。它继承自LruCache并实现了ImageLoader.ImageCache的接口：</p>
+<pre><code class="lang-java">import android.graphics.Bitmap;
+import android.support.v4.util.LruCache;
+import android.util.DisplayMetrics;
+import com.android.volley.toolbox.ImageLoader.ImageCache;
+
+public class LruBitmapCache extends LruCache&lt;String, Bitmap&gt;
+        implements ImageCache {
+
+    public LruBitmapCache(int maxSize) {
+        super(maxSize);
+    }
+
+    public LruBitmapCache(Context ctx) {
+        this(getCacheSize(ctx));
+    }
+
+    @Override
+    protected int sizeOf(String key, Bitmap value) {
+        return value.getRowBytes() * value.getHeight();
+    }
+
+    @Override
+    public Bitmap getBitmap(String url) {
+        return get(url);
+    }
+
+    @Override
+    public void putBitmap(String url, Bitmap bitmap) {
+        put(url, bitmap);
+    }
+
+    // Returns a cache size equal to approximately three screens worth of images.
+    public static int getCacheSize(Context ctx) {
+        final DisplayMetrics displayMetrics = ctx.getResources().
+                getDisplayMetrics();
+        final int screenWidth = displayMetrics.widthPixels;
+        final int screenHeight = displayMetrics.heightPixels;
+        // 4 bytes per pixel
+        final int screenBytes = screenWidth * screenHeight * 4;
+
+        return screenBytes * 3;
+    }
+}
+</code></pre>
+<p>下面是如何初始化ImageLoader并使用cache的实例:</p>
+<pre><code class="lang-java">RequestQueue mRequestQueue; <span class="hljs-comment">// assume this exists.</span>
+ImageLoader mImageLoader = <span class="hljs-keyword">new</span> ImageLoader(mRequestQueue, <span class="hljs-keyword">new</span> LruBitmapCache(LruBitmapCache.getCacheSize()));
+</code></pre>
+<h2 id="2-request-json">2)Request JSON</h2>
+<p>Volley提供了以下的类用来执行JSON请求：</p>
+<ul>
+<li><code>JsonArrayRequest</code> - 一个为了获取JSONArray返回数据的请求。</li>
+<li><code>JsonObjectRequest</code> - 一个为了获取JSONObject返回数据的请求。允许把一个JSONObject作为请求参数。</li>
+</ul>
+<p>这两个类都是继承自JsonRequest的。你可以使用类似的方法来处理这两种类型的请求。如下演示了如果获取一个JSON feed并显示到UI上：</p>
+<pre><code class="lang-java">TextView mTxtDisplay;
+ImageView mImageView;
+mTxtDisplay = (TextView) findViewById(R.id.txtDisplay);
+String url = <span class="hljs-string">"http://my-json-feed"</span>;
+
+JsonObjectRequest jsObjRequest = <span class="hljs-keyword">new</span> JsonObjectRequest
+        (Request.Method.GET, url, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">new</span> Response.Listener() {
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResponse</span>(JSONObject response) {
+        mTxtDisplay.setText(<span class="hljs-string">"Response: "</span> + response.toString());
+    }
+}, <span class="hljs-keyword">new</span> Response.ErrorListener() {
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onErrorResponse</span>(VolleyError error) {
+        <span class="hljs-comment">// TODO Auto-generated method stub</span>
+
+    }
+});
+
+<span class="hljs-comment">// Access the RequestQueue through your singleton class.</span>
+MySingleton.getInstance(<span class="hljs-keyword">this</span>).addToRequestQueue(jsObjRequest);
+</code></pre>
+<p>关于基于<a href="http://code.google.com/p/google-gson/" target="_blank">Gson</a>实现一个自定义的JSON请求对象，请参考下一节课：<a href="request-custom.html">实现一个自定义的请求Implementing a Custom Request</a>.</p>
 
                     
                     </section>
