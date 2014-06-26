@@ -236,7 +236,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [判断与监测Docking状态](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/docking-monitor.html)
       * [判断与监测网络连接状态](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/connectivity-monitor.html)
       * [根据需要操作Broadcast接受者](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/manifest-receivers.html)
-   * [多线程操作](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/index.html)
+   * [多线程操作](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/index.html) - 编写中@[AllenZheng1991](https://github.com/AllenZheng1991)
       * [指定一段代码执行在一个线程](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/define-runnable.html)
       * [为多线程创建线程池](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/create-threadpool.html)
       * [执行代码运行在线程池中](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/run-code.html)
