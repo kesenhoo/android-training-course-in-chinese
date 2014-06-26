@@ -33,7 +33,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
        * [添加Action按钮](http://hukai.me/android-training-course-in-chinese/basics/actionbar/adding-buttons.html)
        * [ActionBar的风格化](http://hukai.me/android-training-course-in-chinese/basics/actionbar/styling.html)
        * [ActionBar的覆盖层叠](http://hukai.me/android-training-course-in-chinese/basics/actionbar/overlaying.html)
-   * [兼容不同的设备](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/index.html)
+   * [兼容不同的设备](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/index.html) - 编写中@[Lin-H](https://github.com/Lin-H)
        * [适配不同的语言](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/languages.html)
        * [适配不同的屏幕](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/screens.html)
        * [适配不同的系统版本](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/platforms.html)
