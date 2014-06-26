@@ -10,7 +10,7 @@
 
 >提示：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 [Action Bar 风格化](styling.html)。
 
-
+![actionbar-overlay@2x](actionbar-overlay@2x.png)   
 图 1. 叠加模式下的 gallery action bar
 
 ## 启用叠加模式
@@ -48,7 +48,7 @@
 </resources>
 ```
 
-请注意，这主题包含两种不同的 `windowActionBarOverlay` 式样定义：一个有 `android:` 前缀，另一个没有。有前缀的适用于包含该式样的 Android 版本，无前缀的适用于通过从 Support 库中获取式样的旧版本。
+请注意，这主题包含两种不同的 `windowActionBarOverlay` 式样定义：一个带 `android:` 前缀，另一个不带。带前缀的适用于包含该式样的 Android 版本，不带前缀的适用于通过从 Support 库中读取式样的旧版本。
 
 ## 指定布局的顶部边距
 
