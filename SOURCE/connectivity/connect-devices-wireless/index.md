@@ -1,4 +1,4 @@
-> 编写:[acenodie](https://github.com/)
+> 编写:[acenodie](https://github.com/acenodie)
 
 > 校对:
 
@@ -10,14 +10,14 @@
 
 ## 课程
 
-[**使得网络服务可发现**](nsd.md)
+[**使得网络服务可发现**](nsd.html)
 
 学习如何广播由你自己的应用程序提供的服务，如何发现在本地网络上提供的服务并用NSD获取你将要连接的服务的详细信息。
 
-[**使用WiFi建立P2P连接**](wifi-direct.md)
+[**使用WiFi建立P2P连接**](wifi-direct.html)
 
 学习如何获取附近附近的对等设备，如何创建一个设备接入点，如何连接到其他具有Wi-Fi P2P连接功能的设备。
 
-[**使用WiFi P2P服务**](nsd-wifi-index.md)
+[**使用WiFi P2P服务**](nsd-wifi-index.html)
 
 学习如何使用WiFi P2P服务去发现附近的不在同一个网络的服务。
