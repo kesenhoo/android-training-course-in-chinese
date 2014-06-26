@@ -49,3 +49,30 @@
 ```
 
 请注意，这主题包含两种不同的 `windowActionBarOverlay` 式样定义：一个有 `android:` 前缀，另一个没有。有前缀的适用于包含该式样的 Android 版本，无前缀的适用于通过从 Support 库中获取式样的旧版本。
+
+## 指定布局的顶部边距
+
+当 action bar 启用叠加模式时，它可能会遮挡住本应保持可见状态的布局。为了确保这些布局始终位于 action bar 下部，可以使用 [actionBarSize](https://developer.android.com/reference/android/R.attr.html#actionBarSize) 属性来指定顶部外边距或顶部内边距的高度来到达。例如：
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?android:attr/actionBarSize">
+    ...
+</RelativeLayout>
+```
+
+如果在 action bar 中使用 Support 库，需要移除 `android:` 前缀。例如：
+
+```xml
+<!-- Support library compatibility -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize">
+    ...
+</RelativeLayout>
+```
+
+在这种情况下，不带前缀的 `?attr/actionBarSize` 适用于 Android 3.0 和更高的所有版本。
