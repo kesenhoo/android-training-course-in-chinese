@@ -19,7 +19,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
 <a name="courses"></a>
 ## 课程结构
 
-**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名**
+**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名，所有文章均使用Markdown格式编写，关于Markdown，请看下面的介绍**
 
 * [序言](http://hukai.me/android-training-course-in-chinese/basics/index.html)
 * [开始](http://hukai.me/android-training-course-in-chinese/basics/index.html)
@@ -321,24 +321,27 @@ git push origin gh-pages
 
 * 7)登入Github账户，找到自己的远程仓库，在右边的Pull Request里面提交与原始Fork仓库的合并的请求，提交之后，我会进行处理再合并到项目主仓库。
 
-## MarkDown简明语法
+## 文章格式MarkDown
 
-<http://jianshu.io/p/q81RER>
+> Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— [维基百科](https://zh.wikipedia.org/wiki/Markdown)
+
+10分钟简明语法请参考：<http://jianshu.io/p/q81RER>
 
 附加技巧：
-* [点击链接跳到本地其他页面的待认领列表](index.html#courses)。
-
-`[点击链接跳到首页](index.html#course)`
-
-* [点击链接跳到本页面的在线阅读模块](#online_reading)
-
-`[点击链接跳到页面内部](#online_reading)`
 
 * 插入的图片请放到你编辑的md文件的同一层级目录下，用法如下
 
 ` ![basic-lifecycle-paused](basic-lifecycle-paused.png "这张图演示了Activity生命周期中的暂停状态")`
 
-有不清楚的地方请直接查看现成的源码示例。
+* [点击链接跳到本页面的在线阅读段落](#online_reading)
+
+`[点击链接跳到本页面的在线阅读段落](#online_reading)`
+
+* [点击链接跳到本地其他页面的指定段落](index.html#courses)。
+
+`[点击链接跳到本地其他页面的指定段落](index.html#course)`
+
+有不清楚的地方请直接查看由我编辑的课程源代码示例。
 
 ## Training离线文档
 近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
