@@ -61,7 +61,7 @@ MyProject/
 </resources>
 ```
 
->**note**：你可以在任何资源类型中使用区域修饰词(或者任何配置修饰符)，比如给bitmap提供本地化的版本，更多信息见[Localization](https://developer.android.com/guide/topics/resources/localization.html)。
+>**Note**：你可以在任何资源类型中使用区域修饰词(或者任何配置修饰符)，比如给bitmap提供本地化的版本，更多信息见[Localization](https://developer.android.com/guide/topics/resources/localization.html)。
 
 ##使用字符资源
 
