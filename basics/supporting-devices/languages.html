@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.3.1" data-basepath="../.." data-revision="1403841632273">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.3.1" data-basepath="../.." data-revision="1403941742443">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3245,13 +3245,71 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_51">
+                    <section class="normal" id="section-gitbook_137">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="http://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">适配不同的语言</h1>
+<p>把UI中的字符串存储在外部文件，通过代码提取，总是一种很好的做法。Android可以通过工程中的资源目录轻松实现这一功能。</p>
+<p>如果你使用Android SDK Tools(详见<a href="https://developer.android.com/training/basics/firstapp/creating-project.html" target="_blank">Creating an Android Project</a>)来创建工程，则在工程的根目录会创建一个<code>res/</code>的目录，目录中包含所有资源类型的子目录。其中包含工程的默认文件比如<code>res/values/strings.xml</code>，用来保存你的字符串值。</p>
+<h2 id="-">创建区域设置目录和字符串文件</h2>
+<p>为了支持多国语言，在<code>res/</code>中创建一个额外的<code>values</code>目录以连字符和ISO国家代码结尾命名，比如<code>values-es/</code> 是包含简单的区域资源，语言代码为&quot;es&quot;的区域设置目录。Android会在运行时根据设备的区域设置，加载相应的资源。</p>
+<p>若你决定支持某种语言，则需要创建资源子目录和字符串资源文件，例如:</p>
+<pre><code>MyProject/
+    res/
+       values/
+           strings.xml
+       values-es/
+           strings.xml
+       values-fr/
+           strings.xml
+</code></pre><p>添加不同区域语言的字符串值到相应的文件。</p>
+<p>在运行时，Android系统会根据用户设备当前的区域设置，使用相应的字符串资源。</p>
+<p>例如 下面列举了几个不同语言对应不同的字符串资源文件。</p>
+<p>英语(默认区域语言)，<code>/values/strings.xml</code>:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title"</span>&gt;</span>My Application<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"hello_world"</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<p>西班牙语，<code>/values-es/strings.xml</code>:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title"</span>&gt;</span>Mi Aplicación<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"hello_world"</span>&gt;</span>Hola Mundo!<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<p>法语，<code>/values-fr/strings.xml</code>:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title"</span>&gt;</span>Mon Application<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"hello_world"</span>&gt;</span>Bonjour le monde !<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>：你可以在任何资源类型中使用区域修饰词(或者任何配置修饰符)，比如给bitmap提供本地化的版本，更多信息见<a href="https://developer.android.com/guide/topics/resources/localization.html" target="_blank">Localization</a>。</p>
+</blockquote>
+<h2 id="-">使用字符资源</h2>
+<p>你可以在你的源代码和其他XML文件中，通过<code>&lt;string&gt;</code>元素的<code>name</code>属性来引用你的字符串资源。</p>
+<p>在你的源代码中你可以通过<code>R.string.&lt;string_name&gt;</code>语法来引用一个字符串资源，很多方法都可以通过这种方式来接受字符串。</p>
+<p>例如:</p>
+<pre><code class="lang-java"><span class="hljs-comment">// 从你的 app's 资源中获取一个字符串资源</span>
+String hello = getResources().getString(R.string.hello_world);
+
+<span class="hljs-comment">// 或者提供给一个需要字符串作为参数的方法</span>
+TextView textView = <span class="hljs-keyword">new</span> TextView(<span class="hljs-keyword">this</span>);
+textView.setText(R.string.hello_world);
+</code></pre>
+<p>在其他XML文件中，每当XML属性要接受一个字符串值时，你都可以通过<code>@string/&lt;string_name&gt;</code>语法来引用字符串资源。</p>
+<p>例如:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">TextView
+</span>    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/hello_world"</span> /&gt;</span>
+</code></pre>
 
                     
                     </section>

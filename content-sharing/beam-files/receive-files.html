@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.2" data-basepath="../.." data-revision="1403841632273">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.2" data-basepath="../.." data-revision="1403941742443">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3245,13 +3245,158 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_97">
+                    <section class="normal" id="section-gitbook_183">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">接收其他设备的文件</h1>
+<p>Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android媒体扫描器（Android Media Scanner）扫描拷贝的文件，并在媒体库（<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a> provider）中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，并且在接收设备上应该如何放置拷贝的文件。</p>
+<h2 id="-">响应请求并显示数据</h2>
+<p>当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，包含了一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，它有有一个<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的Action，第一个传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，intent会被发送至系统。为了让你的应用能够响应这个intent，我们需要为响应的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>所对应的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>标签添加<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签，在<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签中，添加下面的子标签：</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;</code></a></p>
+<p>用来匹配通知中的intent。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category android:name=&quot;android.intent.category.CATEGORY_DEFAULT&quot; /&gt;</code></a></p>
+<p>匹配隐式的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data android:mimeType=&quot;mime-type&quot; /&gt;</code></a></p>
+<p>匹配一个MIME类型。要指定那些你的应用能够处理的类型。</p>
+<p>例如，下面的例子展示了如何添加一个intent filter来激活你的activity：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.android.nfctransfer.ViewActivity"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"Android Beam Viewer"</span> &gt;</span>
+        ...
+        <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.VIEW"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span>/&gt;</span>
+            ...
+        <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note：</strong>不仅仅只有Android Beam文件传输会发送含有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的intent。在接收设备上的其它应用也有可能会发送含有该行为的intent。我们马上会进一步讨论这一问题。</p>
+</blockquote>
+<h2 id="-">请求文件读权限</h2>
+<p>如果要读取Android Beam文件传输所拷贝到设备上的文件，需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>权限。例如：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span>
+</code></pre>
+<p>如果你希望将文件拷贝至你自己应用的存储区，那么需要的权限改为<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>，另外<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限包含了<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>权限。</p>
+<blockquote>
+<p><strong>Note：</strong>对于Android 4.2.2 （API Level 17），<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>权限仅在用户选择要读文件时才是强制需要的。而在今后的版本中会在所有情况下都需要该权限。为了保证应用在未来的兼容性，建议在清单文件中声明该权限。</p>
+</blockquote>
+<p>由于你的应用对于其内部存储区域具有控制权，所以若要将文件拷贝至你应用的内部存储区域，写权限是不需要声明的。</p>
+<h2 id="-">获取拷贝文件的目录</h2>
+<p>Android Beam文件传输一次性将所有文件拷贝到目标设备的一个目录内，Android Beam文件传输通知所发出的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中包含有URI，他指向了第一个传输的文件。然而，你的应用也有可能接收到除了Android Beam文件传输之外的某个来源所发出的含有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>行为的Intent。为了明确你应该如何处理接收的Intent，你需要检查它的scheme和authority。</p>
+<p>为了获得URI的scheme，调用<a href="http://developer.android.com/reference/android/net/Uri.html#getScheme\(\" target="_blank">Uri.getScheme()</a>)<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->，下面的代码展示了如何明确架构并处理URI：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    ...
+    <span class="hljs-comment">// A File object containing the path to the transferred files</span>
+    <span class="hljs-keyword">private</span> File mParentPath;
+    <span class="hljs-comment">// Incoming Intent</span>
+    <span class="hljs-keyword">private</span> Intent mIntent;
+    ...
+    <span class="hljs-comment">/*
+     * Called from onNewIntent() for a SINGLE_TOP Activity
+     * or onCreate() for a new Activity. For onNewIntent(),
+     * remember to call setIntent() to store the most
+     * current Intent
+     *
+     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleViewIntent</span>() {
+        ...
+        <span class="hljs-comment">// Get the Intent action</span>
+        mIntent = getIntent();
+        String action = mIntent.getAction();
+        <span class="hljs-comment">/*
+         * For ACTION_VIEW, the Activity is being asked to display data.
+         * Get the URI.
+         */</span>
+        <span class="hljs-keyword">if</span> (TextUtils.equals(action, Intent.ACTION_VIEW)) {
+            <span class="hljs-comment">// Get the URI from the Intent</span>
+            Uri beamUri = mIntent.getData();
+            <span class="hljs-comment">/*
+             * Test for the type of URI, by getting its scheme value
+             */</span>
+            <span class="hljs-keyword">if</span> (TextUtils.equals(beamUri.getScheme(), <span class="hljs-string">"file"</span>)) {
+                mParentPath = handleFileUri(beamUri);
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (TextUtils.equals(
+                    beamUri.getScheme(), <span class="hljs-string">"content"</span>)) {
+                mParentPath = handleContentUri(beamUri);
+            }
+        }
+        ...
+    }
+    ...
+}
+</code></pre>
+<h3 id="-uri-">从文件URI中获取目录</h3>
+<p>如果接收的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>包含一个文件URI，则该URI包含了一个文件的绝对文件名，包括了完整的路径和文件名。对于Android Beam文件传输来说，目录路径指向了其它传输文件的位置（如果有其它传输文件的话），要获得这个目录路径，取得URI的路径部分（URI中除去“file:”前缀的部分），根据路径创建一个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>对象，然后获取这个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>的父目录：</p>
+<pre><code class="lang-java">...
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">handleFileUri</span>(Uri beamUri) {
+        <span class="hljs-comment">// Get the path part of the URI</span>
+        String fileName = beamUri.getPath();
+        <span class="hljs-comment">// Create a File object for this filename</span>
+        File copiedFile = <span class="hljs-keyword">new</span> File(fileName);
+        <span class="hljs-comment">// Get a string containing the file's parent directory</span>
+        <span class="hljs-keyword">return</span> copiedFile.getParent();
+    }
+    ...
+</code></pre>
+<h3 id="-uri-">从内容URI获取目录</h3>
+<p>如果接收的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>包含一个内容URI，这个URI可能指向的是一个存储于<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>COntent Provider的目录和文件名。你可以通过检测URI的authority值来判断是否是<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的内容URI。一个<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的内容URI可能来自Android Beam文件传输也可能来自其它应用，但不管怎么样，你都能根据该内容URI获得一个目录和文件名。</p>
+<p>你也可以接收一个<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的Intent，它包含有一个content provider的URI，而不是<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>，在这种情况下，这个内容URI不包含<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的authority，且这个URI一般不指向一个目录。</p>
+<blockquote>
+<p>Note：对于Android Beam文件传输，如果第一个接收的文件，其MIME类型为“audio/<em>”，“image/</em>”或者“video/*”，那么你会接收这个在<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的Intent中的内容URI。Android Beam文件传输会在它存储传输文件的目录内运行Media Scanner，以此为媒体文件添加索引。同时Media Scanner将结果写入<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的content provider，之后它将第一个文件的内容URI回递给Android Beam文件传输。这个内容URI就是你在通知<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中所接收到的。要获得第一个文件的目录，你需要使用该内容URI从<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>中获取它。</p>
+</blockquote>
+<h3 id="-content-provider">指明Content Provider</h3>
+<p>为了明确你能从内容URI中获取文件目录，你可以通过调用<a href="http://developer.android.com/reference/android/net/Uri.html#getAuthority\(\" target="_blank">Uri.getAuthority()</a>)获取URI的Authority，以此确定与该URI相关联的Content Provider。其结果有两个可能的值：</p>
+<p><strong><a href="http://developer.android.com/reference/android/provider/MediaStore.html#AUTHORITY" target="_blank">MediaStore.AUTHORITY</a></strong></p>
+<p>表明这个URI关联了被<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>追踪的一个文件或者多个文件。可以从<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>中获取文件的全名，目录名就自然可以从文件全名中获取。</p>
+<p><strong>其他值</strong></p>
+<p>来自其他Content Provider的内容URI。可以显示与该内容URI相关联的数据，但是不要尝试去获取文件目录。</p>
+<p>为了<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的内容URI中获取目录，执行一个查询操作，它将<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>参数指定为收到的内容URI，列名为<a href="http://developer.android.com/reference/android/provider/MediaStore.MediaColumns.html#DATA" target="_blank">MediaColumns.DATA</a>。返回的<a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a>包含了完整路径和URI所代表的文件名。该目录路径下还包含了由Android Beam文件传输传送到该设备上的其它文件。</p>
+<p>下面的代码展示了你要如何测试内容URI的Authority，并获取传输文件的路径和文件名：</p>
+<pre><code class="lang-java">...
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">handleContentUri</span>(Uri beamUri) {
+        <span class="hljs-comment">// Position of the filename in the query Cursor</span>
+        <span class="hljs-keyword">int</span> filenameIndex;
+        <span class="hljs-comment">// File object for the filename</span>
+        File copiedFile;
+        <span class="hljs-comment">// The filename stored in MediaStore</span>
+        String fileName;
+        <span class="hljs-comment">// Test the authority of the URI</span>
+        <span class="hljs-keyword">if</span> (!TextUtils.equals(beamUri.getAuthority(), MediaStore.AUTHORITY)) {
+            <span class="hljs-comment">/*
+             * Handle content URIs for other content providers
+             */</span>
+        <span class="hljs-comment">// For a MediaStore content URI</span>
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Get the column that contains the file name</span>
+            String[] projection = { MediaStore.MediaColumns.DATA };
+            Cursor pathCursor =
+                    getContentResolver().query(beamUri, projection,
+                    <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+            <span class="hljs-comment">// Check for a valid cursor</span>
+            <span class="hljs-keyword">if</span> (pathCursor != <span class="hljs-keyword">null</span> &amp;&amp;
+                    pathCursor.moveToFirst()) {
+                <span class="hljs-comment">// Get the column index in the Cursor</span>
+                filenameIndex = pathCursor.getColumnIndex(
+                        MediaStore.MediaColumns.DATA);
+                <span class="hljs-comment">// Get the full file name including path</span>
+                fileName = pathCursor.getString(filenameIndex);
+                <span class="hljs-comment">// Create a File object for the filename</span>
+                copiedFile = <span class="hljs-keyword">new</span> File(fileName);
+                <span class="hljs-comment">// Return the parent directory of the file</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> File(copiedFile.getParent());
+             } <span class="hljs-keyword">else</span> {
+                <span class="hljs-comment">// The query didn't work; return null</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+             }
+        }
+    }
+    ...
+</code></pre>
+<p>要学习更多关于从Content Provider获取数据的知识，可以阅读：<a href="http://developer.android.com/guide/topics/providers/content-provider-basics.html#SimpleQuery" target="_blank">Retrieving Data from the Provider</a>。</p>
 
                     
                     </section>
