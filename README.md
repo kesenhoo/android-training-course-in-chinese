@@ -50,7 +50,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
        * [保存到Preference](http://hukai.me/android-training-course-in-chinese/basics/data-storage/shared-preference.html)
        * [保存到文件](http://hukai.me/android-training-course-in-chinese/basics/data-storage/files.html)
        * [保存到数据库](http://hukai.me/android-training-course-in-chinese/basics/data-storage/database.html)
-   * [与其他应用的交互](http://hukai.me/android-training-course-in-chinese/basics/intents/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [与其他应用的交互](http://hukai.me/android-training-course-in-chinese/basics/intents/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
        * [Intent的发送](http://hukai.me/android-training-course-in-chinese/basics/intents/sending.html)
        * [接收Activity返回的结果](http://hukai.me/android-training-course-in-chinese/basics/intents/result.html)
        * [Intent过滤](http://hukai.me/android-training-course-in-chinese/basics/intents/filters.html)
@@ -217,7 +217,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
        * [创建IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/create-service.html)
        * [发送工作任务到IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/send-request.html)
        * [报告后台任务执行状态](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/report-status.html)
-   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html)
+   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
       * [使用CursorLoader执行查询任务](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/setup-loader.html)
       * [处理查询的结果](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/handle-result.html)    
    * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html)
