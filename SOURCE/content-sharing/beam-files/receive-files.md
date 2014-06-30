@@ -55,7 +55,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 Android Beam文件传输一次性将所有文件拷贝到目标设备的一个目录内，Android Beam文件传输通知所发出的[Intent](http://developer.android.com/reference/android/content/Intent.html)中包含有URI，他指向了第一个传输的文件。然而，你的应用也有可能接收到除了Android Beam文件传输之外的某个来源所发出的含有[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)行为的Intent。为了明确你应该如何处理接收的Intent，你需要检查它的scheme和authority。
 
-为了获得URI的scheme，调用[Uri.getScheme()](http://developer.android.com/reference/android/net/Uri.html#getScheme\(\))<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->，下面的代码展示了如何明确架构并处理URI：
+为了获得URI的scheme，调用[Uri.getScheme()](http://developer.android.com/reference/android/net/Uri.html#getScheme\(\))，下面的代码展示了如何明确架构并处理URI：
 
 ```java
 public class MainActivity extends Activity {
