@@ -65,7 +65,7 @@
 
 如果你设置了[android:required](http://developer.android.com/guide/topics/manifest/uses-feature-element.html#required)="false"，你必须要在代码中测试NFC和Android Beam文件传输是否被支持。
 
-为了再代码中测试Android Beam文件传输，我们先通过[PackageManager.hasSystemFeature()](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\))<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->和参数[FEATURE_NFC](http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC)，来测试设备是否支持NFC。下一步，通过[SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT)的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：
+为了再代码中测试Android Beam文件传输，我们先通过[PackageManager.hasSystemFeature()](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\))和参数[FEATURE_NFC](http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC)，来测试设备是否支持NFC。下一步，通过[SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT)的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：
 
 ```java
 public class MainActivity extends Activity {
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
 
 一旦你确认了设备支持Android Beam文件传输，那么可以添加一个回调函数，当Android Beam文件传输监测到用户希望与另一个支持NFC的设备发送文件时，系统会调用它。在该回调函数中，返回一个[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组，Android Beam文件传输将URI对应的文件拷贝发送给要接收的设备。
 
-要添加这个回调函数，我们需要实现[NfcAdapter.CreateBeamUrisCallback](http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html)接口，和它的方法：[createBeamUris()](http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html#createBeamUris\(android.nfc.NfcEvent\))<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->，下面是一个例子：
+要添加这个回调函数，我们需要实现[NfcAdapter.CreateBeamUrisCallback](http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html)接口，和它的方法：[createBeamUris()](http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html#createBeamUris\(android.nfc.NfcEvent\))，下面是一个例子：
 
 ```java
 public class MainActivity extends Activity {
@@ -136,7 +136,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-一旦你实现了这个接口，通过调用[setBeamPushUrisCallback()](http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUrisCallback\(android.nfc.NfcAdapter.CreateBeamUrisCallback, android.app.Activity\))<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->将回调函数提供给Android Beam文件传输。下面是一个例子：
+一旦你实现了这个接口，通过调用[setBeamPushUrisCallback()](http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUrisCallback\(android.nfc.NfcAdapter.CreateBeamUrisCallback, android.app.Activity\))将回调函数提供给Android Beam文件传输。下面是一个例子：
 
 ```java
 public class MainActivity extends Activity {
@@ -163,7 +163,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-> **Note：**你也可以将[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组通过你应用的[NfcAdapter](http://developer.android.com/reference/android/nfc/NfcAdapter.html)实例，直接提供给NFC框架。如果你能在NFC触碰事件发生之前，定义这些URI，那么你可以选择这个方法。要学习关于这个方法的知识，可以阅读：[NfcAdapter.setBeamPushUris()](http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUris\(android.net.Uri[], android.app.Activity\))。<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->
+> **Note：**你也可以将[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组通过你应用的[NfcAdapter](http://developer.android.com/reference/android/nfc/NfcAdapter.html)实例，直接提供给NFC框架。如果你能在NFC触碰事件发生之前，定义这些URI，那么你可以选择这个方法。要学习关于这个方法的知识，可以阅读：[NfcAdapter.setBeamPushUris()](http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUris\(android.net.Uri[], android.app.Activity\))。
 
 ##定义要发送的文件
 为了将一个或更多个文件发送给支持NFC的设备，需要为每一个文件获取一个文件URI（一个具有文件格式（file scheme）的URI），然后将它们添加至一个[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组中。要传输一个文件，你必须也有读文件的权限。例如，下面的例子展示的是你如何根据文件名获取它的文件URI，然后将URI添加至数组当中：
