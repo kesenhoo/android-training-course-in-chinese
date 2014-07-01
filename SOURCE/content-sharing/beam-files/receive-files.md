@@ -24,7 +24,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 例如，下面的例子展示了如何添加一个intent filter来激活你的activity：
 
 ```xml
-<activity
+    <activity
         android:name="com.example.android.nfctransfer.ViewActivity"
         android:label="Android Beam Viewer" >
         ...
@@ -114,7 +114,7 @@ public class MainActivity extends Activity {
         // Get a string containing the file's parent directory
         return copiedFile.getParent();
     }
-    ...
+...
 ```
 
 ###从内容URI获取目录
@@ -180,7 +180,7 @@ public class MainActivity extends Activity {
              }
         }
     }
-    ...
+...
 ```
 
 要学习更多关于从Content Provider获取数据的知识，可以阅读：[Retrieving Data from the Provider](http://developer.android.com/guide/topics/providers/content-provider-basics.html#SimpleQuery)。
