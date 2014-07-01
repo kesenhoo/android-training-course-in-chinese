@@ -30,4 +30,4 @@
 	学习如何实现基于触摸的拖拽与缩放。
 - [管理ViewGroup中的触摸事件]()
 	
-	学习如何管理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件，以确保事件能被正确地分发到目标views。
+	学习如何管理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件，以确保事件能被正确地分发到目标views。 
