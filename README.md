@@ -59,7 +59,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [给其他App发送简单的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/send.html)
       * [接收从其他App返回的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/receive.html)
       * [添加一个简便的分享动作](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/shareaction.html)
-   * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/index.html) - 编写中@[jdneo](https://github.com/jdneo)
+   * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/index.html) - 编写@[jdneo](https://github.com/jdneo)，待校验
       * [建立文件分享](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/setup-sharing.html)
       * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/sharing-file.html)
       * [请求分享一个文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/request-file.html)
@@ -127,7 +127,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
 * [云服务](http://hukai.me/android-training-course-in-chinese/cloud/index.html)
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html)
       * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
-      * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
+      * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html) - 编写中@[jdneo](https://github.com/jdneo)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html)
 * [用户信息](contacts-provider/index.html) - 编写@[spencer198711](https://github.com/spencer198711)，待校验
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
