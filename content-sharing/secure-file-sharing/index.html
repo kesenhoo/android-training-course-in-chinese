@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,17 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_186">
+                    <section class="normal" id="section-gitbook_101">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">分享文件</h1>
+<p>一个应用经常需要向其他应用发送一个甚至多个文件。例如，一个图库应用可能需要向图片编辑器提供多个文件，或者一个文件管理器可能希望允许用户在外部存储的不同区域之间复制粘贴文件。一种让应用可以分享文件的方法，接收文件应用所发出的请求进行响应。</p>
+<p>在所有情况下，唯一的一个将一个文件从你的应用发送至另一个应用的安全方法是向接收文件应用发送这个文件的URI，然后对这个URI授予临时的可访问权限。具有URI临时访问权限的URI是安全的，因为访问权限只授权于接收这个URI的应用，并且它们会自动过期。Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件提供了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\" target="_blank">getUriForFile()</a>)方法来创建一个文件的URI。</p>
+<p>如果你希望在应用之间共享少量的文本或者数字的数据，你应该发送一个包含该数据的Intent。要学习如何通过Intent发送简单数据，可以阅读：<a href="http://developer.android.com/training/sharing/index.html" target="_blank">Sharing Simple Data</a>。</p>
+<p>这系列课程将会介绍如何使用Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件创建的URI，以及你向接收URI的应用授予的临时访问权限，来安全地在应用之间共享文件。</p>
 
                     
                     </section>

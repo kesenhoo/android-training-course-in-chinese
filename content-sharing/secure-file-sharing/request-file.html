@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.3" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.3" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,86 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_187">
+                    <section class="normal" id="section-gitbook_102">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">请求分享一个文件</h1>
+<p>当一个应用希望访问由其它应用所共享的文件时，请求应用（即客户端）经常会向其它应用（服务端）发送一个文件请求。在大多数情况下，这个请求会在服务端应用启动一个Activity显示可以共享的文件。当服务应用向客户应用返回了URI后，用户即选择了文件。</p>
+<p>这节课向你展示一个客户应用如何向服务应用请求一个文件，接受服务应用发来的URI，然后使用这个URI打开这个文件。</p>
+<h2 id="-">发送一个文件请求</h2>
+<p>为了向服务应用发送文件请求，在客户应用，需要调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\" target="_blank">startActivityForResult</a>)，同时传递给这个方法一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，它包含了客户应用能处理的某行为，比如<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK" target="_blank">ACTION_PICK</a>；以及一个MIME类型。</p>
+<p>例如，下面的代码展示了如何向服务端应用发送一个Intent，来启动在<a href="http://developer.android.com/training/secure-file-sharing/share-file.html#SendURI" target="_blank">Sharing a File</a>中提到的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">private</span> Intent mRequestFileIntent;
+    <span class="hljs-keyword">private</span> ParcelFileDescriptor mInputPFD;
+    ...
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mRequestFileIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_PICK);
+        mRequestFileIntent.setType(<span class="hljs-string">"image/jpg"</span>);
+        ...
+    }
+    ...
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestFile</span>() {
+        <span class="hljs-javadoc">/**
+         * When the user requests a file, send an Intent to the
+         * server app.
+         * files.
+         */</span>
+            startActivityForResult(mRequestFileIntent, <span class="hljs-number">0</span>);
+        ...
+    }
+    ...
+}
+</code></pre>
+<h2 id="-">访问请求的文件</h2>
+<p>当服务应用向客户应用发回包含URI的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>时，这个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>会传递给客户应用的覆写的<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult\(int, int, android.content.Intent\" target="_blank">onActivityResult()</a>)方法当中。一旦客户应用有了文件的URI，它就可以通过获取其<a href="http://developer.android.com/reference/java/io/FileDescriptor.html" target="_blank">FileDescriptor</a>来访问文件。</p>
+<p>文件的安全问题在这一过程中不用过多担心，因为这个客户应用所受到的所有数据只有URI而已。由于URI不包含目录路径，客户应用无法查询出或者打开任何服务应用的其他文件。客户应用仅仅获取了这个文件的访问渠道和访问的权限。同时访问权限是临时的，一旦这个客户应用的任务栈被完成了，这个文件将只能被服务应用访问。</p>
+<p>下面的例子展示了客户应用如何处理发自服务应用的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，以及如何客户应用使用URI获取<a href="http://developer.android.com/reference/java/io/FileDescriptor.html" target="_blank">FileDescriptor</a>：</p>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+     * When the Activity of the app that hosts files sets a result and calls
+     * finish(), this method is invoked. The returned Intent contains the
+     * content URI of a selected file. The result code indicates if the
+     * selection worked or not.
+     */</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span>(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode,
+            Intent returnIntent) {
+        <span class="hljs-comment">// If the selection didn't work</span>
+        <span class="hljs-keyword">if</span> (resultCode != RESULT_OK) {
+            <span class="hljs-comment">// Exit without doing anything else</span>
+            <span class="hljs-keyword">return</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Get the file's content URI from the incoming Intent</span>
+            Uri returnUri = returnIntent.getData();
+            <span class="hljs-comment">/*
+             * Try to open the file for "read" access using the
+             * returned URI. If the file isn't found, write to the
+             * error log and return.
+             */</span>
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-comment">/*
+                 * Get the content resolver instance for this context, and use it
+                 * to get a ParcelFileDescriptor for the file.
+                 */</span>
+                mInputPFD = getContentResolver().openFileDescriptor(returnUri, <span class="hljs-string">"r"</span>);
+            } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+                e.printStackTrace();
+                Log.e(<span class="hljs-string">"MainActivity"</span>, <span class="hljs-string">"File not found."</span>);
+                <span class="hljs-keyword">return</span>;
+            }
+            <span class="hljs-comment">// Get a regular file descriptor for the file</span>
+            FileDescriptor fd = mInputPFD.getFileDescriptor();
+            ...
+        }
+    }
+</code></pre>
+<p>方法<a href="http://developer.android.com/reference/android/content/ContentResolver.html#openFileDescriptor\(android.net.Uri, java.lang.String\" target="_blank">openFileDescriptor()</a>)返回一个文件的<a href="http://developer.android.com/reference/android/os/ParcelFileDescriptor.html" target="_blank">ParcelFileDescriptor</a>。从这个对象中，客户应用可以获取<a href="http://developer.android.com/reference/java/io/FileDescriptor.html" target="_blank">FileDescriptor</a>对象，然后用户就可以利用这个对象读取这个文件。</p>
 
                     
                     </section>

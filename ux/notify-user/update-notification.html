@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.3" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.3" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,14 +3245,56 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_344">
+                    <section class="normal" id="section-gitbook_259">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-notification">更新Notification</h1>
-
+<ul>
+<li><p>当你需要对同一时间发布多次Notification时，你应该避免生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。</p>
+</li>
+<li><p>下面的章节描述了如何更新Notifications，以及如何移除它们。</p>
+</li>
+</ul>
+<h2 id="-notification">改变一个Notification</h2>
+<ul>
+<li><p>想要设置一个可以被更新的Notification，需要在发布它的时候调用<a href="developer.android.com/reference/android/app/NotificationManager.html#notify(int,%20android.app.Notification">NotificationManager.notify(ID, notification)</a>)方法为它指定一个notification ID。更新一个已经发布的Notification，需要更新或者创建一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>对象，并从这个对象创建一个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>对象，然后用与先前一样的ID去发布这个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>。</p>
+</li>
+<li><p>下面的代码片段演示了更新一个notification来反映事件发生的次数，它把notification堆积起来，显示一个总数。</p>
+</li>
+</ul>
+<pre><code class="lang-java">
+mNotificationManager =
+        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+<span class="hljs-comment">// Sets an ID for the notification, so it can be updated</span>
+<span class="hljs-keyword">int</span> notifyID = <span class="hljs-number">1</span>;
+mNotifyBuilder = <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>)
+    .setContentTitle(<span class="hljs-string">"New Message"</span>)
+    .setContentText(<span class="hljs-string">"You've received new messages."</span>)
+    .setSmallIcon(R.drawable.ic_notify_status)
+numMessages = <span class="hljs-number">0</span>;
+<span class="hljs-comment">// Start of a loop that processes data and then notifies the user</span>
+...
+    mNotifyBuilder.setContentText(currentText)
+        .setNumber(++numMessages);
+    <span class="hljs-comment">// Because the ID remains unchanged, the existing notification is</span>
+    <span class="hljs-comment">// updated.</span>
+    mNotificationManager.notify(
+            notifyID,
+            mNotifyBuilder.build());
+...
+</code></pre>
+<h2 id="-notification">移除Notification</h2>
+<ul>
+<li>Notifications 将持续可见，除非下面任何一种情况发生。</li>
+</ul>
+<pre><code>* 用户清除Notification单独地或者使用“清除所有”（如果Notification能被清除）。
+* 你在创建notification时调用了 setAutoCancel(developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setAutoCancel(boolean))方法，以及用户点击了这个notification，
+* 你为一个指定的 notification ID调用了[cancel()](developer.android.com/reference/android/app/NotificationManager.html#cancel(int))方法。这个方法也会删除正在进行的notifications。
+* 你调用了[cancelAll()](developer.android.com/reference/android/app/NotificationManager.html#cancelAll())方法，它将会移除你先前发布的所有Notification。
+</code></pre>
                     
                     </section>
                 

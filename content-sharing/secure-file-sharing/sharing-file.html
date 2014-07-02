@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.2" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,187 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_190">
+                    <section class="normal" id="section-gitbook_105">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">分享文件</h1>
+<p>一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的需求。一种响应的方法是在服务应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户应用端让用户从服务应用端选择一个文件，然后接收这个文件的URI。</p>
+<p>这节课将会向你展示如何在你的应用中创建一个用来选择文件的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>，来响应这些索取文件的需求。</p>
+<h2 id="-">接收文件请求</h2>
+<p>为了从客户应用端接收一个文件索取请求，然后以URI形式进行响应，你的应用应该提供一个选择文件的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。客户应用端通过调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\" target="_blank">startActivityForResult()</a>)来启动这个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。该方法包含了一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，它具有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK" target="_blank">ACTION_PICK</a>的Action。当客户应用端调用了<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\" target="_blank">startActivityForResult()</a>)，你的应用可以向客户应用端返回一个结果，该结果即用户所选文件对应的URI。</p>
+<p>学习如何在客户应用端实现文件索取请求，可以阅读：<a href="http://developer.android.com/training/secure-file-sharing/request-file.html" target="_blank">Requesting a Shared File</a>。</p>
+<h2 id="-activity">创建一个文件选择Activity</h2>
+<p>为了配置文件选择<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>，我们从在清单文件定义你的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>开始，在其intent过滤器中，匹配<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK" target="_blank">ACTION_PICK</a>的Action，以及<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT" target="_blank">CATEGORY_DEFAULT</a>和<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_OPENABLE" target="_blank">CATEGORY_OPENABLE</a>的Category。另外，为你的应用向其他应用所提供的文件设置MIME类型过滤器。下面的这段代码展示了如何在清单文件中定义新的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>和intent过滤器：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
+    ...
+        <span class="hljs-tag">&lt;<span class="hljs-title">application</span>&gt;</span>
+        ...
+            <span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>                <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".FileSelectActivity"</span>
+                <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@"</span><span class="hljs-value">File</span> <span class="hljs-attribute">Selector</span>" &gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">action
+</span>                        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.PICK"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">category
+</span>                        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">category
+</span>                        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.OPENABLE"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:mimeType</span>=<span class="hljs-value">"text/plain"</span>/&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:mimeType</span>=<span class="hljs-value">"image/*"</span>/&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<h3 id="-activity">在代码中定义文件选择Activity</h3>
+<p>下面，定义一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>子类，它用来显示在你内部存储的“files/images/”目录下可以获得的文件，然后允许用户选择期望的文件。下面的代码显示了如何定义这个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。并且响应用户的选择：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-comment">// The path to the root of this app's internal storage</span>
+    <span class="hljs-keyword">private</span> File mPrivateRootDir;
+    <span class="hljs-comment">// The path to the "images" subdirectory</span>
+    <span class="hljs-keyword">private</span> File mImagesDir;
+    <span class="hljs-comment">// Array of files in the images subdirectory</span>
+    File[] mImageFiles;
+    <span class="hljs-comment">// Array of filenames corresponding to mImageFiles</span>
+    String[] mImageFilenames;
+    <span class="hljs-comment">// Initialize the Activity</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// Set up an Intent to send back to apps that request a file</span>
+        mResultIntent =
+                <span class="hljs-keyword">new</span> Intent(<span class="hljs-string">"com.example.myapp.ACTION_RETURN_FILE"</span>);
+        <span class="hljs-comment">// Get the files/ subdirectory of internal storage</span>
+        mPrivateRootDir = getFilesDir();
+        <span class="hljs-comment">// Get the files/images subdirectory;</span>
+        mImagesDir = <span class="hljs-keyword">new</span> File(mPrivateRootDir, <span class="hljs-string">"images"</span>);
+        <span class="hljs-comment">// Get the files in the images subdirectory</span>
+        mImageFiles = mImagesDir.listFiles();
+        <span class="hljs-comment">// Set the Activity's result to null to begin with</span>
+        setResult(Activity.RESULT_CANCELED, <span class="hljs-keyword">null</span>);
+        <span class="hljs-comment">/*
+         * Display the file names in the ListView mFileListView.
+         * Back the ListView with the array mImageFilenames, which
+         * you can create by iterating through mImageFiles and
+         * calling File.getAbsolutePath() for each File
+         */</span>
+         ...
+    }
+    ...
+}
+</code></pre>
+<h2 id="-">响应一个文件选择</h2>
+<p>一旦一个用户选择了一个共享的文件，你的应用必须明确哪个文件被选择了，然后为这个文件生成一个对应的URI。若<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>在<a href="http://developer.android.com/reference/android/widget/ListView.html" target="_blank">ListView</a>中显示了可获得文件的清单，当用户点击了一个文件名时，系统调用了方法<a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick\(android.widget.AdapterView&lt;?&gt;, android.view.View, int, long\" target="_blank">onItemClick()</a>)，在该方法中你可以获取被选择的文件。</p>
+<p>在<a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick\(android.widget.AdapterView&lt;?&gt;, android.view.View, int, long\" target="_blank">onItemClick()</a>)中，为选择的文件文件名获取一个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>对象，然后将它作为参数传递给<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\" target="_blank">getUriForFile()</a>)，另外还需传入的参数是你为<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>所指定的<a href="http://developer.android.com/guide/topics/manifest/provider-element.html" target="_blank"><code>&lt;provider&gt;</code></a>标签值。这个结果URI包含了相应的被访问权限，一个对应于文件目录的路径标记（如在XML meta-date中定义的），以及包含扩展名的文件名。有关<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>如何匹配基于XML meta-data的目录路径的信息，可以阅读：<a href="http://developer.android.com/training/secure-file-sharing/setup-sharing.html#DefineMetaData" target="_blank">Specify Sharable Directories</a>。</p>
+<p>下面的例子展示了你如何检测选中的文件并且获得一个URI：</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// Define a listener that responds to clicks on a file in the ListView</span>
+        mFileListView.setOnItemClickListener(
+                <span class="hljs-keyword">new</span> AdapterView.OnItemClickListener() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-comment">/*
+             * When a filename in the ListView is clicked, get its
+             * content URI and send it to the requesting app
+             */</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span>(AdapterView&lt;?&gt; adapterView,
+                    View view,
+                    <span class="hljs-keyword">int</span> position,
+                    <span class="hljs-keyword">long</span> rowId) {
+                <span class="hljs-comment">/*
+                 * Get a File for the selected file name.
+                 * Assume that the file names are in the
+                 * mImageFilename array.
+                 */</span>
+                File requestFile = <span class="hljs-keyword">new</span> File(mImageFilename[position]);
+                <span class="hljs-comment">/*
+                 * Most file-related method calls need to be in
+                 * try-catch blocks.
+                 */</span>
+                <span class="hljs-comment">// Use the FileProvider to get a content URI</span>
+                <span class="hljs-keyword">try</span> {
+                    fileUri = FileProvider.getUriForFile(
+                            MainActivity.<span class="hljs-keyword">this</span>,
+                            <span class="hljs-string">"com.example.myapp.fileprovider"</span>,
+                            requestFile);
+                } <span class="hljs-keyword">catch</span> (IllegalArgumentException e) {
+                    Log.e(<span class="hljs-string">"File Selector"</span>,
+                          <span class="hljs-string">"The selected file can't be shared: "</span> +
+                          clickedFilename);
+                }
+                ...
+            }
+        });
+        ...
+    }
+</code></pre>
+<p>记住，你能生成的那些URI所对应的文件，是那些在meta-data文件中包含<paths>标签的（即你定义的）目录内的文件，这方面知识在<a href="http://developer.android.com/training/secure-file-sharing/setup-sharing.html#DefineMetaData" target="_blank">Specify Sharable Directories</a>中已经讨论过。如果你为一个在你没有指定的目录内的文件调用了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\" target="_blank">getUriForFile()</a>)方法，你会收到一个<a href="http://developer.android.com/reference/java/lang/IllegalArgumentException.html" target="_blank">IllegalArgumentException</a>。</p>
+<h2 id="-">为文件授权</h2>
+<p>现在你有了你想要共享给其他应用的文件URI，你需要允许客户应用端访问这个文件。为了允许访问，可以通过将URI添加至一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，然后为该<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>设置权限标记。你所授予的权限是临时的，并且当接收应用的任务栈被完成后，会自动过期。</p>
+<p>下面的例子展示了如何为文件设置读权限：</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// Define a listener that responds to clicks in the ListView</span>
+        mFileListView.setOnItemClickListener(
+                <span class="hljs-keyword">new</span> AdapterView.OnItemClickListener() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span>(AdapterView&lt;?&gt; adapterView,
+                    View view,
+                    <span class="hljs-keyword">int</span> position,
+                    <span class="hljs-keyword">long</span> rowId) {
+                ...
+                <span class="hljs-keyword">if</span> (fileUri != <span class="hljs-keyword">null</span>) {
+                    <span class="hljs-comment">// Grant temporary read permission to the content URI</span>
+                    mResultIntent.addFlags(
+                        Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                }
+                ...
+             }
+             ...
+        });
+    ...
+    }
+</code></pre>
+<blockquote>
+<p><strong>Caution：</strong>调用<a href="http://developer.android.com/reference/android/content/Intent.html#setFlags\(int\" target="_blank">setFlags()</a>)是唯一安全的方法，为你的文件授予临时的被访问权限。避免对文件URI调用<a href="http://developer.android.com/reference/android/content/Context.html#grantUriPermission\(java.lang.String, android.net.Uri, int\" target="_blank">Context.grantUriPermission()</a>)，因为通过该方法授予的权限，你只能通过调用<a href="http://developer.android.com/reference/android/content/Context.html#revokeUriPermission\(android.net.Uri, int\" target="_blank">Context.revokeUriPermission()</a>)来撤销。</p>
+</blockquote>
+<h2 id="-">与请求应用共享文件</h2>
+<p>为了与需求应用共享其需要的文件，将包含了URI和响应权限的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>传递给<a href="http://developer.android.com/reference/android/app/Activity.html#setResult\(int\" target="_blank">setResult()</a>)。当你定义的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>被结束后，系统会把这个包含了URI的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>传递给客户端应用。下面的例子展示了你应该如何做：</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// Define a listener that responds to clicks on a file in the ListView</span>
+        mFileListView.setOnItemClickListener(
+                <span class="hljs-keyword">new</span> AdapterView.OnItemClickListener() {
+            <span class="hljs-annotation">@Override</span>
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onItemClick</span>(AdapterView&lt;?&gt; adapterView,
+                    View view,
+                    <span class="hljs-keyword">int</span> position,
+                    <span class="hljs-keyword">long</span> rowId) {
+                ...
+                <span class="hljs-keyword">if</span> (fileUri != <span class="hljs-keyword">null</span>) {
+                    ...
+                    <span class="hljs-comment">// Put the Uri and MIME type in the result Intent</span>
+                    mResultIntent.setDataAndType(
+                            fileUri,
+                            getContentResolver().getType(fileUri));
+                    <span class="hljs-comment">// Set the result</span>
+                    MainActivity.<span class="hljs-keyword">this</span>.setResult(Activity.RESULT_OK,
+                            mResultIntent);
+                    } <span class="hljs-keyword">else</span> {
+                        mResultIntent.setDataAndType(<span class="hljs-keyword">null</span>, <span class="hljs-string">""</span>);
+                        MainActivity.<span class="hljs-keyword">this</span>.setResult(RESULT_CANCELED,
+                                mResultIntent);
+                    }
+                }
+        });
+</code></pre>
+<p>向用户提供一个一旦他们选择了文件就能立即回到客户应用的方法。一种实现的方法是提供一个勾选框或者一个完成按钮。使用按钮的<a href="http://developer.android.com/reference/android/view/View.html#attr_android:onClick" target="_blank">android:onClick</a>属性字段为它关联一个方法。在该方法中，调用<a href="http://developer.android.com/reference/android/app/Activity.html#finish\(\" target="_blank">finish()</a>)。例如：</p>
+<pre><code class="lang-java">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDoneClick</span>(View v) {
+        <span class="hljs-comment">// Associate a method with the Done button</span>
+        finish();
+    }
+</code></pre>
 
                     
                     </section>

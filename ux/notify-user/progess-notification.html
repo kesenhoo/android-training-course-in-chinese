@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.5" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.5" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,105 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_343">
+                    <section class="normal" id="section-gitbook_258">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-notification-">显示Notification进度</h1>
+<ul>
+<li><p>Notifications可以包含一个展示用户正在进行的操作状态的动画进度指示器。如果你可以在任何时候估算这个操作得花多少时间以及当前已经完成多少，你可以用“determinate（确定的，下同）”形式的指示器（一个进度条）。如果你不能估算这个操作的长度，使用“indeterminate（不确定，下同）”形式的指示器（一个活动的指示器）。</p>
+</li>
+<li><p>进度指示器用<a href="developer.android.com/reference/android/widget/ProgressBar.html">ProgressBar</a>平台实现类来显示。</p>
+</li>
+<li><p>使用进度指示器，可以调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress%28int,%20int,%20boolean%29" target="_blank">setProgress()</a>方法。determinate 与 indeterminate形式将在下面的章节中介绍。</p>
+</li>
+</ul>
+<h2 id="-">展示固定长度的进度指示器</h2>
+<ul>
+<li><p>为了展示一个确定长度的进度条，调用 <a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean">setProgress(max, progress, false)</a>)方法将进度条添加进notification，然后发布这个notification，第三个参数是个boolean类型，决定进度条是 indeterminate (true) 还是 determinate (false)。在你操作进行时，增加progress，更新notification。在操作结束时，progress应该等于max。一个常用的调用 <a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean">setProgress()</a>)方法是设置max为100，然后增加progress就像操作的“完成百分比”。</p>
+</li>
+<li><p>当操作完成的时候，你可以选择或者让进度条继续展示，或者移除它。无论哪种情况下，记得更新notification的文字来展示操作完成。移除进度条，调用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean">setProgress(0, 0, false)</a>).比如：</p>
+</li>
+</ul>
+<pre><code class="lang-java">
+<span class="hljs-keyword">int</span> id = <span class="hljs-number">1</span>;
+...
+mNotifyManager =
+        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+mBuilder = <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>);
+mBuilder.setContentTitle(<span class="hljs-string">"Picture Download"</span>)
+    .setContentText(<span class="hljs-string">"Download in progress"</span>)
+    .setSmallIcon(R.drawable.ic_notification);
+<span class="hljs-comment">// Start a lengthy operation in a background thread</span>
+<span class="hljs-keyword">new</span> Thread(
+    <span class="hljs-keyword">new</span> Runnable() {
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+            <span class="hljs-keyword">int</span> incr;
+            <span class="hljs-comment">// Do the "lengthy" operation 20 times</span>
+            <span class="hljs-keyword">for</span> (incr = <span class="hljs-number">0</span>; incr &lt;= <span class="hljs-number">100</span>; incr+=<span class="hljs-number">5</span>) {
+                    <span class="hljs-comment">// Sets the progress indicator to a max value, the</span>
+                    <span class="hljs-comment">// current completion percentage, and "determinate"</span>
+                    <span class="hljs-comment">// state</span>
+                    mBuilder.setProgress(<span class="hljs-number">100</span>, incr, <span class="hljs-keyword">false</span>);
+                    <span class="hljs-comment">// Displays the progress bar for the first time.</span>
+                    mNotifyManager.notify(id, mBuilder.build());
+                        <span class="hljs-comment">// Sleeps the thread, simulating an operation</span>
+                        <span class="hljs-comment">// that takes time</span>
+                        <span class="hljs-keyword">try</span> {
+                            <span class="hljs-comment">// Sleep for 5 seconds</span>
+                            Thread.sleep(<span class="hljs-number">5</span>*<span class="hljs-number">1000</span>);
+                        } <span class="hljs-keyword">catch</span> (InterruptedException e) {
+                            Log.d(TAG, <span class="hljs-string">"sleep failure"</span>);
+                        }
+            }
+            <span class="hljs-comment">// When the loop is finished, updates the notification</span>
+            mBuilder.setContentText(<span class="hljs-string">"Download complete"</span>)
+            <span class="hljs-comment">// Removes the progress bar</span>
+                    .setProgress(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-keyword">false</span>);
+            mNotifyManager.notify(id, mBuilder.build());
+        }
+    }
+<span class="hljs-comment">// Starts the thread by calling the run() method in its Runnable</span>
+).start();
+</code></pre>
+<ul>
+<li>结果notifications显示在图1中，左边是操作正在进行中的notification的快照，右边是操作已经完成的notification的快照。</li>
+</ul>
+<p><img src="progress_bar_summary.png" alt="fragments-screen-mock"><br>图1 操作正在进行中与完成时的进度条</p>
+<h2 id="-">展示持续的活动的指示器</h2>
+<ul>
+<li>为了展示一个持续的(indeterminate)活动的指示器,用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean">setProgress(0, 0, true)</a>)方法把指示器添加进notification，然后发布这个notification 。前两个参数忽略，第三个参数决定indicator 还是 indeterminate。结果是指示器与进度条有同样的样式，除了它的动画正在进行。</li>
+</ul>
+<ul>
+<li><p>在操作开始的时候发布notification，动画将会一直进行指导你更新notification。当操作完成时，调用 <a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean">setProgress(0, 0, false)</a>) 方法，然后更新notification来移除这个动画指示器。一定要这么做，否责即使你操作完成了，动画还是会在那运行。同时也要记得更新notification的文字来显示操作完成。</p>
+</li>
+<li><p>为了观察持续的活动的指示器是如何工作的，指向前面的代码。定位到下面的几行：</p>
+</li>
+</ul>
+<pre><code class="lang-java">
+<span class="hljs-comment">// Sets the progress indicator to a max value, the current completion</span>
+<span class="hljs-comment">// percentage, and "determinate" state</span>
+mBuilder.setProgress(<span class="hljs-number">100</span>, incr, <span class="hljs-keyword">false</span>);
+<span class="hljs-comment">// Issues the notification</span>
+mNotifyManager.notify(id, mBuilder.build());
+</code></pre>
+<ul>
+<li>将你找到的代码用下面的几行代码代替，注意 setProgress()方法的第三个参数设置成了true,表示进度条是 indeterminate类型的。</li>
+</ul>
+<pre><code class="lang-java">
+<span class="hljs-comment">// Sets an activity indicator for an operation of indeterminate length</span>
+mBuilder.setProgress(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">true</span>);
+<span class="hljs-comment">// Issues the notification</span>
+mNotifyManager.notify(id, mBuilder.build());
+</code></pre>
+<ul>
+<li>结果显示在图2中:</li>
+</ul>
+<p><img src="activity_indicator.png" alt="fragments-screen-mock">  </p>
+<p>图2 正在进行的活动的指示器</p>
 
                     
                     </section>

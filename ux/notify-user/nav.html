@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.2" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,98 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_342">
+                    <section class="normal" id="section-gitbook_257">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-activity-">当启动Activity时保留导航</h1>
+<h1 id="-activity-">启动Activity时保留导航</h1>
+<ul>
+<li><p>部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 <a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse">Notifications</a> API引导，有下列两种主要情况：</p>
+<ul>
+<li>常规的activity<br>你启动的是你application工作流中的一部分<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>。</li>
+<li>特定的activity<br>用户只能从notification中启动，才能看到这个<a href="http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html" target="_blank">Activity</a>，在某种意义上，这个[Activity]扩展了notification，额外展示了一些notification本身难以展示的信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="-activity-pendingintent">设置一个常规的Activity PendingIntent</h2>
+<ul>
+<li>设置一个直接启动入口Activity的PendingIntent，遵循以下步骤：</li>
+</ul>
+<p>1  在manifest中定义你application的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>层次，最终的manifest文件应该像这个：</p>
+<pre><code class="lang-java">&lt;activity
+    android:name=".MainActivity"
+    android:label="@string/app_name" &gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="android.intent.action.MAIN" /&gt;
+        &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+&lt;activity
+    android:name=".ResultActivity"
+    android:parentActivityName=".MainActivity"&gt;
+    &lt;meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".MainActivity"/&gt;
+&lt;/activity&gt;
+</code></pre>
+<p>2 在基于启动<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中创建一个返回栈，比如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">int</span> id = <span class="hljs-number">1</span>;
+...
+Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
+TaskStackBuilder stackBuilder = TaskStackBuilder.create(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">// Adds the back stack</span>
+stackBuilder.addParentStack(ResultActivity.class);
+<span class="hljs-comment">// Adds the Intent to the top of the stack</span>
+stackBuilder.addNextIntent(resultIntent);
+<span class="hljs-comment">// Gets a PendingIntent containing the entire back stack</span>
+PendingIntent resultPendingIntent =
+        stackBuilder.getPendingIntent(<span class="hljs-number">0</span>, PendingIntent.FLAG_UPDATE_CURRENT);
+...
+NotificationCompat.Builder builder = <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>);
+builder.setContentIntent(resultPendingIntent);
+NotificationManager mNotificationManager =
+    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+mNotificationManager.notify(id, builder.build());
+</code></pre>
+<h2 id="-activity-pendingintent">设置一个特定的Activity PendingIntent</h2>
+<ul>
+<li>一个特定的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不需要一个返回栈，所以你不需要在manifest中定义<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的层次，以及你不需要调用 <a href="developer.android.com/reference/android/support/v4/app/TaskStackBuilder.html#addParentStack(android.app.Activity">addParentStack()</a>)方法去构建一个返回栈。反而，用manifest设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>任务选项，以及调用 <a href="developer.android.com/reference/android/app/PendingIntent.html#getActivity(android.content.Context,%20int,%20android.content.Intent,%20int">getActivity()</a>)创建<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a></li>
+</ul>
+<p>1 在你的manifest中，在<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的 <a href="developer.android.com/guide/topics/manifest/activity-element.html"><activity></a> 标签中增加下列属性：<br>  <a href="developer.android.com/guide/topics/manifest/activity-element.html#nm">android:name=&quot;activityclass&quot;</a><br>    activity的完整的类名。<br>  <a href="developer.android.com/guide/topics/manifest/activity-element.html#aff">android:taskAffinity=&quot;&quot;</a><br>  结合你在代码里设置的<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a>标识， 确保这个<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不会进入application的默认任务。任何与 application的默认任务有密切关系的任务都不会受到影响。<br>  <a href="developer.android.com/guide/topics/manifest/activity-element.html#exclude">android:excludeFromRecents=&quot;true&quot;</a><br>  将新任务从最近列表中排除，目的是为了防止用户不小心返回到它。</p>
+<p>2 建立以及发布notification：<br>  a.创建一个启动<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>.<br>  b.通过调用<a href="developer.android.com/reference/android/content/Intent.html#setFlags(int">setFlags()</a>)方法并设置标识<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a> 与 <a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TASK">FLAG_ACTIVITY_CLEAR_TASK</a>，来设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>在一个新的，空的Activity中启动。<br>  c.在<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中设置其他你需要的选项。
+  d.通过调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/app/PendingIntent.html#getActivity%28android.content.Context,%20int,%20android.content.Intent,%20int%29" target="_blank">getActivity()</a>方法从<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中创建一个 <a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>，你可以把这个<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> 当做 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent%28android.app.PendingIntent%29" target="_blank">setContentIntent()</a>的参数来使用。</p>
+<ul>
+<li>下面的代码片段演示了这个过程：</li>
+</ul>
+<pre><code class="lang-java"><span class="hljs-comment">// Instantiate a Builder object.</span>
+NotificationCompat.Builder builder = <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>);
+<span class="hljs-comment">// Creates an Intent for the Activity</span>
+Intent notifyIntent =
+        <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">new</span> ComponentName(<span class="hljs-keyword">this</span>, ResultActivity.class));
+<span class="hljs-comment">// Sets the Activity to start in a new, empty task</span>
+notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | 
+        Intent.FLAG_ACTIVITY_CLEAR_TASK);
+<span class="hljs-comment">// Creates the PendingIntent</span>
+PendingIntent notifyIntent =
+        PendingIntent.getActivity(
+        <span class="hljs-keyword">this</span>,
+        <span class="hljs-number">0</span>,
+        notifyIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT
+);
+
+<span class="hljs-comment">// Puts the PendingIntent into the notification builder</span>
+builder.setContentIntent(notifyIntent);
+<span class="hljs-comment">// Notifications are issued by sending them to the</span>
+<span class="hljs-comment">// NotificationManager system service.</span>
+NotificationManager mNotificationManager =
+    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+<span class="hljs-comment">// Builds an anonymous Notification object from the builder, and</span>
+<span class="hljs-comment">// passes it to the NotificationManager</span>
+mNotificationManager.notify(id, builder.build());
+</code></pre>
 
                     
                     </section>

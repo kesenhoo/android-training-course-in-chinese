@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.1" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.1" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter done " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter done " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter done " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter done " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,79 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_99">
+                    <section class="normal" id="section-gitbook_14">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-cursorloader-">使用CursorLoader执行查询任务</h1>
+<p>CursorLoader依靠ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行的时候可以与用户继续其他的交互。</p>
+<h2 id="-cursorloader-activity">定义使用CursorLoader的Activity</h2>
+<p>为了在Activity或者FragmentActivity中使用CursorLoader，需要实现<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html" target="_blank">LoaderCallbacks<Cursor></a>接口。CursorLoader会触发这些回调方法；这节课与下节课会详细介绍每一个回调方法。</p>
+<!-- More -->
+
+<p>例如，下面演示了FragmentActivity如何使用CursorLoader。</p>
+<pre><code class="lang-java">public class PhotoThumbnailFragment extends FragmentActivity implements
+        LoaderManager.LoaderCallbacks&lt;Cursor&gt; {
+...
+}
+</code></pre>
+<h2 id="-">初始化查询</h2>
+<p>为了初始化查询，需要执行<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks&lt;D" target="_blank">LoaderManager.initLoader()</a>)。这个方法可以初始化后台任务。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在<code>onCreate()</code>或者<code>onCreateView()</code>。例如：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Identifies a particular Loader being used in this component</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> URL_LOADER = <span class="hljs-number">0</span>;
+    ...
+    <span class="hljs-comment">/* When the system is ready for the Fragment to appear, this displays
+     * the Fragment's View
+     */</span>
+    <span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span>(
+            LayoutInflater inflater,
+            ViewGroup viewGroup,
+            Bundle bundle) {
+        ...
+        <span class="hljs-comment">/*
+         * Initializes the CursorLoader. The URL_LOADER value is eventually passed
+         * to onCreateLoader().
+         */</span>
+        getLoaderManager().initLoader(URL_LOADER, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">this</span>);
+        ...
+    }
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> <code>getLoaderManager()</code>仅仅是在Fragment类中可以直接访问。为了在FragmentActivity中获取到LoaderManager，需要执行<code>getSupportLoaderManager()</code>.</p>
+</blockquote>
+<h2 id="-">开始查询</h2>
+<p>一旦后台任务被初始化好，它会执行你实现的回调方法<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onCreateLoader(int, android.os.Bundle" target="_blank">onCreateLoader()</a>)。为了启动查询任务，会在这个方法里面返回CursorLoader。你可以初始化一个空的CursorLoader然后使用它的方法来定义你的查询条件，或者你可以在初始化CursorLoader对象的时候就同时定义好查询条件：</p>
+<pre><code>/*
+* Callback that&#39;s invoked when the system has initialized the Loader and
+* is ready to start the query. This usually happens when initLoader() is
+* called. The loaderID argument contains the ID value passed to the
+* initLoader() call.
+*/
+@Override
+public Loader&lt;Cursor&gt; onCreateLoader(int loaderID, Bundle bundle)
+{
+    /*
+     * Takes action based on the ID of the Loader that&#39;s being created
+     */
+    switch (loaderID) {
+        case URL_LOADER:
+            // Returns a new CursorLoader
+            return new CursorLoader(
+                        getActivity(),   // Parent activity context
+                        mDataUrl,        // Table to query
+                        mProjection,     // Projection to return
+                        null,            // No selection clause
+                        null,            // No selection arguments
+                        null             // Default sort order
+        );
+        default:
+            // An invalid id was passed in
+            return null;
+    }
+}
+</code></pre><p>一旦后台查询任务获取到了这个Loader对象，就开始在后台执行查询的任务。当查询完成之后，会执行<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onLoadFinished(android.support.v4.content.Loader&lt;D&gt;, D" target="_blank">onLoadFinished()</a>)这个回调函数，关于这些内容会在下一节讲到。</p>
 
                     
                     </section>
@@ -3261,7 +3327,7 @@
         </div>
 
         
-        <a href="../../background-jobs/load-data-background/index.html" class="navigation navigation-prev " aria-label="Previous page: 在后台加载数据"><i class="fa fa-angle-left"></i></a>
+        <a href="../../background-jobs/load-data-background/index.html" class="navigation navigation-prev " aria-label="Previous page: 使用CursorLoader在后台加载数据"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../background-jobs/load-data-background/handle-result.html" class="navigation navigation-next " aria-label="Next page: 处理查询的结果"><i class="fa fa-angle-right"></i></a>

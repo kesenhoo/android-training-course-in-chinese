@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.1" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.1" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,88 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_339">
+                    <section class="normal" id="section-gitbook_254">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-notification">建立Notification</h1>
+<h1 id="-notification">建立一个Notification</h1>
+<ul>
+<li><p>这节课向你说明如何创建与发布一个Notification。</p>
+</li>
+<li><p>这节课的例子是基于<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>类的，<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>是在<a href="developer.android.com">Support Library</a>中。为了给大范围的平台提供最好的notification支持，你应该使用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.html">NotificationCompat</a>，以及它的子类，特别是<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>。</p>
+</li>
+</ul>
+<h2 id="-notification-buider">创建Notification Buider</h2>
+<ul>
+<li><p>当创建一个Notification时，可以用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>对象指定Notification的UI内容与行为。一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">Builder</a>至少包含以下内容。</p>
+<ul>
+<li>一个小的icon，用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setSmallIcon(int">setSmallIcon()</a>)方法设置</li>
+<li>一个标题，用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentTitle(java.lang.CharSequence">setContentTitle()</a>)方法设置。</li>
+<li>详细的文本，用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentText(java.lang.CharSequence">setContentText()</a>)方法设置</li>
+</ul>
+</li>
+</ul>
+<p>比如：</p>
+<pre><code class="lang-java">
+NotificationCompat.Builder mBuilder =
+    <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>)
+    .setSmallIcon(R.drawable.notification_icon)
+    .setContentTitle(<span class="hljs-string">"My notification"</span>)
+    .setContentText(<span class="hljs-string">"Hello World!"</span>);
+</code></pre>
+<h2 id="-notification-action-">定义Notification的Action（行为）</h2>
+<ul>
+<li><p>尽管在Notification中Actions是可选的，但是你应该至少添加一种Action。一种Action可以将用户直接从Notification进入你应用内的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a> ，在activity中你可以查看引起Notification的事件或者做下一步的处理。在Notification中，action本身是由<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>定义的，PendingIntent包含了一个启动你应用内<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>。</p>
+</li>
+<li><p>如何构建一个<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>取决于你要启动的<a href="developer.android.com/reference/android/app/Activity.html">activity</a>的类型。当从Notification中启动一个<a href="developer.android.com/reference/android/app/Activity.html">activity</a>时，你必须保存用户的导航体验。在下面的片段中，点击Notification启动一个新的activity，有效地扩展了Notification的行为。在这种情形下，就没必要人为地去创建一个返回栈（更多关于信息，请查看 <a href="developer.android.com/intl/zh-cn/training/notify-user/navigation.html">Preserving Navigation when Starting an Activity</a>）</p>
+</li>
+</ul>
+<pre><code class="lang-java">
+Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
+...
+<span class="hljs-comment">// Because clicking the notification opens a new ("special") activity, there's</span>
+<span class="hljs-comment">// no need to create an artificial back stack.</span>
+PendingIntent resultPendingIntent =
+    PendingIntent.getActivity(
+    <span class="hljs-keyword">this</span>,
+    <span class="hljs-number">0</span>,
+    resultIntent,
+    PendingIntent.FLAG_UPDATE_CURRENT
+);
+</code></pre>
+<h2 id="-notification-">设置Notification的点击行为</h2>
+<ul>
+<li>可以通过调用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>中合适的方法，将上一步创建的<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>与一个手势产生关联。比方说，当点击Notification抽屉里的Notification文本时，启动一个activity，可以通过调用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)把<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>添加进去。</li>
+</ul>
+<p>比如：</p>
+<pre><code class="lang-java">
+PendingIntent resultPendingIntent;
+...
+mBuilder.setContentIntent(resultPendingIntent);
+</code></pre>
+<h2 id="-notification">发布Notification</h2>
+<ul>
+<li>为了发布notification：<ul>
+<li>获取一个<a href="http://www.baidu.com/baidu?wd=NotificationManager.&amp;tn=monline_4_dg" target="_blank">NotificationManager</a>实例</li>
+<li>使用<a href="developer.android.com/reference/java/lang/Object.html#notify(">notify()</a>)方法发布Notification。当你调用<a href="developer.android.com/reference/java/lang/Object.html#notify(">notify()</a>)方法时，指定一个notification ID。你可以在以后使用这个ID来更新你的notification。这在<a href="developer.android.com/intl/zh-cn/training/notify-user/managing.html">Managing Notifications</a>中有更多的细节描述。</li>
+<li>调用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#build(">build()</a>)方法，会返回一个包含你的特征的<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>对象。</li>
+</ul>
+</li>
+</ul>
+<p>举个例子：</p>
+<pre><code class="lang-java">
+NotificationCompat.Builder mBuilder;
+...
+<span class="hljs-comment">// Sets an ID for the notification</span>
+<span class="hljs-keyword">int</span> mNotificationId = <span class="hljs-number">001</span>;
+<span class="hljs-comment">// Gets an instance of the NotificationManager service</span>
+NotificationManager mNotifyMgr = 
+        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+<span class="hljs-comment">// Builds the notification and issues it.</span>
+mNotifyMgr.notify(mNotificationId, mBuilder.build());
+</code></pre>
 
                     
                     </section>
