@@ -76,7 +76,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [简单的拍照](http://hukai.me/android-training-course-in-chinese/multimedia/camera/photobasic.html)
       * [简单的录像](http://hukai.me/android-training-course-in-chinese/multimedia/camera/videobasic.html)
       * [控制相机硬件](http://hukai.me/android-training-course-in-chinese/multimedia/camera/cameradirect.html)
-   * [打印](http://hukai.me/android-training-course-in-chinese/multimedia/printing/index.html)
+   * [打印](http://hukai.me/android-training-course-in-chinese/multimedia/printing/index.html) - 编写中@[jdneo](https://github.com/jdneo)
       * [打印照片](http://hukai.me/android-training-course-in-chinese/multimedia/printing/photos.html)
       * [打印HTML文档](http://hukai.me/android-training-course-in-chinese/multimedia/printing/html-docs.html)
       * [打印自定义文档](http://hukai.me/android-training-course-in-chinese/multimedia/printing/custom-docs.html)
@@ -351,3 +351,6 @@ git push origin gh-pages
 * [百度云,点击下载](http://pan.baidu.com/s/1qWscYZU)
 
 仍然无法下载的同学，可以加入交流群，资料已经在群共享中。
+
+## 附加说明
+项目采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。
