@@ -125,9 +125,9 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [创建标准的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request.html)
       * [实现自定义的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request-custom.html)
 * [云服务](http://hukai.me/android-training-course-in-chinese/cloud/index.html)
-   * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html)
-      * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
-      * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html) - 编写@[jdneo](https://github.com/jdneo)，待校验
+   * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，@[jdneo](https://github.com/jdneo)，待校验
+      * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html)
+      * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - 编写中@[jdneo](https://github.com/jdneo)
 * [用户信息](contacts-provider/index.html) - 编写@[spencer198711](https://github.com/spencer198711)，待校验
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
@@ -217,10 +217,10 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
        * [创建IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/create-service.html)
        * [发送工作任务到IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/send-request.html)
        * [报告后台任务执行状态](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/report-status.html)
-   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
+   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [使用CursorLoader执行查询任务](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/setup-loader.html)
       * [处理查询的结果](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/handle-result.html)    
-   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html)
+   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
       * [保持设备的唤醒](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/wake-lock.html)
       * [执行重复的闹钟任务](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/alarms.html)
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
