@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.4" data-basepath="../.." data-revision="1404319293410">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.4" data-basepath="../.." data-revision="1404402640658">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3253,10 +3253,10 @@
 </blockquote>
 <h1 id="-bigview-">使用BigView样式</h1>
 <ul>
-<li>Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才会出现。只有当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。</li>
+<li>Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才能出现。当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。</li>
 </ul>
 <ul>
-<li>Big views在Android4.1被引进的，它支持在老版本设备。这节课叫你如何让把big view notifications合并进你的APP，同时提供normal view的全部功能。更多信息请见<a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#BigNotify">Notifications API guide</a> 。</li>
+<li>Big views在Android4.1被引进的，它不支持老版本设备。这节课叫你如何让把big view notifications合并进你的APP，同时提供normal view的全部功能。更多信息请见<a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#BigNotify">Notifications API guide</a> 。</li>
 </ul>
 <ul>
 <li><p>这是一个 normal view的例子</p>
@@ -3278,7 +3278,7 @@
 <h2 id="-notification-activity">设置Notification用来登陆一个新的Activity</h2>
 <ul>
 <li>这个例子应用用<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>的子类（PingService）来构造以及发布notification。  </li>
-<li>在这个代码片段中，<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>中的方法<a href="developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent">onHandleIntent()</a>) 指定了当用户点击notification时启动一个新的activity。方法<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)定义了pending intent在用户点击notification时应当被激发，因此登陆这个activity.</li>
+<li>在这个代码片段中，<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>中的方法<a href="developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent">onHandleIntent()</a>) 指定了当用户点击notification时启动一个新的activity。方法<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)定义了pending intent在用户点击notification时被激发，因此登陆这个activity.</li>
 </ul>
 <pre><code class="lang-java">
 Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
@@ -3316,7 +3316,7 @@ snoozeIntent.setAction(CommonConstants.ACTION_SNOOZE);
 PendingIntent piSnooze = PendingIntent.getService(<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span>, snoozeIntent, <span class="hljs-number">0</span>);
 </code></pre>
 <ul>
-<li>这个代码片段展示了如何构造一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">Builder</a>对象，它设置了big view 的样式为&quot;big text&quot;,同时设置了它的内容为提醒文字。它使用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action">addAction()</a>)方法来添加 将在big view中出现的Snooze与Dismiss按钮（以及它们相关联的pending intents).</li>
+<li>这个代码片段展示了如何构造一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">Builder</a>对象，它设置了big view 的样式为&quot;big text&quot;,同时设置了它的内容为提醒文字。它使用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action">addAction()</a>)方法来添加将要在big view中出现的Snooze与Dismiss按钮（以及它们相关联的pending intents).</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-comment">// Constructs the Builder object.</span>
 NotificationCompat.Builder builder =
