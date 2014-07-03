@@ -128,7 +128,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，@[jdneo](https://github.com/jdneo)，待校验
       * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html)
       * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
-   * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - 编写中@[jdneo](https://github.com/jdneo)
+   * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - 编写@[jdneo](https://github.com/jdneo)，待校验
 * [用户信息](contacts-provider/index.html) - 编写@[spencer198711](https://github.com/spencer198711)，待校验
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
@@ -154,7 +154,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [提供向上的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/ancestral.html)
       * [提供向后的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/temporal.html)
       * [实现向下的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/descendant.html)
-   * [通知提示用户](http://hukai.me/android-training-course-in-chinese/ux/notify-user/index.html) - 编写中@[fastcome1985](https://github.com/fastcome1985)
+   * [通知提示用户](http://hukai.me/android-training-course-in-chinese/ux/notify-user/index.html) - 编写@[fastcome1985](https://github.com/fastcome1985)，待校验
       * [建立Notification](http://hukai.me/android-training-course-in-chinese/ux/notify-user/build-notification.html)
       * [当启动Activity时保留导航](http://hukai.me/android-training-course-in-chinese/ux/notify-user/nav.html)
       * [更新Notification](http://hukai.me/android-training-course-in-chinese/ux/notify-user/update-notification.html)
@@ -241,7 +241,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [为多线程创建线程池](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/create-threadpool.html)
       * [执行代码运行在线程池中](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/run-code.html)
       * [与UI线程进行交互](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/communicate-ui.html)
-   * [避免ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - 编写中@[kesenhoo](httts://github.com/kesenhoo)
+   * [避免ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html)
    * [SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html)
 * [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)
