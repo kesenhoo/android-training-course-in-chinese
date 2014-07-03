@@ -4,7 +4,7 @@
 
 # 更新Notification
 
-* 当你需要对同一时间发布多次Notification时，你应该避免生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。
+* 当你需要对同一事件发布多次Notification时，你应该避免每次都生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。
 
 * 下面的章节描述了如何更新Notifications，以及如何移除它们。
 

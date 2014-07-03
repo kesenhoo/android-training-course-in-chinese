@@ -11,9 +11,9 @@
 * 使用进度指示器，可以调用 [setProgress()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress%28int,%20int,%20boolean%29)方法。determinate 与 indeterminate形式将在下面的章节中介绍。
 
 ## 展示固定长度的进度指示器
-* 为了展示一个确定长度的进度条，调用 [setProgress(max, progress, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))方法将进度条添加进notification，然后发布这个notification，第三个参数是个boolean类型，决定进度条是 indeterminate (true) 还是 determinate (false)。在你操作进行时，增加progress，更新notification。在操作结束时，progress应该等于max。一个常用的调用 [setProgress()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))方法是设置max为100，然后增加progress就像操作的“完成百分比”。
+* 为了展示一个确定长度的进度条，调用 [setProgress(max, progress, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))方法将进度条添加进notification，然后发布这个notification，第三个参数是个boolean类型，决定进度条是 indeterminate (true) 还是 determinate (false)。在你操作进行时，增加progress，更新notification。在操作结束时，progress应该等于max。一个常用的调用 [setProgress()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))的方法是设置max为100，然后增加progress就像操作的“完成百分比”。
 
-* 当操作完成的时候，你可以选择或者让进度条继续展示，或者移除它。无论哪种情况下，记得更新notification的文字来展示操作完成。移除进度条，调用[setProgress(0, 0, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)).比如：
+* 当操作完成的时候，你可以选择或者让进度条继续展示，或者移除它。无论哪种情况下，记得更新notification的文字来显示操作完成。移除进度条，调用[setProgress(0, 0, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))方法.比如：
 
 
 
@@ -73,9 +73,9 @@ new Thread(
 * 为了展示一个持续的(indeterminate)活动的指示器,用[setProgress(0, 0, true)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean))方法把指示器添加进notification，然后发布这个notification 。前两个参数忽略，第三个参数决定indicator 还是 indeterminate。结果是指示器与进度条有同样的样式，除了它的动画正在进行。
 
 
-* 在操作开始的时候发布notification，动画将会一直进行指导你更新notification。当操作完成时，调用 [setProgress(0, 0, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)) 方法，然后更新notification来移除这个动画指示器。一定要这么做，否责即使你操作完成了，动画还是会在那运行。同时也要记得更新notification的文字来显示操作完成。
+* 在操作开始的时候发布notification，动画将会一直进行直到你更新notification。当操作完成时，调用 [setProgress(0, 0, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)) 方法，然后更新notification来移除这个动画指示器。一定要这么做，否责即使你操作完成了，动画还是会在那运行。同时也要记得更新notification的文字来显示操作完成。
 
-* 为了观察持续的活动的指示器是如何工作的，指向前面的代码。定位到下面的几行：
+* 为了观察持续的活动的指示器是如何工作的，看前面的代码。定位到下面的几行：
  
 
 ```java
