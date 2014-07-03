@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.1" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.1" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,7 +3245,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_184">
+                    <section class="normal" id="section-gitbook_99">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
@@ -3291,7 +3291,7 @@
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.nfc"</span> <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"false"</span> /&gt;</span>
 </code></pre>
 <p>如果你设置了<a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html#required" target="_blank">android:required</a>=&quot;false&quot;，你必须要在代码中测试NFC和Android Beam文件传输是否被支持。</p>
-<p>为了再代码中测试Android Beam文件传输，我们先通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\" target="_blank">PackageManager.hasSystemFeature()</a>)<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->和参数<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC" target="_blank">FEATURE_NFC</a>，来测试设备是否支持NFC。下一步，通过<a href="http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT" target="_blank">SDK_INT</a>的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：</p>
+<p>为了再代码中测试Android Beam文件传输，我们先通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\" target="_blank">PackageManager.hasSystemFeature()</a>)和参数<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC" target="_blank">FEATURE_NFC</a>，来测试设备是否支持NFC。下一步，通过<a href="http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT" target="_blank">SDK_INT</a>的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     ...
     NfcAdapter mNfcAdapter;
@@ -3329,7 +3329,7 @@
 </code></pre>
 <h2 id="-">创建一个提供文件的回调函数</h2>
 <p>一旦你确认了设备支持Android Beam文件传输，那么可以添加一个回调函数，当Android Beam文件传输监测到用户希望与另一个支持NFC的设备发送文件时，系统会调用它。在该回调函数中，返回一个<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>对象数组，Android Beam文件传输将URI对应的文件拷贝发送给要接收的设备。</p>
-<p>要添加这个回调函数，我们需要实现<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html" target="_blank">NfcAdapter.CreateBeamUrisCallback</a>接口，和它的方法：<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html#createBeamUris\(android.nfc.NfcEvent\" target="_blank">createBeamUris()</a>)<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->，下面是一个例子：</p>
+<p>要添加这个回调函数，我们需要实现<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html" target="_blank">NfcAdapter.CreateBeamUrisCallback</a>接口，和它的方法：<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.CreateBeamUrisCallback.html#createBeamUris\(android.nfc.NfcEvent\" target="_blank">createBeamUris()</a>)，下面是一个例子：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     ...
     <span class="hljs-comment">// List of URIs to provide to Android Beam</span>
@@ -3354,7 +3354,7 @@
     ...
 }
 </code></pre>
-<p>一旦你实现了这个接口，通过调用<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUrisCallback\(android.nfc.NfcAdapter.CreateBeamUrisCallback, android.app.Activity\" target="_blank">setBeamPushUrisCallback()</a>)<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->将回调函数提供给Android Beam文件传输。下面是一个例子：</p>
+<p>一旦你实现了这个接口，通过调用<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUrisCallback\(android.nfc.NfcAdapter.CreateBeamUrisCallback, android.app.Activity\" target="_blank">setBeamPushUrisCallback()</a>)将回调函数提供给Android Beam文件传输。下面是一个例子：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     ...
     <span class="hljs-comment">// Instance that returns available files from this app</span>
@@ -3379,7 +3379,7 @@
 }
 </code></pre>
 <blockquote>
-<p><strong>Note：</strong>你也可以将<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>对象数组通过你应用的<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html" target="_blank">NfcAdapter</a>实例，直接提供给NFC框架。如果你能在NFC触碰事件发生之前，定义这些URI，那么你可以选择这个方法。要学习关于这个方法的知识，可以阅读：<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUris\(android.net.Uri[], android.app.Activity\" target="_blank">NfcAdapter.setBeamPushUris()</a>)。<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示--></p>
+<p><strong>Note：</strong>你也可以将<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>对象数组通过你应用的<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html" target="_blank">NfcAdapter</a>实例，直接提供给NFC框架。如果你能在NFC触碰事件发生之前，定义这些URI，那么你可以选择这个方法。要学习关于这个方法的知识，可以阅读：<a href="http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUris\(android.net.Uri[], android.app.Activity\" target="_blank">NfcAdapter.setBeamPushUris()</a>)。</p>
 </blockquote>
 <h2 id="-">定义要发送的文件</h2>
 <p>为了将一个或更多个文件发送给支持NFC的设备，需要为每一个文件获取一个文件URI（一个具有文件格式（file scheme）的URI），然后将它们添加至一个<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>对象数组中。要传输一个文件，你必须也有读文件的权限。例如，下面的例子展示的是你如何根据文件名获取它的文件URI，然后将URI添加至数组当中：</p>

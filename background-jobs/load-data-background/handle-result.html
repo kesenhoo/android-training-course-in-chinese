@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.2" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter done " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter done " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter done " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter done " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,76 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_96">
+                    <section class="normal" id="section-gitbook_11">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">处理查询的结果</h1>
+<p>正如前面一节课讲到的，你应该在 <a href="1">onCreateLoader()</a>的回调里面使用CursorLoader执行加载数据的操作。接下去Loader会提供查询数据的结果给Activity或者FragmentActivity实现的<a href="2">LoaderCallbacks.onLoadFinished()</a>回调方法。这个回调方法的参数之一是<a href="4">Cursor</a>，它包含了查询的数据。你可以使用Cursor对象来更新需要显示的数据或者进行下一步的处理。</p>
+<p>除了<a href="1">onCreateLoader()</a>与<a href="2">onLoadFinished()</a>，你也需要实现<a href="3">onLoaderReset()</a>。这个方法在CursorLoader检测到<a href="4">Cursor</a>上的数据发生变化的时候会被触发。当数据发生变化时，系统会触发重新查询的操作。</p>
+<!-- More -->
+
+<h2 id="handle-query-results">Handle Query Results</h2>
+<p>为了显示CursorLoader返回的Cursor数据，需要使用实现AdapterView的类，并为这个类绑定一个实现了CursorAdapter的Adapter。系统会自动把Cursor中的数据显示到View上。</p>
+<p>你可以在显示数据之前建立View与Adapter的关联。然后在<a href="2">onLoadFinished()</a>的时候把Cursor与Adapter进行绑定。一旦你把Cursor鱼Adapter进行绑定之后，系统会自动更新View。当Cursor上的内容发生改变的时候，也会触发这些操作。</p>
+<p>例如:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> String[] mFromColumns = {
+    DataProviderContract.IMAGE_PICTURENAME_COLUMN
+};
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] mToFields = {
+    R.id.PictureName
+};
+<span class="hljs-comment">// Gets a handle to a List View</span>
+ListView mListView = (ListView) findViewById(R.id.dataList);
+<span class="hljs-comment">/*
+ * Defines a SimpleCursorAdapter for the ListView
+ *
+ */</span>
+SimpleCursorAdapter mAdapter =
+    <span class="hljs-keyword">new</span> SimpleCursorAdapter(
+            <span class="hljs-keyword">this</span>,                <span class="hljs-comment">// Current context</span>
+            R.layout.list_item,  <span class="hljs-comment">// Layout for a single row</span>
+            <span class="hljs-keyword">null</span>,                <span class="hljs-comment">// No Cursor yet</span>
+            mFromColumns,        <span class="hljs-comment">// Cursor columns to use</span>
+            mToFields,           <span class="hljs-comment">// Layout fields to use</span>
+            <span class="hljs-number">0</span>                    <span class="hljs-comment">// No flags</span>
+    );
+<span class="hljs-comment">// Sets the adapter for the view</span>
+mListView.setAdapter(mAdapter);
+...
+<span class="hljs-comment">/*
+ * Defines the callback that CursorLoader calls
+ * when it's finished its query
+ */</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoadFinished</span>(Loader&lt;Cursor&gt; loader, Cursor cursor) {
+    ...
+    <span class="hljs-comment">/*
+     * Moves the query results into the adapter, causing the
+     * ListView fronting this adapter to re-display
+     */</span>
+    mAdapter.changeCursor(cursor);
+}
+</code></pre>
+<h2 id="delete-old-cursor-references">Delete Old Cursor References</h2>
+<p>当Cursor失效的时候，CursorLoader会被重置。这通常发生在Cursor相关的数据改变的时候。在重新执行查询操作之前，系统会执行你的<a href="3">onLoaderReset()</a>回调方法。在这个回调方法中，你应该删除当前Cursor上的所有数据，避免发生内存泄露。一旦onLoaderReset()执行结束，CursorLoader就会重新执行查询操作。</p>
+<p>例如:</p>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+ * Invoked when the CursorLoader is being reset. For example, this is
+ * called if the data in the provider changes and the Cursor becomes stale.
+ */</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoaderReset</span>(Loader&lt;Cursor&gt; loader) {
+
+    <span class="hljs-comment">/*
+     * Clears out the adapter's reference to the Cursor.
+     * This prevents memory leaks.
+     */</span>
+    mAdapter.changeCursor(<span class="hljs-keyword">null</span>);
+}
+</code></pre>
 
                     
                     </section>

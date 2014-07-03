@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.2" data-basepath="../.." data-revision="1404319293410">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,7 +3245,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_183">
+                    <section class="normal" id="section-gitbook_98">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
@@ -3262,7 +3262,7 @@
 <p><a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data android:mimeType=&quot;mime-type&quot; /&gt;</code></a></p>
 <p>匹配一个MIME类型。要指定那些你的应用能够处理的类型。</p>
 <p>例如，下面的例子展示了如何添加一个intent filter来激活你的activity：</p>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity
+<pre><code class="lang-xml">    <span class="hljs-tag">&lt;<span class="hljs-title">activity
 </span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.android.nfctransfer.ViewActivity"</span>
         <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"Android Beam Viewer"</span> &gt;</span>
         ...
@@ -3287,7 +3287,7 @@
 <p>由于你的应用对于其内部存储区域具有控制权，所以若要将文件拷贝至你应用的内部存储区域，写权限是不需要声明的。</p>
 <h2 id="-">获取拷贝文件的目录</h2>
 <p>Android Beam文件传输一次性将所有文件拷贝到目标设备的一个目录内，Android Beam文件传输通知所发出的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中包含有URI，他指向了第一个传输的文件。然而，你的应用也有可能接收到除了Android Beam文件传输之外的某个来源所发出的含有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>行为的Intent。为了明确你应该如何处理接收的Intent，你需要检查它的scheme和authority。</p>
-<p>为了获得URI的scheme，调用<a href="http://developer.android.com/reference/android/net/Uri.html#getScheme\(\" target="_blank">Uri.getScheme()</a>)<!--这里用gitbook显示出来的会多一个右括号，好想转移功能有点Bug，在其他md编辑器里，可以正常显示-->，下面的代码展示了如何明确架构并处理URI：</p>
+<p>为了获得URI的scheme，调用<a href="http://developer.android.com/reference/android/net/Uri.html#getScheme\(\" target="_blank">Uri.getScheme()</a>)，下面的代码展示了如何明确架构并处理URI：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     ...
     <span class="hljs-comment">// A File object containing the path to the transferred files</span>
@@ -3340,7 +3340,7 @@
         <span class="hljs-comment">// Get a string containing the file's parent directory</span>
         <span class="hljs-keyword">return</span> copiedFile.getParent();
     }
-    ...
+...
 </code></pre>
 <h3 id="-uri-">从内容URI获取目录</h3>
 <p>如果接收的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>包含一个内容URI，这个URI可能指向的是一个存储于<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>COntent Provider的目录和文件名。你可以通过检测URI的authority值来判断是否是<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的内容URI。一个<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a>的内容URI可能来自Android Beam文件传输也可能来自其它应用，但不管怎么样，你都能根据该内容URI获得一个目录和文件名。</p>
@@ -3394,7 +3394,7 @@
              }
         }
     }
-    ...
+...
 </code></pre>
 <p>要学习更多关于从Content Provider获取数据的知识，可以阅读：<a href="http://developer.android.com/guide/topics/providers/content-provider-basics.html#SimpleQuery" target="_blank">Retrieving Data from the Provider</a>。</p>
 
