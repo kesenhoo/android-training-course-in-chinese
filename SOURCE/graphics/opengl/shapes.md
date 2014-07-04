@@ -54,7 +54,7 @@ public class Triangle {
 
 在OpenGL中定义三角形非常简单，那么你是否想要增加一些复杂性呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：
 
-->![ccw-square](ccw-square.png "使用两个三角形画一个矩形")<-
+![ccw-square](ccw-square.png "使用两个三角形画一个矩形")
 
 再一次地，你需要以逆时针的形式为三角形顶点定义坐标来表现这个图形，并将值放入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)中。为了避免由两个三角形共享的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：
 
