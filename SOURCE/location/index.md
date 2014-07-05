@@ -28,3 +28,4 @@
 * [使用Mock Locations测试你的应用](location-testing.html)
 
     学习如何使用虚拟的位置数据来测试一个位置应用。在mock模式里面，，位置服务将会发送一些虚拟的位置数据。
+
