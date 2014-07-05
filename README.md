@@ -94,15 +94,15 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [运用投影与相机视图](http://hukai.me/android-training-course-in-chinese/graphics/opengl/projection.html)
       * [添加移动](http://hukai.me/android-training-course-in-chinese/graphics/opengl/motion.html)
       * [响应触摸事件](http://hukai.me/android-training-course-in-chinese/graphics/opengl/touch.html)
-* [动画](http://hukai.me/android-training-course-in-chinese/animations/index.md) - 编写@[wangyan3](https://github.com/wangyan3) - 5%
+* [动画](http://hukai.me/android-training-course-in-chinese/animations/index.md) - 编写@[lltowq](https://github.com/lltowq) - 5%
    * [淡入淡出两个View](http://hukai.me/android-training-course-in-chinese/animations/crossfade.html)
    * [使用ViewPager实现屏幕滑动](http://hukai.me/android-training-course-in-chinese/animations/screen-slide.html)
    * [卡片翻转的动画](http://hukai.me/android-training-course-in-chinese/animations/cardflip.html)
    * [缩放动画](http://hukai.me/android-training-course-in-chinese/animations/zoom.html)
    * [控件切换动画](http://hukai.me/android-training-course-in-chinese/animations/layout.html)
 * [连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
-   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - 编写@[acenodie](https://github.com/acenodie) - 10%
-      * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html)
+   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html)
+      * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html) - 编写@[acenodie](https://github.com/acenodie)
       * [使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)
       * [使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)
    * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%待校验
@@ -220,7 +220,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%待校验
       * [使用CursorLoader执行查询任务](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/setup-loader.html)
       * [处理查询的结果](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/handle-result.html)    
-   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html)
+   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - 编写@[lltowq](https://github.com/lltowq)
       * [保持设备的唤醒](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/wake-lock.html)
       * [执行重复的闹钟任务](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/alarms.html)
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
