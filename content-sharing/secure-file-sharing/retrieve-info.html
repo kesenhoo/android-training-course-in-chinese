@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.4" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.4" data-basepath="../.." data-revision="1404402640658">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,56 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_188">
+                    <section class="normal" id="section-gitbook_103">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">获取文件信息</h1>
+<p>当一个客户端应用尝试对一个有URI的文件进行操作时，应用可以向服务应用索取关于文件的信息，包括文件的数据类型和文件大小。数据类型可以帮助客户应用确定该文件自己能否处理，文件大小能帮助客户应用为文件设置合理的缓冲区。</p>
+<p>这节课将展示如何通过查询服务应用的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>来获取文件的MIME类型和尺寸。</p>
+<h2 id="-mime-">获取文件的MIME类型</h2>
+<p>一个文件的数据类型能够告知客户应用应该如何处理这个文件的内容。为了得到URI所对应文件的数据类型，客户应用调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#getType\(android.net.Uri\" target="_blank">ContentResolver.getType()</a>)。这个方法返回了文件的MIME类型。默认的，一个<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>通过文件的后缀名来确定其MIME类型。</p>
+<pre><code class="lang-java">...
+    <span class="hljs-comment">/*
+     * Get the file's content URI from the incoming Intent, then
+     * get the file's MIME type
+     */</span>
+    Uri returnUri = returnIntent.getData();
+    String mimeType = getContentResolver().getType(returnUri);
+...
+</code></pre>
+<h2 id="-">获取文件名和文件大小</h2>
+<p><a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>类有一个默认的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query\(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String\" target="_blank">query()</a>)方法的实现，它返回一个<a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a>，它包含了URI所关联的文件的名字和尺寸。默认的实现返回两列：</p>
+<p><a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME" target="_blank"><strong>DISPLAY_NAME</strong></a></p>
+<p>是文件的文件名，一个<a href="http://developer.android.com/reference/java/lang/String.html" target="_blank">String</a>。这个值和<a href="http://developer.android.com/reference/java/io/File.html#getName\(\" target="_blank">File.getName()</a>)所返回的值是一样的。</p>
+<p><a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE" target="_blank"><strong>SIZE</strong></a></p>
+<p>文件的大小，字节为单位，一个“long”型。这个值和<a href="http://developer.android.com/reference/java/io/File.html#length\(\" target="_blank">File.length()</a>)所返回的值是一样的。</p>
+<p>客户端应用可以通过将<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query\(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String\" target="_blank">query()</a>)的参数都设置为“null”，只保留URI这一参数，来同时获取文件的<a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME" target="_blank">名字</a>和<a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE" target="_blank">大小</a>。例如，下面的代码获取一个文件的<a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME" target="_blank">名字</a>和<a href="http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE" target="_blank">大小</a>，然后在两个<a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView</a>中进行显示：</p>
+<pre><code class="lang-java">...
+    <span class="hljs-comment">/*
+     * Get the file's content URI from the incoming Intent,
+     * then query the server app to get the file's display name
+     * and size.
+     */</span>
+    Uri returnUri = returnIntent.getData();
+    Cursor returnCursor =
+            getContentResolver().query(returnUri, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+    <span class="hljs-comment">/*
+     * Get the column indexes of the data in the Cursor,
+     * move to the first row in the Cursor, get the data,
+     * and display it.
+     */</span>
+    <span class="hljs-keyword">int</span> nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+    <span class="hljs-keyword">int</span> sizeIndex = returnCursor.getColumnIndex(OpenableColumns.SIZE);
+    returnCursor.moveToFirst();
+    TextView nameView = (TextView) findViewById(R.id.filename_text);
+    TextView sizeView = (TextView) findViewById(R.id.filesize_text);
+    nameView.setText(returnCursor.getString(nameIndex));
+    sizeView.setText(Long.toString(returnCursor.getLong(sizeIndex)));
+...
+</code></pre>
 
                     
                     </section>
