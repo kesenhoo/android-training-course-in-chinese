@@ -87,7 +87,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [缓存Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/cache-bitmap.html)
       * [管理Bitmap的内存占用](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/manage-bitmap-memory.html)
       * [在UI上显示Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/display-bitmap.html)
-   * [使用OpenGL ES显示图像](http://hukai.me/android-training-course-in-chinese/graphics/opengl/index.html) - 编写@[jdneo](https://github.com/jdneo) - 10%
+   * [使用OpenGL ES显示图像](http://hukai.me/android-training-course-in-chinese/graphics/opengl/index.html) - 编写@[jdneo](https://github.com/jdneo) - 待校验
       * [建立OpenGL ES的环境](http://hukai.me/android-training-course-in-chinese/graphics/opengl/environment.html)
       * [定义Shapes](http://hukai.me/android-training-course-in-chinese/graphics/opengl/shapes.html)
       * [绘制Shapes](http://hukai.me/android-training-course-in-chinese/graphics/opengl/draw.html)
@@ -114,7 +114,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [最小化更新操作的影响](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/regular-update.html)
       * [避免下载多余的数据](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/redundant-redundant.html)
       * [根据网络类型改变下载模式](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/connectivity-patterns.html)
-   * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html)
+   * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html) - 编写中@[jdneo](https://github.com/jdneo) - 5%
       * [创建Stub授权器](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-authenticator.html)
       * [创建Stub Content Provider](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-stub-provider.html)
       * [创建Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-sync-adapter.html)
@@ -134,7 +134,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
    * [显示联系人头像](http://hukai.me/android-training-course-in-chinese/contacts-provider/display-badge.html)
-* [位置信息](http://hukai.me/android-training-course-in-chinese/location/index.md) - 编写@[penkzhou](https://github.com/penkzhou) - 15%
+* [位置信息](http://hukai.me/android-training-course-in-chinese/location/index.md) - 编写@[penkzhou](https://github.com/penkzhou) - 待校验
    * [获取当前位置](http://hukai.me/android-training-course-in-chinese/location/retrieve-current.html)
    * [获取位置更新](http://hukai.me/android-training-course-in-chinese/location/retrieve-location-updates.html)
    * [显示位置地址](http://hukai.me/android-training-course-in-chinese/location/display-address.html)
