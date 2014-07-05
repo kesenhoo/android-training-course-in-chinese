@@ -24,7 +24,7 @@ Action bar 最基本的形式，就是为 activity 显示标题，并且在标�
 </manifest>
 ```
 
->注释：如果创建一个自定义主题，需确保它使用一个 Theme.Holo 主题作为父辈。详情请参见 [Action bar 的式样](styling.md)
+>注释：如果创建一个自定义主题，需确保它使用一个 Theme.Holo 主题作为父辈。详情请查看 [Action bar 风格化](styling.html)
 
 到此，你的 app 使用了 Theme.Holo 主题，并且所有的 activity 都显示 action bar。
 
@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity { ... }
 <activity android:theme="@style/Theme.AppCompat.Light" ... >
 ```
 
->注释：如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请参见 [Action bar 的式样](styling.md)
+>注释：如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请查看 [Action bar 风格化](styling.html)
 
 当 app 运行在 Android 2.1(API level 7) 或者以上时，activity 将包含 action bar。
 

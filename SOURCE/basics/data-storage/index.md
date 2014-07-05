@@ -1,6 +1,6 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
 
-> 校对:[KOST](https://github.com/K0ST)
+> 校对:
 
 # 数据保存
 

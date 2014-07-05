@@ -11,6 +11,7 @@
        * [建立ActionBar](basics/actionbar/setting-up.md)
        * [添加Action按钮](basics/actionbar/adding-buttons.md)
        * [ActionBar的风格化](basics/actionbar/styling.md)
+       * [ActionBar的覆盖层叠](basics/actionbar/overlaying.md)
    * [兼容不同的设备](basics/supporting-devices/index.md)
        * [适配不同的语言](basics/supporting-devices/languages.md)
        * [适配不同的屏幕](basics/supporting-devices/screens.md)

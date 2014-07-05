@@ -1,4 +1,4 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)(2014-06-24)
 
 > 校对:
 

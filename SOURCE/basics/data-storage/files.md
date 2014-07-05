@@ -1,6 +1,6 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
 
-> 校对:[KOST](https://github.com/K0ST)
+> 校对:
 
 # Saving to Files保存到文件
 

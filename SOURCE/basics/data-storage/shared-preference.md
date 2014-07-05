@@ -1,6 +1,6 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo)
 
-> 校对:[KOST](https://github.com/K0ST)
+> 校对:
 
 # Saving Key-Value Sets保存到Preference
 如果你有一个相对较小的key-value集合需要保存，你应该使用[SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) APIs。 SharedPreferences 对象指向了一个保存key-value pairs的文件，并且它提供了简单的方法来读写这个文件。每一个 SharedPreferences 文件都是由framework管理的并且可以是私有或者可分享的。

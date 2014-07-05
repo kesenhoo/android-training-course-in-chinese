@@ -5,11 +5,10 @@
 ## Google Android官方培训课程
 <http://developer.android.com/training/index.html>
 
-这是由Google Android团队开设的一系列培训课程，从2012年开始的10几篇文章，不断的增加与更新，直到现在2014年中，已经有近百个课程，200篇左右的文章。这真的是一份学习Android应用开发的绝佳资料。
+Google Android团队在2012年起开设了Training板块，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
 
-很可惜，这么一份很好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，一直断断续续的在学习Android官方的Training课程，并很拙劣的输出了不少[学习翻译笔记](http://hukai.me/blog/categories/android-training/)，个人实力与精力有限，很期待能够通过发起这个项目，借助大家的力量，一起尽快完成所有课程的中文版，更好的为学习Android开发贡献力量。
-
-期待大家的加入！
+这么好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，断断续续的在学习Android官方的Training课程，并的输出了不少翻译[学习笔记](http://hukai.me)，因个人实力与精力有限，很期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。
+这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
 
 <a name="online_reading"></a>
 ## 在线阅读
@@ -20,59 +19,60 @@
 <a name="courses"></a>
 ## 课程结构
 
-**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名**
+**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名，所有文章均使用Markdown格式编写，关于Markdown，请看下面的介绍**
 
 * [序言](http://hukai.me/android-training-course-in-chinese/basics/index.html)
 * [开始](http://hukai.me/android-training-course-in-chinese/basics/index.html)
    * [建立你的第一个App](http://hukai.me/android-training-course-in-chinese/basics/firstapp/index.html) - 编写中@[yuanfentiank789](https://github.com/yuanfentiank789)
        * [创建一个Android项目](http://hukai.me/android-training-course-in-chinese/basics/firstapp/creating-project.html)
        * [执行你的程序](http://hukai.me/android-training-course-in-chinese/basics/firstapp/running-app.html)
-       * [建立一个简单的用户界面](bhttp://hukai.me/android-training-course-in-chinese/asics/firstapp/building-ui.html)
+       * [建立一个简单的用户界面](http://hukai.me/android-training-course-in-chinese/asics/firstapp/building-ui.html)
        * [启动另外的Activity](http://hukai.me/android-training-course-in-chinese/basics/firstapp/starting-activity.html)
-   * [添加ActionBar](http://hukai.me/android-training-course-in-chinese/basics/actionbar/index.html) - 编写中@[vincent4j](https://github.com/vincent4j)
+   * [添加ActionBar](http://hukai.me/android-training-course-in-chinese/basics/actionbar/index.html) - 编写@[vincent4j](https://github.com/vincent4j)，待校验
        * [建立ActionBar](http://hukai.me/android-training-course-in-chinese/basics/actionbar/setting-up.html)
        * [添加Action按钮](http://hukai.me/android-training-course-in-chinese/basics/actionbar/adding-buttons.html)
        * [ActionBar的风格化](http://hukai.me/android-training-course-in-chinese/basics/actionbar/styling.html)
-   * [兼容不同的设备](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/index.html)
+       * [ActionBar的覆盖层叠](http://hukai.me/android-training-course-in-chinese/basics/actionbar/overlaying.html)
+   * [兼容不同的设备](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/index.html) - 编写@[Lin-H](https://github.com/Lin-H)，待校验
        * [适配不同的语言](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/languages.html)
        * [适配不同的屏幕](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/screens.html)
        * [适配不同的系统版本](http://hukai.me/android-training-course-in-chinese/basics/supporting-devices/platforms.html)
-   * [管理Activity的生命周期](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [管理Activity的生命周期](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
        * [启动与销毁Activity](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/starting.html)
        * [暂停与恢复Activity](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/pausing.html)
        * [停止与重启Activity](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/stopping.html)
        * [重新创建Activity](http://hukai.me/android-training-course-in-chinese/basics/activity-lifecycle/recreating.html)
-   * [使用Fragment建立动态的UI](http://hukai.me/android-training-course-in-chinese/basics/fragments/index.html) - 待校验，编写@[fastcome1985](https://github.com/fastcome1985)
+   * [使用Fragment建立动态的UI](http://hukai.me/android-training-course-in-chinese/basics/fragments/index.html) - 编写@[fastcome1985](https://github.com/fastcome1985)，待校验
        * [创建一个Fragment](http://hukai.me/android-training-course-in-chinese/basics/fragments/creating.html)
        * [建立灵活动态的UI](http://hukai.me/android-training-course-in-chinese/basics/fragments/fragment-ui.html)
        * [Fragments之间的交互](http://hukai.me/android-training-course-in-chinese/basics/fragments/communicating.html)
-   * [数据保存](http://hukai.me/android-training-course-in-chinese/basics/data-storage/index.html) - 校验中@[K0ST](https://github.com/K0ST)，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [数据保存](http://hukai.me/android-training-course-in-chinese/basics/data-storage/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
        * [保存到Preference](http://hukai.me/android-training-course-in-chinese/basics/data-storage/shared-preference.html)
        * [保存到文件](http://hukai.me/android-training-course-in-chinese/basics/data-storage/files.html)
        * [保存到数据库](http://hukai.me/android-training-course-in-chinese/basics/data-storage/database.html)
-   * [与其他应用的交互](http://hukai.me/android-training-course-in-chinese/basics/intents/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [与其他应用的交互](http://hukai.me/android-training-course-in-chinese/basics/intents/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
        * [Intent的发送](http://hukai.me/android-training-course-in-chinese/basics/intents/sending.html)
        * [接收Activity返回的结果](http://hukai.me/android-training-course-in-chinese/basics/intents/result.html)
        * [Intent过滤](http://hukai.me/android-training-course-in-chinese/basics/intents/filters.html)
 * [分享](http://hukai.me/android-training-course-in-chinese/content-sharing/index.html)
-   * [分享简单的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [分享简单的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [给其他App发送简单的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/send.html)
       * [接收从其他App返回的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/receive.html)
       * [添加一个简便的分享动作](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/shareaction.html)
-   * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/index.html)
+   * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/index.html) - 编写中@[jdneo](https://github.com/jdneo)
       * [建立文件分享](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/setup-sharing.html)
       * [分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/sharing-file.html)
       * [请求分享一个文件](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/request-file.html)
       * [获取文件信息](http://hukai.me/android-training-course-in-chinese/content-sharing/secure-file-sharing/retrieve-info.html)
-   * [使用NFC分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/beam-files/index.html)
+   * [使用NFC分享文件](http://hukai.me/android-training-course-in-chinese/content-sharing/beam-files/index.html) - 编写@[jdneo](https://github.com/jdneo)，待校验
       * [发送文件给其他设备](http://hukai.me/android-training-course-in-chinese/content-sharing/beam-files/sending-files.html)
       * [接收其他设备的文件](http://hukai.me/android-training-course-in-chinese/content-sharing/beam-files/receive-files.html)
 * [多媒体](http://hukai.me/android-training-course-in-chinese/multimedia/index.html)
-   * [管理音频播放](http://hukai.me/android-training-course-in-chinese/multimedia/audio/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [管理音频播放](http://hukai.me/android-training-course-in-chinese/multimedia/audio/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [控制你得应用的音量与播放](http://hukai.me/android-training-course-in-chinese/multimedia/audio/volume-playback.html)
       * [管理音频焦点](http://hukai.me/android-training-course-in-chinese/multimedia/audio/audio-focus.html)
       * [兼容音频输出设备](http://hukai.me/android-training-course-in-chinese/multimedia/audio/audio-output.html)
-   * [拍照](http://hukai.me/android-training-course-in-chinese/multimedia/camera/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [拍照](http://hukai.me/android-training-course-in-chinese/multimedia/camera/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [简单的拍照](http://hukai.me/android-training-course-in-chinese/multimedia/camera/photobasic.html)
       * [简单的录像](http://hukai.me/android-training-course-in-chinese/multimedia/camera/videobasic.html)
       * [控制相机硬件](http://hukai.me/android-training-course-in-chinese/multimedia/camera/cameradirect.html)
@@ -81,7 +81,7 @@
       * [打印HTML文档](http://hukai.me/android-training-course-in-chinese/multimedia/printing/html-docs.html)
       * [打印自定义文档](http://hukai.me/android-training-course-in-chinese/multimedia/printing/custom-docs.html)
 * [图像](http://hukai.me/android-training-course-in-chinese/graphics/index.html)
-   * [高效显示Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [高效显示Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [高效加载大图](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/load-bitmap.html)
       * [非UI线程处理Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/process-bitmap.html)
       * [缓存Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/cache-bitmap.html)
@@ -105,11 +105,11 @@
       * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html)
       * [使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)
       * [使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)
-   * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [连接到网络](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/connecting.html)
       * [管理使用的网络](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/managing.html)
       * [解析XML数据](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/xml.html)
-   * [高效下载](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [高效下载](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [为网络访问更加高效而优化下载](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/efficient-network-access.html)
       * [最小化更新操作的影响](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/regular-update.html)
       * [避免下载多余的数据](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/redundant-redundant.html)
@@ -119,17 +119,17 @@
       * [创建Stub Content Provider](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-stub-provider.html)
       * [创建Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-sync-adapter.html)
       * [执行Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/running-sync-adapter.html)
-   * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
+   * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [发送简单的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/simple.html)
       * [建立请求队列](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request-queue.html)
       * [创建标准的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request.html)
       * [实现自定义的网络请求](http://hukai.me/android-training-course-in-chinese/connectivity/volley/request-custom.html)
 * [云服务](http://hukai.me/android-training-course-in-chinese/cloud/index.html)
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html)
-      * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+      * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html)
-* [用户信息](contacts-provider/index.html) - 待校验，编写@[spencer198711](https://github.com/spencer198711)
+* [用户信息](contacts-provider/index.html) - 编写@[spencer198711](https://github.com/spencer198711)，待校验
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
@@ -176,7 +176,7 @@
       * [为TV优化Layout](http://hukai.me/android-training-course-in-chinese/ui/tv/optimize-layouts-tv.html)
       * [为TV优化导航](http://hukai.me/android-training-course-in-chinese/ui/tv/optimize-nav-tv.html)
       * [处理不支持TV的功能](http://hukai.me/android-training-course-in-chinese/ui/tv/unsupport-features-tv.html)
-   * [创建自定义View](http://hukai.me/android-training-course-in-chinese/ui/custom-view/index.html) -  待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [创建自定义View](http://hukai.me/android-training-course-in-chinese/ui/custom-view/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [创建自定义的View类](http://hukai.me/android-training-course-in-chinese/ui/custom-view/create-view.html)
       * [实现自定义View的绘制](http://hukai.me/android-training-course-in-chinese/ui/custom-view/custom-draw.html)
       * [使得View可交互](http://hukai.me/android-training-course-in-chinese/ui/custom-view/make-interactive.html)
@@ -186,17 +186,17 @@
       * [代理至新的APIs](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/new-impl.html)
       * [使用旧的APIs实现新API的效果](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/older-impl.html)
       * [使用版本敏感的组件](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/using-component.html)
-   * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html)
+   * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - 编写中@[K0ST](https://github.com/K0ST)
       * [开发辅助程序](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-app.html)
       * [开发辅助服务](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-service.html)
-   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html)
+   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - 编写中@[K0ST](https://github.com/K0ST)
       * [淡化系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/dim.html)
       * [隐藏系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-ui.html)
       * [隐藏导航Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-nav.html)
       * [全屏沉浸式应用](http://hukai.me/android-training-course-in-chinese/ui/system-ui/immersive.html)
       * [响应UI可见性的变化](http://hukai.me/android-training-course-in-chinese/ui/system-ui/visibility.html)
 * [用户输入](http://hukai.me/android-training-course-in-chinese/input/index.html)
-   * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html)
+   * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - 编写中@[Andrwyw](https://github.com/Andrwyw)
       * [检测常用的手势](http://hukai.me/android-training-course-in-chinese/input/gestures/detector.html)
       * [跟踪手势移动](http://hukai.me/android-training-course-in-chinese/input/gestures/movement.html)
       * [Scroll手势动画](http://hukai.me/android-training-course-in-chinese/input/gestures/scroll.html)
@@ -213,30 +213,30 @@
       * [支持不同的Android系统版本](http://hukai.me/android-training-course-in-chinese/input/game-controller/compatibility.html)
       * [支持多个控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/multi-controller.html)
 * [后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/index.html)
-    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - (待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
        * [创建IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/create-service.html)
        * [发送工作任务到IntentService](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/send-request.html)
        * [报告后台任务执行状态](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/report-status.html)
-   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html)
+   * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - 编写中@[kesenhoo](https://github.com/kesenhoo)
       * [使用CursorLoader执行查询任务](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/setup-loader.html)
       * [处理查询的结果](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/handle-result.html)    
    * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html)
       * [保持设备的唤醒](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/wake-lock.html)
       * [执行重复的闹钟任务](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/alarms.html)
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
-   * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) -  待校验，编写@[kesenhoo](https://github.com/kesenhoo)
-   * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
+   * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
    * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html)
       * [优化layout的层级](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/optimizing-layout.html)
       * [使用include标签重用layouts](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/reuse-layouts.html)
       * [按需加载视图](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/loading-ondemand.html)
       * [使得ListView滑动顺畅](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/smooth-scrolling.html)
-   * [优化电池寿命](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/index.html) - 待校验，编写@[kesenhoo](https://github.com/kesenhoo)
+   * [优化电池寿命](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo)，待校验
       * [监测电量与充电状态](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/battery-monitor.html)
       * [判断与监测Docking状态](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/docking-monitor.html)
       * [判断与监测网络连接状态](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/connectivity-monitor.html)
       * [根据需要操作Broadcast接受者](http://hukai.me/android-training-course-in-chinese/performance/monitor-device-state/manifest-receivers.html)
-   * [多线程操作](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/index.html)
+   * [多线程操作](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/index.html) - 编写中@[AllenZheng1991](https://github.com/AllenZheng1991)
       * [指定一段代码执行在一个线程](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/define-runnable.html)
       * [为多线程创建线程池](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/create-threadpool.html)
       * [执行代码运行在线程池中](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/run-code.html)
@@ -295,7 +295,7 @@ git fetch upstream
 
    * Mac版<http://url.cn/LddkKy>
    * PC版<http://url.cn/LLOySy>
-   * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 
+   * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始编写文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接编写。 下载链接无法使用的，请加入群，在群共享中进行下载。
 
 * 5)若是在编写文件之前或者提交编写文件之前，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地，再把本地的更新提交到自己的远程仓库，这样才能让自己的远程仓库与原始的Fork仓库保持一致。
 
@@ -321,25 +321,33 @@ git push origin gh-pages
 
 * 7)登入Github账户，找到自己的远程仓库，在右边的Pull Request里面提交与原始Fork仓库的合并的请求，提交之后，我会进行处理再合并到项目主仓库。
 
-## MarkDown简明语法
+## 文章格式MarkDown
 
-<http://jianshu.io/p/q81RER>
+> Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档，然后转换成格式丰富的HTML页面。    —— [维基百科](https://zh.wikipedia.org/wiki/Markdown)
+
+10分钟简明语法请参考：<http://jianshu.io/p/q81RER>
 
 附加技巧：
-* [点击链接跳到本地其他页面的待认领列表](index.html#courses)。
-
-`[点击链接跳到首页](index.html#course)`
-
-* [点击链接跳到本页面的在线阅读模块](#online_reading)
-
-`[点击链接跳到页面内部](#online_reading)`
 
 * 插入的图片请放到你编辑的md文件的同一层级目录下，用法如下
 
 ` ![basic-lifecycle-paused](basic-lifecycle-paused.png "这张图演示了Activity生命周期中的暂停状态")`
 
-有不清楚的地方请直接查看现成的源码示例。
+* [点击链接跳到本页面的在线阅读段落](#online_reading)
+
+`[点击链接跳到本页面的在线阅读段落](#online_reading)`
+
+* [点击链接跳到本地其他页面的指定段落](index.html#courses)。
+
+`[点击链接跳到本地其他页面的指定段落](index.html#course)`
+
+有不清楚的地方请直接查看由我编辑的课程源代码示例。
 
 ## Training离线文档
 近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
-我把所有的Google Android文档打包存在云端，有需要的同学点击下载http://url.cn/OTdU3a
+我把所有的Google Android文档打包存在云端，有需要的同学点击下面的链接进行下载：
+
+* [微云,点击下载](http://url.cn/PuW5f1)
+* [百度云,点击下载](http://pan.baidu.com/s/1qWscYZU)
+
+仍然无法下载的同学，可以加入交流群，资料已经在群共享中。
