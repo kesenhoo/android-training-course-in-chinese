@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.5.2" data-basepath="../.." data-revision="1403941742443">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.5.2" data-basepath="../.." data-revision="1404402640658">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2187,7 +2187,7 @@
         <li class="chapter " data-level="14.2" data-path="background-jobs/load-data-background/index.html">
             
             <a href="../../background-jobs/load-data-background/index.html">
-                <i class="fa fa-check"></i> <b>14.2.</b> 在后台加载数据
+                <i class="fa fa-check"></i> <b>14.2.</b> 使用CursorLoader在后台加载数据
             </a>
             
             
@@ -3138,7 +3138,7 @@
     
         <a href="../../background-jobs/run-background-service/report-status.html" title="报告后台任务执行状态" class="chapter  " data-progress="14.1.3" style="left: 79.26829268292683%;"></a>
     
-        <a href="../../background-jobs/load-data-background/index.html" title="在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
+        <a href="../../background-jobs/load-data-background/index.html" title="使用CursorLoader在后台加载数据" class="chapter  " data-progress="14.2" style="left: 79.67479674796748%;"></a>
     
         <a href="../../background-jobs/load-data-background/setup-loader.html" title="使用CursorLoader执行查询任务" class="chapter  " data-progress="14.2.1" style="left: 80.08130081300813%;"></a>
     
@@ -3245,13 +3245,190 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_296">
+                    <section class="normal" id="section-gitbook_219">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">开发辅助服务</h1>
+<p>本课程将教您：</p>
+<ol>
+<li><p>创建Accessibility Service</p>
+</li>
+<li><p>配置你的Accessibility Service</p>
+</li>
+<li><p>响应AccessibilityEvents</p>
+</li>
+<li><p>从View层级中提取更多信息</p>
+</li>
+</ol>
+<p>Accessibility Service是Android系统框架提供给安装在设备上应用的一个可选的导航反馈特性。Accessibility Service 可以替代应用与用户交流反馈，比如将文本转化为语音提示，或是用户的手指悬停在屏幕上一个较重要的区域时的触摸反馈等。本课程将教您如何创建一个Accessibility Service，同时处理来自应用的信息，并将这些信息反馈给用户。</p>
+<h2 id="-accessibility-service">创建Accessibility Service</h2>
+<p>Accessibility Service可以绑定在一个正常的应用中，或者是单独的一个Android项目都可以。创建一个Accessibility Service的步骤与创建普通Service的步骤相似，在你的项目中创建一个继承于<a href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html" target="_blank">AccessibilityService</a>的类：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">package</span> com.example.android.apis.accessibility;
+
+<span class="hljs-keyword">import</span> android.accessibilityservice.AccessibilityService;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAccessibilityService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AccessibilityService</span> {</span>
+...
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onAccessibilityEvent</span>(AccessibilityEvent event) {
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onInterrupt</span>() {
+    }
+
+...
+}
+</code></pre>
+<p>与其他Service类似，你必须在manifest文件当中声明这个Service。记得标明它监听处理了<code>android.accessibilityservice</code>事件，以便Service在其他应用产生<a href="http://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html" target="_blank">AccessibilityEvent</a>的时候被调用。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;<span class="hljs-title">service</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".MyAccessibilityService"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.accessibilityservice.AccessibilityService"</span> /&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+     . . .
+<span class="hljs-tag">&lt;/<span class="hljs-title">service</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+</code></pre>
+<p>如果你为这个Service创建了一个新项目，且仅仅是一个Service而不准备做成一个应用，那么你就可以移除启动的Activity(一般为MainActivity.java)，同样也记得在manifest中将这个Activity声明移除。</p>
+<h2 id="-accessibility-service">配置你的Accessibility Service</h2>
+<p>设置Accessibility Service的配置变量会告诉系统如何让Service运行与何时运行。你希望响应哪种类型的事件？Service是否对所有的应用有效还是对部分指定包名的应用有效？使用哪些不同类型的反馈？</p>
+<p>你有两种设置这些变量属性的方法，一种向下兼容的办法是通过代码来进行设定，使用<code>setServiceInfo</code>(<a href="http://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#setServiceInfo(android.accessibilityservice.AccessibilityServiceInfo" target="_blank">android.accessibilityservice.AccessibilityServiceInfo</a>)。你需要重写(<em>override</em>)<code>onServiceConnected()</code>方法，并在这里进行Service的配置。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceConnected</span>() {
+    <span class="hljs-comment">// Set the type of events that this service wants to listen to.  Others</span>
+    <span class="hljs-comment">// won't be passed to this service.</span>
+    info.eventTypes = AccessibilityEvent.TYPE_VIEW_CLICKED |
+            AccessibilityEvent.TYPE_VIEW_FOCUSED;
+
+    <span class="hljs-comment">// If you only want this service to work with specific applications, set their</span>
+    <span class="hljs-comment">// package names here.  Otherwise, when the service is activated, it will listen</span>
+    <span class="hljs-comment">// to events from all applications.</span>
+    info.packageNames = <span class="hljs-keyword">new</span> String[]
+            {<span class="hljs-string">"com.example.android.myFirstApp"</span>, <span class="hljs-string">"com.example.android.mySecondApp"</span>};
+
+    <span class="hljs-comment">// Set the type of feedback your service will provide.</span>
+    info.feedbackType = AccessibilityServiceInfo.FEEDBACK_SPOKEN;
+
+    <span class="hljs-comment">// Default services are invoked only if no package-specific ones are present</span>
+    <span class="hljs-comment">// for the type of AccessibilityEvent generated.  This service *is*</span>
+    <span class="hljs-comment">// application-specific, so the flag isn't necessary.  If this was a</span>
+    <span class="hljs-comment">// general-purpose service, it would be worth considering setting the</span>
+    <span class="hljs-comment">// DEFAULT flag.</span>
+
+    <span class="hljs-comment">// info.flags = AccessibilityServiceInfo.DEFAULT;</span>
+
+    info.notificationTimeout = <span class="hljs-number">100</span>;
+
+    <span class="hljs-keyword">this</span>.setServiceInfo(info);
+
+}
+</code></pre>
+<p>在Android 4.0之后，就用另一种方式来设置了：通过设置XML文件来进行配置。一些特性的选项比如<code>canRetrieveWindowContent</code>仅仅可以在XML可以配置。对于上面所示的相应的配置，利用XML配置如下：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">accessibility-service
+</span>     <span class="hljs-attribute">android:accessibilityEventTypes</span>=<span class="hljs-value">"typeViewClicked|typeViewFocused"</span>
+     <span class="hljs-attribute">android:packageNames</span>=<span class="hljs-value">"com.example.android.myFirstApp, com.example.android.mySecondApp"</span>
+     <span class="hljs-attribute">android:accessibilityFeedbackType</span>=<span class="hljs-value">"feedbackSpoken"</span>
+     <span class="hljs-attribute">android:notificationTimeout</span>=<span class="hljs-value">"100"</span>
+     <span class="hljs-attribute">android:settingsActivity</span>=<span class="hljs-value">"com.example.android.apis.accessibility.TestBackActivity"</span>
+     <span class="hljs-attribute">android:canRetrieveWindowContent</span>=<span class="hljs-value">"true"</span>
+/&gt;</span>
+</code></pre>
+<p>如果你确定是通过XML进行配置，那么请确保在manifest文件中通过&lt; meta-data &gt;标签指定这个配置文件。假设此配置文件存放的地址为：<code>res/xml/serviceconfig.xml</code>，那么标签应该如下:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">service</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".MyAccessibilityService"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.accessibilityservice.AccessibilityService"</span> /&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">meta-data</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.accessibilityservice"</span>
+     <span class="hljs-attribute">android:resource</span>=<span class="hljs-value">"@xml/serviceconfig"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">service</span>&gt;</span>
+</code></pre>
+<h2 id="-accessibility-event">响应Accessibility Event</h2>
+<p>现在你的Service已经配置好并可以监听Accessibility Event了，来写一些响应这些事件的代码吧！首先就是要重写<em>onAccessibilityEvent(AccessibilityEvent)</em>方法，在这个方法中，使用<code>getEventType()</code>来确定事件的类型，使用<code>getContentDescription()</code>来提产生这个事件的View相关的文本标签。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onAccessibilityEvent</span>(AccessibilityEvent event) {
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> eventType = event.getEventType();
+    String eventText = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">switch</span>(eventType) {
+        <span class="hljs-keyword">case</span> AccessibilityEvent.TYPE_VIEW_CLICKED:
+            eventText = <span class="hljs-string">"Focused: "</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> AccessibilityEvent.TYPE_VIEW_FOCUSED:
+            eventText = <span class="hljs-string">"Focused: "</span>;
+            <span class="hljs-keyword">break</span>;
+    }
+
+    eventText = eventText + event.getContentDescription();
+
+    <span class="hljs-comment">// Do something nifty with this text, like speak the composed string</span>
+    <span class="hljs-comment">// back to the user.</span>
+    speakToUser(eventText);
+    ...
+}
+</code></pre>
+<h2 id="-view-">从View层级中提取更多信息</h2>
+<p>这一步并不是必要步骤，但是却非常有用。Android 4.0版本中增加了一个新特性，就是能够用AccessibilityService来遍历View层级，并从产生Accessibility 事件的组件与它的父子组件中提取必要的信息。为了实现这个目的，你需要在XML文件中进行如下的配置：</p>
+<ol>
+<li>立即获取到产生这个事件的Parent</li>
+<li>在这个Parent中寻找文本标签或勾选框</li>
+<li>如果找到，创建一个字符串来反馈给用户，提示内容和是否已勾选。</li>
+<li>如果当遍历View的时候某处返回了null值，那么就直接结束这个方法。</li>
+</ol>
+<pre><code class="lang-java"><span class="hljs-comment">// Alternative onAccessibilityEvent, that uses AccessibilityNodeInfo</span>
+
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onAccessibilityEvent</span>(AccessibilityEvent event) {
+
+    AccessibilityNodeInfo source = event.getSource();
+    <span class="hljs-keyword">if</span> (source == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Grab the parent of the view that fired the event.</span>
+    AccessibilityNodeInfo rowNode = getListItemNodeInfo(source);
+    <span class="hljs-keyword">if</span> (rowNode == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Using this parent, get references to both child nodes, the label and the checkbox.</span>
+    AccessibilityNodeInfo labelNode = rowNode.getChild(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">if</span> (labelNode == <span class="hljs-keyword">null</span>) {
+        rowNode.recycle();
+        <span class="hljs-keyword">return</span>;
+    }
+
+    AccessibilityNodeInfo completeNode = rowNode.getChild(<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">if</span> (completeNode == <span class="hljs-keyword">null</span>) {
+        rowNode.recycle();
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Determine what the task is and whether or not it's complete, based on</span>
+    <span class="hljs-comment">// the text inside the label, and the state of the check-box.</span>
+    <span class="hljs-keyword">if</span> (rowNode.getChildCount() &lt; <span class="hljs-number">2</span> || !rowNode.getChild(<span class="hljs-number">1</span>).isCheckable()) {
+        rowNode.recycle();
+        <span class="hljs-keyword">return</span>;
+    }
+
+    CharSequence taskLabel = labelNode.getText();
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">boolean</span> isComplete = completeNode.isChecked();
+    String completeStr = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-keyword">if</span> (isComplete) {
+        completeStr = getString(R.string.checked);
+    } <span class="hljs-keyword">else</span> {
+        completeStr = getString(R.string.not_checked);
+    }
+    String reportStr = taskLabel + completeStr;
+    speakToUser(reportStr);
+}
+</code></pre>
+<p>现在你已经实现了一个完整可运行的Accessibility Service。尝试着调整它与用户的交互方式吧！比如添加语音引擎，或者添加震动来提供触觉上的反馈都是不错的选择！</p>
 
                     
                     </section>
