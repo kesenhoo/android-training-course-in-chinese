@@ -101,4 +101,4 @@ public class MyWakefulReceiver extends IntentService{
 	}
 }
 ```
-[下一课：调度重复闹钟](https://developer.android.com/training/scheduling/alarms.html)
+[下一课：调度重复闹钟]()
