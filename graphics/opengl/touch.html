@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.6" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.6" data-basepath="../.." data-revision="1404620541933">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,85 @@
                     <section class="normal" id="section-gitbook_139">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">响应触摸事件</h1>
+<p>让对象根据预设的程序运动，如让一个三角形旋转可以有效地让人引起注意，但是如果你希望可以让OpenGL ES与用户交互呢？让你的OpenGL ES应用可以与触摸交互的关键点在于，拓展你的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的实现，覆写<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent\(android.view.MotionEvent\" target="_blank">onTouchEvent()</a>)方法来监听触摸事件。</p>
+<p>这节课将会向你展示如何监听触摸事件，让用户旋转一个OpenGL ES对象。</p>
+<h2 id="-">配置触摸监听器</h2>
+<p>为了让你的OpenGL ES应用响应触摸事件，你必须实现在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>类中的<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent\(android.view.MotionEvent\" target="_blank">onTouchEvent()</a>)方法。下述实现的样例展示了如何监听<a href="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE" target="_blank">MotionEvent.ACTION_MOVE</a>事件，并将它们转换为形状旋转的角度：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouchEvent</span>(MotionEvent e) {
+    <span class="hljs-comment">// MotionEvent reports input details from the touch screen</span>
+    <span class="hljs-comment">// and other input controls. In this case, you are only</span>
+    <span class="hljs-comment">// interested in events where the touch position changed.</span>
+
+    <span class="hljs-keyword">float</span> x = e.getX();
+    <span class="hljs-keyword">float</span> y = e.getY();
+
+    <span class="hljs-keyword">switch</span> (e.getAction()) {
+        <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE:
+
+            <span class="hljs-keyword">float</span> dx = x - mPreviousX;
+            <span class="hljs-keyword">float</span> dy = y - mPreviousY;
+
+            <span class="hljs-comment">// reverse direction of rotation above the mid-line</span>
+            <span class="hljs-keyword">if</span> (y &gt; getHeight() / <span class="hljs-number">2</span>) {
+              dx = dx * -<span class="hljs-number">1</span> ;
+            }
+
+            <span class="hljs-comment">// reverse direction of rotation to left of the mid-line</span>
+            <span class="hljs-keyword">if</span> (x &lt; getWidth() / <span class="hljs-number">2</span>) {
+              dy = dy * -<span class="hljs-number">1</span> ;
+            }
+
+            mRenderer.setAngle(
+                    mRenderer.getAngle() +
+                    ((dx + dy) * TOUCH_SCALE_FACTOR);  <span class="hljs-comment">// = 180.0f / 320</span>
+            requestRender();
+    }
+
+    mPreviousX = x;
+    mPreviousY = y;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</code></pre>
+<p>注意在计算旋转角度后，该方法会调用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\" target="_blank">requestRender()</a>)来告诉渲染器现在可以进行渲染了。该方法对于这个例子来说是最有效的，因为图形并不需要重新绘制，除非有一个旋转角度的变化。然而，它对于执行效率并没有任何影响，除非你需要渲染器仅在数据变化时才会重新绘制（使用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderMode\(int\" target="_blank">setRenderMode()</a>)方法），所以请确保这一行没有被注释掉：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-title">MyGLSurfaceView</span>(Context context) {
+    ...
+    <span class="hljs-comment">// Render the view only when there is a change in the drawing data</span>
+    setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+}
+</code></pre>
+<h2 id="-">公开旋转角度</h2>
+<p>上述样例代码需要你公开旋转的角度，方法是在你的渲染器中添加一个共有成员。由于渲染器代码运行在一个独立的线程中（非主UI线程），你必须将你的这个公共变量声明为volatile。请看下面的代码：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGLRenderer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">GLSurfaceView</span>.<span class="hljs-title">Renderer</span> {</span>
+    ...
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">float</span> mAngle;
+</code></pre>
+<h2 id="-">应用旋转</h2>
+<p>为了应用触摸输入所导致的旋转，注释掉创建一个旋转角度的代码，然后添加mAngle，该变量包含了输入所导致的角度：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span>(GL10 gl) {
+    ...
+    <span class="hljs-keyword">float</span>[] scratch = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">16</span>];
+
+    <span class="hljs-comment">// Create a rotation for the triangle</span>
+    <span class="hljs-comment">// long time = SystemClock.uptimeMillis() % 4000L;</span>
+    <span class="hljs-comment">// float angle = 0.090f * ((int) time);</span>
+    Matrix.setRotateM(mRotationMatrix, <span class="hljs-number">0</span>, mAngle, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1.0</span>f);
+
+    <span class="hljs-comment">// Combine the rotation matrix with the projection and camera view</span>
+    <span class="hljs-comment">// Note that the mMVPMatrix factor *must be first* in order</span>
+    <span class="hljs-comment">// for the matrix multiplication product to be correct.</span>
+    Matrix.multiplyMM(scratch, <span class="hljs-number">0</span>, mMVPMatrix, <span class="hljs-number">0</span>, mRotationMatrix, <span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// Draw triangle</span>
+    mTriangle.draw(scratch);
+}
+</code></pre>
+<p>当你完成了上述的步骤，运行这个程序并用你的手指在屏幕上拖动，来旋转三角形：</p>
+<p><img src="ogl-triangle-touch.png" alt="ogl-triangle-touch" title="由触摸输入所旋转的三角形（圆形代表了当前触摸位置）"></p>
 
                     
                     </section>

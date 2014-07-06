@@ -2,6 +2,7 @@
 
 > 校对:
 
+<<<<<<< HEAD
 #调度重复的闹钟
 闹钟([基本类AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html))给你一种方式执行基本时间操作你app生命周期外。例如你可以使用闹钟初始化一个长时间操作，例如开启一个服务一天为了下载天气预报。
 
@@ -178,3 +179,5 @@ pm.setComponentEnabledSetting(receiver,
 ```
 
 [下一课：最佳性能实践]()
+=======
+>>>>>>> upstream/gh-pages

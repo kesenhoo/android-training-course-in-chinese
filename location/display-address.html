@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.3" data-basepath=".." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.3" data-basepath=".." data-revision="1404620541933">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3148,7 +3148,7 @@
     
         <a href="../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,184 @@
                     <section class="normal" id="section-gitbook_158">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">显示位置地址</h1>
+<p><a href="retrieve-current.html">获取当前的位置</a>和<a href="receive-location-updates.html">接收位置更新</a>课程描述了如何以一个<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象的形式获取用户当前的位置信息，这个位置信息包括了经纬度。尽管经纬度对计算地理距离和在地图上显示位置很有帮助，但是更多情况下位置信息的地址更有用。</p>
+<p>Android平台API提供一个根据地理经纬度返回一个大概的街道地址信息这一课教你如何使用这个地址检索功能。</p>
+<blockquote>
+<p><strong>注意：</strong> 地址检索需要一个后台服务，然后这个后台服务是不包含在核心的Android框架里面的。如果这个后台服务不可用，<a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int" target="_blank"><code>Geocoder.getFromLocation()</code></a>方法将会返回一个空列表。在Android API 9以上的API里面有一个辅助方法<a href="http://developer.android.com/reference/android/location/Geocoder.html#isPresent(" target="_blank"><code>isPresent()</code></a>可以检查这个后台服务是否可用。</p>
+</blockquote>
+<p>下面的代码假设你已经获取到了位置信息并将位置信息以<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象的形式保存到全局变量<code>mLocation</code>里面。</p>
+<h2 id="-">定义地址检索任务</h2>
+<p>为了通过给定的经纬度获取地址信息，你需要调用<a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int" target="_blank">Geocoder.getFromLocation()</a>方法并返回一个地址列表。由于这个方法是同步的，所以在获取地址信息的时候可能耗时较长，因此你需要通过<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a>的<a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a> 方法来执行这个方法。</p>
+<p>当你的应用在获取地址信息的时候，可以使用一个进度条之类的控件来表示你的应用正在后台工作中。你可以将这个控件的初始状态设为<code>android:visibility=&quot;gone&quot;</code>，这样可以让这个控件不可见。当你开始进行地址检索的时候，你需要将这个控件的可见属性设为&quot;visible&quot;。</p>
+<p>下面的代码教你如何在你的布局文件里面添加一个进度条：</p>
+<pre><code class="lang-java">&lt;ProgressBar
+android:id=<span class="hljs-string">"@+id/address_progress"</span>
+android:layout_width=<span class="hljs-string">"wrap_content"</span>
+android:layout_height=<span class="hljs-string">"wrap_content"</span>
+android:layout_centerHorizontal=<span class="hljs-string">"true"</span>
+android:indeterminate=<span class="hljs-string">"true"</span>
+android:visibility=<span class="hljs-string">"gone"</span> /&gt;
+</code></pre>
+<p>要创建一个后台任务，首先要定义一个AsycnTask的子类来调用getFromLocation()方法，然后返回地址。定义一个TextView对象mAddress来显示返回的地址信息，进度条则用来显示请求的进度过程。例如：</p>
+<pre><code class="lang-java">public class MainActivity extends FragmentActivity {
+    ...
+    private TextView mAddress;
+    private ProgressBar mActivityIndicator;
+    ...
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    ...
+    mAddress = (TextView) findViewById(R.id.address);
+    mActivityIndicator =
+            (ProgressBar) findViewById(R.id.address_progress);
+    }
+    ...
+    /**
+    * A subclass of AsyncTask that calls getFromLocation() in the
+    * background. The class definition has these generic types:
+    * Location - A Location object containing
+    * the current location.
+    * Void     - indicates that progress units are not used
+    * String   - An address passed to onPostExecute()
+    */
+    private class GetAddressTask extends
+            AsyncTask&lt;Location, Void, String&gt; {
+        Context mContext;
+        public GetAddressTask(Context context) {
+            super();
+            mContext = context;
+        }
+        ...
+        /**
+         * Get a Geocoder instance, get the latitude and longitude
+         * look up the address, and return it
+         *
+         * @params params One or more Location objects
+         * @return A string containing the address of the current
+         * location, or an empty string if no address can be found,
+         * or an error message
+         */
+        @Override
+        protected String doInBackground(Location... params) {
+            Geocoder geocoder =
+                    new Geocoder(mContext, Locale.getDefault());
+            // Get the current location from the input parameter list
+            Location loc = params[0];
+            // Create a list to contain the result address
+            List&lt;Address&gt; addresses = null;
+            try {
+                /*
+                 * Return 1 address.
+                 */
+                addresses = geocoder.getFromLocation(loc.getLatitude(),
+                        loc.getLongitude(), 1);
+            } catch (IOException e1) {
+            Log.e("LocationSampleActivity",
+                    "IO Exception in getFromLocation()");
+            e1.printStackTrace();
+            return ("IO Exception trying to get address");
+            } catch (IllegalArgumentException e2) {
+            // Error message to post in the log
+            String errorString = "Illegal arguments " +
+                    Double.toString(loc.getLatitude()) +
+                    " , " +
+                    Double.toString(loc.getLongitude()) +
+                    " passed to address service";
+            Log.e("LocationSampleActivity", errorString);
+            e2.printStackTrace();
+            return errorString;
+            }
+            // If the reverse geocode returned an address
+            if (addresses != null &amp;&amp; addresses.size() &gt; 0) {
+                // Get the first address
+                Address address = addresses.get(0);
+                /*
+                 * Format the first line of address (if available),
+                 * city, and country name.
+                 */
+                String addressText = String.format(
+                        "%s, %s, %s",
+                        // If there's a street address, add it
+                        address.getMaxAddressLineIndex() &gt; 0 ?
+                                address.getAddressLine(0) : "",
+                        // Locality is usually a city
+                        address.getLocality(),
+                        // The country of the address
+                        address.getCountryName());
+                // Return the text
+                return addressText;
+            } else {
+                return "No address found";
+            }
+        }
+        ...
+    }
+    ...
+}
+</code></pre>
+<p>下一部分教你如何在用户界面上显示地址信息。</p>
+<h2 id="-">定义显示结果的方法</h2>
+<p><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>)方法返回一个包含地址检索结果的字符串。这个值会被传入<a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>)方法，通过这个方法你可以对结果进行更深的处理。因为<a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>)运行在UI主线程上面，它可以更新用户界面；例如，它可以隐藏进度条然后显示返回的地址结果给用户：</p>
+<pre><code class="lang-java">  private class GetAddressTask extends
+            AsyncTask&lt;Location, Void, String&gt; {
+        ...
+        /**
+         * A method that's called once doInBackground() completes. Turn
+         * off the indeterminate activity indicator and set
+         * the text of the UI element that shows the address. If the
+         * lookup failed, display the error message.
+         */
+        @Override
+        protected void onPostExecute(String address) {
+            // Set activity indicator visibility to "gone"
+            mActivityIndicator.setVisibility(View.GONE);
+            // Display the results of the lookup.
+            mAddress.setText(address);
+        }
+        ...
+    }
+</code></pre>
+<p>最后一步就是运行地址检索任务。</p>
+<h2 id="-">运行地址检索任务</h2>
+<p>为了获取地址信息，调用<a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank">execute()</a>方法即可。例如，下面的代码片段展示了当用户点击&quot;Get Address&quot;按钮时应用就开始检索地址信息了：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+    ...
+    <span class="hljs-javadoc">/**
+     * The "Get Address" button in the UI is defined with
+     * android:onClick="getAddress". The method is invoked whenever the
+     * user clicks the button.
+     *
+     *<span class="hljs-javadoctag"> @param</span> v The view object associated with this method,
+     * in this case a Button.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getAddress</span>(View v) {
+        <span class="hljs-comment">// Ensure that a Geocoder services is available</span>
+        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;=
+                Build.VERSION_CODES.GINGERBREAD
+                            &amp;&amp;
+                Geocoder.isPresent()) {
+            <span class="hljs-comment">// Show the activity indicator</span>
+            mActivityIndicator.setVisibility(View.VISIBLE);
+            <span class="hljs-comment">/*
+             * Reverse geocoding is long-running and synchronous.
+             * Run it on a background thread.
+             * Pass the current location to the background task.
+             * When the task finishes,
+             * onPostExecute() displays the address.
+             */</span>
+            (<span class="hljs-keyword">new</span> GetAddressTask(<span class="hljs-keyword">this</span>)).execute(mLocation);
+        }
+        ...
+    }
+    ...
+}
+</code></pre>
+<p>下一课，<a href="geofencing.html">创建和监视Geofences</a>将会教你如何定义地理围栏以及如何使用地理围栏来探测用户对一个兴趣位置的接近程度。</p>
 
                     
                     </section>

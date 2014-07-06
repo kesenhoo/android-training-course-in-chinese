@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.1" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.1" data-basepath="../.." data-revision="1404620541933">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3245,13 +3245,101 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_134">
+                    <section class="normal" id="section-gitbook_135">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-opengl-es-">建立OpenGL ES的环境</h1>
+<p>要在你的应用中使用OpenGL ES绘制图像，你必须为它们创建一个View容器。一个比较直接的方法是同时实现一个<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>和一个<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html" target="_blank">GLSurfaceView.Renderer</a>。<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>是那些用OpenGL所绘制的图形的View容器，而<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html" target="_blank">GLSurfaceView.Renderer</a>则用来控制在该View中绘制的内容。关于这两个类的更多信息，你可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html" target="_blank">OpenGL ES</a>开发手册。</p>
+<p>使用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>只是一种将你的应用与OpenGL ES合并起来的方法。对于一个全屏的或者接近全屏的图形View，使用它是一个理想的选择。开发者如果希望把OpenGL ES的图形融合在布局的一小部分里面，那么可以考虑使用[<a href="http://developer.android.com/reference/android/view/TextureView.html" target="_blank">TextureView</a>。对于自己动手开发的开发者来说（DIY），还可以通过使用<a href="http://developer.android.com/reference/android/view/SurfaceView.html" target="_blank">SurfaceView</a>来搭建一个OpenGL ES View，但这将需要编写更多的代码。</p>
+<p>在这节课中，我们将解释如何在一个简单地应用activity中完成<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>和<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html" target="_blank">GLSurfaceView.Renderer</a>的最小实现。</p>
+<h2 id="-opengl-es">在配置文件中声明使用OpenGL ES</h2>
+<p>为了让你的应用能够使用OpenGL ES 2.0接口，你必须将下列声明添加到配置文件当中：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:glEsVersion</span>=<span class="hljs-value">"0x00020000"</span> <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"true"</span> /&gt;</span>
+</code></pre>
+<p>如果你的应用使用纹理压缩（texture compression），那么你必须对你支持的压缩格式也进行声明，这样的话那些不支持这些格式的设备就不会尝试运行你的应用：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">supports-gl-texture</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"GL_OES_compressed_ETC1_RGB8_texture"</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">supports-gl-texture</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"GL_OES_compressed_paletted_texture"</span> /&gt;</span>
+</code></pre>
+<p>更多关于文理压缩的内容，可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html#textures" target="_blank">OpenGL</a>开发手册。</p>
+<h2 id="-opengl-es-activity">为OpenGL ES图形创建一个activity</h2>
+<p>使用OpenGL ES的安卓应用就像其它类型的应用有自己的用户接口一样，也拥有多个activity。主要的区别就在于acitivity布局上的不同。在许多应用中你可能会使用<a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView</a>，<a href="http://developer.android.com/reference/android/widget/Button.html" target="_blank">Button</a>和<a href="http://developer.android.com/reference/android/widget/ListView.html" target="_blank">ListView</a>，在使用OpenGL ES的应用中，你也需要添加一个<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>。</p>
+<p>下面的代码展示了使用一个<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的最小化实现。它作为主View：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OpenGLES20Activity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+
+    <span class="hljs-keyword">private</span> GLSurfaceView mGLView;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+
+        <span class="hljs-comment">// Create a GLSurfaceView instance and set it</span>
+        <span class="hljs-comment">// as the ContentView for this Activity.</span>
+        mGLView = <span class="hljs-keyword">new</span> MyGLSurfaceView(<span class="hljs-keyword">this</span>);
+        setContentView(mGLView);
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note：</strong>OpenGL ES 2.0需要Android 2.2（API Level 8）或更高版本的系统，所以确保你的Android项目的API版本满足该要求。</p>
+</blockquote>
+<h2 id="-glsurfaceview-">构建一个GLSurfaceView对象</h2>
+<p>一个<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>是一个特定的View，在View中你可以绘制OpenGL ES图形。不过它自己所做的事情并不多。对于绘制对象的控制实际上是由你在该View中配置的<a href="">GLSurfaceView.Rendererhttp://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html</a>所负责的。事实上，这个对象的代码非常简短，你可能会希望跳过继承它，并且只创建一个未经修改的GLSurfaceView实例，不过请不要这么做。你需要继承该类来捕捉触控事件，这方面知识在<a href="http://developer.android.com/training/graphics/opengl/environment.html#touch.html" target="_blank">Responding to Touch Events</a>（该系列课程的最后一节课）中会做进一步的介绍。</p>
+<p><a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的核心代码是很小的，所以对于一个快速地实现，通常可以在acitvity中创建一个内部类并使用它：</p>
+<pre><code class="lang-java">class MyGLSurfaceView extends GLSurfaceView {
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">MyGLSurfaceView</span>(Context context){
+        <span class="hljs-keyword">super</span>(context);
+
+        <span class="hljs-comment">// Set the Renderer for drawing on the GLSurfaceView</span>
+        setRenderer(<span class="hljs-keyword">new</span> MyRenderer());
+    }
+}
+</code></pre>
+<p>当使用OpenGL ES 2.0时，你必须对你的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>构造函数添加另一个调用，以此来指明你希望使用的是2.0版本的接口：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Create an OpenGL ES 2.0 context</span>
+setEGLContextClientVersion(<span class="hljs-number">2</span>);
+</code></pre>
+<blockquote>
+<p><strong>Note：</strong>如果你在使用OpenGL ES 2.0版本的接口，确保在你的应用配置文件中也进行了相关声明。这在之前的章节中已经讨论过了。</p>
+</blockquote>
+<p>另一个对于<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>实现的可选选项，是将渲染模式设置为：<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY" target="_blank">GLSurfaceView.RENDERMODE_WHEN_DIRTY</a>，其含义是：仅在你的绘画数据发生变化时才在视图中进行绘画操作：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Render the view only when there is a change in the drawing data</span>
+setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+</code></pre>
+<p>这一配置将防止<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>框架被重新绘制，直到你调用了<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\" target="_blank">requestRender()</a>)，这将让应用的性能及效率得到提高。</p>
+<h2 id="-">构建一个渲染类</h2>
+<p><a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html" target="_blank">GLSurfaceView.Renderer</a>类的实现，或者说在一个应用中使用OpenGL ES来进行渲染，正是事情变得有趣的地方。该类会控制和其相关联的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>，决定在上面画什么。一共有三个渲染器的方法被Android系统调用，以此来明确要在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>上画什么以及如何画：</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated\(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig\" target="_blank">onSurfaceCreated()</a>)：调用一次，用来配置视图的OpenGL ES环境。</li>
+<li><a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame\(javax.microedition.khronos.opengles.GL10\" target="_blank">onDrawFrame()</a>)：每次重画视图时被调用。</li>
+<li><a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame\(javax.microedition.khronos.opengles.GL10\" target="_blank">onSurfaceChanged()</a>)：如果视图的几何形态发生变化时会被调用，例如当设备的屏幕方向发生改变时。</li>
+</ul>
+<p>下面是一个非常基本的OpenGL ES渲染器的实现，作用仅仅是在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>中画一个灰色的背景：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGLRenderer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">GLSurfaceView</span>.<span class="hljs-title">Renderer</span> {</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSurfaceCreated</span>(GL10 unused, EGLConfig config) {
+        <span class="hljs-comment">// Set the background frame color</span>
+        GLES20.glClearColor(<span class="hljs-number">0.0</span>f, <span class="hljs-number">0.0</span>f, <span class="hljs-number">0.0</span>f, <span class="hljs-number">1.0</span>f);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span>(GL10 unused) {
+        <span class="hljs-comment">// Redraw background color</span>
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSurfaceChanged</span>(GL10 unused, <span class="hljs-keyword">int</span> width, <span class="hljs-keyword">int</span> height) {
+        GLES20.glViewport(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);
+    }
+}
+</code></pre>
+<p>就仅仅是这样！上面的代码创建了一个简单地应用程序，它在使用OpenGL显示一个灰色的屏幕。虽然它的代码做的事情并不怎么有趣，但是通过创建这些类，你已经为使用OpenGL绘制图形有了基本的认识和铺垫。</p>
+<blockquote>
+<p><strong>Note：</strong>你可能想知道为什么这些方法有一个<a href="http://developer.android.com/reference/javax/microedition/khronos/opengles/GL10.html" target="_blank">GL10</a>的参数，在你明明使用的是OpenGL ES 2.0的接口的时候。这是因为这些方法在2.0接口中被简单地重用了，以此来保持Android框架尽量简单。</p>
+</blockquote>
+<p>如果你对OpenGL ES接口很熟悉，那么你现在就可以在你的应用中部署一个OpenGL ES的环境并绘制图形。然而， 如果你希望获取更多的帮助来学会使用OpenGL，那么请继续学习下一节课程获取更多的知识。</p>
 
                     
                     </section>
