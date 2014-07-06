@@ -241,7 +241,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [为多线程创建线程池](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/create-threadpool.html)
       * [执行代码运行在线程池中](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/run-code.html)
       * [与UI线程进行交互](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/communicate-ui.html)
-   * [避免ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 5%
+   * [避免程序无响应ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%，待校验
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html)
    * [SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html)
 * [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)
