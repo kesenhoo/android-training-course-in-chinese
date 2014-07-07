@@ -142,7 +142,7 @@
    * [增加搜索功能](ux/search/index.md)
        * [建立搜索界面](ux/search/setup.md)
        * [保存并搜索数据](ux/search/search.md)
-       * [保留向后兼容](ux/search/back-compat.md)
+       * [保持向下兼容](ux/search/back-compat.md)
    * [使得你的App内容可被Google搜索](ux/app-indexing/index.md)
        * [为App内容开启深度链接](ux/app-indexing/deep-linking.md)
        * [为索引指定App内容](ux/app-indexing/enable-app-indexing.md)
