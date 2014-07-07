@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保留向后兼容 | Android Training Course in Chinese</title>
+        <title>保持向下兼容 | Android Training Course in Chinese</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.3" data-basepath="../.." data-revision="1404620541933">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.3" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter done " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3248,10 +3248,51 @@
                     <section class="normal" id="section-gitbook_260">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">保留向后兼容</h1>
+<h1 id="-">保持向下兼容</h1>
+<p><a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>和action bar只在Android 3.0以及以上版本可用。为了支持旧版本平台，你可以回到搜素对话框。搜索框是系统提供的UI，在调用时会覆盖在你的应用的最顶端。</p>
+<h2 id="-api-">设置最小和目标API级别</h2>
+<p>要设置搜索对话框，首先在你的manifest中声明你要支持旧版本设备，并且目标平台为Android 3.0或更新版本。当你这么做之后，你的应用会自动地在Android 3.0或以上使用action bar，在旧版本的设备使用传统的目录系统:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"7"</span> <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"15"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">application</span>&gt;</span>
+...
+</code></pre>
+<h2 id="-">为旧版本设备提供搜素对话框</h2>
+<p>要在旧版本设备中调用搜素对话框，可以在任何时候，当用户从选项目录中选择搜索项时，就会调用<a href="reference/android/app/Activity.html#onSearchRequested(">onSearchRequested()</a>)。因为Android 3.0或以上会在action bar中显示<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>(就像在第一节课中演示的那样)，所以当用户选择目录的搜索项时，只有Android 3.0以下版本的会调用<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem" target="_blank">onOptionsItemSelected()</a>)。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span>(MenuItem item) {
+    <span class="hljs-keyword">switch</span> (item.getItemId()) {
+        <span class="hljs-keyword">case</span> R.id.search:
+            onSearchRequested();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<h2 id="-android-">在运行时检查Android的构建版本</h2>
+<p>在运行时，检查设备的版本可以保证在旧版本设备中，不使用不支持的<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>。在我们这个例子中，这一操作在<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu" target="_blank">onCreateOptionsMenu()</a>)方法中:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span>(Menu menu) {
+
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options_menu, menu);
+
+    <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(<span class="hljs-keyword">false</span>);
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</code></pre>
 
                     
                     </section>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.2" data-basepath="../.." data-revision="1404620541933">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.2" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter done " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3248,10 +3248,164 @@
                     <section class="normal" id="section-gitbook_262">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">保存并搜索数据</h1>
+<p>有很多方法可以储存你的数据，比如储存在线上的数据库，本地的SQLite数据库，甚至是文本文件。你自己来选择最适合你应用的存储方式。本节课程会向你展示如何创建一个健壮的可以提供全文搜索的SQLite虚拟表。并从一个每行有一组单词-解释对的文件中将数据填入。</p>
+<h2 id="-">创建虚拟表</h2>
+<p>虚拟表与SQLite表的运行方式类似，但虚拟表是通过回调来向内存中的对象进行读取和写入，而不是通过数据库文件。要创建一个虚拟表，首先为该表创建一个类:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseTable</span> {</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> DatabaseOpenHelper mDatabaseOpenHelper;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">DatabaseTable</span>(Context context) {
+        mDatabaseOpenHelper = <span class="hljs-keyword">new</span> DatabaseOpenHelper(context);
+    }
+}
+</code></pre>
+<p>在<code>DatabaseTable</code>类中创建一个继承<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>的内部类。你必须重写类<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>中定义的abstract方法，才能在必要的时候创建和更新你的数据库表。例如，下面一段代码声明了一个数据库表，用来储存字典app所需的单词。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseTable</span> {</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TAG = <span class="hljs-string">"DictionaryDatabase"</span>;
+
+    <span class="hljs-comment">//字典的表中将要包含的列项</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COL_WORD = <span class="hljs-string">"WORD"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COL_DEFINITION = <span class="hljs-string">"DEFINITION"</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DATABASE_NAME = <span class="hljs-string">"DICTIONARY"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String FTS_VIRTUAL_TABLE = <span class="hljs-string">"FTS"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DATABASE_VERSION = <span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> DatabaseOpenHelper mDatabaseOpenHelper;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">DatabaseTable</span>(Context context) {
+        mDatabaseOpenHelper = <span class="hljs-keyword">new</span> DatabaseOpenHelper(context);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DatabaseOpenHelper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SQLiteOpenHelper</span> {</span>
+
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Context mHelperContext;
+        <span class="hljs-keyword">private</span> SQLiteDatabase mDatabase;
+
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String FTS_TABLE_CREATE =
+                    <span class="hljs-string">"CREATE VIRTUAL TABLE "</span> + FTS_VIRTUAL_TABLE +
+                    <span class="hljs-string">" USING fts3 ("</span> +
+                    COL_WORD + <span class="hljs-string">", "</span> +
+                    COL_DEFINITION + <span class="hljs-string">")"</span>;
+
+        DatabaseOpenHelper(Context context) {
+            <span class="hljs-keyword">super</span>(context, DATABASE_NAME, <span class="hljs-keyword">null</span>, DATABASE_VERSION);
+            mHelperContext = context;
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(SQLiteDatabase db) {
+            mDatabase = db;
+            mDatabase.execSQL(FTS_TABLE_CREATE);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onUpgrade</span>(SQLiteDatabase db, <span class="hljs-keyword">int</span> oldVersion, <span class="hljs-keyword">int</span> newVersion) {
+            Log.w(TAG, <span class="hljs-string">"Upgrading database from version "</span> + oldVersion + <span class="hljs-string">" to "</span>
+                    + newVersion + <span class="hljs-string">", which will destroy all old data"</span>);
+            db.execSQL(<span class="hljs-string">"DROP TABLE IF EXISTS "</span> + FTS_VIRTUAL_TABLE);
+            onCreate(db);
+        }
+    }
+}
+</code></pre>
+<h2 id="-">填入虚拟表</h2>
+<p>现在，表需要数据来储存。下面的代码会向你展示如何读取一个内容为单词和解释的文本文件(位于<code>res/raw/definitions.txt</code>)，如何解析文件与如何将文件中的数据按行插入虚拟表中。为防止UI锁死这些操作会在另一条线程中执行。将下面的一段代码添加到你的<code>DatabaseOpenHelper</code>内部类中。</p>
+<blockquote>
+<p><strong>Tip</strong>:你也可以设置一个回调来通知你的UI activity线程的完成结果。</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadDictionary</span>() {
+        <span class="hljs-keyword">new</span> Thread(<span class="hljs-keyword">new</span> Runnable() {
+            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span>() {
+                <span class="hljs-keyword">try</span> {
+                    loadWords();
+                } <span class="hljs-keyword">catch</span> (IOException e) {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(e);
+                }
+            }
+        }).start();
+    }
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">loadWords</span>() <span class="hljs-keyword">throws</span> IOException {
+    <span class="hljs-keyword">final</span> Resources resources = mHelperContext.getResources();
+    InputStream inputStream = resources.openRawResource(R.raw.definitions);
+    BufferedReader reader = <span class="hljs-keyword">new</span> BufferedReader(<span class="hljs-keyword">new</span> InputStreamReader(inputStream));
+
+    <span class="hljs-keyword">try</span> {
+        String line;
+        <span class="hljs-keyword">while</span> ((line = reader.readLine()) != <span class="hljs-keyword">null</span>) {
+            String[] strings = TextUtils.split(line, <span class="hljs-string">"-"</span>);
+            <span class="hljs-keyword">if</span> (strings.length &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">continue</span>;
+            <span class="hljs-keyword">long</span> id = addWord(strings[<span class="hljs-number">0</span>].trim(), strings[<span class="hljs-number">1</span>].trim());
+            <span class="hljs-keyword">if</span> (id &lt; <span class="hljs-number">0</span>) {
+                Log.e(TAG, <span class="hljs-string">"unable to add word: "</span> + strings[<span class="hljs-number">0</span>].trim());
+            }
+        }
+    } <span class="hljs-keyword">finally</span> {
+        reader.close();
+    }
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">long</span> <span class="hljs-title">addWord</span>(String word, String definition) {
+    ContentValues initialValues = <span class="hljs-keyword">new</span> ContentValues();
+    initialValues.put(COL_WORD, word);
+    initialValues.put(COL_DEFINITION, definition);
+
+    <span class="hljs-keyword">return</span> mDatabase.insert(FTS_VIRTUAL_TABLE, <span class="hljs-keyword">null</span>, initialValues);
+}
+</code></pre>
+<p>任何恰当的地方，都可以调用<code>loadDictionary()</code>方法向表中填入数据。一个比较好的地方是<code>DatabaseOpenHelper</code>类的<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase" target="_blank">onCreate()</a>)方法中，紧随创建表之后:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(SQLiteDatabase db) {
+    mDatabase = db;
+    mDatabase.execSQL(FTS_TABLE_CREATE);
+    loadDictionary();
+}
+</code></pre>
+<h2 id="-">搜索请求</h2>
+<p>当你的虚拟表创建好并填入数据后，根据<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>提供的请求搜索数据。将下面的方法添加到<code>DatabaseTable</code>类中，用来创建搜索请求的SQL语句:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> Cursor <span class="hljs-title">getWordMatches</span>(String query, String[] columns) {
+    String selection = COL_WORD + <span class="hljs-string">" MATCH ?"</span>;
+    String[] selectionArgs = <span class="hljs-keyword">new</span> String[] {query+<span class="hljs-string">"*"</span>};
+
+    <span class="hljs-keyword">return</span> query(selection, selectionArgs, columns);
+}
+
+<span class="hljs-keyword">private</span> Cursor <span class="hljs-title">query</span>(String selection, String[] selectionArgs, String[] columns) {
+    SQLiteQueryBuilder builder = <span class="hljs-keyword">new</span> SQLiteQueryBuilder();
+    builder.setTables(FTS_VIRTUAL_TABLE);
+
+    Cursor cursor = builder.query(mDatabaseOpenHelper.getReadableDatabase(),
+            columns, selection, selectionArgs, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+
+    <span class="hljs-keyword">if</span> (cursor == <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!cursor.moveToFirst()) {
+        cursor.close();
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+    <span class="hljs-keyword">return</span> cursor;
+}
+</code></pre>
+<p>调用<code>getWordMatches()</code>来搜索请求。任何符合的结果返回到<a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a>中，可以直接遍历或是建立一个<a href="http://developer.android.com/reference/android/widget/ListView.html" target="_blank">ListView</a>。这个例子是在检索activity的<code>handleIntent()</code>方法中调用<code>getWordMatches()</code>。请记住，因为之前创建的intent filter，检索activity会在<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent中额外接收请求作为变量存储:</p>
+<pre><code class="lang-java">DatabaseTable db = <span class="hljs-keyword">new</span> DatabaseTable(<span class="hljs-keyword">this</span>);
+
+...
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleIntent</span>(Intent intent) {
+
+    <span class="hljs-keyword">if</span> (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+        String query = intent.getStringExtra(SearchManager.QUERY);
+        Cursor c = db.getWordMatches(query, <span class="hljs-keyword">null</span>);
+        <span class="hljs-comment">//执行Cursor并显示结果</span>
+    }
+}
+</code></pre>
 
                     
                     </section>
@@ -3264,7 +3418,7 @@
         <a href="../../ux/search/setup.html" class="navigation navigation-prev " aria-label="Previous page: 建立搜索界面"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../ux/search/back-compat.html" class="navigation navigation-next " aria-label="Next page: 保留向后兼容"><i class="fa fa-angle-right"></i></a>
+        <a href="../../ux/search/back-compat.html" class="navigation navigation-next " aria-label="Next page: 保持向下兼容"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
