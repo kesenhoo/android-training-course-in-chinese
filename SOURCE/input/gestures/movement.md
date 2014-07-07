@@ -6,7 +6,7 @@
 
 本节课程描述如何跟踪手势移动。
 
-每当前触摸位置、压力、大小发生变化时，[onTouchEvent()][onTouchEvent_url]函数都会随着新的[ACTION_MOVE][ACTION_MOVE_url]事件参数被重新调用一次。正如[检测常用的手势](/detector.html)中描述的，所有触摸事件都被记录在[onTouchEvent()][onTouchEvent_url]的[MotionEvent][MotionEvent_url]参数中。
+每当触摸位置、压力、大小发生变化时，[onTouchEvent()][onTouchEvent_url]函数都会随着新的[ACTION_MOVE][ACTION_MOVE_url]事件参数被重新调用一次。正如[检测常用的手势](/detector.html)中描述的，所有触摸事件都被记录在[onTouchEvent()][onTouchEvent_url]的[MotionEvent][MotionEvent_url]参数中。
 
 因为基于手指的触摸不一定是一种非常精确的交互形式，所以检测触摸事件更多的是基于手势移动而非简单地触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单的点击），Android引入了“touch slop”的概念。Touch slop是指用户触摸事件可被识别为移动手势前的移动的那一段像素距离。关于这一主题的更多讨论，可以在[管理ViewGroup中的触摸事件](viewgroup.html)中查看。
 
@@ -19,7 +19,7 @@
 ## 追踪速度 ##
 你可以让移动手势简单地基于手指滑动过的距离或/和方向。但是速度经常也是追踪手势特征中的一个决定因素，甚至是判断一个手势是否发生的依据。为了让速度计算更容易，Android提供了[VelocityTracker][VelocityTracker_url]类以及[支持库][Support_Library_url]中的[VelocityTrackerCompat][VelocityTrackerCompat_url]类。[VelocityTracker][VelocityTracker_url]类可以帮助你追踪触摸事件中速度因素。如果速度是你的手势的一个判断标准，比如惯性滑动，那么这些类是很有用的。
 
-下面是一个很简单的例子，解释了[VelocityTracker][VelocityTracker_url]的API函数的用处。
+下面是一个简单的例子，说明了[VelocityTracker][VelocityTracker_url]中API函数的用处。
 
 ```java
 public class MainActivity extends Activity {
