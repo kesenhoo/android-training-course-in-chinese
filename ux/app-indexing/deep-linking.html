@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.5.1" data-basepath="../.." data-revision="1404747066596">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.5.1" data-basepath="../.." data-revision="1404839846145">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -143,7 +143,7 @@
         <li class="chapter " data-level="2" data-path="basics/index.html">
             
             <a href="../../basics/index.html">
-                <i class="fa fa-check"></i> <b>2.</b> 开始
+                <i class="fa fa-check"></i> <b>2.</b> 从这里开始
             </a>
             
             
@@ -2748,7 +2748,7 @@
     
         <a href="../../index.html" title="序言" class="chapter done new-chapter" data-progress="1" style="left: 0%;"></a>
     
-        <a href="../../basics/index.html" title="开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
+        <a href="../../basics/index.html" title="从这里开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
     
         <a href="../../basics/firstapp/index.html" title="建立你的第一个App" class="chapter done " data-progress="2.1" style="left: 0.8130081300813008%;"></a>
     
@@ -3248,11 +3248,71 @@
                     <section class="normal" id="section-gitbook_238">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-app-">为App内容开启深度链接</h1>
+<p>为使Google能够抓取你的app内容，并允许用户从搜索结果进入你的app，你必须给你的app manifest中相关的activity添加intent filter。这些intent filter能使深度链接与你的任何activity相连。例如，用户可以在购物app中，点击一条深度链接来浏览一个介绍了自己所搜索的产品的页面。</p>
+<h2 id="-intent-filter">为你的深度链接添加Intent filter</h2>
+<p>要创建一条与你的app内容相连的深度链接，添加一个包含了以下这些元素和属性值的intent filter到你的manifest中:</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action&gt;</code></a></p>
+<p>指定<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的操作，使得Google搜索可以触及intent filter。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a></p>
+<p>添加一个或多个<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>标签，每一个标签代表一种activity对URI格式的解析，<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>必须至少包含<a href="http://developer.android.com/guide/topics/manifest/data-element.html#scheme" target="_blank">android:scheme</a>属性。</p>
+<p>你可以添加额外的属性来改善activity所接受的URI类型。例如，你或许有几个activity可以接受相似的URI，它们仅仅是路径名不同。在这种情况下，使用<a href="http://developer.android.com/guide/topics/manifest/data-element.html#path" target="_blank">android:path</a>属性或它的变形(<code>pathPattern</code>或<code>pathPrefix</code>)，使系统能辨别对不同的URI路径应该启动哪个activity。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category&gt;</code></a></p>
+<p>包括<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_BROWSABLE" target="_blank">BROWSABLE</a> category。<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_BROWSABLE" target="_blank">BROWSABLE</a> category对于使intent filter能被浏览器访问是必要的。没有这个category，在浏览器中点击链接无法解析到你的app。<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT" target="_blank">DEFAULT</a> category是可选的，但建议添加。没有这个category，activity只能够使用app组件名称以显示(explicit)intent启动。</p>
+<p>下面的一段XML代码向你展示，你应该如何在manifest中为深度链接指定一个intent filter。URI “example://gizmos” 和 “<a href="http://www.example.com/gizmos”" target="_blank">http://www.example.com/gizmos”</a> 都能够解析到这个activity。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>    <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.android.GizmosActivity"</span>
+    <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/title_gizmos"</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span> <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/filter_title_viewgizmos"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.VIEW"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.DEFAULT"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.category.BROWSABLE"</span> /&gt;</span>
+        <span class="hljs-comment">&lt;!-- 接受以"example://gizmos”开头的 URIs  --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:scheme</span>=<span class="hljs-value">"example"</span>
+              <span class="hljs-attribute">android:host</span>=<span class="hljs-value">"gizmos"</span> /&gt;</span>
+        <span class="hljs-comment">&lt;!-- 接受以"http://www.example.com/gizmos”开头的 URIs  --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">data</span> <span class="hljs-attribute">android:scheme</span>=<span class="hljs-value">"http"</span>
+              <span class="hljs-attribute">android:host</span>=<span class="hljs-value">"www.example.com"</span>
+              <span class="hljs-attribute">android:pathPrefix</span>=<span class="hljs-value">"gizmos"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<p>当你把包含有指定activity内容的URI的intent filter添加到你的app manifest后，Android就可以在你的app运行时，为app与匹配URI的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>建立路径。</p>
+<p>学习更多关于定义intent filter，见<a href="http://developer.android.com/training/basics/intents/filters.html" target="_blank">Allow Other Apps to Start Your Activity</a></p>
+<h2 id="-">从传入的意图读取数据</h2>
+<p>一旦系统通过一个intent filter启动你的activity，你可以使用由<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>提供的数据来决定需要处理什么。调用<a href="http://developer.android.com/reference/android/content/Intent.html#getData(" target="_blank">getData()</a>)和<a href="http://developer.android.com/reference/android/content/Intent.html#getAction(" target="_blank">getAction()</a>)方法来取出传入<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中的数据与操作。你可以在activity生命周期的任何时候调用这些方法，但一般情况下你应该在前期回调中调用如<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle" target="_blank">onCreate()</a>)或<a href="http://developer.android.com/reference/android/app/Activity.html#onStart(" target="_blank">onStart()</a>)。</p>
+<p>这个是一段代码，展示如何从<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中取出数据:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    setContentView(R.layout.main);
 
+    Intent intent = getIntent();
+    String action = intent.getAction();
+    Uri data = intent.getData();
+}
+</code></pre>
+<p>遵守下面这些惯例来提高用户体验:</p>
+<ul>
+<li><p>深度链接应直接为用户打开内容，不需要任何提示，插播式广告页和登录页面。要确保用户能看到app的内容，即使之前从没打开过这个应用。当用户从启动器打开app时，可以在操作结束后给出提示。这个准则也同样适用于网站的<a href="https://support.google.com/webmasters/answer/74536?hl=en" target="_blank">first click free</a>体验。</p>
+</li>
+<li><p>遵循<a href="http://developer.android.com/design/patterns/navigation.html" target="_blank">Navigation with Back and Up</a>中的设计指导，来使你的app能够满足用户通过深度链接进入app后，向后导航的需求。</p>
+</li>
+</ul>
+<h2 id="-">测试你的深度链接</h2>
+<p>你可以使用<a href="http://developer.android.com/tools/help/adb.html" target="_blank">Android Debug Bridge</a>和activity管理(am)工具来测试你指定的intent filter URI，能否正确解析到正确的app activity。你可以在设备或者模拟器上运行adb命令。</p>
+<p>测试intent filter URI的一般adb语法是:</p>
+<pre><code>$ adb shell am start
+        -W -a android.intent.action.VIEW
+        -d &lt;URI&gt; &lt;PACKAGE&gt;
+</code></pre><p>例如，下面的命令视图浏览与指定URI相关的目标app activity。</p>
+<pre><code>$ adb shell am start
+        -W -a android.intent.action.VIEW
+        -d &quot;example://gizmos&quot; com.example.android
+</code></pre>
                     
                     </section>
                 

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.2" data-basepath="../.." data-revision="1404747066596">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.2" data-basepath="../.." data-revision="1404839846145">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -143,7 +143,7 @@
         <li class="chapter " data-level="2" data-path="basics/index.html">
             
             <a href="../../basics/index.html">
-                <i class="fa fa-check"></i> <b>2.</b> 开始
+                <i class="fa fa-check"></i> <b>2.</b> 从这里开始
             </a>
             
             
@@ -2748,7 +2748,7 @@
     
         <a href="../../index.html" title="序言" class="chapter done new-chapter" data-progress="1" style="left: 0%;"></a>
     
-        <a href="../../basics/index.html" title="开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
+        <a href="../../basics/index.html" title="从这里开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
     
         <a href="../../basics/firstapp/index.html" title="建立你的第一个App" class="chapter done " data-progress="2.1" style="left: 0.8130081300813008%;"></a>
     
@@ -3248,10 +3248,74 @@
                     <section class="normal" id="section-gitbook_146">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:Andrwyw</p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">跟踪手势移动</h1>
+<p>本节课程描述如何跟踪手势移动。</p>
+<p>每当触摸位置、压力、大小发生变化时，[onTouchEvent()][onTouchEvent_url]函数都会随着新的[ACTION_MOVE][ACTION_MOVE_url]事件参数被重新调用一次。正如<a href="/detector.html">检测常用的手势</a>中描述的，所有触摸事件都被记录在[onTouchEvent()][onTouchEvent_url]的[MotionEvent][MotionEvent_url]参数中。</p>
+<p>因为基于手指的触摸不一定是一种非常精确的交互形式，所以检测触摸事件更多的是基于手势移动而非简单地触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单的点击），Android引入了“touch slop”的概念。Touch slop是指用户触摸事件可被识别为移动手势前的移动的那一段像素距离。关于这一主题的更多讨论，可以在<a href="viewgroup.html">管理ViewGroup中的触摸事件</a>中查看。</p>
+<p>根据你的app需求，有多种追踪手势移动的方式可以选择。比如：</p>
+<ul>
+<li>追踪手指的起始和终止位置（比如，把屏幕上的对象从A点移动到B点）</li>
+<li>根据x、y轴坐标，追踪手指移动的方向。</li>
+<li>追踪历史状态。你可以通过调用[MotionEvent][MotionEvent_url]的[getHistorySize()][getHistorySize_url]函数获得一个手势的历史尺寸大小。你可以通过获得移动事件的getHistorical<Value>系列函数获得事件历史的位置、尺寸、时间以及按压力。当你需要绘制用户手指痕迹时，历史状态非常有用，比如触摸绘图时。查看[MotionEvent][MotionEvent_url]来了解更多细节。</li>
+<li>追踪手指在触摸屏上滑过的速度。</li>
+</ul>
+<h2 id="-">追踪速度</h2>
+<p>你可以让移动手势简单地基于手指滑动过的距离或/和方向。但是速度经常也是追踪手势特征中的一个决定因素，甚至是判断一个手势是否发生的依据。为了让速度计算更容易，Android提供了[VelocityTracker][VelocityTracker_url]类以及[支持库][Support_Library_url]中的[VelocityTrackerCompat][VelocityTrackerCompat_url]类。[VelocityTracker][VelocityTracker_url]类可以帮助你追踪触摸事件中速度因素。如果速度是你的手势的一个判断标准，比如惯性滑动，那么这些类是很有用的。</p>
+<p>下面是一个简单的例子，说明了[VelocityTracker][VelocityTracker_url]中API函数的用处。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DEBUG_TAG = <span class="hljs-string">"Velocity"</span>;
+        ...
+    <span class="hljs-keyword">private</span> VelocityTracker mVelocityTracker = <span class="hljs-keyword">null</span>;
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouchEvent</span>(MotionEvent event) {
+        <span class="hljs-keyword">int</span> index = event.getActionIndex();
+        <span class="hljs-keyword">int</span> action = event.getActionMasked();
+        <span class="hljs-keyword">int</span> pointerId = event.getPointerId(index);
+
+        <span class="hljs-keyword">switch</span>(action) {
+            <span class="hljs-keyword">case</span> MotionEvent.ACTION_DOWN:
+                <span class="hljs-keyword">if</span>(mVelocityTracker == <span class="hljs-keyword">null</span>) {
+                    <span class="hljs-comment">// Retrieve a new VelocityTracker object to watch the velocity of a motion.</span>
+                    mVelocityTracker = VelocityTracker.obtain();
+                }
+                <span class="hljs-keyword">else</span> {
+                    <span class="hljs-comment">// Reset the velocity tracker back to its initial state.</span>
+                    mVelocityTracker.clear();
+                }
+                <span class="hljs-comment">// Add a user's movement to the tracker.</span>
+                mVelocityTracker.addMovement(event);
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> MotionEvent.ACTION_MOVE:
+                mVelocityTracker.addMovement(event);
+                <span class="hljs-comment">// When you want to determine the velocity, call</span>
+                <span class="hljs-comment">// computeCurrentVelocity(). Then call getXVelocity()</span>
+                <span class="hljs-comment">// and getYVelocity() to retrieve the velocity for each pointer ID.</span>
+                mVelocityTracker.computeCurrentVelocity(<span class="hljs-number">1000</span>);
+                <span class="hljs-comment">// Log velocity of pixels per second</span>
+                <span class="hljs-comment">// Best practice to use VelocityTrackerCompat where possible.</span>
+                Log.d(<span class="hljs-string">""</span>, <span class="hljs-string">"X velocity: "</span> +
+                        VelocityTrackerCompat.getXVelocity(mVelocityTracker,
+                        pointerId));
+                Log.d(<span class="hljs-string">""</span>, <span class="hljs-string">"Y velocity: "</span> +
+                        VelocityTrackerCompat.getYVelocity(mVelocityTracker,
+                        pointerId));
+                <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">case</span> MotionEvent.ACTION_UP:
+            <span class="hljs-keyword">case</span> MotionEvent.ACTION_CANCEL:
+                <span class="hljs-comment">// Return a VelocityTracker object back to be re-used by others.</span>
+                mVelocityTracker.recycle();
+                <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+}
+</code></pre>
+<blockquote>
+<p>注意：需要注意的是，你应该在[ACTION_MOVE][ACTION_MOVE_url]事件后计算速度，而不是[ACTION_UP][ACTION_UP_url]后。在[ACTION_UP][ACTION_UP_url]后计算，x、y方向的速度都会是0。</p>
+</blockquote>
 
                     
                     </section>
