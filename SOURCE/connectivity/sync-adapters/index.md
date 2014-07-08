@@ -6,7 +6,7 @@
 
 在一台Android设备和网络服务器之间同步数据，可以让你的应用更加实用，更加吸引用户的注意。例如，将数据传输到服务器可以实现一个有用的备份，而将数据从服务器中获取可以让用户随时随地都能使用你的应用。在一些情况中，用户可能会发觉在线编辑他们的数据并将其发送到设备上，会是一件很方便的事情；或者他们有时会希望将收集的数据上传到一个统一的存储区域中。
 
-尽管你可以设计你自己的系统来实现你应用中的数据传输，但你可以考虑一下使用Android的同步适配器框架（Android's sync adapter framework）。这个框架可以帮助管理及自动传输数据，并且协调不同应用间的同步问题。当你使用这个框架时，你可以利用它的一些特性，而这些特性可能是你自己设计的传输方案中所没有的：
+尽管你可以设计你自己的系统来实现你应用中的数据传输，但你可以考虑一下使用Android的Sync Adapter框架（Android's sync adapter framework）。这个框架可以帮助管理及自动传输数据，并且协调不同应用间的同步问题。当你使用这个框架时，你可以利用它的一些特性，而这些特性可能是你自己设计的传输方案中所没有的：
 
 **插件架构（Plug-in architecture）：**
 
@@ -28,6 +28,6 @@
 
 如果你的应用需要用户登录，那么你可以将账户管理和授权的功能集成到你的数据传输中。
 
-本系列课程将向你展示如何创建一个同步适配器，以及它所封装和绑定的服务（[Service](http://developer.android.com/reference/android/app/Service.html)），如何提供其它组件来帮助你将同步适配器添加到框架中，以及如何通过不同的方法来运行同步适配器。
+本系列课程将向你展示如何创建一个Sync Adapter，以及它所封装和绑定的服务（[Service](http://developer.android.com/reference/android/app/Service.html)），如何提供其它组件来帮助你将Sync Adapter添加到框架中，以及如何通过不同的方法来运行Sync Adapter。
 
->** Note：**同步适配器是异步执行的，所以你应该在期望它可以定期地有效地但不是瞬间地传输数据时使用它。如果你想要实时地传输数据，那么你应该在中[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)完成这一任务。
+>** Note：**Sync Adapter是异步执行的，所以你应该在期望它可以定期地有效地但不是瞬间地传输数据时使用它。如果你想要实时地传输数据，那么你应该在中[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)完成这一任务。
