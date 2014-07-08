@@ -114,7 +114,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [最小化更新操作的影响](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/regular-update.html)
       * [避免下载多余的数据](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/redundant-redundant.html)
       * [根据网络类型改变下载模式](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/connectivity-patterns.html)
-   * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html) - 编写中@[jdneo](https://github.com/jdneo) - 5%
+   * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html) - 编写@[jdneo](https://github.com/jdneo) - 100%待校验
       * [创建Stub授权器](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-authenticator.html)
       * [创建Stub Content Provider](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-stub-provider.html)
       * [创建Sync Adpater](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/create-sync-adapter.html)
@@ -142,7 +142,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [识别用户的当下活动](http://hukai.me/android-training-course-in-chinese/location/activity-recognition.html)
    * [使用模拟位置进行测试](http://hukai.me/android-training-course-in-chinese/location/location-testing.html)
 * [交互](http://hukai.me/android-training-course-in-chinese/ux/index.html)
-   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html)
+   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - 编写@[XizhiXu](https://github.com/XizhiXu) - 1%
       * [规划屏幕界面与他们之间的关系](http://hukai.me/android-training-course-in-chinese/ux/design-nav/screen-planning.html)
       * [为多种大小的屏幕进行规划](http://hukai.me/android-training-course-in-chinese/ux/design-nav/multi-sizes.html)
       * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
