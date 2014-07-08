@@ -171,4 +171,4 @@ public class AuthenticatorService extends Service {
 
 [`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)标签声明了验证器的元数据。[android:name](http://developer.android.com/guide/topics/manifest/meta-data-element.html#nm)属性将元数据和验证器框架连接起来。[android:resource](http://developer.android.com/guide/topics/manifest/meta-data-element.html#rsrc)指定了你之前所创建的认证器元数据文件的名字。
 
-除了一个认证器，一个同步适配器框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](除了一个认证器，一个同步适配器框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：Creating a Sync Adapter(http://developer.android.com/training/sync-adapters/creating-sync-adapter.html)。
+除了一个认证器，一个同步适配器框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](除了一个认证器，一个同步适配器框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](http://developer.android.com/training/sync-adapters/creating-sync-adapter.html)。
