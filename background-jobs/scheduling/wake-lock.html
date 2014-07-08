@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.3.1" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.3.1" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter done " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter done " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter done " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,78 @@
                     <section class="normal" id="section-gitbook_22">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/lttowq" target="_blank">lttowq</a>(未验证)</p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">保持设备的唤醒</h1>
+<h1 id="-">保持设备唤醒</h1>
+<p>为了避免电源消耗，一个Android设备闲置时会迅速进入睡眠状态。然而这里有些时间当一个应用需要唤醒屏幕或者CPU并且保持唤醒完成一些任务。</p>
+<p>你采取的方法依赖于你的应用的需要。但是，一般规则是你应该使用最轻量级的方法对的应用，减小你的应用对系统资源的影响。接下来的部分描述怎样处理当设备默认睡眠的行为与你请求不相容的情况。</p>
+<h2 id="-">保持屏幕亮着</h2>
+<p>确定你的应用需要保持屏幕变亮，比如游戏与电影的应用。最好的方式是使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCREEN_ON</a>在你的Activity（仅在Activity不在Service或其他组件里）
+例如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+  <span class="hljs-annotation">@Override</span>
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+  }
+</code></pre>
+<p>这个方法的优点像醒锁(<a href="">在 Keep the CPU On讨论</a>)，它不需要特殊的权限，平台正确
+管理你的用户在应用之间移动，不需要你的应用担心释放未使用资源。</p>
+<p>另外一种实现在你的应用布局xml文件里，通过使用<a href="https://developer.android.com/reference/android/R.attr.html#keepScreenOn" target="_blank">android:keepScreenOn</a>属性:</p>
+<pre><code class="lang-java">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"&gt;
+    ...
+&lt;/RelativeLayout&gt;
+</code></pre>
+<p>使用android:keepScreenOn=&quot;true&quot;与使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a>等效。你能无论使用哪个方法对你的应用都不错。编程方式设置该标志在你Activity的优点，它让你的编程后清除标志，从而使屏幕关闭该选项。</p>
+<p>注意：你不需要清除<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a>便签除非你不在想屏幕呆在你正在运行的应用里面（例如：如果你想要屏幕延时在一个确定的周期静止）。窗口管理照顾确保正确事情发生当你的应用进入后台或者返回前台。但是如果你明确清除从而允许屏幕再次关闭，使用-<a href="https://developer.android.com/reference/android/view/Window.html#clearFlags(int" target="_blank">clearFlags()</a>);
+getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON).</p>
+<h2 id="-cpu-">保持CPU运行</h2>
+<p>如果你需要保持CPU运行为了完成一些工作在设备睡眠，你可以使用<a href="https://developer.android.com/reference/android/os/PowerManager.html" target="_blank">PowerManager</a>系统服务特性回调唤醒锁。唤醒锁允许你应用控制本地设备电源状态。</p>
+<p>创建和支持唤醒锁能有个引人注目的影响对本地设备电源周期。因此你使用唤醒锁仅仅当你确实需要，并保持他们尽可能短的时间尽可能。例如，你不应该需要使用唤醒锁在一个Activity中。以上描述，如果你想保持屏幕亮着在你的Activity，使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a>。</p>
+<p>一种合理情况对于使用唤醒锁可能在后台服务需要抢占一个唤醒锁保持CPU运行当屏幕关闭时。
+再一次，可是，这个实践应该最小因为它影响电池周期。</p>
+<p>为了使用唤醒锁，首先你增加<a href="https://developer.android.com/reference/android/Manifest.permission.html#WAKE_LOCK" target="_blank">WAKE_LOCK</a>权限在应用主要清单文件：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">andriod:name</span>=<span class="hljs-value">"andriod.permission.WAKE_LOCK"</span>/&gt;</span>
+</code></pre>
+<p>如果你的应用包括一个广播接收器使用这个服务做一些工作，你能管理你唤醒锁通过一个<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>,作为描述<a href="https://developer.android.com/training/scheduling/wakelock.html#wakeful" target="_blank">Using a WajefulBroadcastReceiver</a>.这是优先的方法。如果你的应用不允许这个模式，这里告诉你之间设置唤醒锁：</p>
+<pre><code class="lang-java">PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
+Wakelock wakelock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE)LOCK),
+    <span class="hljs-string">"MyWakelockTag"</span>);
+wakelock.acquire();
+</code></pre>
+<p>为了释放唤醒锁，使用<a href="https://developer.android.com/reference/android/os/PowerManager.WakeLock.html#release(" target="_blank">wakelock.release()</a>).这释放你的要求的CPU，它是重要的
+对于释放一个唤醒锁当你的应用使用完毕，避免消耗电量。</p>
+<h3 id="-wakefulbroadcastreceiver">使用WakefulBroadcastReceiver</h3>
+<p>使用一个广播接收器结合一个服务让你管理循环周期在后台任务。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>是一个特殊广播接收器类型小心创建和管理一个<a href="https://developer.android.com/reference/android/os/PowerManager.html#PARTIAL_WAKE_LOCK" target="_blank">PARTIAL_WAKE_LOCK</a>对于你的应用程序。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>忽略任务对于一个<a href="https://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>（典型的一个<a href="https://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>），当确保设备不转换到睡眠状态。如果你不支持一个唤醒锁当转换工作对于一个服务，你实际上允许设备返回睡眠状态在
+工作完成之前。网络结果是应用可能没有完成正在做的工作直到一些任意点在未来，不是你想要的。</p>
+<p>首先你增加<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>在你的主manifest文件里面，作为其他广播接收器。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">receiver</span> <span class="hljs-attribute">andriod:name</span>=<span class="hljs-value">".MyWakefulReceiver"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">receiver</span>&gt;</span>
+</code></pre>
+<p>代码开始在MyIntentService的方法<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent" target="_blank">startWakefulService()</a>).这个方法是完成<a href="https://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent" target="_blank">startService()</a>).除了<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>支持唤醒锁当服务开启。通信停止与<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent" target="_blank">startWakefulService()</a>)支持一个额外验证唤醒锁。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyWakefulReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WakefulBroadcaseReceiver</span>{</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span>(Content context, Intent intent){
+        Intent service = <span class="hljs-keyword">new</span> Intent(COntext,MyIntentService.class)
+        startWakefulService(context,service);
+    }
+</code></pre>
+<p>当服务完成，回调<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent" target="_blank">MyWakefulReceiver.completeWakefulIntent()</a>)释放唤醒锁。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent" target="_blank">completeWakefulIntent()</a>)方法有它的相同参数停止从<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>;</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyWakefulReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span>{</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> NOTIFICAION_ID = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">private</span> NotficationManager mNotificationManager;
+    NotificationCompat.Builder builder;
+    <span class="hljs-keyword">public</span> <span class="hljs-title">MyIntentService</span>(){
+        Bundle extra = intent.getExtras();
+        MyWakefulReceiver.completeWakefulIntent(intent);
+    }
+}
+</code></pre>
+<p><a href="">下一课：调度重复闹钟</a></p>
 
                     
                     </section>
@@ -3264,7 +3332,7 @@
         <a href="../../background-jobs/scheduling/index.html" class="navigation navigation-prev " aria-label="Previous page: 管理设备的唤醒状态"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../background-jobs/scheduling/alarms.html" class="navigation navigation-next " aria-label="Next page: 执行重复的闹钟任务"><i class="fa fa-angle-right"></i></a>
+        <a href="../../background-jobs/scheduling/alarms.html" class="navigation navigation-next " aria-label="Next page: 制定重复定时的任务"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

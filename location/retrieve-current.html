@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1" data-basepath=".." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1" data-basepath=".." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../ux/search/search.html" title="保存并搜索数据" class="chapter  " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../ux/search/back-compat.html" title="保留向后兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../ux/search/back-compat.html" title="保持向下兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3264,7 +3264,7 @@
 <pre><code class="lang-java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;
 </code></pre>
 <h2 id="-google-play-services">检测Google Play Services</h2>
-<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写onActivityResult()即可。</p>
+<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
 <p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
     ...

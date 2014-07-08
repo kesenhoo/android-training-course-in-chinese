@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.1" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.4.1" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter  " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,111 @@
                     <section class="normal" id="section-gitbook_263">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">建立搜索界面</h1>
+<p>从Android 3.0开始，在action bar中使用<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>作为item，是在你的app中提供搜索的一种更好方法。像其他所有在action bar中的item一样，你可以定义<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>在有足够空间的时候总是显示，或设置为一个折叠操作(collapsible action),一开始<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>作为一个图标显示，当用户点击图标时再显示搜索框占据整个action bar。</p>
+<blockquote>
+<p><strong>Note</strong>:在本课程的后面，你会学习对那些不支持<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>的设备，如何使你的app向下兼容至Android 2.1版本。</p>
+</blockquote>
+<h2 id="-searchview-action-bar-">添加SearchView到中action bar中添加</h2>
+<p>为了在action bar中添加<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>，在你的工程目录<code>res/menu/</code>中创建一个名为<code>options_menu.xml</code>的文件，再把下列代码添加到文件中。这段代码定义了如何创建search item，比如使用的图标和item的标题。<code>collapseActionView</code>属性允许你的<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>占据整个action bar，在不使用的时候折叠成普通的action bar item。由于在手持设备中action bar的空间有限，建议使用<code>collapsibleActionView</code>属性来提供更好的用户体验。</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">menu</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/search"</span>
+          <span class="hljs-attribute">android:title</span>=<span class="hljs-value">"@string/search_title"</span>
+          <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/ic_search"</span>
+          <span class="hljs-attribute">android:showAsAction</span>=<span class="hljs-value">"collapseActionView|ifRoom"</span>
+          <span class="hljs-attribute">android:actionViewClass</span>=<span class="hljs-value">"android.widget.SearchView"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">menu</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>:如果你的menu item已经有一个XML文件，你可以只把<code>&lt;item&gt;</code>元素添加入文件。</p>
+</blockquote>
+<p>要在action bar中显示<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>，把XML菜单资源(<code>res/menu/options_menu.xml</code>)填充到你的activity中的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu" target="_blank">onCreateOptionsMenu()</a>)方法:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span>(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options_menu, menu);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+}
+</code></pre>
+<p>如果你立即运行你的app，<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>就会显示在你app的action bar中，但还无法使用。你现在需要定义<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>如何运行。</p>
+<h2 id="-">创建一个检索配置</h2>
+<p><a href="http://developer.android.com/guide/topics/search/searchable-config.html" target="_blank">检索配置(searchable configuration)</a>在 <code>res/xml/searchable.xml</code>文件中定义了<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>如何运行。检索配置中至少要包含一个<code>android:label</code>属性，与Android manifest中的<code>&lt;application&gt;</code>或<code>&lt;activity&gt;</code> <code>android:label</code>属性值相同。但我们还是建议添加<code>android:hint</code>属性来告诉用户应该在搜索框中输入什么内容:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">searchable</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>
+        <span class="hljs-attribute">android:hint</span>=<span class="hljs-value">"@string/search_hint"</span> /&gt;</span>
+</code></pre>
+<p>在你的应用的manifest文件中，声明一个指向<code>res/xml/searchable.xml</code>文件的<a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html" target="_blank"><meta-data></a>元素，来告诉你的应用在哪里能找到检索配置。在你想要显示<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>的<code>&lt;activity&gt;</code>中声明<code>&lt;meta-data&gt;</code>元素:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">...</span> &gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta-data</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.app.searchable"</span>
+            <span class="hljs-attribute">android:resource</span>=<span class="hljs-value">"@xml/searchable"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<p>在你之前创建的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu" target="_blank">onCreateOptionsMenu()</a>)方法中，调用<a href="http://developer.android.com/reference/android/widget/SearchView.html#setSearchableInfo(android.app.SearchableInfo" target="_blank">setSearchableInfo(SearchableInfo)</a>)把<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>和检索配置关联在一起:</p>
+<pre><code class="lang-xml">@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options_menu, menu);
+
+    // 关联检索配置和SearchView
+    SearchManager searchManager =
+           (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+    SearchView searchView =
+            (SearchView) menu.findItem(R.id.search).getActionView();
+    searchView.setSearchableInfo(
+            searchManager.getSearchableInfo(getComponentName()));
+
+    return true;
+}
+</code></pre>
+<p>调用<a href="http://developer.android.com/reference/android/app/SearchManager.html#getSearchableInfo(android.content.ComponentName" target="_blank">getSearchableInfo()</a>)返回一个<a href="http://developer.android.com/reference/android/app/SearchableInfo.html" target="_blank">SearchableInfo</a>由检索配置XML文件创建的对象。检索配置与<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>正确关联后，当用户提交一个搜索请求时，<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>会以<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent启动一个activity。所以你现在需要一个能过滤这个intent和处理搜索请求的activity。</p>
+<h2 id="-activity">创建一个检索activity</h2>
+<p>当用户提交一个搜索请求时，<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>会尝试以<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a>启动一个activity。检索activity会过滤<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent并在某种数据集中根据请求进行搜索。要创建一个检索activity，在你选择的activity中声明对<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent过滤:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".SearchResultsActivity"</span> <span class="hljs-attribute">...</span> &gt;</span>
+    ...
+    <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.SEARCH"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+</code></pre>
+<p>在你的检索activity中，通过在<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle" target="_blank">onCreate()</a>)方法中检查<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent来处理它。</p>
+<blockquote>
+<p><strong>Note</strong>:如果你的检索activity在single top mode下启动(<code>android:launchMode=&quot;singleTop&quot;</code>)，也要在<a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent" target="_blank">onNewIntent()</a>)方法中处理<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent。在single top mode下你的activity只有一个会被创建，而随后启动的activity将不会在栈中创建新的activity。这种启动模式很有用，因为用户可以在当前activity中进行搜索，而不用在每次搜索时都创建一个activity实例。</p>
+</blockquote>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SearchResultsActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        handleIntent(getIntent());
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNewIntent</span>(Intent intent) {
+        ...
+        handleIntent(intent);
+    }
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleIntent</span>(Intent intent) {
+
+        <span class="hljs-keyword">if</span> (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            <span class="hljs-comment">//通过某种方法，根据请求检索你的数据</span>
+        }
+    }
+    ...
+}
+</code></pre>
+<p>如果你现在运行你的app，<a href="http://developer.android.com/reference/android/widget/SearchView.html" target="_blank">SearchView</a>就能接收用户的搜索请求，以<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH" target="_blank">ACTION_SEARCH</a> intent启动你的检索activity。现在就由你来解决如何依据请求来储存和搜索数据。</p>
 
                     
                     </section>

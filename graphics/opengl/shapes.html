@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.2" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.2" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter  " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,89 @@
                     <section class="normal" id="section-gitbook_138">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-shapes">定义Shapes</h1>
+<p>在一个OpenGL ES视图的上下文中定义形状，是创建你的杰作所需要的第一步。在不知道关于OpenGL ES如何期望你来定义图形对象的基本知识的时候，通过OpenGL ES 绘图可能会有些困难。</p>
+<p>这节课将解释OpenGL ES相对于Android设备屏幕的坐标系，定义形状和形状表面的基本知识，如定义一个三角形和一个矩形。</p>
+<h2 id="-">定义一个三角形</h2>
+<p>OpenGL ES允许你使用三维空间的坐标来定义绘画对象。所以在你能画三角形之前，你必须先定义它的坐标。在OpenGL 中，典型的办法是以浮点数的形式为坐标定义一个顶点数组。为了让效率最大化，你可以将坐标写入一个<a href="http://developer.android.com/reference/java/nio/ByteBuffer.html" target="_blank">ByteBuffer</a>，它将会传入OpenGl ES的图形处理流程中：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> {</span>
+
+    <span class="hljs-keyword">private</span> FloatBuffer vertexBuffer;
+
+    <span class="hljs-comment">// number of coordinates per vertex in this array</span>
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COORDS_PER_VERTEX = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> triangleCoords[] = {   <span class="hljs-comment">// in counterclockwise order:</span>
+             <span class="hljs-number">0.0</span>f,  <span class="hljs-number">0.622008459</span>f, <span class="hljs-number">0.0</span>f, <span class="hljs-comment">// top</span>
+            -<span class="hljs-number">0.5</span>f, -<span class="hljs-number">0.311004243</span>f, <span class="hljs-number">0.0</span>f, <span class="hljs-comment">// bottom left</span>
+             <span class="hljs-number">0.5</span>f, -<span class="hljs-number">0.311004243</span>f, <span class="hljs-number">0.0</span>f  <span class="hljs-comment">// bottom right</span>
+    };
+
+    <span class="hljs-comment">// Set color with red, green, blue and alpha (opacity) values</span>
+    <span class="hljs-keyword">float</span> color[] = { <span class="hljs-number">0.63671875</span>f, <span class="hljs-number">0.76953125</span>f, <span class="hljs-number">0.22265625</span>f, <span class="hljs-number">1.0</span>f };
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">Triangle</span>() {
+        <span class="hljs-comment">// initialize vertex byte buffer for shape coordinates</span>
+        ByteBuffer bb = ByteBuffer.allocateDirect(
+                <span class="hljs-comment">// (number of coordinate values * 4 bytes per float)</span>
+                triangleCoords.length * <span class="hljs-number">4</span>);
+        <span class="hljs-comment">// use the device hardware's native byte order</span>
+        bb.order(ByteOrder.nativeOrder());
+
+        <span class="hljs-comment">// create a floating point buffer from the ByteBuffer</span>
+        vertexBuffer = bb.asFloatBuffer();
+        <span class="hljs-comment">// add the coordinates to the FloatBuffer</span>
+        vertexBuffer.put(triangleCoords);
+        <span class="hljs-comment">// set the buffer to read the first coordinate</span>
+        vertexBuffer.position(<span class="hljs-number">0</span>);
+    }
+}
+</code></pre>
+<p>默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（X, Y, Z）对应的是GLSurfaceView框架的中心。[1, 1, 0]对应的是框架的右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding" target="_blank">OpenGL ES</a>开发手册。</p>
+<p>注意到这个形状的坐标是以逆时针顺序定义的。绘制的顺序非常关键，因为它定义了哪一面是形状的正面（你希望绘制的一面），以及背面（你可以使用OpenGL ES的cull face特性来让它不要绘制）。更多关于该方面的信息，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding" target="_blank">OpenGL ES</a>开发手册。</p>
+<h2 id="-">定义一个矩形</h2>
+<p>在OpenGL中定义三角形非常简单，那么你是否想要增加一些复杂性呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：</p>
+<p><img src="ccw-square.png" alt="ccw-square" title="使用两个三角形画一个矩形"></p>
+<p>再一次地，你需要以逆时针的形式为三角形顶点定义坐标来表现这个图形，并将值放入一个<a href="http://developer.android.com/reference/java/nio/ByteBuffer.html" target="_blank">ByteBuffer</a>中。为了避免由两个三角形共享的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Square</span> {</span>
+
+    <span class="hljs-keyword">private</span> FloatBuffer vertexBuffer;
+    <span class="hljs-keyword">private</span> ShortBuffer drawListBuffer;
+
+    <span class="hljs-comment">// number of coordinates per vertex in this array</span>
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> COORDS_PER_VERTEX = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> squareCoords[] = {
+            -<span class="hljs-number">0.5</span>f,  <span class="hljs-number">0.5</span>f, <span class="hljs-number">0.0</span>f,   <span class="hljs-comment">// top left</span>
+            -<span class="hljs-number">0.5</span>f, -<span class="hljs-number">0.5</span>f, <span class="hljs-number">0.0</span>f,   <span class="hljs-comment">// bottom left</span>
+             <span class="hljs-number">0.5</span>f, -<span class="hljs-number">0.5</span>f, <span class="hljs-number">0.0</span>f,   <span class="hljs-comment">// bottom right</span>
+             <span class="hljs-number">0.5</span>f,  <span class="hljs-number">0.5</span>f, <span class="hljs-number">0.0</span>f }; <span class="hljs-comment">// top right</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">short</span> drawOrder[] = { <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> }; <span class="hljs-comment">// order to draw vertices</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title">Square</span>() {
+        <span class="hljs-comment">// initialize vertex byte buffer for shape coordinates</span>
+        ByteBuffer bb = ByteBuffer.allocateDirect(
+        <span class="hljs-comment">// (# of coordinate values * 4 bytes per float)</span>
+                squareCoords.length * <span class="hljs-number">4</span>);
+        bb.order(ByteOrder.nativeOrder());
+        vertexBuffer = bb.asFloatBuffer();
+        vertexBuffer.put(squareCoords);
+        vertexBuffer.position(<span class="hljs-number">0</span>);
+
+        <span class="hljs-comment">// initialize byte buffer for the draw list</span>
+        ByteBuffer dlb = ByteBuffer.allocateDirect(
+        <span class="hljs-comment">// (# of coordinate values * 2 bytes per short)</span>
+                drawOrder.length * <span class="hljs-number">2</span>);
+        dlb.order(ByteOrder.nativeOrder());
+        drawListBuffer = dlb.asShortBuffer();
+        drawListBuffer.put(drawOrder);
+        drawListBuffer.position(<span class="hljs-number">0</span>);
+    }
+}
+</code></pre>
+<p>该样例给了你一个如何使用OpenGL创建复杂图形的启发，通常来说，你需要使用三角形的集合来绘制对象。在下一节课中，你将学习如何在屏幕上画这些形状。</p>
 
                     
                     </section>

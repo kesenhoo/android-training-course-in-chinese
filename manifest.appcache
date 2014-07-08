@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1404402640658
+# Revision 1404747066597
 
 CACHE:
 index.html
@@ -8,12 +8,12 @@ animations/crossfade.html
 animations/index.html
 animations/layout.html
 animations/screen-slide.html
-background-jobs/index.html
 animations/zoom.html
+background-jobs/index.html
 background-jobs/load-data-background/handle-result.html
 background-jobs/load-data-background/index.html
-background-jobs/run-background-service/create-service.html
 background-jobs/load-data-background/setup-loader.html
+background-jobs/run-background-service/create-service.html
 background-jobs/run-background-service/index.html
 background-jobs/run-background-service/report-status.html
 background-jobs/run-background-service/send-request.html
@@ -40,11 +40,11 @@ basics/firstapp/index.html
 basics/firstapp/running-app.html
 basics/firstapp/starting-activity.html
 basics/fragments/communicating.html
-basics/fragments/creating.html
 basics/fragments/fragment-ui.html
+basics/fragments/creating.html
 basics/fragments/index.html
-basics/intents/filters.html
 basics/index.html
+basics/intents/filters.html
 basics/intents/index.html
 basics/intents/result.html
 basics/intents/sending.html
@@ -70,9 +70,9 @@ connectivity/index.html
 connectivity/network-ops/connecting.html
 connectivity/network-ops/index.html
 connectivity/network-ops/managing.html
-connectivity/network-ops/xml.html
 connectivity/sync-adapters/create-authenticator.html
 connectivity/sync-adapters/create-stub-provider.html
+connectivity/network-ops/xml.html
 connectivity/sync-adapters/create-sync-adapter.html
 connectivity/sync-adapters/index.html
 connectivity/sync-adapters/running-sync-adapter.html
@@ -110,19 +110,19 @@ distribute/monetization/index.html
 distribute/multi-apks/api.html
 distribute/multi-apks/index.html
 distribute/multi-apks/multiple.html
-distribute/multi-apks/texture.html
 distribute/multi-apks/screen-size.html
+distribute/multi-apks/texture.html
 graphics/displaying-bitmaps/cache-bitmap.html
 graphics/displaying-bitmaps/display-bitmap.html
 graphics/displaying-bitmaps/index.html
 graphics/displaying-bitmaps/load-bitmap.html
 graphics/displaying-bitmaps/manage-bitmap-memory.html
-graphics/displaying-bitmaps/process-bitmap.html
 graphics/index.html
+graphics/displaying-bitmaps/process-bitmap.html
+graphics/opengl/motion.html
 graphics/opengl/draw.html
 graphics/opengl/environment.html
 graphics/opengl/index.html
-graphics/opengl/motion.html
 graphics/opengl/projection.html
 graphics/opengl/shapes.html
 graphics/opengl/touch.html
@@ -150,8 +150,8 @@ location/index.html
 location/location-testing.html
 location/retrieve-current.html
 location/retrieve-location-updates.html
-multimedia/audio/audio-focus.html
 multimedia/audio/audio-output.html
+multimedia/audio/audio-focus.html
 multimedia/audio/index.html
 multimedia/audio/volume-playback.html
 multimedia/camera/cameradirect.html
@@ -164,10 +164,10 @@ multimedia/printing/html-docs.html
 multimedia/printing/index.html
 multimedia/printing/photos.html
 performance/improving-layouts/index.html
-performance/improving-layouts/loading-ondemand.html
 performance/improving-layouts/optimizing-layout.html
-performance/improving-layouts/reuse-layouts.html
 performance/improving-layouts/smooth-scrolling.html
+performance/improving-layouts/reuse-layouts.html
+performance/improving-layouts/loading-ondemand.html
 performance/index.html
 performance/memory.html
 performance/monitor-device-state/battery-monitor.html
@@ -176,8 +176,8 @@ performance/monitor-device-state/docking-monitor.html
 performance/monitor-device-state/index.html
 performance/monitor-device-state/manifest-receivers.html
 performance/multi-threads/communicate-ui.html
-performance/multi-threads/create-threadpool.html
 performance/multi-threads/define-runnable.html
+performance/multi-threads/create-threadpool.html
 performance/multi-threads/index.html
 performance/multi-threads/run-code.html
 performance/perf-anr/index.html
@@ -185,9 +185,9 @@ performance/perf-jni/index.html
 performance/performance-tips.html
 performance/smp/index.html
 security/enterprise.html
-security/index.html
-security/security-ssl.html
 security/security-tips.html
+security/security-ssl.html
+security/index.html
 testing/activity-testing/activity-basic-testing.html
 testing/activity-testing/activity-function-testing.html
 testing/activity-testing/activity-ui-testing.html
@@ -196,6 +196,7 @@ testing/activity-testing/index.html
 testing/activity-testing/prepare-activity-testing.html
 testing/index.html
 ui/accessibility/accessible-app.html
+ui/accessibility/accessible-service.html
 ui/accessibility/index.html
 ui/backward-compatible-ui/abstract.html
 ui/backward-compatible-ui/index.html
@@ -203,9 +204,8 @@ ui/backward-compatible-ui/new-impl.html
 ui/backward-compatible-ui/older-impl.html
 ui/backward-compatible-ui/using-component.html
 ui/custom-view/create-view.html
-ui/custom-view/custom-draw.html
-ui/accessibility/accessible-service.html
 ui/custom-view/index.html
+ui/custom-view/custom-draw.html
 ui/custom-view/make-interactive.html
 ui/custom-view/optimize-view.html
 ui/index.html
@@ -227,8 +227,8 @@ ux/app-indexing/deep-linking.html
 ux/app-indexing/enable-app-indexing.html
 ux/app-indexing/index.html
 ux/design-nav/ancestral-temporal.html
-ux/design-nav/descendant-lateral.html
 ux/design-nav/index.html
+ux/design-nav/descendant-lateral.html
 ux/design-nav/multi-sizes.html
 ux/design-nav/screen-planning.html
 ux/design-nav/wireframing.html

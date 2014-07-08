@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.5" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.5" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter  " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter  " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter  " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter  " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter  " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3245,13 +3245,47 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_136">
+                    <section class="normal" id="section-gitbook_133">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">添加移动</h1>
+<p>在屏幕上绘制图形是OpenGL的一个基本特性，但你也可以通过其它的Android图形框架类做这些事情，包括<a href="http://developer.android.com/reference/android/graphics/Canvas.html" target="_blank">Canvas</a>和<a href="http://developer.android.com/reference/android/graphics/drawable/Drawable.html" target="_blank">Drawable</a>对象。OpenGL ES提供额外的功能，能够在三维空间对绘制图形进行移动和变换操作，或者还可以通过其它独有的方法创建出引人入胜的用户体验。</p>
+<p>在这节课中，一会更深入的学习OpenGL ES的知识：对一个形状添加旋转动画。</p>
+<h2 id="-">旋转一个形状</h2>
+<p>使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。首先创建一个变换矩阵（一个旋转矩阵）并且将它和你的投影变换矩阵和相机试图变换矩阵结合在一起：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span>[] mRotationMatrix = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">16</span>];
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span>(GL10 gl) {
+    ...
+    <span class="hljs-keyword">float</span>[] scratch = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">16</span>];
+
+    <span class="hljs-comment">// Create a rotation transformation for the triangle</span>
+    <span class="hljs-keyword">long</span> time = SystemClock.uptimeMillis() % <span class="hljs-number">4000</span>L;
+    <span class="hljs-keyword">float</span> angle = <span class="hljs-number">0.090</span>f * ((<span class="hljs-keyword">int</span>) time);
+    Matrix.setRotateM(mRotationMatrix, <span class="hljs-number">0</span>, angle, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, -<span class="hljs-number">1.0</span>f);
+
+    <span class="hljs-comment">// Combine the rotation matrix with the projection and camera view</span>
+    <span class="hljs-comment">// Note that the mMVPMatrix factor *must be first* in order</span>
+    <span class="hljs-comment">// for the matrix multiplication product to be correct.</span>
+    Matrix.multiplyMM(scratch, <span class="hljs-number">0</span>, mMVPMatrix, <span class="hljs-number">0</span>, mRotationMatrix, <span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// Draw triangle</span>
+    mTriangle.draw(scratch);
+}
+</code></pre>
+<p>如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY" target="_blank">GLSurfaceView.RENDERMODE_WHEN_DIRTY</a>的配置注释掉了，有关该方面的知识会在下一节课展开。</p>
+<h2 id="-">启用连续渲染</h2>
+<p>如果你严格按照这节课的样例代码走到了现在这一步，那么请确定您将设置渲染模式为“RENDERMODE_WHEN_DIRTY”的这一行注释了，不然的话OpenGL只会对这个形状执行一个增量的旋转，然后就等待<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>容器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\" target="_blank">requestRender()</a>)方法被调用。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-title">MyGLSurfaceView</span>(Context context) {
+    ...
+    <span class="hljs-comment">// Render the view only when there is a change in the drawing data.</span>
+    <span class="hljs-comment">// To allow the triangle to rotate automatically, this line is commented out:</span>
+    <span class="hljs-comment">//setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);</span>
+}
+</code></pre>
+<p>除非你的某个对象，它的变化和用户的交互无关，不然的话一般还是建议将这个配置打开。在下一节课将会将这个注释放开，并且再次调用。</p>
 
                     
                     </section>

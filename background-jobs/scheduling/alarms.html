@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>执行重复的闹钟任务 | Android Training Course in Chinese</title>
+        <title>制定重复定时的任务 | Android Training Course in Chinese</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.3.2" data-basepath="../.." data-revision="1404402640658">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.3.2" data-basepath="../.." data-revision="1404747066596">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1612,7 +1612,7 @@
         <li class="chapter " data-level="11.4.3" data-path="ux/search/back-compat.html">
             
             <a href="../../ux/search/back-compat.html">
-                <i class="fa fa-check"></i> <b>11.4.3.</b> 保留向后兼容
+                <i class="fa fa-check"></i> <b>11.4.3.</b> 保持向下兼容
             </a>
             
             
@@ -2239,7 +2239,7 @@
         <li class="chapter " data-level="14.3.2" data-path="background-jobs/scheduling/alarms.html">
             
             <a href="../../background-jobs/scheduling/alarms.html">
-                <i class="fa fa-check"></i> <b>14.3.2.</b> 执行重复的闹钟任务
+                <i class="fa fa-check"></i> <b>14.3.2.</b> 制定重复定时的任务
             </a>
             
             
@@ -2439,7 +2439,7 @@
         <li class="chapter " data-level="15.6" data-path="performance/perf-anr/index.html">
             
             <a href="../../performance/perf-anr/index.html">
-                <i class="fa fa-check"></i> <b>15.6.</b> 避免ANR
+                <i class="fa fa-check"></i> <b>15.6.</b> 避免出现程序无响应ANR
             </a>
             
             
@@ -3030,7 +3030,7 @@
     
         <a href="../../ux/search/search.html" title="保存并搜索数据" class="chapter done " data-progress="11.4.2" style="left: 57.31707317073171%;"></a>
     
-        <a href="../../ux/search/back-compat.html" title="保留向后兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
+        <a href="../../ux/search/back-compat.html" title="保持向下兼容" class="chapter done " data-progress="11.4.3" style="left: 57.72357723577236%;"></a>
     
         <a href="../../ux/app-indexing/index.html" title="使得你的App内容可被Google搜索" class="chapter done " data-progress="11.5" style="left: 58.13008130081301%;"></a>
     
@@ -3148,7 +3148,7 @@
     
         <a href="../../background-jobs/scheduling/wake-lock.html" title="保持设备的唤醒" class="chapter done " data-progress="14.3.1" style="left: 81.30081300813008%;"></a>
     
-        <a href="../../background-jobs/scheduling/alarms.html" title="执行重复的闹钟任务" class="chapter done " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
+        <a href="../../background-jobs/scheduling/alarms.html" title="制定重复定时的任务" class="chapter done " data-progress="14.3.2" style="left: 81.70731707317073%;"></a>
     
         <a href="../../performance/index.html" title="性能优化" class="chapter  " data-progress="15" style="left: 82.11382113821138%;"></a>
     
@@ -3186,7 +3186,7 @@
     
         <a href="../../performance/multi-threads/communicate-ui.html" title="与UI线程进行交互" class="chapter  " data-progress="15.5.4" style="left: 89.02439024390245%;"></a>
     
-        <a href="../../performance/perf-anr/index.html" title="避免ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
+        <a href="../../performance/perf-anr/index.html" title="避免出现程序无响应ANR" class="chapter  " data-progress="15.6" style="left: 89.4308943089431%;"></a>
     
         <a href="../../performance/perf-jni/index.html" title="JNI Tips" class="chapter  " data-progress="15.7" style="left: 89.83739837398375%;"></a>
     
@@ -3248,10 +3248,180 @@
                     <section class="normal" id="section-gitbook_20">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/lttowq" target="_blank">lttowq</a>(未验证)</p>
 <p>校对:</p>
 </blockquote>
-<h1 id="-">执行重复的闹钟任务</h1>
+<h1 id="-">调度重复的闹钟</h1>
+<p>闹钟(<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">基本类AlarmManager</a>)给你一种方式执行基本时间操作你app生命周期外。例如你可以使用闹钟初始化一个长时间操作，例如开启一个服务一天为了下载天气预报。</p>
+<p>闹钟的特性</p>
+<ul>
+<li>它们让设置次数或间距点燃你意图</li>
+<li>你可以使用它结合广播接收器开启服务和执行其他操作</li>
+<li>它们执行在你的应用之外，所以你可以使用它触发事件或动作即使你的app没有运行或设备处于睡眠状态。</li>
+<li>它们可以帮助你app最小化资源请求。你可以调度无需依赖的或者连续运行在后台的服务。</li>
+</ul>
+<h5 id="-">注意</h5>
+<p>对于定时操作保证结果在你app生命周期之内，替代可虑使用<a href="https://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>类结合<a href="https://developer.android.com/reference/java/util/Timer.html" target="_blank">定时器</a>与<a href="https://developer.android.com/reference/java/lang/Thread.html" target="_blank">线程</a>。这个方法给你Android更好的控制系统资源。</p>
+<h2 id="-">理解交替使用</h2>
+<p>一个重复闹钟是相对简单的机制和有限的灵活性。它或许不是最好的选择对于你的app，特别是如果你的app需要触发网络操作。一个坏的闹钟设计能造成电池漏电和让一个有意义的服务负载。</p>
+<p>一个普通的情景对于触发一个你的app同步数据和一个服务器的生命周期外的操作。这个案例你可能冒险使用一个重复的闹钟。但是你自己服务器是本地你的app数据，使用<a href="https://developer.android.com/google/gcm/index.html" target="_blank">Google Cloud Messaging</a>(GCM)在结合你的<a href="https://developer.android.com/training/sync-adapters/index.html" target="_blank">sync adapter</a>是更好解决方案比<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>。一个同步适配器给你所有相同的调度选项作为<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>，但是它提供你更灵活性。比如：
+一个同步可能基本在“新数据”消息从服务器或设备（细节见<a href="https://developer.android.com/training/sync-adapters/running-sync-adapter.html" target="_blank">Running a Sync Adapter</a>）。用户活动或静止，一天的时间或更久。看下面两个链接对于什么时候怎样使用GCM和同步适配器细节的讨论。
+1.<a href="http://www.youtube.com/watch?v=yxW29JVXCqc" target="_blank">The App Clinic:Cricket</a>(需出墙)</p>
+<p>2.<a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-VJS9WQlj9xM_ygPopZ-Qd" target="_blank">DevBytes:Efficient Data Transfers</a>（需出墙）</p>
+<h3 id="-">最好的练习</h3>
+<p>每个选择让你设计你的重复闹钟可以用序列在你的app使用或滥用系统资源。例如，想象一个流行的app和一个服务器同步。如果你同步操作在计时器的操作上，每一个app的实例同步在11：00P.M，服务器负载造成高延时或者甚至“服务器拒绝”。下面是使用闹钟的建议：</p>
+<ul>
+<li>增加随意（颤动）对任何网络请求触发作为一个重复闹钟的结果;<ul>
+<li>做本地任务当一个闹钟触发。“本地任务”意味任何事情不需要敲击服务器或请求一个数据从服务器</li>
+<li>在相同的时间，调度闹钟包含网络请求点燃相同定时周期</li>
+</ul>
+</li>
+<li>保持你的闹钟频率最小；</li>
+<li>不是必要的情况不要唤醒设备(这个行为被闹钟决定，细节在<a href="https://developer.android.com/training/scheduling/alarms.html#type" target="_blank">Choose an alarm type</a>)；</li>
+<li>不要使用你的闹钟触发时间比它精确；
+使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank">setInexactRepeating</a>)替代<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent" target="_blank">setRepeating</a>).当你使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank">setInexactRepeating</a>)，Android同步重复闹钟从多个app和在相同的时间点燃它。这减少系统必须唤醒设备的数目，以此减少电源能耗。Android4.4（API Level19），所有的重复闹钟是不精确的。注意当<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank">setInexactRepeating</a>)是一个改进<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent" target="_blank">setRepeating</a>),它能覆盖一个服务如果每个app的实例撞击服务器在相同的时间。因此对于网络请求，增加相同随意的闹钟、作为以上描述。</li>
+<li>避免在你的闹钟基础上计时如果可能
+重复的闹钟在预测触发器的没有扫描好的基础上。使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME" target="_blank">ELAPSED_REALTIME</a>如果你能。不同的闹钟类型描述的细节在下面选项。</li>
+</ul>
+<h2 id="-">设置重复闹钟</h2>
+<p>下面的描述，重制闹钟作为一个好的选择有规律调度时间或数据备份。一个重复闹钟好如下特性：</p>
+<ul>
+<li>一个闹钟类型的讨论见<a href="https://developer.android.com/training/scheduling/alarms.html#type" target="_blank">Choose an alarm type</a>.</li>
+<li>一个触发时间。如果触发时间你制定在过去，闹钟触发立即执行。</li>
+<li>闹钟间距。例如，某一天、每个小时、每5秒等等。</li>
+<li>一个行将发生的意图是当闹钟被触发。当你设置一秒闹钟使用相同悬而未决的意图，它能替换原始闹钟。</li>
+</ul>
+<h3 id="-">选择一个闹钟的类型</h3>
+<p>其中第一个考虑是使用什么类型重置闹钟。
+这里有两个通用的计时器闹钟：“elapsed real time”和“real time clock”。elapsed real time使用“计时自从系统引导”作为引用，和real time clock使用UTC计时。这意味着elapsed real time适合设置一个闹钟在一段时间基础上(例如：一个闹钟点燃每30秒)且它不受地区和时区的影响。real time clock类型更好适配闹钟依赖当前时区。
+两个类型有“唤醒”版本，都能唤醒设备的CPU如果屏幕关闭。这确保闹钟将启动在调度时间、这是有用的如果你的ap有一个时间依赖。例如，如果它有一个限制窗口将启动当你的设备在下个唤醒。
+如果你简单的需要那种启动特殊意图（例如：每半小时），使用其中elapsed real time类型。一般，这是更好的选择。
+如果你需要闹钟启动在一天中特殊的时间，然后选择某个计real time clock类型。注意,但是这个方法有些缺点——app或许不会翻译好对于其他地区，如果用户改变设备时间设置，它可能造成意外行为在你app。使用一个真实时间计时的闹钟类型也不会扫描好，综上，我们建议你使用elapsed real time。</p>
+<p>这里列出类型：</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME" target="_blank">ELAPSED_REALTIME</a>-点燃悬而未决意图在计时基础上从设备被引导，但是不需要唤醒设备。The elapsed 时间包括一些次数在设备处于睡眠期间。</li>
+<li><a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME_WAKEUP" target="_blank">ELAPSED_REALTIME_WAKEUP</a>唤醒设备并且启动悬而未决意图后指定过去的时间长度自从设备启动。</li>
+<li><a href="https://developer.android.com/reference/android/app/AlarmManager.html#RTC" target="_blank">RTC</a>点燃悬而未决的意图在指定时间但是没有唤醒设备。</li>
+<li><a href="https://developer.android.com/reference/android/app/AlarmManager.html#RTC_WAKEUP" target="_blank">RTC_WAKEUP</a>唤醒设备在悬而未决意图在指定时间。</li>
+</ul>
+<h3 id="elapsed_realtime_wakeup-">ELAPSED_REALTIME_WAKEUP例子</h3>
+<p>这里有一些相同案例使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME_WAKEUP" target="_blank">ELAPSED_REALTIME_WAKEUP</a></p>
+<p>唤醒设备启动闹钟在30分钟内和每30分钟后：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Hopefully your alarm will have a lower frequency than this!</span>
+alarmMgr.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+        AlarmManager.INTERVAL_HALF_HOUR,
+        AlarmManager.INTERVAL_HALF_HOUR, alarmIntent);
+</code></pre>
+<p>唤醒设备在启动一次（无重复）闹钟在每分钟内：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> AlarmManager alarmMgr;
+<span class="hljs-keyword">private</span> PendingIntent alarmIntent;
+...
+alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+Intent intent = <span class="hljs-keyword">new</span> Intent(context, AlarmReceiver.class);
+alarmIntent = PendingIntent.getBroadcast(context, <span class="hljs-number">0</span>, intent, <span class="hljs-number">0</span>);
+alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+        SystemClock.elapsedRealtime() +
+        <span class="hljs-number">60</span> * <span class="hljs-number">1000</span>, alarmIntent);
+</code></pre>
+<h3 id="rtc-">RTC案例</h3>
+<p>这里有相同案例使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#RTC_WAKEUP" target="_blank">RTC_WAKEUP</a></p>
+<p>唤醒设备启动闹钟在约定时间2:00PM，一天内重复一次:</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Set the alarm to start at approximately 2:00 p.m.</span>
+Calendar calendar = Calendar.getInstance();
+calendar.setTimeInMillis(System.currentTimeMillis());
+calendar.set(Calendar.HOUR_OF_DAY, <span class="hljs-number">14</span>);
+<span class="hljs-comment">// With setInexactRepeating(), you have to use one of the AlarmManager interval</span>
+<span class="hljs-comment">// constants--in this case, AlarmManager.INTERVAL_DAY.</span>
+alarmMgr.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+        AlarmManager.INTERVAL_DAY, alarmIntent);
+</code></pre>
+<p>唤醒设备启动闹钟在8:30am,每20分钟后在启动:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> AlarmManager alarmMgr;
+<span class="hljs-keyword">private</span> PendingIntent alarmIntent;
+...
+alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+Intent intent = <span class="hljs-keyword">new</span> Intent(context, AlarmReceiver.class);
+alarmIntent = PendingIntent.getBroadcast(context, <span class="hljs-number">0</span>, intent, <span class="hljs-number">0</span>);
+<span class="hljs-comment">// Set the alarm to start at 8:30 a.m.</span>
+Calendar calendar = Calendar.getInstance();
+calendar.setTimeInMillis(System.currentTimeMillis());
+calendar.set(Calendar.HOUR_OF_DAY, <span class="hljs-number">8</span>);
+calendar.set(Calendar.MINUTE, <span class="hljs-number">30</span>)
+<span class="hljs-comment">// setRepeating() lets you specify a precise custom interval--in this case,</span>
+<span class="hljs-comment">// 20 minutes.</span>
+alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+        <span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">20</span>, alarmIntent);
+</code></pre>
+<h3 id="-">闹钟启动时间的设定</h3>
+<p>上面的描述，选择闹钟类型对于创建闹钟是第一步。第二不是设定闹钟启动的时间。对于大多数的app，<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank">setInexactRepeating</a>)是正确的选择。当你使用这个方法，Android同步多个不精确的重复闹钟和启动它们在相同的时间。这减少电源的能耗。</p>
+<p>对真实的app有严格的请求-例如，闹钟需要精确启动在8:30am和每隔一小时之后-使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent" target="_blank">setRepeating</a>)，但是你应该避免使用精确地闹钟如果可能。</p>
+<p>伴随<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent" target="_blank">setInexactRepeating</a>)，你不能指定客户意图一种方式你能<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent" target="_blank">setRepeating</a>)。你使用间距常量，例如<a href="https://developer.android.com/reference/android/app/AlarmManager.html#INTERVAL_FIFTEEN_MINUTES" target="_blank">INTERVAL_FIFTEEN_MINUTES,INTERVAL_DAY</a> 等等。见<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>里面的完整的列表。</p>
+<h3 id="-">取消闹钟</h3>
+<p>依赖你app，你可能想报考一些取消闹钟的能力。取消闹钟回调<a href="https://developer.android.com/reference/android/app/AlarmManager.html#cancel(android.app.PendingIntent" target="_blank">cancle</a>)在你闹钟管理器，通过<a href="https://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>你不在启动，例如：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// If the alarm has been set, cancel it.</span>
+<span class="hljs-keyword">if</span> (alarmMgr!= <span class="hljs-keyword">null</span>) {
+    alarmMgr.cancel(alarmIntent);
+}
+`
+</code></pre>
+<h3 id="-">启动闹钟当你设备启动时</h3>
+<p>默认的设置是所有的的闹钟被取消当一个设备关闭时。为了阻止发生，你可以你的app自动重启一个重复闹钟如果用户重启设备。这确保在<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>将继续不需要用户手动启动闹钟。</p>
+<p>这里的步骤：</p>
+<ol>
+<li><p>设置<a href="https://developer.android.com/reference/android/Manifest.permission.html#RECEIVE_BOOT_COMPLETED" target="_blank">RECEIVE_BOOT_CMPLETED</a>权限在你app主菜单（manifest）允许你的app接受<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT)COMPLETED</a>在广播后系统完成启动（如果你app已经运行通过用户至少一次才有效）</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span>
+</code></pre>
+</li>
+<li><p>实现一个<a href="https://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BoradcastReceiver</a>接收广播；</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleBootReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> {</span>
+ <span class="hljs-annotation">@Override</span>
+ <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span>(Context context, Intent intent) {
+     <span class="hljs-keyword">if</span> (intent.getAction().equals(<span class="hljs-string">"android.intent.action.BOOT_COMPLETED"</span>)) {
+         <span class="hljs-comment">// Set the alarm here.</span>
+     }
+ }
+}
+</code></pre>
+</li>
+<li>增加接收器在你app的mainfest文件里面与一个意图过滤，过滤器在<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT_COMPLETED</a>:<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">receiver</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".SampleBootReceiver"</span>
+     <span class="hljs-attribute">android:enabled</span>=<span class="hljs-value">"false"</span>&gt;</span>
+ <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.BOOT_COMPLETED"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">action</span>&gt;</span>
+ <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">receiver</span>&gt;</span>
+</code></pre>
+</li>
+</ol>
+<p>注意在mainfiest文件里，引导接收器设置android:enabled=&quot;false&quot;。这意味着接收器将不会回调除非app程序显式地启用它。这是阻止不必要引导接收器的回调。你能启动一个接收器（例如：如果用户设置如下一个闹钟）如下：</p>
+<pre><code class="lang-java">ComponentName receiver = <span class="hljs-keyword">new</span> ComponentName(context, SampleBootReceiver.class);
+PackageManager pm = context.getPackageManager();
+pm.setComponentEnabledSetting(receiver,
+        PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+        PackageManager.DONT_KILL_APP);
+</code></pre>
+<p>一旦你启动接器，它将保持启动，即使用户重启设备。总之,编程式启动接收器重写manifest里的设置，几多次重启。接收器将保持启动直到你的app不在使用它。你可以禁用一个接收器（例如：如果用户取消一个闹钟）如下：</p>
+<pre><code class="lang-java">ComponentName receiver = <span class="hljs-keyword">new</span> ComponentName(context, SampleBootReceiver.class);
+PackageManager pm = context.getPackageManager();
+pm.setComponentEnabledSetting(receiver,
+        PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+        PackageManager.DONT_KILL_APP);
+</code></pre>
+<h1 id="-"><a href="">下一课：最佳性能实践</a></h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>upstream/gh-pages</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 
                     
                     </section>
