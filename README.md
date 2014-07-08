@@ -160,11 +160,11 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [更新Notification](http://hukai.me/android-training-course-in-chinese/ux/notify-user/update-notification.html)
       * [使用BigView风格](http://hukai.me/android-training-course-in-chinese/ux/notify-user/expand-notification.html)
       * [显示Notification进度](http://hukai.me/android-training-course-in-chinese/ux/notify-user/progess-notification.html)
-   * [增加搜索功能](http://hukai.me/android-training-course-in-chinese/ux/search/index.html) - 编写中@[Lin-H](https://github.com/Lin-H)
+   * [增加搜索功能](http://hukai.me/android-training-course-in-chinese/ux/search/index.html) - 编写@[Lin-H](https://github.com/Lin-H)，待校验
       * [建立搜索界面](http://hukai.me/android-training-course-in-chinese/ux/search/setup.html)
       * [保存并搜索数据](http://hukai.me/android-training-course-in-chinese/ux/search/search.html)
-      * [保留向后兼容](http://hukai.me/android-training-course-in-chinese/ux/search/back-compat.html)
-   * [使得你的App内容可被Google搜索](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/index.html)
+      * [保持向下兼容](http://hukai.me/android-training-course-in-chinese/ux/search/back-compat.html)
+   * [使得你的App内容可被Google搜索](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/index.html) - 编写中@[Lin-H](https://github.com/Lin-H) - 5%
       * [为App内容开启深度链接](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/deep-linking.html)
       * [为索引指定App内容](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/enable-app-indexing.html)
 * [UI](ui/index.html)
