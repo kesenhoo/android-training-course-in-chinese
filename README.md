@@ -103,8 +103,8 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
 * [连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
    * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html)
       * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html) - 编写@[acenodie](https://github.com/acenodie)
-      * [使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)
-      * [使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)
+      * **[使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)**
+      * **[使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)**
    * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%待校验
       * [连接到网络](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/connecting.html)
       * [管理使用的网络](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/managing.html)
@@ -148,7 +148,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
       * [提供向上与暂时的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/ancestral-temporal.html)
       * [综合上面所有的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/wireframing.html)
-   * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html)
+   * **[实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html)**
       * [使用Tabs创建Swipe视图](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/lateral.html)
       * [创建抽屉导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/nav-drawer.html)
       * [提供向上的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/ancestral.html)
@@ -181,7 +181,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [实现自定义View的绘制](http://hukai.me/android-training-course-in-chinese/ui/custom-view/custom-draw.html)
       * [使得View可交互](http://hukai.me/android-training-course-in-chinese/ui/custom-view/make-interactive.html)
       * [优化自定义View](http://hukai.me/android-training-course-in-chinese/ui/custom-view/optimize-view.html)
-   * [创建向后兼容的UI](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/index.html)
+   * **[创建向后兼容的UI](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/index.html)**
       * [抽象新的APIs](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/abstract.html)
       * [代理至新的APIs](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/new-impl.html)
       * [使用旧的APIs实现新API的效果](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/older-impl.html)
@@ -208,7 +208,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [处理输入法可见性](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/visibility.html)
       * [支持输入法导航](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/navigation.html)
       * [处理输入法的指令](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/commands.html)
-   * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html)
+   * **[兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html)**
       * [处理控制器输入动作](http://hukai.me/android-training-course-in-chinese/input/game-controller/controller-inputs.html)
       * [支持不同的Android系统版本](http://hukai.me/android-training-course-in-chinese/input/game-controller/compatibility.html)
       * [支持多个控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/multi-controller.html)
@@ -226,7 +226,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
    * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%待校验
    * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%待校验
-   * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html)
+   * **[提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html)**
       * [优化layout的层级](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/optimizing-layout.html)
       * [使用include标签重用layouts](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/reuse-layouts.html)
       * [按需加载视图](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/loading-ondemand.html)
@@ -243,30 +243,30 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [与UI线程进行交互](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/communicate-ui.html)
    * [避免程序无响应ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - 编写@[kesenhoo](https://github.com/kesenhoo) - 100%，待校验
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - 编写@[pedant](https://github.com/pedant) - 1%
-   * [SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html)
-* [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)
+   * **[SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html)**
+* **[安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)**
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)
 * [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
-   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html)
+   * **[测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html)**
       * [建立测试环境](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/prepare-activity-testing.html)
       * [创建与执行测试用例](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-basic-testing.html)
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
       * [创建单元测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-unit-testing.html)
       * [创建功能测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-function-testing.html)
 * [分发与盈利](http://hukai.me/android-training-course-in-chinese/distribute/index.html)
-   * [售卖App内置产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/index.html)
+   * **[售卖App内置产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/index.html)**
       * [准备你的App](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/prepare-iab-app.html)
       * [建立售卖的产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/list-iab-products.html)
       * [购买产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/purchase-iab-products.html)
       * [测试你的App](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/test-iab-app.html)
-   * [维护多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/index.html)
+   * **[维护多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/index.html)**
       * [为不同API Level创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/api.html)
       * [为不同屏幕大小创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/screen-size.html)
       * [为不同的GL Texture创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/texture.html)
       * [为2种以上的维度创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/multiple.html)
-   * [App盈利](distribute/monetization/index.html)
+   * **[App盈利](distribute/monetization/index.html)**
       * [在不影响用户体验的前提下添加广告](http://hukai.me/android-training-course-in-chinese/distribute/monetization/ads-and-ux.html)
       
 
