@@ -3282,7 +3282,7 @@
 <p>在这个Intent构造函数中有两个参数： 第一个参数是Context(上下文)(之所有可以用this是因为当前Activity(MyFirstActivity)是Context的子类) 系统需要传递Intent的应用组件的class对象（在这个案例中，这个activity应该被启动）</p>
 <p><strong>注意</strong>：如果你正在使用的是类似Eclipse的IDE，这里对DisplayMessageActivity的引用会报错，因为这个类还不存在；注意这个错误，你很快就要去创建这个类了。</p>
 <p>一个Intent(意图)不仅允许你启动另一个Activity，同时也可以传递一个数据包到另一个Activity，在sendMessage()方法里用<a href="http://developer.android.com/reference/android/app/Activity.html#findViewById(int" target="_blank">findViewById()</a>)方法得到EditText元素，然后将它的文本信息添加到Intent(意图):</p>
-<pre><code class="lang-java">ntent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, DisplayMessageActivity.class);
+<pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, DisplayMessageActivity.class);
 EditText editText = (EditText) findViewById(R.id.edit_message);
 String message = editText.getText().toString();
 intent.putExtra(EXTRA_MESSAGE, message);
