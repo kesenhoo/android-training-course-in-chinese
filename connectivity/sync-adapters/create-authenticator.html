@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.4.1" data-basepath="../.." data-revision="1404747066596">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.4.1" data-basepath="../.." data-revision="1404839846145">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -143,7 +143,7 @@
         <li class="chapter " data-level="2" data-path="basics/index.html">
             
             <a href="../../basics/index.html">
-                <i class="fa fa-check"></i> <b>2.</b> 开始
+                <i class="fa fa-check"></i> <b>2.</b> 从这里开始
             </a>
             
             
@@ -2748,7 +2748,7 @@
     
         <a href="../../index.html" title="序言" class="chapter done new-chapter" data-progress="1" style="left: 0%;"></a>
     
-        <a href="../../basics/index.html" title="开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
+        <a href="../../basics/index.html" title="从这里开始" class="chapter done new-chapter" data-progress="2" style="left: 0.4065040650406504%;"></a>
     
         <a href="../../basics/firstapp/index.html" title="建立你的第一个App" class="chapter done " data-progress="2.1" style="left: 0.8130081300813008%;"></a>
     
@@ -3245,13 +3245,146 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_78">
+                    <section class="normal" id="section-gitbook_80">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-stub-">创建Stub授权器</h1>
+<p>Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会有一个账户，服务器存储端会有登录验证。因此，框架期望你提供一个叫做授权器的组件作为你的Sync Adapter的一部分。该组件会植入Android账户及认证框架，并提供一个标准的接口来处理用户凭据，比如登录信息。</p>
+<p>甚至，如果你的应用不使用账户，你仍然需要提供一个认证器组件。如果你不使用账户或者服务器登录，认证器所处理的信息将被忽略，所以你可以提供一个认证器组件，它包括了一个“空”的实现。同时你需要提供一个捆绑的<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>，来允许Sync Adapter框架来调用认证器的方法。</p>
+<p>这节课将向你展示如何定义一个Stub授权器的所有满足其实现要求的部件。如果你想要提供一个真实的处理用户账户的授权器，可以阅读：<a href="http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html" target="_blank">AbstractAccountAuthenticator</a>。</p>
+<h2 id="-stub-">添加一个Stub授权器组件</h2>
+<p>要在你的应用中添加一个Stub授权器，创建一个继承<a href="http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html" target="_blank">AbstractAccountAuthenticator</a>的类，并将要覆写的方法置空（这样就不会做任何处理了），返回null或者抛出异常。</p>
+<p>下面的代码片段是一个Stub授权器的例子：</p>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+ * Implement AbstractAccountAuthenticator and stub out all
+ * of its methods
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Authenticator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AbstractAccountAuthenticator</span> {</span>
+    <span class="hljs-comment">// Simple constructor</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">Authenticator</span>(Context context) {
+        <span class="hljs-keyword">super</span>(context);
+    }
+    <span class="hljs-comment">// Editing properties is not supported</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">editProperties</span>(
+            AccountAuthenticatorResponse r, String s) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+    }
+    <span class="hljs-comment">// Don't add additional accounts</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">addAccount</span>(
+            AccountAuthenticatorResponse r,
+            String s,
+            String s2,
+            String[] strings,
+            Bundle bundle) <span class="hljs-keyword">throws</span> NetworkErrorException {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+    <span class="hljs-comment">// Ignore attempts to confirm credentials</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">confirmCredentials</span>(
+            AccountAuthenticatorResponse r,
+            Account account,
+            Bundle bundle) <span class="hljs-keyword">throws</span> NetworkErrorException {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+    <span class="hljs-comment">// Getting an authentication token is not supported</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">getAuthToken</span>(
+            AccountAuthenticatorResponse r,
+            Account account,
+            String s,
+            Bundle bundle) <span class="hljs-keyword">throws</span> NetworkErrorException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+    }
+    <span class="hljs-comment">// Getting a label for the auth token is not supported</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> String <span class="hljs-title">getAuthTokenLabel</span>(String s) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+    }
+    <span class="hljs-comment">// Updating user credentials is not supported</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">updateCredentials</span>(
+            AccountAuthenticatorResponse r,
+            Account account,
+            String s, Bundle bundle) <span class="hljs-keyword">throws</span> NetworkErrorException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+    }
+    <span class="hljs-comment">// Checking features for the account is not supported</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Bundle <span class="hljs-title">hasFeatures</span>(
+        AccountAuthenticatorResponse r,
+        Account account, String[] strings) <span class="hljs-keyword">throws</span> NetworkErrorException {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> UnsupportedOperationException();
+    }
+}
+</code></pre>
+<h2 id="-">将授权器绑定到框架</h2>
+<p>为了让Sync Adapter框架可以访问你的授权器，你必须为它创建一个捆绑服务。这一服务提供一个Android binder对象，允许框架调用你的授权器，并且在授权器和框架间传输数据。</p>
+<p>因为框架会在它需要第一次访问授权器时启动<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>，你也可以使用服务来实例化授权器，方法是通过在服务的<a href="http://developer.android.com/reference/android/app/Service.html#onCreate\(\" target="_blank">Service.onCreate()</a>)方法中调用授权器的构造函数。</p>
+<p>下面的代码样例展示了如何定义绑定<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>：</p>
+<pre><code class="lang-java"><span class="hljs-javadoc">/**
+ * A bound Service that instantiates the authenticator
+ * when started.
+ */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AuthenticatorService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Service</span> {</span>
+    ...
+    <span class="hljs-comment">// Instance field that stores the authenticator object</span>
+    <span class="hljs-keyword">private</span> Authenticator mAuthenticator;
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>() {
+        <span class="hljs-comment">// Create a new authenticator object</span>
+        mAuthenticator = <span class="hljs-keyword">new</span> Authenticator(<span class="hljs-keyword">this</span>);
+    }
+    <span class="hljs-comment">/*
+     * When the system binds to this Service to make the RPC call
+     * return the authenticator's IBinder.
+     */</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> IBinder <span class="hljs-title">onBind</span>(Intent intent) {
+        <span class="hljs-keyword">return</span> mAuthenticator.getIBinder();
+    }
+}
+</code></pre>
+<h2 id="-">添加授权器的元数据文件</h2>
+<p>要将你的授权器组件插入到Sync Adapter和账户框架中，你需要为框架提供带有描述组件的元数据。该元数据声明了你创建的Sync Adapter的账户类型以及系统所显示的用户接口元素（如果你希望将你的账户类型对用户可见）。在你的项目目录：“/res/xml/”下，将元数据声明于一个XML文件中。你可以随便为它起一个名字，一般来说，可以叫“authenticator.xml”</p>
+<p>在这个XML文件中，包含单个元素<code>&lt;account-authenticator&gt;</code>，它有下列一些属性：</p>
+<p><strong>android:accountType</strong></p>
+<p>Sync Adapter框架需要每一个适配器以域名的形式拥有一个账户类型。框架使用作为其内部的标识。对于需要登录的服务器，账户类型会和账户一起发送到服务端作为登录凭据的一部分。</p>
+<p>如果你的服务不需要登录，你仍然需要提供一个账户类型。值的话就用你能控制的一个域名即可。由于框架会使用它来管理Sync Adapter，所以值不会发送到服务器上。</p>
+<p><strong>android:icon</strong></p>
+<p>指向一个包含一个图标的<a href="http://developer.android.com/guide/topics/resources/drawable-resource.html" target="_blank">Drawable</a>资源的指针。如果你在“res/xml/syncadapter.xml”中通过指定“android:userVisible=&quot;true&quot;”让Sync Adapter可见，那么你必须提供图标资源。它会在系统的设置中的账户这一栏内显示。</p>
+<p><strong>android:smallIcon</strong></p>
+<p>指向一个包含一个微小版本图标的<a href="http://developer.android.com/guide/topics/resources/drawable-resource.html" target="_blank">Drawable</a>资源的指针。结合具体的屏幕大小，这一资源可能会替代“android:icon”中所指定的图标资源。</p>
+<p><strong>android:label</strong></p>
+<p>将指明了用户账户类型的string本地化。如果你在“res/xml/syncadapter.xml”中通过指定“android:userVisible=&quot;true&quot;”让Sync Adapter可见，那么你需要提供这个string。它会在系统的设置中的账户这一栏内显示，就在你定义的图标旁边。</p>
+<p>下面的代码样例展示了你之前为授权器创建的XML文件：</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">account-authenticator
+</span>        <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+        <span class="hljs-attribute">android:accountType</span>=<span class="hljs-value">"example.com"</span>
+        <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/ic_launcher"</span>
+        <span class="hljs-attribute">android:smallIcon</span>=<span class="hljs-value">"@drawable/ic_launcher"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>/&gt;</span>
+</code></pre>
+<h2 id="-">在清单文件中声明授权器</h2>
+<p>在之前的步骤中，你创建了一个捆绑服务，将授权器和Sync Adapter框架连接起来。要标识这个服务，你需要再清单文件中添加<a href="http://developer.android.com/guide/topics/manifest/service-element.html" target="_blank"><code>&lt;service&gt;</code></a>标签，将它作为<a href="http://developer.android.com/guide/topics/manifest/application-element.html" target="_blank"><code>&lt;application&gt;</code></a>的子标签：</p>
+<pre><code class="lang-xml">    <span class="hljs-tag">&lt;<span class="hljs-title">service
+</span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.android.syncadapter.AuthenticatorService"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.accounts.AccountAuthenticator"</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta-data
+</span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.accounts.AccountAuthenticator"</span>
+            <span class="hljs-attribute">android:resource</span>=<span class="hljs-value">"@xml/authenticator"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">service</span>&gt;</span>
+</code></pre>
+<p>标签<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>配置了一个由android.accounts.AccountAuthenticator的intent所激活的过滤器，这一intent会在系统要运行授权器时由系统发出。当过滤器被激活，系统会启动AuthenticatorService，它是你之前用来封装认证器的捆绑<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html" target="_blank"><code>&lt;meta-data&gt;</code></a>标签声明了授权器的元数据。<a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html#nm" target="_blank">android:name</a>属性将元数据和授权器框架连接起来。<a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html#rsrc" target="_blank">android:resource</a>指定了你之前所创建的认证器元数据文件的名字。</p>
+<p>除了一个认证器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：<a href="除了一个认证器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](http://developer.android.com/training/sync-adapters/creating-sync-adapter.html">Creating a Sync Adapter</a>。</p>
 
                     
                     </section>

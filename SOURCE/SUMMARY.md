@@ -1,7 +1,7 @@
 # Summary
 
 * [序言](README.md)
-* [开始](basics/index.md)
+* [从这里开始](basics/index.md)
    * [建立你的第一个App](basics/firstapp/index.md)
        * [创建一个Android项目](basics/firstapp/creating-project.md)
        * [执行你的程序](basics/firstapp/running-app.md)
