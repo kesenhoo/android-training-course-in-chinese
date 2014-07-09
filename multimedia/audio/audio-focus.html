@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.2" data-basepath="../.." data-revision="1404839846145">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.2" data-basepath="../.." data-revision="1404920568686">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2037,7 +2037,7 @@
         <li class="chapter " data-level="13.2" data-path="input/keyboard-input/index.html">
             
             <a href="../../input/keyboard-input/index.html">
-                <i class="fa fa-check"></i> <b>13.2.</b> 处理按键点击
+                <i class="fa fa-check"></i> <b>13.2.</b> 处理键盘输入
             </a>
             
             
@@ -3110,7 +3110,7 @@
     
         <a href="../../input/gestures/viewgroup.html" title="管理ViewGroup中的触摸事件" class="chapter  " data-progress="13.1.6" style="left: 73.57723577235772%;"></a>
     
-        <a href="../../input/keyboard-input/index.html" title="处理按键点击" class="chapter  " data-progress="13.2" style="left: 73.98373983739837%;"></a>
+        <a href="../../input/keyboard-input/index.html" title="处理键盘输入" class="chapter  " data-progress="13.2" style="left: 73.98373983739837%;"></a>
     
         <a href="../../input/keyboard-input/type.html" title="指定输入法类型" class="chapter  " data-progress="13.2.1" style="left: 74.39024390243902%;"></a>
     
@@ -3245,7 +3245,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_164">
+                    <section class="normal" id="section-gitbook_1106">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3256,7 +3256,7 @@
 <p>在App开始播放音频之前，它需要经过发出请求[request]-&gt;接受请求[receive]-&gt;音频焦点锁定[Audio Focus]的过程。同样，它需要知道如何监听失去音频焦点[lose of audio focus]的事件并进行合适的响应。</p>
 <!-- more -->
 
-<h2 id="request-the-audio-focus-">Request the Audio Focus(请求获取音频焦点)</h2>
+<h2 id="-request-the-audio-focus-">请求获取音频焦点(Request the Audio Focus)</h2>
 <p>通过call <a href="http://developer.android.com/reference/android/media/AudioManager.html#requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, int, int" target="_blank">requestAudioFocus()</a>) 方法来获取你想要获取到的音频流焦点。如果请求成功这个方法会返回 AUDIOFOCUS_REQUEST_GRANTED 。</p>
 <p>我们必须指定正在使用哪个音频流，而且需要确定请求的是短暂的还是永久的audio focus。</p>
 <ul>

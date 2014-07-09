@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.5.2" data-basepath="../.." data-revision="1404839846145">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.5.2" data-basepath="../.." data-revision="1404920568686">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2037,7 +2037,7 @@
         <li class="chapter " data-level="13.2" data-path="input/keyboard-input/index.html">
             
             <a href="../../input/keyboard-input/index.html">
-                <i class="fa fa-check"></i> <b>13.2.</b> 处理按键点击
+                <i class="fa fa-check"></i> <b>13.2.</b> 处理键盘输入
             </a>
             
             
@@ -3110,7 +3110,7 @@
     
         <a href="../../input/gestures/viewgroup.html" title="管理ViewGroup中的触摸事件" class="chapter  " data-progress="13.1.6" style="left: 73.57723577235772%;"></a>
     
-        <a href="../../input/keyboard-input/index.html" title="处理按键点击" class="chapter  " data-progress="13.2" style="left: 73.98373983739837%;"></a>
+        <a href="../../input/keyboard-input/index.html" title="处理键盘输入" class="chapter  " data-progress="13.2" style="left: 73.98373983739837%;"></a>
     
         <a href="../../input/keyboard-input/type.html" title="指定输入法类型" class="chapter  " data-progress="13.2.1" style="left: 74.39024390243902%;"></a>
     
@@ -3245,13 +3245,63 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_239">
+                    <section class="normal" id="section-gitbook_1181">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/Lin-H" target="_blank">Lin-H</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-app-">为索引指定App内容</h1>
+<p>Google的网页爬虫机器(<a href="https://support.google.com/webmasters/answer/182072?hl=en" target="_blank">Googlebot</a>)会抓取页面，并为Google搜索引擎建立索引，也能为你的Android app内容建立索引。通过选择加入这一功能，你可以允许Googlebot通过抓取在Google Play Store中的APK内容，为你的app内容建立索引。要指出哪些app内容你想被Google索引，只需要添加链接元素到现有的<a href="https://support.google.com/webmasters/answer/156184?hl=en" target="_blank">Sitemap</a>文件，或添加到你的网站中每个页面的<code>&lt;head&gt;</code>元素中，以相同的方式为你的页面添加。</p>
+<blockquote>
+<p><strong>Note</strong>:现在，Google搜索app索引功能从以前只限于英文Android app，转变为开放给参与了早期开放计划(early adopter program)的所有开发者。你可以通过提交<a href="https://docs.google.com/a/google.com/forms/d/1itcqPAQqggJ6e4m8aejWLM8Dc5O8P6qybgGbKCNxGV0/viewform" target="_blank">App Indexing Expression of Interest</a>表格来注册成为参与者。</p>
+</blockquote>
+<p>你所共享给Google搜索的深度链接必须按照下面的URI格式:</p>
+<pre><code>android-app://&lt;package_name&gt;/&lt;scheme&gt;/&lt;host_path&gt;
+</code></pre><p>构成URI的各部分是:</p>
+<ul>
+<li><p><strong>package_name</strong> 代表在<a href="https://play.google.com/apps/publish" target="_blank">Google Play Developer Console</a>中所列出来的你的APK的包名。</p>
+</li>
+<li><p><strong>scheme</strong> 匹配你的intent filter的URI方案。</p>
+</li>
+<li><p><strong>host_path</strong> 找出你的应用中所指定的内容。</p>
+</li>
+</ul>
+<p>下面的几节叙述如何添加一个深度链接URI到你的Sitemap或网页中。</p>
+<h2 id="-deep-link-sitemap">添加深度链接(Deep link)到你的Sitemap</h2>
+<p>要在你的<a href="https://support.google.com/webmasters/answer/156184?hl=en" target="_blank">Sitemap</a>中为Google搜索app索引(Google Search app indexing)添加深度链接的注解，使用<code>&lt;xhtml:link&gt;</code>标签，并指定用作替代URI的深度链接。</p>
+<p>例如，下面一段XML代码向你展示如何使用<code>&lt;loc&gt;</code>标签指定一个链接到你的页面的链接，以及如何使用<code>&lt;xhtml:link&gt;</code>标签指定链接到你的Android app的深度链接。</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">urlset
+</span>    <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://www.sitemaps.org/schemas/sitemap/0.9"</span>
+    <span class="hljs-attribute">xmlns:xhtml</span>=<span class="hljs-value">"http://www.w3.org/1999/xhtml"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">url</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">loc</span>&gt;</span>example://gizmos<span class="hljs-tag">&lt;/<span class="hljs-title">loc</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">xhtml:link
+</span>                <span class="hljs-attribute">rel</span>=<span class="hljs-value">"alternate"</span>
+                <span class="hljs-attribute">href</span>=<span class="hljs-value">"android-app://com.example.android/example/gizmos"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">url</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">urlset</span>&gt;</span>
+</code></pre>
+<h2 id="-">添加深度链接到你的网页中</h2>
+<p>除了在你的Sitemap文件中，为Google搜索app索引指定深度链接外，你还可以在你的HTML标记网页中给深度链接添加注解。你可以在<code>&lt;head&gt;</code>标签内这么做，为每一个页面添加一个<code>&lt;link&gt;</code>标签，并指定用作替代URI的深度链接。</p>
+<p>例如，下面的一段HTML代码向你展示如何在页面中指定一个URL为<code>example://gizmos</code>的相应的深度链接。</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"alternate"</span>
+          <span class="hljs-attribute">href</span>=<span class="hljs-value">"android-app://com.example.android/example/gizmos"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span> ... <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+</code></pre>
+<h2 id="-google-app-url-">允许Google通过你的app抓取URL请求</h2>
+<p>一般来说，你可以通过使用<a href="https://developers.google.com/webmasters/control-crawl-index/docs/robots_txt" target="_blank">robots.txt</a>文件，来控制Googlebot如何抓取你网站上的公开访问的URL。当Googlebot为你的app内容建立索引后，你的app可以把HTTP请求当做一般操作。但是，这些请求会被视为从Googlebot发出，发送到你的服务器上。因此，你必须正确配置你的服务器上的<code>robots.txt</code>文件来允许这些请求。</p>
+<p>例如，下面的<code>robots.txt</code>指示向你展示，如何允许你网站上的特定目录(如 <code>/api/</code> )能被你的app访问，并限制Googlebot访问你的网站上的其他目录。</p>
+<pre><code>User-Agent: Googlebot
+Allow: /api/
+Disallow: /
+</code></pre><p>学习更多关于如何修改<code>robots.txt</code>，来控制页面抓取，详见<a href="https://developers.google.com/webmasters/control-crawl-index/docs/getting_started" target="_blank">Controlling Crawling and Indexing Getting Started</a>。</p>
 
                     
                     </section>
