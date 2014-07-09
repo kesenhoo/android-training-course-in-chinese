@@ -9,4 +9,5 @@
 这一章节，会教你如何简单的使用已经存在的Camera程序。在后面的课程中，你会更加深入的（ dive deeper ）学习如何直接控制Camera的硬件。
 
 **试试下面的例子程序**
+
 [PhotoIntentActivity.zip](http://developer.android.com/shareables/training/PhotoIntentActivity.zip)
