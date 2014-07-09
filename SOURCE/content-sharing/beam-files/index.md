@@ -1,6 +1,7 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/beam-files/index.html>
+
 
 # 使用NFC分享文件
 Android允许你通过Android Beam文件传输功能在设备之间传送大文件。这个功能键具有简单的API，同时，它允许用户仅需要点击设备就能启动文件传输的过程。Android Beam会自动地将文件从一台设备拷贝至另外一台，并且在完成时告知用户。

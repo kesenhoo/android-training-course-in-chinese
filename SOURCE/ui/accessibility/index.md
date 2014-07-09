@@ -1,6 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST)
+> 编写:[K0ST](https://github.com/K0ST)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/accessibility/index.html>
 
 # 实现辅助功能
 

@@ -1,6 +1,6 @@
-> 编写:[lttowq](https://github.com/lttowq)(未验证)
+> 编写:[lttowq](https://github.com/lttowq)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/scheduling/index.html>
 
 # 管理设备的唤醒状态
 当你的一个Android设备闲置时，屏幕将会变暗，然后关闭屏幕，最后关闭CPU。

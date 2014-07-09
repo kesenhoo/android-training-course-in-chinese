@@ -1,6 +1,6 @@
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)
+> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/basics/firstapp/index.html>
 
 # 建立你的第一个App
 欢迎开始Android应用开发！

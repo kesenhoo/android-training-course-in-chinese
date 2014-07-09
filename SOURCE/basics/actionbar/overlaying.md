@@ -1,6 +1,6 @@
-> 编写: [Vincent 4J](http://github.com/vincent4j)
+> 编写: [Vincent 4J](http://github.com/vincent4j)，校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/actionbar/overlaying.html>
 
 # Action Bar 覆盖叠加
 
@@ -8,7 +8,7 @@
 
 为了避免在 action bar 隐藏和显示过程中调整布局，可以为 action bar 启用叠加模式。在叠加模式下，所有可用的空间都会被用来布局，并且 action bar 会叠加在布局之上。这样布局顶部就会被遮挡，但当 action bar 隐藏或显示时，系统不再需要调整布局而是无缝过渡。
 
->提示：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 [Action Bar 风格化](styling.html)。
+> 提示：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 [Action Bar 风格化](styling.html)。
 
 ![actionbar-overlay@2x](actionbar-overlay@2x.png)
 图 1. 叠加模式下的 gallery action bar
@@ -76,4 +76,4 @@
 ```
 
 在这种情况下，不带前缀的 `?attr/actionBarSize` 适用于 Android 3.0 和更高的所有版本。
->>>>>>> f838ceb1481f3f90cbbd72d948fedbb59edf0735
+

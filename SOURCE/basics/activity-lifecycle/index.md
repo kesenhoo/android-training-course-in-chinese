@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写: [kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/activity-lifecycle/index.html>
 
 # 管理Activity的生命周期(Managing the Activity Lifecycle)
 

@@ -1,7 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985 "fastcome1985")
+> 编写:[fastcome1985](https://github.com/fastcome1985)，校对:
 
-> 校对:
-
+> 原文:<http://developer.android.com/training/basics/fragments/index.html>
 
 # 使用Fragment建立动态UI
 

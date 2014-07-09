@@ -1,6 +1,6 @@
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)
+> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/basics/firstapp/running-app.html>
 
 # 执行你的程序
 通过[上一节课](creating-project.html)创建了一个Android项目，项目默认包含一系列源文件，它让您可以立即运行的应用程序。

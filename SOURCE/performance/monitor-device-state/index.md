@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/monitoring-device-state/index.html>
 
 # 优化电池寿命
 

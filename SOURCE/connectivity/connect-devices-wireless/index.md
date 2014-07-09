@@ -1,6 +1,6 @@
-> 编写:[acenodie](https://github.com/acenodie)
+> 编写:[acenodie](https://github.com/acenodie)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/connect-devices-wirelessly/index.html>
 
 # 无线连接设备
 
