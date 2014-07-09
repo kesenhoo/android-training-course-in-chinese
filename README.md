@@ -203,7 +203,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
       * [处理多触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/multi.html)
       * [拖拽与缩放](http://hukai.me/android-training-course-in-chinese/input/gestures/scale.html)
       * [管理ViewGroup中的触摸事件](http://hukai.me/android-training-course-in-chinese/input/gestures/viewgroup.html)
-   * [处理输入法](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - 编写@[zhaochunqi](https://github.com/zhaochunqi) - 1%
+   * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - 编写@[zhaochunqi](https://github.com/zhaochunqi) - 20%
       * [指定输入法类型](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/type.html)
       * [处理输入法可见性](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/visibility.html)
       * [支持输入法导航](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/navigation.html)
