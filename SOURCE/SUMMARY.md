@@ -182,7 +182,7 @@
        * [处理多触摸手势](input/gestures/multi.md)
        * [拖拽与缩放](input/gestures/scale.md)
        * [管理ViewGroup中的触摸事件](input/gestures/viewgroup.md)
-   * [处理按键点击](input/keyboard-input/index.md)
+   * [处理键盘输入](input/keyboard-input/index.md)
        * [指定输入法类型](input/keyboard-input/type.md)
        * [处理输入法可见性](input/keyboard-input/visibility.md)
        * [兼容硬件导航](input/keyboard-input/navigation.md)
