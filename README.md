@@ -142,7 +142,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [识别用户的当下活动](http://hukai.me/android-training-course-in-chinese/location/activity-recognition.html)
    * [使用模拟位置进行测试](http://hukai.me/android-training-course-in-chinese/location/location-testing.html)
 * [可穿戴](http://hukai.me/android-training-course-in-chinese/wearables/index.md)
-   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md)
+   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md) - @[wangyachen](https://github.com/wangyachen) - 1%
       * [创建一个Notification](http://hukai.me/android-training-course-in-chinese/wearables/notifications/creating.md)
       * [在Notifcation中接收语言输入](http://hukai.me/android-training-course-in-chinese/wearables/notifications/voice-input.md)
       * [为Notification添加显示页面](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
