@@ -1,4 +1,4 @@
-> 编写: [pedant][1]，校对:
+> 编写：[pedant][1]，校对：
 
 > 原文：[http://developer.android.com/training/articles/perf-jni.html][2]
 
@@ -15,11 +15,19 @@ JNI定义了两种关键数据结构，“JavaVM”和“JNIEnv”。它们本�
 
 JNIEnv提供了大部分JNI功能。你定义的所有原生函数都应把JNIEnv作为第一个参数。
 
-JNIEnv是用作本地线程存储。因此，你不能在线程间共享一个JNIEnv变量。如果在一段代码中没有其它办法获得它的JNIEnv，你可以共享JavaVM对象，使用GetEnv来取得该线程下的JNIEnv（如果该线程下有JNIEnv的话；见下面的AttachCurrentThread）。
+JNIEnv是用作本地线程存储。因此，***你不能在线程间共享一个JNIEnv变量***。如果在一段代码中没有其它办法获得它的JNIEnv，你可以共享JavaVM对象，使用GetEnv来取得该线程下的JNIEnv（如果该线程下有JNIEnv的话；见下面的AttachCurrentThread）。
 
 JNIEnv和JavaVM的在C声明与C++声明是不同的。头文件“jni.h”具体提供哪种类型定义取决于它是以C还是以C++模式引入。因此，不建议把JNIEnv参数放到可能被两种语言引入的头文件中（换一句话说：如果你的头文件需要#ifdef __cplusplus，你可能不得不在任何涉及到JNIEnv的头文件中做些额外的工作）。
 
 #线程
+
+所有的线程都是Linux线程，由内核统一调度。它们通常从托管代码中启动（使用Thread.start），但它们也能够在其他任何地方创建，然后附属（attach）到JavaVM。例如，一个用pthread_create启动的线程能够使用JNI AttachCurrentThread 或 AttachCurrentThreadAsDaemon函数附属到JavaVM。在一个线程被成功附属（attach）之前，它没有JNIEnv，***不能够调用JNI函数***。
+
+附属一个原生创建的线程会触发构造一个java.lang.Thread对象，然后添加到主线程群（main ThreadGroup）,以让调试器可以探测到。对一个已经附属的线程使用AttachCurrentThread会导致缓冲区溢出（no-op）。
+
+安卓不能暂停执行原生代码的线程。如果正在进行垃圾回收，或者调试器已发出了暂停请求，安卓会在下一次调用JNI函数的时候暂停线程。
+
+附属过的（attached）线程在它们退出之前***必须通过JNI调用DetachCurrentThread***。如果你觉得直接这样编写不太优雅，在安卓2.0（Eclair）及以上， 你可以使用pthread_key_create来定义一个析构函数，它将会在线程退出时被调用，你可以在那儿调用DetachCurrentThread （使用生成的key与pthread_setspecific一起在本地线程存储空间内存储JNIEnv；这样JNIEnv能够作为参数传入到析构函数当中去）。
 
 #jclass,jmethodID,jfieldID
 
