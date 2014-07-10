@@ -21,13 +21,13 @@ JNIEnv和JavaVM的在C声明是不同于在C++的声明。头文件“jni.h”�
 
 #线程
 
-所有的线程都是Linux线程，由内核统一调度。它们通常从托管代码中启动（使用Thread.start），但它们也能够在其他任何地方创建，然后附属（attach）到JavaVM。例如，一个用pthread_create启动的线程能够使用JNI AttachCurrentThread 或 AttachCurrentThreadAsDaemon函数附属到JavaVM。在一个线程被成功附属（attach）之前，它没有JNIEnv，**不能够调用JNI函数**。
+所有的线程都是Linux线程，由内核统一调度。它们通常从托管代码中启动（使用Thread.start），但它们也能够在其他任何地方创建，然后连接（attach）到JavaVM。例如，一个用pthread_create启动的线程能够使用JNI AttachCurrentThread 或 AttachCurrentThreadAsDaemon函数连接到JavaVM。在一个线程被成功附属（attach）之前，它没有JNIEnv，**不能够调用JNI函数**。
 
-附属一个原生创建的线程会触发构造一个java.lang.Thread对象，然后添加到主线程群（main ThreadGroup）,以让调试器可以探测到。对一个已经附属的线程使用AttachCurrentThread不做任何操作（no-op）。
+连接一个原生创建的线程会触发构造一个java.lang.Thread对象，然后添加到主线程群（main ThreadGroup）,以让调试器可以探测到。对一个已经连接的线程使用AttachCurrentThread不做任何操作（no-op）。
 
 安卓不能暂停执行原生代码的线程。如果正在进行垃圾回收，或者调试器已发出了暂停请求，安卓会在下一次调用JNI函数的时候暂停线程。
 
-附属过的（attached）线程在它们退出之前**必须通过JNI调用DetachCurrentThread**。如果你觉得直接这样编写不太优雅，在安卓2.0（Eclair）及以上， 你可以使用pthread_key_create来定义一个析构函数，它将会在线程退出时被调用，你可以在那儿调用DetachCurrentThread （使用生成的key与pthread_setspecific一起在本地线程存储空间内存储JNIEnv；这样JNIEnv能够作为参数传入到析构函数当中去）。
+连接过的（attached）线程在它们退出之前**必须通过JNI调用DetachCurrentThread**。如果你觉得直接这样编写不太优雅，在安卓2.0（Eclair）及以上， 你可以使用pthread_key_create来定义一个析构函数，它将会在线程退出时被调用，你可以在那儿调用DetachCurrentThread （使用生成的key与pthread_setspecific一起在本地线程存储空间内存储JNIEnv；这样JNIEnv能够作为参数传入到析构函数当中去）。
 
 #jclass,jmethodID,jfieldID
 
@@ -62,6 +62,30 @@ static {
 在你的C/C++代码中创建一个nativeClassInit方法以完成ID查找的工作。当这个类被初始化时这段代码将会被执行一次。当这个类被卸载后而后再次载入时，这段代码将会再次执行。
 
 #局部和全局引用
+
+每个传入原生方法的参数，大部分JNI函数返回的每个对象都是“局部引用”。这意味着它只在当前线程的当前方法执行期间有效。**即使这个对象本身在原生方法返回之后仍然存在，这个引用也是无效的**。
+
+这同样适用于所有jobject的子类，包括jclass，jstring，以及jarray（当JNI扩展检查是打开的时候，运行时会警告你在大部分引用上的误用）。
+
+如果你想持有一个引用更长的时间，你就必须使用一个全局（“global”）引用了。NewGlobalRef函数以一个局部引用作为参数并且返回一个全局引用。全局引用能够保证在你调用DeleteGlobalRef前都是有效的。
+
+这种模式通常被用在缓存一个从FindClass返回的jclass对象的时候，例如：
+
+``` java
+
+jclass localClass = env->FindClass("MyClass");
+jclass globalClass = reinterpret_cast<jclass>(env->NewGlobalRef(localClass));
+```
+
+所有的JNI方法都接收局部引用和全局引用作为参数。相同对象的引用却获得不同的值是可能的。例如，用相同对象连续地调用NewGlobalRef获得的返回值可能是不同的。**为了检查两个引用是否指向的是同一个对象，你必须使用IsSameObject函数**。绝不要在原生代码中用==符号来比较两个引用。
+
+这样的结果就是你**绝不要在原生代码中假设对象的引用是常量或者是唯一的**。代表一个对象的32位值从一个方法的一次调用到下一次调用可能有不同的值。在连续的调用过程中两个不同的对象却拥有相同的32位值是可能的。不要使用jobject的值作为key.
+
+编程者需要“不过度分配”局部引用。在实际操作中这意味着如果你正在创建大量的局部引用，或许是通过对象数组，你应该使用DeleteLocalRef手动地释放它们，而不是寄希望JNI来为你做这些。实现上只需要预留16个局部引用的空间，所以如果你需要更多，你要么删掉以前的，要么使用EnsureLocalCapacity/PushLocalFrame来预留更多。
+
+注意jfieldID和jmethodID是不透明的类型，不是对象引用，不应该被传入到NewGlobalRef。原始数据指针，像GetStringUTFChars和GetByteArrayElements的返回值，也都不是对象（它们也许能够在线程间传递，在调用对应的Release函数之前都是有效的）。
+
+一种不常见的情况值得单独提醒一下。如果你使用AttachCurrentThread连接（attach）了原生进程，正在运行的代码在线程分离（detach）之前决不会自动释放局部引用。你创建的任何局部引用必须手动删除。通常，任何在循环中创建局部引用的原生代码可能都需要做一些手动删除。
 
 #UTF-8、UTF-16 字符串
 
