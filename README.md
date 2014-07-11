@@ -5,16 +5,15 @@
 ## Google Android官方培训课程
 <http://developer.android.com/training/index.html>
 
-Google Android团队在2012年起开设了Training板块，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
+Google Android团队在2012年起开设了Training课程，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
 
-这么好的资料一直没有一份完整的中文版，本人从2012年发现Training课程开始，断断续续的在学习Android官方的Training课程，并的输出了不少翻译[学习笔记](http://hukai.me)，因个人实力与精力有限，很期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。
-这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
+期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
 
 <a name="online_reading"></a>
 ## 在线阅读
 
-* 很多文章还没有翻译完毕，等待大家添砖加瓦。
 * 点击链接<http://hukai.me/android-training-course-in-chinese/index.html>
+* 目前进度：90%
 
 <a name="courses"></a>
 ## 课程结构
@@ -142,7 +141,7 @@ Google Android团队在2012年起开设了Training板块，从开始的十几篇
    * [识别用户的当下活动](http://hukai.me/android-training-course-in-chinese/location/activity-recognition.html)
    * [使用模拟位置进行测试](http://hukai.me/android-training-course-in-chinese/location/location-testing.html)
 * [可穿戴](http://hukai.me/android-training-course-in-chinese/wearables/index.md)
-   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md) - @[wangyachen](https://github.com/wangyachen) - 1%
+   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md) - @[wangyachen](https://github.com/wangyachen) - 25%
       * [创建一个Notification](http://hukai.me/android-training-course-in-chinese/wearables/notifications/creating.md)
       * [在Notifcation中接收语言输入](http://hukai.me/android-training-course-in-chinese/wearables/notifications/voice-input.md)
       * [为Notification添加显示页面](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
