@@ -123,7 +123,7 @@
 * [可穿戴](wearables/index.md)
    * [赋予Notification可穿戴的特性](wearables/notifications/index.md)
        * [创建一个Notification](wearables/notifications/creating.md)
-       * [在Notifcation中接收语言输入](wearables/notifications/voice-input.md)
+       * [在Notifcation中接收语音输入](wearables/notifications/voice-input.md)
        * [为Notification添加显示页面](wearables/notifications/pages.md)
        * [以Stack的方式显示Notifications](wearables/notifications/stacks.md)
    * [创建可穿戴的应用](wearables/apps/index.md)
