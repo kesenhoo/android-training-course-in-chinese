@@ -2,4 +2,4 @@
 
 > 原文:
 
-# 在Notifcation中接收语言输入
+# 在Notifcation中接收语音输入
