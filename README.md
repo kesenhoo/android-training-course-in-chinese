@@ -133,7 +133,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
    * [显示联系人头像](http://hukai.me/android-training-course-in-chinese/contacts-provider/display-badge.html)
-* [位置信息](http://hukai.me/android-training-course-in-chinese/location/index.md) - @[penkzhou](https://github.com/penkzhou) - 80%
+* [位置信息](http://hukai.me/android-training-course-in-chinese/location/index.md) - @[penkzhou](https://github.com/penkzhou)
    * [获取当前位置](http://hukai.me/android-training-course-in-chinese/location/retrieve-current.html)
    * [获取位置更新](http://hukai.me/android-training-course-in-chinese/location/retrieve-location-updates.html)
    * [显示位置地址](http://hukai.me/android-training-course-in-chinese/location/display-address.html)
