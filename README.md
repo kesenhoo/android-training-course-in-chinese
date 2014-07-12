@@ -273,7 +273,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [创建单元测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-unit-testing.html)
       * [创建功能测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-function-testing.html)
 * [分发与盈利](http://hukai.me/android-training-course-in-chinese/distribute/index.html)
-   * **[售卖App内置产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/index.html)**
+   * [售卖App内置产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/index.html) - 待认领
       * [准备你的App](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/prepare-iab-app.html)
       * [建立售卖的产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/list-iab-products.html)
       * [购买产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/purchase-iab-products.html)
@@ -289,6 +289,9 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 
 ## 认领流程
 先申请加入群或者私信邮件给我(联系方式见Github主页)，和我说明认领的章节与你的Github账户名，我会及时更新认领进度到项目主页。
+
+## 挑错纠正
+欢迎任何形式的挑错与纠正，你可以Fork一份项目到你的账户下，修改你仓库下的文件，再使用Github的Pull Request提交你的修改纠正！
 
 ## 协作流程
 * 1)fork我的项目到自己的账户下
