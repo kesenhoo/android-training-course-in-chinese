@@ -1,12 +1,12 @@
-> 编写: [Vincent 4J](http://github.com/vincent4j)
+> 编写: [Vincent 4J](http://github.com/vincent4j) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/actionbar/adding-buttons.html>
 
 # 添加 Action 按钮
 
 Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或文本被称作操作按钮。不匹配的或不足够重要的操作被隐藏在 action overflow 中。
-  
-![actionbar-actions](actionbar-actions.png)  
+
+![actionbar-actions](actionbar-actions.png)
 图 1. 一个有检索操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作
 
 ## 在 XML 中指定操作
@@ -32,9 +32,9 @@ res/menu/main_activity_actions.xml
 
 上述声明是这样的，当 action bar 有可用空间时，检索操作将作为一个操作按钮来显示，但设置操作将一直只在 action overflow 中显示。（默认情况下，所有的操作都显示在 action overflow 中，但为每一个操作指明设计意图是很好的做法。）
 
-icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的名字。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string resource`，详情请参见 [创建一个简单的 UI](https://developer.android.com/training/basics/firstapp/building-ui.html#Strings) 。
+icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的名字。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string resource`，详情请参见 [创建一个简单的 UI](firstapp/building-ui.html) 。
 
->注释：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](https://developer.android.com/training/basics/supporting-devices/screens.html) 课程中将会更详细地讨论。
+>注释：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](supporting-devices/screens.html) 课程中将会更详细地讨论。
 
 如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
 
@@ -90,7 +90,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的向上按钮。
 
-![actionbar-up.png](actionbar-up.png)  
+![actionbar-up.png](actionbar-up.png)
 图 2. Gmail 中向上按钮
 
 当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
@@ -134,5 +134,5 @@ public void onCreate(Bundle savedInstanceState) {
 
 由于系统已经知道 `MainActivity` 是 `DisplayMessageActivity` 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。
 
-更多关于向上导航的信息，请见 [提供向上导航](https://developer.android.com/training/implementing-navigation/ancestral.html)。
+更多关于向上导航的信息，请见 [提供向上导航](ux/implementing-navigation/ancestral.html)。
 

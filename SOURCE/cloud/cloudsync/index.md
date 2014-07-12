@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，[jdneo](https://github.com/jdneo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，[jdneo](https://github.com/jdneo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/cloudsync/index.html>
 
 # 云同步
 

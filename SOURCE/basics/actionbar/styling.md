@@ -1,6 +1,6 @@
-> 编写: [Vincent 4J](http://github.com/vincent4j)
+> 编写: [Vincent 4J](http://github.com/vincent4j) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/actionbar/styling.html>
 
 # Action Bar 风格化
 
@@ -8,7 +8,7 @@ Action bar 为用户提供一种熟悉可预测的方式来展示操作和导航
 
 Android 包括一少部分内置的 activity 主题，这些主题中包含 “暗” 或 “淡” 的 action bar 式样。你也可以扩展这些主题，以便于更好的为你的 action bar 自定义外观。
 
->注释：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） [Theme.AppCompat](https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat) 家族式样（甚至 [Theme.Holo](https://developer.android.com/reference/android/R.style.html#Theme_Holo) 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个式样属性都必须被声明两次：一次使用平台的式样属性（`android:` 属性），另一次使用 Support 库中的式样属性（`appcompat.R.attr` 属性 —— 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。
+> 注释：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） [Theme.AppCompat](https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat) 家族式样（甚至 [Theme.Holo](https://developer.android.com/reference/android/R.style.html#Theme_Holo) 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个式样属性都必须被声明两次：一次使用平台的式样属性（`android:` 属性），另一次使用 Support 库中的式样属性（`appcompat.R.attr` 属性 —— 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。
 
 ## 使用一个 Android 主题
 
@@ -112,7 +112,7 @@ res/values/themes.xml
 修改 action bar 中的文本颜色，你需要分别重写每个元素的属性：
 - Action bar 的标题：创建一种自定义式样，并指定 `textColor` 属性；同时，在你的自定义 [actionBarStyle](https://developer.android.com/reference/android/R.attr.html#actionBarStyle) 中为 [titleTextStyle](https://developer.android.com/reference/android/R.attr.html#titleTextStyle) 属性指定为刚才的自定义式样。
 
->注释：被应用到 [titleTextStyle](https://developer.android.com/reference/android/R.attr.html#titleTextStyle) 的自定义式样应该使用 [TextAppearance.Holo.Widget.ActionBar.Title](https://developer.android.com/reference/android/R.style.html#TextAppearance_Holo_Widget_ActionBar_Title) 作为父式样。
+> 注释：被应用到 [titleTextStyle](https://developer.android.com/reference/android/R.attr.html#titleTextStyle) 的自定义式样应该使用 [TextAppearance.Holo.Widget.ActionBar.Title](https://developer.android.com/reference/android/R.style.html#TextAppearance_Holo_Widget_ActionBar_Title) 作为父式样。
 
 - Action bar 的页签：在你的 activity 主题中重写 [ actionBarTabTextStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabTextStyle)
 - Action 按钮：在你的 activity 主题中重写 [actionMenuTextColor](https://developer.android.com/reference/android/R.attr.html#actionMenuTextColor)
@@ -203,7 +203,7 @@ res/values/themes.xml
 
 为 activity 创建一个自定义主题，通过重写 [actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性来改变 [navigation tabs](https://developer.android.com/guide/topics/ui/actionbar.html#Tabs) 使用的指示器。[actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性指向另一个式样资源；在该式样资源里，通过指定一个状态列表 drawable 来重写 [background](https://developer.android.com/reference/android/R.attr.html#background) 属性。
 
->注释：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) 文档。
+> 注释：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) 文档。
 
 例如，这是一个状态列表 drawable，为一个 action bar tab 的多种不同状态分别指定背景图片：
 
@@ -302,7 +302,7 @@ res/values/themes.xml
 </resources>
 ```
 
->**更多资源**
+> **更多资源**
 - 关于 action bar 的更多式样属性，请查看 [Action Bar](https://developer.android.com/guide/topics/ui/actionbar.html#Style) 指南
 - 学习更多式样的工作机制，请查看 [式样和主题](https://developer.android.com/guide/topics/ui/themes.html) 指南
 - 全面的 action bar 式样，请尝试 [Android Action Bar 式样生成器](http://www.actionbarstylegenerator.com/)
