@@ -1,6 +1,6 @@
-> 编写: [Lin-H](http://github.com/Lin-H)
+> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/supporting-devices/screens.html>
 
 # 适配不同的屏幕
 

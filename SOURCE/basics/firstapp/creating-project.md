@@ -1,6 +1,6 @@
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)，校验:
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 校验:
 
-> 原文:<http://developer.android.com/training/basics/firstapp/creating-project.html>
+> 原文: <http://developer.android.com/training/basics/firstapp/creating-project.html>
 
 # 创建一个Android项目
 一个Android项目由许多源代码文件构成，使用Android SDK Tools可以很容易地创建一个新的Android项目，同时创建好默认的项目相关的目录和文件。

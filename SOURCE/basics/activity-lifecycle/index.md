@@ -1,4 +1,4 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo)，校对:
+> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
 
 > 原文: <http://developer.android.com/training/basics/activity-lifecycle/index.html>
 
@@ -15,8 +15,16 @@
 这一章我们将学习下面4个课程:
 * [启动与销毁Activity](starting.html)
 
+  学习关于activity生命周期的基础知识，用户如何启动你的应用以及如何执行activity的创建。
+
 * [暂停与恢复Activity](pausing.html)
+
+  学习activity暂停发生时，你应该做哪些事情。
 
 * [停止与重启Activity](stopping.html)
 
+  学习用户离开你的activity与返回activity时会发生的事情。
+
 * [重新创建Activity](recreating.html)
+
+  学习当你的activity被销毁时发生了什么事情以及在有必要时如何重建你的activity。

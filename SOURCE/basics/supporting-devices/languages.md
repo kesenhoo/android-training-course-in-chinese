@@ -1,6 +1,6 @@
-> 编写:[Lin-H](http://github.com/Lin-H)
+> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/supporting-devices/languages.html>
 
 # 适配不同的语言
 
@@ -24,7 +24,7 @@ MyProject/
        values-fr/
            strings.xml
 ```
-           
+
 添加不同区域语言的字符串值到相应的文件。
 
 在运行时，Android系统会根据用户设备当前的区域设置，使用相应的字符串资源。

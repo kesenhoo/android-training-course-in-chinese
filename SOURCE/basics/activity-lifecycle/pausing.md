@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/activity-lifecycle/pausing.html>
 
 # 暂停与恢复Activity
 
