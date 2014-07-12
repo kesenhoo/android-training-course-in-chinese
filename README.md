@@ -265,8 +265,13 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)
+<<<<<<< HEAD
 * [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
    * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 1%
+=======
+* [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo)
+   * **[测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html)**
+>>>>>>> FETCH_HEAD
       * [建立测试环境](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/prepare-activity-testing.html)
       * [创建与执行测试用例](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-basic-testing.html)
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
