@@ -191,7 +191,7 @@ public class MainActivity extends Activity {
 
 用户可以在屏幕左侧使用划屏手势来打开和关闭navigation drawer，但是如果你使用[action bar](http://developer.android.com/guide/topics/ui/actionbar.html),你也应该允许用户通过点击app图标来打开或关闭。并且app图标也应该使用一个特殊的图标来指明navigation drawer的存在。你可以通过使用上一节所说的[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)来实现所有的这些操作。
 
-要使[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)起作用，通过它的构造函数创建一个实例，需要用到一下参数:
+要使[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)起作用，通过它的构造函数创建一个实例，需要用到以下参数:
 
 * [Activity](http://developer.android.com/reference/android/app/Activity.html)用来容纳drawer。
 
