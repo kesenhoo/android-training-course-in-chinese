@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.4" data-basepath="../.." data-revision="1404994677846">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.4.4" data-basepath="../.." data-revision="1405182504073">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1423,7 +1423,7 @@
         <li class="chapter " data-level="11.1.2" data-path="wearables/notifications/voice-input.html">
             
             <a href="../../wearables/notifications/voice-input.html">
-                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语言输入
+                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语音输入
             </a>
             
             
@@ -3178,7 +3178,7 @@
     
         <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter  " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
-        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语言输入" class="chapter  " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
+        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter  " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
         <a href="../../wearables/notifications/pages.html" title="为Notification添加显示页面" class="chapter  " data-progress="11.1.3" style="left: 46.96969696969697%;"></a>
     
@@ -3467,17 +3467,21 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_43">
+                    <section class="normal" id="section-gitbook_57">
                     
                         <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
+<p>原文: <a href="http://developer.android.com/training/basics/activity-lifecycle/recreating.html" target="_blank">http://developer.android.com/training/basics/activity-lifecycle/recreating.html</a></p>
 </blockquote>
 <h1 id="-activity">重新创建Activity</h1>
 <ul>
 <li>有几个场景中,Activity是由于正常的程序行为而被Destory的，例如当用户点击返回按钮或者是你的Activity通过调用finish()来发出停止信号。系统也有可能会在你的Activity处于stop状态且长时间不被使用，或者是在前台activity需要更多系统资源的时候把关闭后台进程，这样来获取更多的内存。</li>
 <li>当你的Activity是因为用户点击Back按钮或者是activity通过调用finish()结束自己时，系统就丢失了Activity实例这个概念，因为前面的行为意味着不再需要这个activity了。然而，如果因为系统资源紧张而导致Activity的Destory, 系统会在用户回到这个Activity时有这个Activity存在过的记录，系统会使用那些保存的记录数据（描述了当Activity被Destory时的状态）来重新创建一个新的Account实例。那些被系统用来恢复之前状态而保存的数据被叫做 &quot;instance state&quot; ，它是一些存放在 Bundle 对象中的key-value pairs.</li>
-<li><strong>Caution:</strong>你的Activity会在每次旋转屏幕时被destroyed与recreated。当屏幕改变方向时，系统会Destory与Recreate前台的activity，因为屏幕配置被改变，你的Activity可能需要加载一些alternative的资源(例如layout).<!-- more --></li>
+<li><strong>Caution:</strong>你的Activity会在每次旋转屏幕时被destroyed与recreated。当屏幕改变方向时，系统会Destory与Recreate前台的activity，因为屏幕配置被改变，你的Activity可能需要加载一些alternative的资源(例如layout).</li>
+</ul>
+<!-- more -->
+
+<ul>
 <li>默认情况下, 系统使用 Bundle 实例来保存每一个视图对象中的信息(例如输入EditText 中的文本内容)。因此，如果你的Activity被destroyed与recreated, 那么layout的状态信息会自动恢复到之前的状态。然而，你的activity也许存在更多你想要恢复的状态信息，例如记录用户Progress的成员变量(member variables).。</li>
 <li><strong>请注意</strong>为了让你可以保存额外更多的数据到saved instance state。在Activity的声明周期里面存在一个添加的回调函数。这个回调函数并没有在前面课程的图片示例中显示。这个方法是 onSaveInstanceState() ，当用户离开你的Activity时，系统会调用它。当系统调用这个函数时，系统会在你的Activity被异常Destory时传递 Bundle 对象，这样你可以增加额外的信息到Bundle中并保存与系统中。然后如果系统在Activity被Destory之后想重新创建这个Activity实例时，之前的那个Bundle对象会(系统)被传递到你的activity的 onRestoreInstanceState() 方法与 onCreate() 方法中。</li>
 </ul>

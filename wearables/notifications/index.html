@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1" data-basepath="../.." data-revision="1404994677846">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1" data-basepath="../.." data-revision="1405182504073">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1423,7 +1423,7 @@
         <li class="chapter " data-level="11.1.2" data-path="wearables/notifications/voice-input.html">
             
             <a href="../../wearables/notifications/voice-input.html">
-                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语言输入
+                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语音输入
             </a>
             
             
@@ -3178,7 +3178,7 @@
     
         <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter  " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
-        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语言输入" class="chapter  " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
+        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter  " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
         <a href="../../wearables/notifications/pages.html" title="为Notification添加显示页面" class="chapter  " data-progress="11.1.3" style="left: 46.96969696969697%;"></a>
     
@@ -3467,13 +3467,32 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_278">
+                    <section class="normal" id="section-gitbook_292">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:</p>
 <p>原文: <a href="http://developer.android.com/training/wearables/notifications/index.html" target="_blank">http://developer.android.com/training/wearables/notifications/index.html</a></p>
 </blockquote>
 <h1 id="-notification-">为Notification赋加可穿戴的特性</h1>
+<p>当一部Android手持设备（手机或平板）与Android可穿戴设备连接起来，手持设备能够自动的与可穿戴设备共享Notification。在可穿戴设备上，每个Notification都是以一张新卡片的形式出现在<a href="http://developer.android.com/design/wear/index.html" target="_blank">context stream</a>中的</p>
+<p>与此同时，为了给予用户以最佳的体验，你应当为你的Notification增加一些具备可穿戴特性的功能。下面的课程将指导你如何实现同时支持手持设备和可穿戴设备的Notification。</p>
+<p><img src="notification_phone@2x.png" alt="">
+图1. 同时展示在手持设备和可穿戴设备的Notification</p>
+<h2 id="-">分集课程</h2>
+<ul>
+<li><p><a href="creating.html">创建一个Notification</a></p>
+<p>学习如何应用Android support library创建具备可穿戴特性的Notification。</p>
+</li>
+<li><p><a href="voice-input.html">在Notification中接收语音输入</a></p>
+<p>学习在可穿戴式Notification接收到来自用户的语音输入时添加一个action，并且将转录的消息传递给手持设备。</p>
+</li>
+<li><p><a href="pages.html">为Notification添加显示界面</a></p>
+<p>学习如何为Notification创建附加的页面，使得用户在向左滑动时能看到更多的信息。</p>
+</li>
+<li><p><a href="stacks.html">以stack的方式显示Notification</a></p>
+</li>
+</ul>
+<p>学习如何以stack的形式显示那些从app中发出的类似的Notification，使得用户能够看到每一个Notification是独立显示，而不是将各种卡片放入卡片流中。</p>
 
                     
                     </section>

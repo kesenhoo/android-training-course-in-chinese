@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.2.1" data-basepath="../.." data-revision="1404994677846">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.2.1" data-basepath="../.." data-revision="1405182504073">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1423,7 +1423,7 @@
         <li class="chapter " data-level="11.1.2" data-path="wearables/notifications/voice-input.html">
             
             <a href="../../wearables/notifications/voice-input.html">
-                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语言输入
+                <i class="fa fa-check"></i> <b>11.1.2.</b> 在Notifcation中接收语音输入
             </a>
             
             
@@ -3178,7 +3178,7 @@
     
         <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
-        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语言输入" class="chapter done " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
+        <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter done " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
         <a href="../../wearables/notifications/pages.html" title="为Notification添加显示页面" class="chapter done " data-progress="11.1.3" style="left: 46.96969696969697%;"></a>
     
@@ -3467,13 +3467,190 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_250">
+                    <section class="normal" id="section-gitbook_264">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写: <a href="https://github.com/Lin-H" target="_blank">Lin-H</a> - 校对: </p>
+<p>原文: <a href="http://developer.android.com/training/implementing-navigation/lateral.html" target="_blank">http://developer.android.com/training/implementing-navigation/lateral.html</a></p>
 </blockquote>
 <h1 id="-tabs-swipe-">使用Tabs创建Swipe视图</h1>
+<p>Swipe View提供在同级屏幕中的横向导航，例如通过横向划屏手势切换的tab(一种称作横向分页的模式)。这节课会教你如何使用swipe view创建一个tab layout实现在tab之间切换，或显示一个标题条替代tab。</p>
+<blockquote>
+<p><strong>Swipe View Design</strong></p>
+<p>在实现这些功能之前，你要先明白在<a href="http://developer.android.com/training/design-navigation/descendant-lateral.html" target="_blank">Designing Effective Navigation</a>, <a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Swipe Views</a> design guide中的概念和建议</p>
+</blockquote>
+<h2 id="-swipe-view">实现Swipe View</h2>
+<p>你可以使用<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">Support Library</a>中的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>控件在你的app中创建swipe view。<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>是一个子视图在layout上相互独立的布局控件(layout widget)。</p>
+<p>使用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>来设置你的layout，要添加一个<code>&lt;ViewPager&gt;</code>元素到你的XML layout中。例如，在你的swipe view中如果每一个页面都会占用整个layout，那么你的layout应该是这样:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">android.support.v4.view.ViewPager
+</span>    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/pager"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
+</code></pre>
+<p>要插入每一个页面的子视图，你需要把这个layout与<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a>挂钩。有两种adapter(适配器)你可以用:</p>
+<p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentPagerAdapter.html" target="_blank">FragmentPagerAdapter</a></p>
+<p>在同级屏幕(sibling screen)只有少量的几个固定页面时，使用这个最好。</p>
+<p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a></p>
+<p>当根据对象集的数量来划分页面，即一开始页面的数量未确定时，使用这个最好。当用户切换到其他页面时，fragment会被销毁来降低内存消耗。</p>
+<p>例如，这里的代码是当你使用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a>来在<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>对象集合中进行横屏切换:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CollectionDemoActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
+    <span class="hljs-comment">// 当被请求时, 这个adapter会返回一个DemoObjectFragment,</span>
+    <span class="hljs-comment">// 代表在对象集中的一个对象.</span>
+    DemoCollectionPagerAdapter mDemoCollectionPagerAdapter;
+    ViewPager mViewPager;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_collection_demo);
+
+        <span class="hljs-comment">// ViewPager和他的adapter使用了support library</span>
+        <span class="hljs-comment">// fragments,所以要用getSupportFragmentManager.</span>
+        mDemoCollectionPagerAdapter =
+                <span class="hljs-keyword">new</span> DemoCollectionPagerAdapter(
+                        getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mDemoCollectionPagerAdapter);
+    }
+}
+
+<span class="hljs-comment">// 因为这是一个对象集所以使用FragmentStatePagerAdapter,</span>
+<span class="hljs-comment">// 而不是FragmentPagerAdapter.</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoCollectionPagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentStatePagerAdapter</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">DemoCollectionPagerAdapter</span>(FragmentManager fm) {
+        <span class="hljs-keyword">super</span>(fm);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getItem</span>(<span class="hljs-keyword">int</span> i) {
+        Fragment fragment = <span class="hljs-keyword">new</span> DemoObjectFragment();
+        Bundle args = <span class="hljs-keyword">new</span> Bundle();
+        <span class="hljs-comment">// 我们的对象只是一个整数 :-P</span>
+        args.putInt(DemoObjectFragment.ARG_OBJECT, i + <span class="hljs-number">1</span>);
+        fragment.setArguments(args);
+        <span class="hljs-keyword">return</span> fragment;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCount</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>;
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> CharSequence <span class="hljs-title">getPageTitle</span>(<span class="hljs-keyword">int</span> position) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"OBJECT "</span> + (position + <span class="hljs-number">1</span>);
+    }
+}
+
+<span class="hljs-comment">// 这个类的实例是一个代表了数据集中一个对象的fragment</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DemoObjectFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> {</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ARG_OBJECT = <span class="hljs-string">"object"</span>;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span>(LayoutInflater inflater,
+            ViewGroup container, Bundle savedInstanceState) {
+        <span class="hljs-comment">// 最后两个参数保证LayoutParam能被正确填充</span>
+        View rootView = inflater.inflate(
+                R.layout.fragment_collection_object, container, <span class="hljs-keyword">false</span>);
+        Bundle args = getArguments();
+        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
+                Integer.toString(args.getInt(ARG_OBJECT)));
+        <span class="hljs-keyword">return</span> rootView;
+    }
+}
+</code></pre>
+<p>这个例子只显示了创建swipe view的必要代码。下面一节向你说明如何通过添加tab使导航更方便在页面间切换。</p>
+<h2 id="-tab-action-bar">添加Tab到Action Bar</h2>
+<p>Action bar <a href="http://developer.android.com/design/building-blocks/tabs.html" target="_blank">tab</a>能给用户提供更熟悉的界面来在app的同级屏幕中切换和分辨。</p>
+<p>使用<a href="http://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>来创建tab，你需要启用<a href="http://developer.android.com/reference/android/app/ActionBar.html#NAVIGATION_MODE_TABS" target="_blank">NAVIGATION_MODE_TABS</a>，然后创建几个<a href="http://developer.android.com/reference/android/app/ActionBar.Tab.html" target="_blank">ActionBar.Tab</a>的实例，并对每个实例实现<a href="http://developer.android.com/reference/android/app/ActionBar.TabListener.html" target="_blank">ActionBar.TabListener</a>接口。例如在你的activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate%28android.os.Bundle%29" target="_blank">onCreate()</a>方法中，你可以使用与下面相似的代码:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    <span class="hljs-keyword">final</span> ActionBar actionBar = getActionBar();
+    ...
+
+    <span class="hljs-comment">// 指定在action bar中显示tab.</span>
+    actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+    <span class="hljs-comment">// 创建一个tab listener，在用户切换tab时调用.</span>
+    ActionBar.TabListener tabListener = <span class="hljs-keyword">new</span> ActionBar.TabListener() {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTabSelected</span>(ActionBar.Tab tab, FragmentTransaction ft) {
+            <span class="hljs-comment">// 显示指定的tab</span>
+        }
+
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTabUnselected</span>(ActionBar.Tab tab, FragmentTransaction ft) {
+            <span class="hljs-comment">// 隐藏指定的tab</span>
+        }
+
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTabReselected</span>(ActionBar.Tab tab, FragmentTransaction ft) {
+            <span class="hljs-comment">// 可以忽略这个事件</span>
+        }
+    };
+
+    <span class="hljs-comment">// 添加3个tab, 并指定tab的文字和TabListener</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText(<span class="hljs-string">"Tab "</span> + (i + <span class="hljs-number">1</span>))
+                        .setTabListener(tabListener));
+    }
+}
+</code></pre>
+<p>根据你如何创建你的内容来处理<a href="http://developer.android.com/reference/android/app/ActionBar.TabListener.html" target="_blank">ActionBar.TabListener</a>回调改变tab。但是如果你是像上面那样，通过<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>对每个tab使用fragment，下面这节就会说明当用户选择一个tab时如何切换页面，当用户划屏切换页面时如何更新相应页面的tab。</p>
+<h2 id="-swipe-view-tab">使用Swipe View切换Tab</h2>
+<p>当用户选择tab时，在<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>中切换页面，需要实现<a href="http://developer.android.com/reference/android/app/ActionBar.TabListener.html" target="_blank">ActionBar.TabListener</a>来调用在<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>中的<a href="">setCurrentItem()</a>来选择相应的页面:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    ...
+
+    <span class="hljs-comment">// Create a tab listener that is called when the user changes tabs.</span>
+    ActionBar.TabListener tabListener = <span class="hljs-keyword">new</span> ActionBar.TabListener() {
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTabSelected</span>(ActionBar.Tab tab, FragmentTransaction ft) {
+            <span class="hljs-comment">// 当tab被选中时, 切换到ViewPager中相应的页面.</span>
+            mViewPager.setCurrentItem(tab.getPosition());
+        }
+        ...
+    };
+}
+</code></pre>
+<p>同样的，当用户通过触屏手势(touch gesture)切换页面时，你也应该选择相应的tab。你可以通过实现<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.OnPageChangeListener.html" target="_blank">ViewPager.OnPageChangeListener</a>接口来设置这个操作，当页面变化时当前的tab也相应变化。例如:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    ...
+
+    mViewPager = (ViewPager) findViewById(R.id.pager);
+    mViewPager.setOnPageChangeListener(
+            <span class="hljs-keyword">new</span> ViewPager.SimpleOnPageChangeListener() {
+                <span class="hljs-annotation">@Override</span>
+                <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPageSelected</span>(<span class="hljs-keyword">int</span> position) {
+                    <span class="hljs-comment">// 当划屏切换页面时，选择相应的tab.</span>
+                    getActionBar().setSelectedNavigationItem(position);
+                }
+            });
+    ...
+}
+</code></pre>
+<h2 id="-tab">使用标题条替代Tab</h2>
+<p>如果你不想使用action bar tab，而想使用<a href="http://developer.android.com/design/building-blocks/tabs.html#scrollable" target="_blank">scrollable tabs</a>来提供一个更简短的可视化配置，你可以在swipe view中使用<a href="http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html" target="_blank">PagerTitleStrip</a>。</p>
+<p>下面是一个内容为<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>，有一个<a href="http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html" target="_blank">PagerTitleStrip</a>顶端对齐的activity的layout XML文件示例。单个页面(adapter提供)占据<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>中的剩余空间。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.v4.view.ViewPager
+</span>    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/pager"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">android.support.v4.view.PagerTitleStrip
+</span>        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/pager_title_strip"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"top"</span>
+        <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"#33b5e5"</span>
+        <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"#fff"</span>
+        <span class="hljs-attribute">android:paddingTop</span>=<span class="hljs-value">"4dp"</span>
+        <span class="hljs-attribute">android:paddingBottom</span>=<span class="hljs-value">"4dp"</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.v4.view.ViewPager</span>&gt;</span>
+</code></pre>
 
                     
                     </section>
