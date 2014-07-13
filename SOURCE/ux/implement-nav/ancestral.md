@@ -25,7 +25,7 @@
 ```xml
 <application ... >
     ...
-    <!-- The main/home activity (it has no parent activity) -->
+    <!-- main/home activity (没有父activity) -->
     <activity
         android:name="com.example.myfirstapp.MainActivity" ...>
         ...
