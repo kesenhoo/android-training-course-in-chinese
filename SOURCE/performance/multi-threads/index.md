@@ -1,6 +1,9 @@
-> 编写:[AllenZheng1991](https://github.com/AllenZheng1991)
+> 编写:<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
 
 > 校对:
+
+> 原文地址：<a href="http://developer.android.com/training/multiple-threads/index.html" target="_blank">http://developer.android.com/training/multiple-threads/index.html</a>
+
 
 #多线程操作
 
