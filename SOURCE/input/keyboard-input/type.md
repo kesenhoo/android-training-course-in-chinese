@@ -65,6 +65,7 @@ android:inputType属性允许你为输入法指定不同的行为。最为重要
     android:imeOptions="actionSend" />
 ```
 然后你可以通过为 EditText定义TextView.OnEditorActionListener来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 EditorInfo 类中，如 IME_ACTION_SEND 。例如:
+
 ```xml
 EditText editText = (EditText) findViewById(R.id.search);
 editText.setOnEditorActionListener(new OnEditorActionListener() {
