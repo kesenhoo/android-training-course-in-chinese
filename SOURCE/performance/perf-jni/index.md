@@ -1,13 +1,13 @@
-> 编写：[pedant][1]，校对：
+> 编写：[pedant](https://github.com/pedant)，校对：
 
-> 原文：[http://developer.android.com/training/articles/perf-jni.html][2]
+> 原文：[http://developer.android.com/training/articles/perf-jni.html](http://developer.android.com/training/articles/perf-jni.html)
 
 
 # JNI Tips
 
 JNI全称Java Native Interface。它为托管代码（使用Java编程语言编写）与原生代码（使用C/C++编写）交互提供了一种方式。它是与厂商无关的（vendor-neutral）,支持从动态共享库中加载代码，虽然这样会稍显麻烦，但有时这是相当有效的。
 
-如果你对JNI还不是太熟悉，可以先通读[Java Native Interface Specification][3]这篇文章来对JNI如何工作以及哪些特性可用有个大致的印象。这种接口的一些方面不能立即一读就显而易见，所以你会发现接下来的几个章节很有用处。
+如果你对JNI还不是太熟悉，可以先通读[Java Native Interface Specification](http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html)这篇文章来对JNI如何工作以及哪些特性可用有个大致的印象。这种接口的一些方面不能立即一读就显而易见，所以你会发现接下来的几个章节很有用处。
 
 # JavaVM 及 JNIEnv
 
@@ -99,9 +99,71 @@ Java编程语言使用UTF-16格式。为了便利，JNI也提供了支持变形U
 
 #基本类型数组
 
+如果你交替地进行变更和执行使用数组内容的代码，你也许可以不必无操作（no-op）的JNI_COMMIT。检查这个标识的另一个可能的原因是使用JNI_ABORT可以更高效。例如，你也许想得到一个数组，适当地修改它，传入部分到其他函数中，然后丢掉这些修改。如果你知道JNI是为你做了一份新的拷贝，就没有必要再创建另一份“可编辑的（editable）”的拷贝了。如果JNI传给你的是原始数组，这时你就需要创建一份你自己的拷贝了。
+
+假定当isCopy是false时你就能不调用Release，这是一个常见的错误（在示例代码中出现过）。实际上是没有这种情况的。如果没有分配备份空间，那么初始的内存空间会受到牵制，不能被垃圾回收器回收。
+
+另外注意JNI_COMMIT标识**没有**释放数组，你最终需要使用一个不同的标识再次调用Release。
+
 #区间数组
 
+当你只是想拷贝数据输入或者输出时，可以选择调用像Get<Type>ArrayElements和GetStringChars这类似非常有用的函数。想想下面：
+
+``` JAVA
+
+jbyte* data = env->GetByteArrayElements(array, NULL);
+if (data != NULL) {
+    memcpy(buffer, data, len);
+    env->ReleaseByteArrayElements(array, data, JNI_ABORT);
+}
+```
+
+这里获取到了数组，从当中拷贝出开头的len个字节元素，然后释放这个数组。根据代码的实现，Get函数将会牵制或者拷贝数组的内容。上面的代码拷贝了数据（为了可能的第二次），然后调用Release；这当中JNI_ABORT确保没有第三份拷贝。
+
+另一种更简单的实现方式：
+
+``` JAVA
+
+env->GetByteArrayRegion(array, 0, len, buffer);
+```
+
+这种方式有几个优点：
+
+- 只需要调用一个JNI函数而是不是两个，减少了开销。
+- 不需要指针或者额外的拷贝数据。
+- 减少了编程错误的风险-在某些失败之后忘记调用Release没有了风险。
+
+类似地，你能使用Set<Type>ArrayRegion函数拷贝数据到数组，使用GetStringRegion或者GetStringUTFRegion从String中拷贝字符。 
+
 #异常
+
+**当异常发生时你一定不能调用大部分的JNI函数**。你的代码收到异常（通过函数的返回值，ExceptionCheck，或者ExceptionOccurred），然后返回，或者清除异常，处理掉。
+
+当异常发生时你被允许调用的JNI函数有：
+
+- DeleteGlobalRef
+- DeleteLocalRef
+- DeleteWeakGlobalRef
+- ExceptionCheck
+- ExceptionClear
+- ExceptionDescribe
+- ExceptionOccurred
+- MonitorExit
+- PopLocalFrame
+- PushLocalFrame
+- Release<PrimitiveType>ArrayElements
+- ReleasePrimitiveArrayCritical
+- ReleaseStringChars
+- ReleaseStringCritical
+- ReleaseStringUTFChars
+
+许多JNI调用能够抛出异常，但通常提供一种简单的方式来检查失败。例如，如果NewString返回一个非空值，你不需要检查异常。然而，如果你调用一个方法（使用一个像CalllObjectMethod的函数），你必须总是检查异常，因为当一个异常抛出时它的返回值将不会是有效的。
+
+注意中断代码抛出的异常不会展开原生调用堆栈信息，Android也还不支持C++异常。JNI Throw和ThrowNew指令仅仅是在当前线程中放入一个异常指针。从原生代码返回到托管代码时，异常将会被注意到，得到适当的处理。
+
+原生代码能够通过调用ExceptionCheck或者ExceptionOccurred捕获到异常，然后使用ExceptionClear清除掉。通常，抛弃异常而不处理会导致些问题。
+
+没有内建的函数来处理Throwable对象自身，因此如果你想得到异常字符串，你需要找出Throwable Class，然后查寻到getMessage "()Ljava/lang/String;"的方法ID，调用它，如果结果非空，使用GetStringUTFChars，得到的结果你可以传到printf(3) 或者其它类似的。
 
 #扩展检查
 
@@ -116,7 +178,3 @@ Java编程语言使用UTF-16格式。为了便利，JNI也提供了支持变形U
 #FAQ: 为什么FindClass不能找到我的类?
 
 #FAQ: 使用原生代码怎样共享原始数据?
-
-[1]: https://github.com/pedant
-[2]: http://developer.android.com/training/articles/perf-jni.html
-[3]: http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html
