@@ -10,7 +10,7 @@
 
 <!-- more -->
 
-## Request the Audio Focus(请求获取音频焦点)
+## 请求获取音频焦点(Request the Audio Focus)
 通过call [requestAudioFocus()](http://developer.android.com/reference/android/media/AudioManager.html#requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, int, int)) 方法来获取你想要获取到的音频流焦点。如果请求成功这个方法会返回 AUDIOFOCUS_REQUEST_GRANTED 。
 
 我们必须指定正在使用哪个音频流，而且需要确定请求的是短暂的还是永久的audio focus。

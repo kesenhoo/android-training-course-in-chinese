@@ -1,6 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985)
+> 编写:[fastcome1985](https://github.com/fastcome1985)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/notify-user/index.html>
 
 # 通知提示用户
 
@@ -10,11 +10,11 @@
 
 * 完整的Demo示例：[NotifyUser.zip](developer.android.com/shareables/training/NotifyUser.zip)
 
-## Lessons  
+## Lessons
 
 * [建立一个Notification](build-notification.html)
   学习如何创建一个notification [Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)，设置需要的特征，以及发布notification。
-   
+
 * [当Activity启动时保留导航](nav.html)
    学习如何为一个从notification启动的[Activity](http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html)执行适当的导航。
 

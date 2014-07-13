@@ -1,7 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985 "fastcome1985")
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 校对:
 
-> 校对:
-
+> 原文:<http://developer.android.com/training/basics/fragments/index.html>
 
 # 使用Fragment建立动态UI
 
@@ -17,11 +16,14 @@
 ## Lessons
 
 * [创建一个fragment](creating.html)
+
   学习如何创建一个fragment，以及实现它生命周期内的基本功能。
 
 * [构建复杂的UI](fragment-ui.html)
+
   学习在APP内，对不同的屏幕尺寸用fragments构建不同的布局。
 
 * [与其他fragments交互](communicating.html)
+
   学习fragment与activity以及其他fragments之间交互。
 

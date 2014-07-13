@@ -1,6 +1,6 @@
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789)
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 校对:
 
-> 校对:
+> 原文: <http://developer.android.com/training/basics/firstapp/building-ui.html>
 
 # 建立一个简单的用户界面
 Android的图形用户界面使用View和ViewGroup的层级关系进行创建。View类是通用的UI窗体小部件，比如按钮或者文本框，而ViewGroup是不可见的用于定义子View布局的方式view容器，比如网格部件(grid)和垂直列表部件(list)。
