@@ -2,21 +2,70 @@
 
 > 校对:
 
-#多线程操作
+#在一个线程中执行一段特定的代码
+这一课向你展示了如何通过实现[Runnable](http://developer.android.com/reference/java/lang/Runnable.htm)接口得到一个能在重写的[Runnable.run()](http://developer.android.com/reference/java/lang/Runnable.html#run()方法中执行一段代码的单独的线程。另外你可以传递一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)对象到另一个对象，然后这个对象可以把它附加到一个线程，并执行它。一个或多个执行特定操作的[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)对象有时也被称为一个任务。
 
-如果你把一个会长时间运行且数据密集的操作分割成一个个小的操作，然后运行在多个线程上，它的执行速度和效率都会得到提高。在一个有多核CPU的设备上，系统可以并行运行多个线程，而不是让每个操作在等待其它操作执行完后再伺机执行。例如，如果要解码大量的图片文件并以缩略图的形式把图片显示在屏幕上，当你每个解码单独用一个线程去执行时，会发现速度快了很多。
+[Thread](http://developer.android.com/reference/java/lang/Thread.html)和[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)只是两个基本的线程类，通过他们能发挥的作用有限，但是他们是强大的Android线程类的基础类，例如Android中的[HandlerThread](http://developer.android.com/reference/android/os/HandlerThread.html),
+[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)和[IntentService](http://developer.android.com/reference/android/app/IntentService.html)都是以它们为基础。[Thread](http://developer.android.com/reference/java/lang/Thread.html)和[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)同时也是[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)类的基础。[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)类能自动管理线程和任务队列，甚至可以并行执行多个线程。
 
-这一部分向你展示了如何在一个Android应用中创建和使用多线程，以及如何使用一个线程池对象（thread pool object）。你还将了解到如何通过代码运行一个线程,以及如何让你创建的一个线程和UI线程之间进行通信。
+##定义一个实现Runnable接口的类
+直接了当的方法是通过实现Runnable接口去定义一个线程类。例如：
+```java
+public class PhotoDecodeRunnable implements Runnable {
+    ...
+    @Override
+    public void run() {
+        /*
+         * 把你想要在线程中执行的代码写在这里
+         */
+        ...
+    }
+    ...
+}
+```
+##实现run()方法
+在一个类里，[ Runnable.run()](http://developer.android.com/reference/java/lang/Runnable.html#run())
+包含执行了的代码。通常在[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)
+中执行任何操作都是可以的，但需要记住的是，因为[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)
+不会在UI线程中运行，所以它不能直接更新UI对象，例如[View](http://developer.android.com/reference/android/view/View.html)
+对象。为了与UI对象进行通信，你必须使用另一项技术，在[Communicate with the UI Thread(与UI线程进行通信)](http://developer.android.com/training/multiple-threads/communicate-ui.html)
+这一课中我们会对其进行描述。
 
-##课程
-###[在一个线程中执行一段特定的代码](performance/multi-threads/define-runnable.html)
-学习如何通过实现[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)接口定义一个线程类，让你写的代码能在单独的一个线程中执行。
+在[run()](http://developer.android.com/reference/java/lang/Runnable.html#run())方法的开始的地方通过调用参数为[ THREAD_PRIORITY_BACKGROUND](http://developer.android.com/reference/android/os/Process.html#THREAD_PRIORITY_BACKGROUND)
+的[Process.setThreadPriority()](http://developer.android.com/reference/android/os/Process.html#setThreadPriority(int)方法来设置线程使用的是后台运行优先级。
+这个方法减少了通过[Runnable]创建的线程和和UI线程之间的资源竞争。
 
-###[为多线程创建线程池](performance/multi-threads/create-threadpool.html)
-学习如何创建一个能管理线程池和任务队列的对象，需要使用一个叫[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)的类。
+你还应该通过在[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)
+自身中调用[Thread.currentThread()](http://developer.android.com/reference/java/lang/Thread.html#currentThread()来存储一个引用到[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)
+对象的线程。
 
-###[在线程池中的一个线程里执行代码](performance/multi-threads/run-code.html)
-学习如何让线程池里的一个线程执行一个任务。
+下面这段代码展示了如何创建[run](http://developer.android.com/reference/java/lang/Runnable.html#run()方法：
+```java
+class PhotoDecodeRunnable implements Runnable {
+...
+    /*
+     * 定义要在这个任务中执行的代码
+     */
+    @Override
+    public void run() {
+        // 把当前的线程变成后台执行的线程
+        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+        ...
+        /*
+         * 在PhotoTask实例中存储当前线程，以至于这个实例能中断这个线程
+         */
+        mPhotoTask.setImageDecodeThread(Thread.currentThread());
+        ...
+    }
+...
+}
+```
 
-###[与UI线程通信](performance/multi-threads/communicate-ui.html)
-学习如何让线程池里的一个普通线程与UI线程进行通信。
+
+
+
+
+
+
+
+

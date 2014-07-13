@@ -8,7 +8,7 @@
 这节课同时也向你展示了如何去停止一个正在执行的任务，这个任务可能在刚开始执行时是你想要的，但后来发现它所做的工作并不是你所需要的。你可以取消线程正在执行的任务，而不是浪费处理器的运行时间。例如你正在从网络上下载图片且对下载的图片进行了缓存，当检测到正在下载的图片在缓存中已经存在时，你可能希望停止这个下载任务。当然，这都取决于你怎么样去编写你的APP，因为可能压根你就不会在开始下载前进行检测。
 
 ##在线程池的一个线程中执行一个任务
-为了在一个特定的线程池的线程里开启一个任务，可以通过调用[ThreadPoolExecutor.execute()](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html#execute(java.lang.Runnable)，它需要提供一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)类型的参数，这个调用会把该任务添加到这个线程池中的工作队列。当一个空闲的线程进入可执行状态时，线程管理者从工作队列中取出等待时间最长的那个任务，并且在线程中执行它。
+为了在一个特定的线程池的线程里开启一个任务，可以通过调用[ThreadPoolExecutor.execute()](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html#execute(java.lang.Runnable))，它需要提供一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)类型的参数，这个调用会把该任务添加到这个线程池中的工作队列。当一个空闲的线程进入可执行状态时，线程管理者从工作队列中取出等待时间最长的那个任务，并且在线程中执行它。
 ```java
 public class PhotoManager {
     public void handleState(PhotoTask photoTask, int state) {
@@ -25,7 +25,7 @@ public class PhotoManager {
     ...
 }
 ```
-当[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)在一个线程中开启一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)后，它会自动调用[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)的[run()](http://developer.android.com/reference/java/lang/Runnable.html#run()方法。
+当[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)在一个线程中开启一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)后，它会自动调用[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)的[run()](http://developer.android.com/reference/java/lang/Runnable.html#run())方法。
 
 ##中断一段正在执行的代码
 为了停止执行一个任务，你必须中断执行这个任务的线程。在准备做这件事之前，当你创建一个任务时，你需要存储处理该任务的线程。例如：
