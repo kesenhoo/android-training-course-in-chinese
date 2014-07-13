@@ -10,7 +10,7 @@
 ##在UI线程中定义一个Handler
 [Handler](http://developer.android.com/reference/android/os/Handler.html)属于Android系统的线程管理框架的一部分。一个[Handler](http://developer.android.com/reference/android/os/Handler.html)对象用于接收消息和执行处理消息的代码。一般情况下，如果你为一个新线程创建了一个[Handler](http://developer.android.com/reference/android/os/Handler.html)，你还需要创建一个[Handler](http://developer.android.com/reference/android/os/Handler.html)，让它与一个已经存在的线程关联，用于这两个线程之间的通信。如果你把一个[Handler](http://developer.android.com/reference/android/os/Handler.html)关联到UI线程，处理消息的代码就会在UI线程中执行。
 
-你可以在一个用于创建你的线程池的类的构造方法中实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)对象，并把它定义为全局变量，然后通过使用[Handler(Looper)](http://developer.android.com/reference/android/os/Handler.html#Handler(android.os.Looper)这一构造方法实例化它，用于关联到UI线程。[Handler(Looper)](http://developer.android.com/reference/android/os/Handler.html#Handler(android.os.Looper)这一构造方法需要传入了一个[Looper](http://developer.android.com/reference/android/os/Looper.html)对象，它是Android系统的线程管理框架中的另一部分。当你以一个特定的[Looper](http://developer.android.com/reference/android/os/Looper.html)实例为基础上去实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)时，这个[Handler](http://developer.android.com/reference/android/os/Handler.html)与[Looper](http://developer.android.com/reference/android/os/Looper.html)运行在同一个线程里。例如：
+你可以在一个用于创建你的线程池的类的构造方法中实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)对象，并把它定义为全局变量，然后通过使用[Handler(Looper)](http://developer.android.com/reference/android/os/Handler.html#Handler(android.os.Looper))这一构造方法实例化它，用于关联到UI线程。[Handler(Looper)](http://developer.android.com/reference/android/os/Handler.html#Handler(android.os.Looper))这一构造方法需要传入了一个[Looper](http://developer.android.com/reference/android/os/Looper.html)对象，它是Android系统的线程管理框架中的另一部分。当你以一个特定的[Looper](http://developer.android.com/reference/android/os/Looper.html)实例为基础上去实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)时，这个[Handler](http://developer.android.com/reference/android/os/Handler.html)与[Looper](http://developer.android.com/reference/android/os/Looper.html)运行在同一个线程里。例如：
 ```java
 private PhotoManager() {
 ...
@@ -18,7 +18,7 @@ private PhotoManager() {
     mHandler = new Handler(Looper.getMainLooper()) {
     ...
 ```
-在这个[Handler](http://developer.android.com/reference/android/os/Handler.html)里需要重写[handleMessage()](http://developer.android.com/reference/android/os/Handler.html#handleMessage(android.os.Message)方法。当这个[Handler](http://developer.android.com/reference/android/os/Handler.html)接收到由另外一个线程管理的[Handler](http://developer.android.com/reference/android/os/Handler.html)发送过来的新消息时，Android系统会自动调用这个方法，而所有线程对应的[Handler](http://developer.android.com/reference/android/os/Handler.html)都会收到相同信息。例如：
+在这个[Handler](http://developer.android.com/reference/android/os/Handler.html)里需要重写[handleMessage()](http://developer.android.com/reference/android/os/Handler.html#handleMessage(android.os.Message))方法。当这个[Handler](http://developer.android.com/reference/android/os/Handler.html)接收到由另外一个线程管理的[Handler](http://developer.android.com/reference/android/os/Handler.html)发送过来的新消息时，Android系统会自动调用这个方法，而所有线程对应的[Handler](http://developer.android.com/reference/android/os/Handler.html)都会收到相同信息。例如：
 ```java
 /*
          * handleMessage() defines the operations to perform when
@@ -174,11 +174,4 @@ private PhotoManager() {
 ...
 }
 ```
-
-
-
-
-
-
-
 
