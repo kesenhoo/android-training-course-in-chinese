@@ -12,6 +12,8 @@
 
 ![Figure 1. action bar中的Up按钮.](implementing-navigation-up.png)
 
+**Figure 1**. action bar中的Up按钮.
+
 ##指定父Activity
 
 要实现向上导航，第一步就是为每一个activity声明合适的父activity。这么做可以使系统简化导航模式，例如向上导航，因为系统可以从manifest文件中判断它的逻辑父(logical parent)activity。
