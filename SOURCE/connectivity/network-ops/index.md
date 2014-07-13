@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/basics/network-ops/index.html>
 
 # 网络连接操作
 
@@ -12,6 +12,6 @@
 
 你还可以参考下面文章进阶学习:
 
-* [Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)
-* [Transferring Data Without Draining the Battery](http://developer.android.com/training/efficient-downloads/index.html)
+* [Optimizing Battery Life](/monitoring-device-state/index.html)
+* [Transferring Data Without Draining the Battery](/efficient-downloads/index.html)
 * [Web Apps Overview](http://developer.android.com/guide/webapps/index.html)

@@ -1,5 +1,8 @@
-> 编写:[wangyan3](https://github.com/wangyan3)
+> 编写:[lltowq](https://github.com/lltowq)
 
-> 校对:
-
+> 校对:(未验证)
+> 
 # 缩放动画
+这节课程案例是怎样实现触摸缩放动画，这对相册app实现相片视图大小控制很有用。
+
+下面触摸缩动画看起来扩大图片填充屏幕缩略图。
