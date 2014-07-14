@@ -1,6 +1,6 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：
 
 # 管理ViewGroup中的触摸事件
 
@@ -47,20 +47,20 @@ public class MyViewGroup extends ViewGroup {
         switch (action) {
             case MotionEvent.ACTION_MOVE: {
                 if (mIsScrolling) {
-                    // We're currently scrolling, so yes, intercept the 
+                    // We're currently scrolling, so yes, intercept the
                     // touch event!
                     return true;
                 }
 
-                // If the user has dragged her finger horizontally more than 
+                // If the user has dragged her finger horizontally more than
                 // the touch slop, start the scroll
 
                 // left as an exercise for the reader
-                final int xDiff = calculateDistanceX(ev); 
+                final int xDiff = calculateDistanceX(ev);
 
-                // Touch slop should be calculated using ViewConfiguration 
+                // Touch slop should be calculated using ViewConfiguration
                 // constants.
-                if (xDiff > mTouchSlop) { 
+                if (xDiff > mTouchSlop) {
                     // Start scrolling!
                     mIsScrolling = true;
                     return true;
@@ -70,16 +70,16 @@ public class MyViewGroup extends ViewGroup {
             ...
         }
 
-        // In general, we don't want to intercept touch events. They should be 
+        // In general, we don't want to intercept touch events. They should be
         // handled by the child view.
         return false;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        // Here we actually handle the touch event (e.g. if the action is ACTION_MOVE, 
+        // Here we actually handle the touch event (e.g. if the action is ACTION_MOVE,
         // scroll this container).
-        // This method will only be called if the touch event was intercepted in 
+        // This method will only be called if the touch event was intercepted in
         // onInterceptTouchEvent
         ...
     }
@@ -134,7 +134,7 @@ Android提供了TouchDelegate类让父view扩展子view的可触摸区域，扩�
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      tools:context=".MainActivity" >
- 
+
      <ImageButton android:id="@+id/button"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
@@ -146,7 +146,7 @@ Android提供了TouchDelegate类让父view扩展子view的可触摸区域，扩�
 下面的代码段做了这样几件事：
 
 - 获得父view对象并发送一段Runnable到UI线程。这确保父view在调用getHitRect()函数前会布局它的子view。getHitRect()函数会获得子view在父view坐标系中的点击矩形（触摸区域）。
-- 找到ImageButton子view，然后调用getHitRect()来获得它的触摸区域的边界。 
+- 找到ImageButton子view，然后调用getHitRect()来获得它的触摸区域的边界。
 - 扩展ImageButton的点击矩形的边界。
 - 实例化一个TouchDelegate对象，并把扩展过的点击矩形和ImageButtom子view作为参数传递给它。
 - 设置父view的TouchDelegate，这样在touch delegate边界内的点击就会传递到该子view上。
@@ -162,7 +162,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         // Get the parent view
         View parentView = findViewById(R.id.parent_layout);
-        
+
         parentView.post(new Runnable() {
             // Post in the parent's message queue to make sure the parent
             // lays out its children before you call getHitRect()
@@ -176,29 +176,29 @@ public class MainActivity extends Activity {
                 myButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, 
-                                "Touch occurred within ImageButton touch region.", 
+                        Toast.makeText(MainActivity.this,
+                                "Touch occurred within ImageButton touch region.",
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
-     
+
                 // The hit rectangle for the ImageButton
                 myButton.getHitRect(delegateArea);
-            
+
                 // Extend the touch area of the ImageButton beyond its bounds
                 // on the right and bottom.
                 delegateArea.right += 100;
                 delegateArea.bottom += 100;
-            
+
                 // Instantiate a TouchDelegate.
-                // "delegateArea" is the bounds in local coordinates of 
+                // "delegateArea" is the bounds in local coordinates of
                 // the containing view to be mapped to the delegate view.
                 // "myButton" is the child view that should receive motion
                 // events.
-                TouchDelegate touchDelegate = new TouchDelegate(delegateArea, 
+                TouchDelegate touchDelegate = new TouchDelegate(delegateArea,
                         myButton);
-     
-                // Sets the TouchDelegate on the parent view, such that touches 
+
+                // Sets the TouchDelegate on the parent view, such that touches
                 // within the touch delegate bounds are routed to the child.
                 if (View.class.isInstance(myButton.getParent())) {
                     ((View) myButton.getParent()).setTouchDelegate(touchDelegate);

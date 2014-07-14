@@ -1,6 +1,6 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：
 
 # 检测常用的手势 #
 

@@ -1,6 +1,6 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：
 
 # 处理多触摸手势
 
@@ -25,7 +25,7 @@
 
 ```java
 private int mActivePointerId;
- 
+
 public boolean onTouchEvent(MotionEvent event) {
     ....
     // Get the pointer ID
@@ -33,7 +33,7 @@ public boolean onTouchEvent(MotionEvent event) {
 
     // ... Many touch events later...
 
-    // Use the pointer ID to find the index of the active pointer 
+    // Use the pointer ID to find the index of the active pointer
     // and fetch its position
     int pointerIndex = event.findPointerIndex(mActivePointerId);
     // Get the pointer's current position
@@ -56,17 +56,17 @@ int xPos = -1;
 int yPos = -1;
 
 Log.d(DEBUG_TAG,"The action is " + actionToString(action));
-            
+
 if (event.getPointerCount() > 1) {
-    Log.d(DEBUG_TAG,"Multitouch event"); 
-    // The coordinates of the current screen contact, relative to 
-    // the responding View or Activity.  
+    Log.d(DEBUG_TAG,"Multitouch event");
+    // The coordinates of the current screen contact, relative to
+    // the responding View or Activity.
     xPos = (int)MotionEventCompat.getX(event, index);
     yPos = (int)MotionEventCompat.getY(event, index);
 
 } else {
     // Single touch event
-    Log.d(DEBUG_TAG,"Single touch event"); 
+    Log.d(DEBUG_TAG,"Single touch event");
     xPos = (int)MotionEventCompat.getX(event, index);
     yPos = (int)MotionEventCompat.getY(event, index);
 }
@@ -75,7 +75,7 @@ if (event.getPointerCount() > 1) {
 // Given an action int, returns a string description
 public static String actionToString(int action) {
     switch (action) {
-                
+
         case MotionEvent.ACTION_DOWN: return "Down";
         case MotionEvent.ACTION_MOVE: return "Move";
         case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";

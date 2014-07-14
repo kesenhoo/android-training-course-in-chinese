@@ -128,7 +128,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html)
       * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - @[jdneo](https://github.com/jdneo)
-* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 20%
+* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 50%
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
@@ -141,12 +141,12 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [识别用户的当下活动](http://hukai.me/android-training-course-in-chinese/location/activity-recognition.html)
    * [使用模拟位置进行测试](http://hukai.me/android-training-course-in-chinese/location/location-testing.html)
 * [可穿戴](http://hukai.me/android-training-course-in-chinese/wearables/index.md)
-   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md) - @[wangyachen](https://github.com/wangyachen) - 25%
+   * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.md) - @[wangyachen](https://github.com/wangyachen) - 75%
       * [创建一个Notification](http://hukai.me/android-training-course-in-chinese/wearables/notifications/creating.md)
       * [在Notifcation中接收语言输入](http://hukai.me/android-training-course-in-chinese/wearables/notifications/voice-input.md)
       * [为Notification添加显示页面](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
       * [以Stack的方式显示Notifications](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
-   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.md) - @[kesenhoo](https:://github.com/kesenhoo) - 1%
+   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.md) - @[kesenhoo](https:://github.com/kesenhoo) - 80%
       * [创建并运行一个可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/creating.md)
       * [创建自定义的布局](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.md)
       * [添加语音能力](http://hukai.me/android-training-course-in-chinese/wearables/apps/voice.md)
@@ -165,7 +165,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
       * [提供向上与暂时的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/ancestral-temporal.html)
       * [综合上面所有的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/wireframing.html)
-   * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H) - 1%
+   * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
       * [使用Tabs创建Swipe视图](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/lateral.html)
       * [创建抽屉导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/nav-drawer.html)
       * [提供向上的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/ancestral.html)
@@ -213,14 +213,14 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [全屏沉浸式应用](http://hukai.me/android-training-course-in-chinese/ui/system-ui/immersive.html)
       * [响应UI可见性的变化](http://hukai.me/android-training-course-in-chinese/ui/system-ui/visibility.html)
 * [用户输入](http://hukai.me/android-training-course-in-chinese/input/index.html)
-   * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - @[Andrwyw](https://github.com/Andrwyw) - 80%
+   * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - @[Andrwyw](https://github.com/Andrwyw)
       * [检测常用的手势](http://hukai.me/android-training-course-in-chinese/input/gestures/detector.html)
       * [跟踪手势移动](http://hukai.me/android-training-course-in-chinese/input/gestures/movement.html)
       * [Scroll手势动画](http://hukai.me/android-training-course-in-chinese/input/gestures/scroll.html)
       * [处理多触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/multi.html)
       * [拖拽与缩放](http://hukai.me/android-training-course-in-chinese/input/gestures/scale.html)
       * [管理ViewGroup中的触摸事件](http://hukai.me/android-training-course-in-chinese/input/gestures/viewgroup.html)
-   * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi) - 100%(初步完成，本人正在自我检查中)
+   * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi)
       * [指定输入法类型](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/type.html)
       * [处理输入法可见性](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/visibility.html)
       * [支持输入法导航](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/navigation.html)

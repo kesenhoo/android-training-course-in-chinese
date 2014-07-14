@@ -1,6 +1,6 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：
 
 # 拖拽与缩放
 
@@ -28,15 +28,15 @@ private int mActivePointerId = INVALID_POINTER_ID;
 public boolean onTouchEvent(MotionEvent ev) {
     // Let the ScaleGestureDetector inspect all events.
     mScaleDetector.onTouchEvent(ev);
-             
-    final int action = MotionEventCompat.getActionMasked(ev); 
-        
-    switch (action) { 
+
+    final int action = MotionEventCompat.getActionMasked(ev);
+
+    switch (action) {
     case MotionEvent.ACTION_DOWN: {
-        final int pointerIndex = MotionEventCompat.getActionIndex(ev); 
-        final float x = MotionEventCompat.getX(ev, pointerIndex); 
-        final float y = MotionEventCompat.getY(ev, pointerIndex); 
-            
+        final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+        final float x = MotionEventCompat.getX(ev, pointerIndex);
+        final float y = MotionEventCompat.getY(ev, pointerIndex);
+
         // Remember where we started (for dragging)
         mLastTouchX = x;
         mLastTouchY = y;
@@ -44,15 +44,15 @@ public boolean onTouchEvent(MotionEvent ev) {
         mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
         break;
     }
-            
+
     case MotionEvent.ACTION_MOVE: {
         // Find the index of the active pointer and fetch its position
-        final int pointerIndex = 
-                MotionEventCompat.findPointerIndex(ev, mActivePointerId);  
-            
+        final int pointerIndex =
+                MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+
         final float x = MotionEventCompat.getX(ev, pointerIndex);
         final float y = MotionEventCompat.getY(ev, pointerIndex);
-            
+
         // Calculate the distance moved
         final float dx = x - mLastTouchX;
         final float dy = y - mLastTouchY;
@@ -68,52 +68,52 @@ public boolean onTouchEvent(MotionEvent ev) {
 
         break;
     }
-            
+
     case MotionEvent.ACTION_UP: {
         mActivePointerId = INVALID_POINTER_ID;
         break;
     }
-            
+
     case MotionEvent.ACTION_CANCEL: {
         mActivePointerId = INVALID_POINTER_ID;
         break;
     }
-        
+
     case MotionEvent.ACTION_POINTER_UP: {
-            
-        final int pointerIndex = MotionEventCompat.getActionIndex(ev); 
-        final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex); 
+
+        final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+        final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
 
         if (pointerId == mActivePointerId) {
             // This was our active pointer going up. Choose a new
             // active pointer and adjust accordingly.
             final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-            mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex); 
-            mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex); 
+            mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex);
+            mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex);
             mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
         }
         break;
     }
-    }       
+    }
     return true;
 }
 ```
 
 ## 通过拖拽平移 ##
 
-前一部分展示了在屏幕上拖拽对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动。上面的代码段通过直接截获MotionEvent动作来实现拖拽。这一部分的代码段采用的平台内置的对常用手势的支持。它重写了GestureDetector.SimpleOnGestureListener的onScroll()函数。 
+前一部分展示了在屏幕上拖拽对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动。上面的代码段通过直接截获MotionEvent动作来实现拖拽。这一部分的代码段采用的平台内置的对常用手势的支持。它重写了GestureDetector.SimpleOnGestureListener的onScroll()函数。
 
 提供更多的参考，当用户拖拽手指来平移内容时，onScroll()就会被调用。onScroll()只会在手指按下的情况下被调用，一旦手指离开屏幕了，要么手势终止，要么快速滑动手势开始（如果手指在离开屏幕前快速移动了一段距离）。关于scrolling vs. flinging的更多讨论，可以查看Scroll手势动画章节。
 
 这里是onScroll()的相关代码段：
 
 ```java
-// The current viewport. This rectangle represents the currently visible 
-// chart domain and range. 
-private RectF mCurrentViewport = 
+// The current viewport. This rectangle represents the currently visible
+// chart domain and range.
+private RectF mCurrentViewport =
         new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
 
-// The current destination rectangle (in pixel coordinates) into which the 
+// The current destination rectangle (in pixel coordinates) into which the
 // chart data should be drawn.
 private Rect mContentRect;
 
@@ -122,18 +122,18 @@ private final GestureDetector.SimpleOnGestureListener mGestureListener
 ...
 
 @Override
-public boolean onScroll(MotionEvent e1, MotionEvent e2, 
+public boolean onScroll(MotionEvent e1, MotionEvent e2,
             float distanceX, float distanceY) {
     // Scrolling uses math based on the viewport (as opposed to math using pixels).
-    
+
     // Pixel offset is the offset in screen pixels, while viewport offset is the
-    // offset within the current viewport. 
-    float viewportOffsetX = distanceX * mCurrentViewport.width() 
+    // offset within the current viewport.
+    float viewportOffsetX = distanceX * mCurrentViewport.width()
             / mContentRect.width();
-    float viewportOffsetY = -distanceY * mCurrentViewport.height() 
+    float viewportOffsetY = -distanceY * mCurrentViewport.height()
             / mContentRect.height();
     ...
-    // Updates the viewport, refreshes the display. 
+    // Updates the viewport, refreshes the display.
     setViewportBottomLeft(
             mCurrentViewport.left + viewportOffsetX,
             mCurrentViewport.bottom + viewportOffsetY);
@@ -147,14 +147,14 @@ onScroll()滑动视窗来响应触摸手势：
 ```java
 /**
  * Sets the current viewport (defined by mCurrentViewport) to the given
- * X and Y positions. Note that the Y value represents the topmost pixel position, 
+ * X and Y positions. Note that the Y value represents the topmost pixel position,
  * and thus the bottom of the mCurrentViewport rectangle.
  */
 private void setViewportBottomLeft(float x, float y) {
     /*
-     * Constrains within the scroll range. The scroll range is simply the viewport 
-     * extremes (AXIS_X_MAX, etc.) minus the viewport size. For example, if the 
-     * extremes were 0 and 10, and the viewport size was 2, the scroll range would 
+     * Constrains within the scroll range. The scroll range is simply the viewport
+     * extremes (AXIS_X_MAX, etc.) minus the viewport size. For example, if the
+     * extremes were 0 and 10, and the viewport size was 2, the scroll range would
      * be 0 to 8.
      */
 
@@ -210,7 +210,7 @@ public void onDraw(Canvas canvas) {
     canvas.restore();
 }
 
-private class ScaleListener 
+private class ScaleListener
         extends ScaleGestureDetector.SimpleOnScaleGestureListener {
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
@@ -231,7 +231,7 @@ private class ScaleListener
 
 ```java
 @Override
-private RectF mCurrentViewport = 
+private RectF mCurrentViewport =
         new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
 private Rect mContentRect;
 private ScaleGestureDetector mScaleGestureDetector;
@@ -294,7 +294,7 @@ private final ScaleGestureDetector.OnScaleGestureListener mScaleGestureListener
                 0,
                 0);
         mCurrentViewport.right = mCurrentViewport.left + newWidth;
-        mCurrentViewport.bottom = mCurrentViewport.top + newHeight;     
+        mCurrentViewport.bottom = mCurrentViewport.top + newHeight;
         ...
         // Invalidates the View to update the display.
         ViewCompat.postInvalidateOnAnimation(InteractiveLineGraphView.this);

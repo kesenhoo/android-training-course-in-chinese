@@ -1,6 +1,6 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：
 
 # 使用触摸手势 #
 
@@ -34,4 +34,4 @@
 
 - [管理ViewGroup中的触摸事件]()
 
-  学习如何管理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件，以确保事件能被正确地分发到目标views。 
+  学习如何管理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件，以确保事件能被正确地分发到目标views。
