@@ -146,7 +146,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [在Notifcation中接收语言输入](http://hukai.me/android-training-course-in-chinese/wearables/notifications/voice-input.md)
       * [为Notification添加显示页面](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
       * [以Stack的方式显示Notifications](http://hukai.me/android-training-course-in-chinese/wearables/notifications/pages.md)
-   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.md) - @[kesenhoo](https:://github.com/kesenhoo) - 80%
+   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.md) - @[kesenhoo](https:://github.com/kesenhoo)
       * [创建并运行一个可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/creating.md)
       * [创建自定义的布局](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.md)
       * [添加语音能力](http://hukai.me/android-training-course-in-chinese/wearables/apps/voice.md)
