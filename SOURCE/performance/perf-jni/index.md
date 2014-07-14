@@ -99,15 +99,33 @@ Java编程语言使用UTF-16格式。为了便利，JNI也提供了支持变形U
 
 #基本类型数组
 
-如果你交替地进行变更和执行使用数组内容的代码，你也许可以跳过无操作（no-op）的JNI_COMMIT。检查这个标识的另一个可能的原因是使用JNI_ABORT可以更高效。例如，你也许想得到一个数组，适当地修改它，传入部分到其他函数中，然后丢掉这些修改。如果你知道JNI是为你做了一份新的拷贝，就没有必要再创建另一份“可编辑的（editable）”的拷贝了。如果JNI传给你的是原始数组，这时你就需要创建一份你自己的拷贝了。
+JNI提供了一系列函数来访问数组对象中的内容。虽然一次只能访问数组对象的一个入口，但如果基本类型数组在C中声明，则能够直接进行读写。
 
-假定当isCopy是false时你就能不调用Release，这是一个常见的错误（在示例代码中出现过）。实际上是没有这种情况的。如果没有分配备份空间，那么初始的内存空间会受到牵制，不能被垃圾回收器回收。
+为了让接口的效率尽可能的快而不受VM实现的制约，Get<PrimitiveType>ArrayElements系列的调用能允许运行时返回一个指向实际元素的指针，或者是分配些内存然后拷贝一份。不论哪种方式，返回的原始指针在相应的Release调用完成之前都是保证有效的（这意味着，如果数据没被拷贝，实际的数组对象将会受到牵制，不能重新成为压入堆空间的一部分）。**你必须释放（Release）每个你通过Get得到的数组**。同时，如果Get调用失败，你必须确保你的代码在之后不会去尝试调用Release来释放一个空指针（NULL pointer）。
+
+你可以用一个非空指针作为isCopy参数的值来决定数据是否会被拷贝。这相当有用。
+
+Release类的函数接收一个mode参数，这个参数的值可选的有下面三种。而运行时具体执行的操作取决于它返回的指针是指向真实数据还是拷贝出来的那份。
+
+- 0
+    - 真实的：实际数组对象不受到牵制
+    - 拷贝的：数据将会复制回去，备份空间将会被释放。
+- JNI_COMMIT
+    - 真实的：没有影响
+    - 拷贝的：数据将会复制回去，备份空间将**不会被释放**。
+- JNI_ABORT
+    - 真实的：实际数组对象不受到牵制.之前的写入**不会**被取消。
+    - 拷贝的：备份空间将会被释放；里面所有的变更都会丢失。
+
+检查isCopy标识的一个原因是对一个数组做出变更后确认你是否需要传入JNI_COMMIT来调用Release函数。如果你交替地进行变更和执行使用数组内容的代码，你也许可以跳过无操作（no-op）的JNI_COMMIT。检查这个标识的另一个可能的原因是使用JNI_ABORT可以更高效。例如，你也许想得到一个数组，适当地修改它，传入部分到其他函数中，然后丢掉这些修改。如果你知道JNI是为你做了一份新的拷贝，就没有必要再创建另一份“可编辑的（editable）”的拷贝了。如果JNI传给你的是原始数组，这时你就需要创建一份你自己的拷贝了。
+
+认为当isCopy是false时你就可以不调用Release，是一个常见的错误（在示例代码中出现过）。实际上是没有这种情况的。如果没有分配备份空间，那么初始的内存空间会受到牵制，不能被垃圾回收器回收。
 
 另外注意JNI_COMMIT标识**没有**释放数组，你最终需要使用一个不同的标识再次调用Release。
 
 #区间数组
 
-当你只是想拷贝数据输入或者输出时，可以选择调用像Get<Type>ArrayElements和GetStringChars这类似非常有用的函数。想想下面：
+当你只是想拷贝数据输入或者输出时，可以选择调用像Get<Type>ArrayElements和GetStringChars这类非常有用的函数。想想下面：
 
 ``` JAVA
 
@@ -133,7 +151,7 @@ env->GetByteArrayRegion(array, 0, len, buffer);
 - 不需要指针或者额外的拷贝数据。
 - 减少了编程错误的风险-在某些失败之后忘记调用Release没有了风险。
 
-类似地，你能使用Set<Type>ArrayRegion函数拷贝数据到数组，使用GetStringRegion或者GetStringUTFRegion从String中拷贝字符。 
+类似地，你能使用Set<Type>ArrayRegion函数拷贝数据到数组，使用GetStringRegion或者GetStringUTFRegion从String中拷贝字符。
 
 #异常
 
@@ -163,7 +181,7 @@ env->GetByteArrayRegion(array, 0, len, buffer);
 
 原生代码能够通过调用ExceptionCheck或者ExceptionOccurred捕获到异常，然后使用ExceptionClear清除掉。通常，抛弃异常而不处理会导致些问题。
 
-没有内建的函数来处理Throwable对象自身，因此如果你想得到异常字符串，你需要找出Throwable Class，然后查寻到getMessage "()Ljava/lang/String;"的方法ID，调用它，如果结果非空，使用GetStringUTFChars，得到的结果你可以传到printf(3) 或者其它类似的。
+没有内建的函数来处理Throwable对象自身，因此如果你想得到异常字符串，你需要找出Throwable Class，然后查寻到getMessage "()Ljava/lang/String;"的方法ID，调用它，如果结果非空，使用GetStringUTFChars，得到的结果你可以传到printf(3) 或者其它相同功能的。
 
 #扩展检查
 
