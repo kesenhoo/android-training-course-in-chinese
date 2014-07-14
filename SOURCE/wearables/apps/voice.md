@@ -62,3 +62,31 @@ Android Wear平台基于用户的操作提供了一些语音指令，例如"Take
 
 除了使用语音指令来启动activity之外，你也可以执行系统内置的语言识别activity来获取用户的语音输入。这对于获取用户的输入信息非常有帮助，例如执行搜索或者发送一个消息。
 
+在你的应用中，startActivityForResult()使用`ACTION_RECOGNIZE_SPEECH`启动系统语音识别应用。在onActivityResult()中处理返回的结果：
+
+```java
+private static final int SPEECH_REQUEST_CODE = 0;
+
+// Create an intent that can start the Speech Recognizer activity
+private void displaySpeechRecognizer() {
+    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+// Start the activity, the intent will be populated with the speech text
+    startActivityForResult(intent, SPEECH_REQUEST_CODE);
+}
+
+// This callback is invoked when the Speech Recognizer returns.
+// This is where you process the intent and extract the speech text from the intent.
+@Override
+protected void onActivityResult(int requestCode, int resultCode,
+        Intent data) {
+    if (requestCode == SPEECH_REQUEST && resultCode == RESULT_OK) {
+        List<String> results = data.getStringArrayListExtra(
+                RecognizerIntent.EXTRA_RESULTS);
+        String spokenText = results.get(0);
+        // Do something with spokenText
+    }
+    super.onActivityResult(requestCode, resultCode, data);
+}
+```
