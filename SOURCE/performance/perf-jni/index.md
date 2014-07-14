@@ -149,7 +149,7 @@ env->GetByteArrayRegion(array, 0, len, buffer);
 
 - 只需要调用一个JNI函数而是不是两个，减少了开销。
 - 不需要指针或者额外的拷贝数据。
-- 减少了编程错误的风险-在某些失败之后忘记调用Release没有了风险。
+- 减少了编程犯错的风险-在某些失败之后忘记调用Release不存在风险。
 
 类似地，你能使用Set<Type>ArrayRegion函数拷贝数据到数组，使用GetStringRegion或者GetStringUTFRegion从String中拷贝字符。
 
@@ -185,9 +185,95 @@ env->GetByteArrayRegion(array, 0, len, buffer);
 
 #扩展检查
 
+JNI的错误检查很少。错误发生时通常会导致崩溃。Android也提供了一种模式，叫做CheckJNI，这当中JavaVM和JNIEnv函数表指针被换成了函数表，它在调用标准实现之前执行了一系列扩展检查的。
+
+额外的检查包括：
+
+- 数组：试图分配一个长度为负的数组。
+- 坏指针：传入一个不完整jarray/jclass/jobject/jstring对象到JNI函数，或者调用JNI函数时使用空指针传入到一个不能为空的参数中去。
+- 类名：传入了除“java/lang/String”这样之外的类名到JNI函数。
+- 关键调用：在一个“关键的(critical)”get和它对应的release之间做出JNI调用。
+- 直接的ByteBuffers：传入不正确的参数到NewDirectByteBuffer。
+- 异常：当一个异常发生时调用了JNI函数。
+- JNIEnv*s：在错误的线程中使用一个JNIEnv*。
+- jfieldIDs：使用一个空jfieldID，或者使用jfieldID设置了一个错误类型的值到域（比如说，试图将一个StringBuilder赋给String类型的域），或者使用一个静态域下的jfieldID设置到一个实例的域（instance field）反之亦然，或者使用的一个类的jfieldID却来自另一个类的实例。
+- jmethodIDs：当调用Call*Method函数时时使用了类型错误的jmethodID：不正确的返回值，静态/非静态的不匹配，this的类型错误（对于非静态调用）或者错误的类（对于静态类调用）。
+- 引用：在类型错误的引用上使用了DeleteGlobalRef/DeleteLocalRef。
+- 释放模式：传递了一个不正确的释放模式到release调用（其它非 0，JNI_ABORT，JNI_COMMIT的值）。
+- 类型安全：从你的原生代码中返回了一个不兼容的类型（比如说，从一个声明返回String的方法却返回了StringBuilder）。
+- UTF-8：传入一个无效的变形UTF-8字节序列到JNI调用。
+
+（方法和域的可访问性仍然没有检查：访问限制对于原生代码并不适用。）
+
+有几种方法去启用CheckJNI。
+
+如果你正在使用模拟器，CheckJNI默认是打开的。
+
+如果你有一台root过的设备，你可以使用下面的命令序列来重启CheckJNI启用的运行时（runtime）。
+
+``` JAVA
+
+adb shell stop
+adb shell setprop dalvik.vm.checkjni true
+adb shell start
+```
+
+随便哪一种，当运行时（runtime）启动时你将会在你的日志输出中见到如下的字符：
+
+``` JAVA
+
+D AndroidRuntime: CheckJNI is ON
+```
+
+如果你有一台常规的设备，你可以使用下面的命令：
+
+``` JAVA
+
+adb shell setprop debug.checkjni 1
+```
+
+这将不会影响已经在运行的app，但是从那以后启动的任何app都将打开CheckJNI(改变属性为其它任何值或者只是重启都将会再次关闭CheckJNI)。这种情况下，你将会在下一次app启动时，在日志输出中看到如下字符：
+
+``` JAVA
+
+D Late-enabling CheckJNI
+```
+
 #原生库
 
+你可以使用标准的System.loadLibrary方法来从共享库中加载原生代码。在你的原生代码中较好的做法是：
+
+- 在一个静态类初始化时调用System.loadLibrary（见之前的一个例子中，当中就使用了nativeClassInit）。参数是“未加修饰（undecorated）”的库名称，因此要加载“libfubar.so”，你需要传入“fubar”。
+- 提供一个原生函数：**jint JNI_OnLoad(JavaVM* vm, void* reserved)**
+- 在JNI_OnLoad中，注册所有你的原生方法。你应该声明方法为“静态的（static）”因此名称不会占据设备上符号表的空间。
+
+JNI_OnLoad函数在C++中的写法如下：
+
+``` JAVA
+
+jint JNI_OnLoad(JavaVM* vm, void* reserved)
+{
+    JNIEnv* env;
+    if (vm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6) != JNI_OK) {
+        return -1;
+    }
+
+    // 使用env->FindClass得到jclass
+    // 使用env->RegisterNatives注册原生方法
+
+    return JNI_VERSION_1_6;
+}
+```
+
+你也可以使用共享库的全路径来调用System.load。对于Android app，你也许会发现从context对象中得到应用私有数据存储的全路径是非常有用的。
+
+这种方式是值得推荐的，但不是仅有的实现方式。显示注册是不必需的，提供一个JNI_OnLoad函数也是不必需的。你可以使用特殊命名的“发现（discovery）”模式的原生方法（更多细节见：[JNI spec](http://java.sun.com/javase/6/docs/technotes/guides/jni/spec/design.html#wp615)）来代替，虽然这并不可取。因为如果一个方法的签名错误，在这个方法被实际第一次使用之前你是不会知道的。
+
+关于JNI_OnLoad另一点注意的是：任何你在JNI_OnLoad中对FindClass的调用都发生在用作加载共享库的类加载器的上下文（context）中。一般FindClass使用与调用栈顶的方法相关的加载器，如果当中没有加载器（因为线程刚刚连接）则使用“系统（system）”类加载器。这就使得JNI_OnLoad成为一个查寻及缓存类引用很便利的地方。
+
 #64位考虑
+
+Android当前设计为运行在32位的平台上。理论上它也能够构建为64位的系统，但那不是现在的目标。当与原生代码交互时，在大多数情况下这不是你需要担心的，但是如果你打算在一个对象的整型域（integer field）中存储指针变量到原生结构，这就变得非常重要了。为了支持使用64位指针的架构，**你需要使用long类型而不是int类型来存储你的原生指针**。
 
 #不支持的特性/向后兼容性
 
