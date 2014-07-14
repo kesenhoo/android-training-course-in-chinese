@@ -58,7 +58,7 @@ public boolean onTouchEvent(MotionEvent event){
 }
 ```
 
-然后，你可以自行处理这些事件，来判断是否出现了某个手势。当你需要检测自定义手势时，你可以使用这种方式。然而，如果你的app仅仅需要使用一些常见的手势，如双击，长按，快速滑动（fling）等，你可以使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来完成。 [GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)可以让你更简单地检测常见手势，并且无需自行处理单个的触摸事件。相关内容将会在下面的[Detect Gestures](#检测手势)中讨论。
+然后，你可以自行处理这些事件，来判断是否出现了某个手势。当你需要检测自定义手势时，你可以使用这种方式。然而，如果你的app仅仅需要使用一些常见的手势，如双击，长按，快速滑动（fling）等，你可以使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来完成。 [GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)可以让你更简单地检测常见手势，并且无需自行处理单个的触摸事件。相关内容将会在下面的[Detect Gestures](#detect)中讨论。
 
 ### 捕获单个view对象的触摸事件 ###
 
@@ -77,7 +77,7 @@ public boolean onTouch(View v, MotionEvent event) {
 创建listener对象时，谨防对[ACTION_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_DOWN)事件返回false。如果返回false，会导致listener对象监听不到后续的[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)、[ACTION_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)等系列事件。这是因为[ACTION_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_DOWN)事件是所有触摸事件的开端。
 
 如果你正在写一个自定义View,你也可以像上面描述的那样重写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数。
-
+<a name="detect"> </a>
 ## 检测手势 ##
 
 Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来检测一般手势。它支持的手势包括[onDown()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onDown(android.view.MotionEvent)), [onLongPress()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onLongPress(android.view.MotionEvent)),[onFling()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float))等。你可以把[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)和上面描述的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数结合在一起使用。
