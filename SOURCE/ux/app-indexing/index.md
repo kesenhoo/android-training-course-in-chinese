@@ -1,6 +1,6 @@
-> 编写:[Lin-H](https://github.com/Lin-H)
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
 
-> 校对:
+> 原文: <http://developer.android.com/training/app-indexing/index.html>
 
 # 使得你的App内容可被Google搜索
 

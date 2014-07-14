@@ -1,6 +1,6 @@
 > 编写: [Lin-H](http://github.com/Lin-H) - 校对:
 
-> 原文: <<http://developer.android.com/training/basics/supporting-devices/platforms.html>>
+> 原文: <http://developer.android.com/training/basics/supporting-devices/platforms.html>
 
 # 适配不同的系统版本
 

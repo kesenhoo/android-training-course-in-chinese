@@ -1,4 +1,4 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
+﻿> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
 
 > 原文: <http://developer.android.com/training/implementing-navigation/index.html>
 
@@ -28,6 +28,6 @@
 
 学习如何正确处理特殊情况下的向后按钮(Back button)，包括在通知或app widget中的深度链接，如何将activity插入后退栈(back stack)中。
 
-[实现衍生导航(Descendant Navigation)](descendant.html)
+[实现Descendant Navigation](descendant.html)
 
 学习更精细地导航进入你的应用信息层。
