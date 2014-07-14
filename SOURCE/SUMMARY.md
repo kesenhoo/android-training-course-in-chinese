@@ -127,7 +127,7 @@
        * [为Notification添加显示页面](wearables/notifications/pages.md)
        * [以Stack的方式显示Notifications](wearables/notifications/stacks.md)
    * [创建可穿戴的应用](wearables/apps/index.md)
-       * [创建并运行一个可穿戴的应用](wearables/apps/creating.md)
+       * [创建并执行可穿戴应用](wearables/apps/creating.md)
        * [创建自定义的布局](wearables/apps/layouts.md)
        * [添加语音能力](wearables/apps/voice.md)
        * [打包可穿戴应用](wearables/apps/packaging.md)
