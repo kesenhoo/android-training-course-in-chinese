@@ -78,7 +78,7 @@ public boolean onTouch(View v, MotionEvent event) {
 
 如果你正在写一个自定义View,你也可以像上面描述的那样重写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数。
 
-<h2 id="detect">检测手势</h2>
+<a name="detect" id="detect></a>## 检测手势 ##
 
 Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来检测一般手势。它支持的手势包括[onDown()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onDown(android.view.MotionEvent)), [onLongPress()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onLongPress(android.view.MotionEvent)),[onFling()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float))等。你可以把[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)和上面描述的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数结合在一起使用。
 
