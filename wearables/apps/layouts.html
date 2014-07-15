@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.2" data-basepath="../.." data-revision="1405400958074">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.2" data-basepath="../.." data-revision="1405438336579">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1394,7 +1394,7 @@
         <li class="chapter " data-level="11" data-path="wearables/index.html">
             
             <a href="../../wearables/index.html">
-                <i class="fa fa-check"></i> <b>11.</b> 可穿戴
+                <i class="fa fa-check"></i> <b>11.</b> 为可穿戴设备创建应用
             </a>
             
             
@@ -1414,7 +1414,7 @@
         <li class="chapter " data-level="11.1.1" data-path="wearables/notifications/creating.html">
             
             <a href="../../wearables/notifications/creating.html">
-                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建一个Notification
+                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建Notification
             </a>
             
             
@@ -3181,11 +3181,11 @@
     
         <a href="../../location/location-testing.html" title="使用模拟位置进行测试" class="chapter done " data-progress="10.6" style="left: 45.07575757575758%;"></a>
     
-        <a href="../../wearables/index.html" title="可穿戴" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
+        <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
         <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
-        <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
+        <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
         <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter done " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_267">
+                    <section class="normal" id="section-gitbook_1280">
                     
                         <blockquote>
 <p>编写: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
@@ -3484,6 +3484,7 @@
 </blockquote>
 <h1 id="-">创建自定义的布局</h1>
 <p>为可穿戴设备创建布局是和手持设备是一样的。但是 不要期望通过搬迁手持应用的功能与UI到可穿戴上会有一个好的用户体验。仅仅在有需要的时候，你才应该创建自定义的布局。请参考可穿戴设备的<a href="http://developer.android.com/design/wear/index.html" target="_blank">design guidelines</a>学习如何设计一个优秀的可穿戴应用。</p>
+<p><a name="CustomNotification"></a></p>
 <h2 id="-notification">创建自定义Notification</h2>
 <p>通常来说，你应该在手持应用上创建好notification，然后让它自动同步到可穿戴设备上。这使得你只需要创建一次notification，然后可以在不同类型的设备(不仅仅是可穿戴设备，也包含车载设备与电视)上进行显示，免去为不同设备进行重新设计。</p>
 <p>如果标准的notification风格无法满足你的需求(例如<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.BigTextStyle.html" target="_blank">NotificationCompat.BigTextStyle</a> 或者 <a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.InboxStyle.html" target="_blank">NotificationCompat.InboxStyle</a>)，你可以使用activity，显示一个自定义的布局来达到目的。在可穿戴设备上你只可以创建并处理自定义的notification，同时系统无法为这些notification同步到手持设备上。</p>

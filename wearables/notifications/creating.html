@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建一个Notification | Android Training Course in Chinese</title>
+        <title>创建Notification | Android Training Course in Chinese</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.1" data-basepath="../.." data-revision="1405400958074">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.1" data-basepath="../.." data-revision="1405438336579">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1394,7 +1394,7 @@
         <li class="chapter " data-level="11" data-path="wearables/index.html">
             
             <a href="../../wearables/index.html">
-                <i class="fa fa-check"></i> <b>11.</b> 可穿戴
+                <i class="fa fa-check"></i> <b>11.</b> 为可穿戴设备创建应用
             </a>
             
             
@@ -1414,7 +1414,7 @@
         <li class="chapter " data-level="11.1.1" data-path="wearables/notifications/creating.html">
             
             <a href="../../wearables/notifications/creating.html">
-                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建一个Notification
+                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建Notification
             </a>
             
             
@@ -3181,11 +3181,11 @@
     
         <a href="../../location/location-testing.html" title="使用模拟位置进行测试" class="chapter done " data-progress="10.6" style="left: 45.07575757575758%;"></a>
     
-        <a href="../../wearables/index.html" title="可穿戴" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
+        <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
         <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
-        <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
+        <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
         <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter  " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
@@ -3476,18 +3476,18 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_277">
+                    <section class="normal" id="section-gitbook_1289">
                     
                         <blockquote>
-<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:</p>
-<p>原文:</p>
+<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
+<p>原文: <a href="http://developer.android.com/training/wearables/notifications/creating.html" target="_blank">http://developer.android.com/training/wearables/notifications/creating.html</a></p>
 </blockquote>
-<h1 id="-notification">创建一个Notification</h1>
+<h1 id="-notification">创建Notification</h1>
 <p>为了创建一个手持设备上的并且也能同时发送给可穿戴设备的Notification，需要使用 <a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>。当你使用这个类创建Notification之后，如何正确展示的工作就交由系统去完成，无论是在手持式设备上还是可穿戴设备上。</p>
 <blockquote>
-<p><strong>注意:</strong> Notification使用<a href="http://developer.android.com/reference/android/widget/RemoteViews.html" target="_blank">RemoteViews</a>的话能够自定义layout，并且可穿戴设备上只能够显示文本和icon。但是，你能够通过创建一个运行在可穿戴式设备上的采用了自定义card layout的app去创建Notification <a href="layouts.html#CustomNotifications">create custom notifications </a>。</p>
+<p><strong>Note:</strong> Notification使用<a href="http://developer.android.com/reference/android/widget/RemoteViews.html" target="_blank">RemoteViews</a>的话能够自定义layout，并且可穿戴设备上只能够显示文本和icon。但是，你能够通过创建一个运行在可穿戴式设备上的采用了自定义card layout的app去创建Notification 。请参考<a href="/apps/layouts.html#CustomNotification">创建自定义的Notification</a>。</p>
 </blockquote>
-<h2 id="import-">Import关键类</h2>
+<h2 id="import-">Import必要的类</h2>
 <p>在你开始之前，从support library中import关键的类：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">import</span> android.support.v4.app.NotificationCompat;
 <span class="hljs-keyword">import</span> android.support.v4.app.NotificationManagerCompat;
@@ -3517,7 +3517,7 @@ NotificationManagerCompat notificationManager =
 <span class="hljs-comment">// Build the notification and issues it with notification manager.</span>
 notificationManager.notify(notificationId, notificationBuilder.build());
 </code></pre>
-<p>当该Notification出现在手持设备上时，用户能够通过触摸Notification来触发之前通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent" target="_blank">setContentIntent()</a>设置的<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>。当该Notification出现在可穿戴设备上时，用户能够通过向左滑动该Notification去触发<strong>Open</strong>的action，同时也能够触发手持设备上的intent。</p>
+<p>当该Notification出现在手持设备上时，用户能够通过触摸Notification来触发之前通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent" target="_blank">setContentIntent()</a>设置的<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>。当该Notification出现在可穿戴设备上时，用户能够通过向左滑动该Notification显示<strong>Open</strong>的action，点击这个action能够触发响应的Intent，作用在手持设备上。</p>
 <h2 id="-action-">添加Action按钮</h2>
 <p>除了通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent" target="_blank">setContentIntent()</a>定义的主要的action之外，你还可以通过传递一个<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>给<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action" target="_blank">addAction()</a>的参数，从而添加更多的action。</p>
 <p><img src="circle_email_action.png" alt=""></p>
@@ -3540,9 +3540,9 @@ NotificationCompat.Builder notificationBuilder =
 </code></pre>
 <p>在手持设备上，action表现为在Notification上附加的一个额外按钮。在可穿戴设备上，action表现为Notification左滑后出现的大按钮。当用户点击action时，能够触发手持设备上对应的intent。</p>
 <blockquote>
-<p><strong>提示:</strong> 如果你的Notification包含了一个&quot;Reply&quot;的action(例如短信类app)，你可以通过支持直接从Android可穿戴设备返回的语音输入，来加强该功能的使用。更多信息，详见<a href="http://developer.android.com/training/wearables/notifications/voice-input.html" target="_blank">Receiving Voice Input from a Notification</a>。</p>
+<p><strong>提示:</strong> 如果你的Notification包含了一个&quot;Reply&quot;的action(例如短信类app)，你可以通过支持直接从Android可穿戴设备返回的语音输入，来加强该功能的使用。更多信息，详见<a href="voice-input.html">Receiving Voice Input from a Notification</a>。</p>
 </blockquote>
-<h2 id="-actions">可穿戴式独有的 Actions</h2>
+<h2 id="-actions">指定可穿戴设备独有的Actions</h2>
 <p>如果你想要可穿戴式设备上的action与手持式设备不一样的话，可以使用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addAction(android.support.v4.app.NotificationCompat.Action" target="_blank">WearableExtender.addAction()</a>，一旦你通过这种方式添加了action，可穿戴式设备便不会显示任何其他通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action" target="_blank">NotificationCompat.Builder.addAction()</a>添加的action。这是因为，只有通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addAction(android.support.v4.app.NotificationCompat.Action" target="_blank">WearableExtender.addAction()</a>添加的action才能只在可穿戴设备上显示且不在手持式设备上显示。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Create an intent for the reply action</span>
 Intent actionIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ActionActivity.class);
@@ -3566,7 +3566,7 @@ Notification notification =
                 .build();
 </code></pre>
 <h2 id="-big-view">添加Big View</h2>
-<p>你可以在Notification中通过添加某种&quot;big view&quot;的style来插入扩展文本。在手持式设备上，用户能够通过扩展的Notification看见big view的内容。在可穿戴式设备上，big view内容时默认可见的。</p>
+<p>你可以在Notification中通过添加某种&quot;big view&quot;的style来插入扩展文本。在手持式设备上，用户能够通过扩展的Notification看见big view的内容。在可穿戴式设备上，big view内容是默认可见的。</p>
 <p><img src="06_images.png" alt=""></p>
 <p>可以通过对<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>的对象调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setStyle(android.support.v4.app.NotificationCompat.Style" target="_blank">setStyle()</a>，设置参数为<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.BigTextStyle.html" target="_blank">BigTextStyle</a>或<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.InboxStyle.html" target="_blank">InboxStyle</a>的实例。</p>
 <p>比如，下面的代码为事件的Notification添加了一个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.BigTextStyle.html" target="_blank">NotificationCompat.BigTextStyle</a>的实例，目的是为了包含完整的事件描述(这能够包含比<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentText(java.lang.CharSequence" target="_blank">setContentText()</a>所提供的空间所能容纳的字数更多的文字)。</p>
@@ -3588,12 +3588,13 @@ NotificationCompat.Builder notificationBuilder =
         .setStyle(bigStyle);
 </code></pre>
 <p>要注意的是，你可以通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setLargeIcon(android.graphics.Bitmap" target="_blank">setLargeIcon()</a>方法为任何Notification添加一张较大的背景图片。更多关于大图片在Notification上的设计，详见<a href="http://developer.android.com/design/wear/index.html" target="_blank">Design Principles of Android Wear</a>。</p>
-<h2 id="-notification-">为Notification添加可穿戴式特性</h2>
-<p>如果你需要为NOtification添加一些可穿戴式的特性设置，比如制定额外的内容页，或者让用户通过语音输入一些文字，那么你可以使用:29
+<h2 id="-notification-">为Notification添加可穿戴特性</h2>
+<p>如果你需要为Notification添加一些可穿戴的特性设置，比如制定额外的内容页，或者让用户通过语音输入一些文字，那么你可以使用
 <a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">NotificationCompat.WearableExtender</a>来制定这些设置。请使用如下的API：</p>
 <ol>
-<li>创建一个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">WearableExtender</a>的实例，设置可穿戴独有的Notification设置。</li>
+<li>创建一个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">WearableExtender</a>的实例，设置可穿戴独有的Notification的选项。</li>
 <li>创建一个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>的实例，就像本课程先前所说的，设置需要的Notification属性。</li>
+<li>执行Notification的<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#extend(android.support.v4.app.NotificationCompat.Extender" target="_blank">extend()</a>)方法，参数是WearableExtender实例。</li>
 <li>调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#build(" target="_blank">build()</a>去build一个Notification。</li>
 </ol>
 <p>例如，以下代码调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#setHintHideIcon(boolean" target="_blank">setHintHideIcon()</a>把app 的icon从Notification的卡片上remove掉。</p>
@@ -3611,14 +3612,14 @@ Notification notif = <span class="hljs-keyword">new</span> NotificationCompat.Bu
         .extend(wearableExtender)
         .build();
 </code></pre>
-<p>这个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#setHintHideIcon(boolean" target="_blank">setHintHideIcon()</a>方法只是<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">NotificationCompat.WearableExtender</a>提供的Notification的一个接口。</p>
-<p>如果你需要稍后去读取可穿戴特性设置的内容，可以使用相应的get方法，该例子通过调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#getHintHideIcon(" target="_blank">getHintHideIcon()</a>去获取当前Notification是否隐藏了icon。</p>
+<p>这个<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#setHintHideIcon(boolean" target="_blank">setHintHideIcon()</a>方法只是使用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">NotificationCompat.WearableExtender</a>构建notification新特性的一个例子。</p>
+<p>如果你需要获取可穿戴特性的内容，可以使用相应的get方法，该例子通过调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#getHintHideIcon(" target="_blank">getHintHideIcon()</a>去获取当前Notification是否隐藏了icon。</p>
 <pre><code class="lang-java">NotificationCompat.WearableExtender wearableExtender =
         <span class="hljs-keyword">new</span> NotificationCompat.WearableExtender(notif);
 <span class="hljs-keyword">boolean</span> hintHideIcon = wearableExtender.getHintHideIcon();
 </code></pre>
-<h2 id="-notification">传递Notification</h2>
-<p>如果你想要传递你的Notification，请使用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationManagerCompat.html" target="_blank">NotificationManagerCompat</a>的API代替<a href="http://developer.android.com/reference/android/app/NotificationManager.html" target="_blank">NotificationManager</a>：</p>
+<h2 id="-notification">交付显示Notification</h2>
+<p>如果你想要交付显示你的Notification，请使用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationManagerCompat.html" target="_blank">NotificationManagerCompat</a>的API代替<a href="http://developer.android.com/reference/android/app/NotificationManager.html" target="_blank">NotificationManager</a>：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Get an instance of the NotificationManager service</span>
 NotificationManagerCompat notificationManager =
         NotificationManagerCompat.from(mContext);

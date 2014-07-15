@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.1" data-basepath="../.." data-revision="1405400958074">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.1" data-basepath="../.." data-revision="1405438336579">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1394,7 +1394,7 @@
         <li class="chapter " data-level="11" data-path="wearables/index.html">
             
             <a href="../../wearables/index.html">
-                <i class="fa fa-check"></i> <b>11.</b> 可穿戴
+                <i class="fa fa-check"></i> <b>11.</b> 为可穿戴设备创建应用
             </a>
             
             
@@ -1414,7 +1414,7 @@
         <li class="chapter " data-level="11.1.1" data-path="wearables/notifications/creating.html">
             
             <a href="../../wearables/notifications/creating.html">
-                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建一个Notification
+                <i class="fa fa-check"></i> <b>11.1.1.</b> 创建Notification
             </a>
             
             
@@ -3181,11 +3181,11 @@
     
         <a href="../../location/location-testing.html" title="使用模拟位置进行测试" class="chapter done " data-progress="10.6" style="left: 45.07575757575758%;"></a>
     
-        <a href="../../wearables/index.html" title="可穿戴" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
+        <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
         <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
-        <a href="../../wearables/notifications/creating.html" title="创建一个Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
+        <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
         <a href="../../wearables/notifications/voice-input.html" title="在Notifcation中接收语音输入" class="chapter done " data-progress="11.1.2" style="left: 46.59090909090909%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_265">
+                    <section class="normal" id="section-gitbook_1278">
                     
                         <blockquote>
 <p>编写: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
@@ -3512,12 +3512,12 @@
 </ul>
 </li>
 <li>匹配你的手持和模拟器:<ul>
-<li>在你的手持设备上，从Google Play安装你的Android Wear应用。</li>
+<li>在你的手持设备上，从Google Play安装<code>Android Wear</code>应用(这是一个由Google公司写的用来匹配的应用)</li>
 <li>通过USB连接你的手持设备到你的电脑。</li>
 <li>切换AVD的接口到手持设备(这个步骤需要每次连接都执行)<pre><code class="lang-git">adb -d forward tcp:5601 tcp:5601
 </code></pre>
 </li>
-<li>启动手持设备上的Android Wear应用，并连接到模拟器。</li>
+<li>启动手持设备上的<code>Android Wear</code>应用，并连接到模拟器。</li>
 <li>点击右上角的菜单，选择Demo Cards。</li>
 <li>你选择的卡片呈现在模拟器上会类似一个Notification。</li>
 </ul>
@@ -3526,11 +3526,11 @@
 <h3 id="-android-wear-">搭建Android Wear真机</h3>
 <p>建立Android Wear真机，需要下面几个步骤：</p>
 <ul>
-<li>在你的手持设备的Google Play上安装Android Wear应用。</li>
+<li>在你的手持设备的Google Play上安装<code>Android Wear</code>应用。</li>
 <li>按照应用的命令指示与你的可穿戴设备进行匹对。如果你有做建立notification的操作，这个步骤刚好可以测试这一功能。</li>
-<li>保持Android Wear应用在手机上的打开状态。</li>
-<li>通过USB连接可穿戴设备到电脑上，这样你能够直接安装应用到可穿戴设备上。在可穿戴设备与Android Wear应用上会显示一个消息提示，是否允许进行调试。</li>
-<li>在Android Wear应用上，总是选择允许连接。</li>
+<li>保持<code>Android Wear</code>应用在手机上的打开状态。</li>
+<li>通过USB连接可穿戴设备到电脑上，这样你能够直接安装应用到可穿戴设备上。在可穿戴设备与<code>Android Wear</code>应用上会显示一个消息提示，是否允许进行调试。</li>
+<li>在<code>Android Wear</code>应用上，总是选择允许连接。</li>
 </ul>
 <p>Android Studio上的Tool的窗口可以显示可穿戴设备的日志。当你执行<code>adb devices</code>命令的时候，也可以看到wearable的存在。</p>
 <h2 id="-wear-">创建Wear项目</h2>
