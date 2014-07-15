@@ -368,3 +368,18 @@ dalvik.system.NativeStart.run(Native Method)
 - 在合适的地方缓存一个ClassLoader对象的引用，然后直接发起loadClass调用。这需要额外些工作。
 
 #FAQ: 使用原生代码怎样共享原始数据?
+
+也许你会遇到这样一种情况，想从你的托管代码或者原生代码访问一大块原始数据的缓冲区。常见例子包括对bitmap或者声音文件的处理。这里有两种基本实现方式。
+
+你可以将数据存储到byte[]。这允许你从托管代码中快速地访问。然而，在原生代码端不能保证你不去拷贝一份就直接能够访问数据。在某些实现中，GetByteArrayElements和GetPrimitiveArrayCritical将会返回指向在维护堆中的原始数据的真实指针，但是在另外一些实现中将在原生堆空间分配一块缓冲区然后拷贝数据过去。
+
+还有一选择是将数据存储在一块直接字节缓冲区（direct byte buffer），可以使用java.nio.ByteBuffer.allocateDirect或者NewDirectByteBuffer JNI函数创建buffer。不像常规的byte缓冲区，它的存储空间将不会分配在程序维护的堆空间上，总是可以从原生代码直接访问（使用GetDirectBufferAddress得到地址）。依据直接的字节缓冲区访问是怎样被实现的，从托管代码访问数据将会非常慢。
+
+选择使用哪种方式取决于两个方面：
+
+1.大部分的数据访问是在Java代码还是C/C++代码中发生？
+
+2.如果数据最终被传到系统API，那它必须是怎样的形式呢（例如，如果数据最终被传到一个使用byte[]作为参数的函数，在直接的ByteBuffer中处理或许是不明智的）？
+
+如果通过上面两种情况仍然不能明确区分的，就使用直接字节缓冲区（direct byte buffer）形式。它们的支持是直接构建到JNI中的，在将来的版本中性能可能会得到提升。
+
