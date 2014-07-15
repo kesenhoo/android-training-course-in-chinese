@@ -22,7 +22,7 @@
 
 ## 建立调试会话
 
-1. 在手持设备上，打开Android Wear的伴侣应用。
+1. 在手持设备上，打开`Android Wear`这个伴侣应用。
 2. 点击右上角的菜单，选择设置。
 3. 开启蓝牙调试。你将会在选项下面看到一个小的状态信息：
 ```xml
@@ -35,7 +35,7 @@ adb forward tcp:4444 localabstract:/adb-hub; adb connect localhost:4444
 ```
 > **Note:** 你可以使用任何可用的端口。
 
-在Android Wear伴侣应用上，你将会看到状态变为：
+在`Android Wear`伴侣应用上，你将会看到状态变为：
 ```xml
 Host: connected
 Target: connected

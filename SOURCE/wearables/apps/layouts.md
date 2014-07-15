@@ -6,6 +6,7 @@
 
 为可穿戴设备创建布局是和手持设备是一样的。但是 不要期望通过搬迁手持应用的功能与UI到可穿戴上会有一个好的用户体验。仅仅在有需要的时候，你才应该创建自定义的布局。请参考可穿戴设备的[design guidelines](http://developer.android.com/design/wear/index.html)学习如何设计一个优秀的可穿戴应用。
 
+<a name="CustomNotification"></a>
 ## 创建自定义Notification
 
 通常来说，你应该在手持应用上创建好notification，然后让它自动同步到可穿戴设备上。这使得你只需要创建一次notification，然后可以在不同类型的设备(不仅仅是可穿戴设备，也包含车载设备与电视)上进行显示，免去为不同设备进行重新设计。

@@ -35,13 +35,13 @@
     * 点击**Start**...，然后选择**Launch.**
     * 等待模拟器初始化直到显示Android Wear的主界面。
 6. 匹配你的手持和模拟器:
-    * 在你的手持设备上，从Google Play安装你的Android Wear应用。
+    * 在你的手持设备上，从Google Play安装`Android Wear`应用(这是一个由Google公司写的用来匹配的应用)
     * 通过USB连接你的手持设备到你的电脑。
     * 切换AVD的接口到手持设备(这个步骤需要每次连接都执行)
     ```git
     adb -d forward tcp:5601 tcp:5601
     ```
-    * 启动手持设备上的Android Wear应用，并连接到模拟器。
+    * 启动手持设备上的`Android Wear`应用，并连接到模拟器。
     * 点击右上角的菜单，选择Demo Cards。
     * 你选择的卡片呈现在模拟器上会类似一个Notification。
 
@@ -49,11 +49,11 @@
 
 建立Android Wear真机，需要下面几个步骤：
 
-* 在你的手持设备的Google Play上安装Android Wear应用。
+* 在你的手持设备的Google Play上安装`Android Wear`应用。
 * 按照应用的命令指示与你的可穿戴设备进行匹对。如果你有做建立notification的操作，这个步骤刚好可以测试这一功能。
-* 保持Android Wear应用在手机上的打开状态。
-* 通过USB连接可穿戴设备到电脑上，这样你能够直接安装应用到可穿戴设备上。在可穿戴设备与Android Wear应用上会显示一个消息提示，是否允许进行调试。
-* 在Android Wear应用上，总是选择允许连接。
+* 保持`Android Wear`应用在手机上的打开状态。
+* 通过USB连接可穿戴设备到电脑上，这样你能够直接安装应用到可穿戴设备上。在可穿戴设备与`Android Wear`应用上会显示一个消息提示，是否允许进行调试。
+* 在`Android Wear`应用上，总是选择允许连接。
 
 Android Studio上的Tool的窗口可以显示可穿戴设备的日志。当你执行`adb devices`命令的时候，也可以看到wearable的存在。
 

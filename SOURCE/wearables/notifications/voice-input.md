@@ -12,7 +12,7 @@
 
 ![](03_actions.png)![](13_voicereply.png)
 
-##定义语音输入
+## 定义语音输入
 
 为了创建一个支持语音输入的action，需要创建一个[RemoteInput.Builder](http://developer.android.com/reference/android/support/v4/app/RemoteInput.Builder.html)的实例，将其加到你的Notification的action中。这个类的构造函数接受一个String类型的参数，该参数的含义是系统用来作为语音输入的key，这个key可以用来在手持设备中检索出所需要的那一次语音输入的内容。
 
