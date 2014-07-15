@@ -74,6 +74,16 @@ Android Studio上的Tool的窗口可以显示可穿戴设备的日志。当你�
 
 ## 安装可穿戴应用
 
+在开发过程中，你可以像安装手持应用一样直接安装可穿戴应用。可以使用`adb install`命令也可以使用Android Studio上面的Play按钮。
+
+当需要把应用发布给用户的时候，你需要把可穿戴应用打包到手持应用中。当用户从Google Play安装手持应用时，连接上得可穿戴设备会自动收到可穿戴应用。
+
+> **Note:** 如果你给应用签名是Debug Key，是无法完成自动安装可穿戴应用的。请参考[打包可穿戴应用](packaging.html)获取更多信息，学习如何正确的打包。
+
+为了安装"Hello World"应用到可穿戴设备，在Android Studiod的Run/Debug的下拉选项中选中Wear模块，点击Play按钮即可。在可穿戴设备上会显示activity并打印"Hello world!"
+
+## include需要的libraries
+
 项目安装向导会自动把合适的模块依赖添加到对应的build.gradle文件中。然而，这些依赖并不是必须得，请阅读下面描述判断你是否需要这些依赖。
 
 * **Notifications**
