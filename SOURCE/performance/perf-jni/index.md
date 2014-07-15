@@ -149,7 +149,7 @@ env->GetByteArrayRegion(array, 0, len, buffer);
 
 - 只需要调用一个JNI函数而是不是两个，减少了开销。
 - 不需要指针或者额外的拷贝数据。
-- 减少了编程犯错的风险-在某些失败之后忘记调用Release不存在风险。
+- 减少了程序员犯错的风险-在某些失败之后忘记调用Release不存在风险。
 
 类似地，你能使用Set<Type>ArrayRegion函数拷贝数据到数组，使用GetStringRegion或者GetStringUTFRegion从String中拷贝字符。
 
@@ -277,8 +277,94 @@ Android当前设计为运行在32位的平台上。理论上它也能够构建�
 
 #不支持的特性/向后兼容性
 
+除了下面的例外，所有的JNI 1.6特性都支持：
+
+- DefineClass没有实现。Android不使用Java字节码或者class文件，因此传入二进制class数据将不会有效。
+
+对Android以前老版本的向后兼容性，你需要注意：
+
+- 原生函数的动态查找
+在Android 2.0(Eclair)之前，在搜索方法名称时，字符“$”不会转换为对应的“_00024”。要使它正常工作需要使用显式注册方式或者将原生方法的声明移出内部类。
+- 分离线程
+在Android 2.0(Eclair)之前，使用pthread_key_create析构函数来避免“退出前线程必须分离”的检查是不可能的（运行时(runtime)也使用了一个pthread key析构函数，因此这是一场看谁先被调用的竞赛）。
+- 全局弱引用
+在Android 2.0(Eclair)之前，全局弱引用没有被实现。如果试图使用它们，老版本将完全不兼容。你可以使用Android平台版本号常量来测试系统的支持性。
+在Android 4.0 (Ice Cream Sandwich)之前，全局弱引用只能传给NewLocalRef, NewGlobalRef, 以及DeleteWeakGlobalRef（强烈建议程序员在使用全局弱引用之前都为它们创建强引用hard reference，所以这不应该在所有限制当中）。
+从Android 4.0 (Ice Cream Sandwich)起，全局弱引用能够像其它任何JNI引用一样使用了。
+- 局部引用
+在Android 4.0 (Ice Cream Sandwich)之前，局部引用实际上是直接指针。Ice Cream Sandwich为了支持更好的垃圾回收添加了间接指针，但这并不意味着很多JNI bug在老版本上不存在。更多细节见[JNI Local Reference Changes in ICS](http://android-developers.blogspot.com/2011/11/jni-local-reference-changes-in-ics.html)。
+- 使用GetObjectRefType获得引用类型
+在Android 4.0 (Ice Cream Sandwich)之前，使用直接指针（见上面）的后果就是正确地实现GetObjectRefType是不可能的。我们可以使用依次检测全局弱引用表，参数，局部表，全局表的方式来代替。第一次匹配到你的直接指针时，就表明你的引用类型是当前正在检测的类型。这意味着，例如，如果你在一个全局jclass上使用GetObjectRefType，而这个全局jclass碰巧与作为静态原生方法的隐式参数传入的jclass一样的，你得到的结果是JNILocalRefType而不是JNIGlobalRefType。
+
 #FAQ: 为什么出现了UnsatisfiedLinkError?
 
+当使用原生代码开发时经常会见到像下面的错误：
+
+``` JAVA
+
+java.lang.UnsatisfiedLinkError: Library foo not found
+```
+
+有时候这表示和它提示的一样---未找到库。但有些时候库确实存在但不能被dlopen(3)找开，更多的失败信息可以参见异常详细说明。
+
+你遇到“library not found”异常的常见原因可能有这些：
+
+- 库文件不存在或者不能被app访问到。使用adb shell ls -l <path>检查它的存在性和权限。
+- 库文件不是用NDK构建的。这就导致设备上并不存在它所依赖的函数或者库。
+
+另一种UnsatisfiedLinkError错误像下面这样：
+
+``` JAVA
+
+java.lang.UnsatisfiedLinkError: myfunc
+        at Foo.myfunc(Native Method)
+        at Foo.main(Foo.java:10)
+```
+
+在日志中，你会发现：
+
+``` JAVA
+
+W/dalvikvm(  880): No implementation found for native LFoo;.myfunc ()V
+```
+
+这意味着运行时尝试匹配一个方法但是没有成功，这种情况常见的原因有：
+
+- 库文件没有得到加载。检查日志输出中关于库文件加载的信息。
+- 由于名称或者签名错误，方法不能匹配成功。这通常是由于：
+    - 对于方法的懒查寻，使用 extern "C"和对应的可见性（JNIEXPORT）来声明C++函数没有成功。注意Ice Cream Sandwich之前的版本，JNIEXPORT宏是不正确的，因此对新版本的GCC使用旧的jni.h头文件将不会有效。你可以使用arm-eabi-nm查看它们出现在库文件里的符号。如果它们看上去比较凌乱（像_Z15Java_Foo_myfuncP7_JNIEnvP7_jclass这样而不是Java_Foo_myfunc），或者符号类型是小写的“t”而不是一个大写的“T”,这时你就需要调整声明了。
+    - 对于显式注册，在进行方法签名时可能犯了些小错误。确保你传入到注册函数的签名能够完全匹配上日志文件里提示的。记住“B”是byte，“Z”是boolean。在签名中类名组件是以“L”开头的，以“;”结束的，使用“/”来分隔包名/类名，使用“$”符来分隔内部类名称（比如说，Ljava/util/Map$Entry;）。
+
+使用javah来自动生成JNI头文件也许能帮助你避免这些问题。
+
 #FAQ: 为什么FindClass不能找到我的类?
+
+确保类名字符串有正确的格式。JNI类名称以包名开始，然后使用左斜杠来分隔，比如java/lang/String。如果你正在查找一个数组类，你需要以对应数目的综括号开头，使用“L”和“;”将类名两头包起来，所以一个一维字符串数组应该写成[Ljava/lang/String;。
+
+如果类名称看上去正确，你可能运行时遇到了类加载器的问题。FindClass想在与你代码相关的类加载器中开始查找指定的类。检查调用堆栈，可能看起像：
+
+``` JAVA
+
+Foo.myfunc(Native Method)
+Foo.main(Foo.java:10)
+dalvik.system.NativeStart.main(Native Method)
+```
+
+最顶层的方法是Foo.myfunc。FindClass找到与类Foo相关的ClassLoader对象然后使用它。
+
+这通常正是你所想的。如果你创建了自己的线程那么就会遇到麻烦（也许是调用了pthread_create然后使用AttachCurrentThread进行了连接）。现在跟踪堆栈可能像下面这样：
+
+``` JAVA
+
+dalvik.system.NativeStart.run(Native Method)
+```
+
+最顶层的方法是NativeStart.run，它不是你应用内的方法。如果你从这个线程中调用FindClass，JavaVM将会启动“系统（system）”的而不是与你应用相关的加载器，因此试图查找应用内定义的类都将会失败。
+
+下面有几种方法可以解决这个问题：
+
+- 在JNI_OnLoad中使用FindClass查寻一次，然后为后面的使用缓存这些类引用。任何在JNI_OnLoad当中执行的FindClass调用都使用与执行System.loadLibrary的函数相关的类加载器（这个特例，让库的初始化更加的方便了）。如果你的app代码正在加载库文件，FindClass将会使用正确的类加载器。
+- 传入一个类的实例到一个需要它的函数，声明你的原生方法必须带有一个Class参数然后将Foo.class传入。
+- 在合适的地方缓存一个ClassLoader对象的引用，然后直接发起loadClass调用。这需要额外些工作。
 
 #FAQ: 使用原生代码怎样共享原始数据?
