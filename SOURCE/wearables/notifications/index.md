@@ -2,7 +2,7 @@
 
 > 原文: <http://developer.android.com/training/wearables/notifications/index.html>
 
-# 为Notification赋加可穿戴的特性
+# 为Notification赋加可穿戴特性
 
 当一部Android手持设备（手机或平板）与Android可穿戴设备连接起来，手持设备能够自动的与可穿戴设备共享Notification。在可穿戴设备上，每个Notification都是以一张新卡片的形式出现在[context stream](http://developer.android.com/design/wear/index.html)中的
 

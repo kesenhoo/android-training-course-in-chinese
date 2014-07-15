@@ -121,7 +121,7 @@
    * [识别用户的当下活动](location/activity-recognition.md)
    * [使用模拟位置进行测试](location/location-testing.md)
 * [为可穿戴设备创建应用](wearables/index.md)
-   * [赋予Notification可穿戴的特性](wearables/notifications/index.md)
+   * [赋予Notification可穿戴特性](wearables/notifications/index.md)
        * [创建Notification](wearables/notifications/creating.md)
        * [在Notifcation中接收语音输入](wearables/notifications/voice-input.md)
        * [为Notification添加显示页面](wearables/notifications/pages.md)
