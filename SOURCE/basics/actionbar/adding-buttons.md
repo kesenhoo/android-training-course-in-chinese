@@ -1,4 +1,4 @@
-> 编写: [Vincent 4J](http://github.com/vincent4j)，校对:
+> 编写: [Vincent 4J](http://github.com/vincent4j) - 校对:
 
 > 原文: <http://developer.android.com/training/basics/actionbar/adding-buttons.html>
 

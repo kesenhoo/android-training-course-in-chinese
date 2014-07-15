@@ -1,6 +1,6 @@
-> 编写:[Lin-H](https://github.com/Lin-H)
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
 
-> 校对:
+> 原文: <http://developer.android.com/training/app-indexing/deep-linking.html>
 
 # 为App内容开启深度链接
 

@@ -1,6 +1,6 @@
-> 编写:[Lin-H](https://github.com/Lin-H)，校对:
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
 
-> 原文:<http://developer.android.com/training/search/index.html>
+> 原文: <http://developer.android.com/training/search/index.html>
 
 # 增加搜索功能
 
