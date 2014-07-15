@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.1" data-basepath="../.." data-revision="1405395545515">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.2.1" data-basepath="../.." data-revision="1405400958074">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2486">
+                    <section class="normal" id="section-gitbook_265">
                     
                         <blockquote>
 <p>编写: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
@@ -3550,6 +3550,13 @@
 <p><strong>Note:</strong> 可穿戴模块包含了一个&quot;Hello World&quot;的activity，它是使用<code>WatchViewStub</code>的布局。WatchViewStub是可穿戴support library中的一个UI组件。</p>
 </blockquote>
 <h2 id="-">安装可穿戴应用</h2>
+<p>在开发过程中，你可以像安装手持应用一样直接安装可穿戴应用。可以使用<code>adb install</code>命令也可以使用Android Studio上面的Play按钮。</p>
+<p>当需要把应用发布给用户的时候，你需要把可穿戴应用打包到手持应用中。当用户从Google Play安装手持应用时，连接上得可穿戴设备会自动收到可穿戴应用。</p>
+<blockquote>
+<p><strong>Note:</strong> 如果你给应用签名是Debug Key，是无法完成自动安装可穿戴应用的。请参考<a href="packaging.html">打包可穿戴应用</a>获取更多信息，学习如何正确的打包。</p>
+</blockquote>
+<p>为了安装&quot;Hello World&quot;应用到可穿戴设备，在Android Studiod的Run/Debug的下拉选项中选中Wear模块，点击Play按钮即可。在可穿戴设备上会显示activity并打印&quot;Hello world!&quot;</p>
+<h2 id="include-libraries">include需要的libraries</h2>
 <p>项目安装向导会自动把合适的模块依赖添加到对应的build.gradle文件中。然而，这些依赖并不是必须得，请阅读下面描述判断你是否需要这些依赖。</p>
 <ul>
 <li><p><strong>Notifications</strong></p>

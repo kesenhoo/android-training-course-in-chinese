@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.4" data-basepath="../.." data-revision="1405395545515">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.4" data-basepath="../.." data-revision="1405400958074">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3476,13 +3476,91 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2501">
+                    <section class="normal" id="section-gitbook_280">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:</p>
 <p>原文:</p>
 </blockquote>
 <h1 id="-stack-notifications">以Stack的方式显示Notifications</h1>
+<p>当为手持式设备创建Notification时，你应该将多个相似的Notification合并成一个概括式的Notification。例如，如果你的app创建了一系列接收短信的Notification，你不应该把它们都展示出来，当多于一条短信被接收的时候，用一条Notification提示总结性信息比如&quot;2条新消息&quot;。</p>
+<p>尽管如此，概括式的Notification在wear上并不是很有用处，因为用户不可能在wear上还能够阅读每条消息的详细内容(他们必须在手持式设备上打开你的app才能看到更多信息)。所以对wear而言，你应该将所有的Notification都集中起来，以stack的形式进行展示。这个stack展示的时候就像一张卡片，用户可以在上面以扩展的方式分别看到其他的Notification。通过新方法<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setGroup(java.lang.String" target="_blank">setGroup()</a>能够实现该功能，同时，还能让你保持手持式设备上显示为一条概括式的Notification。</p>
+<p><img src="11_bundles_A.png" alt="">
+<img src="11_bundles_B.png" alt=""></p>
+<h2 id="-notification-">将每个Notification添加到一个群组中</h2>
+<p>为了创建一个stack，可以对每个想要放入该stack的Notification调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setGroup(java.lang.String" target="_blank">setGroup()</a>，并且指定群组的key。然后调用<a href="http://developer.android.com/reference/java/lang/Object.html#notify(" target="_blank">notify()</a>将其发送至wear上。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String GROUP_KEY_EMAILS = <span class="hljs-string">"group_key_emails"</span>;
+
+<span class="hljs-comment">// Build the notification, setting the group appropriately</span>
+Notification notif = <span class="hljs-keyword">new</span> NotificationCompat.Builder(mContext)
+         .setContentTitle(<span class="hljs-string">"New mail from "</span> + sender1)
+         .setContentText(subject1)
+         .setSmallIcon(R.drawable.new_mail);
+         .setGroup(GROUP_KEY_EMAILS)
+         .build();
+
+<span class="hljs-comment">// Issue the notification</span>
+NotificationManagerCompat notificationManager =
+        NotificationManagerCompat.from(<span class="hljs-keyword">this</span>);
+notificationManager.notify(notificationId1, notif);
+</code></pre>
+<p>稍后，当你创建另一个Notification的时候，指定同样的群组key。当你在调用<a href="http://developer.android.com/reference/java/lang/Object.html#notify(" target="_blank">notify()</a>的时候，这个Notification就会出现在之前那个Notification的同一个stack中，而非新建一张卡片。</p>
+<pre><code class="lang-java">Notification notif2 = <span class="hljs-keyword">new</span> NotificationCompat.Builder(mContext)
+         .setContentTitle(<span class="hljs-string">"New mail from "</span> + sender2)
+         .setContentText(subject2)
+         .setSmallIcon(R.drawable.new_mail);
+         .setGroup(GROUP_KEY_EMAILS)
+         .build();
+
+notificationManager.notify(notificationId2, notif2);
+</code></pre>
+<p>在默认的情况下，Notification的排列顺序由你添加的先后顺序决定，最近的Notification会被放置在最顶端。你可以通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setSortKey(java.lang.String" target="_blank">setSortKey()</a>来修改Notification的排顺序。</p>
+<h2 id="-notification">添加概括式Notification</h2>
+<p>虽然上面介绍了最好将Notification都以stack的形式展示，但是，在手持设备上提供一个概括式的Notification还是很重要的。除了要将Notification放置在同一个stack中，还需要添加一个概括式的Notification，并对其调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setGroupSummary(boolean" target="_blank">setGroupSummary()</a>即可实现。</p>
+<p>该Notification并不会出现在你wear设备上的stack中，只会出现在手持式设备上。</p>
+<p><img src="notif_summary_framed.png" alt=""></p>
+<pre><code class="lang-java">Bitmap largeIcon = BitmapFactory.decodeResource(getResources(),
+        R.drawable.ic_large_icon);
+
+<span class="hljs-comment">// Create an InboxStyle notification</span>
+Notification summaryNotification = <span class="hljs-keyword">new</span> NotificationCompat.Builder(mContext)
+        .setContentTitle(<span class="hljs-string">"2 new messages"</span>)
+        .setSmallIcon(R.drawable.ic_small_icon)
+        .setLargeIcon(largeIcon)
+        .setStyle(<span class="hljs-keyword">new</span> NotificationCompat.InboxStyle()
+                .addLine(<span class="hljs-string">"Alex Faaborg   Check this out"</span>)
+                .addLine(<span class="hljs-string">"Jeff Chang   Launch Party"</span>)
+                .setBigContentTitle(<span class="hljs-string">"2 new messages"</span>)
+                .setSummaryText(<span class="hljs-string">"johndoe@gmail.com"</span>))
+        .setGroup(GROUP_KEY_EMAILS)
+        .setGroupSummary(<span class="hljs-keyword">true</span>)
+        .build();
+
+notificationManager.notify(notificationId3, summaryNotification);
+</code></pre>
+<p>该Notification使用了<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.InboxStyle.html" target="_blank">NotificationCompat.InboxStyle</a>，这个style能够让你很轻松的创建email或者短信类型的app。你可以对概括式Notification使用这个style，或者<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.html" target="_blank">NotificationCompat</a>中定义的其他style，或者不使用任何style也可以。</p>
+<blockquote>
+<p><strong>提示:</strong>如果想要和上面截图中一样的设计文本，请参考<a href="http://developer.android.com/guide/topics/resources/string-resource.html#StylingWithHTML" target="_blank">Styling with HTML markup</a>和<a href="http://developer.android.com/guide/topics/resources/string-resource.html#StylingWithSpannables" target="_blank">Styling with Spannables</a>。</p>
+</blockquote>
+<p>概括式Notification能够在不显示在wear的前提下做到影响其他的Notification。当你创建一个概括式Notification时，你可以利用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html" target="_blank">NotificationCompat.WearableExtender</a>，调用<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#setBackground(android.graphics.Bitmap" target="_blank">setBackground()</a>或者<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addAction(android.support.v4.app.NotificationCompat.Action" target="_blank">addAction()</a>为wear上的整个stack设置一个背景图片或者一个action。以下代码展示了如何为整个stack设置背景：</p>
+<pre><code class="lang-java">Bitmap background = BitmapFactory.decodeResource(getResources(),
+        R.drawable.ic_background);
+
+NotificationCompat.WearableExtender wearableExtender =
+        <span class="hljs-keyword">new</span> NotificationCompat.WearableExtender()
+        .setBackground(background);
+
+<span class="hljs-comment">// Create an InboxStyle notification</span>
+Notification summaryNotificationWithBackground =
+        <span class="hljs-keyword">new</span> NotificationCompat.Builder(mContext)
+        .setContentTitle(<span class="hljs-string">"2 new messages"</span>)
+        ...
+        .extend(wearableExtender)
+        .setGroup(GROUP_KEY_EMAILS)
+        .setGroupSummary(<span class="hljs-keyword">true</span>)
+        .build();
+</code></pre>
+<p>下一课：<a href="apps/index.html">创建可穿戴的应用</a></p>
 
                     
                     </section>
