@@ -1,4 +1,4 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:
+> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:[kesenhoo](https://github.com/kesenhoo)
 
 > 原文:
 

@@ -1,6 +1,6 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:
+> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:[kesenhoo](https://github.com/kesenhoo)
 
-> 原文:
+> 原文:<http://developer.android.com/training/wearables/notifications/voice-input.html>
 
 # 在Notifcation中接收语音输入
 

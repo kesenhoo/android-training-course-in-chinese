@@ -1,6 +1,6 @@
 > 编写:[wangyachen](https://github.com/wangyacheng) - 校对:
 
-> 原文:
+> 原文:<http://developer.android.com/training/wearables/notifications/pages.html>
 
 # 为Notification添加显示页面
 
@@ -11,7 +11,7 @@
 
 为了创建一个多页的Notification，你需要：
 
-1. 通过[NotificationCompat.Builder](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)创建主Notification（首页），以你想要的方式使其出现在手持设备上。
+1. 通过[NotificationCompat.Builder](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)创建主Notification（首页），这个首页也是你想要呈现在手持设备上的。
 2. 通过[NotificationCompat.Builder](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)为wear添加更多的页面。
 3.通过[addPage()](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification)方法为主Notification应用这些添加的页面，或者通过[addPage()](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification)添加一个[Collection](http://developer.android.com/reference/java/util/Collection.html)的多个页面。
 
