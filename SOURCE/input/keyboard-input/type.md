@@ -54,7 +54,7 @@ android:inputType属性允许你为输入法指定不同的行为。最为重要
 
 多数的软键盘会在底部角落里为用户提供一个合适的动作按钮来触发当前文本域的操作。默认情况下，系统使用**下一步(Next)**或者**确认(DONE)**除非你的文本域允许多行(如android:inputType="textMultiLine")，这种情况下，动作按钮就是回车换行。然而，你可以制定额外的动作一边更适合你的文本域，比如**SEND**和**GO**。
 
-指定特定的动作按钮，将 android:imeOptions 属性的值设为"actionSend" 或 "actionSearch"。如：
+指定特定的动作按钮，将 [android:imeOptions](http://developer.android.com/reference/android/widget/TextView.html#attr_android:imeOptions) 属性的值设为"actionSend" 或 "actionSearch"。如：
 ![edittext-actionsend](edittext-actionsend.png)
 ```xml
 <EditText
@@ -65,7 +65,7 @@ android:inputType属性允许你为输入法指定不同的行为。最为重要
     android:inputType="text"
     android:imeOptions="actionSend" />
 ```
-然后你可以通过为 EditText定义TextView.OnEditorActionListener来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 EditorInfo 类中，如 IME_ACTION_SEND 。例如:
+然后你可以通过为 [EditText](http://developer.android.com/reference/android/widget/EditText.html)定义[TextView.OnEditorActionListener](http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html)来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 [EditorInfo](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html) 类中，如 [IME_ACTION_SEND](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html#IME_ACTION_SEND) 。例如:
 
 ```java
 EditText editText = (EditText) findViewById(R.id.search);
