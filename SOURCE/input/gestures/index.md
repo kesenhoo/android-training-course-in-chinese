@@ -1,10 +1,10 @@
 > 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 原文：
+> 原文：<http://developer.android.com/training/gestures/index.html>
 
 # 使用触摸手势 #
 
-这一章节描述，如何编写允许用户通过触摸手势进行交互的app。Android提供了多种API帮你创建和检测手势。
+这一章节讲述，如何编写允许用户通过触摸手势进行交互的app。Android提供了多种API帮你创建和检测手势。
 
 尽管你的app不应该依赖于触摸手势来完成基本操作（因为某些情况下手势是不用的），但为你的app添加基于触摸的交互，将会大大地提高app的可用性以及吸引力。
 
@@ -16,9 +16,9 @@
 
   学习如何使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)检测基本的触摸手势,如滑动,惯性滑动以及双击。
 
-- [跟踪手势移动](movement.html)
+- [追踪手势移动](movement.html)
 
-  学习如何跟踪手势移动。
+  学习如何追踪手势移动。
 
 - [Scroll手势动画](scroll.html)
 

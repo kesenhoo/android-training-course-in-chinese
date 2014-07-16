@@ -1,6 +1,6 @@
 > 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 原文：
+> 原文：<http://developer.android.com/training/gestures/detector.html>
 
 # 检测常用的手势 #
 
