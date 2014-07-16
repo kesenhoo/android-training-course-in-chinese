@@ -189,7 +189,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [兼容不同的屏幕大小](http://hukai.me/android-training-course-in-chinese/ui/multiscreen/screen-sizes.html)
       * [兼容不同的屏幕密度](http://hukai.me/android-training-course-in-chinese/ui/multiscreen/screen-desities.html)
       * [实现可适应的UI](http://hukai.me/android-training-course-in-chinese/ui/multiscreen/adapt-ui.html)
-   * [为TV进行设计](http://hukai.me/android-training-course-in-chinese/ui/tv/index.html) - 待认领
+   * [为TV进行设计](http://hukai.me/android-training-course-in-chinese/ui/tv/index.html) - @[xrayzh](https://github.com/xrayzh) - 1%
       * [为TV优化Layout](http://hukai.me/android-training-course-in-chinese/ui/tv/optimize-layouts-tv.html)
       * [为TV优化导航](http://hukai.me/android-training-course-in-chinese/ui/tv/optimize-nav-tv.html)
       * [处理不支持TV的功能](http://hukai.me/android-training-course-in-chinese/ui/tv/unsupport-features-tv.html)
