@@ -1,12 +1,12 @@
-> 编写:[lltowq](https://github.com/lltowq)
+> 编写:[lltowq](https://github.com/lltowq)，校对:(未验证)
 
-> 校对:(未验证)
+> 原文:<http://developer.android.com/training/animation/index.html>
 
 # 动画
 
 ##课程
 淡入淡出两个View
-  
+
 学习怎样实现重叠视图交叉淡入。这节课将展示怎样交叉淡入一个一个进度指示器对于一个视图包含文本信息？？？
 
 使用ViewPager实现滑屏

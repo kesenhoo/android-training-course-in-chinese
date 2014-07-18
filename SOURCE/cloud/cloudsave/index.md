@@ -1,6 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/cloudsave/conflict-res.html>
 
 # 解决云同步的保存冲突
 

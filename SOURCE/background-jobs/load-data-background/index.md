@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/load-data-background/index.html>
 
 # 使用CursorLoader在后台加载数据
 

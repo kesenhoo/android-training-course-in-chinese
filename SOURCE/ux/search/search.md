@@ -1,6 +1,6 @@
-> 编写:[Lin-H](https://github.com/Lin-H)
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
 
-> 校对:
+> 原文: <http://developer.android.com/training/search/search.html>
 
 # 保存并搜索数据
 
