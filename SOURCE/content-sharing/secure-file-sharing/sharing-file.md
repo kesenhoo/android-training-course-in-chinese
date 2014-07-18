@@ -4,9 +4,9 @@
 
 # 分享文件
 
-一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的需求。一种响应的方法是在服务应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户应用端让用户从服务应用端选择一个文件，然后接收这个文件的URI。
+一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的请求。一种响应的方法是在服务应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户应用端让用户从服务应用端选择一个文件，然后接收这个文件的URI。
 
-这节课将会向你展示如何在你的应用中创建一个用来选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)，来响应这些索取文件的需求。
+这节课将会向你展示如何在你的应用中创建一个用来选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)，来响应这些索取文件的请求。
 
 ##接收文件请求
 
@@ -16,7 +16,7 @@
 
 ##创建一个文件选择Activity
 
-为了配置文件选择[Activity](http://developer.android.com/reference/android/app/Activity.html)，我们从在清单文件定义你的[Activity](http://developer.android.com/reference/android/app/Activity.html)开始，在其intent过滤器中，匹配[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action，以及[CATEGORY_DEFAULT](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT)和[CATEGORY_OPENABLE](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_OPENABLE)的Category。另外，为你的应用向其他应用所提供的文件设置MIME类型过滤器。下面的这段代码展示了如何在清单文件中定义新的[Activity](http://developer.android.com/reference/android/app/Activity.html)和intent过滤器：
+为了配置文件选择[Activity](http://developer.android.com/reference/android/app/Activity.html)，我们从在清单文件定义你的[Activity](http://developer.android.com/reference/android/app/Activity.html)开始，在其intent过滤器中，匹配[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action，以及[CATEGORY_DEFAULT](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT)和[CATEGORY_OPENABLE](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_OPENABLE)的Category。另外，还需要为你的应用设置MIME类型过滤器，来表明你的应用可以向其他应用提供哪种类型的文件。下面的这段代码展示了如何在清单文件中定义新的[Activity](http://developer.android.com/reference/android/app/Activity.html)和intent过滤器：
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -168,7 +168,7 @@ public class MainActivity extends Activity {
 
 ##与请求应用共享文件
 
-为了与需求应用共享其需要的文件，将包含了URI和响应权限的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给[setResult()](http://developer.android.com/reference/android/app/Activity.html#setResult\(int\))。当你定义的[Activity](http://developer.android.com/reference/android/app/Activity.html)被结束后，系统会把这个包含了URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给客户端应用。下面的例子展示了你应该如何做：
+为了与请求文件的应用共享其需要的文件，将包含了URI和响应权限的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给[setResult()](http://developer.android.com/reference/android/app/Activity.html#setResult\(int\))。当你定义的[Activity](http://developer.android.com/reference/android/app/Activity.html)被结束后，系统会把这个包含了URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给客户端应用。下面的例子展示了你应该如何做：
 
 ```java
     protected void onCreate(Bundle savedInstanceState) {
