@@ -11,3 +11,10 @@
 如果你希望在应用之间共享少量的文本或者数字的数据，你应该发送一个包含该数据的Intent。要学习如何通过Intent发送简单数据，可以阅读：[Sharing Simple Data](http://developer.android.com/training/sharing/index.html)。
 
 这系列课程将会介绍如何使用Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件创建的URI，以及如何向接收URI的应用授予的临时访问权限，来安全地在应用之间共享文件。
+
+##课程
+
+* [建立文件分享](setup-sharing.html)
+* [分享文件](sharing-file.html)
+* [请求分享一个文件](request-file.html)
+* [获取文件信息](retrieve-info.html)
