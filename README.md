@@ -128,7 +128,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html)
       * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - @[jdneo](https://github.com/jdneo)
-* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 50%
+* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 70%
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
@@ -266,7 +266,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)
 * [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
-   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 1%
+   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 40%
       * [建立测试环境](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/prepare-activity-testing.html)
       * [创建与执行测试用例](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-basic-testing.html)
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
