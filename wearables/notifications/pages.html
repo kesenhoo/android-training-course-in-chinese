@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.3" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.1.3" data-basepath="../.." data-revision="1405873257119">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,11 +3476,11 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1291">
+                    <section class="normal" id="section-gitbook_320">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:</p>
-<p>原文:</p>
+<p>原文:<a href="http://developer.android.com/training/wearables/notifications/pages.html" target="_blank">http://developer.android.com/training/wearables/notifications/pages.html</a></p>
 </blockquote>
 <h1 id="-notification-">为Notification添加显示页面</h1>
 <p>当你想要在不需要用户在他们的手机上打开你的app的情况下，还可以让你表达更多的信息，那么你可以在wear上的Notification中添加一个或更多的页面。</p>
@@ -3488,7 +3488,7 @@
 <img src="08_pages.png" alt=""></p>
 <p>为了创建一个多页的Notification，你需要：</p>
 <ol>
-<li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>创建主Notification（首页），以你想要的方式使其出现在手持设备上。</li>
+<li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>创建主Notification（首页），这个首页也是你想要呈现在手持设备上的。</li>
 <li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>为wear添加更多的页面。
 3.通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPage()</a>方法为主Notification应用这些添加的页面，或者通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPage()</a>添加一个<a href="http://developer.android.com/reference/java/util/Collection.html" target="_blank">Collection</a>的多个页面。</li>
 </ol>

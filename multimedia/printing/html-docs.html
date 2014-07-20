@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.3.2" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.3.2" data-basepath="../.." data-revision="1405873257119">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter  " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter  " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1188">
+                    <section class="normal" id="section-gitbook_216">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
@@ -3484,10 +3484,10 @@
 </blockquote>
 <h1 id="-html-">打印HTML文档</h1>
 <p>在Android上要打印比一副照片更丰富的内容，换句话说，若需要将文本和图片组合在一个打印的文档中。Android框架提供了一种使用HTML语言来组织一个文档并打印的方法，它使用的代码数量是很小的。</p>
-<p>在Android 4.4（API Level 19），<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>类更新了，使得它可以打印HTML内容。这个类允许你加载一个本地的HTML资源或者从一个网页下载一个页面，创建一个打印任务，并把它交给Android打印服务。</p>
+<p><a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>类在Android 4.4（API Level 19）中得到了更新，使得它可以打印HTML内容。这个类允许你加载一个本地的HTML资源或者从一个网页下载一个页面，创建一个打印任务，并把它交给Android打印服务。</p>
 <p>这节课将向您展示如何快速地构建一个HTML文档，它包含文本和图片，并使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>来打印它。</p>
 <h2 id="-html-">加载一个HTML文档</h2>
-<p>用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>打印一个HTML文档包含加载一个HTML资源或者以String的形式构建一个HTML文档。这一节将描述如果构建一个HTML的字符串并将它加载到<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>中，以备打印。</p>
+<p>用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>打印一个HTML文档，会涉及到加载一个HTML资源，或者以String的形式构建一个HTML文档。这一节将描述如何构建一个HTML的字符串并将它加载到<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>中，以备打印。</p>
 <p>这个View对象一般被用来作为一个activity布局的一部分。然而，如果你的应用不使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>，你可以创建一个该类的实例，以进行打印。创建该自定义打印界面的主要步骤是：</p>
 <ol>
 <li>在HTML资源加载完毕后，创建一个<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html" target="_blank">WebViewClient</a>用来启动一个打印任务。</li>
@@ -3525,7 +3525,7 @@
 </code></pre>
 <blockquote>
 <p><strong>Note：</strong>
-确保你所调用的生成打印的任务发生在在之前那一节所创建的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String" target="_blank">WebViewClient</a>)中的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished\(android.webkit.WebView, java.lang.String\" target="_blank">onPageFinished()</a>)方法内。如果你不等待页面加载完毕后再打印，打印的输出可能会不完整或空白，甚至可能会失败。</p>
+确保你所调用的生成打印的任务发生在之前那一节所创建的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String" target="_blank">WebViewClient</a>)中的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished\(android.webkit.WebView, java.lang.String\" target="_blank">onPageFinished()</a>)方法内。如果你不等待页面加载完毕后再打印，打印的输出可能会不完整或空白，甚至可能会失败。</p>
 <p><strong>Note：</strong>上面的样例代码维护了一个<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象实例，这样就保证了它不会在打印任务创建之前就被垃圾回收器所回收。请确保你在你的实现中也同样这么做，否则打印的进程可能会无法继续执行。</p>
 </blockquote>
 <p>如果你希望页面中包含图像，将这个图像文件放置在你的工程的“assets/”目录，并指定一个基URL，作为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL\(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String\" target="_blank">loadDataWithBaseURL()</a>)方法的第一个参数，就像下面所显示的一样：</p>
@@ -3542,14 +3542,14 @@ webView.loadUrl(<span class="hljs-string">"http://developer.android.com/about/in
 <li>HTML文档的打印选项不包含选择打印的页数范围，例如：对于一个10页的HTMl文档，只打印2到4页是不可以的。</li>
 <li>一个<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>的实例只能在同一时间处理一个打印任务。</li>
 <li>若一个HTML文档包含CSS打印属性，比如一个landscape属性，是不支持的。</li>
-<li>你不能使用一个HTML文档中的JavaScript来激活打印。</li>
+<li>你不能通过一个HTML文档中的JavaScript脚本来激活打印。</li>
 </ul>
 <blockquote>
 <p><strong>Note：</strong>一旦在布局中包含的<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象加载好了文档，就可以打印<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象的内容。</p>
 </blockquote>
-<p>如果你希望创建一个更加自定义化的打印输出并希望可以完全控制打印页面上绘制的内容，可以学习下一节课程：<a href="http://developer.android.com/training/printing/custom-docs.html" target="_blank">Printing a Custom Document</a>。</p>
+<p>如果你希望创建一个更加自定义化的打印输出并希望可以完全控制打印页面上绘制的内容，可以学习下一节课程：<a href="custom-docs.html">打印自定义文档</a></p>
 <h2 id="-">创建一个打印任务</h2>
-<p>在创建了<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>并加载了你的HTML内容之后，你的应用就基本完成了打印进程的归属于它的部分的任务。下一步是访问<a href="http://developer.android.com/reference/android/print/PrintManager.html" target="_blank">PrintManager</a>，创建一个打印适配器，并在最后，创建一个打印任务。下面的代码展示了如何执行这些步骤：</p>
+<p>在创建了<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>并加载了你的HTML内容之后，你的应用就基本完成了打印进程中，属于它的任务。下一步是访问<a href="http://developer.android.com/reference/android/print/PrintManager.html" target="_blank">PrintManager</a>，创建一个打印适配器，并在最后，创建一个打印任务。下面的代码展示了如何执行这些步骤：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createWebPrintJob</span>(WebView webView) {
 
     <span class="hljs-comment">// Get a PrintManager instance</span>

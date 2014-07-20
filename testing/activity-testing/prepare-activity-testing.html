@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="18.1.1" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="18.1.1" data-basepath="../.." data-revision="1405873257119">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,13 +3476,36 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1221">
+                    <section class="normal" id="section-gitbook_251">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">建立测试环境</h1>
+<p>再开始编写,运行你的测试之前,你应该建立你的测试开发环境.本小节将会教你怎样建立Eclipse IDE来构建和运行你的测试,以及怎样用Gradle框架在命令行下构建和运行你的测试.</p>
+<p><strong>注意</strong> :为了帮助你开始,这小节是基于Eclipse及ADT插件.然而,你在自己测试开发时可以自由选用IDE或命令行.</p>
+<h2 id="-eclipse-">用Eclipse建立测试</h2>
+<p>安装了Android Developer Tools (ADT) 插件的Eclipse将为你创建,构建,以及运行Android程序提供一个基于图形界面的集成开发环境.Eclipse的一项方便的特性是可以自动为你的Android应用项目创建一个对应的测试项目.</p>
+<p>开始在Eclipse中创建测试环境:</p>
+<p>1.要是还没安装Eclipse <a href="http://developer.android.com/sdk/installing/bundle.html" target="_blank">ADT</a>插件,请先下载安装.</p>
+<p>2.导入或创建你想再次测试的Android应用项目.</p>
+<p>3.生成一个对应于应用程序项目测试的测试项目.为你的导入项目生成一个测试项目:</p>
+<blockquote>
+<p>a.在项目浏览器里,右击你的应用项目,然后选择<strong>Android Tools &gt; New Test Project</strong></p>
+<p>b.在新建Android测试项目面板,为你的测试项目设置合适的参数,然后点击<strong>Finish</strong></p>
+</blockquote>
+<p>你现在应该可以在Eclipse环境中创建，构建和运行测试项目了.想要继续学习如何在Eclipse中进行这些任务,请转到<a href="activity-basic-testing.html">Creating and Running a Test Case</a></p>
+<h2 id="-">用命令行建立测试</h2>
+<p>如果正在使用Gradle version 1.6或者更高的版本作为构建环境,可以用Gradle Wrapper创建，构建和运行Android应用测试.确保你的gradle.build文件中默认<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank">minSdkVersion</a>属性是8或更高.可以参考包含在这下载包中的示例文件gradle.build</p>
+<p>用Gradle Wrapper运行你的测试:</p>
+<p>1.连接你的Android真机或开启你的Android模拟器.</p>
+<p>2.在你的项目目录运行如下命令:</p>
+<blockquote>
+<p>./gradlew build connectedCheck</p>
+</blockquote>
+<p>进一步学习Gradle关于Android测试的内容,参看<a href="http://www.gradle.org/docs/current/userguide/userguide_single.html" target="_blank">Gradle Plugin User Guide</a>.</p>
+<p>进一步学习使用Gradle及其它命令行工具,参看<a href="http://developer.android.com/tools/testing/testing_otheride.html" target="_blank">Testing from Other IDEs.</a>.</p>
 
                     
                     </section>
