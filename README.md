@@ -159,7 +159,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [发送与接收消息](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/messages.md)
       * [处理数据层的事件](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/events.md)
 * [交互](http://hukai.me/android-training-course-in-chinese/ux/index.html)
-   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu) - 1%
+   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu) - 50%
       * [规划屏幕界面与他们之间的关系](http://hukai.me/android-training-course-in-chinese/ux/design-nav/screen-planning.html)
       * [为多种大小的屏幕进行规划](http://hukai.me/android-training-course-in-chinese/ux/design-nav/multi-sizes.html)
       * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
