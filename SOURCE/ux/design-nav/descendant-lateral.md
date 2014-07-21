@@ -62,7 +62,7 @@ Tab是非常流行的横向导航。这个模式允许组合同级界面，就�
 
 ** 图 4.** 手机和平板导航例子和对应界面图
 
-几个使用Tab时的最佳做法。当选择Tab时被跳过，Tab应该保持原状，只有指定内容区域发生改变，并且tab任何时候都可用。此外，tab切换不能算作历史。例如，如果用户从 Tab *A* 切换到 Tab *B*，按 *Back* 按钮（详情看[下节](ancestral-temporal.html)）不该重选 Tab *A*。Tab通常水平排布，可是有时其他tab展现形式，例如Action bar（Android 设计的[文档](http://developer.android.com/design/patterns/actionbar.html)）的下拉菜单，也是可以的。最后，最重要的是，tab应该在界面顶端和内容对应。
+几个使用Tab时的最佳做法。当选择Tab时被跳过，Tab应该保持原状，只有指定内容区域发生改变，并且tab任何时候都可用。此外，tab切换不能算作历史。例如，如果用户从 Tab *A* 切换到 Tab *B*，按 *Back* 按钮（详情看[下节](ancestral-temporal.html)）不该重选 Tab *A*。Tab通常水平排布，可是有时其他tab展现形式，例如Action bar（Android 设计的[模式](http://developer.android.com/design/patterns/actionbar.html)章节）的下拉菜单，也是可以的。最后，最重要的是，tab应该在界面顶端和内容对应。
 
 tab导航相对于list和button导航，有很多即得的优点：
 
