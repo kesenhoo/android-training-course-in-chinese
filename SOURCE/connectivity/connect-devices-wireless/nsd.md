@@ -5,10 +5,10 @@
 # 使得网络服务可发现
 
 
-网络服务发现（Network Service Discovery）是一种在局域网内可以辨识并使用其他设备上提供的服务的技术。这种技术对大量的端对端应用大有裨益，例如文件共享、联机游戏等。Android提供了网络服务发现（NSD）相应的API，大大降低了实现难度。
+网络服务发现（Network Service Discovery）是一种在局域网内可以辨识并使用其他设备上提供的服务的技术。这种技术在端对端应用中能够提供大量帮助，例如文件共享、联机游戏等。Android提供了网络服务发现（NSD）相应的API，大大降低了其实现难度。
 
 
-本讲将简要介绍如何创建NSD应用，使其能够在本地网络内广播自己的名称和链接信息，并且扫描发现其他NSD设备。最后，本讲将介绍如何连接到运行着同样应用的另一台设备上。
+本讲将简要介绍如何创建NSD应用，使其能够在本地网络内广播自己的名称和链接信息，并且扫描网络发现其他NSD设备。最后，将介绍如何连接到运行着同样应用的另一台设备上。
 
 ## 注册NSD服务
 
@@ -34,8 +34,7 @@ public void registerService(int port) {
 
 
 这段代码将所提供的服务命名为“NsdChat”。该名称将对所有局域网络中的设备可见。
-需要注意的是，在网络内该名称必须是独一无二的。Android系统会自动处理冲突的
-服务名称。如果同时有两个名为“NsdChat”的应用，
+需要注意的是，在网络内该名称必须是独一无二的。Android系统会自动处理冲突的服务名称。如果同时有两个名为“NsdChat”的应用，
 其中一个会被自动转换为“NsdChat(1)”。
 
 
@@ -48,7 +47,7 @@ public void registerService(int port) {
 
 
 
-> **Note:** 互联网编号分配机构（International Assigned Numbers Authority，简称IANA）提供用于服务发现协议（例如NSD和Bonjour）的官方的服务种类列表。你可以下载该列表了解相应的服务名称和端口号码。如果你想起用新的服务种类，应该向IANA官方提交申请。
+> **Note:** 互联网编号分配机构（International Assigned Numbers Authority，简称IANA）提供用于服务发现协议（例如NSD和Bonjour）的官方服务种类列表。你可以下载该列表了解相应的服务名称和端口号码。如果你想起用新的服务种类，应该向IANA官方提交申请。
 
 
 
@@ -56,7 +55,8 @@ public void registerService(int port) {
 防止与其他应用产生冲突。例如，如果你的应用仅仅使用端口1337，
 就可能与其他使用1337端口的应用发生冲突。解决方法是，不要硬编码，
 使用下一个可用的端口。不必担心其他应用无法知晓服务的端口号，
-因为该信息将包含在广播中。接收到广播后，应用将从中得知服务端口号，
+因为该信息将包含在服务的广播包中。接收到广播后，
+其他应用将从广播包种得知服务端口号，
 并通过端口连接到你的服务上。
 
 
@@ -74,10 +74,10 @@ public void initializeServerSocket() {
 ```
 
 
-你已经成功的创建了[NsdServiceInfo](http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html)对象，
+现在，你已经成功的创建了[NsdServiceInfo](http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html)对象，
 接下来要做的是实现[RegistrationListener](http://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html)接口。
 该接口包含了注册在Android系统中的一系列回调函数，
-用来通知应用程序服务注册/注销的成功和失败。
+作用是通知应用程序服务注册/注销的成功和失败。
 
 ```java
 public void initializeRegistrationListener() {
@@ -112,7 +112,8 @@ public void initializeRegistrationListener() {
 
 
 
-万事俱备只欠东风，调用[registerService()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo, int, android.net.nsd.NsdManager.RegistrationListener)方法真正注册服务。
+万事俱备只欠东风，调用[registerService()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo, int, android.net.nsd.NsdManager.RegistrationListener)方法，
+真正注册服务。
 
 
 因为该方法是异步的，所以进一步的操作需要在[onServiceRegistered()](http://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onServiceRegistered(android.net.nsd.NsdServiceInfo)方法中进行。
@@ -131,11 +132,186 @@ public void registerService(int port) {
 }
 ```
 
+##<span id=discover>发现网络中的服务 </span>
+
+
+
+网络充斥着我们的生活，从网络打印机到网络摄像头，再到联网井字棋。
+网络服务发现是能让你的应用融入这一切功能的关键。
+你的应用需要侦听网络内服务的广播，发现可用的服务，过滤无效的信息。
+
+
+
+与注册网络服务类似，服务发现需要两步骤：正确配置发现监听者（Discover Listener），以及调用[discoverServices()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String, int, android.net.nsd.NsdManager.DiscoveryListener)这个异步API。
 
 
 
 
+首先，实例化一个实现[NsdManager.DiscoveryListener](http://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html)接口的匿名类。下列代码是一个简单的范例：
 
+```java
+public void initializeDiscoveryListener() {
+
+    // Instantiate a new DiscoveryListener
+    mDiscoveryListener = new NsdManager.DiscoveryListener() {
+
+        //  Called as soon as service discovery begins.
+        @Override
+        public void onDiscoveryStarted(String regType) {
+            Log.d(TAG, "Service discovery started");
+        }
+
+        @Override
+        public void onServiceFound(NsdServiceInfo service) {
+            // A service was found!  Do something with it.
+            Log.d(TAG, "Service discovery success" + service);
+            if (!service.getServiceType().equals(SERVICE_TYPE)) {
+                // Service type is the string containing the protocol and
+                // transport layer for this service.
+                Log.d(TAG, "Unknown Service Type: " + service.getServiceType());
+            } else if (service.getServiceName().equals(mServiceName)) {
+                // The name of the service tells the user what they'd be
+                // connecting to. It could be "Bob's Chat App".
+                Log.d(TAG, "Same machine: " + mServiceName);
+            } else if (service.getServiceName().contains("NsdChat")){
+                mNsdManager.resolveService(service, mResolveListener);
+            }
+        }
+
+        @Override
+        public void onServiceLost(NsdServiceInfo service) {
+            // When the network service is no longer available.
+            // Internal bookkeeping code goes here.
+            Log.e(TAG, "service lost" + service);
+        }
+
+        @Override
+        public void onDiscoveryStopped(String serviceType) {
+            Log.i(TAG, "Discovery stopped: " + serviceType);
+        }
+
+        @Override
+        public void onStartDiscoveryFailed(String serviceType, int errorCode) {
+            Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+            mNsdManager.stopServiceDiscovery(this);
+        }
+
+        @Override
+        public void onStopDiscoveryFailed(String serviceType, int errorCode) {
+            Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+            mNsdManager.stopServiceDiscovery(this);
+        }
+    };
+}
+```
+
+
+
+NSD API通过使用该接口中的方法通知用户程序何时发现开始、何时发现失败、何时找到可用服务、何时服务丢失（丢失意味着“不再可用”）。
+在上述代码中，当发现了可用的服务时，程序做了几次检查。
+
+
+
+1. 比较发现的服务名称与本地的服务，判断是否发现的是本机的服务（这是合法的）。
+2. 检查服务的类型，确认是否可以接入。
+3. 检查服务的名称，确认接入了正确的应用。
+
+
+
+我们并不需要每次都检查服务名称，仅当你想要接入特定的应用时，再去判断。
+例如，应用只想与运行在其他设备上的相同应用通信。
+然而，如果应用仅仅想接入到一台网络打印机，那么看到服务类型是“_ipp._tcp”的服务就足够了。
+
+
+
+当配置好发现回调函数后，调用[discoverService()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String, int, android.net.nsd.NsdManager.DiscoveryListener)函数，
+其参数包括试图发现的服务种类、发现使用的协议、以及上一步创建的监听者。
+
+```java
+mNsdManager.discoverServices(
+        SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+```
+
+
+##连接到网内的服务
+
+当你的代码发现了网上可接入的服务，第一件必须做的事情是确认服务的连接信息。
+调用[resolveService()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#resolveService(android.net.nsd.NsdServiceInfo, android.net.nsd.NsdManager.ResolveListener)方法，
+并将实现了[NsdManager.ResolveListener](http://developer.android.com/reference/android/net/nsd/NsdManager.ResolveListener.html)的对象和在[服务发现](#discover)过程中得到的[NsdSerServiceInfo](http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html)对象传入。
+通过该方法，可以将连接信息从[NsdSerServiceInfo](http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html)对象中解析出来。
+
+```java
+public void initializeResolveListener() {
+    mResolveListener = new NsdManager.ResolveListener() {
+
+        @Override
+        public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
+            // Called when the resolve fails.  Use the error code to debug.
+            Log.e(TAG, "Resolve failed" + errorCode);
+        }
+
+        @Override
+        public void onServiceResolved(NsdServiceInfo serviceInfo) {
+            Log.e(TAG, "Resolve Succeeded. " + serviceInfo);
+
+            if (serviceInfo.getServiceName().equals(mServiceName)) {
+                Log.d(TAG, "Same IP.");
+                return;
+            }
+            mService = serviceInfo;
+            int port = mService.getPort();
+            InetAddress host = mService.getHost();
+        }
+    };
+}
+```
+
+
+当服务解析完成后，你将获得服务的详细资料，包括其IP地址和端口号。
+此时，你有了服务的地址和端口，可以通过创建自己网络连接与服务进行通讯。
+
+
+##当程序退出时注销服务
+
+在应用的生命周期中正确的开启和关闭NSD服务是十分关键的。
+在程序退出时注销服务可以防止其他程序因为不知道服务退出而反复尝试连接的行为。
+另外，服务发现是一种开销很大的操作，应该随着父Activity的暂停而停止，当用户返回该界面是再开启。
+因此，开发者应该重载Activity的生命周期函数，并正确操作服务的广播和发现。
+
+```java
+//In your application's Activity
+
+    @Override
+    protected void onPause() {
+        if (mNsdHelper != null) {
+            mNsdHelper.tearDown();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mNsdHelper != null) {
+            mNsdHelper.registerService(mConnection.getLocalPort());
+            mNsdHelper.discoverServices();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mNsdHelper.tearDown();
+        mConnection.tearDown();
+        super.onDestroy();
+    }
+
+    // NsdHelper's tearDown method
+        public void tearDown() {
+        mNsdManager.unregisterService(mRegistrationListener);
+        mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+    }
+
+```
 
 
 
