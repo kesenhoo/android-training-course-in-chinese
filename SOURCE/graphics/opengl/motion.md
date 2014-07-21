@@ -33,7 +33,7 @@ public void onDrawFrame(GL10 gl) {
 }
 ```
 
-如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将[GLSurfaceView.RENDERMODE_WHEN_DIRTY](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY)的配置注释掉了，有关该方面的知识会在下一节课展开。
+如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将[GLSurfaceView.RENDERMODE_WHEN_DIRTY](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY)的配置注释掉了，有关该方面的知识会在下一节中展开。
 
 ##启用连续渲染
 
