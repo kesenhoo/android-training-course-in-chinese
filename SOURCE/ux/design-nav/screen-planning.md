@@ -1,6 +1,6 @@
 > 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
 
-> 原文: <http://developer.android.com/training/design-navigation/index.html>
+> 原文: <http://developer.android.com/training/design-navigation/screen-planning.html>
 
 # 规划屏幕界面与他们之间的关系
 
@@ -18,13 +18,13 @@
 
 * 用来接触事件和图片的 Home 或者 Launchpad 画面
 * 类别列表
-* 某个类别的新事件列表
-* 事件详细信息的 View （在这我们可以保存和分享）
+* 某个类别的新新闻列表
+* 新闻详细信息的 View （在这里面我们可以保存和分享）
 * 图片列表，不分类
-* 图片详细信息的 View （在这我们可以保存和分享）
-* 所有保存列表
-* 保存的图片列表
-* 保存的事件列表
+* 图片详细信息的 View （在这里面我们可以保存和分享）
+* 所有保存项列表
+* 图片保存列表
+* 新闻保存列表
 
 ## 画面关系图
 

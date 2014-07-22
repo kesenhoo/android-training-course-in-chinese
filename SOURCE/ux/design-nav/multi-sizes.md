@@ -1,6 +1,6 @@
 > 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
 
-> 原文: <http://developer.android.com/training/design-navigation/index.html>
+> 原文: <http://developer.android.com/training/design-navigation/multiple-sizes.html>
 
 # 为多种大小的屏幕进行规划
 
