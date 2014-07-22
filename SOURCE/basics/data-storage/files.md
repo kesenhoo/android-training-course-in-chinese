@@ -1,12 +1,12 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/basics/data-storage/files.html>
 
-# Saving to Files保存到文件
+# 保存到文件(Saving to Files)
 
 Android使用与其他平台类似的基于磁盘文件系统(disk-based file systems)。这节课会描述如何在Android文件系统上使用 [File](http://developer.android.com/reference/java/io/File.html) 的读写APIs。File 对象非常适合用来读写那种流式顺序的数据。例如，很适合用来读写图片文件或者是网络中交换的数据。这节课会演示在app中如何执行基本的文件操作任务。假定你已经对linux的文件系统与java.io中标准的I/O APIs有一定认识。
 
-## Choose Internal or External Storage[选择Internal还是External存储]
+## 存储在Internal还是External(Choose Internal or External Storage)
 所有的Android设备都有两个文件存储区域："internal" 与 "external" 存储。 那两个名称来自与早先的Android系统中，那个时候大多数的设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把"internal" 与 "external" 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为"internal"与"external"的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：
 
 * **Internal storage:**
@@ -44,7 +44,8 @@ Android使用与其他平台类似的基于磁盘文件系统(disk-based file sy
 
 对于internal storage，你不需要声明任何权限，因为你的程序默认就有读写程序目录下的文件的权限。
 
-## Save a File on Internal Storage[保存文件到Internal Storage]
+## 保存到Internal Storage(Save a File on Internal Storage)
+
 当保存文件到internal storage时，你可以通过执行下面两个方法之一来获取合适的目录作为File的对象：
 
 * **getFilesDir()** : 返回一个 File ，代表了你的app的internal目录。
@@ -156,7 +157,7 @@ public File getAlbumStorageDir(Context context, String albumName) {
 
 **Note:**你并没有强制要求在写文件之前一定有要去检查剩余容量。你可以尝试先做写的动作，然后通过捕获 IOException 。这种做法仅适合于你并不知道你想要写的文件的确切大小。
 
-## Delete a File [删除文件]
+## 删除文件(Delete a File)
 你应该在不需要使用某些文件的时候，删除它。删除文件最直接的方法是直接执行文件的 delete() 方法。
 
 ```java
