@@ -1,6 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/beam-files/sending-files.html>
 
 # 发送文件给其他设备
 
