@@ -41,13 +41,13 @@ public class LaunchActivityTest
 
 你的单元测试目标可能包括:
 
-*.验证当Button被按下是启动的LaunchActivity是否正确。
+* 验证当Button被按下是启动的LaunchActivity是否正确。
 
-*.验证启动的Intent是否包含有效的数据。
+* 验证启动的Intent是否包含有效的数据。
 
 为验证一个[Intent](http://developer.android.com/reference/android/content/Intent.html)Button触发的事件,你可以使用[getStartedActivityIntent](http://developer.android.com/reference/android/test/ActivityUnitTestCase.html#getStartedActivityIntent())()方法。通过使用断言方法,你可以验证返回的[Intent](http://developer.android.com/reference/android/content/Intent.html)是否为空,以及是否包含了预期的数据来启动下一个Activity。如果你俩个断言值都是真,那你就成功的验证了你Activity发送的Intent的正确性了。
 
-你可以像这样来实现你的方法:
+你应该这样实现你的方法:
 
 
 ```xml
