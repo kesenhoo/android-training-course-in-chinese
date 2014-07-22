@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.1.2" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.1.2" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter done " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter done " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,18 +3476,18 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_71">
+                    <section class="normal" id="section-gitbook_1970">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-google-cloud-messaging">使用Google Cloud Messaging</h1>
-<p>谷歌云消息（GCM）是一个用来给Android设备发送消息的免费服务。GCM消息可以极大地提升用户体验。你的应用可以一直保持更新的状态而不会使你的设备在唤醒无线电或者在没有更新时对服务器发起询问而消耗电量。同时，GCM可以让你最多单一的消息可以发送给1000个人，使得你可以在恰当地时候很轻松地联系大量的用户，同时大量地减轻你的服务器负担。</p>
-<p>这节课将包含将GCM集成到你的应用中的一些最佳实践方法，假定你已经对该服务的基本实现有了一个了解。如果不是这样的话，你可以先阅读一下：<a href="http://developer.android.com/google/gcm/demo.html" target="_blank">GCM demo app tutorial</a>。</p>
+<p>谷歌云消息（GCM）是一个用来给Android设备发送消息的免费服务。GCM消息可以极大地提升用户体验。它可以你的应用一直保持更新的状态，同时不会使你的设备由于唤醒无线电或者在没有更新时对服务器发起询问而消耗电量。同时，GCM可以让你最多一次性将一条消息发送给1000个人，使得你可以在恰当地时候很轻松地联系大量的用户，同时大量地减轻你的服务器负担。</p>
+<p>这节课将包含把GCM集成到你的应用中的一些最佳实践方法，前提是假定你已经对该服务的基本实现有了一个了解。如果不是这样的话，你可以先阅读一下：<a href="http://developer.android.com/google/gcm/demo.html" target="_blank">GCM demo app tutorial</a>。</p>
 <h2 id="-">高效地发送多播消息</h2>
-<p>一个GCM所支持的最有用的特性是单条消息最多可以发送给1,000个接受者。这个功能可以更加简单地将重要消息发送给你的所有用户群体。例如，比方说你有一条消息需要发送给1,000,000个人，而你的服务器每秒能发送500条消息。如果你每次只给一个接受者发送消息，那么将会耗时1,000,000/500=2,000秒，大约半小时。然而，如果一条消息可以一次性地发送给1,000个人的话，那么耗时将会是1,000,000/1,000/5,00=2秒。这不仅仅体现在功能的实用性上，对于具有高时效性的消息而言，比如灾难预警或者体育比分播报，如果延迟了30分钟，消息的价值就大打折扣了。</p>
-<p>想要利用这一功能非常简单。如果你使用Java的<a href="http://developer.android.com/google/gcm/gs.html#libs" target="_blank">GCM helper library</a>，只需要像“send”或者“sendNoRetry”方法提供一个注册ID的List就行了（不要只给单个的注册ID）。</p>
+<p>一个GCM所支持的最有用的特性是单条消息最多可以发送给1,000个接收者。这个功能可以更加简单地将重要消息发送给你的所有用户群体。例如，比方说你有一条消息需要发送给1,000,000个人，而你的服务器每秒能发送500条消息。如果你每次只给一个接受者发送消息，那么将会耗时1,000,000/500=2,000秒，大约半小时。然而，如果一条消息可以一次性地发送给1,000个人的话，那么耗时将会是1,000,000/1,000/5,00=2秒。这不仅仅体现在功能的实用性上，对于具有高时效性的消息而言，比如灾难预警或者体育比分播报，如果延迟了30分钟，消息的价值就大打折扣了。</p>
+<p>想要利用这一功能非常简单。如果你使用Java的<a href="http://developer.android.com/google/gcm/gs.html#libs" target="_blank">GCM helper library</a>，只需要向“send”或者“sendNoRetry”方法提供一个注册ID的List就行了（不要只给单个的注册ID）。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// This method name is completely fabricated, but you get the idea.</span>
 List regIds = whoShouldISendThisTo(message);
 
@@ -3515,9 +3515,9 @@ MulticastResult result = sender.sendNoRetry(message, regIds);
 }
 </code></pre><p>关于更多GCM多播的消息格式，可以阅读：<a href="http://developer.android.com/google/gcm/gcm.html#send-msg" target="_blank">Sending Messages</a>。</p>
 <h2 id="-">对可替换的消息执行折叠</h2>
-<p>GCM经常被用作为一个触发器，告诉移动应用向服务器发起链接并刷新数据。在GCM中，可以（也推荐）在新消息要替代旧消息时，使用可折叠的消息（collapsible messages）。我们用体育比赛作为例子，如果你向所有用户发送了一条消息包含了比赛的比分，然后再15分钟后，又发送了一条消息更新新的比分，那么第一条消息就没有意义了。对于那些还没有收到第一条消息的用户，就没有必要接收两条消息，并且如果接收了两条消息，那么设备不得不响应两次（比如对用户发出通知或警告），但实际上两条消息中只有一条是重要的。</p>
-<p>当你定义了一个折叠键，如果多个消息在GCM服务器中，对于相同的用户形成了一个队列，那么只有最后的那一条消息会被发出。对于之前所说的体育比分的例子，这样做能让设备免于处理不必要的任务，也不会让设备对用户造成太多打扰。对于其他的一些场景比如与服务器同步数据（检查邮件接收），这样做的话可以减少设备需要执行的同步次数。例如，如果有10封邮件在服务器中等待被接收，那么实际上只需要发送一个GCM，让设备一次性把10封邮件都同步了。</p>
-<p>为了使用这一特性，只需要在你要发出的消息中添加一个消息折叠key。如果你在使用GCM帮助库，那么就使用Message类的collapseKey(String key)方法。</p>
+<p>GCM经常被用作为一个触发器，告诉移动应用向服务器发起链接并刷新数据。在GCM中，可以（也推荐）在新消息要替代旧消息时，使用可折叠的消息（collapsible messages）。我们用体育比赛作为例子，如果你向所有用户发送了一条消息包含了比赛的比分，然后再15分钟后，又发送了一条消息更新比分，那么第一条消息就没有意义了。对于那些还没有收到第一条消息的用户，就没有必要接收两条消息，并且如果接收了两条消息，那么设备不得不响应两次（比如对用户发出通知或警告），但实际上两条消息中只有一条是重要的。</p>
+<p>当你定义了一个折叠键，此时如果有多个消息在GCM服务器中，对于相同的用户形成了一个队列，那么只有最后的那一条消息会被发出。对于之前所说的体育比分的例子，这样做能让设备免于处理不必要的任务，也不会让设备对用户造成太多打扰。对于其他的一些场景比如与服务器同步数据（检查邮件接收），这样做的话可以减少设备需要执行的同步次数。例如，如果有10封邮件在服务器中等待被接收，那么实际上只需要发送一个GCM，让设备一次性把10封邮件都同步了。</p>
+<p>为了使用这一特性，只需要在你要发出的消息中添加一个消息折叠key。如果你在使用<a href="http://developer.android.com/google/gcm/gs.html#libs" target="_blank">GCM helper library</a>，那么就使用Message类的collapseKey(String key)方法。</p>
 <pre><code class="lang-java">Message message = <span class="hljs-keyword">new</span> Message.Builder(regId)
     .collapseKey(<span class="hljs-string">"game4_scores"</span>) <span class="hljs-comment">// The key for game 4.</span>
     .ttl(<span class="hljs-number">600</span>) <span class="hljs-comment">// Time in seconds to keep message queued if device offline.</span>
@@ -3526,7 +3526,7 @@ MulticastResult result = sender.sendNoRetry(message, regIds);
     .addPayload(<span class="hljs-string">"key2"</span>, <span class="hljs-string">"value2"</span>)
     .build();
 </code></pre>
-<p>如果你没有使用帮助库，那么就直接在你要构建的POST头部中添加一个变量。collapse_key作为变量名，你要更新的字段以字符串的形式作为值。</p>
+<p>如果你没有使用<a href="http://developer.android.com/google/gcm/gs.html#libs" target="_blank">GCM helper library</a>，那么就直接在你要构建的POST头部中添加一个变量。collapse_key作为变量名，你要更新的字段以字符串的形式作为值。</p>
 <h2 id="-gcm-">在GCM消息中嵌入数据</h2>
 <p>通常， GCM消息作为一个激活器，或者用来告诉设备，有一些待更新的数据需要去服务器或者别的地方去获取。然而，一个GCM消息的大小最大可以有4kb，有时候可以在GCM消息中放置一些简单的数据，这样的话设备就不需要再去和服务器发起连接了。在下列情形都满足的情况下，我们可以将数据放置在GCM消息中：</p>
 <ul>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.3" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.3" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter  " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter  " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter  " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter  " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,11 +3476,11 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_60">
+                    <section class="normal" id="section-gitbook_1959">
                     
                         <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
+<p>原文:<a href="http://developer.android.com/training/basics/intents/filters.html" target="_blank">http://developer.android.com/training/basics/intents/filters.html</a></p>
 </blockquote>
 <h1 id="intent-">Intent过滤</h1>
 <p>前两节课主要讲了从你的app启动另外一个app。但是如果你的app可以响应前面发出的action，那么你的app应该做好响应的准备。例如，如果你创建了一个social app，它可以分享messages 或者 photos 给好友，那么最好你的app能够接收ACTION_SEND 的intent,这样当用户在其他app触发分享功能的时候，你的app能够出现在待选对话框。</p>
@@ -3529,7 +3529,7 @@
 关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看上一课：<a href="result.html">Getting a Result from an Activity:接收Activity返回的结果</a></p>
 <h2 id="handle-the-intent-in-your-activity-activity-handle-intent-">Handle the Intent in Your Activity [在你的Activity中Handle发送过来的Intent]</h2>
 <p>为了决定采用哪个action，你可以读取Intent的内容。</p>
-<p>你可以执行 getIntent() 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，当是你最好是在onCreate() 或者 onStart() 里面去执行。</p>
+<p>你可以执行 getIntent() 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，但是你最好是在onCreate() 或者 onStart() 里面去执行。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
@@ -3549,7 +3549,7 @@
 }
 </code></pre>
 <h2 id="return-a-result-result-">Return a Result(返回Result)</h2>
-<p>如果你想返回一个result给启动你的那个activity，仅仅需要执行 setResult() ，通过指定一个result code与result intent。当你的的操作成功之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。</p>
+<p>如果你想返回一个result给启动你的那个activity，仅仅需要执行 setResult() ，通过指定一个result code与result intent。当你的操作成功之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。</p>
 <pre><code class="lang-java"> <span class="hljs-comment">// Create intent to deliver some kind of result data</span>
 Intent result = <span class="hljs-keyword">new</span> Intent(<span class="hljs-string">"com.example.RESULT_ACTION"</span>, Uri.parse(<span class="hljs-string">"content://result_uri"</span>);
 setResult(Activity.RESULT_OK, result);

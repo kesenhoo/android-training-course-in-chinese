@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.1" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.1" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter done " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter done " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,13 +3476,252 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_76">
+                    <section class="normal" id="section-gitbook_1975">
                     
                         <blockquote>
 <p>编写:</p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">使得网络服务可发现</h1>
+<p>网络服务发现（Network Service Discovery）是一种在局域网内可以辨识并使用其他设备上提供的服务的技术。这种技术在端对端应用中能够提供大量帮助，例如文件共享、联机游戏等。Android提供了网络服务发现（NSD）相应的API，大大降低了其实现难度。</p>
+<p>本讲将简要介绍如何创建NSD应用，使其能够在本地网络内广播自己的名称和链接信息，并且扫描网络发现其他NSD设备。最后，将介绍如何连接到运行着同样应用的另一台设备上。</p>
+<h2 id="-nsd-">注册NSD服务</h2>
+<blockquote>
+<p><strong>Note：</strong> 这一步骤是选做的。如果你并不关心自己的服务是否被广播，你可以跳过这一步，直接尝试<a href="#discover">发现网络中的服务</a>。</p>
+</blockquote>
+<p>在局域网内注册自己服务的第一步是创建<a href="http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html" target="_blank">NsdServiceInfo</a>对象。
+此对象包含的信息能够帮助其他设备决定是否要连接到你所提供的服务。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerService</span>(<span class="hljs-keyword">int</span> port) {
+    <span class="hljs-comment">// Create the NsdServiceInfo object, and populate it.</span>
+    NsdServiceInfo serviceInfo  = <span class="hljs-keyword">new</span> NsdServiceInfo();
+
+    <span class="hljs-comment">// The name is subject to change based on conflicts</span>
+    <span class="hljs-comment">// with other services advertised on the same network.</span>
+    serviceInfo.setServiceName(<span class="hljs-string">"NsdChat"</span>);
+    serviceInfo.setServiceType(<span class="hljs-string">"_http._tcp."</span>);
+    serviceInfo.setPort(port);
+    ....
+}
+</code></pre>
+<p>这段代码将所提供的服务命名为“NsdChat”。该名称将对所有局域网络中的设备可见。
+需要注意的是，在网络内该名称必须是独一无二的。Android系统会自动处理冲突的服务名称。如果同时有两个名为“NsdChat”的应用，
+其中一个会被自动转换为“NsdChat(1)”。</p>
+<p>第二个参数设置了服务类型，即，使用的通信协议和传输层协议，
+语法是“_&lt; protocol &gt;._&lt; transportlayer &gt;”。
+在上面的代码中，服务使用了TCP协议上的HTTP协议。
+如果应用想要提供打印服务（例如，一台网络打印机）应该将服务的类型设置为
+“_ipp._tcp”。</p>
+<blockquote>
+<p><strong>Note:</strong> 互联网编号分配机构（International Assigned Numbers Authority，简称IANA）提供用于服务发现协议（例如NSD和Bonjour）的官方服务种类列表。你可以下载该列表了解相应的服务名称和端口号码。如果你想起用新的服务种类，应该向IANA官方提交申请。</p>
+</blockquote>
+<p>当为你的服务设置端口号时，应该尽量避免将其硬编码在代码中，
+防止与其他应用产生冲突。例如，如果你的应用仅仅使用端口1337，
+就可能与其他使用1337端口的应用发生冲突。解决方法是，不要硬编码，
+使用下一个可用的端口。不必担心其他应用无法知晓服务的端口号，
+因为该信息将包含在服务的广播包中。接收到广播后，
+其他应用将从广播包种得知服务端口号，
+并通过端口连接到你的服务上。</p>
+<p>如果你使用的是socket，你可以将端口号初始值设置为0来使用下一个可用端口。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initializeServerSocket</span>() {
+    <span class="hljs-comment">// Initialize a server socket on the next available port.</span>
+    mServerSocket = <span class="hljs-keyword">new</span> ServerSocket(<span class="hljs-number">0</span>);
+
+    <span class="hljs-comment">// Store the chosen port.</span>
+    mLocalPort =  mServerSocket.getLocalPort();
+    ...
+}
+</code></pre>
+<p>现在，你已经成功的创建了<a href="http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html" target="_blank">NsdServiceInfo</a>对象，
+接下来要做的是实现<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html" target="_blank">RegistrationListener</a>接口。
+该接口包含了注册在Android系统中的一系列回调函数，
+作用是通知应用程序服务注册/注销的成功和失败。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initializeRegistrationListener</span>() {
+    mRegistrationListener = <span class="hljs-keyword">new</span> NsdManager.RegistrationListener() {
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceRegistered</span>(NsdServiceInfo NsdServiceInfo) {
+            <span class="hljs-comment">// Save the service name.  Android may have changed it in order to</span>
+            <span class="hljs-comment">// resolve a conflict, so update the name you initially requested</span>
+            <span class="hljs-comment">// with the name Android actually used.</span>
+            mServiceName = NsdServiceInfo.getServiceName();
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRegistrationFailed</span>(NsdServiceInfo serviceInfo, <span class="hljs-keyword">int</span> errorCode) {
+            <span class="hljs-comment">// Registration failed!  Put debugging code here to determine why.</span>
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceUnregistered</span>(NsdServiceInfo arg0) {
+            <span class="hljs-comment">// Service has been unregistered.  This only happens when you call</span>
+            <span class="hljs-comment">// NsdManager.unregisterService() and pass in this listener.</span>
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onUnregistrationFailed</span>(NsdServiceInfo serviceInfo, <span class="hljs-keyword">int</span> errorCode) {
+            <span class="hljs-comment">// Unregistration failed.  Put debugging code here to determine why.</span>
+        }
+    };
+}
+</code></pre>
+<p>万事俱备只欠东风，调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo, int, android.net.nsd.NsdManager.RegistrationListener" target="_blank">registerService()</a>方法，
+真正注册服务。</p>
+<p>因为该方法是异步的，所以进一步的操作需要在<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onServiceRegistered(android.net.nsd.NsdServiceInfo" target="_blank">onServiceRegistered()</a>方法中进行。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">registerService</span>(<span class="hljs-keyword">int</span> port) {
+    NsdServiceInfo serviceInfo  = <span class="hljs-keyword">new</span> NsdServiceInfo();
+    serviceInfo.setServiceName(<span class="hljs-string">"NsdChat"</span>);
+    serviceInfo.setServiceType(<span class="hljs-string">"_http._tcp."</span>);
+    serviceInfo.setPort(port);
+
+    mNsdManager = Context.getSystemService(Context.NSD_SERVICE);
+
+    mNsdManager.registerService(
+            serviceInfo, NsdManager.PROTOCOL_DNS_SD, mRegistrationListener);
+}
+</code></pre>
+<h2 id="-span-id-discover-span-"><span id=discover>发现网络中的服务 </span></h2>
+<p>网络充斥着我们的生活，从网络打印机到网络摄像头，再到联网井字棋。
+网络服务发现是能让你的应用融入这一切功能的关键。
+你的应用需要侦听网络内服务的广播，发现可用的服务，过滤无效的信息。</p>
+<p>与注册网络服务类似，服务发现需要两步骤：正确配置发现监听者（Discover Listener），以及调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String, int, android.net.nsd.NsdManager.DiscoveryListener" target="_blank">discoverServices()</a>这个异步API。</p>
+<p>首先，实例化一个实现<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.DiscoveryListener.html" target="_blank">NsdManager.DiscoveryListener</a>接口的匿名类。下列代码是一个简单的范例：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initializeDiscoveryListener</span>() {
+
+    <span class="hljs-comment">// Instantiate a new DiscoveryListener</span>
+    mDiscoveryListener = <span class="hljs-keyword">new</span> NsdManager.DiscoveryListener() {
+
+        <span class="hljs-comment">//  Called as soon as service discovery begins.</span>
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDiscoveryStarted</span>(String regType) {
+            Log.d(TAG, <span class="hljs-string">"Service discovery started"</span>);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceFound</span>(NsdServiceInfo service) {
+            <span class="hljs-comment">// A service was found!  Do something with it.</span>
+            Log.d(TAG, <span class="hljs-string">"Service discovery success"</span> + service);
+            <span class="hljs-keyword">if</span> (!service.getServiceType().equals(SERVICE_TYPE)) {
+                <span class="hljs-comment">// Service type is the string containing the protocol and</span>
+                <span class="hljs-comment">// transport layer for this service.</span>
+                Log.d(TAG, <span class="hljs-string">"Unknown Service Type: "</span> + service.getServiceType());
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (service.getServiceName().equals(mServiceName)) {
+                <span class="hljs-comment">// The name of the service tells the user what they'd be</span>
+                <span class="hljs-comment">// connecting to. It could be "Bob's Chat App".</span>
+                Log.d(TAG, <span class="hljs-string">"Same machine: "</span> + mServiceName);
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (service.getServiceName().contains(<span class="hljs-string">"NsdChat"</span>)){
+                mNsdManager.resolveService(service, mResolveListener);
+            }
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceLost</span>(NsdServiceInfo service) {
+            <span class="hljs-comment">// When the network service is no longer available.</span>
+            <span class="hljs-comment">// Internal bookkeeping code goes here.</span>
+            Log.e(TAG, <span class="hljs-string">"service lost"</span> + service);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDiscoveryStopped</span>(String serviceType) {
+            Log.i(TAG, <span class="hljs-string">"Discovery stopped: "</span> + serviceType);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStartDiscoveryFailed</span>(String serviceType, <span class="hljs-keyword">int</span> errorCode) {
+            Log.e(TAG, <span class="hljs-string">"Discovery failed: Error code:"</span> + errorCode);
+            mNsdManager.stopServiceDiscovery(<span class="hljs-keyword">this</span>);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStopDiscoveryFailed</span>(String serviceType, <span class="hljs-keyword">int</span> errorCode) {
+            Log.e(TAG, <span class="hljs-string">"Discovery failed: Error code:"</span> + errorCode);
+            mNsdManager.stopServiceDiscovery(<span class="hljs-keyword">this</span>);
+        }
+    };
+}
+</code></pre>
+<p>NSD API通过使用该接口中的方法通知用户程序何时发现开始、何时发现失败、何时找到可用服务、何时服务丢失（丢失意味着“不再可用”）。
+在上述代码中，当发现了可用的服务时，程序做了几次检查。</p>
+<ol>
+<li>比较发现的服务名称与本地的服务，判断是否发现的是本机的服务（这是合法的）。</li>
+<li>检查服务的类型，确认是否可以接入。</li>
+<li>检查服务的名称，确认接入了正确的应用。</li>
+</ol>
+<p>我们并不需要每次都检查服务名称，仅当你想要接入特定的应用时，再去判断。
+例如，应用只想与运行在其他设备上的相同应用通信。
+然而，如果应用仅仅想接入到一台网络打印机，那么看到服务类型是“_ipp._tcp”的服务就足够了。</p>
+<p>当配置好发现回调函数后，调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#discoverServices(java.lang.String, int, android.net.nsd.NsdManager.DiscoveryListener" target="_blank">discoverService()</a>函数，
+其参数包括试图发现的服务种类、发现使用的协议、以及上一步创建的监听者。</p>
+<pre><code class="lang-java">mNsdManager.discoverServices(
+        SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+</code></pre>
+<h2 id="-">连接到网内的服务</h2>
+<p>当你的代码发现了网上可接入的服务，第一件必须做的事情是确认服务的连接信息。
+调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#resolveService(android.net.nsd.NsdServiceInfo, android.net.nsd.NsdManager.ResolveListener" target="_blank">resolveService()</a>方法，
+并将实现了<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.ResolveListener.html" target="_blank">NsdManager.ResolveListener</a>的对象和在<a href="#discover">服务发现</a>过程中得到的<a href="http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html" target="_blank">NsdSerServiceInfo</a>对象传入。
+通过该方法，可以将连接信息从<a href="http://developer.android.com/reference/android/net/nsd/NsdServiceInfo.html" target="_blank">NsdSerServiceInfo</a>对象中解析出来。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">initializeResolveListener</span>() {
+    mResolveListener = <span class="hljs-keyword">new</span> NsdManager.ResolveListener() {
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResolveFailed</span>(NsdServiceInfo serviceInfo, <span class="hljs-keyword">int</span> errorCode) {
+            <span class="hljs-comment">// Called when the resolve fails.  Use the error code to debug.</span>
+            Log.e(TAG, <span class="hljs-string">"Resolve failed"</span> + errorCode);
+        }
+
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onServiceResolved</span>(NsdServiceInfo serviceInfo) {
+            Log.e(TAG, <span class="hljs-string">"Resolve Succeeded. "</span> + serviceInfo);
+
+            <span class="hljs-keyword">if</span> (serviceInfo.getServiceName().equals(mServiceName)) {
+                Log.d(TAG, <span class="hljs-string">"Same IP."</span>);
+                <span class="hljs-keyword">return</span>;
+            }
+            mService = serviceInfo;
+            <span class="hljs-keyword">int</span> port = mService.getPort();
+            InetAddress host = mService.getHost();
+        }
+    };
+}
+</code></pre>
+<p>当服务解析完成后，你将获得服务的详细资料，包括其IP地址和端口号。
+此时，你有了服务的地址和端口，可以通过创建自己网络连接与服务进行通讯。</p>
+<h2 id="-">当程序退出时注销服务</h2>
+<p>在应用的生命周期中正确的开启和关闭NSD服务是十分关键的。
+在程序退出时注销服务可以防止其他程序因为不知道服务退出而反复尝试连接的行为。
+另外，服务发现是一种开销很大的操作，应该随着父Activity的暂停而停止，当用户返回该界面是再开启。
+因此，开发者应该重载Activity的生命周期函数，并正确操作服务的广播和发现。</p>
+<pre><code class="lang-java"><span class="hljs-comment">//In your application's Activity</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPause</span>() {
+        <span class="hljs-keyword">if</span> (mNsdHelper != <span class="hljs-keyword">null</span>) {
+            mNsdHelper.tearDown();
+        }
+        <span class="hljs-keyword">super</span>.onPause();
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span>() {
+        <span class="hljs-keyword">super</span>.onResume();
+        <span class="hljs-keyword">if</span> (mNsdHelper != <span class="hljs-keyword">null</span>) {
+            mNsdHelper.registerService(mConnection.getLocalPort());
+            mNsdHelper.discoverServices();
+        }
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDestroy</span>() {
+        mNsdHelper.tearDown();
+        mConnection.tearDown();
+        <span class="hljs-keyword">super</span>.onDestroy();
+    }
+
+    <span class="hljs-comment">// NsdHelper's tearDown method</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tearDown</span>() {
+        mNsdManager.unregisterService(mRegistrationListener);
+        mNsdManager.stopServiceDiscovery(mDiscoveryListener);
+    }
+</code></pre>
 
                     
                     </section>

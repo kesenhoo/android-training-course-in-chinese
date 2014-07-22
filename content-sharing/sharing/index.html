@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.1" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter  " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter  " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter  " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter  " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_119">
+                    <section class="normal" id="section-gitbook_2018">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
@@ -3485,12 +3485,22 @@
 <h1 id="-">分享简单的数据</h1>
 <p>Android程序中很炫的一个功能是程序之间可以互相通信。为什么要重新发明一个已经存在于另外一个程序中的功能呢，而且这个功能并非自己程序的核心部分。</p>
 <p>这一章节会讲述一些通常使用的方法来在不同程序之间通过使用<a href="https://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a> APIs与<a href="https://developer.android.com/reference/android/view/ActionProvider.html" target="_blank">ActionProvider</a>对象来发送与接受content。</p>
-<!-- more -->
-
-<p>当你构建一个intent，你必须指定这个intent需要触发的actions。Android定义了一些actions，包括ACTION_SEND，这个action表明着这个intent是用来从一个activity发送数据到另外一个activity的，甚至是跨进程之间的。</p>
-<p>为了发送数据到另外一个activity，你需要做的是指定数据与数据的类型，系统会识别出能够兼容接受的这些数据的activity并且把这些activity显示给用户进行选择(如果有多个选择)，或者是立即启动Activity(只有一个兼容的选择)。同样的，你可以在manifest文件的Activity描述中添加接受哪些数据类型。</p>
-<p>在不同的程序之间使用intent来发送与接受数据是在社交分享内容的时候最常用的方法。Intent使得用户用最常用的程序进行快速简单的分享信息。</p>
-<p><strong>注意:</strong>为ActionBar添加分享功能的最好方法是使用<a href="https://developer.android.com/reference/android/widget/ShareActionProvider.html" target="_blank">ShareActionProvider</a>，它能够在API level 14以上进行使用。ShareActionProvider会在第3课中进行详细介绍。</p>
+<h2 id="lessons">Lessons</h2>
+<ul>
+<li><p><a href="send.html">给其他App发送简单的数据 - Sending Simple Data to Other Apps</a></p>
+<p>学习如何使用intent发送text与binary数据给其他app。</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="receive.html">接收从其他App返回的数据 - Receiving Simple Data from Other Apps</a></p>
+<p>学习如何通过Intent在你的app中接收来自其他app的text与binary数据。</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="shareaction.html">给ActionBar增加分享功能 - Adding an Easy Share Action</a></p>
+<p>学习如何在你的Acitonbar上添加一个分享功能。</p>
+</li>
+</ul>
 
                     
                     </section>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="18.1.2" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="18.1.2" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter done " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter done " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,13 +3476,112 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_203">
+                    <section class="normal" id="section-gitbook_2102">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">创建与执行测试用例</h1>
+<p>为了验证布局设计和功能行为在你的应用程序有没有发生变化(不符合预期)， 为应用的每个Activity建立测试是很重要。对于每一个测试，你需要在测试用例中创建一个个独立的部分,包括固定测试，前提测试方法和<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的测试方法。然后你就可以运行测试并得到测试报告。如果任何测试方法失败，这表明在你的代码中有可能潜在的缺陷。</p>
+<p><strong>注意</strong></p>
+<p>在测试驱动开发（TDD）方法中,你应该编写足够的有效代码，以满足你的测试依赖关系，更新你的测试案例并以反映新的功能需求，并反复重复这样的,你而不是在你写大部分或全部前期代码后再开始测试周期。</p>
+<h2 id="-">创建一个测试用例</h2>
+<p><a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>都是通过结构化的方式编写的。请务必把你的测试代码放在一个单独的包内,从而与其它的正在测试的代码分开。</p>
+<p>按照惯例，你的测试包的名称应该遵循与应用包名相同的命名方式,在应用包名后接“.tests”。在你创建的测试包，为你的测试用例添加Java类。按照惯例，你的测试用例名称也应遵循你要测试的Java或Android的类相同的名称，但后缀为“Test”。</p>
+<p>要在Eclipse中创建一个新的测试用例：</p>
+<p>a. 在Package Explorer中,右键点击你要测试工程的src/文件夹<strong>New &gt; Package</strong>。</p>
+<p>b. 设置文件夹名称(比如,com.example.android.testingfun.tests)并点击<strong>Finish</strong>。</p>
+<p>c. 右键点击你创的测试包,并选择<strong>New&gt;Calss</strong>。</p>
+<p>d. 设置文件名称(比如,MyFirstTestActivityTest),然后点击<em>**Finishi</em>。</p>
+<h2 id="-fixture-">建立你的测试夹具(Fixture)</h2>
+<p>(夹具是用来快速,安全的测试组件功能的工具)</p>
+<p>测试夹具由对象必须由一个或多个正在运行测试来初始化。要建立测试夹具,你可以在你的测试中重写setUp（）和tearDown()方法。测试会在运行任何其它测试方法之前自动setUp()方法。你可以用这些方法来保持代码的测试初始化和清理是分开。</p>
+<p>在你的Eclipse中建立夹具:</p>
+<ol>
+<li>在 Package Explorer中双击测试打开之前编写的测试用例,然后修改你的测试用例使它扩展<a href="">ActivityTestCase</a>的子类。比如这样:</li>
+</ol>
+<pre><code class="lang-xml">public class MyFirstTestActivityTest
+        extends ActivityInstrumentationTestCase2<span class="hljs-tag">&lt;<span class="hljs-title">MyFirstTestActivity</span>&gt;</span> {
+</code></pre>
+<ol>
+<li>下一步，给你的测试用例添加构造函数和setUp（）方法，并你想测试的Activity添加变量声明。比如:</li>
+</ol>
+<pre><code class="lang-xml">public class MyFirstTestActivityTest
+        extends ActivityInstrumentationTestCase2<span class="hljs-tag">&lt;<span class="hljs-title">MyFirstTestActivity</span>&gt;</span> {
+
+    private MyFirstTestActivity mFirstTestActivity;
+    private TextView mFirstTestText;
+
+    public MyFirstTestActivityTest() {
+        super(MyFirstTestActivity.class);
+    }
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        mFirstTestActivity = getActivity();
+        mFirstTestText =
+                (TextView) mFirstTestActivity
+                .findViewById(R.id.my_first_test_text_view);
+    }
+}
+</code></pre>
+<p>构造函数是由测试运行者初始化测试类反射的,而[setUp()]方法是由测试运行者运行其它测试类之前反射的。</p>
+<p>通常在setUp()方法中你应该这样:</p>
+<p>*. 为setUp()反射父类构造器,这是JUnit所必须的。</p>
+<p>*. 通过下面这样初始化测试夹具的状态:</p>
+<pre><code class="lang-xlm">
+定义实例变量夹具的状态存储。
+
+为正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)创建和存储的引用实例。
+
+在你想测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)中获得任何UI组件的一个引用。
+</code></pre>
+<p>你可以使用<a href="">getActivity()</a>方法得到正在测试的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的引用。</p>
+<h2 id="-">增加一个测试前提</h2>
+<p>作为一个全面的检查,确认测试夹具的设置是正确的是很好的做法,那样你想要测试的对象就会正确地实例化和初始化。这样，你的测试就不会因为有你的测试夹具的设置错误而失败。按照惯例，验证你的测试夹具的方法被称为testpreconditions()。</p>
+<p>例如，你可能想添加一个像这样的testpreconditons()方法:</p>
+<pre><code class="lang-xml">public void testPreconditions() {
+    assertNotNull(“mFirstTestActivity is null”, mFirstTestActivity);
+    assertNotNull(“mFirstTestText is null”, mFirstTestText);
+}
+</code></pre>
+<p>断言方法是从Junit断言类来的。通常,你可以使用断言验证你想测试一个特定的条件是否是真的。</p>
+<p>*. 如果条件为假，断言方法抛出一个assertionfailederror异常，这是典型的测试者报告。你可以在你的断言失败时给你的断言方法添加一个字符串作为第一个参数从而给出一些上下文详细信息。</p>
+<p>*. 如果条件为真，测试通过。</p>
+<p>在这两种情况下，测试者继续运行其它测试用例的测试方法。</p>
+<h2 id="-activity">添加一个测试方法验证你的Activity</h2>
+<p>下一步，添加一个或多个测试方法来验证你的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>布局和功能性行为。</p>
+<p>例如，如果你的活动含有一个<a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView</a>，你可以添加一个像这样的方法来检查它是否有正确的标签文本:</p>
+<pre><code class="lang-xml">public void testMyFirstTestTextView_labelText() {
+    final String expected =
+            mFirstTestActivity.getString(R.string.my_first_test);
+    final String actual = mFirstTestText.getText().toString();
+    assertEquals(expected, actual);
+}
+</code></pre>
+<p>该 testMyFirstTestTextView_labelText()方法只是简单的检查程序是<a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView</a>的默认文本是否是由strings.xml资源中定义的预期文本设定的。</p>
+<p><strong>注意</strong></p>
+<p>当命名测试方法，你可以使用下划线将被测试的内容从正在测试的具体用例中分离出来。这种风格使它更容易看清楚的那部分正在被测试。</p>
+<p>做这种类型的字符串比较时，从你的资源文件中读取预期字符串是良好的做法，而不是在你代码中硬性编写字符串做比较。这可以防止当字符串定义在资源文件被修改时轻易的打断你的测试。</p>
+<p>为进行比较,预期的和实际的字符串都要做为[assertEquals()]方法的参数。如果值是不一样的，断言将抛出一个<a href="">AssertionFailedError</a>异常。</p>
+<p>如果你添加了一个<a href="">testPreconditions()</a>方法，把你的测试方法放在<a href="">testPreconditions()</a>之后。</p>
+<p>要参看一个完整的测试案例，在参看本节示例中的MyFirstTestActivityTest.java。</p>
+<h2 id="-">构建和运行你的测试</h2>
+<p>你可以在Eclipse中的包浏览器(Package Explorer)中运行你的测试。</p>
+<p>这样构建和运行你的测试:</p>
+<ol>
+<li><p>连接一个Android设备到你的机器。在设备或模拟器，打开设置菜单，选择开发者选项并确保启用USB调试。</p>
+</li>
+<li><p>在包浏览器(Package Explorer)中，右键单击测试类，并选择<strong>Run As &gt; Android Junit Test</strong>。</p>
+</li>
+<li><p>在Android设备选择对话框，选择刚才连接的设备，然后单击“确定”。</p>
+</li>
+<li><p>在JUnit视图，验证测试是否通过,有无错误或失败。</p>
+</li>
+</ol>
+<p>本节示例代码<a href="http://developer.android.com/shareables/training/AndroidTestingFun.zip" target="_blank">AndroidTestingFun.zip</a></p>
 
                     
                     </section>

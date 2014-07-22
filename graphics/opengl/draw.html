@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.3" data-basepath="../.." data-revision="1405874281425">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.3" data-basepath="../.." data-revision="1406046502805">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="3.1.3" data-path="content-sharing/sharing/shareaction.html">
             
             <a href="../../content-sharing/sharing/shareaction.html">
-                <i class="fa fa-check"></i> <b>3.1.3.</b> 添加一个简便的分享动作
+                <i class="fa fa-check"></i> <b>3.1.3.</b> 给ActionBar增加分享功能
             </a>
             
             
@@ -640,7 +640,7 @@
         <li class="chapter " data-level="4.1.1" data-path="multimedia/audio/volume-playback.html">
             
             <a href="../../multimedia/audio/volume-playback.html">
-                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制你得应用的音量与播放
+                <i class="fa fa-check"></i> <b>4.1.1.</b> 控制音量与音频播放
             </a>
             
             
@@ -3015,7 +3015,7 @@
     
         <a href="../../content-sharing/sharing/receive.html" title="接收从其他App返回的数据" class="chapter done " data-progress="3.1.2" style="left: 13.636363636363637%;"></a>
     
-        <a href="../../content-sharing/sharing/shareaction.html" title="添加一个简便的分享动作" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
+        <a href="../../content-sharing/sharing/shareaction.html" title="给ActionBar增加分享功能" class="chapter done " data-progress="3.1.3" style="left: 14.015151515151516%;"></a>
     
         <a href="../../content-sharing/secure-file-sharing/index.html" title="分享文件" class="chapter done " data-progress="3.2" style="left: 14.393939393939394%;"></a>
     
@@ -3037,7 +3037,7 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="4.1" style="left: 17.803030303030305%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="4.1.1" style="left: 18.181818181818183%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="4.1.2" style="left: 18.560606060606062%;"></a>
     
@@ -3476,14 +3476,14 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_134">
+                    <section class="normal" id="section-gitbook_2034">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-shapes">绘制Shapes</h1>
-<p>在你定义了需要OpenGL绘制的形状之后，你可能希望绘制它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中花费更多的代码，因为API中提供了大量对于图形处理流程的控制。</p>
+<p>在你定义了需要OpenGL绘制的形状之后，你可能希望绘制它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中需要更多的代码，因为API中提供了大量对于图形处理流程的控制。</p>
 <p>这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的图形。</p>
 <h2 id="-">初始化形状</h2>
 <p>在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated\(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig\" target="_blank">onSurfaceCreated()</a>)方法中初始化它们，这样做是处于内存和执行效率的考量。</p>
@@ -3547,7 +3547,7 @@
     GLES20.glLinkProgram(mProgram);                  <span class="hljs-comment">// creates OpenGL ES program executables</span>
 }
 </code></pre>
-<p>至此，你已经完全准备好添加实际的调用来绘制你的图形了。使用OpenGl ES绘制图形需要你定义一些变量来告诉渲染流程你需要画什么以及如何去画。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。</p>
+<p>至此，你已经完全准备好添加实际的调用来绘制你的图形了。使用OpenGL ES绘制图形需要你定义一些变量来告诉渲染流程你需要画什么以及如何去画。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。</p>
 <p>为图形创建一个“draw()”方法。这个代码为形状的顶点着色器和形状着色器设置了位置和颜色值，进而执行绘图功能：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">draw</span>() {
     <span class="hljs-comment">// Add program to OpenGL ES environment</span>
@@ -3580,7 +3580,7 @@
 <p>一旦你完成了上述所有代码，画这个对象就仅需要在你渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame\(javax.microedition.khronos.opengles.GL10\" target="_blank">onDrawFrame()</a>)方法中调用draw()方法就可以了。当你运行这个应用时，它看上去会像是这样：</p>
 <p><img src="ogl-triangle.png" alt="ogl-triangle" title="不使用投影或者相机视图画出来的三角形"></p>
 <p>在这个代码样例中，还存在一些问题。首先，它无法给你的朋友带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。形状发生形变的原因是因为对象的顶点没有根据显示<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的屏幕区域的比例进行修正。你可以在下一节课中使用投影（projection）或者相机视图（camera view）来解决这个问题。</p>
-<p>最后，这个三角形是静止的，这看上去有些无聊。在<a href="http://developer.android.com/training/graphics/opengl/motion.html" target="_blank">Adding Motion</a>课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程的更加新奇的用法。</p>
+<p>最后，这个三角形是静止的，这看上去有些无聊。在<a href="motion.html">添加移动</a>课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程的更加新奇的用法。</p>
 
                     
                     </section>
