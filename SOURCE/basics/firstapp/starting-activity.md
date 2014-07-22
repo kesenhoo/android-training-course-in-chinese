@@ -53,7 +53,7 @@ Intent intent = new Intent(this, DisplayMessageActivity.class);
 一个Intent(意图)不仅允许你启动另一个Activity，同时也可以传递一个数据包到另一个Activity，在sendMessage()方法里用[findViewById()](http://developer.android.com/reference/android/app/Activity.html#findViewById(int))方法得到EditText元素，然后将它的文本信息添加到Intent(意图):
 
 ```java
-ntent intent = new Intent(this, DisplayMessageActivity.class);
+Intent intent = new Intent(this, DisplayMessageActivity.class);
 EditText editText = (EditText) findViewById(R.id.edit_message);
 String message = editText.getText().toString();
 intent.putExtra(EXTRA_MESSAGE, message);

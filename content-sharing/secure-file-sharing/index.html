@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2" data-basepath="../.." data-revision="1405874281425">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter  " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter  " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,17 +3476,24 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1127">
+                    <section class="normal" id="section-gitbook_114">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 校对:</p>
 <p>原文:<a href="http://developer.android.com/training/secure-file-sharing/index.html" target="_blank">http://developer.android.com/training/secure-file-sharing/index.html</a></p>
 </blockquote>
 <h1 id="-">分享文件</h1>
-<p>一个应用经常需要向其他应用发送一个甚至多个文件。例如，一个图库应用可能需要向图片编辑器提供多个文件，或者一个文件管理器可能希望允许用户在外部存储的不同区域之间复制粘贴文件。一种让应用可以分享文件的方法，接收文件应用所发出的请求进行响应。</p>
-<p>在所有情况下，唯一的一个将一个文件从你的应用发送至另一个应用的安全方法是向接收文件应用发送这个文件的URI，然后对这个URI授予临时的可访问权限。具有URI临时访问权限的URI是安全的，因为访问权限只授权于接收这个URI的应用，并且它们会自动过期。Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件提供了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\" target="_blank">getUriForFile()</a>)方法来创建一个文件的URI。</p>
+<p>一个应用经常需要向其他应用发送一个甚至多个文件。例如，一个图库应用可能需要向图片编辑器提供多个文件，或者一个文件管理器可能希望允许用户在外部存储的不同区域之间复制粘贴文件。这里，我们提出一种让应用可以分享文件的方法，即对应用所发出的文件请求进行响应。</p>
+<p>在所有情况下，唯一的一个将文件从你的应用发送至另一个应用的安全方法是向接收文件的应用发送这个文件的URI，然后对这个URI授予临时的可访问权限。具有URI临时访问权限的URI是安全的，因为访问权限只授权于接收这个URI的应用，并且它们会自动过期。Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件提供了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\" target="_blank">getUriForFile()</a>)方法来创建一个文件的URI。</p>
 <p>如果你希望在应用之间共享少量的文本或者数字的数据，你应该发送一个包含该数据的Intent。要学习如何通过Intent发送简单数据，可以阅读：<a href="http://developer.android.com/training/sharing/index.html" target="_blank">Sharing Simple Data</a>。</p>
-<p>这系列课程将会介绍如何使用Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件创建的URI，以及你向接收URI的应用授予的临时访问权限，来安全地在应用之间共享文件。</p>
+<p>这系列课程将会介绍如何使用Android的<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html" target="_blank">FileProvider</a>组件创建的URI，以及如何向接收URI的应用授予的临时访问权限，来安全地在应用之间共享文件。</p>
+<h2 id="-">课程</h2>
+<ul>
+<li><a href="setup-sharing.html">建立文件分享</a></li>
+<li><a href="sharing-file.html">分享文件</a></li>
+<li><a href="request-file.html">请求分享一个文件</a></li>
+<li><a href="retrieve-info.html">获取文件信息</a></li>
+</ul>
 
                     
                     </section>

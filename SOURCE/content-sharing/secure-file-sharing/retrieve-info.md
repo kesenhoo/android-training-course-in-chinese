@@ -4,13 +4,13 @@
 
 # 获取文件信息
 
-当一个客户端应用尝试对一个有URI的文件进行操作时，应用可以向服务应用索取关于文件的信息，包括文件的数据类型和文件大小。数据类型可以帮助客户应用确定该文件自己能否处理，文件大小能帮助客户应用为文件设置合理的缓冲区。
+当一个客户端应用尝试对一个有URI的文件进行操作时，应用可以向服务端应用索取关于文件的信息，包括文件的数据类型和文件大小。数据类型可以帮助客户端应用确定该文件自己能否处理，文件大小能帮助客户端应用为文件设置合理的缓冲区。
 
-这节课将展示如何通过查询服务应用的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)来获取文件的MIME类型和尺寸。
+这节课将展示如何通过查询服务端应用的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)来获取文件的MIME类型和尺寸。
 
 ##获取文件的MIME类型
 
-一个文件的数据类型能够告知客户应用应该如何处理这个文件的内容。为了得到URI所对应文件的数据类型，客户应用调用[ContentResolver.getType()](http://developer.android.com/reference/android/content/ContentResolver.html#getType\(android.net.Uri\))。这个方法返回了文件的MIME类型。默认的，一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)通过文件的后缀名来确定其MIME类型。
+一个文件的数据类型能够告知客户端应用应该如何处理这个文件的内容。为了得到URI所对应文件的数据类型，客户端应用调用[ContentResolver.getType()](http://developer.android.com/reference/android/content/ContentResolver.html#getType\(android.net.Uri\))。这个方法返回了文件的MIME类型。默认的，一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)通过文件的后缀名来确定其MIME类型。
 
 ```java
 ...
@@ -32,7 +32,7 @@
 
 [**SIZE**](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)
 
-文件的大小，字节为单位，一个“long”型。这个值和[File.length()](http://developer.android.com/reference/java/io/File.html#length\(\))所返回的值是一样的。
+文件的大小，以字节为单位，一个“long”型。这个值和[File.length()](http://developer.android.com/reference/java/io/File.html#length\(\))所返回的值是一样的。
 
 客户端应用可以通过将[query()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query\(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String\))的参数都设置为“null”，只保留URI这一参数，来同时获取文件的[名字](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)。例如，下面的代码获取一个文件的[名字](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)，然后在两个[TextView](http://developer.android.com/reference/android/widget/TextView.html)中进行显示：
 

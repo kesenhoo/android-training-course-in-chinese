@@ -7,7 +7,7 @@
 
 要在你的应用中使用OpenGL ES绘制图像，你必须为它们创建一个View容器。一个比较直接的方法是同时实现一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)和一个[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)。[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)是那些用OpenGL所绘制的图形的View容器，而[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)则用来控制在该View中绘制的内容。关于这两个类的更多信息，你可以阅读：[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html)开发手册。
 
-使用[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)只是一种将你的应用与OpenGL ES合并起来的方法。对于一个全屏的或者接近全屏的图形View，使用它是一个理想的选择。开发者如果希望把OpenGL ES的图形融合在布局的一小部分里面，那么可以考虑使用[[TextureView](http://developer.android.com/reference/android/view/TextureView.html)。对于自己动手开发的开发者来说（DIY），还可以通过使用[SurfaceView](http://developer.android.com/reference/android/view/SurfaceView.html)来搭建一个OpenGL ES View，但这将需要编写更多的代码。
+使用[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)只是一种将你的应用与OpenGL ES合并起来的方法。对于一个全屏的或者接近全屏的图形View，使用它是一个理想的选择。开发者如果希望把OpenGL ES的图形融合在布局的一小部分里面，那么可以考虑使用[TextureView](http://developer.android.com/reference/android/view/TextureView.html)。对于自己动手开发的开发者来说（DIY），还可以通过使用[SurfaceView](http://developer.android.com/reference/android/view/SurfaceView.html)来搭建一个OpenGL ES View，但这将需要编写更多的代码。
 
 在这节课中，我们将解释如何在一个简单地应用activity中完成[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)和[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)的最小实现。
 
@@ -30,7 +30,7 @@
 
 ##为OpenGL ES图形创建一个activity
 
-使用OpenGL ES的安卓应用就像其它类型的应用有自己的用户接口一样，也拥有多个activity。主要的区别就在于acitivity布局上的不同。在许多应用中你可能会使用[TextView](http://developer.android.com/reference/android/widget/TextView.html)，[Button](http://developer.android.com/reference/android/widget/Button.html)和[ListView](http://developer.android.com/reference/android/widget/ListView.html)，在使用OpenGL ES的应用中，你也需要添加一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)。
+使用OpenGL ES的安卓应用就像其它类型的应用有自己的用户接口一样，也拥有多个activity。主要的区别就在于acitivity布局上的不同。在许多应用中你可能会使用[TextView](http://developer.android.com/reference/android/widget/TextView.html)，[Button](http://developer.android.com/reference/android/widget/Button.html)和[ListView](http://developer.android.com/reference/android/widget/ListView.html)，在使用OpenGL ES的应用中，你需要添加一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)。
 
 下面的代码展示了使用一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的最小化实现。它作为主View：
 
@@ -55,7 +55,7 @@ public class OpenGLES20Activity extends Activity {
 
 ##构建一个GLSurfaceView对象
 
-一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)是一个特定的View，在View中你可以绘制OpenGL ES图形。不过它自己所做的事情并不多。对于绘制对象的控制实际上是由你在该View中配置的[GLSurfaceView.Rendererhttp://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html]()所负责的。事实上，这个对象的代码非常简短，你可能会希望跳过继承它，并且只创建一个未经修改的GLSurfaceView实例，不过请不要这么做。你需要继承该类来捕捉触控事件，这方面知识在[Responding to Touch Events](http://developer.android.com/training/graphics/opengl/environment.html#touch.html)（该系列课程的最后一节课）中会做进一步的介绍。
+一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)是一个特定的View，在View中你可以绘制OpenGL ES图形。不过它自己所做的事情并不多。对于绘制对象的控制实际上是由你在该View中配置的[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)所负责的。事实上，这个对象的代码非常简短，你可能会希望跳过继承它，并且只创建一个未经修改的GLSurfaceView实例，不过请不要这么做。你需要继承该类来捕捉触控事件，这方面知识在[响应触摸事件](touch.html)（该系列课程的最后一节课）中会做进一步的介绍。
 
 [GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的核心代码是很小的，所以对于一个快速地实现，通常可以在acitvity中创建一个内部类并使用它：
 
@@ -71,7 +71,7 @@ class MyGLSurfaceView extends GLSurfaceView {
 }
 ```
 
-当使用OpenGL ES 2.0时，你必须对你的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)构造函数添加另一个调用，以此来指明你希望使用的是2.0版本的接口：
+当使用OpenGL ES 2.0时，你必须对你的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)构造函数添加另一个调用，以此明确你希望使用的是2.0版本的接口：
 
 ```java
 // Create an OpenGL ES 2.0 context
@@ -117,8 +117,8 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 }
 ```
 
-就仅仅是这样！上面的代码创建了一个简单地应用程序，它在使用OpenGL显示一个灰色的屏幕。虽然它的代码做的事情并不怎么有趣，但是通过创建这些类，你已经为使用OpenGL绘制图形有了基本的认识和铺垫。
+就仅仅是这样！上面的代码创建了一个简单地应用程序，它使用OpenGL显示一个灰色的屏幕。虽然它的代码做的事情并不怎么有趣，但是通过创建这些类，你已经为使用OpenGL绘制图形有了基本的认识和铺垫。
 
-> **Note：**你可能想知道为什么这些方法有一个[GL10](http://developer.android.com/reference/javax/microedition/khronos/opengles/GL10.html)的参数，在你明明使用的是OpenGL ES 2.0的接口的时候。这是因为这些方法在2.0接口中被简单地重用了，以此来保持Android框架尽量简单。
+> **Note：**你可能想知道，在你明明使用的是OpenGL ES 2.0的接口的时候，为什么这些方法有一个[GL10](http://developer.android.com/reference/javax/microedition/khronos/opengles/GL10.html)的参数。这是因为这些方法在2.0接口中被简单地重用了，以此来保持Android框架尽量简单。
 
 如果你对OpenGL ES接口很熟悉，那么你现在就可以在你的应用中部署一个OpenGL ES的环境并绘制图形。然而， 如果你希望获取更多的帮助来学会使用OpenGL，那么请继续学习下一节课程获取更多的知识。

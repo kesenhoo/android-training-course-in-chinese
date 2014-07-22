@@ -4,19 +4,19 @@
 
 # 分享文件
 
-一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的需求。一种响应的方法是在服务应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户应用端让用户从服务应用端选择一个文件，然后接收这个文件的URI。
+一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的请求。一种响应的方法是在服务端应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户端应用端让用户从服务端应用端选择一个文件，然后接收这个文件的URI。
 
-这节课将会向你展示如何在你的应用中创建一个用来选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)，来响应这些索取文件的需求。
+这节课将会向你展示如何在你的应用中创建一个用来选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)，来响应这些索取文件的请求。
 
 ##接收文件请求
 
-为了从客户应用端接收一个文件索取请求，然后以URI形式进行响应，你的应用应该提供一个选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)。客户应用端通过调用[startActivityForResult()](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\))来启动这个[Activity](http://developer.android.com/reference/android/app/Activity.html)。该方法包含了一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它具有[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action。当客户应用端调用了[startActivityForResult()](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\))，你的应用可以向客户应用端返回一个结果，该结果即用户所选文件对应的URI。
+为了从客户端应用端接收一个文件索取请求，然后以URI形式进行响应，你的应用应该提供一个选择文件的[Activity](http://developer.android.com/reference/android/app/Activity.html)。客户端应用端通过调用[startActivityForResult()](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\))来启动这个[Activity](http://developer.android.com/reference/android/app/Activity.html)。该方法包含了一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它具有[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action。当客户端应用端调用了[startActivityForResult()](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\))，你的应用可以向客户端应用端返回一个结果，该结果即用户所选文件对应的URI。
 
-学习如何在客户应用端实现文件索取请求，可以阅读：[Requesting a Shared File](http://developer.android.com/training/secure-file-sharing/request-file.html)。
+学习如何在客户端应用端实现文件索取请求，可以阅读：[请求分享一个文件](request-file.html)。
 
 ##创建一个文件选择Activity
 
-为了配置文件选择[Activity](http://developer.android.com/reference/android/app/Activity.html)，我们从在清单文件定义你的[Activity](http://developer.android.com/reference/android/app/Activity.html)开始，在其intent过滤器中，匹配[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action，以及[CATEGORY_DEFAULT](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT)和[CATEGORY_OPENABLE](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_OPENABLE)的Category。另外，为你的应用向其他应用所提供的文件设置MIME类型过滤器。下面的这段代码展示了如何在清单文件中定义新的[Activity](http://developer.android.com/reference/android/app/Activity.html)和intent过滤器：
+为了配置文件选择[Activity](http://developer.android.com/reference/android/app/Activity.html)，我们从在清单文件定义你的[Activity](http://developer.android.com/reference/android/app/Activity.html)开始，在其intent过滤器中，匹配[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)的Action，以及[CATEGORY_DEFAULT](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_DEFAULT)和[CATEGORY_OPENABLE](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_OPENABLE)的Category。另外，还需要为你的应用设置MIME类型过滤器，来表明你的应用可以向其他应用提供哪种类型的文件。下面的这段代码展示了如何在清单文件中定义新的[Activity](http://developer.android.com/reference/android/app/Activity.html)和intent过滤器：
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 
 一旦一个用户选择了一个共享的文件，你的应用必须明确哪个文件被选择了，然后为这个文件生成一个对应的URI。若[Activity](http://developer.android.com/reference/android/app/Activity.html)在[ListView](http://developer.android.com/reference/android/widget/ListView.html)中显示了可获得文件的清单，当用户点击了一个文件名时，系统调用了方法[onItemClick()](http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick\(android.widget.AdapterView<?>, android.view.View, int, long\))，在该方法中你可以获取被选择的文件。
 
-在[onItemClick()](http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick\(android.widget.AdapterView<?>, android.view.View, int, long\))中，为选择的文件文件名获取一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后将它作为参数传递给[getUriForFile()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\))，另外还需传入的参数是你为[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)所指定的[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签值。这个结果URI包含了相应的被访问权限，一个对应于文件目录的路径标记（如在XML meta-date中定义的），以及包含扩展名的文件名。有关[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)如何匹配基于XML meta-data的目录路径的信息，可以阅读：[Specify Sharable Directories](http://developer.android.com/training/secure-file-sharing/setup-sharing.html#DefineMetaData)。
+在[onItemClick()](http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick\(android.widget.AdapterView<?>, android.view.View, int, long\))中，为选择的文件文件名获取一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后将它作为参数传递给[getUriForFile()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile\(android.content.Context, java.lang.String, java.io.File\))，另外还需传入的参数是你为[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)所指定的[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签值。这个结果URI包含了相应的被访问权限，一个对应于文件目录的路径标记（如在XML meta-date中定义的），以及包含扩展名的文件名。有关[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)如何匹配基于XML meta-data的目录路径的信息，可以阅读：[指定可共享目录路径](setup-sharing.html#DefineMetaData)。
 
 下面的例子展示了你如何检测选中的文件并且获得一个URI：
 
@@ -135,7 +135,7 @@ public class MainActivity extends Activity {
 
 ##为文件授权
 
-现在你有了你想要共享给其他应用的文件URI，你需要允许客户应用端访问这个文件。为了允许访问，可以通过将URI添加至一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，然后为该[Intent](http://developer.android.com/reference/android/content/Intent.html)设置权限标记。你所授予的权限是临时的，并且当接收应用的任务栈被完成后，会自动过期。
+现在你有了你想要共享给其他应用的文件URI，你需要允许客户端应用端访问这个文件。为了允许访问，可以通过将URI添加至一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，然后为该[Intent](http://developer.android.com/reference/android/content/Intent.html)设置权限标记。你所授予的权限是临时的，并且当接收应用的任务栈被完成后，会自动过期。
 
 下面的例子展示了如何为文件设置读权限：
 
@@ -168,7 +168,7 @@ public class MainActivity extends Activity {
 
 ##与请求应用共享文件
 
-为了与需求应用共享其需要的文件，将包含了URI和响应权限的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给[setResult()](http://developer.android.com/reference/android/app/Activity.html#setResult\(int\))。当你定义的[Activity](http://developer.android.com/reference/android/app/Activity.html)被结束后，系统会把这个包含了URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给客户端应用。下面的例子展示了你应该如何做：
+为了与请求文件的应用共享其需要的文件，将包含了URI和响应权限的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给[setResult()](http://developer.android.com/reference/android/app/Activity.html#setResult\(int\))。当你定义的[Activity](http://developer.android.com/reference/android/app/Activity.html)被结束后，系统会把这个包含了URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)传递给客户端应用。下面的例子展示了你应该如何做：
 
 ```java
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +200,7 @@ public class MainActivity extends Activity {
         });
 ```
 
-向用户提供一个一旦他们选择了文件就能立即回到客户应用的方法。一种实现的方法是提供一个勾选框或者一个完成按钮。使用按钮的[android:onClick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性字段为它关联一个方法。在该方法中，调用[finish()](http://developer.android.com/reference/android/app/Activity.html#finish\(\))。例如：
+向用户提供一个一旦他们选择了文件就能立即回到客户端应用的方法。一种实现的方法是提供一个勾选框或者一个完成按钮。使用按钮的[android:onClick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性字段为它关联一个方法。在该方法中，调用[finish()](http://developer.android.com/reference/android/app/Activity.html#finish\(\))。例如：
 
 ```java
     public void onDoneClick(View v) {

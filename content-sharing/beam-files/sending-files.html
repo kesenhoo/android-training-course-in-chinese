@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.1" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.3.1" data-basepath="../.." data-revision="1405874281425">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter  " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter  " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter  " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,14 +3476,14 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1124">
+                    <section class="normal" id="section-gitbook_112">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">发送文件给其他设备</h1>
-<p>这节课将向你展示如何通过Android Beam文件传输向另一台设备发送大文件。要发送文件，首先需要申明使用NFC和外部存储的权限，你需要测试一下你的设备是否支持NFC，这样，你才能够向Android Beam文件传输提供文件的URI。</p>
+<p>这节课将向你展示如何通过Android Beam文件传输向另一台设备发送大文件。要发送文件，首先需要声明使用NFC和外部存储的权限，你需要测试一下你的设备是否支持NFC，这样，你才能够向Android Beam文件传输提供文件的URI。</p>
 <p>使用Android Beam文件传输功能有下列要求：</p>
 <ol>
 <li>Android Beam文件传输功能只能在Android 4.1（API Level 16）及以上使用。</li>
@@ -3494,7 +3494,7 @@
 <h2 id="-">在清单文件中声明权限和功能</h2>
 <p>首先，编辑你的清单文件来声明你的应用所需要声明的权限和功能。</p>
 <h3 id="-">声明权限</h3>
-<p>为了允许你的应用使用Android Beam文件传输使用NFC从外部存储发送文件，你必须在你的应用清单申明下面的权限：</p>
+<p>为了允许你的应用使用Android Beam文件传输控制NFC从外部存储发送文件，你必须在你的应用清单声明下面的权限：</p>
 <h4 id="-nfc-http-developer-android-com-reference-android-manifest-permission-html-nfc-"><a href="http://developer.android.com/reference/android/Manifest.permission.html#NFC" target="_blank">NFC</a></h4>
 <p>允许你的应用通过NFC发送数据。为了声明该权限，添加下面的标签作为一个<a href="http://developer.android.com/guide/topics/manifest/manifest-element.html" target="_blank"><code>&lt;manifest&gt;</code></a>标签的子标签：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.NFC"</span> /&gt;</span>
@@ -3505,10 +3505,10 @@
 </span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span>
 </code></pre>
 <blockquote>
-<p><strong>Note：</strong>对于Android 4.2.2（API Level 17）及之前的系统版本，这个权限不是必需的。在后续的系统版本中，若应用需要读取外部存储，可能会需要申明该权限。为了保证将来程序稳定性，建议在该权限申明变成必需的之前，就在清单文件中申明好。</p>
+<p><strong>Note：</strong>对于Android 4.2.2（API Level 17）及之前的系统版本，这个权限不是必需的。在后续的系统版本中，若应用需要读取外部存储，可能会需要申明该权限。为了保证将来程序稳定性，建议在该权限申明变成必需的之前，就在清单文件中声明好。</p>
 </blockquote>
 <h3 id="-nfc-">指定NFC功能</h3>
-<p>指定你的应用使用使用NFC，添加<a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html" target="_blank"><code>&lt;uses-feature&gt;</code></a>标签作为一个<a href="http://developer.android.com/guide/topics/manifest/manifest-element.html" target="_blank"><code>&lt;manifest&gt;</code></a>标签的子标签。设置<code>android:required</code>属性字段为<code>true</code>，这样可以使得你的应用只有在NFC可以使用时，才能运行。</p>
+<p>指定你的应用使用NFC，添加<a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html" target="_blank"><code>&lt;uses-feature&gt;</code></a>标签作为一个<a href="http://developer.android.com/guide/topics/manifest/manifest-element.html" target="_blank"><code>&lt;manifest&gt;</code></a>标签的子标签。设置<code>android:required</code>属性字段为<code>true</code>，这样可以使得你的应用只有在NFC可以使用时，才能运行。</p>
 <p>下面的代码展示了如何指定<a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html" target="_blank"><code>&lt;uses-feature&gt;</code></a>标签：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-feature
 </span>    <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.nfc"</span>
@@ -3522,7 +3522,7 @@
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.nfc"</span> <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"false"</span> /&gt;</span>
 </code></pre>
 <p>如果你设置了<a href="http://developer.android.com/guide/topics/manifest/uses-feature-element.html#required" target="_blank">android:required</a>=&quot;false&quot;，你必须要在代码中测试NFC和Android Beam文件传输是否被支持。</p>
-<p>为了再代码中测试Android Beam文件传输，我们先通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\" target="_blank">PackageManager.hasSystemFeature()</a>)和参数<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC" target="_blank">FEATURE_NFC</a>，来测试设备是否支持NFC。下一步，通过<a href="http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT" target="_blank">SDK_INT</a>的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：</p>
+<p>为了在代码中测试Android Beam文件传输，我们先通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\" target="_blank">PackageManager.hasSystemFeature()</a>)和参数<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC" target="_blank">FEATURE_NFC</a>，来测试设备是否支持NFC。下一步，通过<a href="http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT" target="_blank">SDK_INT</a>的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     ...
     NfcAdapter mNfcAdapter;

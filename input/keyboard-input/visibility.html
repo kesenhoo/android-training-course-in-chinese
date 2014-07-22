@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.2" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.2" data-basepath="../.." data-revision="1405874281425">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1169">
+                    <section class="normal" id="section-gitbook_156">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/zhaochunqi" target="_blank">zhaochunqi</a></p>
@@ -3484,10 +3484,10 @@
 </blockquote>
 <h1 id="-">处理输入法可见性</h1>
 <p>当输入焦点移入或移出可编辑当文本域时，Android会相应的显示或隐藏输入法(如屏幕输入法)。系统也会决定你的输入法上方UI和文本域的显示。举例来说，当屏幕上竖直空间被压缩时，文本域可能填充所有的输入法上方的空间。对于多数的应用来说，这些默认的行为基本就足够了。</p>
-<p>然而，在一些栗子中，你可能会想要更加直接的控制输入法的显示，指定你的布局在在输入法显示时候的表现。这节课会向你解释如何控制和回应输入法的可见性。</p>
+<p>然而，在一些事例中，你可能会想要更加直接的控制输入法的显示，指定你的布局在在输入法显示时候的表现。这节课会向你解释如何控制和回应输入法的可见性。</p>
 <h2 id="-activity-">在Activity启动时显示输入法</h2>
-<p>尽管Android会在Activity启动时给予第一个文本域焦点，但是他并不会显示输入法。因为进入文本可能并不是activity中的主要任务，所以这项行为是合理的。然而，如果进入文本确实需要是首要的任务(如登录界面),你可能虚呀输入法默认显示。</p>
-<p>为了在activity启动时展示输入法，添加android:windowSoftInputMode 属性到<code>&lt;activity&gt;</code>元素中，使用值 &quot;stateVisible&quot;，如下：</p>
+<p>尽管Android会在Activity启动时给予第一个文本域焦点，但是并不会显示输入法。因为进入文本可能并不是activity中的首要任务，所以这为是很合理的。可是，如果进入文本确实需要是首要的任务(如登录界面),可能需要用到输入法默认显示。</p>
+<p>为了在activity启动时展示输入法，添加<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#wsoft" target="_blank">android:windowSoftInputMode</a> 属性到&lt;activity&gt;元素中，使用 &quot;stateVisible&quot;，如下：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">activity
 </span>        <span class="hljs-attribute">android:windowSoftInputMode</span>=<span class="hljs-value">"stateVisible"</span> <span class="hljs-attribute">...</span> &gt;</span>
@@ -3500,8 +3500,8 @@
 <p><strong>注意：</strong>如果用户设备有一个实体键盘，软键盘输入法可能不显示。</p>
 </blockquote>
 <h2 id="-">需要时显示输入法</h2>
-<p>如果有一个方法在你的activity生命周期中你想要确保输入法到可见性，你可以使用 InputMethodManager 来表现。</p>
-<p>举例来说，下面的方法调用了一个需要用户填写文本的View，调用了requestFocus() 来获取焦点，然后 showSoftInput()来打开输入法。</p>
+<p>如果在activity生命周期中有一个方法在想要确保输入法是可见的，可以使用 <a href="http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html" target="_blank">InputMethodManager</a> 来实现。</p>
+<p>举例来说，下面的方法调用了一个需要用户填写文本的<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>，调用了<a href="http://developer.android.com/reference/android/view/View.html#requestFocus(" target="_blank">requestFocus()</a>) 来获取焦点，然后 <a href="http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html#showSoftInput(android.view.View, int" target="_blank">showSoftInput()</a>)来打开输入法。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showSoftKeyboard</span>(View view) {
     <span class="hljs-keyword">if</span> (view.requestFocus()) {
         InputMethodManager imm = (InputMethodManager)
@@ -3515,7 +3515,7 @@
 </blockquote>
 <h2 id="-ui-">指定你的UI回应方式</h2>
 <p>当你的输入法显示在屏幕上，减少了UI中的可用空间。系统会为你的UI的可见区的UI做调整但是可能并非很正确。为了确保你应用的最佳表现，你应该在UI的剩余空间中展示你想要展示的系统界面。</p>
-<p>为了声明你在activity中的合适的对待，使用 android:windowSoftInputMode 属性在你的清单文件中的<code>&lt;activity</code>元素使用某个&quot;adjust&quot;值。</p>
+<p>为了声明你在activity中的合适的对待，使用 android:windowSoftInputMode 属性在你的清单文件中的&lt;activity&gt;元素使用某个&quot;adjust&quot;值。</p>
 <p>举例来说，为了确保系统会在可用空间中重新调整布局的大小。为了确保你所有的布局内容都是可用的(尽管可能需要滑动)使用&quot;adjustResize&quot;:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">activity
@@ -3525,13 +3525,13 @@
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 </code></pre>
-<p>你可以结合调整和使用上面的初始输入法可见性来指定：</p>
+<p>你可以结合调整和使用上面的<a href="initial input method visibility">初始输入法可见性</a>来指定：</p>
 <pre><code class="lang-xml"> <span class="hljs-tag">&lt;<span class="hljs-title">activity
 </span>        <span class="hljs-attribute">android:windowSoftInputMode</span>=<span class="hljs-value">"stateVisible|adjustResize"</span> <span class="hljs-attribute">...</span> &gt;</span>
         ...
     <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
-<p>如果你的UI中包含用户可能需要在文本输入时立即执行的，那么使用&quot;adjustResize&quot;时很重要的。例如，如果你使用相对布局在屏幕地步放置一个按钮，使用&quot;adjustResize&quot;来重新调整大小，使得按钮栏出现在输入法上方。</p>
+<p>如果你的UI中包含用户可能需要在文本输入时立即执行的事情，那么使用&quot;adjustResize&quot;时很重要的。例如，如果你使用相对布局在屏幕底部放置一个按钮，使用&quot;adjustResize&quot;来重新调整大小，使得按钮栏出现在输入法上方。</p>
 
                     
                     </section>

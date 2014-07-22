@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.1" data-basepath="../.." data-revision="1405438336579">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.1" data-basepath="../.." data-revision="1405874281425">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1404,7 +1404,7 @@
         <li class="chapter " data-level="11.1" data-path="wearables/notifications/index.html">
             
             <a href="../../wearables/notifications/index.html">
-                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴的特性
+                <i class="fa fa-check"></i> <b>11.1.</b> 赋予Notification可穿戴特性
             </a>
             
             
@@ -3183,7 +3183,7 @@
     
         <a href="../../wearables/index.html" title="为可穿戴设备创建应用" class="chapter done " data-progress="11" style="left: 45.45454545454545%;"></a>
     
-        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴的特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
+        <a href="../../wearables/notifications/index.html" title="赋予Notification可穿戴特性" class="chapter done " data-progress="11.1" style="left: 45.833333333333336%;"></a>
     
         <a href="../../wearables/notifications/creating.html" title="创建Notification" class="chapter done " data-progress="11.1.1" style="left: 46.21212121212121%;"></a>
     
@@ -3476,7 +3476,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1168">
+                    <section class="normal" id="section-gitbook_155">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/zhaochunqi" target="_blank">zhaochunqi</a></p>
@@ -3518,7 +3518,7 @@
 </code></pre>
 <h2 id="-">指定输入法的行为</h2>
 <p>多数的软键盘会在底部角落里为用户提供一个合适的动作按钮来触发当前文本域的操作。默认情况下，系统使用<strong>下一步(Next)</strong>或者<strong>确认(DONE)</strong>除非你的文本域允许多行(如android:inputType=&quot;textMultiLine&quot;)，这种情况下，动作按钮就是回车换行。然而，你可以制定额外的动作一边更适合你的文本域，比如<strong>SEND</strong>和<strong>GO</strong>。</p>
-<p>指定特定的动作按钮，将 android:imeOptions 属性的值设为&quot;actionSend&quot; 或 &quot;actionSearch&quot;。如：
+<p>指定特定的动作按钮，将 <a href="http://developer.android.com/reference/android/widget/TextView.html#attr_android:imeOptions" target="_blank">android:imeOptions</a> 属性的值设为&quot;actionSend&quot; 或 &quot;actionSearch&quot;。如：
 <img src="edittext-actionsend.png" alt="edittext-actionsend"></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">EditText
 </span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/search"</span>
@@ -3528,7 +3528,7 @@
     <span class="hljs-attribute">android:inputType</span>=<span class="hljs-value">"text"</span>
     <span class="hljs-attribute">android:imeOptions</span>=<span class="hljs-value">"actionSend"</span> /&gt;</span>
 </code></pre>
-<p>然后你可以通过为 EditText定义TextView.OnEditorActionListener来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 EditorInfo 类中，如 IME_ACTION_SEND 。例如:</p>
+<p>然后你可以通过为 <a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>定义<a href="http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html" target="_blank">TextView.OnEditorActionListener</a>来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 <a href="http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html" target="_blank">EditorInfo</a> 类中，如 <a href="http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html#IME_ACTION_SEND" target="_blank">IME_ACTION_SEND</a> 。例如:</p>
 <pre><code class="lang-java">EditText editText = (EditText) findViewById(R.id.search);
 editText.setOnEditorActionListener(<span class="hljs-keyword">new</span> OnEditorActionListener() {
     <span class="hljs-annotation">@Override</span>

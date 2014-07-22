@@ -4,7 +4,7 @@
 
 # 运用投影与相机视图
 
-在OpenGL ES环境中，投影和相机视图允许你显示绘图对象时，可以以一个更加酷似于你用肉眼看到的真实物体。这个物理视图的仿真是使用绘制对象坐标的数学变换实现的：
+在OpenGL ES环境中，投影和相机视图允许你显示绘图对象时，其效果更加酷似于你用肉眼看到的真实物体。这个物理视图的仿真是使用绘制对象坐标的数学变换实现的：
 * **投影（Projection）：**这个变换会基于显示它们的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于视图窗口比例的不匹配而发生形变。一个投影变换一般仅需要在渲染器的[onSurfaceChanged()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged\(javax.microedition.khronos.opengles.GL10, int, int\))方法中，OpenGL视图的比例建立时或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读[Mapping Coordinates for Drawn Objects](http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping)。
 * **相机视图（camera view）：**这个变化会基于一个虚拟相机位置改变绘图对象的坐标。注意到OpenGL ES并没有定义一个实际的相机对象，但是取而代之的，它提供了一些辅助方法，通过变化绘图对象的显示来模拟相机。一个相机视图变换可能仅在你建立你的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)时计算一次，也可能根据用户的行为或者你的应用的功能进行动态调整。
 

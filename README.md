@@ -100,7 +100,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [缩放动画](http://hukai.me/android-training-course-in-chinese/animations/zoom.html)
    * [控件切换动画](http://hukai.me/android-training-course-in-chinese/animations/layout.html)
 * [连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
-   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - 待认领
+   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan) - 30%
       * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html)
       * [使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)
       * [使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)
@@ -128,7 +128,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [使用备份API](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/backupapi.html)
       * [使用Google Cloud Messaging](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/gcm.html)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - @[jdneo](https://github.com/jdneo)
-* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 50%
+* [用户信息](contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 70%
    * [获取联系人列表](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-names.html)
    * [获取联系人详情](http://hukai.me/android-training-course-in-chinese/contacts-provider/retrieve-detail.html)
    * [修改联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/modify-data.html)
@@ -159,7 +159,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [发送与接收消息](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/messages.md)
       * [处理数据层的事件](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/events.md)
 * [交互](http://hukai.me/android-training-course-in-chinese/ux/index.html)
-   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu) - 1%
+   * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu) - 50%
       * [规划屏幕界面与他们之间的关系](http://hukai.me/android-training-course-in-chinese/ux/design-nav/screen-planning.html)
       * [为多种大小的屏幕进行规划](http://hukai.me/android-training-course-in-chinese/ux/design-nav/multi-sizes.html)
       * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
@@ -181,7 +181,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [建立搜索界面](http://hukai.me/android-training-course-in-chinese/ux/search/setup.html)
       * [保存并搜索数据](http://hukai.me/android-training-course-in-chinese/ux/search/search.html)
       * [保持向下兼容](http://hukai.me/android-training-course-in-chinese/ux/search/back-compat.html)
-   * [使得你的App内容可被Google搜索](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/index.html) - 中@[Lin-H](https://github.com/Lin-H)
+   * [使得你的App内容可被Google搜索](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/index.html) - @[Lin-H](https://github.com/Lin-H)
       * [为App内容开启深度链接](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/deep-linking.html)
       * [为索引指定App内容](http://hukai.me/android-training-course-in-chinese/ux/app-indexing/enable-app-indexing.html)
 * [UI](ui/index.html)
@@ -243,7 +243,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
    * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html) - 待认领
+   * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html) - @[allenlsy](https://github.com/allenlsy)
       * [优化layout的层级](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/optimizing-layout.html)
       * [使用include标签重用layouts](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/reuse-layouts.html)
       * [按需加载视图](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/loading-ondemand.html)
@@ -259,14 +259,14 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [执行代码运行在线程池中](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/run-code.html)
       * [与UI线程进行交互](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/communicate-ui.html)
    * [避免程序无响应ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - @[pedant](https://github.com/pedant) - 20%
+   * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - @[pedant](https://github.com/pedant)
    * [SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html) - 待认领
 * [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html) - 待认领
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)
 * [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
-   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 1%
+   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 60%
       * [建立测试环境](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/prepare-activity-testing.html)
       * [创建与执行测试用例](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-basic-testing.html)
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
