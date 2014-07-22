@@ -2,7 +2,6 @@
 
 > 原文: <http://developer.android.com/training/design-navigation/ancestral-temporal.html>
 
-
 # 提供向上导航与时间导航
 
 既然现在我们可用进入应用界面某个层级，我能需要提供一个方法来在层级里向上导航到父亲或祖先界面中。此外，我们应该保证以 *Back* 按钮为主的历史导航遵循 Android 惯例。
