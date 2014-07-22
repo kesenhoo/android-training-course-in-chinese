@@ -100,7 +100,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [缩放动画](http://hukai.me/android-training-course-in-chinese/animations/zoom.html)
    * [控件切换动画](http://hukai.me/android-training-course-in-chinese/animations/layout.html)
 * [连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
-   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - 待认领
+   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan) - 30%
       * [使得网络服务可发现](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd.html)
       * [使用WiFi建立P2P连接](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/wifi-direct.html)
       * [使用WiFi P2P服务](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/nsd-wifi-index.html)
@@ -243,7 +243,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 * [性能优化](http://hukai.me/android-training-course-in-chinese/performance/index.md)
    * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html) - 待认领
+   * [提升Layout的性能](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/index.html) - @[allenlsy](https://github.com/allenlsy)
       * [优化layout的层级](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/optimizing-layout.html)
       * [使用include标签重用layouts](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/reuse-layouts.html)
       * [按需加载视图](http://hukai.me/android-training-course-in-chinese/performance/improving-layouts/loading-ondemand.html)
@@ -266,7 +266,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)
 * [测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
-   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 40%
+   * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo) - 60%
       * [建立测试环境](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/prepare-activity-testing.html)
       * [创建与执行测试用例](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-basic-testing.html)
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
