@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/sharing/index.html>
 
 # 添加一个简便的分享动作
 

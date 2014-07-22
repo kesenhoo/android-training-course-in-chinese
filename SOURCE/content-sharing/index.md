@@ -10,9 +10,11 @@
 
   学习如何使得你的应用可以和其他应用进行交互。分享信息，接收信息，为用户数据提供一个简单并且可扩展的方式来执行分享操作。
 
+
 * [分享文件(Sharing Files)](secure-file-sharing/index.html)
 
   学习使用一个URI与临时的访问权限来提供安全的文件访问。
+
 
 * [使用NFC分享文件(Sharing Files with NFC)](beam-files/index.html)
 

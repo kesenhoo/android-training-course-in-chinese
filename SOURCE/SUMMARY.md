@@ -37,7 +37,7 @@
    * [分享简单的数据](content-sharing/sharing/index.md)
        * [给其他App发送简单的数据](content-sharing/sharing/send.md)
        * [接收从其他App返回的数据](content-sharing/sharing/receive.md)
-       * [添加一个简便的分享动作](content-sharing/sharing/shareaction.md)
+       * [给ActionBar增加分享功能](content-sharing/sharing/shareaction.md)
    * [分享文件](content-sharing/secure-file-sharing/index.md)
        * [建立文件分享](content-sharing/secure-file-sharing/setup-sharing.md)
        * [分享文件](content-sharing/secure-file-sharing/sharing-file.md)
