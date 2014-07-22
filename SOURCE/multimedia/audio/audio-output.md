@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/managing-audio/audio-output.html>
 
 # 兼容音频输出设备
 

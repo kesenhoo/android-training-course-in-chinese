@@ -1,10 +1,8 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/managing-audio/volume-playback.html>
 
-# 控制你的应用的音量与播放
-
-如果你的App在播放音频，显然用户能够以预期的方式来控制音频是很重要的。为了保证好的用户体验，同样App能够获取音频焦点是很重要的，这样才能确保不会在同一时刻出现多个App的声音。在学习这个课程后，你将能够创建对硬件音量按钮进行响应的App，当按下音量按钮的时候需要获取到当前音频的焦点，然后以适当的方式改变音量从而进行响应用户的行为。
+# 控制音量与音频播放
 
 一个好的用户体验是可预期可控的。如果App是在播放音频，那么显然我们需要做到能够通过硬件按钮，软件按钮，蓝牙耳麦等来控制音量。
 同样的，我们需要能够进行play, stop, pause, skip, and previous等动作，并且进行对应的响应。
