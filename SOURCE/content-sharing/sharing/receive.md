@@ -1,6 +1,6 @@
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 原文:<http://developer.android.com/training/sharing/index.html>
+> 原文:<http://developer.android.com/training/sharing/receive.html>
 
 # 接收从其他App返回的数据
 

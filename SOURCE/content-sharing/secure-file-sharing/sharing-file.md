@@ -1,6 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/secure-file-sharing/sharing-file.html>
 
 # 分享文件
 
