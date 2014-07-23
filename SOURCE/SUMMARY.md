@@ -130,6 +130,7 @@
        * [创建并执行可穿戴应用](wearables/apps/creating.md)
        * [创建自定义的布局](wearables/apps/layouts.md)
        * [添加语音能力](wearables/apps/voice.md)
+       * [打包可穿戴应用](wearables/apps/packaging.md)
        * [通过蓝牙进行调试](wearables/apps/bt-debugging.md)
    * [打包可穿戴应用](wearables/apps/packaging.md)
    * [发送并同步数据](wearables/data-layer/index.md)
