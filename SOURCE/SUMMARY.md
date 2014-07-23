@@ -203,7 +203,7 @@
    * [处理键盘输入](input/keyboard-input/index.md)
        * [指定输入法类型](input/keyboard-input/type.md)
        * [处理输入法可见性](input/keyboard-input/visibility.md)
-       * [兼容硬件导航](input/keyboard-input/navigation.md)
+       * [兼容键盘导航](input/keyboard-input/navigation.md)
        * [处理按键动作](input/keyboard-input/commands.md)
    * [兼容游戏控制器](input/game-controller/index.md)
        * [处理控制器输入动作](input/game-controller/controller-inputs.md)
