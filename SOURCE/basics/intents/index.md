@@ -14,9 +14,12 @@
 * [Sending the User to Another App:Intent的发送](sending.html)
 
   演示如何创建隐式的Intent来唤起能够接收这个动作的App。
+
+
 * [Getting a Result from an Activity:接收Activity返回的结果](result.html)
 
   演示如何启动另外一个Activity并接收返回值。
+
 
 * [Allowing Other Apps to Start Your Activity:Intent过滤](filters.html)
 

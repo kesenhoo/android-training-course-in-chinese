@@ -1,10 +1,10 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/beam-files/sending-files.html>
 
 # 发送文件给其他设备
 
-这节课将向你展示如何通过Android Beam文件传输向另一台设备发送大文件。要发送文件，首先需要申明使用NFC和外部存储的权限，你需要测试一下你的设备是否支持NFC，这样，你才能够向Android Beam文件传输提供文件的URI。
+这节课将向你展示如何通过Android Beam文件传输向另一台设备发送大文件。要发送文件，首先需要声明使用NFC和外部存储的权限，你需要测试一下你的设备是否支持NFC，这样，你才能够向Android Beam文件传输提供文件的URI。
 
 使用Android Beam文件传输功能有下列要求：
 
@@ -19,7 +19,7 @@
 
 ###声明权限
 
-为了允许你的应用使用Android Beam文件传输使用NFC从外部存储发送文件，你必须在你的应用清单申明下面的权限：
+为了允许你的应用使用Android Beam文件传输控制NFC从外部存储发送文件，你必须在你的应用清单声明下面的权限：
 ####[NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC)
 允许你的应用通过NFC发送数据。为了声明该权限，添加下面的标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签：
 
@@ -35,11 +35,11 @@
             android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
-> **Note：**对于Android 4.2.2（API Level 17）及之前的系统版本，这个权限不是必需的。在后续的系统版本中，若应用需要读取外部存储，可能会需要申明该权限。为了保证将来程序稳定性，建议在该权限申明变成必需的之前，就在清单文件中申明好。
+> **Note：**对于Android 4.2.2（API Level 17）及之前的系统版本，这个权限不是必需的。在后续的系统版本中，若应用需要读取外部存储，可能会需要申明该权限。为了保证将来程序稳定性，建议在该权限申明变成必需的之前，就在清单文件中声明好。
 
 ###指定NFC功能
 
-指定你的应用使用使用NFC，添加[`<uses-feature>`](http://developer.android.com/guide/topics/manifest/uses-feature-element.html)标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签。设置`android:required`属性字段为`true`，这样可以使得你的应用只有在NFC可以使用时，才能运行。
+指定你的应用使用NFC，添加[`<uses-feature>`](http://developer.android.com/guide/topics/manifest/uses-feature-element.html)标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签。设置`android:required`属性字段为`true`，这样可以使得你的应用只有在NFC可以使用时，才能运行。
 
 下面的代码展示了如何指定[`<uses-feature>`](http://developer.android.com/guide/topics/manifest/uses-feature-element.html)标签：
 
@@ -65,7 +65,7 @@
 
 如果你设置了[android:required](http://developer.android.com/guide/topics/manifest/uses-feature-element.html#required)="false"，你必须要在代码中测试NFC和Android Beam文件传输是否被支持。
 
-为了再代码中测试Android Beam文件传输，我们先通过[PackageManager.hasSystemFeature()](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\))和参数[FEATURE_NFC](http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC)，来测试设备是否支持NFC。下一步，通过[SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT)的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：
+为了在代码中测试Android Beam文件传输，我们先通过[PackageManager.hasSystemFeature()](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature\(java.lang.String\))和参数[FEATURE_NFC](http://developer.android.com/reference/android/content/pm/PackageManager.html#FEATURE_NFC)，来测试设备是否支持NFC。下一步，通过[SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT)的值测试系统版本是否支持Android Beam文件传输。如果Android Beam文件传输是支持的，那么获得一个NFC控制器的实例，它能允许你与NFC硬件进行通信，例如：
 
 ```java
 public class MainActivity extends Activity {

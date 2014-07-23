@@ -1,24 +1,24 @@
-> 编写:Andrwyw
+> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
 
-> 校对:
+> 原文：<http://developer.android.com/training/gestures/scale.html>
 
 # 拖拽与缩放
 
-本节课程描述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用onTouchEvent()来截获触摸事件。
+本节课程讲述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))来截获触摸事件。
 
 ## 拖拽一个对象 ##
 
-> 如果你的目标版本为3.0或以上，你可以使用View.OnDragListener监听内置的drag-and-drop事件，Drag and Drop中有更多相关描述。
+> 如果你的目标版本为3.0或以上，你可以使用[View.OnDragListener](http://developer.android.com/reference/android/view/View.OnDragListener.html)监听内置的drag-and-drop事件，[拖拽与释放](http://developer.android.com/guide/topics/ui/drag-drop.html)中有更多描述。
 
 使用触摸手势在屏幕上拖拽一个对象是很常见的操作。接下来的代码段让用户可以拖拽屏幕上的图片。需要注意以下几点：
 
-- 拖拽操作时，即使有额外的手指放置到屏幕上了，app也必须保持对最初的点（手指）的追踪。比如，想象你在拖拽图片时，用户放置了第二根手指在屏幕上，并且继续移动第一根手指。如果你的app只是追踪单独的手指，它会默认忽视第二根手指头，并且把图片移到相应位置。
-- 为了防止这种情况发生，你的app需要区分初始点以及之后任意的触摸点。要做到这一点，它需要追踪处理多触摸手势中提到过的ACTION_POINTER_DOWN、 ACTION_POINTER_UP事件。每当第二根手指按下或拿起时，ACTION_POINTER_DOWN、 ACTION_POINTER_UP事件就会传递给onTouchEvent()回调函数。
-- ACTION_POINTER_UP事件下，示例程序会获取到触摸点的索引值，并确保当前触摸点ID对应的触摸点并没有离开屏幕。如果离开了，app会选择另一个触摸点，并保存它当前的x、y值。由于在ACTION_MOVE事件下，保存过的位置会被用来计算屏幕上对象将移动的距离，所以app会始终根据正确的触摸点来计算移动的距离。
+- 拖拽操作时，即使有额外的手指放置到屏幕上了，app也必须保持对最初的点（手指）的追踪。比如，想象在拖拽图片时，用户放置了第二根手指在屏幕上，并且抬起了第一根手指。如果你的app只是单独地追踪每个点，它会把第二个点当做默认的点，并且把图片移到该点的位置。
+- 为了防止这种情况发生，你的app需要区分初始点以及之后任意的触摸点。要做到这一点，它需要追踪[**处理多触摸手势**](multi.html)中提到过的[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件。每当第二根手指按下或拿起时，[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件就会传递给[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))回调函数。
+- 当[ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件发生时，示例程序会移除对该点的索引值的引用，确保操作中的点的ID(the active pointer ID)不会引用已经不在触摸屏上的触摸点。这种情况下，app会选择另一个触摸点来作为操作中(active)的点，并保存它当前的x、y值。由于在[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件时，这个保存的位置会被用来计算屏幕上的对象将要移动的距离，所以app会始终根据正确的触摸点来计算移动的距离。
 
-下面的代码段允许用户拖拽屏幕上的对象。它会记录当前触摸点（active pointer）的初始位置，并计算触摸点移动过的距离，再把对象移动到新的位置。如上所述，它也正确地处理了额外触摸点的可能。
+下面的代码段允许用户拖拽屏幕上的对象。它会记录操作中的点（active pointer）的初始位置，计算触摸点移动过的距离，再把对象移动到新的位置。如上所述，它也正确地处理了额外触摸点的可能。
 
-注意代码段中使用了getActionMasked()函数。你应该始终使用这个函数（或者更好用MotionEventCompat.getActionMasked()这个兼容版本）来获得MotionEvent对应的动作(action)。不像以前的getAction()函数，getActionMasked()是被设计用来处理多点触摸的。它会返回掩码过（masked）的执行动作，但不包括点的索引位。
+需要注意的是，代码段中使用了[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())函数。你应该始终使用这个函数（或者更好用[MotionEventCompat.getActionMasked()](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html#getActionMasked(android.view.MotionEvent))这个兼容版本）来获得[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)对应的动作(action)。不像旧的[getAction()](http://developer.android.com/reference/android/view/MotionEvent.html#getAction())函数，[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())就是设计用来处理多点触摸的。它会返回执行过的动作的掩码值，不包括该点的索引位。
 
 ```java
 // The ‘active pointer’ is the one currently moving our object.
@@ -28,15 +28,15 @@ private int mActivePointerId = INVALID_POINTER_ID;
 public boolean onTouchEvent(MotionEvent ev) {
     // Let the ScaleGestureDetector inspect all events.
     mScaleDetector.onTouchEvent(ev);
-             
-    final int action = MotionEventCompat.getActionMasked(ev); 
-        
-    switch (action) { 
+
+    final int action = MotionEventCompat.getActionMasked(ev);
+
+    switch (action) {
     case MotionEvent.ACTION_DOWN: {
-        final int pointerIndex = MotionEventCompat.getActionIndex(ev); 
-        final float x = MotionEventCompat.getX(ev, pointerIndex); 
-        final float y = MotionEventCompat.getY(ev, pointerIndex); 
-            
+        final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+        final float x = MotionEventCompat.getX(ev, pointerIndex);
+        final float y = MotionEventCompat.getY(ev, pointerIndex);
+
         // Remember where we started (for dragging)
         mLastTouchX = x;
         mLastTouchY = y;
@@ -44,15 +44,15 @@ public boolean onTouchEvent(MotionEvent ev) {
         mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
         break;
     }
-            
+
     case MotionEvent.ACTION_MOVE: {
         // Find the index of the active pointer and fetch its position
-        final int pointerIndex = 
-                MotionEventCompat.findPointerIndex(ev, mActivePointerId);  
-            
+        final int pointerIndex =
+                MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+
         final float x = MotionEventCompat.getX(ev, pointerIndex);
         final float y = MotionEventCompat.getY(ev, pointerIndex);
-            
+
         // Calculate the distance moved
         final float dx = x - mLastTouchX;
         final float dy = y - mLastTouchY;
@@ -68,52 +68,52 @@ public boolean onTouchEvent(MotionEvent ev) {
 
         break;
     }
-            
+
     case MotionEvent.ACTION_UP: {
         mActivePointerId = INVALID_POINTER_ID;
         break;
     }
-            
+
     case MotionEvent.ACTION_CANCEL: {
         mActivePointerId = INVALID_POINTER_ID;
         break;
     }
-        
+
     case MotionEvent.ACTION_POINTER_UP: {
-            
-        final int pointerIndex = MotionEventCompat.getActionIndex(ev); 
-        final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex); 
+
+        final int pointerIndex = MotionEventCompat.getActionIndex(ev);
+        final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
 
         if (pointerId == mActivePointerId) {
             // This was our active pointer going up. Choose a new
             // active pointer and adjust accordingly.
             final int newPointerIndex = pointerIndex == 0 ? 1 : 0;
-            mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex); 
-            mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex); 
+            mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex);
+            mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex);
             mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
         }
         break;
     }
-    }       
+    }
     return true;
 }
 ```
 
 ## 通过拖拽平移 ##
 
-前一部分展示了在屏幕上拖拽对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动。上面的代码段通过直接截获MotionEvent动作来实现拖拽。这一部分的代码段采用的平台内置的对常用手势的支持。它重写了GestureDetector.SimpleOnGestureListener的onScroll()函数。 
+前一部分展示了一个拖拽屏幕上对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动(scrolling)。上面的代码段直接截获了[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)动作来实现拖拽。这一部分的代码段，利用了平台对常用手势的内置支持。它重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数。
 
-提供更多的参考，当用户拖拽手指来平移内容时，onScroll()就会被调用。onScroll()只会在手指按下的情况下被调用，一旦手指离开屏幕了，要么手势终止，要么快速滑动手势开始（如果手指在离开屏幕前快速移动了一段距离）。关于scrolling vs. flinging的更多讨论，可以查看Scroll手势动画章节。
+更详细地说，当用户拖拽手指来平移内容时，[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数就会被调用。[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数只会在手指按下的情况下被调用，一旦手指离开屏幕了，要么手势终止，要么快速滑动(fling)手势开始（如果手指在离开屏幕前快速移动了一段距离）。关于滚动与快速滑动的更多讨论，可以查看[Scroll手势动画](scroll.html)章节。
 
-这里是onScroll()的相关代码段：
+这里是[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))的相关代码段：
 
 ```java
-// The current viewport. This rectangle represents the currently visible 
-// chart domain and range. 
-private RectF mCurrentViewport = 
+// The current viewport. This rectangle represents the currently visible
+// chart domain and range.
+private RectF mCurrentViewport =
         new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
 
-// The current destination rectangle (in pixel coordinates) into which the 
+// The current destination rectangle (in pixel coordinates) into which the
 // chart data should be drawn.
 private Rect mContentRect;
 
@@ -122,18 +122,18 @@ private final GestureDetector.SimpleOnGestureListener mGestureListener
 ...
 
 @Override
-public boolean onScroll(MotionEvent e1, MotionEvent e2, 
+public boolean onScroll(MotionEvent e1, MotionEvent e2,
             float distanceX, float distanceY) {
     // Scrolling uses math based on the viewport (as opposed to math using pixels).
-    
+
     // Pixel offset is the offset in screen pixels, while viewport offset is the
-    // offset within the current viewport. 
-    float viewportOffsetX = distanceX * mCurrentViewport.width() 
+    // offset within the current viewport.
+    float viewportOffsetX = distanceX * mCurrentViewport.width()
             / mContentRect.width();
-    float viewportOffsetY = -distanceY * mCurrentViewport.height() 
+    float viewportOffsetY = -distanceY * mCurrentViewport.height()
             / mContentRect.height();
     ...
-    // Updates the viewport, refreshes the display. 
+    // Updates the viewport, refreshes the display.
     setViewportBottomLeft(
             mCurrentViewport.left + viewportOffsetX,
             mCurrentViewport.bottom + viewportOffsetY);
@@ -142,19 +142,19 @@ public boolean onScroll(MotionEvent e1, MotionEvent e2,
 }
 ```
 
-onScroll()滑动视窗来响应触摸手势：
+[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数中滑动视窗(viewport)来响应触摸手势的实现：
 
 ```java
 /**
  * Sets the current viewport (defined by mCurrentViewport) to the given
- * X and Y positions. Note that the Y value represents the topmost pixel position, 
+ * X and Y positions. Note that the Y value represents the topmost pixel position,
  * and thus the bottom of the mCurrentViewport rectangle.
  */
 private void setViewportBottomLeft(float x, float y) {
     /*
-     * Constrains within the scroll range. The scroll range is simply the viewport 
-     * extremes (AXIS_X_MAX, etc.) minus the viewport size. For example, if the 
-     * extremes were 0 and 10, and the viewport size was 2, the scroll range would 
+     * Constrains within the scroll range. The scroll range is simply the viewport
+     * extremes (AXIS_X_MAX, etc.) minus the viewport size. For example, if the
+     * extremes were 0 and 10, and the viewport size was 2, the scroll range would
      * be 0 to 8.
      */
 
@@ -170,15 +170,15 @@ private void setViewportBottomLeft(float x, float y) {
 }
 ```
 
-## 使用触摸手势缩放 ##
+## 使用触摸手势进行缩放 ##
 
-如同检测常用手势章节中提到的，GestureDetector可以帮助你检测Android中的常见手势，例如滚动，快速滚动以及长按。对于缩放，Android也提供了ScaleGestureDetector.GestureDetector类、ScaleGestureDetector类，你可以使用它们来识别额外的手势。
+如同[检测常用手势](detector.html)章节中提到的，[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)可以帮助你检测Android中的常见手势，例如滚动，快速滚动以及长按。对于缩放，Android也提供了[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)类。当你想让view能识别额外的手势时，你可以配合使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)和[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)类。
 
-为了报告检测到的手势事件，手势检测需要用listener对象作为构造器的参数。ScaleGestureDetector使用ScaleGestureDetector.OnScaleGestureListener。Android提供了ScaleGestureDetector.SimpleOnScaleGestureListener作为帮助类。如果你不关注所有的手势事件，你可以自行拓展。
+为了报告检测到的手势事件，手势检测需要使用作为构造函数参数的listener对象。[ScaleGestureDetector](1http://developer.android.com/reference/android/view/ScaleGestureDetector.html)使用[ScaleGestureDetector.OnScaleGestureListener](http://developer.android.com/reference/android/view/ScaleGestureDetector.OnScaleGestureListener.html)。Android提供了[ScaleGestureDetector.SimpleOnScaleGestureListener](http://developer.android.com/reference/android/view/ScaleGestureDetector.SimpleOnScaleGestureListener.html)类作为帮助类，如果你不是关注所有的手势事件，你可以自行拓展(extend)它。
 
 ### 基本的缩放示例 ###
 
-下面的代码段展示了缩放功能的基本部分。
+下面的代码段展示了缩放功能中的基本部分。
 
 ```java
 private ScaleGestureDetector mScaleDetector;
@@ -210,7 +210,7 @@ public void onDraw(Canvas canvas) {
     canvas.restore();
 }
 
-private class ScaleListener 
+private class ScaleListener
         extends ScaleGestureDetector.SimpleOnScaleGestureListener {
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
@@ -227,11 +227,11 @@ private class ScaleListener
 
 ### 更加复杂的缩放示例 ###
 
-这是InteractiveChart中关于这个类的一个更加复杂的示范。通过使用ScaleGestureDetector的“span”（(getCurrentSpanX/Y)）和“focus”（getFocusX/Y）功能，滚动（平移）和多指缩放InteractiveChart样例都能支持。
+这是本章节提供的`InteractiveChart`样例中一个更复杂的示范。通过使用[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)中的"span"([getCurrentSpanX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getCurrentSpanX()))和"focus"([getFocusX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getFocusX()))，`InteractiveChart`样例支持滚动（平移）以及多指缩放。
 
 ```java
 @Override
-private RectF mCurrentViewport = 
+private RectF mCurrentViewport =
         new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
 private Rect mContentRect;
 private ScaleGestureDetector mScaleGestureDetector;
@@ -294,7 +294,7 @@ private final ScaleGestureDetector.OnScaleGestureListener mScaleGestureListener
                 0,
                 0);
         mCurrentViewport.right = mCurrentViewport.left + newWidth;
-        mCurrentViewport.bottom = mCurrentViewport.top + newHeight;     
+        mCurrentViewport.bottom = mCurrentViewport.top + newHeight;
         ...
         // Invalidates the View to update the display.
         ViewCompat.postInvalidateOnAnimation(InteractiveLineGraphView.this);

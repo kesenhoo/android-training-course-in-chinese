@@ -725,6 +725,7 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 ##处理地理围栏触发事件
 当Location Services探测到用户进入或者退出一个地理围栏，它会发送一个Intent，这个Intent就是
 ###定义一个IntentService

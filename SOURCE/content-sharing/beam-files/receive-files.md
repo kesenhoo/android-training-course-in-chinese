@@ -1,13 +1,13 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/beam-files/receive-files.html>
 
 # 接收其他设备的文件
-Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android媒体扫描器（Android Media Scanner）扫描拷贝的文件，并在媒体库（[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) provider）中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，并且在接收设备上应该如何放置拷贝的文件。
+Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android Media Scanner扫描拷贝的文件，并在[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) provider中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，以及在接收设备上应该如何放置拷贝的文件。
 
 ##响应请求并显示数据
 
-当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，包含了一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它有有一个[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的Action，第一个传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，intent会被发送至系统。为了让你的应用能够响应这个intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
+当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，包含了一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它有一个[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的Action，第一个传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，intent会被发送至系统。为了让你的应用能够响应这个intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
 
 [`<action android:name="android.intent.action.VIEW" />`](http://developer.android.com/guide/topics/manifest/action-element.html)
 
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 
 ###从文件URI中获取目录
 
-如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个文件URI，则该URI包含了一个文件的绝对文件名，包括了完整的路径和文件名。对于Android Beam文件传输来说，目录路径指向了其它传输文件的位置（如果有其它传输文件的话），要获得这个目录路径，取得URI的路径部分（URI中除去“file:”前缀的部分），根据路径创建一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后获取这个[File](http://developer.android.com/reference/java/io/File.html)的父目录：
+如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个文件URI，则该URI包含了一个文件的绝对文件名，包括了完整的路径和文件名。对于Android Beam文件传输来说，目录路径指向了其它传输文件的位置（如果有其它传输文件的话），要获得这个目录路径，要取得URI的路径部分（URI中除去“file:”前缀的部分），根据路径创建一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后获取这个[File](http://developer.android.com/reference/java/io/File.html)的父目录：
 
 ```java
 ...
@@ -119,7 +119,7 @@ public class MainActivity extends Activity {
 
 ###从内容URI获取目录
 
-如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个内容URI，这个URI可能指向的是一个存储于[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)COntent Provider的目录和文件名。你可以通过检测URI的authority值来判断是否是[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI。一个[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI可能来自Android Beam文件传输也可能来自其它应用，但不管怎么样，你都能根据该内容URI获得一个目录和文件名。
+如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个内容URI，这个URI可能指向的是一个存储于[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) Content Provider的目录和文件名。你可以通过检测URI的authority值来判断是否是[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI。一个[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI可能来自Android Beam文件传输也可能来自其它应用，但不管怎么样，你都能根据该内容URI获得一个目录和文件名。
 
 你也可以接收一个[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的Intent，它包含有一个content provider的URI，而不是[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)，在这种情况下，这个内容URI不包含[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的authority，且这个URI一般不指向一个目录。
 

@@ -10,9 +10,11 @@
 
   如何响应音频硬件按钮的点击事件，在播放音频的时候请求audio focus，以及如何正确的响应audio focus的改变。
 
+
 * [拍照(Capturing Photos)](camera/index.html)
 
   如何利用以及存在的相机应用进行拍照，如何直接控制相机硬件实现你自己的相机应用。
+
 
 * [打印(Printing Content)](printing/index.html)
 

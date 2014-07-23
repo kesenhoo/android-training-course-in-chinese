@@ -46,7 +46,7 @@ public class Triangle {
 }
 ```
 
-默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（X, Y, Z）对应的是GLSurfaceView框架的中心。[1, 1, 0]对应的是框架的右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
+默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（分别对应X轴坐标, Y轴坐标, Z轴坐标）对应的是GLSurfaceView框架的中心。[1, 1, 0]对应的是框架的右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
 
 注意到这个形状的坐标是以逆时针顺序定义的。绘制的顺序非常关键，因为它定义了哪一面是形状的正面（你希望绘制的一面），以及背面（你可以使用OpenGL ES的cull face特性来让它不要绘制）。更多关于该方面的信息，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
 

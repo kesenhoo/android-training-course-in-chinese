@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/basics/intents/filters.html>
 
 # Intent过滤
 
@@ -63,7 +63,7 @@
 ## Handle the Intent in Your Activity [在你的Activity中Handle发送过来的Intent]
 为了决定采用哪个action，你可以读取Intent的内容。
 
-你可以执行 getIntent() 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，当是你最好是在onCreate() 或者 onStart() 里面去执行。
+你可以执行 getIntent() 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，但是你最好是在onCreate() 或者 onStart() 里面去执行。
 
 ```java
 @Override
@@ -86,7 +86,7 @@ protected void onCreate(Bundle savedInstanceState) {
 ```
 
 ## Return a Result(返回Result)
-如果你想返回一个result给启动你的那个activity，仅仅需要执行 setResult() ，通过指定一个result code与result intent。当你的的操作成功之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。
+如果你想返回一个result给启动你的那个activity，仅仅需要执行 setResult() ，通过指定一个result code与result intent。当你的操作成功之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。
 
 ```java
  // Create intent to deliver some kind of result data
