@@ -66,7 +66,7 @@ onSizeChanged()，当你的view第一次被赋予一个大小时，或者你的v
        float diameter = Math.min(ww, hh);
 ```
 
-如果你想更加精确的控制你的view的大小，需要重写[onMeasure()](http://developer.android.com/reference/android/view/View.html#onMeasure(int, int))方法。这个方法的参数是View.MeasureSpec，它会告诉你的view的夫控件的大小。那些值被包装成int类型，你可以使用静态方法来获取其中的信息。
+如果你想更加精确的控制你的view的大小，需要重写[onMeasure()](http://developer.android.com/reference/android/view/View.html#onMeasure(int, int))方法。这个方法的参数是View.MeasureSpec，它会告诉你的view的父控件的大小。那些值被包装成int类型，你可以使用静态方法来获取其中的信息。
 
 ```java
 @Override
