@@ -132,7 +132,6 @@
        * [添加语音能力](wearables/apps/voice.md)
        * [打包可穿戴应用](wearables/apps/packaging.md)
        * [通过蓝牙进行调试](wearables/apps/bt-debugging.md)
-   * [打包可穿戴应用](wearables/apps/packaging.md)
    * [发送并同步数据](wearables/data-layer/index.md)
        * [访问可穿戴数据层](wearables/data-layer/accessing.md)
        * [同步数据单元](wearables/data-layer/data-items.md)
