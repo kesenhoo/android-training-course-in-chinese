@@ -1,12 +1,12 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/custom-view/make-interactive.html>
 
 # 使得View可交互
 
 绘制UI仅仅是创建自定义View的一部分。你还需要使得你的View能够以模拟现实世界的方式来进行反馈。Objects应该总是与现实情景能够保持一致。例如，图片不应该突然消失又从另外一个地方出现，因为在现实世界里面不会发生那样的事情。正确的应该是，图片从一个地方移动到另外一个地方。
 
-用户应该可以感受到UI上的微小变化，并对这些变化反馈到现实世界中。例如，当用户做fling(迅速滑动)的动作，应该再滑动开始与结束的时候给用户一定的反馈。
+用户应该可以感受到UI上的微小变化，并对这些变化反馈到现实世界中。例如，当用户做fling(迅速滑动)的动作，应该在滑动开始与结束的时候给用户一定的反馈。
 
 这节课会演示如何使用Android framework的功能来为自定义的View添加那些现实世界中的行为。
 
@@ -36,7 +36,7 @@ class mListener extends GestureDetector.SimpleOnGestureListener {
 mDetector = new GestureDetector(PieChart.this.getContext(), new mListener());
 ```
 
-不管你是否使用GestureDetector.SimpleOnGestureListener, 你必须总是实现onDown()方法，并返回true。这一步是必须的，因为所有的gestures都是从onDown()开始的。如果你再onDown()里面返回false，系统会认为你想要忽略后续的gesture,那么GestureDetector.OnGestureListener的其他回调方法就不会被执行到了。一旦你实现了GestureDetector.OnGestureListener并且创建了GestureDetector的实例, 你可以使用你的GestureDetector来中止你在onTouchEvent里面收到的touch事件。
+不管你是否使用GestureDetector.SimpleOnGestureListener, 你必须总是实现onDown()方法，并返回true。这一步是必须的，因为所有的gestures都是从onDown()开始的。如果你在onDown()里面返回false，系统会认为你想要忽略后续的gesture,那么GestureDetector.OnGestureListener的其他回调方法就不会被执行到了。一旦你实现了GestureDetector.OnGestureListener并且创建了GestureDetector的实例, 你可以使用你的GestureDetector来中止你在onTouchEvent里面收到的touch事件。
 
 ```java
 @Override
@@ -52,7 +52,7 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 ```
 
-当你传递一个touch事件到onTouchEvent()时，若这个个事件没有被认为是gesture中的一部分，它会返回false。你可以执行自定义的gesture-decection代码。
+当你传递一个touch事件到onTouchEvent()时，若这个事件没有被认为是gesture中的一部分，它会返回false。你可以执行自定义的gesture-decection代码。
 
 ## Create Physically Plausible(貌似可信的) Motion
 Gestures是控制触摸设备的一种强有力的方式，但是除非你能够产出一个合理的触摸反馈，否则将是违反用户直觉的。一个很好的例子是fling手势，用户迅速的在屏幕上移动手指然后抬手离开屏幕。这个手势应该使得UI迅速的按照fling的方向进行滑动，然后慢慢停下来，就像是用户旋转一个飞轮一样。
