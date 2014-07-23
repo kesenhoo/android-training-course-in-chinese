@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/custom-view/custom-draw.html>
 
 # 实现自定义View的绘制
 
