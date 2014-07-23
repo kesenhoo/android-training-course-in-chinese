@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.4" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.2.4" data-basepath="../.." data-revision="1406128249609">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter done " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter done " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,20 +3476,20 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2051">
+                    <section class="normal" id="section-gitbook_155">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/zhaochunqi" target="_blank">zhaochunqi</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">处理按键动作</h1>
-<p>当预估给予可编辑当文本域焦点时，如一个EditText元素，而且用户拥有一个实体键盘连接，所有当输入由系统处理。然而如果你想接管或直接处理键盘输入键盘操作，通过实现接口KeyEvent.Callback的回调方法，如 onKeyDown()和onKeyMultiple().</p>
-<p>Activity和View类都实现了KeyEvent.Callback的接口，所以通常你只需要在这些重写回调方法来适当的扩展这些类。</p>
+<p>当预估给予可编辑当文本域焦点时，如一个<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>元素，而且用户拥有一个实体键盘连接，所有当输入由系统处理。然而如果你想接管或直接处理键盘输入键盘操作，通过实现接口<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html" target="_blank">KeyEvent.Callback</a>的回调方法，如 <a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>和<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyMultiple(int, int, android.view.KeyEvent)">onKeyMultiple()</a>.</p>
+<p>Activity和View类都实现了<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html" target="_blank">KeyEvent.Callback</a>的接口，所以通常你只需要在这些重写回调方法来适当的扩展这些类。</p>
 <blockquote>
 <p><strong>注意：</strong>当使用KeyEvent类和相关的API处理键盘事件时，你期望的应该是只从实体键盘中接收。你永远不应该指望从一个软键盘(如屏幕键盘)来接受点击事件。</p>
 </blockquote>
 <h2 id="-">处理单个按键点击事件</h2>
-<p>处理单个的按键点击，实现合适的 onKeyDown() 或 onKeyUp()。通常，你使用onKeyUp()来确保你只接收一个事件。如果用户点击并按住按钮不放，onKeyDown()会被调用多次。</p>
+<p>处理单个的按键点击，实现合适的 <a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a> 或 <a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyUp(int, android.view.KeyEvent)">onKeyUp()</a>。通常，你使用<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyUp(int, android.view.KeyEvent)">onKeyUp()</a>来确保你只接收一个事件。如果用户点击并按住按钮不放，<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>会被调用多次。</p>
 <p>举例，这是一个对一些按键控制游戏的实现：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onKeyUp</span>(<span class="hljs-keyword">int</span> keyCode, KeyEvent event) {
@@ -3512,8 +3512,8 @@
 }
 </code></pre>
 <h2 id="-">处理修饰键</h2>
-<p>为了对修饰键进行回应如一个组合Shift和Control修饰键，你可以查询KeyEvent传递到回调方法。一些方法提供一些信息关于修饰键如getModifiers() 和 getMetaState()。然而，最简单的解决方案时检查你关心的按键是否被按下了的方法，如 isShiftPressed() 和 isCtrlPressed()。</p>
-<p>例如，有一个onKeyDown() 的实现，当Shift键和一个其他当键按下当时候做一些额外的处理:</p>
+<p>为了对修饰键进行回应如一个组合Shift和Control修饰键，你可以查询<a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>传递到回调方法。一些方法提供一些信息关于修饰键如getModifiers() 和 getMetaState()。然而，最简单的解决方案时检查你关心的按键是否被按下了的方法，如 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#isShiftPressed()">isShiftPressed()</a> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#isCtrlPressed()">isCtrlPressed()</a>。</p>
+<p>例如，有一个<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a> 的实现，当Shift键和一个其他当键按下当时候做一些额外的处理:</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onKeyUp</span>(<span class="hljs-keyword">int</span> keyCode, KeyEvent event) {
     <span class="hljs-keyword">switch</span> (keyCode) {
@@ -3546,7 +3546,7 @@
         </div>
 
         
-        <a href="../../input/keyboard-input/navigation.html" class="navigation navigation-prev " aria-label="Previous page: 兼容硬件导航"><i class="fa fa-angle-left"></i></a>
+        <a href="../../input/keyboard-input/navigation.html" class="navigation navigation-prev " aria-label="Previous page: 兼容键盘导航"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../input/game-controller/index.html" class="navigation navigation-next " aria-label="Next page: 兼容游戏控制器"><i class="fa fa-angle-right"></i></a>

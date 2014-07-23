@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.3" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.3" data-basepath="../.." data-revision="1406128249609">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter done " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter done " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,38 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2078">
+                    <section class="normal" id="section-gitbook_182">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">按需加载视图</h1>
+<p>有时你的 Layout 会用到不怎么重用的复杂视图。不管它是列表项 细节，进度显示器，或是撤销时的提示信息，你可以仅在需要的时候载入它们，提高 UI 渲染速度。</p>
+<h2 id="-viewstub">定义 ViewStub</h2>
+<p><a href="http://developer.android.com/reference/android/view/ViewStub.html" target="_blank">ViewStub</a> 是一个轻量的视图，不需要大小信息，也不会在被加入的 Layout 中绘制任何东西。每个 ViewStub 只需要设置 <code>android:layout</code> 属性来指定需要被 inflate 的 Layout 类型。</p>
+<p>以下 ViewStub 是一个半透明的进度条覆盖层。功能上讲，它应该只在新的数据项被导入到应用程序时可见。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">ViewStub
+</span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/stub_import"</span>
+    <span class="hljs-attribute">android:inflatedId</span>=<span class="hljs-value">"@+id/panel_import"</span>
+    <span class="hljs-attribute">android:layout</span>=<span class="hljs-value">"@layout/progress_overlay"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"bottom"</span> /&gt;</span>
+</code></pre>
+<h2 id="-viewstub-layout">载入 ViewStub Layout</h2>
+<p>当你要载入用 ViewStub 声明的 Layout 时，要么用 <code>setVisibility(View.VISIBLE)</code> 设置它的可见性，要么调用其 <code>inflate()</code> 方法。</p>
+<pre><code class="lang-java">((ViewStub) findViewById(R.id.stub_import)).setVisibility(View.VISIBLE);
+<span class="hljs-comment">// or</span>
+View importPanel = ((ViewStub) findViewById(R.id.stub_import)).inflate();
+</code></pre>
+<blockquote>
+<p>注意：<code>inflate()</code> 方法会在渲染完成后返回被 inflate 的视图，所以你不需要再调用 <code>findViewById()</code> 去查找这个元素，如果你需要和这个 Layout 交互的话。</p>
+</blockquote>
+<p>一旦 ViewStub 可见或是被 inflate 了，ViewStub 元素就不存在了。取而代之的是被 inflate 的 Layout，其 id 是 ViewStub 上的 <code>android:inflatedId</code> 属性。（ViewStub 的 <code>android:id</code> 属性仅在 ViewStub 可见以前可用）</p>
+<blockquote>
+<p>注意：ViewStub 的一个缺陷是，它目前不支持使用 <code>&lt;merge/&gt;</code> 标签的 Layout 。</p>
+</blockquote>
 
                     
                     </section>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.4" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.4" data-basepath="../.." data-revision="1406128249609">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter done " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter done " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,61 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2081">
+                    <section class="normal" id="section-gitbook_185">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-listview-">使得ListView滑动顺畅</h1>
+<p>保持程序流畅的关键，是让主线程（UI 线程）不要进行大量运算。你要确保在其他线程执行磁盘读写、网络读写或是 SQL 操作等。为了测试你的应用的状态，你可以启用 <a href="http://developer.android.com/reference/android/os/StrictMode.html" target="_blank">StrictMode</a> (严格模式，译者注）。</p>
+<h2 id="-">使用后台线程</h2>
+<p>你应该把主线程中的耗时间的操作，提取到一个后台线程（也叫做“工人线程”，英文 worker thread）中，使得主线程只关注 UI 绘画。很多时候，使用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 是一个简单的在主线程以外进行操作的方法。系统使用一个全局队列来排列所有的 AsyncTask，并且一次运行其中的 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank">execute()</a>) 方法。这个行为是全局的，这意味着你不需要考虑自己定义线程池的事情。</p>
+<p>在以下的例子中，一个 AsyncTask 被用于在后台线程载入图片，并在载入完成后把图片放入 UI 。当图片正在载入时，它还回显示一个进度转盘。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Using an AsyncTask to load the slow images in a background thread</span>
+<span class="hljs-keyword">new</span> AsyncTask&lt;ViewHolder, Void, Bitmap&gt;() {
+    <span class="hljs-keyword">private</span> ViewHolder v;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> Bitmap <span class="hljs-title">doInBackground</span>(ViewHolder... params) {
+        v = params[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">return</span> mFakeImageLoader.getImage();
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPostExecute</span>(Bitmap result) {
+        <span class="hljs-keyword">super</span>.onPostExecute(result);
+        <span class="hljs-keyword">if</span> (v.position == position) {
+            <span class="hljs-comment">// If this item hasn't been recycled already, hide the</span>
+            <span class="hljs-comment">// progress and set and show the image</span>
+            v.progress.setVisibility(View.GONE);
+            v.icon.setVisibility(View.VISIBLE);
+            v.icon.setImageBitmap(result);
+        }
+    }
+}.execute(holder);
+</code></pre>
+<p>从 Android 3.0 (API level 11) 开始, AsyncTask 有个新特性，那就是它可以在多个 CPU 核上运行。你可以调用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#executeOnExecutor(java.util.concurrent.Executor,%20Params..." target="_blank"><code>executeOnExecutor()</code></a> 来自动根据核数，在多核上执行任务，而不是调用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank"><code>execute()</code></a>。</p>
+<h2 id="-view-holder-">在 View Holder 中填入视图对象</h2>
+<p>你的代码可能在 ListView 滑动时经常使用 <code>findViewById()</code>，这样会降低性能。即使是 Adapter 返回一个用于回收的 inflate 后的视图，你仍然需要查看这个元素并更新它。避免频繁调用 <code>findViewById()</code> 的方法之一，就是使用 View Holder（视图占位符）设计模式。</p>
+<p>一个 ViewHolder 对象存储了他的标签下的每个视图。这样你不用频繁查找这个元素。第一，你需要创建一个类来存储你会用到的视图。比如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> class ViewHolder {
+  TextView text;
+  TextView timestamp;
+  ImageView icon;
+  ProgressBar progress;
+  <span class="hljs-keyword">int</span> position;
+}
+</code></pre>
+<p>然后，在 Layout 的类中生成一个 ViewHolder 对象：</p>
+<pre><code class="lang-java">ViewHolder holder = <span class="hljs-keyword">new</span> ViewHolder();
+holder.icon = (ImageView) convertView.findViewById(R.id.listitem_image);
+holder.text = (TextView) convertView.findViewById(R.id.listitem_text);
+holder.timestamp = (TextView) convertView.findViewById(R.id.listitem_timestamp);
+holder.progress = (ProgressBar) convertView.findViewById(R.id.progress_spinner);
+convertView.setTag(holder);
+</code></pre>
+<p>这样你就可以轻松获取每个视图，而不是用 <code>findViewById()</code> 来不断查找视图，节省了宝贵的运算时间。</p>
 
                     
                     </section>
