@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.4" data-basepath="../.." data-revision="1406128249609">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.4" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3476,13 +3476,93 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_234">
+                    <section class="normal" id="section-gitbook_231">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 校对</p>
+<p>原文:<a href="http://developer.android.com/training/system-ui/immersive.html" target="_blank">http://developer.android.com/training/system-ui/immersive.html</a></p>
 </blockquote>
 <h1 id="-">全屏沉浸式应用</h1>
+<p><strong>这节课将教您</strong></p>
+<ol>
+<li>确定一种方式</li>
+<li>使用非粘性沉浸模式</li>
+<li>使用粘性沉浸模式</li>
+</ol>
+<p>Adnroid 4.4中引入为<code>setSystemUiVisibility()</code>引入了一个新标签<code>SYSTEM_UI_FLAG_IMMERSIVE</code>，它可以让应用进入真正的全屏模式。当这个标签与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>一起使用的时候，导航栏和状态栏就会隐藏，让你的应用可以接受屏幕上任何地方的触摸事件。</p>
+<p>当沉浸式全屏模式启用的时候，你的activity会继续接受各类的触摸事件。用户可以通过在边缘区域向内滑动来让系统栏重新显示。这个操作清空了<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>(和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>，如果有的话)两个标志，因此系统栏重新变得可见。如果设置了的话，这个操作同时也触发了<code>View.OnSystemUiVisibilityChangeListener</code>。然而， 如果你想让系统栏在一段时间后自动隐藏的话，你应该使用<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>标签。请注意，&#39;sticky&#39;版本的标签不会触发任何的监听器，因为在这个模式下展示的系统栏是处于暂时的状态。</p>
+<p>图1展示了各种不同的“沉浸式”状态</p>
+<p><img src="imm-states.png" alt="imm-states"></p>
+<p>在上图中：</p>
+<ol>
+<li><p><strong>非沉浸模式</strong> —— 展示了应用进入沉浸模式之前的状态。也展示了设置<code>IMMERSIVE</code>标签后用户滑动展示系统栏的状态。用户滑动后，<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>就会被清除，系统栏就会重新显示并保持可见。
+请注意，最好的方式就是让所有的UI控件与系统栏的显示隐藏保持同步，这样可以减少屏幕显示所处的状态，同时提供了更无缝平滑的用户体验。因此所有的UI控件跟随系统栏一同显示。一旦应用进入了沉浸模式，UI控件也跟随着系统栏一同隐藏。为了确保UI的可见性与系统栏保持一致，我们需要一个监听器<code>View.OnSystemUiVisibilityChangeListener</code>来监听系统栏的变化。这在下一节中将详细讲解。</p>
+</li>
+<li><p><strong>提示气泡</strong>——第一次进入沉浸模式时，系统将会显示一个提示气泡，提示用户如何再让系统栏显示出来。请注意，如果为了测试你想强制显示提示气泡，你可以先将应用设为沉浸模式，然后按下电源键进入锁屏模式，并在5秒中之后打开屏幕。</p>
+</li>
+<li><strong>沉浸模式</strong>—— 这张图展示了隐藏了系统栏和其他UI控件的状态。你可以设置<code>IMMERSIVE</code>和<code>IMMERSIVE_STICKY</code>来进入这个状态。</li>
+<li><strong>粘性标签</strong>——这就是你设置了<code>IMMERSIVE_STICKY</code>标签时的UI状态，用户会向内滑动以展示系统栏。半透明的系统栏会临时的进行显示，一段时间后自动隐藏。滑动的操作并不会清空任何标签，也不会触发系统UI可见性的监听器，因为暂时显示的导航栏并不被认为是一种可见的状态。</li>
+</ol>
+<p>注意，<code>immersive</code>类的标签只有在与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>,<code>SYSTEM_UI_FLAG_FULLSCREEN</code>中一个或两个一起使用的时候才会生效。你可以只使用其中的一个，但是一般情况下你需要同时隐藏状态栏和导航栏以达到沉浸的效果。</p>
+<h2 id="-">确定一种方式</h2>
+<p><code>SYSTEM_UI_FLAG_IMMERSIVE</code>与<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>都提供了沉浸式的体验，但是在上面的描述中，他们是不一样的，下面讲解一下什么时候该用哪一种标签。</p>
+<ul>
+<li>如果你在写一款图书浏览器、新闻杂志阅读器，请将<code>IMMERSIVE</code>标签与<code>SYSTEM_UI_FLAG_FULLSCREEN</code>,<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>一起使用。因为用户可能会经常访问Action Bar和一些UI控件，又不希望在翻页的时候有其他的东西进行干扰。<code>IMMERSIVE</code>在该种情况下就是个很好的选择。</li>
+<li>如果你在打造一款真正的沉浸式应用，而且你希望屏幕边缘的区域也可以与用户进行交互，并且他们也不会经常访问系统UI。这个时候就要将<code>IMMERSIVE_STICKY</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code> <code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>两个标签一起使用。比如做一款游戏或者绘图应用就很合适。</li>
+<li>如果你在打造一款视频播放器，并且需要少量的用户交互操作。你可能就需要之前版本的一些方法了（从Android 4.0开始）。对于这种应用，简单的使用<code>SYSTEM_UI_FLAG_FULLSCREEN</code>与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>就足够了，不需要使用<code>immersive</code>标签。</li>
+</ul>
+<h2 id="-">使用非粘性沉浸模式</h2>
+<p>当你使用<code>SYSTEM_UI_FLAG_IMMERSIVE</code>标签的时候，它是基于其他设置过的标签(<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>)来隐藏系统栏的。当用户向内滑动，系统栏重新显示并保持可见。</p>
+<p>用其他的UI标签(如<code>SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_LAYOUT_STABLE</code>)来防止系统栏隐藏时内容区域大小发生变化是一种很不错的方法。你也需要确保Action Bar和其他系统UI控件同时进行隐藏。下面这段代码展示了如何在不改变内容区域大小的情况下，隐藏与显示状态栏和导航栏。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// This snippet hides the system bars.</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">hideSystemUI</span>() {
+    <span class="hljs-comment">// Set the IMMERSIVE flag.</span>
+    <span class="hljs-comment">// Set the content to appear under the system bars so that the content</span>
+    <span class="hljs-comment">// doesn't resize when the system bars hide and show.</span>
+    mDecorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION <span class="hljs-comment">// hide nav bar</span>
+            | View.SYSTEM_UI_FLAG_FULLSCREEN <span class="hljs-comment">// hide status bar</span>
+            | View.SYSTEM_UI_FLAG_IMMERSIVE);
+}
+
+<span class="hljs-comment">// This snippet shows the system bars. It does this by removing all the flags</span>
+<span class="hljs-comment">// except for the ones that make the content appear under the system bars.</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">showSystemUI</span>() {
+    mDecorView.setSystemUiVisibility(
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+}
+</code></pre>
+<p>你可能同时也希望在如下的几种情况下使用<code>IMMERSIVE</code>标签来提供更好的用户体验：</p>
+<ul>
+<li>注册一个监听器来监听系统UI的变化。</li>
+<li>实现<code>onWindowFocusChanged()</code>函数。如果窗口获取了焦点，你可能需要对系统栏进行隐藏。如果窗口失去了焦点，比如说弹出了一个对话框或菜单，你可能需要取消那些将要在<code>Handler.postDelayed()</code>或其他地方的隐藏操作。</li>
+<li>实现一个<code>GestureDetector</code>，它监听了<code>onSingleTapUp(MotionEvent)</code>事件。可以使用户点击内容区域来切换系统栏的显示状态。单纯的点击监听可能不是最好的解决方案，因为当用户在屏幕上拖动手指的时候（假设点击的内容占据了整个屏幕），这个事件也会被触发。</li>
+</ul>
+<p>更多关于此话题的讨论，可以观看这个视频 <a href="http://www.youtube.com/embed/cBi8fjv90E4" target="_blank">DevBytes: Android 4.4 Immersive Mode</a></p>
+<h2 id="-">使用粘性沉浸模式</h2>
+<p>当使用了<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>标签的时候，向内滑动的操作会让系统栏临时显示，并处于半透明的状态。此时没有标签会被清除，系统UI可见性监听器也不会被触发。如果用户没有进行操作，系统栏会在一段时间内自动隐藏。</p>
+<p>图2展示了当使用<code>IMMERSIVE_STICKY</code>标签时，半透明的系统栏展示与又隐藏的状态。</p>
+<p><img src="imm-sticky.png" alt="imm-sticky"></p>
+<p>下面是一段实现代码。一旦窗口获取了焦点，只要简单的设置<code>IMMERSIVE_STICKY</code>与上面讨论过的其他标签即可。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onWindowFocusChanged</span>(<span class="hljs-keyword">boolean</span> hasFocus) {
+        <span class="hljs-keyword">super</span>.onWindowFocusChanged(hasFocus);
+    <span class="hljs-keyword">if</span> (hasFocus) {
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
+}
+</code></pre>
+<p>注意，如果你想实现<code>IMMERSIVE_STICKY</code>的自动隐藏效果，同时也需要展示你自己的UI控件。你只需要使用<code>IMMERSIVE</code>与<code>Handler.postDelayed()</code>或其他类似的东西，让它几秒后重新进入沉浸模式即可。</p>
 
                     
                     </section>

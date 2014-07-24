@@ -206,7 +206,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - @[K0ST](https://github.com/K0ST)
       * [开发辅助程序](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-app.html)
       * [开发辅助服务](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-service.html)
-   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST) - 1%
+   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST)
       * [淡化系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/dim.html)
       * [隐藏系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-ui.html)
       * [隐藏导航Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-nav.html)

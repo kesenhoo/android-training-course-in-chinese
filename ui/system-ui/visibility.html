@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.5" data-basepath="../.." data-revision="1406128249609">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.5" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3476,13 +3476,37 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_236">
+                    <section class="normal" id="section-gitbook_233">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 校对</p>
+<p>原文:<a href="http://developer.android.com/training/system-ui/visibility.html" target="_blank">http://developer.android.com/training/system-ui/visibility.html</a></p>
 </blockquote>
 <h1 id="-ui-">响应UI可见性的变化</h1>
+<p>本节课将教你如果注册监听器来监听系统UI可见性的变化。这个方法在将系统栏与你自己的UI控件进行同步操作时很有用。</p>
+<h2 id="-">注册监听器</h2>
+<p>为了获取系统UI可见性变化的通知，我们需要对View注册<code>View.OnSystemUiVisibilityChangeListener</code>监听器。通常上来说，这个View是用来控制导航的可见性的。</p>
+<p>例如你可以添加如下代码在onCreate中</p>
+<pre><code class="lang-java">View decorView = getWindow().getDecorView();
+decorView.setOnSystemUiVisibilityChangeListener
+        (<span class="hljs-keyword">new</span> View.OnSystemUiVisibilityChangeListener() {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSystemUiVisibilityChange</span>(<span class="hljs-keyword">int</span> visibility) {
+        <span class="hljs-comment">// Note that system bars will only be "visible" if none of the</span>
+        <span class="hljs-comment">// LOW_PROFILE, HIDE_NAVIGATION, or FULLSCREEN flags are set.</span>
+        <span class="hljs-keyword">if</span> ((visibility &amp; View.SYSTEM_UI_FLAG_FULLSCREEN) == <span class="hljs-number">0</span>) {
+            <span class="hljs-comment">// TODO: The system bars are visible. Make any desired</span>
+            <span class="hljs-comment">// adjustments to your UI, such as showing the action bar or</span>
+            <span class="hljs-comment">// other navigational controls.</span>
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// TODO: The system bars are NOT visible. Make any desired</span>
+            <span class="hljs-comment">// adjustments to your UI, such as hiding the action bar or</span>
+            <span class="hljs-comment">// other navigational controls.</span>
+        }
+    }
+});
+</code></pre>
+<p>保持系统栏和UI同步是一种很好的方式，比如当状态栏显示或隐藏的时候进行Action Bar的显示和隐藏。</p>
 
                     
                     </section>
