@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)(2014-06-24)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/volley/request-queue.html>
 
 # 建立请求队列(Setting Up a RequestQueue)
 

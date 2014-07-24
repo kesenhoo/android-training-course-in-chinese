@@ -10,10 +10,11 @@
 
 ## Lessons
 
-* [使用备份API](backupapi.html)
+* [**使用备份API**](backupapi.html)
 
   学习如何集成Backup API到你的应用中。这样使得例如Preference，笔记与最高分记录等数据都能够无缝在用户的多台设备上进行同步更新。
 
-* [使用Google Cloud Messaging](gcm.html)
+
+* [**使用Google Cloud Messaging**](gcm.html)
 
   学习如何高效的发送多路广播，如何正确的响应接收到的Google Cloud Messaging (GCM) 消息，以及如何使用GCM消息来与服务器进行同步。

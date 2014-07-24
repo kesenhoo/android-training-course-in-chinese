@@ -12,17 +12,27 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
 
 > **Note：**注意不要把OpenGL ES 1.x版本的接口和OpenGL ES 2.0的接口混合调用。这两种版本的接口不是通用的。如果尝试混用它们，其输出结果可能会让你感到无奈和沮丧。
 
-##样例代码
+## Sample Code
 
 [OpenGLES.zip](http://developer.android.com/shareables/training/OpenGLES.zip)
 
-##课程
+## Lessons
 
-* [建立OpenGL ES的环境](environment.html)
-* [定义Shapes](shapes.html)
-* [绘制Shapes](draw.html)
-* [运用投影与相机视图](projection.html)
-* [添加移动](motion.html)
-* [响应触摸事件](touch.html)
+* [**建立OpenGL ES的环境**](environment.html)
+
+
+* [**定义Shapes**](shapes.html)
+
+
+* [**绘制Shapes**](draw.html)
+
+
+* [**运用投影与相机视图**](projection.html)
+
+
+* [**添加移动**](motion.html)
+
+
+* [**响应触摸事件**](touch.html)
 
 

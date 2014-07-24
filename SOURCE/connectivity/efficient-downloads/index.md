@@ -14,23 +14,27 @@
 Android 2.0 (API Level 5) or higher
 
 **You should also read**
-[Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)
+[Optimizing Battery Life](performance/monitoring-device-state/index.html)
 
 ## Lessons
-* **Optimizing Downloads for Efficient Network Access[使用有效的网络连接方式来最优化下载]**
 
-This lesson introduces the wireless radio state machine, explains how your app’s connectivity model interacts with it, and how you can minimize your data connection and use prefetching and bundling to minimize the battery drain associated with your data transfers.
+* [**Optimizing Downloads for Efficient Network Access - 使用有效的网络连接方式来最优化下载**](efficient-network-access.html)
+
+  This lesson introduces the wireless radio state machine, explains how your app’s connectivity model interacts with it, and how you can minimize your data connection and use prefetching and bundling to minimize the battery drain associated with your data transfers.
 
 <!-- more -->
 
-* **Minimizing the Effect of Regular Updates[优化常规更新操作的效果]**
+
+* [**Minimizing the Effect of Regular Updates - 优化常规更新操作的效果**](regular-update.html)
 
   This lesson will examine how your refresh frequency can be varied to best mitigate the effect of background updates on the underlying wireless radio state machine.
 
-* **Redundant Downloads are Redundant[重复的下载是冗余的]**
+
+* [**Redundant Downloads are Redundant - 重复的下载是冗余的**](redundant-redundant.html)
 
   The most fundamental way to reduce your downloads is to download only what you need. This lesson introduces some best practices to eliminate redundant downloads.
 
-* **Modifying your Download Patterns Based on the Connectivity Type[根据网络连接类型来更改下载模式]**
+
+* [**Modifying your Download Patterns Based on the Connectivity Type - 根据网络连接类型来更改下载模式**](connectivity-patterns.html)
 
   When it comes to impact on battery life, not all connection types are created equal. Not only does the Wi-Fi radio use significantly less battery than its wireless radio counterparts, but the radios used in different wireless radio technologies have different battery implications.

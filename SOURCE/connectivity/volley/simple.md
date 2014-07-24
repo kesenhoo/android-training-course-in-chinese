@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)(2014-06-24)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/volley/simple.html>
 
 # 发送简单的网络请求(Sending a Simple Request)
 

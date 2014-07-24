@@ -9,16 +9,16 @@ Android程序中很炫的一个功能是程序之间可以互相通信。为什�
 
 ## Lessons
 
-* [给其他App发送简单的数据 - Sending Simple Data to Other Apps](send.html)
+* [**给其他App发送简单的数据 - Sending Simple Data to Other Apps**](send.html)
 
   学习如何使用intent发送text与binary数据给其他app。
 
 
-* [接收从其他App返回的数据 - Receiving Simple Data from Other Apps](receive.html)
+* [**接收从其他App返回的数据 - Receiving Simple Data from Other Apps**](receive.html)
 
   学习如何通过Intent在你的app中接收来自其他app的text与binary数据。
 
 
-* [给ActionBar增加分享功能 - Adding an Easy Share Action](shareaction.html)
+* [**给ActionBar增加分享功能 - Adding an Easy Share Action**](shareaction.html)
 
   学习如何在你的Acitonbar上添加一个分享功能。

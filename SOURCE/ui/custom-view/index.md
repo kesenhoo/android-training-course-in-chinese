@@ -26,18 +26,22 @@ Download the sample
 <!-- more -->
 
 ##Lesson
-**(1)创建一个View类**
 
-Create a class that acts like a built-in view, with custom attributes and support from the ADT layout editor.
+* [**创建一个View类**]()
 
-**(2)自定义Drawing**
+  Create a class that acts like a built-in view, with custom attributes and support from the ADT layout editor.
 
-Make your view visually distinctive using the Android graphics system.
 
-**(3)使得View是可交互的**
+* [**自定义Drawing**]()
 
-Users expect a view to react smoothly and naturally to input gestures. This lesson discusses how to use gesture detection, physics, and animation to give your user interface a professional feel.
+  Make your view visually distinctive using the Android graphics system.
 
-**(4)优化View**
 
-No matter how beautiful your UI is, users won't love it if it doesn't run at a consistently high frame rate. Learn how to avoid common performance problems, and how to use hardware acceleration to make your custom drawings run faster.
+* [**使得View是可交互的**]()
+
+  Users expect a view to react smoothly and naturally to input gestures. This lesson discusses how to use gesture detection, physics, and animation to give your user interface a professional feel.
+
+
+* [**优化View**]()
+
+  No matter how beautiful your UI is, users won't love it if it doesn't run at a consistently high frame rate. Learn how to avoid common performance problems, and how to use hardware acceleration to make your custom drawings run faster.

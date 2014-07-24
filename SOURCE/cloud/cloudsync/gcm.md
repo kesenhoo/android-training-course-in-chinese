@@ -1,6 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/cloudsync/gcm.html>
 
 # 使用Google Cloud Messaging
 

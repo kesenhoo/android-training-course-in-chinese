@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)(2014-06-24)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/volley/request.html>
 
 # 创建标准的网络请求(Making a Standard Request)
 

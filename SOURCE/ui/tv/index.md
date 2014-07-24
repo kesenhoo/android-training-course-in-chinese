@@ -13,24 +13,24 @@
 Android 2.0 (API level 5) or higher
 
 
-##课程
+## Lessons
 
-[为TV优化布局](optimize-layouts-tv.html)
+* [**为TV优化布局**](optimize-layouts-tv.html)
 
-本节课演示如何对TV屏幕上的布局进行优化。在TV屏幕上，应用的布局具有以下特性：
+  本节课演示如何对TV屏幕上的布局进行优化。在TV屏幕上，应用的布局具有以下特性：
+  * 固定不变的“横屏（landscape）”模式
+  * 高分辨率显示
+  * 远距离的交互环境（10-foot UI）
 
-* 固定不变的“横屏（landscape）”模式
-* 高分辨率显示
-* 远距离的交互环境（10-foot UI）
 
-[为TV优化导航](optimize-nav-tv.html)
+* [**为TV优化导航**](optimize-nav-tv.html)
 
-本节课演示如何针对TV设计导航，包括：
+  本节课演示如何针对TV设计导航，包括：
+  * 手持遥控器导航
+  * 提供导航反馈
+  * 在屏幕上提供便捷的控制选项
 
-* 手持遥控器导航
-* 提供导航反馈
-* 在屏幕上提供便捷的控制选项
 
-[处理TV不支持的功能](unsurpport-features-tv.html)
+* [**处理TV不支持的功能**](unsurpport-features-tv.html)
 
-通常情况下，有许多硬件功能在TV上都不可用。本节课演示如何替代这些缺失的功能，或者在运行时检测并关闭这些缺失的功能。
+  通常情况下，有许多硬件功能在TV上都不可用。本节课演示如何替代这些缺失的功能，或者在运行时检测并关闭这些缺失的功能。

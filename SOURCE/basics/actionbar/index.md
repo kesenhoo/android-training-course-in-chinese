@@ -19,13 +19,16 @@ Action bar 是最重要的设计元素之一，你可以在 activity 中实现�
 
   学习如何为你的 activity 添加一个基本的 action bar，不仅支持 Android 3.0 和更高，同时也支持不低于 Android 2.1（通过使用 Andriod Support 库）。
 
+
 * [**添加Action按钮**](adding-buttons.html)
 
   学习如何在 action bar 中添加和响应用户操作。
 
+
 * [**ActionBar的风格化**](styling.html)
 
   学习如何自定义你的 action bar 的外观
+
 
 * [**ActionBar覆盖叠加**](overlaying.html)
 

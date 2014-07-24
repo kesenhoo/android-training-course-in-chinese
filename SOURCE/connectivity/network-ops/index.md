@@ -8,10 +8,10 @@
 
 [NetworkUsage.zip](http://developer.android.com/shareables/training/NetworkUsage.zip)
 
-通过学习这章节的课程，你已经会学习一些基础知识，如何在最小化网络阻塞的情况下，创建一个高效的app，用来下载数据与解析数据。
+通过学习这章节的课程，你会学习一些基础知识，如何在最小化网络阻塞的情况下，创建一个高效的app，用来下载数据与解析数据。
 
 你还可以参考下面文章进阶学习:
 
-* [Optimizing Battery Life](/monitoring-device-state/index.html)
+* [Optimizing Battery Life](performance/monitoring-device-state/index.html)
 * [Transferring Data Without Draining the Battery](/efficient-downloads/index.html)
 * [Web Apps Overview](http://developer.android.com/guide/webapps/index.html)
