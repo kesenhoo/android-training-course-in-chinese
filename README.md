@@ -2,8 +2,7 @@
 
 * Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入，更欢迎有意向参与到这个课程汉化项目中的同学。请看到的同学点击Star支持，感谢！
 
-## Google Android官方培训课程
-<http://developer.android.com/training/index.html>
+## [Google Android官方培训课程](http://developer.android.com/training/index.html)
 
 Google Android团队在2012年起开设了Training课程，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
 
@@ -13,7 +12,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 ## 在线阅读
 
 * 点击链接<http://hukai.me/android-training-course-in-chinese/index.html>
-* 目前进度：90%
+* 目前进度：95%
 
 <a name="courses"></a>
 ## 课程结构
