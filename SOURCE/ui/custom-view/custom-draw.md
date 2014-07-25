@@ -51,6 +51,8 @@ private void init() {
 
 onSizeChanged()，当你的view第一次被赋予一个大小时，或者你的view大小被更改时会被执行。在onSizeChanged方法里面计算位置，间距等其他与你的view大小值。
 
+当你的view被设置大小时，layout manager(布局管理器)假定这个大小包括所有的view的内边距(padding)。当你计算你的view大小时，你必须处理内边距的值。这段`PieChart.onSizeChanged()`中的代码演示该怎么做:
+
 ```java
        // Account for padding
        float xpad = (float)(getPaddingLeft() + getPaddingRight());
@@ -67,6 +69,8 @@ onSizeChanged()，当你的view第一次被赋予一个大小时，或者你的v
 ```
 
 如果你想更加精确的控制你的view的大小，需要重写[onMeasure()](http://developer.android.com/reference/android/view/View.html#onMeasure(int, int))方法。这个方法的参数是View.MeasureSpec，它会告诉你的view的父控件的大小。那些值被包装成int类型，你可以使用静态方法来获取其中的信息。
+
+这里是一个实现[onMeasure()](http://developer.android.com/reference/android/view/View.html#onMeasure)的例子。在这个例子中`PieChart`试着使它的区域足够大，使pie可以像它的label一样大:
 
 ```java
 @Override
