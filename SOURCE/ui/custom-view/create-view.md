@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/custom-views/create-view.html>
 
 # 创建自定义的View类
 
@@ -64,7 +64,7 @@ class PieChart extends View {
 </LinearLayout>
 ```
 
-为了避免输入长串的namespace名字，示例上面使用了:custom作为别名，你也可以选择其他的名称所为你的namespace。
+为了避免输入长串的namespace名字，示例上面使用了`xmlns`指令，这个指令可以指派`custom`作为`http://schemas.android.com/apk/res/com.example.customviews`namespace的别名。你也可以选择其他的别名作为你的namespace。
 
 请注意，如果你的view是一个inner class，你必须指定这个view的outer class。同样的，如果PieChart有一个inner class叫做PieView。为了使用这个类中自设的属性，你应该使用com.example.customviews.charting.PieChart$PieView.
 
@@ -76,7 +76,7 @@ class PieChart extends View {
 
 取而代之的是，通过obtainStyledAttributes()来获取属性值。这个方法会传递一个[TypedArray](http://developer.android.com/reference/android/content/res/TypedArray.html)对象，它是间接referenced并且styled的。
 
-请看下面的示例：
+Android资源编译器帮你做了许多工作来使调用[obtainStyledAttributes()](http://developer.android.com/reference/android/content/res/Resources.Theme.html#obtainStyledAttributes(android.util.AttributeSet, int[], int, int))更简单。对res目录里的每一个`<declare-styleable>`资源，自动生成的R.java文件定义了存放属性ID的数组和常量，常量用来索引数组中每个属性。你可以使用这些预先定义的常量来从[TypedArray](http://developer.android.com/reference/android/content/res/TypedArray.html)中读取属性。这里就是`PieChart`类如何读取它的属性:
 
 ```java
 public PieChart(Context context, AttributeSet attrs) {
@@ -114,7 +114,7 @@ public void setShowText(boolean showText) {
 
 请注意，在setShowText方法里面有调用[invalidate()](http://developer.android.com/reference/android/view/View.html#invalidate()) and [requestLayout()](http://developer.android.com/reference/android/view/View.html#requestLayout()). 当view的某些内容发生变化的时候，需要调用invalidate来通知系统对这个view进行redraw，当某些元素变化会引起组件大小变化时，需要调用requestLayout方法。
 
-自定义的view也需要能够支持响应事件的监听器。例如，PieChart暴露了一个自设的事件OnCurrentItemChanged来通知监听器，用户已经切换了焦点到一个新的组件上。
+自定义的view也需要能够支持响应事件的监听器。例如，`PieChart`暴露了一个自设的事件`OnCurrentItemChanged`来通知监听器，用户已经切换了焦点到一个新的组件上。
 
 我们很容易忘记了暴露属性与事件，特别是当你是这个view的唯一用户时。请花费一些时间来仔细定义你的view的交互。一个好的规则是总是暴露任何属性与事件。
 

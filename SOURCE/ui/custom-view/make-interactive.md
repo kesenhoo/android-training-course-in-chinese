@@ -24,7 +24,7 @@ public boolean onTouchEvent(MotionEvent event) {
 
 Touch事件本身并不是特别有用。如今的touch UI定义了touch事件之间的相互作用，叫做gentures。例如tapping,pulling,flinging与zooming。为了把那些touch的源事件转换成gestures, Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)。
 
-下面演示了如何构造一个GestureDetector。
+通过传入[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的一个实例构建一个GestureDetector。如果你只是想要处理几种gestures(手势操作)你可以继承[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)，而不用实现[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)接口。例如，下面的代码创建一个继承[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的类，并重写[onDown(MotionEvent)](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html#onDown(android.view.MotionEvent))。
 
 ```java
 class mListener extends GestureDetector.SimpleOnGestureListener {
@@ -67,7 +67,7 @@ public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float ve
 }
 ```
 
-**Note:** 尽管速率是通过GestureDetector来计算的，许多开发者感觉使用这个值使得fling动画太快。通常把x与y设置为4到8倍的关系。
+> **Note:** 尽管速率是通过GestureDetector来计算的，许多开发者感觉使用这个值使得fling动画太快。通常把x与y设置为4到8倍的关系。
 
 ```java
 if (!mScroller.isFinished()) {
@@ -83,7 +83,7 @@ if (!mScroller.isFinished()) {
 
 第二个方法使用起来会稍微复杂一点，但是它更有效率并且避免了不必要的重画的view进行重绘。缺点是ValueAnimator是从API Level 11才有的。因此他不能运用到3.0的系统之前的版本上。
 
-** Note: ** ValueAnimator虽然是API 11才有的，但是你还是可以在最低版本低于3.0的系统上使用它，做法是在运行时判断当前的API Level，如果低于11则跳过。
+> ** Note: ** ValueAnimator虽然是API 11才有的，但是你还是可以在最低版本低于3.0的系统上使用它，做法是在运行时判断当前的API Level，如果低于11则跳过。
 
 ```java
  mScroller = new Scroller(getContext(), null, true);
