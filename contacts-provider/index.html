@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9" data-basepath=".." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9" data-basepath=".." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter  " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../ux/implement-nav/index.html" title="实现高效的导航" class="chapter  " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,41 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2005">
+                    <section class="normal" id="section-gitbook_106">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-">用户信息</h1>
+<p>The Contacts Provider is the central repository of the user&#39;s contacts information, including data from contacts apps and social networking apps. In your apps, you can access Contacts Provider information directly by calling ContentResolver methods or by sending intents to a contacts app.</p>
+<p>This class focuses on retrieving lists of contacts, displaying the details for a particular contact, and modifying contacts using intents. The basic techniques described here can be extended to perform more complex tasks. In addition, this class helps you understand the overall structure and operation of the Contacts Provider.</p>
+<h2 id="lessons">Lessons</h2>
+<ul>
+<li><p><a href="retrieve-names.html"><strong>Retrieving a List of Contacts</strong></a></p>
+<p>Learn how to retrieve a list of contacts for which the data matches all or part of a search string, using the following techniques:</p>
+<ul>
+<li>Match by contact name</li>
+<li>Match any type of contact data</li>
+<li>Match a specific type of contact data, such as a phone number</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><a href="retrieve-detail.html"><strong>Retrieving Details for a Contact</strong></a></p>
+<p>Learn how to retrieve the details for a single contact. A contact&#39;s details are data such as phone numbers and email addresses. You can retrieve all details, or you can retrieve details of a specific type, such as all email addresses.</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="modify-data.html"><strong>Modifying Contacts Using Intents</strong></a></p>
+<p>Learn how to modify a contact by sending an intent to the People app.</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="display-badge.html"><strong>Displaying the Quick Contact Badge</strong></a></p>
+<p>Learn how to display the QuickContactBadge widget. When the user clicks the contact badge widget, a dialog opens that displays the contact&#39;s details and action buttons for apps that can handle the details. For example, if the contact has an email address, the dialog displays an action button for the default email app.</p>
+</li>
+</ul>
 
                     
                     </section>

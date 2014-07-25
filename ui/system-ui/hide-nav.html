@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.3" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.3" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,43 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2128">
+                    <section class="normal" id="section-gitbook_232">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 校对</p>
+<p>原文:<a href="http://developer.android.com/training/system-ui/navigation.html" target="_blank">http://developer.android.com/training/system-ui/navigation.html</a></p>
 </blockquote>
 <h1 id="-bar">隐藏导航Bar</h1>
+<p><strong>这节课将教您</strong></p>
+<ol>
+<li>在4.0及以上版本中隐藏导航栏</li>
+<li>让内容显示在导航栏之后</li>
+</ol>
+<p>本节课程将教您如何对导航栏进行隐藏，这个特性是Android 4.0版本中引入的。</p>
+<p>即便本课程关注如何隐藏导航栏，但是在实际的开发中，你最好让状态栏与导航栏同时消失。在保证导航栏易于再次访问的情况下，隐藏导航栏与状态栏使内容区域占据了整个显示空间，因此提供了一个更加沉浸式的用户体验。</p>
+<p><img src="navigation-bar.png" alt="navigation-bar"></p>
+<h2 id="-4-0-">在4.0及以上版本中隐藏导航栏</h2>
+<p>你可以在Android 4.0以及以上版本，使用<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>标志来隐藏导航栏。代码如下：</p>
+<pre><code class="lang-java">View decorView = getWindow().getDecorView();
+<span class="hljs-comment">// Hide both the navigation bar and the status bar.</span>
+<span class="hljs-comment">// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as</span>
+<span class="hljs-comment">// a general rule, you should design your app to hide the status bar whenever you</span>
+<span class="hljs-comment">// hide the navigation bar.</span>
+<span class="hljs-keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+              | View.SYSTEM_UI_FLAG_FULLSCREEN;
+decorView.setSystemUiVisibility(uiOptions);
+</code></pre>
+<p>注意以下几点</p>
+<ul>
+<li>使用这个方法时，触摸屏幕的任何一个区域都是使导航栏（与状态栏）重新显示。用户的交互使这个标志<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>被清除。</li>
+<li>一旦这个标志被清除了，如果你想再次隐藏导航栏，你就需要重新对这个标志进行设定。在下一节<a href="visibility.html">响应UI可见性的变化</a>中，将详细讲解应用监听系统UI变化来做出相应的调整操作。</li>
+<li>在不同的地方设置UI标签是有所区别的。如果你在activity的onCreate()方法中隐藏系统栏，当用户按下home键系统栏就会重新显示。当用户再重新打开activity的时候，onCreate()不会被调用，所以系统栏还会保持可见。如果你想让在不同activity之间切换时，系统UI保持不变，你需要在onReasume()与onWindowFocusChaned()里设定UI标签。</li>
+<li>setSystemUiVisibility()仅仅在被调用的View显示的时候才会生效。</li>
+<li>当从View导航到别的地方时，用setSystemUiVisibility()设置的标签会被清除。</li>
+</ul>
+<h2 id="-">让内容显示在导航栏之后</h2>
+<p>在Android 4.1与更高的版本中，你可以让应用的内容显示在导航栏的后面，这样当导航栏展示或隐藏的时候内容区域就不会发生布局大小的变化。可以使用<code>SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION</code>标志来做到这个效果。同时，你也有可能需要<code>SYSTEM_UI_FLAG_LAYOUT_STABLE</code>这个标志来帮助你的应用维持一个稳定的布局。</p>
+<p>当你使用这种方法的时候，就需要你来确保应用中特定区域不会被系统栏掩盖。更详细的信息可以浏览<a href="hide-ui.html">隐藏状态栏</a>一节。</p>
 
                     
                     </section>

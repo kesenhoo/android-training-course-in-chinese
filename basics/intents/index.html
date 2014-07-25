@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter  " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter  " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,14 +3476,13 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1960">
+                    <section class="normal" id="section-gitbook_61">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
 <p>原文:<a href="http://developer.android.com/training/basics/intents/index.html" target="_blank">http://developer.android.com/training/basics/intents/index.html</a></p>
 </blockquote>
 <h1 id="-">与其他应用的交互</h1>
-<h2 id="outlines">Outlines</h2>
 <ul>
 <li>一个Android app通常都会有好几个activities. 每一个activity的界面都可能允许用户执行一些特殊任务（例如查看地图或者是开始拍照等）。为了让用户从一个activity跳到另外一个activity，你的app必须使用Intent来定义你的app想做的事情。当你使用startActivity()的方法，而且参数是intent时，系统会使用这个 Intent 来定义并启动合适的app组件。使用intents还可以让你的app来启动另外一个app里面的activity。</li>
 <li>一个 Intent 可以显式的指明需要启动的模块，也可以隐式的指明自己可以处理哪种类型的动作。</li>
@@ -3491,17 +3490,17 @@
 </ul>
 <h2 id="lessons">Lessons</h2>
 <ul>
-<li><p><a href="sending.html">Sending the User to Another App:Intent的发送</a></p>
+<li><p><a href="sending.html"><strong>Sending the User to Another App:Intent的发送</strong></a></p>
 <p>演示如何创建隐式的Intent来唤起能够接收这个动作的App。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="result.html">Getting a Result from an Activity:接收Activity返回的结果</a></p>
+<li><p><a href="result.html"><strong>Getting a Result from an Activity:接收Activity返回的结果</strong></a></p>
 <p>演示如何启动另外一个Activity并接收返回值。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="filters.html">Allowing Other Apps to Start Your Activity:Intent过滤</a></p>
+<li><p><a href="filters.html"><strong>Allowing Other Apps to Start Your Activity:Intent过滤</strong></a></p>
 <p>演示如何通过定义隐式的Intent的过滤器来使得能够被其他应用唤起。</p>
 </li>
 </ul>

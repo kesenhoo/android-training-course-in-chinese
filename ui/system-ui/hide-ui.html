@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.2" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.2" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,87 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2129">
+                    <section class="normal" id="section-gitbook_230">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 校对</p>
+<p>原文:<a href="http://developer.android.com/training/system-ui/status.html" target="_blank">http://developer.android.com/training/system-ui/status.html</a></p>
 </blockquote>
 <h1 id="-bar">隐藏系统Bar</h1>
+<p><strong>这节课将教您</strong></p>
+<ol>
+<li>在4.0及以下版本中隐藏状态栏</li>
+<li>在4.1及以上版本中隐藏状态栏</li>
+<li>在4.4及以上版本中隐藏状态栏</li>
+<li>让内容显示在状态栏之后</li>
+<li>同步状态栏与Action Bar的变化</li>
+</ol>
+<p><strong>同时您应该阅读</strong></p>
+<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">Action Bar</a> Api指南</p>
+<p><a href="http://developer.android.com/design/index.html" target="_blank">Android 设计指南</a></p>
+<p>本课程将教您如何在不同版本的Android下隐藏状态栏。隐藏状态栏（或者是导航栏）可以让内容得到更多的展示空间，从而提供一个更加沉浸式的用户体验。</p>
+<p>图1展示了显示状态栏的界面</p>
+<p><img src="status_bar_show.png" alt="status_bar_show"></p>
+<p>图2展示了隐藏状态栏的界面。请注意，Action Bar这个时候也被隐藏了。请永远不要在隐藏状态栏的时候显示Action Bar。</p>
+<p><img src="status_bar_hide.png" alt="status_bar_hide"></p>
+<h2 id="-4-0-">在4.0及以下版本中隐藏状态栏</h2>
+<p>在Android 4.0及更低的版本中，你可以通过设置<code>WindowManager</code>来隐藏状态栏。你可以动态的隐藏，或者在你的manifest文件中设置activity的主题。如果你的应用的状态栏在运行过程中会一直隐藏，那么推荐你使用改写manifest设定主题的方法（严格上来讲，即便设置了manifest你也可以动态的改变主题）。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application
+</span>    <span class="hljs-attribute">...</span>
+    <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@android:style/Theme.Holo.NoActionBar.Fullscreen"</span> &gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+</code></pre>
+<p>设置主题的优势是：</p>
+<ul>
+<li>易于维护，切不容易出错</li>
+<li>有更流畅的UI转换，因为在初始化你的Activity之前，系统已经得到了需要渲染UI的信息</li>
+</ul>
+<p>另一方面我们可以选择使用<code>WindowManager</code>来动态隐藏状态栏。这个方法可以更简单的在用户与App进行交互式展示与隐藏状态栏。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        <span class="hljs-comment">// If the Android version is lower than Jellybean, use this call to hide</span>
+        <span class="hljs-comment">// the status bar.</span>
+        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &lt; <span class="hljs-number">16</span>) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+        setContentView(R.layout.activity_main);
+    }
+    ...
+}
+</code></pre>
+<p>当你设置<code>WindowManager</code>标签之后（无论是通过activity主题还是动态设置），这个标签就会一直生效直到你清除它。</p>
+<p>设置了<code>FLAG_LAYOUT_IN_SCREEN</code>之后，你可以使用与启用<code>FLAG_FULLSCREEN</code>后相同的屏幕区域。这个方法防止了状态栏隐藏和展示的时候内容区域的大小变化。</p>
+<h2 id="-4-1-">在4.1及以上版本中隐藏状态栏</h2>
+<p>在Android 4.1(API level 16)以及更高的版本中，你可以使用<code>setSystemUiVisibility()</code>来进行动态隐藏。<code>setSystemUiVisibility()</code>在View层面设置了UI的标签，然后这些设置被整合到了Window层面。<code>setSystemUiVisibility()</code>给了你一个比设置<code>WindowManager</code>标签更加粒度化的操作。下面的代码隐藏了状态栏：</p>
+<pre><code class="lang-java">View decorView = getWindow().getDecorView();
+<span class="hljs-comment">// Hide the status bar.</span>
+<span class="hljs-keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+decorView.setSystemUiVisibility(uiOptions);
+<span class="hljs-comment">// Remember that you should never show the action bar if the</span>
+<span class="hljs-comment">// status bar is hidden, so hide that too if necessary.</span>
+ActionBar actionBar = getActionBar();
+actionBar.hide();
+</code></pre>
+<p>注意以下几点：</p>
+<ul>
+<li>一旦UI标签被清除(比如跳转到另一个activity),如果你还想隐藏状态栏你就必须再次设定它。详细可以看第五节如何监听并响应UI可见性的变化。</li>
+<li>在不同的地方设置UI标签是有所区别的。如果你在activity的onCreate()方法中隐藏系统栏，当用户按下home键系统栏就会重新显示。当用户再重新打开activity的时候，onCreate()不会被调用，所以系统栏还会保持可见。如果你想让在不同activity之间切换时，系统UI保持不变，你需要在onReasume()与onWindowFocusChaned()里设定UI标签。</li>
+<li>setSystemUiVisibility()仅仅在被调用的View显示的时候才会生效。</li>
+<li>当从View导航到别的地方时，用setSystemUiVisibility()设置的标签会被清除。</li>
+</ul>
+<h2 id="-">让内容显示在状态栏之后</h2>
+<p>在Android 4.1及以上版本，你可以将应用的内容显示在状态栏之后，这样当状态栏显示与隐藏的时候，内容区域的大小就不会发生变化。要做到这个效果，我们需要用到<code>SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</code>这个标志。同时，你也有可能需要<code>SYSTEM_UI_FLAG_LAYOUT_STABLE</code>这个标志来帮助你的应用维持一个稳定的布局。</p>
+<p>当你是用这种方法的时候，你就需要来确保应用中特定区域不会被系统栏掩盖（比如地图应用中一些自带的操作区域）。如果被覆盖了应用就会无法使用。在大多数的情况下，你可以在布局文件中添加<code>android:fitsSystemWindows</code>标签，设置它为true。它会调整父ViewGroup使它留出特定区域给系统栏，对于大多数应用这种方法就足够了。</p>
+<p>在一些情况下，你可能需要修改默认的padding大小来获取合适的布局。为了控制内容区域的布局相对系统栏（它占据了一个叫做“内容嵌入”<code>content insets</code>的区域）的位置，你可以重写<code>fitSystemWindows(Rect insets)</code>方法。当窗口的内容嵌入区域发生变化时，<code>fitSystemWindows()</code>方法会被view的hierarchy调用，让View做出相应的调整适应。重写这个方法你就可以按你的意愿处理嵌入区域与应用的布局。</p>
+<h2 id="-action-bar-">同步状态栏与Action Bar的变化</h2>
+<p>在Android 4.1及以上的版本，为了防止在Action Bar隐藏和显示的时候布局发生变化，你可以使用Action Bar的overlay模式。在Overlay模式中，Activity的布局占据了所有可能的空间，好像Action Bar不存在一样，系统会在布局的上方绘制Aciton Bar。虽然这会遮盖住上方的一些布局，但是当Action Bar显示或者隐藏的时候，系统就不需要重新改变布局区域的大小，使之无缝的变化。</p>
+<p>要启用Action Bar的overlay模式，你需要创建一个继承自Action Bar主题的自定义主题，将<code>android:windowActionBarOverlay</code>属性设置为true。要了解详细信息，请参考<a href="basics\actionbar\index.html">添加Action Bar</a>课程中的<a href="basics\acitonbar\overlaying.html">Action Bar的覆盖层叠</a>。</p>
+<p>设置<code>SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN</code>来让你的activity使用的屏幕区域与设置<code>SYSTEM_UI_FLAG_FULLSCREEN</code>时的区域相同。当你需要隐藏系统UI时，使用<code>SYSTEM_UI_FLAG_FULLSCREEN</code>。这个操作也同时隐藏了Action Bar（因为 windowActionBarOverlay=&quot;true&quot;），当同时显示与隐藏ActionBar与状态栏的时候，使用一个动画来让他们相互协调。</p>
 
                     
                     </section>

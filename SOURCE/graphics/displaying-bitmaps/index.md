@@ -13,22 +13,26 @@
 * Android app的UI通常会在一次操作中立即加载许多张bitmaps. 例如在ListView, GridView 与 ViewPager 等组件中通常会需要一次加载许多张bitmaps，而且需要多加载一些内容为了用户可能的滑动操作。
 
 ## Lessons
-* [Loading Large Bitmaps Efficiently:高效的加载大图](load-bitmap.html)
+* [**Loading Large Bitmaps Efficiently:高效的加载大图**](load-bitmap.html)
 
   这节课会带领你学习如何解析很大的Bitmaps并且避免超出程序的内存限制。
 
-* [Processing Bitmaps Off the UI Thread:非UI线程处理Bitmaps](process-bitmap.html)
+
+* [**Processing Bitmaps Off the UI Thread:非UI线程处理Bitmaps**](process-bitmap.html)
 
   处理Bitmap(裁剪,下载等操作)不能执行在主线程。这节课会带领你学习如何使用AsyncTask在后台线程对Bitmap进行处理，并解释如何处理并发带来的问题。
 
-* [Caching Bitmaps:缓存Bitmap](cache-bitmap.html)
+
+* [**Caching Bitmaps:缓存Bitmap**](cache-bitmap.html)
 
   这节课会带领你学习如何使用内存与磁盘缓存来提升加载多张Bitmaps时的响应速度与流畅度。
 
-* [Managing Bitmap Memory:管理Bitmap占用的内存](manage-bitmap-memory)
+
+* [**Managing Bitmap Memory:管理Bitmap占用的内存**](manage-bitmap-memory.html)
 
   这节课会介绍为了最大化程序的性能如何管理Bitmap的内存占用。
 
-* [Displaying Bitmaps in Your UI](display-bitmap.html)
+
+* [**Displaying Bitmaps in Your UI**](display-bitmap.html)
 
   这节课会把前面介绍的内容综合起来，演示如何在类似ViewPager与GridView的控件中使用后台线程与缓存进行加载多张Bitmaps。

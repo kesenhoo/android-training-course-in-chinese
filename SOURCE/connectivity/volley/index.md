@@ -44,19 +44,20 @@ Volley框架的核心代码是托管在AOSP仓库的`frameworks/volley`中，相
 * 以一个Android library project的方式导入下载的源代码到你的项目中。(如果你是使用Eclipse，请参考[Managing Projects from Eclipse with ADT](http://developer.android.com/tools/projects/projects-eclipse.html))，或者编译成一个`.jar`文件。
 
 ## Lessons
-* [发送一个简单的网络请求(Sending a Simple Request)](simple.html)
+
+* [**发送一个简单的网络请求(Sending a Simple Request)**](simple.html)
 
 学习如何通过Volley默认的行为发送一个简单的请求，以及如何取消一个请求。
 
-* [建立一个请求队列(Setting Up a RequestQueue)](request-queue.html)
+* [**建立一个请求队列(Setting Up a RequestQueue)**](request-queue.html)
 
 学习如何建立一个请求队列，以及如何实现一个单例模式来创建一个请求队列。
 
-* [生成一个标准的请求(Making a Standard Request)](request.html)
+* [**生成一个标准的请求(Making a Standard Request)**](request.html)
 
 学习如何使用Volley的out-of-the-box的请求类型(raw strings, images, and JSON)来发送一个请求。
 
-* [实现自定义的请求(Implementing a Custom Request)](request-custom.html)
+* [**实现自定义的请求(Implementing a Custom Request)**](request-custom.html)
 
 学习如何实现一个自定义的请求
 

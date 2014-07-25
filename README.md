@@ -93,7 +93,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [运用投影与相机视图](http://hukai.me/android-training-course-in-chinese/graphics/opengl/projection.html)
       * [添加移动](http://hukai.me/android-training-course-in-chinese/graphics/opengl/motion.html)
       * [响应触摸事件](http://hukai.me/android-training-course-in-chinese/graphics/opengl/touch.html)
-* [动画](http://hukai.me/android-training-course-in-chinese/animations/index.md) - 10% - 未完待认领
+* [动画](http://hukai.me/android-training-course-in-chinese/animations/index.md) - @[XizhiXu](https://github.com/XizhiXu) -  10%
    * [淡入淡出两个View](http://hukai.me/android-training-course-in-chinese/animations/crossfade.html)
    * [使用ViewPager实现屏幕滑动](http://hukai.me/android-training-course-in-chinese/animations/screen-slide.html)
    * [卡片翻转的动画](http://hukai.me/android-training-course-in-chinese/animations/cardflip.html)
@@ -162,9 +162,9 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
       * [规划屏幕界面与他们之间的关系](http://hukai.me/android-training-course-in-chinese/ux/design-nav/screen-planning.html)
       * [为多种大小的屏幕进行规划](http://hukai.me/android-training-course-in-chinese/ux/design-nav/multi-sizes.html)
-      * [提供向下与侧滑的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
-      * [提供向上与暂时的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/ancestral-temporal.html)
-      * [综合上面所有的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/wireframing.html)
+      * [提供向下与横向导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/descendant-lateral.html)
+      * [提供向上与时间导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/ancestral-temporal.html)
+      * [综合：设计样例 App](http://hukai.me/android-training-course-in-chinese/ux/design-nav/wireframing.html)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
       * [使用Tabs创建Swipe视图](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/lateral.html)
       * [创建抽屉导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/nav-drawer.html)
@@ -206,7 +206,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - @[K0ST](https://github.com/K0ST)
       * [开发辅助程序](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-app.html)
       * [开发辅助服务](http://hukai.me/android-training-course-in-chinese/ui/accessibility/accessible-service.html)
-   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST) - 1%
+   * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST)
       * [淡化系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/dim.html)
       * [隐藏系统Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-ui.html)
       * [隐藏导航Bar](http://hukai.me/android-training-course-in-chinese/ui/system-ui/hide-nav.html)
@@ -261,7 +261,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [避免程序无响应ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - @[pedant](https://github.com/pedant)
    * [SMP for Android](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html) - 待认领
-* [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html) - 10% - 待认领
+* [安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html) - @[craftsmanBai](https://github.com/craftsmanBai) - 10%
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html)
    * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html)

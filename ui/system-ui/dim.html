@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.1" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.6.1" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,44 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2127">
+                    <section class="normal" id="section-gitbook_229">
                     
                         <blockquote>
-<p>编写:</p>
-<p>校对:</p>
+<p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 校对</p>
+<p>原文:<a href="http://developer.android.com/training/system-ui/dim.html" target="_blank">http://developer.android.com/training/system-ui/dim.html</a></p>
 </blockquote>
 <h1 id="-bar">淡化系统Bar</h1>
+<p>本课程将向你讲解如何在Android 4.0(<em>API level 14</em>)与更高的的系统版本上淡化系统Bar(状态栏与导航栏)。早起版本的Android没有提供一个自带的方法来淡化系统Bar。</p>
+<p>当你使用这个方法的时候，内容区域并不会发生大小的变化，只是系统栏的图标会收起来。一旦用户触摸状态栏或者是导航栏的时候，这两个系统栏都会变得完全可见。这种方法的优势是系统栏仍然可见，但是它们的细节被隐藏掉了，因此可以在不牺牲快捷访问系统Bar的情况下创建一个沉浸式的体验。</p>
+<p><strong>这节课将教您</strong></p>
+<ol>
+<li>淡化状态栏和导航栏</li>
+<li>显示状态栏和导航栏</li>
+</ol>
+<p><strong>同时您应该阅读</strong></p>
+<p><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">Action Bar</a> Api指南</p>
+<p><a href="http://developer.android.com/design/index.html" target="_blank">Android 设计指南</a></p>
+<h2 id="-">淡化状态栏和系统栏</h2>
+<p>在版本为4.0以上的Android系统上，你可以像如下使用<code>SYSTEM_UI_FLAG_LOW_PROFILE</code>这个标签。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// This example uses decor view, but you can use any visible view.</span>
+View decorView = getActivity().getWindow().getDecorView();
+<span class="hljs-keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE;
+decorView.setSystemUiVisibility(uiOptions);
+</code></pre>
+<p>一旦用户触摸到了状态栏或者是系统栏，这个标签就会被清除，使系统栏重新显示出来。在标签被清除的情况下，如果你想重新淡化系统栏就必须重新设定它。</p>
+<p>图片1展示了一个图库中的图片，界面的系统栏都已被淡化（需要注意的是图库应用完全隐藏状态栏，而不是淡化它）；注意导航栏（图片的右侧）上变暗的白色的小点，他们代表了被隐藏的导航操作。</p>
+<p><img src="low_profile_hide2x.png" alt="low_profile_hide2x">
+<strong>图1.</strong>淡化的系统栏</p>
+<p>图2展示的是同一张图片，系统栏处于显示的状态。</p>
+<p><img src="low_profile_show2x.png" alt="low_profile_show2x">
+<strong>图2.</strong>显示的系统栏</p>
+<h2 id="-">显示状态栏与导航栏</h2>
+<p>如果你想动态的清除显示标签，你可以使用<code>setSystemUiVisibility()</code>方法：</p>
+<pre><code class="lang-java">View decorView = getActivity().getWindow().getDecorView();
+<span class="hljs-comment">// Calling setSystemUiVisibility() with a value of 0 clears</span>
+<span class="hljs-comment">// all flags.</span>
+decorView.setSystemUiVisibility(<span class="hljs-number">0</span>);
+</code></pre>
 
                     
                     </section>

@@ -10,16 +10,16 @@
 
 ## Lessons
 
-* [控制音量与音频播放 - Controlling Your App’s Volume and Playback](volume-playback.html)
+* [**控制音量与音频播放 - Controlling Your App’s Volume and Playback**](volume-playback.html)
 
   Learn how to ensure your users can control the volume of your app using the hardware or software volume controls and where available the play, stop, pause, skip, and previous media playback keys.
 
 
-* [管理音频焦点 - Managing Audio Focus](audio-focus.html)
+* [**管理音频焦点 - Managing Audio Focus**](audio-focus.html)
 
   With multiple apps potentially playing audio it's important to think about how they should interact. To avoid every music app playing at the same time, Android uses audio focus to moderate audio playback. Learn how to request the audio focus, listen for a loss of audio focus, and how to respond when that happens.
 
 
-* [兼容音频输出设备 - Dealing with Audio Output Hardware](audio-output.html)
+* [**兼容音频输出设备 - Dealing with Audio Output Hardware**](audio-output.html)
 
   Audio can be played from a number of sources. Learn how to find out where the audio is being played and how to handle a headset being disconnected during playback.

@@ -10,11 +10,11 @@ Android Beam文件传输API可以用来处理大量的数据，而在Android4.0�
 
 ## Lessons
 
-* [发送文件给其他设备](sending-files.html)
+* [**发送文件给其他设备**](sending-files.html)
 
   学习如何发送文件给其他设备。
 
 
-* [接收其他设备的文件](receive-files.html)
+* [**接收其他设备的文件**](receive-files.html)
 
   学习如何接收其他设备发送的文件。

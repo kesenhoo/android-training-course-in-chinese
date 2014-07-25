@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.1" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.1" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter  " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter  " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter  " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter  " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter  " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,31 +3476,39 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2142">
+                    <section class="normal" id="section-gitbook_243">
                     
                         <blockquote>
 <p>编写: <a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a>  - 校对:</p>
 <p>原文: <a href="http://developer.android.com/training/design-navigation/index.html" target="_blank">http://developer.android.com/training/design-navigation/index.html</a></p>
 </blockquote>
 <h1 id="-">设计高效的导航</h1>
-<p>设计开发App的起初步骤之一就是决定用户能够在App上看到什么和做什么。一旦你知道用户和App互换哪种数据，下一步就是去设计App内容许用户在不同内容块间切换，进入，回退的交互。</p>
-<p>本课程展示如何为你的应用规划出高标准的屏幕层次并且为它选择适宜的导航形式来允许用户高效而直观的切换内容。每堂课按粗略的先后顺序涵盖Android应用导航交互设计过程中的不同阶段。学过这些课之后，你应该可以应用其阐述的方法和设计范例到你自己的应用中，为你的用户提供一致的导航体验了。</p>
+<p>设计开发 App 的起初步骤之一就是决定用户能够在App上看到什么和做什么。一旦你知道用户在App上和哪种内容互动，下一步就是去设计容许用户在 App 的不同内容块间切换，进入，回退的交互。</p>
+<p>本课程演示如何为你的应用规划出高标准的屏幕层次，然后为它选择适宜的导航形式来允许用户高效而直观的浏览内容。按粗略的先后顺序,每堂课涵盖Android应用导航交互设计过程中的不同阶段。学过这些课之后，你应该可以应用这些列出的方法和设计范例到你自己的应用中，为你的用户提供一致的导航体验了。</p>
 <h2 id="-">课程</h2>
 <ul>
-<li><p><a href="screen-planning.html"><strong>规划屏幕和他们的关系</strong></a></p>
-<p>学习如何选择你的应用应该包含的画面。并且学习如何选择其他画面应该对某个画面可直达。这节课介绍了一个假想的新闻应用为以后课程作例子。</p>
+<li><p><a href="screen-planning.html"><strong>规划界面和他们之间的关系</strong></a></p>
+<p>学习如何选择你应用应该包含的画面。并且学习如何决定某个画面对其他画面可直达。这节课介绍了一个假想的新闻应用为以后课程作例子。</p>
 </li>
-<li><p><a href="multi-sizes.html"><strong>规划多种触屏大小</strong></a></p>
-<p>学习如何在大屏设备上聚集相关画面来优化用户可视画面空间。</p>
+</ul>
+<ul>
+<li><p><a href="multi-sizes.html"><strong>为多种大小的屏幕进行规划</strong></a></p>
+<p>学习如何在大屏设备上组合相关画面来优化用户可视画面空间。</p>
 </li>
+</ul>
+<ul>
 <li><p><a href="descendant-lateral.html"><strong>提供向下和横向导航</strong></a></p>
-<p>学习容许用户深入或者横穿内容层级的技巧。而且学习一些特定导航UI元件在不同情景下的优缺点和最佳用法。</p>
+<p>学习容许用户深入某一层或者在内容层次间横跨的技巧。而且学习一些特定导航 UI 元件在不同情景下的优缺点和最佳用法。</p>
 </li>
-<li><p><a href="ancestral-temporal.html"><strong>提供向上和历史导航</strong></a></p>
-<p>学习如何容许用户在内容层级向上导航。并且学习 Back 键和历史导航的最佳做法，也即导航到层次无关的之前画面。</p>
+</ul>
+<ul>
+<li><p><a href="ancestral-temporal.html"><strong>提供向上和时间导航</strong></a></p>
+<p>学习如何容许用户在内容层级向上导航。并且学习 Back 键和时间导航的最佳做法，也即导航到和层次无关的之前的画面。</p>
 </li>
-<li><p><a href="wireframing.html"><strong>综合：设计我们的样例 App</strong></a></p>
-<p>学习如何创建画面线框图（模糊的图形模型），它代表新闻应用基于设想信息模型的画面。这些线框图利用之前课程讨论的导航元件来展示直观高效导航。</p>
+</ul>
+<ul>
+<li><p><a href="wireframing.html"><strong>综合：设计样例 App</strong></a></p>
+<p>学习如何创建画面的 Wireframe（线框图，模糊的图形模型），它代表新闻应用基于设想信息模型的界面。这些 Wireframe 利用上述课程讨论的导航元件来展示直观高效导航。</p>
 </li>
 </ul>
 <p><a href="screen-planning.html">开始吧</a></p>

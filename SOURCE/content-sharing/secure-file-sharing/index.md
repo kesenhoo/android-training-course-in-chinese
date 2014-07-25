@@ -14,21 +14,21 @@
 
 ## Lessons
 
-* [建立文件分享](setup-sharing.html)
+* [**建立文件分享**](setup-sharing.html)
 
   学习如何为分享文件初始化你的app。
 
 
-* [分享文件](sharing-file.html)
+* [**分享文件**](sharing-file.html)
 
   学习如何通过生成文件的content URI来传递文件到其他的app。
 
 
-* [请求分享一个文件](request-file.html)
+* [**请求分享一个文件**](request-file.html)
 
   学习如何通过其他app发出文件分享的请求，如何通过URI接收文件以及如何使用URI打开文件。
 
 
-* [获取文件信息](retrieve-info.html)
+* [**获取文件信息**](retrieve-info.html)
 
   学习应用如何通过FileProvider提供的content URI获取文件的信息：例如MIME类型，文件大小等。

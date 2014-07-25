@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.2" data-basepath="../.." data-revision="1406046502805">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="16.3.2" data-basepath="../.." data-revision="1406217925256">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1618,7 +1618,7 @@
         <li class="chapter " data-level="12.1.3" data-path="ux/design-nav/descendant-lateral.html">
             
             <a href="../../ux/design-nav/descendant-lateral.html">
-                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下与侧滑的导航
+                <i class="fa fa-check"></i> <b>12.1.3.</b> 提供向下和横向导航
             </a>
             
             
@@ -1627,7 +1627,7 @@
         <li class="chapter " data-level="12.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上与暂时的导航
+                <i class="fa fa-check"></i> <b>12.1.4.</b> 提供向上和时间导航
             </a>
             
             
@@ -1636,7 +1636,7 @@
         <li class="chapter " data-level="12.1.5" data-path="ux/design-nav/wireframing.html">
             
             <a href="../../ux/design-nav/wireframing.html">
-                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合上面所有的导航
+                <i class="fa fa-check"></i> <b>12.1.5.</b> 综合：设计样例 App
             </a>
             
             
@@ -2251,7 +2251,7 @@
         <li class="chapter " data-level="14.2.3" data-path="input/keyboard-input/navigation.html">
             
             <a href="../../input/keyboard-input/navigation.html">
-                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容硬件导航
+                <i class="fa fa-check"></i> <b>14.2.3.</b> 兼容键盘导航
             </a>
             
             
@@ -3225,11 +3225,11 @@
     
         <a href="../../ux/design-nav/multi-sizes.html" title="为多种大小的屏幕进行规划" class="chapter done " data-progress="12.1.2" style="left: 53.40909090909091%;"></a>
     
-        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下与侧滑的导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
+        <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="12.1.3" style="left: 53.78787878787879%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上与暂时的导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="12.1.4" style="left: 54.166666666666664%;"></a>
     
-        <a href="../../ux/design-nav/wireframing.html" title="综合上面所有的导航" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
+        <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="12.1.5" style="left: 54.54545454545455%;"></a>
     
         <a href="../../ux/implement-nav/index.html" title="实现高效的导航" class="chapter done " data-progress="12.2" style="left: 54.92424242424242%;"></a>
     
@@ -3347,7 +3347,7 @@
     
         <a href="../../input/keyboard-input/visibility.html" title="处理输入法可见性" class="chapter done " data-progress="14.2.2" style="left: 76.51515151515152%;"></a>
     
-        <a href="../../input/keyboard-input/navigation.html" title="兼容硬件导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
+        <a href="../../input/keyboard-input/navigation.html" title="兼容键盘导航" class="chapter done " data-progress="14.2.3" style="left: 76.89393939393939%;"></a>
     
         <a href="../../input/keyboard-input/commands.html" title="处理按键动作" class="chapter done " data-progress="14.2.4" style="left: 77.27272727272727%;"></a>
     
@@ -3476,13 +3476,73 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2080">
+                    <section class="normal" id="section-gitbook_181">
                     
                         <blockquote>
-<p>编写:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a></p>
 <p>校对:</p>
 </blockquote>
 <h1 id="-include-layouts">使用include标签重用layouts</h1>
+<p>虽然 Android 提供很多小的可重用的交互组件，你仍然可能需要重用复杂一点的组件，这也许会用到 Layout。为了高效重用整个的 Layout，你可以使用 <code>&lt;include/&gt;</code> 和 <code>&lt;merge/&gt;</code> 标签把其他 Layout 嵌入当前 Layout。</p>
+<p>重用 Layout 非常强大，它让你可以创建复杂的可重用 Layout。比如，一个 yes/no 按钮面板，或者带有文字的自定义进度条。这还意味着，任何在多个 Layout 中重复出现的元素可以被提取出来，单独管理设计，再添加到 Layout 中。所以，当你要添加一个自定义 View 来实现单独的 UI 组件时，你可以更简单的直接重用某个 Layout 文件。</p>
+<h2 id="-layout">创建可重用 Layout</h2>
+<p>如果你已经知道你需要重用的 Layout，先创建以德新的 Layout XML 文件。比如，以下是一个来自 G-Kenya codelab 的 Layout，定义了一个需要添加到每个 Activity 中的标题栏（titlebar.xml)：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">”match_parent”</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@color/titlebar_bg"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span> <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+               <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+               <span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/gafricalogo"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">FrameLayout</span>&gt;</span>
+</code></pre>
+<p>根节点就是你想添加入的 Layout 类型。当需要显示这个标题栏时，就应该添加这个 Layout。</p>
+<h2 id="-include-">使用 <code>&lt;include&gt;</code> 标签</h2>
+<p>使用 <code>&lt;include&gt;</code> 标签，可以在 Layout 中添加可重用的组件。比如，这里有一个来自 G-Kenya codelab 的 Layout 需要包含上面的那个标题栏：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">”match_parent”</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">”match_parent”</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@color/app_bg"</span>
+    <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center_horizontal"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">include</span> <span class="hljs-attribute">layout</span>=<span class="hljs-value">"@layout/titlebar"</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span> <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">”match_parent”</span>
+              <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+              <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/hello"</span>
+              <span class="hljs-attribute">android:padding</span>=<span class="hljs-value">"10dp"</span> /&gt;</span>
+
+    ...
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>你也可以覆写被include元素的根元素的所有 Layout 参数（任何 android:layout_* 属性）。比如：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">include</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/news_title"</span>
+         <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+         <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+         <span class="hljs-attribute">layout</span>=<span class="hljs-value">"@layout/title"</span>/&gt;</span>
+</code></pre>
+<p>然而，如果你要在 <code>&lt;include&gt;</code> 中覆写某些属性，你必须先覆写 <code>android:layout_height</code> 和 <code>android:layout_width</code>。</p>
+<h2 id="-merge-">使用 <code>&lt;merge&gt;</code> 标签</h2>
+<p><code>&lt;merge /&gt;</code> 标签在你嵌套 Layout 时取消了 UI 层级中冗余的 ViewGroup 。比如，如果你有一个 Layout 是一个竖直方向的 LinearLayout，其中包含两个连续的 View 可以在别的 Layout 中重用，那么你会做一个 LinearLayout 来包含这两个 View ，以便重用。不过，当使用另一个 LinearLayout 来嵌套这个可重用的 LinearLayout 时，这种嵌套 LinearLayout 的方式除了减慢你的 UI 性能外没有任何意义。</p>
+<p>为了避免这种情况，你可以用 <code>&lt;merge&gt;</code> 元素来替代可重用 Layout 的根节点。例如：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">merge</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">Button
+</span>        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/add"</span>/&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">Button
+</span>        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/delete"</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">merge</span>&gt;</span>
+</code></pre>
+<p>现在，当你要将这个 Layout 包含到另一个 Layout 中时（并且使用了 <code>&lt;include/&gt;</code> 标签），系统会直接把两个 Button 放到 Layout 中，而不会有多余的 Layout 被嵌套。</p>
 
                     
                     </section>

@@ -14,16 +14,16 @@
 
 ## Lessons
 
-* [简单的拍照操作 - Taking Photos Simply](photobasics.html)
+* [**简单的拍照操作 - Taking Photos Simply**](photobasics.html)
 
   Leverage other applications and capture photos with just a few lines of code.
 
 
-* [简单的录像操作 - Recording Videos Simply](videobasics.html)
+* [**简单的录像操作 - Recording Videos Simply**](videobasics.html)
 
   Leverage other applications and record videos with just a few lines of code.
 
 
-* [控制相机硬件 - Controlling the Camera](cameradirect.html)
+* [**控制相机硬件 - Controlling the Camera**](cameradirect.html)
 
   Control the camera hardware directly and implement your own camera application.

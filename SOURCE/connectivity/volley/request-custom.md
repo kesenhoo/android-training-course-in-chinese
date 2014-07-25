@@ -1,6 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)(2014-06-25)
+> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
 
-> 校对:
+> 原文:<http://developer.android.com/training/volley/request-custom.html>
 
 # 实现自定义的网络请求Implementing a Custom Request
 

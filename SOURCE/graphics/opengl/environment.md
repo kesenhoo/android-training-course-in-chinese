@@ -1,7 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)
+> 编写:[jdneo](https://github.com/jdneo)，校对:
 
-> 校对:
-
+> 原文:<http://developer.android.com/training/graphics/opengl/environment.html>
 
 # 建立OpenGL ES的环境
 
