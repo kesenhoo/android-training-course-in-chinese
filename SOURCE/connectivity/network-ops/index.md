@@ -15,3 +15,19 @@
 * [Optimizing Battery Life](performance/monitoring-device-state/index.html)
 * [Transferring Data Without Draining the Battery](/efficient-downloads/index.html)
 * [Web Apps Overview](http://developer.android.com/guide/webapps/index.html)
+
+## Lessons
+
+* [连接到网络 - Connecting to the Network](connecting.html)
+
+  Learn how to connect to the network, choose an HTTP client, and perform network operations outside of the UI thread.
+
+
+* [管理使用的网络 - Managing Network Usage](managing.html)
+
+  Learn how to check a device's network connection, create a preferences UI for controlling network usage, and respond to connection changes.
+
+
+* [解析XML数据 - Parsing XML Data](xml.html)
+
+  Learn how to parse and consume XML data.

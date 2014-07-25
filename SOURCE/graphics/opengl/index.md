@@ -20,19 +20,29 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
 
 * [**建立OpenGL ES的环境**](environment.html)
 
+  Learn how to set up an Android application to be able to draw OpenGL graphics.
+
 
 * [**定义Shapes**](shapes.html)
+
+  Learn how to define shapes and why you need to know about faces and winding.
 
 
 * [**绘制Shapes**](draw.html)
 
+  Learn how to draw OpenGL shapes in your application.
+
 
 * [**运用投影与相机视图**](projection.html)
+
+  Learn how to use projection and camera views to get a new perspective on your drawn objects.
 
 
 * [**添加移动**](motion.html)
 
+  Learn how to do basic movement and animation of drawn objects with OpenGL.
+
 
 * [**响应触摸事件**](touch.html)
 
-
+  Learn how to do basic interaction with OpenGL graphics.

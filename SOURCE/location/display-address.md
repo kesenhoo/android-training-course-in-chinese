@@ -126,6 +126,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 下一部分教你如何在用户界面上显示地址信息。
+
 ## 定义显示结果的方法
 [doInBackground()](http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params...))方法返回一个包含地址检索结果的字符串。这个值会被传入[onPostExecute()](http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result))方法，通过这个方法你可以对结果进行更深的处理。因为[onPostExecute()](http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result))运行在UI主线程上面，它可以更新用户界面；例如，它可以隐藏进度条然后显示返回的地址结果给用户：
 ```java
@@ -149,6 +150,7 @@ public class MainActivity extends FragmentActivity {
     }
 ```
 最后一步就是运行地址检索任务。
+
 ## 运行地址检索任务
 为了获取地址信息，调用[execute()](http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params...)方法即可。例如，下面的代码片段展示了当用户点击"Get Address"按钮时应用就开始检索地址信息了：
 ```java

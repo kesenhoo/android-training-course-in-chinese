@@ -1,4 +1,4 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
 
 > 原文: <http://developer.android.com/training/implementing-navigation/lateral.html>
 
@@ -10,7 +10,7 @@ Swipe View提供在同级屏幕中的横向导航，例如通过横向划屏手�
 
 > 在实现这些功能之前，你要先明白在[Designing Effective Navigation](http://developer.android.com/training/design-navigation/descendant-lateral.html), [Swipe Views](http://developer.android.com/design/patterns/swipe-views.html) design guide中的概念和建议
 
-##实现Swipe View
+## 实现Swipe View
 
 你可以使用[Support Library](http://developer.android.com/tools/support-library/index.html)中的[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)控件在你的app中创建swipe view。[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)是一个子视图在layout上相互独立的布局控件(layout widget)。
 
@@ -106,7 +106,7 @@ public static class DemoObjectFragment extends Fragment {
 
 这个例子只显示了创建swipe view的必要代码。下面一节向你说明如何通过添加tab使导航更方便在页面间切换。
 
-##添加Tab到Action Bar
+## 添加Tab到Action Bar
 
 Action bar [tab](http://developer.android.com/design/building-blocks/tabs.html)能给用户提供更熟悉的界面来在app的同级屏幕中切换和分辨。
 
@@ -148,7 +148,7 @@ public void onCreate(Bundle savedInstanceState) {
 
 根据你如何创建你的内容来处理[ActionBar.TabListener](http://developer.android.com/reference/android/app/ActionBar.TabListener.html)回调改变tab。但是如果你是像上面那样，通过[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)对每个tab使用fragment，下面这节就会说明当用户选择一个tab时如何切换页面，当用户划屏切换页面时如何更新相应页面的tab。
 
-##使用Swipe View切换Tab
+## 使用Swipe View切换Tab
 
 当用户选择tab时，在[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)中切换页面，需要实现[ActionBar.TabListener](http://developer.android.com/reference/android/app/ActionBar.TabListener.html)来调用在[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)中的[setCurrentItem()]()来选择相应的页面:
 
@@ -188,7 +188,7 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-##使用标题条替代Tab
+## 使用标题条替代Tab
 
 如果你不想使用action bar tab，而想使用[scrollable tabs](http://developer.android.com/design/building-blocks/tabs.html#scrollable)来提供一个更简短的可视化配置，你可以在swipe view中使用[PagerTitleStrip](http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html)。
 

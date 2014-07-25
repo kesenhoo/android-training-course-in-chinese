@@ -8,7 +8,7 @@
 
 > **Note:**[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)是[v4 Support Library](http://developer.android.com/tools/support-library/features.html#v4)中的。关于如何在你的应用中包含此库，可以阅读：[Support Library Setup](http://developer.android.com/tools/support-library/setup.html)。
 
-##指定FileProvider
+## 指定FileProvider
 
 为你的应用定义一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)，需要在你的清单文件中定义一个字段，这个字段指明了需要使用创建URI的权限。除此之外，还需要一个XML文件，它指定了你的应用可以共享的目录路径。
 
@@ -36,7 +36,7 @@
 
 [`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)下的子标签[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)指定了一个XML文件，它指定了你希望共享的目录路径。“android:resource”属性字段是这个文件的路径和名字（无“.xml”后缀）。该文件的内容将在下一节讨论。
 
-##指定可共享目录路径
+## 指定可共享目录路径
 
 一旦你在你的清单文件中为你的应用添加了[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)，你需要指定你希望共享文件的目录路径。为了指定这个路径，我们首先在“res/xml/”下创建文件“filepaths.xml”。在这个文件中，为每一个目录添加一个XML标签。下面的例子展示的是一个“res/xml/filepaths.xml”的例子。这个例子也说明了如何在你的内部存储区域共享一个“files/”目录的子目录：
 

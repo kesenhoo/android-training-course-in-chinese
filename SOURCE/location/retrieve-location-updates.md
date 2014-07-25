@@ -121,8 +121,8 @@ public class MainActivity extends FragmentActivity {
 ```
 
 下面的代码片段使用了这个方法来检查Google Play services是否可用。
-##定义位置服务回调函数
 
+## 定义位置服务回调函数
 在你创建location client之前, 你必须实现一些被 Location Services用来同你的应用通信的接口
 
 [ConnectionCallbacks](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html)

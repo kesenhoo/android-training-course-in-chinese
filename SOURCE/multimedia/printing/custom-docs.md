@@ -10,7 +10,7 @@
 
 这节课将向你展示如何连接打印管理器，创建一个打印适配器并构建要打印的内容。
 
-##连接打印管理器
+## 连接打印管理器
 
 当你的应用直接管理打印进程，在收到来自用户的打印请求后，第一步要做的是连接Android打印框架并获取一个[PrintManager](http://developer.android.com/reference/android/print/PrintManager.html)类的实例。这个类允许你初始化一个打印任务并开始打印生命周期。下面的代码展示了如何获得打印管理器并开始打印进程。
 
@@ -34,7 +34,7 @@ private void doPrint() {
 
 > **Note：**[print()](http://developer.android.com/reference/android/print/PrintManager.html#print\(java.lang.String, android.print.PrintDocumentAdapter, android.print.PrintAttributes\))方法的最后一个参数接收一个[PrintAttributes](http://developer.android.com/reference/android/print/PrintAttributes.html)对象。你可以使用这个参数向打印框架进行一些打印设置，以及基于前一个打印周期的预设，从而改善用户体验。你也可以使用这个参数对被打印对象进行设置一些更符合实际情况的设定，比如当打印一副照片时，设置打印的方向与照片方向一致。
 
-##创建一个打印适配器
+## 创建一个打印适配器
 
 打印适配器和Android打印框架交互并处理打印过程的每一步。这个过程需要用户在创建打印文档前选择打印器和打印选项。这些选项可以影响最终的输出，因为用户选择的打印机可能会有不同的打印的能力，不同的页面尺寸或不同的页面方向。当这些选项配置好之后，这个打印框架会询问你的适配器进行布局和生成一个打印文档，作为最终打印的前期准备。一旦用户点击了打印按钮，框架会接收最终的打印文档，并将它传递给一个打印提供程序（Print Provider）来打印输出。在打印过程中，用户可以选择取消打印，所以你的打印适配器必须监听并响应一个取消请求。
 
@@ -48,7 +48,7 @@ private void doPrint() {
 
 > **Note：**这些适配器的回调函数会在你的主线程上被调用。如果你的这些方法的实现需要花费大量的时间，那么应该在一个另外的线程里执行。例如：你可以将布局或者写入打印文档的操作封装在一个[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)对象中。
 
-###计算打印文档信息
+### 计算打印文档信息
 
 在一个[PrintDocumentAdapter](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html)类的实现中，你的应用必须指定所创建文档的类型并计算所有打印任务所需要的页数，提供被打印页面的尺寸信息。在适配器中[onLayout()](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html#onLayout\(android.print.PrintAttributes, android.print.PrintAttributes, android.os.CancellationSignal, android.print.PrintDocumentAdapter.LayoutResultCallback, android.os.Bundle\))方法的实现中会执行这些计算，并提供打印任务输出的信息，这些信息在一个[PrintDocumentInfo](http://developer.android.com/reference/android/print/PrintDocumentInfo.html)类中，包括页数和内容类型。下面的例子展示了[PrintDocumentAdapter](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html)中[onLayout()](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html#onLayout\(android.print.PrintAttributes, android.print.PrintAttributes, android.os.CancellationSignal, android.print.PrintDocumentAdapter.LayoutResultCallback, android.os.Bundle\))方法的基本实现：
 
@@ -110,7 +110,7 @@ private int computePageCount(PrintAttributes printAttributes) {
 }
 ```
 
-###将打印文档写入文件
+### 将打印文档写入文件
 
 当需要将打印输出写入一个文件时，Android打印框架会调用你应用的[PrintDocumentAdapter](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html)类的[onWrite()](http://developer.android.com/reference/android/print/PrintDocumentAdapter.html#onWrite\(android.print.PageRange[], android.os.ParcelFileDescriptor, android.os.CancellationSignal, android.print.PrintDocumentAdapter.WriteResultCallback\))方法。这个方法的参数指定了哪一页要被打印以及要使用的输出文件。该方法的实现必须将每一个请求页的内容交付给一个多页PDF文档文件。当这个过程结束以后，你需要调用对象的[onWriteFinished()](http://developer.android.com/reference/android/print/PrintDocumentAdapter.WriteResultCallback.html#onWriteFinished\(android.print.PageRange[]\))回调方法。
 
@@ -176,7 +176,7 @@ public void onWrite(final PageRange[] pageRanges,
 
 > **Note：**递交一个打印的文档可以是一个和大量资源相关的操作。为了避免阻塞应用的主UI线程，你应该考虑将页面的递交和写操作在另一个线程中执行，比如在[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)中执行。关于更多异步任务线程的知识，可以阅读：[Processes and Threads](http://developer.android.com/guide/components/processes-and-threads.html)。
 
-##绘制PDF页面内容
+## 绘制PDF页面内容
 
 当你的应用打印时，你的应用必须生成一个PDF文档并将它传递给Android打印框架来打印。你可以使用任何PDF生成库来协助完成这个操作。本节将展示如何使用[PrintedPdfDocument](http://developer.android.com/reference/android/print/pdf/PrintedPdfDocument.html)类从你的内容生成PDF页面。
 

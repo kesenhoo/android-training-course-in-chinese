@@ -10,7 +10,7 @@
 
 这节课将向您展示如何快速地构建一个HTML文档，它包含文本和图片，并使用[WebView](http://developer.android.com/reference/android/webkit/WebView.html)来打印它。
 
-##加载一个HTML文档
+## 加载一个HTML文档
 
 用[WebView](http://developer.android.com/reference/android/webkit/WebView.html)打印一个HTML文档，会涉及到加载一个HTML资源，或者以String的形式构建一个HTML文档。这一节将描述如何构建一个HTML的字符串并将它加载到[WebView](http://developer.android.com/reference/android/webkit/WebView.html)中，以备打印。
 
@@ -81,7 +81,7 @@ webView.loadUrl("http://developer.android.com/about/index.html");
 
 如果你希望创建一个更加自定义化的打印输出并希望可以完全控制打印页面上绘制的内容，可以学习下一节课程：[打印自定义文档](custom-docs.html)
 
-##创建一个打印任务
+## 创建一个打印任务
 
 在创建了[WebView](http://developer.android.com/reference/android/webkit/WebView.html)并加载了你的HTML内容之后，你的应用就基本完成了打印进程中，属于它的任务。下一步是访问[PrintManager](http://developer.android.com/reference/android/print/PrintManager.html)，创建一个打印适配器，并在最后，创建一个打印任务。下面的代码展示了如何执行这些步骤：
 

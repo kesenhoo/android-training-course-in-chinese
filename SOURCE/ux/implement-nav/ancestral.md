@@ -1,4 +1,4 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
 
 > 原文: <http://developer.android.com/training/implementing-navigation/ancestral.html>
 
@@ -14,7 +14,7 @@
 
 **Figure 1**. action bar中的Up按钮.
 
-##指定父Activity
+## 指定父Activity
 
 要实现向上导航，第一步就是为每一个activity声明合适的父activity。这么做可以使系统简化导航模式，例如向上导航，因为系统可以从manifest文件中判断它的逻辑父(logical parent)activity。
 
@@ -47,7 +47,7 @@
 
 在父activity这样声明后，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html) API进行向上导航操作，就像下一面这节。
 
-##添加向上操作(Up Action)
+## 添加向上操作(Up Action)
 
 要使用action bar的app图标来完成向上导航，需要调用[setDisplayHomeAsUpEnabled()](http://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled%28boolean%29):
 
@@ -61,7 +61,7 @@ public void onCreate(Bundle savedInstanceState) {
 
 这样，在app旁添加了一个左向符号，并用作操作按钮。当用户点击它时，你的activity会接收一个对[onOptionsItemSelected()](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected%28android.view.MenuItem%29)的调用。操作的ID是`android.R.id.home`。
 
-##向上导航至父activity
+## 向上导航至父activity
 
 要在用户点击app图标时向上导航，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html)类中的静态方法[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像[FLAG_ACTIVITY_CLEAR_TOP](http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP)定义的那样，提到栈顶。
 
@@ -82,7 +82,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 但是，**只能是当你的app拥有当前任务(current task)**(用户从你的app中发起这一任务)时[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)才有用。如果你的activity是从别的app的任务中启动的话，向上导航操作就应该创建一个属于你的app的新任务，并需要你创建一个新的后退栈。
 
-###用新的后退栈来向上导航
+### 用新的后退栈来向上导航
 
 如果你的activity提供了任何允许被别的app启动的[intent filters](http://developer.android.com/guide/components/intents-filters.html#ifs)，那么你应该实现[onOptionsItemSelected()](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected%28android.view.MenuItem%29)回调，在用户从别的app任务进入你的activity后，点击Up按钮，在向上导航之前你的app用相应的后退栈开启一个新的任务。
 

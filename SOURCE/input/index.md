@@ -6,10 +6,10 @@
 
 These classes cover various subjects of user input, such as touch screen gestures and text input through on-screen input methods and hardware keyboards.
 
-#### [Using Touch Gestures]()
+#### [Using Touch Gestures](gestures/index.html)
 
 How to write apps that allow users to interact with the touch screen via touch gestures.
 
-#### [Handling Keyboard Input]()
+#### [Handling Keyboard Input](keyboard-input/index.html)
 
 How to specify the appearance and behaviors of soft input methods (such as on-screen keyboards) and how to optimize the experience with hardware keyboards.

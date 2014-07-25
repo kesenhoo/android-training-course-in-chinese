@@ -107,6 +107,7 @@ res/values/themes.xml
 ```xml
 <application android:theme="@style/CustomActionBarTheme" ... />
 ```
+
 ## 自定义文本颜色
 
 修改 action bar 中的文本颜色，你需要分别重写每个元素的属性：

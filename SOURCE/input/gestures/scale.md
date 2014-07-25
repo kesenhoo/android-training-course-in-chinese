@@ -6,7 +6,7 @@
 
 本节课程讲述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))来截获触摸事件。
 
-## 拖拽一个对象 ##
+## 拖拽一个对象
 
 > 如果你的目标版本为3.0或以上，你可以使用[View.OnDragListener](http://developer.android.com/reference/android/view/View.OnDragListener.html)监听内置的drag-and-drop事件，[拖拽与释放](http://developer.android.com/guide/topics/ui/drag-drop.html)中有更多描述。
 
@@ -99,7 +99,7 @@ public boolean onTouchEvent(MotionEvent ev) {
 }
 ```
 
-## 通过拖拽平移 ##
+## 通过拖拽平移
 
 前一部分展示了一个拖拽屏幕上对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动(scrolling)。上面的代码段直接截获了[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)动作来实现拖拽。这一部分的代码段，利用了平台对常用手势的内置支持。它重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数。
 
@@ -170,13 +170,13 @@ private void setViewportBottomLeft(float x, float y) {
 }
 ```
 
-## 使用触摸手势进行缩放 ##
+## 使用触摸手势进行缩放
 
 如同[检测常用手势](detector.html)章节中提到的，[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)可以帮助你检测Android中的常见手势，例如滚动，快速滚动以及长按。对于缩放，Android也提供了[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)类。当你想让view能识别额外的手势时，你可以配合使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)和[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)类。
 
 为了报告检测到的手势事件，手势检测需要使用作为构造函数参数的listener对象。[ScaleGestureDetector](1http://developer.android.com/reference/android/view/ScaleGestureDetector.html)使用[ScaleGestureDetector.OnScaleGestureListener](http://developer.android.com/reference/android/view/ScaleGestureDetector.OnScaleGestureListener.html)。Android提供了[ScaleGestureDetector.SimpleOnScaleGestureListener](http://developer.android.com/reference/android/view/ScaleGestureDetector.SimpleOnScaleGestureListener.html)类作为帮助类，如果你不是关注所有的手势事件，你可以自行拓展(extend)它。
 
-### 基本的缩放示例 ###
+### 基本的缩放示例
 
 下面的代码段展示了缩放功能中的基本部分。
 
@@ -225,7 +225,7 @@ private class ScaleListener
 }
 ```
 
-### 更加复杂的缩放示例 ###
+### 更加复杂的缩放示例
 
 这是本章节提供的`InteractiveChart`样例中一个更复杂的示范。通过使用[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)中的"span"([getCurrentSpanX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getCurrentSpanX()))和"focus"([getFocusX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getFocusX()))，`InteractiveChart`样例支持滚动（平移）以及多指缩放。
 

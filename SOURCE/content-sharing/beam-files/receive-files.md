@@ -5,7 +5,7 @@
 # 接收其他设备的文件
 Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android Media Scanner扫描拷贝的文件，并在[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) provider中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，以及在接收设备上应该如何放置拷贝的文件。
 
-##响应请求并显示数据
+## 响应请求并显示数据
 
 当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，包含了一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它有一个[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的Action，第一个传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，intent会被发送至系统。为了让你的应用能够响应这个intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
 
@@ -38,7 +38,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 > **Note：**不仅仅只有Android Beam文件传输会发送含有[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的intent。在接收设备上的其它应用也有可能会发送含有该行为的intent。我们马上会进一步讨论这一问题。
 
-##请求文件读权限
+## 请求文件读权限
 如果要读取Android Beam文件传输所拷贝到设备上的文件，需要[READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE)权限。例如：
 
 ```xml
@@ -51,7 +51,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 由于你的应用对于其内部存储区域具有控制权，所以若要将文件拷贝至你应用的内部存储区域，写权限是不需要声明的。
 
-##获取拷贝文件的目录
+## 获取拷贝文件的目录
 
 Android Beam文件传输一次性将所有文件拷贝到目标设备的一个目录内，Android Beam文件传输通知所发出的[Intent](http://developer.android.com/reference/android/content/Intent.html)中包含有URI，他指向了第一个传输的文件。然而，你的应用也有可能接收到除了Android Beam文件传输之外的某个来源所发出的含有[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)行为的Intent。为了明确你应该如何处理接收的Intent，你需要检查它的scheme和authority。
 
@@ -100,7 +100,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-###从文件URI中获取目录
+### 从文件URI中获取目录
 
 如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个文件URI，则该URI包含了一个文件的绝对文件名，包括了完整的路径和文件名。对于Android Beam文件传输来说，目录路径指向了其它传输文件的位置（如果有其它传输文件的话），要获得这个目录路径，要取得URI的路径部分（URI中除去“file:”前缀的部分），根据路径创建一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后获取这个[File](http://developer.android.com/reference/java/io/File.html)的父目录：
 
@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
 ...
 ```
 
-###从内容URI获取目录
+### 从内容URI获取目录
 
 如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个内容URI，这个URI可能指向的是一个存储于[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) Content Provider的目录和文件名。你可以通过检测URI的authority值来判断是否是[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI。一个[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的内容URI可能来自Android Beam文件传输也可能来自其它应用，但不管怎么样，你都能根据该内容URI获得一个目录和文件名。
 
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 
 > Note：对于Android Beam文件传输，如果第一个接收的文件，其MIME类型为“audio/*”，“image/*”或者“video/*”，那么你会接收这个在[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)的Intent中的内容URI。Android Beam文件传输会在它存储传输文件的目录内运行Media Scanner，以此为媒体文件添加索引。同时Media Scanner将结果写入[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)的content provider，之后它将第一个文件的内容URI回递给Android Beam文件传输。这个内容URI就是你在通知[Intent](http://developer.android.com/reference/android/content/Intent.html)中所接收到的。要获得第一个文件的目录，你需要使用该内容URI从[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html)中获取它。
 
-###指明Content Provider
+### 指明Content Provider
 
 为了明确你能从内容URI中获取文件目录，你可以通过调用[Uri.getAuthority()](http://developer.android.com/reference/android/net/Uri.html#getAuthority\(\))获取URI的Authority，以此确定与该URI相关联的Content Provider。其结果有两个可能的值：
 

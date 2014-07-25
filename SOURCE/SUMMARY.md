@@ -238,7 +238,6 @@
        * [为多线程创建线程池](performance/multi-threads/create-threadpool.md)
        * [在线程池中的一个线程里执行代码](performance/multi-threads/run-code.md)
        * [与UI线程通信](performance/multi-threads/communicate-ui.md)
-   * [避免ANR](performance/perf-anr/index.md)
    * [避免出现程序无响应ANR](performance/perf-anr/index.md)
    * [JNI Tips](performance/perf-jni/index.md)
    * [SMP for Android](performance/smp/index.md)

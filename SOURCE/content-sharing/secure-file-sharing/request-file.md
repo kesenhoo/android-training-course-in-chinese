@@ -8,7 +8,7 @@
 
 这节课将向你展示一个客户端应用如何向服务端应用请求一个文件，接收服务端应用发来的URI，然后使用这个URI打开这个文件。
 
-##发送一个文件请求
+## 发送一个文件请求
 
 为了向服务端应用发送文件请求，在客户端应用，需要调用[startActivityForResult](http://developer.android.com/reference/android/app/Activity.html#startActivityForResult\(android.content.Intent, int\))，同时传递给这个方法一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，它包含了客户端应用能处理的某个Action，比如[ACTION_PICK](http://developer.android.com/reference/android/content/Intent.html#ACTION_PICK)；以及一个MIME类型。
 
@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-##访问请求的文件
+## 访问请求的文件
 
 当服务端应用向客户端应用发回包含URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)时，这个[Intent](http://developer.android.com/reference/android/content/Intent.html)会传递给客户端应用中覆写的[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult\(int, int, android.content.Intent\))方法当中。一旦客户端应用有了文件的URI，它就可以通过获取其[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)来访问文件。
 

@@ -13,7 +13,7 @@ Android中通常使用[ScrollView](http://developer.android.com/reference/androi
 
 通过使用平台标准的滚动物理定律（摩擦、速度等），scroller可随着时间产生滚动动画。实际上，scroller本身不会绘制任何东西。Scrollers只是随着时间的推移帮你追踪滚动的偏移量，但它们不会自动地把这些位置应用到你的view上。你需要以某种让你的滚动动画更流畅的速度，来获取并使用新的坐标。
 
-## 理解术语Scrolling ##
+## 理解术语Scrolling
 
 在Android中，“Scrolling”这个词根据不同情景有着不同的含义。
 
@@ -24,7 +24,7 @@ Android中通常使用[ScrollView](http://developer.android.com/reference/androi
 
 虽然经常会把使用scroller对象与快速滑动手势结合起来，但在任何你想让UI展示scrolling动画来响应触摸事件的地方，他们都可以被拿来使用。比如，你可以重写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数，来直接处理触摸事件，并且产生一个scrolling效果或“对齐到页”动画(snapping to page)来响应这些触摸事件。
 
-## 实现基于触摸的Scrolling ##
+## 实现基于触摸的Scrolling
 
 本节讲述如何使用一个scroller。下面的代码段来自InteractiveChart样例的类中。它使用了[GestureDetector][GestureDetector_url]，并且重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的[onFling()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float))函数。它使用[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)来追踪快速滑动手势。在快速滑动手势完成后，如果用户到达内容尽头，应用会显示发光的效果。
 

@@ -8,11 +8,16 @@ Android的内置搜索功能，能够在app中方便地为所有用户提供一�
 
 ## Lessons
 
-### [建立搜索界面](setup.html)
-学习如何向你的app中添加搜索界面，如何设置activity去处理搜索请求
+* [建立搜索界面](setup.html)
 
-### [保存并搜索数据](search.html)
-学习在SQLite虚拟数据库表中用简单的方法储存和搜索数据
+  学习如何向你的app中添加搜索界面，如何设置activity去处理搜索请求
 
-### [保持向后兼容](backward-compat.html)
-通过使用搜索功能来学习如何向下兼容旧版本设备
+
+* [保存并搜索数据](search.html)
+
+  学习在SQLite虚拟数据库表中用简单的方法储存和搜索数据
+
+
+* [保持向后兼容](backward-compat.html)
+
+  通过使用搜索功能来学习如何向下兼容旧版本设备

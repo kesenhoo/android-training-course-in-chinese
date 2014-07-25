@@ -20,6 +20,7 @@
 
   学习如何使用CursorLoader在后台执行查询操作。
 
+
 * [处理查询的结果：Handling the Results](handle-result.html)
 
   学习如何处理从CursorLoader查询到的数据，以及在loader框架重置CursorLoader时如何解除当前Cursor的引用。
