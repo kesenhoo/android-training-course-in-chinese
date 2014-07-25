@@ -2,7 +2,7 @@
 
 > 原文: <http://developer.android.com/training/wearables/data-layer/accessing.html>
 
-# **访问可穿戴数据层**
+# 访问可穿戴数据层
 
 调用数据层API，需创建一个[GoogleApiClient](GoogleApiClient.html)实例，所有 Google Play services APIs的主要入口点。
 

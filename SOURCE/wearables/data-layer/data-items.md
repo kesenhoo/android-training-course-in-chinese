@@ -2,7 +2,7 @@
 
 > 原文: <http://developer.android.com/training/wearables/data-layer/data-items.html>
 
-# **同步数据单元**
+# 同步数据单元
 
 [DataItem](DataItem.html)是指系统用于同步手持设备与可穿戴设备间数据的接口。一个[DataItem](DataItem.html)通常包括以下几点：
 
@@ -20,7 +20,7 @@
 
 然而，我们建议使用[Data Map](data-items.html#data-map)来显示装在一个易用的类似[Bundle](Bundle.html)接口中的数据元，而用不是setData()来处理原始字节。
 
-## **用 Data Map 同步数据**
+## 用 Data Map 同步数据
 
 使用[DataMap](DataMap.html)类，将数据元处理为 Android [Bundle](Bundle.html)的形式，因此对象的序列化和反序列化就会完成，你就可以以 key-value 对的形式操纵数据。
 
@@ -43,7 +43,7 @@ PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
         .putDataItem(mGoogleApiClient, request);
 ```
 
-## **监听数据元事件**
+## 监听数据元事件
 
 如果一端的数据层的数据发生改变，想要在另一端被提醒此改变，你可以通过实现一个数据元事件的监听器来完成。
 

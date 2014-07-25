@@ -2,7 +2,7 @@
 
 > 原文: <http://developer.android.com/training/wearables/data-layer/assets.html>
 
-# **传输资源**
+# 传输资源
 
 将一个[Asset](Asset.html)附加到数据元上，并放入复制而来的数据库中，通过蓝牙来传送大量的二进制数据。
 
@@ -10,7 +10,7 @@ Assets 能够自动地处理数据缓存以避免重复发送，保护蓝牙带�
 
 > **Note:** 尽管数据元的大小限制在100KB,但资源可以任意大。然而，传输大量资源会多方面地影响用户体验，因此，要测试你的应用以保证当你传输大量资源时，它会表现良好。
 
-##**Transfer an Asset**
+## 传输资源
 
 在Asset类中使用creat..()方法创建资源。下面，我们将一个bitmap转化为字节流，然后调用[creatFromBytes()](Asset.html#createFromBytes(byte[]))方法创建资源。
 ```java
@@ -23,7 +23,7 @@ private static Asset createAssetFromBitmap(Bitmap bitmap) {
 
 创建资源后，使用[DataMap](DataMap.html)或者[PutDataRepuest](PutDataRequest.html)类中的putAsset()方法将其附加到数据元上，然后用[putDataItem()](DataApi.html#putDataItem(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.PutDataRequest))方法将数据元放入数据库。
 
-### **Using PutDataRequest**
+### 使用 PutDataRequest
 ```java
 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image);
 Asset asset = createAssetFromBitmap(bitmap);
@@ -31,7 +31,7 @@ PutDataRequest request = PutDataRequest.create("/image");
 request.putAsset("profileImage", asset);
 Wearable.DataApi.putDataItem(mGoogleApiClient, request);
 ```
-### **Using PutDataMapRequest**
+### 使用 PutDataMapRequest
 ```java
 Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image);
 Asset asset = createAssetFromBitmap(bitmap);
@@ -42,7 +42,7 @@ PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
         .putDataItem(mGoogleApiClient, request);
 ```
 
-## **Receive assets**
+## 接收资源
 
 创建资源后，如何在另一连接端读取。以下是如何实现回调以发现资源变化和提取Asset对象。
 
