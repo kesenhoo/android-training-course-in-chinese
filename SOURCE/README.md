@@ -1,26 +1,23 @@
-# Android Training Course in Chinese
+# Google Android官方培训课程中文版
 
 ![Android Training](android_training.jpg)
 
-Android Training交流组：363415744，欢迎所有学习Android开发的同学加入交流，更欢迎有意向参与到这个课程汉化项目中的同学。
+Google Android团队在2012年起开设了[Training课程](http://developer.android.com/training/index.html)，这是学习Android应用开发的绝佳资料。这个项目是通过Github发起的协作翻译项目，借助开源的力量，完成中文版的输出并不断完善。我们会持续维护这份官方的Android学习资料。欢迎大家的参与！
 
-## 项目主页
+## Github项目主页
 
-<https://github.com/kesenhoo/android-training-course-in-chinese>
+**<https://github.com/kesenhoo/android-training-course-in-chinese>**
 
-麻烦点击Star进行支持！
+请读者点击Star进行关注并支持！
+
+## 项目进度
+
+* **项目建立** - Jun 13, 2014
 
 ## 挑错纠正
 
-欢迎任何形式的挑错与纠正，你可以到上面的项目主页，Fork一份到你的账户下，修改你的仓库文件，再使用Github的Pull Request提交你的修改纠正！
+你可以选择以下的方式进行参与：
 
-## 项目初衷
-
-Google Android团队在2012年起开设了Training板块，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
-
-本人从2012起断断续续的在学习Android官方的Training课程，并输出了部分翻译[学习笔记](http://hukai.me)，因个人实力与精力有限，很期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。
-这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
-
-## 更多格式
-
-待项目课程初稿通过之后，会输出PDF,ePub格式的电子书，方便大家离线学习！敬请期待！
+1. 到Github项目主页，直接提交Issue或者Pull Request。
+2. 写邮件到kesenhoo at gmail.com，注明出错或者语句不妥的章节段落位置，并给出纠正的建议。
+3. 加入QQ交流群：363415744，向群主或者管理员提错误。

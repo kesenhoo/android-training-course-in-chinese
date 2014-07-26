@@ -1,13 +1,6 @@
-# Android Training Course in Chinese
+# Google Android官方培训课程中文版
 
-## [Google Android官方培训课程](http://developer.android.com/training/index.html)
-
-Google Android团队在2012年起开设了Training课程，这是学习Android应用开发的绝佳一手资料。通过Github发起这个协作项目，借助大家的力量，完成中文版的输出并不断完善。维护一份最好的Android学习资料。欢迎善意的参与！
-
-## 联系方式
-
-* Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入!
-* 欢迎给项目进行挑错纠正，你可以直接在Github上提交Issue或者Pull Request，谢谢！
+Google Android团队在2012年起开设了[Training课程](http://developer.android.com/training/index.html)，这是学习Android应用开发的绝佳一手资料。通过Github发起这个协作项目，借助开源的力量，完成中文版的输出并不断完善。维护这份官方的Android学习资料。欢迎大家的参与！
 
 <a name="online_reading"></a>
 ## 在线阅读
@@ -19,6 +12,11 @@ Google Android团队在2012年起开设了Training课程，这是学习Android�
 * PDF: 敬请期待
 * ePub: 敬请期待
 * Mobi: 敬请期待
+
+## 联系方式
+
+* Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入!
+* 欢迎给项目进行挑错纠正，你可以直接在Github上提交Issue或者Pull Request，谢谢！
 
 <a name="courses"></a>
 ## 课程结构
