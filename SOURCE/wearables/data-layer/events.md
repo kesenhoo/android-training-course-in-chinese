@@ -2,15 +2,15 @@
 
 > 原文: <http://developer.android.com/training/wearables/data-layer/events.html>
 
-# **处理数据层的事件**
+# 处理数据层的事件
 
 当做出数据层上的调用时，你可以得到它完成后的调用状态，也可以用监听器监听到调用最终实现的改变。
 
-## **Wait for the Status of Data Layer Calls**
+## 等待数据层调用状态
 
 注意到，调用数据层API，有时会返回[PendingResult](PendingResult.html)，如 [putDataItem()](DataApi.html#putDataItem(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.PutDataRequest))。PendingResult一被创建，操作就会在后台排列等候。之后你若无动作，这些操作最终会默默完成。然而，通常要处理操作完成后的结果，PendingResult能够让你同步或异步地等待结果。
 
-### **Asynchronously waiting**
+### 异步等待
 
 若你的代码运行在主UI线程上，不使阻塞调用数据层API。你可以增加一个PendingResult对象回调来运行异步调用，将在操作完成时触发。
 ```java
@@ -24,7 +24,7 @@ pendingResult.setResultCallback(new ResultCallback<DataItemResult>() {
 });
 ```
 
-### **Synchronously waiting**
+### 同步等待
 
 
 如果你的代码是运行在后台服务的一个单独的处理线程上（[WearableListenerService](WearableListenerService.html)的情况）,则适合调用阻塞。在这种情况下,你可以用PendingResult对象调用[await()](PendingResult.html#await()),它将阻塞至请求完成,并返回一个Result对象。
@@ -35,7 +35,7 @@ if(result.getStatus().isSuccess()) {
 }
 ```
 
-# **Listen for Data Layer Events**
+# 监听数据层事件
 
 因为数据层在手持和可穿戴设备间同步并发送数据,所以通常要监听重要事件,例如创建数据元,接受消息,或当可穿戴设备和手机连接时。
 
@@ -46,7 +46,7 @@ if(result.getStatus().isSuccess()) {
 
 通过这两种选择，你覆盖任何你关心的数据事件回调方法来处理您的实现。
 
-### **With a WearableListenerService**
+### 使用 WearableListenerService
 
 典型地，在你的手持设备和可穿戴设备上都创建service实例。如果你不关心其中一个应用中的数据事件，就不需要在相应的应用中实现此service。
 
@@ -120,7 +120,7 @@ public class DataLayerListenerService extends WearableListenerService {
 </service>
 ```
 
-### **Permissions within Data Layer Callbacks**
+### 数据层回调权限
 
 为了在数据层事件上向你的程序提供回调方法，Google Play服务绑定到你的WearableListenerService，通过IPC调用回调方法。这样的结果是,你的回调方法继承了调用进程的权限。
 
@@ -136,7 +136,7 @@ try {
 }
 ```
 
-### **With a Listener Activity**
+### 使用监听 Activity
 
 如果你的应用只关心数据事件，当用户正与应用交互并且不需要长时间运行的service来处理数据改变时，你可以在一个activity中通过实现如下一个和多个接口监听事件：
 
