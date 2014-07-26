@@ -109,7 +109,7 @@
        * [使用备份API](cloud/cloudsync/backupapi.md)
        * [使用Google Cloud Messaging](cloud/cloudsync/gcm.md)
    * [解决云同步的保存冲突](cloud/cloudsave/index.md)
-* [Android用户信息](contacts-provider/index.md)
+* [Android联系人信息](contacts-provider/index.md)
    * [获取联系人列表](contacts-provider/retrieve-names.md)
    * [获取联系人详情](contacts-provider/retrieve-detail.md)
    * [修改联系人信息](contacts-provider/modify-data.md)

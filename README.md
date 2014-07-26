@@ -49,7 +49,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 * [Android云服务](http://hukai.me/android-training-course-in-chinese/cloud/index.html)
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html) - @[kesenhoo](https://github.com/kesenhoo)，@[jdneo](https://github.com/jdneo)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - @[jdneo](https://github.com/jdneo)
-* [Android用户信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711) - 70%
+* [Android联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711)
 * [Android位置信息](http://hukai.me/android-training-course-in-chinese/location/index.html) - @[penkzhou](https://github.com/penkzhou)
 * [Android可穿戴应用](http://hukai.me/android-training-course-in-chinese/wearables/index.html)
    * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.html) - @[wangyachen](https://github.com/wangyachen)

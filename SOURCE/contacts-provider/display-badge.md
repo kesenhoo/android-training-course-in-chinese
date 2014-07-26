@@ -1,8 +1,8 @@
-> 编写:[spencer198711](https://github.com/spencer198711)
+> 编写：[spencer198711](https://github.com/spencer198711) - 校对：
 
-> 校对:
+> 原文：
 
-# 显示快速联系人徽章
+# 显示快速联系人徽章(头像)
 
 这一课展示了如何在你的应用界面上添加一个[QuickContactBadge]()，以及如何为它绑定数据。
 QuickContactBadge是一个在初始情况下显示联系人缩略图头像的widget。尽管你可以使用任何[Bitmap]()作为缩略图头像，但是通常你会使用从联系人照片缩略图中解码出来的Bitmap。
@@ -16,7 +16,7 @@ QuickContactBadge是一个在初始情况下显示联系人缩略图头像的wid
 * 应用程序图标
 
 	根据联系人详情数据，显示每一个能够被手机中的应用所处理的数据的图标。例如，如果联系人的数据包含一个或多个email地址，就会显示email应用的图标。当用户点击这个图标的时候，这个联系人所有的email地址都会显示出来。当用户点击其中一个email地址时，email应用将会显示一个界面，让用户为这个选择的地址去编辑邮件。
-	
+
 QuickContactBadge视图提供了对联系人数据的即时访问，是作为一种与联系人沟通的快捷方式。用户不用查询一个联系人，查找并复制信息，然后把信息粘贴到合适的应用中。他们可以点击QuickContactBadge，选择他们想要的沟通方式，然后直接把信息发送到对应的合适的应用中。
 
 ## 添加一个QuickContactBadge视图
@@ -172,7 +172,7 @@ QuickContactBadge视图提供了对联系人数据的即时访问，是作为一
                         Uri.withAppendedPath(
                                 contactUri, Photo.CONTENT_DIRECTORY);
             }
-    
+
         /*
          * Retrieves an AssetFileDescriptor object for the thumbnail
          * URI
@@ -269,8 +269,8 @@ QuickContactBadge对于一个展示联系人列表的ListView来说是一个非�
 
 * CursorAdapter.bindView()
 	将数据从当前Cursor行绑定到列表项布局的子View对象中。必须重写这个方法以便能够将联系人的URI和缩略图信息绑定到QuickContactBadge。这个方法的默认实现仅仅允许在数据行和View之间的一对一的映射。
-	
-	
+
+
 以下的代码片段包含了自定义CursorAdapter子类的一个例子。
 
 ### 定义自定义的列表Adapter
