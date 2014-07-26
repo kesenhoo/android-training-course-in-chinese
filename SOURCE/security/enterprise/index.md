@@ -1,12 +1,13 @@
-> 编写:
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 校正：
 
-> 校对:
+> 原文:[http://developer.android.com/training/enterprise/index.html](http://developer.android.com/training/enterprise/index.html)
 
-# 开发企业版App
-在这节课你将会学到APIs和技术，你使用它开发企业级App。
-##课程
-加强与设备管理策略安全
+# 为企业开发
+在这堂课中，你将会学到API和为企业开发时应用程序的技术。
 
-在这节课程，你将学习怎样创建一个具有安全意识能管理访问它的内容app，通过加强设备管理策略。
+## Lessons
 
+* [使用设备管理策略加强安全](device-management-policy.html)
+
+  在这堂课中，你将学会如何学会如何去创建一个通过使用设备管理策略管理内容访问权限的具有安全意识的应用程序。
 

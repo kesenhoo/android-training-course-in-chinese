@@ -86,9 +86,9 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - @[pedant](https://github.com/pedant)
    * [优化多核处理器(SMP)下的Android程序](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html) - 待认领
 * [Android安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)
-   * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai) - 10%
-   * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai) - 10%
-   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html) - @[craftsmanBai](https://github.com/craftsmanBai) - 10%
+   * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai)
+   * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai)
+   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html) - @[craftsmanBai](https://github.com/craftsmanBai)
 * [Android测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
    * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo)
       
