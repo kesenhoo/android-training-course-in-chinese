@@ -151,7 +151,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [添加语音能力](http://hukai.me/android-training-course-in-chinese/wearables/apps/voice.md)
       * [打包可穿戴应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/packaging.md)
       * [通过蓝牙进行调试](http://hukai.me/android-training-course-in-chinese/wearables/apps/bt-debugging.md)
-   * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.md) - 待认领
+   * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.md) - @[wly2014](https://github.com/wly2014)
       * [访问可穿戴数据层](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/accessing.md)
       * [同步数据单元](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/data-items.md)
       * [传输资源](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/assets.md)
