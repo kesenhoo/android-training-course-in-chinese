@@ -41,7 +41,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
    * [使用OpenGL ES显示图像](http://hukai.me/android-training-course-in-chinese/graphics/opengl/index.html) - @[jdneo](https://github.com/jdneo)
 * [Android显示动画](http://hukai.me/android-training-course-in-chinese/animations/index.html) - @[XizhiXu](https://github.com/XizhiXu) -  10%
 * [Android网络连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
-   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan) - 30%
+   * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan) - 60%
    * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [高效下载](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html) - @[jdneo](https://github.com/jdneo)
@@ -88,7 +88,7 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
 * [Android安全与隐私](http://hukai.me/android-training-course-in-chinese/security/index.html)
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai)
-   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise.html) - @[craftsmanBai](https://github.com/craftsmanBai)
+   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise/index.html) - @[craftsmanBai](https://github.com/craftsmanBai)
 * [Android测试程序](http://hukai.me/android-training-course-in-chinese/testing/index.html)
    * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo)
       
