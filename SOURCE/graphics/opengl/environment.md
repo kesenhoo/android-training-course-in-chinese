@@ -10,7 +10,7 @@
 
 在这节课中，我们将解释如何在一个简单地应用activity中完成[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)和[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)的最小实现。
 
-##在配置文件中声明使用OpenGL ES
+## 在配置文件中声明使用OpenGL ES
 
 为了让你的应用能够使用OpenGL ES 2.0接口，你必须将下列声明添加到配置文件当中：
 
@@ -27,7 +27,7 @@
 
 更多关于文理压缩的内容，可以阅读：[OpenGL](http://developer.android.com/guide/topics/graphics/opengl.html#textures)开发手册。
 
-##为OpenGL ES图形创建一个activity
+## 为OpenGL ES图形创建一个activity
 
 使用OpenGL ES的安卓应用就像其它类型的应用有自己的用户接口一样，也拥有多个activity。主要的区别就在于acitivity布局上的不同。在许多应用中你可能会使用[TextView](http://developer.android.com/reference/android/widget/TextView.html)，[Button](http://developer.android.com/reference/android/widget/Button.html)和[ListView](http://developer.android.com/reference/android/widget/ListView.html)，在使用OpenGL ES的应用中，你需要添加一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)。
 
@@ -52,7 +52,7 @@ public class OpenGLES20Activity extends Activity {
 
 > **Note：**OpenGL ES 2.0需要Android 2.2（API Level 8）或更高版本的系统，所以确保你的Android项目的API版本满足该要求。
 
-##构建一个GLSurfaceView对象
+## 构建一个GLSurfaceView对象
 
 一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)是一个特定的View，在View中你可以绘制OpenGL ES图形。不过它自己所做的事情并不多。对于绘制对象的控制实际上是由你在该View中配置的[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)所负责的。事实上，这个对象的代码非常简短，你可能会希望跳过继承它，并且只创建一个未经修改的GLSurfaceView实例，不过请不要这么做。你需要继承该类来捕捉触控事件，这方面知识在[响应触摸事件](touch.html)（该系列课程的最后一节课）中会做进一步的介绍。
 
@@ -88,7 +88,7 @@ setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
 这一配置将防止[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)框架被重新绘制，直到你调用了[requestRender()](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\))，这将让应用的性能及效率得到提高。
 
-##构建一个渲染类
+## 构建一个渲染类
 
 [GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)类的实现，或者说在一个应用中使用OpenGL ES来进行渲染，正是事情变得有趣的地方。该类会控制和其相关联的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)，决定在上面画什么。一共有三个渲染器的方法被Android系统调用，以此来明确要在[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)上画什么以及如何画：
 * [onSurfaceCreated()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated\(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig\))：调用一次，用来配置视图的OpenGL ES环境。

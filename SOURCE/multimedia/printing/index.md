@@ -12,15 +12,15 @@ Android用户经常需要在设备上单独地阅览信息，但也有时候为�
 
 * [**打印照片**](photos.html)
 
-  This lesson shows you how to print an image.
+  这节课将向你展示如何打印一个图像。
 
 
 * [**打印HTML文档**](html-docs.html)
 
-  This lesson shows you how to print an HTML document.
+  这节课将向你展示如何打印一个图像HTML文档。
 
 
 * [**打印自定义文档**](custom-docs.html)
 
-  This lesson shows you how you connect to the Android print manager, create a print adapter and build content for printing.
+  这节课将向你展示如何连接到Android打印管理器，创建一个打印适配器并建立要打印的内容。
 

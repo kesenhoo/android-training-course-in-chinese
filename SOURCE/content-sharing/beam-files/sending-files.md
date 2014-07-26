@@ -20,6 +20,7 @@
 ### 声明权限
 
 为了允许你的应用使用Android Beam文件传输控制NFC从外部存储发送文件，你必须在你的应用清单声明下面的权限：
+
 #### [NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC)
 允许你的应用通过NFC发送数据。为了声明该权限，添加下面的标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签：
 
