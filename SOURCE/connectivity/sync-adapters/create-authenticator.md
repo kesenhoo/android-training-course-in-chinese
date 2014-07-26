@@ -6,7 +6,7 @@
 
 Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会有一个账户，服务器存储端会有登录验证。因此，框架期望你提供一个叫做授权器的组件作为你的Sync Adapter的一部分。该组件会植入Android账户及认证框架，并提供一个标准的接口来处理用户凭据，比如登录信息。
 
-甚至，如果你的应用不使用账户，你仍然需要提供一个认证器组件。如果你不使用账户或者服务器登录，认证器所处理的信息将被忽略，所以你可以提供一个认证器组件，它包括了一个“空”的实现。同时你需要提供一个捆绑的[Service](http://developer.android.com/reference/android/app/Service.html)，来允许Sync Adapter框架来调用认证器的方法。
+甚至，如果你的应用不使用账户，你仍然需要提供一个授权器组件。如果你不使用账户或者服务器登录，授权器所处理的信息将被忽略，所以你可以提供一个授权器组件，它包括了一个“空”的实现（译者注：也即标题中的Stub）。同时你需要提供一个捆绑的[Service](http://developer.android.com/reference/android/app/Service.html)，来允许Sync Adapter框架来调用授权器的方法。
 
 这节课将向你展示如何定义一个Stub授权器的所有满足其实现要求的部件。如果你想要提供一个真实的处理用户账户的授权器，可以阅读：[AbstractAccountAuthenticator](http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html)。
 
@@ -86,7 +86,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
 
 为了让Sync Adapter框架可以访问你的授权器，你必须为它创建一个捆绑服务。这一服务提供一个Android binder对象，允许框架调用你的授权器，并且在授权器和框架间传输数据。
 
-因为框架会在它需要第一次访问授权器时启动[Service](http://developer.android.com/reference/android/app/Service.html)，你也可以使用服务来实例化授权器，方法是通过在服务的[Service.onCreate()](http://developer.android.com/reference/android/app/Service.html#onCreate\(\))方法中调用授权器的构造函数。
+因为框架会在它第一次访问授权器时启动[Service](http://developer.android.com/reference/android/app/Service.html)，你也可以使用服务来实例化授权器，方法是通过在服务的[Service.onCreate()](http://developer.android.com/reference/android/app/Service.html#onCreate\(\))方法中调用授权器的构造函数。
 
 下面的代码样例展示了如何定义绑定[Service](http://developer.android.com/reference/android/app/Service.html)：
 
@@ -123,13 +123,13 @@ public class AuthenticatorService extends Service {
 
 **android:accountType**
 
-Sync Adapter框架需要每一个适配器以域名的形式拥有一个账户类型。框架使用作为其内部的标识。对于需要登录的服务器，账户类型会和账户一起发送到服务端作为登录凭据的一部分。
+Sync Adapter框架需要每一个适配器以域名的形式拥有一个账户类型。框架会将它作为其内部的标识。对于需要登录的服务器，账户类型会和账户一起发送到服务端作为登录凭据的一部分。
 
 如果你的服务不需要登录，你仍然需要提供一个账户类型。值的话就用你能控制的一个域名即可。由于框架会使用它来管理Sync Adapter，所以值不会发送到服务器上。
 
 **android:icon**
 
-指向一个包含一个图标的[Drawable](http://developer.android.com/guide/topics/resources/drawable-resource.html)资源的指针。如果你在“res/xml/syncadapter.xml”中通过指定“android:userVisible="true"”让Sync Adapter可见，那么你必须提供图标资源。它会在系统的设置中的账户这一栏内显示。
+指向一个包含一个图标的[Drawable](http://developer.android.com/guide/topics/resources/drawable-resource.html)资源的指针。如果你在“res/xml/syncadapter.xml”中通过指定android:userVisible="true"让Sync Adapter可见，那么你必须提供图标资源。它会在系统的设置中的账户这一栏内显示。
 
 **android:smallIcon**
 
@@ -137,7 +137,7 @@ Sync Adapter框架需要每一个适配器以域名的形式拥有一个账户�
 
 **android:label**
 
-将指明了用户账户类型的string本地化。如果你在“res/xml/syncadapter.xml”中通过指定“android:userVisible="true"”让Sync Adapter可见，那么你需要提供这个string。它会在系统的设置中的账户这一栏内显示，就在你定义的图标旁边。
+将指明了用户账户类型的string本地化。如果你在“res/xml/syncadapter.xml”中通过指定android:userVisible="true"让Sync Adapter可见，那么你需要提供这个string。它会在系统的设置中的账户这一栏内显示，就在你定义的图标旁边。
 
 下面的代码样例展示了你之前为授权器创建的XML文件：
 
@@ -167,8 +167,8 @@ Sync Adapter框架需要每一个适配器以域名的形式拥有一个账户�
     </service>
 ```
 
-标签[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)配置了一个由android.accounts.AccountAuthenticator的intent所激活的过滤器，这一intent会在系统要运行授权器时由系统发出。当过滤器被激活，系统会启动AuthenticatorService，它是你之前用来封装认证器的捆绑[Service](http://developer.android.com/reference/android/app/Service.html)。
+标签[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)配置了一个由android.accounts.AccountAuthenticator的intent所激活的过滤器，这一intent会在系统要运行授权器时由系统发出。当过滤器被激活，系统会启动AuthenticatorService，它是你之前用来封装授权器的捆绑[Service](http://developer.android.com/reference/android/app/Service.html)。
 
-[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)标签声明了授权器的元数据。[android:name](http://developer.android.com/guide/topics/manifest/meta-data-element.html#nm)属性将元数据和授权器框架连接起来。[android:resource](http://developer.android.com/guide/topics/manifest/meta-data-element.html#rsrc)指定了你之前所创建的认证器元数据文件的名字。
+[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)标签声明了授权器的元数据。[android:name](http://developer.android.com/guide/topics/manifest/meta-data-element.html#nm)属性将元数据和授权器框架连接起来。[android:resource](http://developer.android.com/guide/topics/manifest/meta-data-element.html#rsrc)指定了你之前所创建的授权器元数据文件的名字。
 
-除了一个认证器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](除了一个认证器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](http://developer.android.com/training/sync-adapters/creating-sync-adapter.html)。
+除了一个授权器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[Creating a Sync Adapter](除了一个授权器，一个Sync Adapter框架需要一个内容提供器（content provider）。如果你的应用不适用内容提供器，可以阅读下一节课程，在下节课中将会创建一个空的内容提供器；如果你的应用适用的话，可以直接阅读：[创建Sync Adapter](creating-sync-adapter.html)。
