@@ -272,19 +272,6 @@ Google Android团队在2012年起开设了Training课程，从开始的十几篇
       * [测试UI组件](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-ui-testing.html)
       * [创建单元测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-unit-testing.html)
       * [创建功能测试](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/activity-function-testing.html)
-* [分发与盈利](http://hukai.me/android-training-course-in-chinese/distribute/index.html)
-   * [售卖App内置产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/index.html) - 待认领
-      * [准备你的App](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/prepare-iab-app.html)
-      * [建立售卖的产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/list-iab-products.html)
-      * [购买产品](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/purchase-iab-products.html)
-      * [测试你的App](http://hukai.me/android-training-course-in-chinese/distribute/in-app-billing/test-iab-app.html)
-   * [维护多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/index.html) - 待认领
-      * [为不同API Level创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/api.html)
-      * [为不同屏幕大小创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/screen-size.html)
-      * [为不同的GL Texture创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/texture.html)
-      * [为2种以上的维度创建多个APK](http://hukai.me/android-training-course-in-chinese/distribute/multi-apks/multiple.html)
-   * [App盈利](distribute/monetization/index.html) - 待认领
-      * [在不影响用户体验的前提下添加广告](http://hukai.me/android-training-course-in-chinese/distribute/monetization/ads-and-ux.html)
       
 
 ## 认领流程
