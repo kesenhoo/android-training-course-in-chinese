@@ -8,7 +8,7 @@
 
 这堂课将向你展示如何使用v4 support library中的[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类来打印一幅图片。
 
-##打印一幅图片
+## 打印一幅图片
 
 Android Support Library中的[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类提供了一个打印图片的简单方法。这个类有一个简单的布局选项：[setScaleMode()](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#setScaleMode\(int\))，它能允许你使用下面的两个选项之一：
 * [SCALE_MODE_FIT](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#SCALE_MODE_FIT)：这个选项会调整图像大小，这样整个图像就会在打印有效区域内全部显示出来（缩放至长和宽都包含在纸张页面内）。

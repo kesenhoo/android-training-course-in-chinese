@@ -10,7 +10,7 @@
 
 这节课将解释如何创建一个投影和一个相机视图，并应用它们到[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)中的绘制图像上。
 
-##定义一个投影
+## 定义一个投影
 
 投影变换的数据会在你的[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)类中的[onSurfaceChanged()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged\(javax.microedition.khronos.opengles.GL10, int, int\))方法中被计算。下面的代码首先接收[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的高和宽，然后用它来填充一个投影变换矩阵（[Matrix](http://developer.android.com/reference/android/opengl/Matrix.html)），使用[Matrix.frustumM()](http://developer.android.com/reference/android/opengl/Matrix.html#frustumM\(float[], int, float, float, float, float, float, float\))方法：
 
@@ -31,7 +31,7 @@ public void onSurfaceChanged(GL10 unused, int width, int height) {
 
 > **Note：**在你的绘图对象上只应用一个投影变换会导致一个看上去很空的显示效果。一般而言，你必须同时为每一个要在屏幕上显示的任何东西实现一个相机视图。
 
-##定义一个相机视图
+## 定义一个相机视图
 
 通过添加一个相机视图变换作为绘图过程的一部分，以此来完成你的绘图对象变换的所有步骤。在下面的代码中，使用[Matrix.setLookAtM()](http://developer.android.com/reference/android/opengl/Matrix.html#setLookAtM\(float[], int, float, float, float, float, float, float, float, float, float\))方法来计算相机视图变换，然后与之前计算的投影矩阵结合起来。结合后的变换矩阵传递给绘制图像：
 
@@ -50,7 +50,7 @@ public void onDrawFrame(GL10 unused) {
 }
 ```
 
-##应用投影和相机变换
+## 应用投影和相机变换
 
 为了使用在之前章节中结合了的相机视图变换和投影变换，修改你的图形对象的draw()方法，接收结合的变换并将其应用到图形上：
 
