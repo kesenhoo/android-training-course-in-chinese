@@ -1,18 +1,24 @@
 # Android Training Course in Chinese
 
-* Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入，更欢迎有意向参与到这个课程汉化项目中的同学。请看到的同学点击Star支持，感谢！
-
 ## [Google Android官方培训课程](http://developer.android.com/training/index.html)
 
-Google Android团队在2012年起开设了Training课程，从开始的十几篇文章，不断的增加，截止到现在2014年中，已经有近百个课程。无疑，这是学习Android应用开发的绝佳一手资料。
+Google Android团队在2012年起开设了Training课程，这是学习Android应用开发的绝佳一手资料。通过Github发起这个协作项目，借助大家的力量，完成中文版的输出并不断完善。维护一份最好的Android学习资料。欢迎善意的参与！
 
-期待能够通过Github发起这个协作项目，借助大家的力量，一起尽快完成所有课程的中文版。这不仅仅只是在翻译，更是一个学习积累并输出帮助别人的好事情。期待大家的加入！
+## 联系方式
+
+* Android Training学习交流组：363415744，欢迎所有学习Android开发的同学加入!
+* 欢迎给项目进行挑错纠正，你可以直接在Github上提交Issue或者Pull Request，谢谢！
 
 <a name="online_reading"></a>
 ## 在线阅读
 
-* 点击链接<http://hukai.me/android-training-course-in-chinese/index.html>
-* 目前进度：95%
+* 点击链接：**<http://hukai.me/android-training-course-in-chinese/index.html>**
+
+## 电子书
+
+* PDF: 敬请期待
+* ePub: 敬请期待
+* Mobi: 敬请期待
 
 <a name="courses"></a>
 ## 课程结构
@@ -170,6 +176,7 @@ git push origin gh-pages
 有不清楚的地方请直接查看由我编辑的课程源代码示例。
 
 ## Training离线文档
+
 近期Google被墙的厉害，无法正常登入Android网站，想要查看Training的文档，有点麻烦！
 我把所有的Google Android文档打包存在云端，有需要的同学点击下面的链接进行下载：
 
@@ -179,4 +186,5 @@ git push origin gh-pages
 仍然无法下载的同学，可以加入交流群，资料已经在群共享中。
 
 ## 附加说明
+
 项目采用 [知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议](http://creativecommons.org/licenses/by-nc-sa/4.0/)进行许可。
