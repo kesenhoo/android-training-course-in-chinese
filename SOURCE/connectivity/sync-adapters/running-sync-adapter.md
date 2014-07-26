@@ -32,7 +32,7 @@
 
 本课程的后续部分会详细介绍每个选项。
 
-##当服务器数据变化时，运行Sync Adapter
+## 当服务器数据变化时，运行Sync Adapter
 
 如果你的应用从服务器传输数据，且服务器的数据频繁的发生变化，你可以使用一个Sync Adapter通过下载数据来响应服务端数据的变化。要运行Sync Adapter，让服务端向你的应用的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)发送一条特殊的消息。要响应这条消息，可以调用[ContentResolver.requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))方法，来向Sync Adapter框架发出信号，让它运行你的Sync Adapter。
 
@@ -87,7 +87,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 }
 ```
 
-##当Content Provider的数据变化时，运行Sync Adapter
+## 当Content Provider的数据变化时，运行Sync Adapter
 
 如果你的应用在一个Content Provider中收集数据，并且你希望当你更新提供器的时候一起更新服务器的数据，你可以配置你的Sync Adapter来让它自动运行。要做到这一点，你首先应该为Content Provider注册一个观察器（observer）。当你的Content Provider的数据发生了变化以后，Content Provider框架会调用观察器。在观察器中，调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))来告诉框架运行你的Sync Adapter。
 
@@ -176,7 +176,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-##在一个网络消息之后，运行Sync Adapter
+## 在一个网络消息之后，运行Sync Adapter
 
 当一个网络连接可获得时，Android系统会每隔几秒发送一条消息来保持TCP/IP连接打开。这一消息也会传递到每个应用的[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)中。通过调用[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically\(android.accounts.Account, java.lang.String, boolean\))，你可以在[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)收到消息后，运行Sync Adapter。
 
@@ -212,7 +212,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-##定期地运行Sync Adapter
+## 定期地运行Sync Adapter
 
 你可以设置一个每次运行期间的间隔时间来定期运行你的Sync Adapter，或者在每天的固定时间运行，或者两者都有。定期地运行你的Sync Adapter可以让你与你的服务器更新间隔粗略地保持一致。
 
@@ -268,7 +268,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-##按需求执行Sync Adapter
+## 按需求执行Sync Adapter
 
 运行你的Sync Adapter来响应一个用户需求是运行一个Sync Adapter最不推荐的策略。要知道，框架是被特别设计成根据计划运行Sync Adapter时可以最大化保留电量。既然更新数据的过程后损耗电量，那么在数据变化时响应一个Sync Adapter的同步选项应该有效地使用电量。
 

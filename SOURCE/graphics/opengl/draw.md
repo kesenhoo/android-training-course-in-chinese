@@ -8,7 +8,7 @@
 
 这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的图形。
 
-##初始化形状
+## 初始化形状
 
 在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的[onSurfaceCreated()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated\(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig\))方法中初始化它们，这样做是处于内存和执行效率的考量。
 
@@ -23,7 +23,7 @@ public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 }
 ```
 
-###画一个形状
+### 画一个形状
 
 使用OpenGL ES 2.0画一个定义的形状需要较多代码，因为你需要提供很多图形处理流程的细节。具体而言，你必须定义如下几项：
 * 顶点着色器（Vertex Shader）：OpenGL ES代码用来渲染形状的顶点。

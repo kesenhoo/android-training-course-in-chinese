@@ -8,7 +8,7 @@
 
 在这节课中，一会更深入的学习OpenGL ES的知识：对一个形状添加旋转动画。
 
-##旋转一个形状
+## 旋转一个形状
 
 使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。首先创建一个变换矩阵（一个旋转矩阵）并且将它和你的投影变换矩阵和相机试图变换矩阵结合在一起：
 
@@ -35,7 +35,7 @@ public void onDrawFrame(GL10 gl) {
 
 如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将[GLSurfaceView.RENDERMODE_WHEN_DIRTY](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY)的配置注释掉了，有关该方面的知识会在下一节中展开。
 
-##启用连续渲染
+## 启用连续渲染
 
 如果你严格按照这节课的样例代码走到了现在这一步，那么请确定您将设置渲染模式为“RENDERMODE_WHEN_DIRTY”的这一行注释了，不然的话OpenGL只会对这个形状执行一个增量的旋转，然后就等待[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)容器的[requestRender()](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\))方法被调用。
 

@@ -8,7 +8,7 @@
 
 这节课将解释OpenGL ES相对于Android设备屏幕的坐标系，定义形状和形状表面的基本知识，如定义一个三角形和一个矩形。
 
-##定义一个三角形
+## 定义一个三角形
 
 OpenGL ES允许你使用三维空间的坐标来定义绘画对象。所以在你能画三角形之前，你必须先定义它的坐标。在OpenGL 中，典型的办法是以浮点数的形式为坐标定义一个顶点数组。为了让效率最大化，你可以将坐标写入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)，它将会传入OpenGl ES的图形处理流程中：
 
@@ -50,7 +50,7 @@ public class Triangle {
 
 注意到这个形状的坐标是以逆时针顺序定义的。绘制的顺序非常关键，因为它定义了哪一面是形状的正面（你希望绘制的一面），以及背面（你可以使用OpenGL ES的cull face特性来让它不要绘制）。更多关于该方面的信息，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
 
-##定义一个矩形
+## 定义一个矩形
 
 在OpenGL中定义三角形非常简单，那么你是否想要增加一些复杂性呢？比如，定义一个矩形？有很多方法可以用来定义矩形，不过在OpenGL ES中最典型的办法是使用两个三角形拼接在一起：
 

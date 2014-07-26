@@ -30,13 +30,13 @@
 
 本系列课程将向你展示如何创建一个Sync Adapter，以及它所封装和绑定的服务（[Service](http://developer.android.com/reference/android/app/Service.html)），如何提供其它组件来帮助你将Sync Adapter添加到框架中，以及如何通过不同的方法来运行Sync Adapter。
 
->** Note：**Sync Adapter是异步执行的，所以你应该在期望它可以定期地有效地但不是瞬间地传输数据时使用它。如果你想要实时地传输数据，那么你应该在中[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)完成这一任务。
+> ** Note：**Sync Adapter是异步执行的，所以你应该在期望它可以定期地有效地但不是瞬间地传输数据时使用它。如果你想要实时地传输数据，那么你应该在中[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)完成这一任务。
 
-#Sample Code
+## Sample Code
 
 [BasicSyncAdapter.zip](http://developer.android.com/shareables/training/BasicSyncAdapter.zip)
 
-#Lessons
+## Lessons
 
 * [创建Stub授权器](creating-authenticator.html)
 

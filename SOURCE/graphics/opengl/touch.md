@@ -8,7 +8,7 @@
 
 这节课将会向你展示如何监听触摸事件，让用户旋转一个OpenGL ES对象。
 
-##配置触摸监听器
+## 配置触摸监听器
 
 为了让你的OpenGL ES应用响应触摸事件，你必须实现在[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)类中的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent\(android.view.MotionEvent\))方法。下述实现的样例展示了如何监听[MotionEvent.ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件，并将它们转换为形状旋转的角度：
 
@@ -60,7 +60,7 @@ public MyGLSurfaceView(Context context) {
 }
 ```
 
-##公开旋转角度
+## 公开旋转角度
 
 上述样例代码需要你公开旋转的角度，方法是在你的渲染器中添加一个共有成员。由于渲染器代码运行在一个独立的线程中（非主UI线程），你必须将你的这个公共变量声明为volatile。请看下面的代码：
 
@@ -70,7 +70,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
     public volatile float mAngle;
 ```
 
-##应用旋转
+## 应用旋转
 
 为了应用触摸输入所导致的旋转，注释掉创建一个旋转角度的代码，然后添加mAngle，该变量包含了输入所导致的角度：
 

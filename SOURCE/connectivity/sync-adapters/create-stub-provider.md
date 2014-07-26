@@ -12,7 +12,7 @@ Sync Adapter框架是设计成用来和设备数据一起工作的，这些设�
 
 如果你在你的应用中已经有了一个Content Provider，那么你就不需要一个Stub Content Provider了。在这种情况下，你可以略过这节课程，直接进入：[创建Sync Adapter](creating-sync-adapter.html)。如果你还没有一个Content Provider，这节课将向你展示如何添加一个Stub Content Provider，来允许你将你的Sync Adapter添加到框架中。
 
-##添加一个Stub Content Provider
+## 添加一个Stub Content Provider
 
 要为你的应用创建一个Stub Content Provider，继承[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)并且置空它需要的方法。下面的代码片段展示了你应该如何创建Stub Content Provider：
 
@@ -77,7 +77,7 @@ public class StubProvider extends ContentProvider {
 }
 ```
 
-##在清单文件中声明提供器
+## 在清单文件中声明提供器
 
 Sync Adapter框架会检查你的应用在清单文件中是否声明了一个Provider来验证你的应用是否有一个Content Provider。为了在清单文件中声明Stub Content Provider，添加一个[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签，并让它拥有下列属性字段：
 

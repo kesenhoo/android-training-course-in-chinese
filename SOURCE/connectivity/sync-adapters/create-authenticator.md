@@ -10,7 +10,7 @@ Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会�
 
 这节课将向你展示如何定义一个Stub授权器的所有满足其实现要求的部件。如果你想要提供一个真实的处理用户账户的授权器，可以阅读：[AbstractAccountAuthenticator](http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html)。
 
-##添加一个Stub授权器组件
+## 添加一个Stub授权器组件
 
 要在你的应用中添加一个Stub授权器，创建一个继承[AbstractAccountAuthenticator](http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html)的类，并将要覆写的方法置空（这样就不会做任何处理了），返回null或者抛出异常。
 
@@ -82,7 +82,7 @@ public class Authenticator extends AbstractAccountAuthenticator {
 }
 ```
 
-##将授权器绑定到框架
+## 将授权器绑定到框架
 
 为了让Sync Adapter框架可以访问你的授权器，你必须为它创建一个捆绑服务。这一服务提供一个Android binder对象，允许框架调用你的授权器，并且在授权器和框架间传输数据。
 
@@ -115,7 +115,7 @@ public class AuthenticatorService extends Service {
 }
 ```
 
-##添加授权器的元数据文件
+## 添加授权器的元数据文件
 
 要将你的授权器组件插入到Sync Adapter和账户框架中，你需要为框架提供带有描述组件的元数据。该元数据声明了你创建的Sync Adapter的账户类型以及系统所显示的用户接口元素（如果你希望将你的账户类型对用户可见）。在你的项目目录：“/res/xml/”下，将元数据声明于一个XML文件中。你可以随便为它起一个名字，一般来说，可以叫“authenticator.xml”
 
