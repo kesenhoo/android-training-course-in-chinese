@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.4" data-basepath=".." data-revision="1406361845343">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.4" data-basepath=".." data-revision="1406365028273">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -1283,7 +1283,7 @@
         <li class="chapter " data-level="9" data-path="contacts-provider/index.html">
             
             <a href="../contacts-provider/index.html">
-                <i class="fa fa-check"></i> <b>9.</b> Android用户信息
+                <i class="fa fa-check"></i> <b>9.</b> Android联系人信息
             </a>
             
             
@@ -3031,7 +3031,7 @@
     
         <a href="../cloud/cloudsave/index.html" title="解决云同步的保存冲突" class="chapter done " data-progress="8.2" style="left: 42.46031746031746%;"></a>
     
-        <a href="../contacts-provider/index.html" title="Android用户信息" class="chapter done new-chapter" data-progress="9" style="left: 42.857142857142854%;"></a>
+        <a href="../contacts-provider/index.html" title="Android联系人信息" class="chapter done new-chapter" data-progress="9" style="left: 42.857142857142854%;"></a>
     
         <a href="../contacts-provider/retrieve-names.html" title="获取联系人列表" class="chapter done " data-progress="9.1" style="left: 43.25396825396825%;"></a>
     
@@ -3329,10 +3329,425 @@
                     <section class="normal" id="section-gitbook_91">
                     
                         <blockquote>
-<p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a></p>
-<p>校对:</p>
+<p>编写：<a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 校对：</p>
+<p>原文：</p>
 </blockquote>
-<h1 id="-">显示联系人头像</h1>
+<h1 id="-">显示快速联系人徽章(头像)</h1>
+<p>这一课展示了如何在你的应用界面上添加一个<a href="">QuickContactBadge</a>，以及如何为它绑定数据。
+QuickContactBadge是一个在初始情况下显示联系人缩略图头像的widget。尽管你可以使用任何<a href="">Bitmap</a>作为缩略图头像，但是通常你会使用从联系人照片缩略图中解码出来的Bitmap。</p>
+<p>这个小的图片作为一个控件，当用户点击它时，QuickContactBadge会伸展成一个包含以下内容的对话框：</p>
+<ul>
+<li><p>一个大的联系人头像</p>
+<p>  与这个联系人关联的大的头像，如果此人没有设置头像，则显示默认的头像。</p>
+</li>
+<li><p>应用程序图标</p>
+<p>  根据联系人详情数据，显示每一个能够被手机中的应用所处理的数据的图标。例如，如果联系人的数据包含一个或多个email地址，就会显示email应用的图标。当用户点击这个图标的时候，这个联系人所有的email地址都会显示出来。当用户点击其中一个email地址时，email应用将会显示一个界面，让用户为这个选择的地址去编辑邮件。</p>
+</li>
+</ul>
+<p>QuickContactBadge视图提供了对联系人数据的即时访问，是作为一种与联系人沟通的快捷方式。用户不用查询一个联系人，查找并复制信息，然后把信息粘贴到合适的应用中。他们可以点击QuickContactBadge，选择他们想要的沟通方式，然后直接把信息发送到对应的合适的应用中。</p>
+<h2 id="-quickcontactbadge-">添加一个QuickContactBadge视图</h2>
+<p>为了添加一个QuickContactBadge视图，需要在你的布局文件中插入一个QuickContactBadge。例如：</p>
+<pre><code class="lang-java">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"&gt;
+...
+    &lt;QuickContactBadge
+               android:id=@+id/quickbadge
+               android:layout_height="wrap_content"
+               android:layout_width="wrap_content"
+               android:scaleType="centerCrop"/&gt;
+    ...
+&lt;/RelativeLayout&gt;
+</code></pre>
+<h2 id="-">获取数据库数据</h2>
+<p>为了能在QuickContactBadge中显示联系人，你需要这个联系人的内容URI和显示头像的Bitmap。你可以从Contacts Provider中获取到的相关数据列中生成这两个数据。需要指定这些列作为查询映射去把数据加载到Cursor中。</p>
+<p>对于Android 3.0（API版本为11）以及以后的版本，需要在查询映射中添加以下列：</p>
+<p>*<a href="">Contacts._ID</a></p>
+<p>*<a href="">Contacts.LOOKUP_KEY</a></p>
+<p>*<a href="">Contacts.PHOTO_THUMBNAIL_URI</a></p>
+<p>对于Android 2.3.3（API版本为10）以及之前的版本，则使用以下列：</p>
+<p>*<a href="">Contacts._ID</a></p>
+<p>*<a href="">Contacts.LOOKUP_KEY</a></p>
+<p>这一课的剩余部分假设你已经获取到了包含这些以及其他你可能选择的数据列的Cursor对象。想要学习如何获取这些列对象的Cursor，请参阅课程<a href="">获取联系人列表</a>。</p>
+<h2 id="-uri-">设置联系人URI和缩略图象</h2>
+<p>一旦你已经拥有了所需的数据列，你就可以为QuickContactBadge视图绑定数据了。</p>
+<h3 id="-uri">设置联系人URI</h3>
+<p>为了设置联系人URI，需要调用<a href="">getLookupUri(id,lookupKey)</a>去获取<a href="">CONTENT_LOOKUP_URI</a>，然后调用<a href="">assignContactUri()</a>去为QuickContactBadge设置对应的联系人。例如：</p>
+<pre><code class="lang-java">    <span class="hljs-comment">// The Cursor that contains contact rows</span>
+    Cursor mCursor;
+    <span class="hljs-comment">// The index of the _ID column in the Cursor</span>
+    <span class="hljs-keyword">int</span> mIdColumn;
+    <span class="hljs-comment">// The index of the LOOKUP_KEY column in the Cursor</span>
+    <span class="hljs-keyword">int</span> mLookupKeyColumn;
+    <span class="hljs-comment">// A content URI for the desired contact</span>
+    Uri mContactUri;
+    <span class="hljs-comment">// A handle to the QuickContactBadge view</span>
+    QuickContactBadge mBadge;
+    ...
+    mBadge = (QuickContactBadge) findViewById(R.id.quickbadge);
+    <span class="hljs-comment">/*
+     * Insert code here to move to the desired cursor row
+     */</span>
+    <span class="hljs-comment">// Gets the _ID column index</span>
+    mIdColumn = mCursor.getColumnIndex(Contacts._ID);
+    <span class="hljs-comment">// Gets the LOOKUP_KEY index</span>
+    mLookupKeyColumn = mCursor.getColumnIndex(Contacts.LOOKUP_KEY);
+    <span class="hljs-comment">// Gets a content URI for the contact</span>
+    mContactUri =
+            Contacts.getLookupUri(
+                mCursor.getLong(mIdColumn),
+                mCursor.getString(mLookupKeyColumn)
+            );
+    mBadge.assignContactUri(mContactUri);
+</code></pre>
+<p>当用户点击QuickContactBadge图标的时候，这个联系人的详细信息将会自动展现在对话框中。</p>
+<h3 id="-">设置联系人照片的缩略图</h3>
+<p>为QuickContactBadge设置联系人URI并不会自动加载联系人的缩略图照片。为了加载联系人照片，需要从联系人的Cursor对象的一行数据中获取照片的URI，使用这个URI去打开包含压缩的缩略图照片的文件，并把这个文件读到Bitmap对象中。</p>
+<blockquote>
+<p>[PHOTO_THUMBNAIL_URI]这一列在Android 3.0之前的版本是不存在的，对于这些版本，你必须从[Contacts.Photo]表中获取照片的URI。</p>
+</blockquote>
+<p>首先，为包含Contacts._ID和Contacts.LOOKUP_KEY的Cursor数据列设置对应的变量，这在之前已经有描述：</p>
+<pre><code class="lang-java">    <span class="hljs-comment">// The column in which to find the thumbnail ID</span>
+    <span class="hljs-keyword">int</span> mThumbnailColumn;
+    <span class="hljs-comment">/*
+     * The thumbnail URI, expressed as a String.
+     * Contacts Provider stores URIs as String values.
+     */</span>
+    String mThumbnailUri;
+    ...
+    <span class="hljs-comment">/*
+     * Gets the photo thumbnail column index if
+     * platform version &gt;= Honeycomb
+     */</span>
+    <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+        mThumbnailColumn =
+                mCursor.getColumnIndex(Contacts.PHOTO_THUMBNAIL_URI);
+    <span class="hljs-comment">// Otherwise, sets the thumbnail column to the _ID column</span>
+    } <span class="hljs-keyword">else</span> {
+        mThumbnailColumn = mIdColumn;
+    }
+    <span class="hljs-comment">/*
+     * Assuming the current Cursor position is the contact you want,
+     * gets the thumbnail ID
+     */</span>
+    mThumbnailUri = mCursor.getString(mThumbnailColumn);
+    ...
+</code></pre>
+<p>首先定义一个方法，使用这个联系人的照片有关的数据和目标视图的大小作为参数，返回一个大小合适的Bitmap对象的缩略图。先构建一个指向这个缩略图的URI：</p>
+<pre><code class="lang-java">     <span class="hljs-javadoc">/**
+     * Load a contact photo thumbnail and return it as a Bitmap,
+     * resizing the image to the provided image dimensions as needed.
+     *<span class="hljs-javadoctag"> @param</span> photoData photo ID Prior to Honeycomb, the contact's _ID value.
+     * For Honeycomb and later, the value of PHOTO_THUMBNAIL_URI.
+     *<span class="hljs-javadoctag"> @return</span> A thumbnail Bitmap, sized to the provided width and height.
+     * Returns null if the thumbnail is not found.
+     */</span>
+    <span class="hljs-keyword">private</span> Bitmap <span class="hljs-title">loadContactPhotoThumbnail</span>(String photoData) {
+        <span class="hljs-comment">// Creates an asset file descriptor for the thumbnail file.</span>
+        AssetFileDescriptor afd = <span class="hljs-keyword">null</span>;
+        <span class="hljs-comment">// try-catch block for file not found</span>
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-comment">// Creates a holder for the URI.</span>
+            Uri thumbUri;
+            <span class="hljs-comment">// If Android 3.0 or later</span>
+            <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT
+                    &gt;=
+                Build.VERSION_CODES.HONEYCOMB) {
+                <span class="hljs-comment">// Sets the URI from the incoming PHOTO_THUMBNAIL_URI</span>
+                thumbUri = Uri.parse(photoData);
+            } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Prior to Android 3.0, constructs a photo Uri using _ID</span>
+                <span class="hljs-comment">/*
+                 * Creates a contact URI from the Contacts content URI
+                 * incoming photoData (_ID)
+                 */</span>
+                <span class="hljs-keyword">final</span> Uri contactUri = Uri.withAppendedPath(
+                        Contacts.CONTENT_URI, photoData);
+                <span class="hljs-comment">/*
+                 * Creates a photo URI by appending the content URI of
+                 * Contacts.Photo.
+                 */</span>
+                thumbUri =
+                        Uri.withAppendedPath(
+                                contactUri, Photo.CONTENT_DIRECTORY);
+            }
+
+        <span class="hljs-comment">/*
+         * Retrieves an AssetFileDescriptor object for the thumbnail
+         * URI
+         * using ContentResolver.openAssetFileDescriptor
+         */</span>
+        afd = getActivity().getContentResolver().
+                openAssetFileDescriptor(thumbUri, <span class="hljs-string">"r"</span>);
+        <span class="hljs-comment">/*
+         * Gets a file descriptor from the asset file descriptor.
+         * This object can be used across processes.
+         */</span>
+        FileDescriptor fileDescriptor = afd.getFileDescriptor();
+        <span class="hljs-comment">// Decode the photo file and return the result as a Bitmap</span>
+        <span class="hljs-comment">// If the file descriptor is valid</span>
+        <span class="hljs-keyword">if</span> (fileDescriptor != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Decodes the bitmap</span>
+            <span class="hljs-keyword">return</span> BitmapFactory.decodeFileDescriptor(
+                    fileDescriptor, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+            }
+        <span class="hljs-comment">// If the file isn't found</span>
+        } <span class="hljs-keyword">catch</span> (FileNotFoundException e) {
+            <span class="hljs-comment">/*
+             * Handle file not found errors
+             */</span>
+        }
+        <span class="hljs-comment">// In all cases, close the asset file descriptor</span>
+        } <span class="hljs-keyword">finally</span> {
+            <span class="hljs-keyword">if</span> (afd != <span class="hljs-keyword">null</span>) {
+                <span class="hljs-keyword">try</span> {
+                    afd.close();
+                } <span class="hljs-keyword">catch</span> (IOException e) {}
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+</code></pre>
+<p>然后在你的代码中调用loadContactPhotoThumbnail()去获取缩略图Bitmap对象，使用获取的Bitmap对象去设置QuickContactBadge头像缩略图。</p>
+<pre><code class="lang-java">    ...
+    <span class="hljs-comment">/*
+     * Decodes the thumbnail file to a Bitmap.
+     */</span>
+    Bitmap mThumbnail =
+            loadContactPhotoThumbnail(mThumbnailUri);
+    <span class="hljs-comment">/*
+     * Sets the image in the QuickContactBadge
+     * QuickContactBadge inherits from ImageView, so
+     */</span>
+    mBadge.setImageBitmap(mThumbnail);
+</code></pre>
+<h2 id="-quickcontactbadge-listview">把QuickContactBadge添加到ListView</h2>
+<p>QuickContactBadge对于一个展示联系人列表的ListView来说是一个非常有用的添加功能。使用QuickContactBadge去为每一个联系人显示一个缩略图，当用户点击这个缩略图时，QuickContactBadge对话框将会显示。</p>
+<h3 id="-listview-quickcontactbadge">为ListView添加QuickContactBadge</h3>
+<p>首先，在你的列表项布局文件中添加QuickContactBadge视图元素。例如，如果你想为获取到的每一个联系人显示QuickContactBadge和名字，把以下的XML内容放到对应的布局文件中：</p>
+<pre><code class="lang-java">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"&gt;
+    &lt;QuickContactBadge
+        android:id="@+id/quickcontact"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:scaleType="centerCrop"/&gt;
+    &lt;TextView android:id="@+id/displayname"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_toRightOf="@+id/quickcontact"
+              android:gravity="center_vertical"
+              android:layout_alignParentRight="true"
+              android:layout_alignParentTop="true"/&gt;
+&lt;/RelativeLayout&gt;
+</code></pre>
+<p>在以下的章节中，这个文件被称为contact_item_layout.xml</p>
+<h3 id="-cursoradapter">设置自定义的CursorAdapter</h3>
+<p>为了能够绑定CursorAdapter到一个包含QuickContactBadge的ListView中，需要一个继承自CursorAdapter的自定义adapter。这种方式允许你在绑定数据到QuickContactBadge之前对Cursor中的数据进行处理，同时也能绑定多个Cursor中得列到QuickContactBadge。而这些操作使用普通的CursorAdapter是不能完成的。</p>
+<p>你定义的CursorAdapter的子类必须重写以下方法：</p>
+<ul>
+<li><p>CursorAdapter.newView()
+  填充一个View对象去持有列表项布局。在重写这个方法的过程中，需要保存这个布局的子View的引用，包括QuickContactBadge的引用。通过采用这种方法，避免了每次在填充新的布局的时候都去获取子View的引用。
+  你必须重写这个方法以便能够获取每个子View的引用，这种方法允许你控制这些控件在CursorAdapter.bindView()方法中的数据绑定过程。</p>
+</li>
+<li><p>CursorAdapter.bindView()
+  将数据从当前Cursor行绑定到列表项布局的子View对象中。必须重写这个方法以便能够将联系人的URI和缩略图信息绑定到QuickContactBadge。这个方法的默认实现仅仅允许在数据行和View之间的一对一的映射。</p>
+</li>
+</ul>
+<p>以下的代码片段包含了自定义CursorAdapter子类的一个例子。</p>
+<h3 id="-adapter">定义自定义的列表Adapter</h3>
+<p>定义CursorAdapter的子类包括编写这个类的构造方法，以及重写newView()和bindView():</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactsAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CursorAdapter</span> {</span>
+        <span class="hljs-keyword">private</span> LayoutInflater mInflater;
+        ...
+        <span class="hljs-keyword">public</span> <span class="hljs-title">ContactsAdapter</span>(Context context) {
+            <span class="hljs-keyword">super</span>(context, <span class="hljs-keyword">null</span>, <span class="hljs-number">0</span>);
+
+            <span class="hljs-comment">/*
+             * Gets an inflater that can instantiate
+             * the ListView layout from the file.
+             */</span>
+            mInflater = LayoutInflater.from(context);
+            ...
+        }
+        ...
+        <span class="hljs-javadoc">/**
+         * Defines a class that hold resource IDs of each item layout
+         * row to prevent having to look them up each time data is
+         * bound to a row.
+         */</span>
+        <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewHolder</span> {</span>
+            TextView displayname;
+            QuickContactBadge quickcontact;
+        }
+        ..
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> View <span class="hljs-title">newView</span>(
+                Context context,
+                Cursor cursor,
+                ViewGroup viewGroup) {
+            <span class="hljs-comment">/* Inflates the item layout. Stores resource IDs in a
+             * in a ViewHolder class to prevent having to look
+             * them up each time bindView() is called.
+             */</span>
+            <span class="hljs-keyword">final</span> View itemView =
+                    mInflater.inflate(
+                            R.layout.contact_list_layout,
+                            viewGroup,
+                            <span class="hljs-keyword">false</span>
+                    );
+            <span class="hljs-keyword">final</span> ViewHolder holder = <span class="hljs-keyword">new</span> ViewHolder();
+            holder.displayname =
+                    (TextView) view.findViewById(R.id.displayname);
+            holder.quickcontact =
+                    (QuickContactBadge)
+                            view.findViewById(R.id.quickcontact);
+            view.setTag(holder);
+            <span class="hljs-keyword">return</span> view;
+        }
+        ...
+        <span class="hljs-annotation">@Override</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">bindView</span>(
+                View view,
+                Context context,
+                Cursor cursor) {
+            <span class="hljs-keyword">final</span> ViewHolder holder = (ViewHolder) view.getTag();
+            <span class="hljs-keyword">final</span> String photoData =
+                    cursor.getString(mPhotoDataIndex);
+            <span class="hljs-keyword">final</span> String displayName =
+                    cursor.getString(mDisplayNameIndex);
+            ...
+            <span class="hljs-comment">// Sets the display name in the layout</span>
+            holder.displayname = cursor.getString(mDisplayNameIndex);
+            ...
+            <span class="hljs-comment">/*
+             * Generates a contact URI for the QuickContactBadge.
+             */</span>
+            <span class="hljs-keyword">final</span> Uri contactUri = Contacts.getLookupUri(
+                    cursor.getLong(mIdIndex),
+                    cursor.getString(mLookupKeyIndex));
+            holder.quickcontact.assignContactUri(contactUri);
+            String photoData = cursor.getString(mPhotoDataIndex);
+            <span class="hljs-comment">/*
+             * Decodes the thumbnail file to a Bitmap.
+             * The method loadContactPhotoThumbnail() is defined
+             * in the section "Set the Contact URI and Thumbnail"
+             */</span>
+            Bitmap thumbnailBitmap =
+                    loadContactPhotoThumbnail(photoData);
+            <span class="hljs-comment">/*
+             * Sets the image in the QuickContactBadge
+             * QuickContactBadge inherits from ImageView
+             */</span>
+            holder.quickcontact.setImageBitmap(thumbnailBitmap);
+    }
+</code></pre>
+<h3 id="-">设置查询变量</h3>
+<p>在你的代码中设置相关变量，包括必须要查询的数据列的Cursor投影。</p>
+<blockquote>
+<p>以下的代码片段使用了方法loadContactPhotoThumbnail()，这个方法是在<a href="">设置联系人URI和缩略图象</a>那一节中定义的。</p>
+</blockquote>
+<p>例如：</p>
+<pre><code class="lang-java">public class ContactsFragment extends Fragment implements
+        LoaderManager.LoaderCallbacks&lt;Cursor&gt; {
+...
+    // Defines a ListView
+    private ListView mListView;
+    // Defines a ContactsAdapter
+    private ContactsAdapter mAdapter;
+    ...
+    // Defines a Cursor to contain the retrieved data
+    private Cursor mCursor;
+    /*
+     * Defines a projection based on platform version. This ensures
+     * that you retrieve the correct columns.
+     */
+    private static final String[] PROJECTION =
+            {
+                Contacts._ID,
+                Contacts.LOOKUP_KEY,
+                (Build.VERSION.SDK_INT &gt;=
+                 Build.VERSION_CODES.HONEYCOMB) ?
+                        Contacts.DISPLAY_NAME_PRIMARY :
+                        Contacts.DISPLAY_NAME
+                (Build.VERSION.SDK_INT &gt;=
+                 Build.VERSION_CODES.HONEYCOMB) ?
+                        Contacts.PHOTO_THUMBNAIL_ID :
+                        /*
+                         * Although it's not necessary to include the
+                         * column twice, this keeps the number of
+                         * columns the same regardless of version
+                         */
+                        Contacts_ID
+                ...
+            };
+    /*
+     * As a shortcut, defines constants for the
+     * column indexes in the Cursor. The index is
+     * 0-based and always matches the column order
+     * in the projection.
+     */
+    // Column index of the _ID column
+    private int mIdIndex = 0;
+    // Column index of the LOOKUP_KEY column
+    private int mLookupKeyIndex = 1;
+    // Column index of the display name column
+    private int mDisplayNameIndex = 3;
+    /*
+     * Column index of the photo data column.
+     * It's PHOTO_THUMBNAIL_URI for Honeycomb and later,
+     * and _ID for previous versions.
+     */
+    private int mPhotoDataIndex =
+            Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB ?
+            3 :
+            0;
+    ...
+</code></pre>
+<h3 id="-listview-">设置ListView的参数</h3>
+<p>在<a href="">Fragment.onCreate()</a>方法中，实例化自定义的adapter对象，获得一个对ListView的引用。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">/*
+         * Instantiates the subclass of
+         * CursorAdapter
+         */</span>
+        ContactsAdapter mContactsAdapter =
+                <span class="hljs-keyword">new</span> ContactsAdapter(getActivity());
+        <span class="hljs-comment">/*
+         * Gets a handle to the ListView in the file
+         * contact_list_layout.xml
+         */</span>
+        mListView = (ListView) findViewById(R.layout.contact_list_layout);
+        ...
+    }
+    ...
+</code></pre>
+<p>在onActivityCreated()方法中，将ContactsAdapter绑定到ListView。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityCreated</span>(Bundle savedInstanceState) {
+        ...
+        <span class="hljs-comment">// Sets up the adapter for the ListView</span>
+        mListView.setAdapter(mAdapter);
+        ...
+    }
+    ...
+</code></pre>
+<p>你通常会在onLoadFinished()方法中获取一个包含联系人数据的Cursor对象，这个时候你需要调用swapCursor()，这个方法会把Cursor中的数据绑定到ListView。这将会为联系人列表中的每一项都显示一个QuickContactBadge。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoadFinished</span>(Loader&lt;Cursor&gt; loader, Cursor cursor) {
+        <span class="hljs-comment">// When the loader has completed, swap the cursor into the adapter.</span>
+        mContactsAdapter.swapCursor(cursor);
+    }
+</code></pre>
+<p>当你使用CursorAdapter或其子类中将Cursor中的数据绑定到ListView，并且使用了CursorLoader去加载Cursor数据，记得要在onLoaderReset()方法的实现中清理对Cursor对象的引用。例如：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoaderReset</span>(Loader&lt;Cursor&gt; loader) {
+        <span class="hljs-comment">// Removes remaining reference to the previous Cursor</span>
+        mContactsAdapter.swapCursor(<span class="hljs-keyword">null</span>);
+    }
+</code></pre>
 
                     
                     </section>
