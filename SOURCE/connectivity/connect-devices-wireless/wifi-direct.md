@@ -1,6 +1,6 @@
-> 编写: naizhengtan
+> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
 
-> 校对:
+> 原文:
 
 # 使用WiFi建立P2P连接
 
@@ -11,7 +11,7 @@ Wi-Fi P2P技术使得应用程序可以快速发现附近的设备并与之交�
 
 本节主要内容是使用Wi-Fi P2P技术发现并连接到附近的设备。
 
-##配置应用权限
+## 配置应用权限
 
 
 使用Wi-Fi P2P技术，需要添加[CHANGE_WIFI_STATE](http://developer.android.com/reference/android/Manifest.permission.html#CHANGE_WIFI_STATE),
@@ -38,7 +38,7 @@ Wi-Fi P2P技术虽然不需要访问互联网，但是它会使用Java中的标�
 ```
 
 
-##BroadCast Receiver和Peer-to-peer Manager
+## BroadCast Receiver和Peer-to-peer Manager
 
 
 使用Wi-Fi P2P的时候需要侦听相关的广播事件（broadcast intent）。
@@ -159,7 +159,7 @@ public void onCreate(Bundle savedInstanceState) {
     }
 ```
 
-##初始化同伴发现（Peer Discovery）过程
+## 初始化同伴发现（Peer Discovery）过程
 
 
 在Wi-Fi P2P中，应用通过调用[discoverPeers()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#discoverPeers(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ActionListener)搜寻附近的设备。
@@ -193,7 +193,7 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 系统会通过调用WifiP2pManager.ActionListener中的方法通知应用同伴发现过程初始化是否正确。
 同时，同伴发现过程本身仍然继续运行，直到一条连接或者一个P2P小组建立。
 
-##获取同伴列表
+## 获取同伴列表
 
 在完成同伴发现过程的初始化后，我们需要进一步获取附近的同伴列表。
 第一步是实现[WifiP2pManager.PeerListListener](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.PeerListListener.html)接口。
@@ -234,7 +234,7 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 现在，一个[WIFI_P2P_PEERS_CHANGED_ACTION](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#WIFI_P2P_PEERS_CHANGED_ACTION)事件将触发应用对同伴列表的更新了。
 
 
-##连接到同伴
+## 连接到同伴
 
 
 为了连接到一个同伴，你需要创一个新的对象[WifiP2pConfig](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pConfig.html)，

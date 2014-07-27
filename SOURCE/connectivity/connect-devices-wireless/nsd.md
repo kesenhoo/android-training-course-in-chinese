@@ -1,6 +1,6 @@
-> 编写:
+> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
 
-> 校对:
+> 原文:
 
 # 使得网络服务可发现
 
@@ -132,9 +132,7 @@ public void registerService(int port) {
 }
 ```
 
-##<span id=discover>发现网络中的服务 </span>
-
-
+## <span id=discover>发现网络中的服务 </span>
 
 网络充斥着我们的生活，从网络打印机到网络摄像头，再到联网井字棋。
 网络服务发现是能让你的应用融入这一切功能的关键。
@@ -233,7 +231,7 @@ mNsdManager.discoverServices(
 ```
 
 
-##连接到网内的服务
+## 连接到网内的服务
 
 当你的代码发现了网上可接入的服务，第一件必须做的事情是确认服务的连接信息。
 调用[resolveService()](http://developer.android.com/reference/android/net/nsd/NsdManager.html#resolveService(android.net.nsd.NsdServiceInfo, android.net.nsd.NsdManager.ResolveListener)方法，
@@ -271,7 +269,7 @@ public void initializeResolveListener() {
 此时，你有了服务的地址和端口，可以通过创建自己网络连接与服务进行通讯。
 
 
-##当程序退出时注销服务
+## 当程序退出时注销服务
 
 在应用的生命周期中正确的开启和关闭NSD服务是十分关键的。
 在程序退出时注销服务可以防止其他程序因为不知道服务退出而反复尝试连接的行为。

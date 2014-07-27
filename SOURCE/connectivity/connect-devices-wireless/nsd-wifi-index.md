@@ -1,10 +1,8 @@
-> 编写: naizhengtan
+> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
 
-> 校对:
+> 原文:
 
 # 使用WiFi P2P发现服务
-
-
 
 在本章第一节“[使得网络服务可发现](nsd.html)”中介绍了如何在局域网中发现并连接到其他设备的服务上。
 然而，即使在不接入网络的环境中，Wi-Fi P2P的发现服务也可以使你的应用直接连接到附近的设备。
@@ -12,16 +10,13 @@
 Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点的情况下，
 帮助不同设备上的应用进行通信。
 
-
-
 虽然本节所述的API与第一节NSD（Network Service Discovery）的API相似，
 但是具体的实现代码却截然不同。
 本节将讲述如何通过Wi-Fi P2P技术发现附近可用设备中的服务。
 假设读者已经对Wi-Fi P2P的API有一定了解。
 
 
-##配置Manifest
-
+## 配置Manifest
 
 使用Wi-Fi P2P技术，需要添加[CHANGE_WIFI_STATE](http://developer.android.com/reference/android/Manifest.permission.html#CHANGE_WIFI_STATE),
 [ACCESS_WIFI_STATE](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_WIFI_STATE)以及
@@ -47,7 +42,7 @@ Wi-Fi P2P技术虽然不需要访问互联网，但是它会使用Java中的标�
     ...
 ```
 
-##添加本地服务
+## 添加本地服务
 
 如果你想提供一个本地服务，就需要在服务发现框架中注册该服务。
 当本地服务被成功注册，系统将自动回复所有来自附近的服务发现请求。
@@ -90,7 +85,7 @@ private void startRegistration() {
     }
 ```
 
-##发现附近的服务
+## 发现附近的服务
 
 
 Android使用回调函数通知应用程序附近可用的服务，
