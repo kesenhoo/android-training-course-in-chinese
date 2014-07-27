@@ -14,9 +14,11 @@
 
   学习如何创建一个IntentService。
 
+
 * [Sending Work Requests to the Background Service:发送任务请求到IntentService](send-request.html)
 
   学习如何发送工作任务到IntentService。
+
 
 * [Reporting Work Status:报告后台任务的执行状态](report-status.html)
 

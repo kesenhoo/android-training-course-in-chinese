@@ -2,24 +2,24 @@
 
 > 原文：<http://developer.android.com/training/gestures/detector.html>
 
-# 检测常用的手势 #
+# 检测常用的手势
 
 当用户用一根或多根手指触碰屏幕时，一个“触摸手势”就发生了，并且你的应用可把这样的触摸方式解释成一种特定的手势。手势检测有以下两个相应的阶段：
 
 1. 收集触摸事件的相关数据。
 2. 分析这些数据，看它们是否满足任何一种你的app所支持的手势的标准。
 
-### 支持库中的类 ###
+### 支持库中的类
 
 本节课程的示例程序使用的是[GestureDetectorCompat](http://developer.android.com/reference/android/support/v4/view/GestureDetectorCompat.html)类和 [MotionEventCompat](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html)类。这些类都在 [Support Library](http://developer.android.com/tools/support-library/index.html)中。你可以通过使用支持库中的类，来为运行着Android1.6及以上系统的设备提供兼容性功能。需要注意的一点是，[MotionEventCompat](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html)类不是[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)类的替代品，而是提供了一些静态工具类函数，你可以把[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)对象作为参数传递给这些函数，从而得到与事件相关的动作(action)。
 
-## 收集数据 ##
+## 收集数据
 
 当用户用一根或多根手指触碰屏幕时，接收触摸事件的View的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数就会被回调。对于一系列连续的触摸事件（位置、压力、大小、额外的一根手指等等），[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))会被调用若干次，并且最终识别为一种手势。
 
 手势开始于用户刚触摸屏幕时，其后系统会持续地追踪用户手指的位置，用户手指都离开屏幕时手势结束。在整个交互期间，[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)被分发给[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数，来提供每次交互的详细信息。你的app可以使用[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)提供的数据，来判断是否发生了某种特定的手势。
 
-### 为Activity或View捕获触摸事件 ###
+### 为Activity或View捕获触摸事件
 
 为了捕获Activity或View中的触摸事件，你可以重写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))回调函数。
 
@@ -60,7 +60,7 @@ public boolean onTouchEvent(MotionEvent event){
 
 然后，你可以自行处理这些事件，来判断是否出现了某个手势。当你需要检测自定义手势时，你可以使用这种方式。然而，如果你的app仅仅需要使用一些常见的手势，如双击，长按，快速滑动（fling）等，你可以使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来完成。 [GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)可以让你更简单地检测常见手势，并且无需自行处理单个的触摸事件。相关内容将会在下面的[Detect Gestures](#detect)中讨论。
 
-### 捕获单个view对象的触摸事件 ###
+### 捕获单个view对象的触摸事件
 
 除了使用[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))来捕获触摸事件，你也可以使用setOnTouchListener()函数给任意[View](http://developer.android.com/reference/android/view/View.html)对象关联一个 View.OnTouchListener对象来捕获触摸事件。这样做可以让你不继承已有的[View](http://developer.android.com/reference/android/view/View.html)，也能监听它的触摸事件。比如:
 
@@ -82,7 +82,7 @@ public boolean onTouch(View v, MotionEvent event) {
 
 Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)类来检测一般手势。它支持的手势包括[onDown()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onDown(android.view.MotionEvent)), [onLongPress()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onLongPress(android.view.MotionEvent)),[onFling()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float))等。你可以把[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)和上面描述的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数结合在一起使用。
 
-### 检测所有支持的手势 ###
+### 检测所有支持的手势
 
 当你实例化一个[GestureDetectorCompat](http://developer.android.com/reference/android/support/v4/view/GestureDetectorCompat.html)对象时，需要一个实现了[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)接口的的对象作为参数。当某个特定的触摸事件发生时，[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)就会通知用户。为了让你的[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)对象能到接收到触摸事件，你需要重写View或Activity的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数，并且把所有捕获到的事件传递给detector对象。
 
@@ -175,7 +175,7 @@ public class MainActivity extends Activity implements
 }
 ```
 
-### 检测支持的部分手势 ###
+### 检测支持的部分手势
 
 如果你仅仅只想处理几种手势，你可以选择继承[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)类，而不是实现[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)接口。
 

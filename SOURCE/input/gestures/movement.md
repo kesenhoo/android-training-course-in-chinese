@@ -16,7 +16,7 @@
 * 追踪历史状态。你可以通过调用[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)的[getHistorySize()](http://developer.android.com/reference/android/view/MotionEvent.html#getHistorySize())函数获得一个手势的历史尺寸大小。你可以通过移动事件的`getHistorical<Value>`系列函数获得事件之前的位置、尺寸、时间以及按压力(pressures)。当你需要绘制用户手指痕迹时，历史状态非常有用，比如触摸绘图。查看[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)来了解更多细节。
 * 追踪手指在触摸屏上滑过的速度。
 
-## 追踪速度 ##
+## 追踪速度
 你可以让移动手势简单地基于手指滑动过的距离或(和)方向。但是速度经常也是追踪手势特性的一个决定性因素，甚至是判断一个手势是否发生的依据。为了让速度计算更容易，Android提供了[VelocityTracker](http://developer.android.com/reference/android/view/VelocityTracker.html)类以及[支持库](http://developer.android.com/tools/support-library/index.html)中的[VelocityTrackerCompat](http://developer.android.com/reference/android/support/v4/view/VelocityTrackerCompat.html)类。[VelocityTracker](http://developer.android.com/reference/android/view/VelocityTracker.html)类可以帮助你追踪触摸事件中的速度因素。如果速度是你的手势的一个判断标准，比如快速滑动(fling)，那么这些类是很有用的。
 
 下面是一个简单的例子，说明了[VelocityTracker](http://developer.android.com/reference/android/view/VelocityTracker.html)中API函数的用处。
@@ -71,4 +71,4 @@ public class MainActivity extends Activity {
 }
 ```
 
->**注意**：需要注意的是，你应该在[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件后计算速度，而不是在[ACTION_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)事件后。在[ACTION_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)事件之后计算，x、y方向的速度都会是0。
+> **注意**：需要注意的是，你应该在[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件后计算速度，而不是在[ACTION_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)事件后。在[ACTION_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_UP)事件之后计算，x、y方向的速度都会是0。

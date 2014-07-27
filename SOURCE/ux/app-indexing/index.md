@@ -1,4 +1,4 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
+> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
 
 > 原文: <http://developer.android.com/training/app-indexing/index.html>
 
@@ -20,10 +20,11 @@
 
 ##Lessons
 
-[为App内容开启深度链接](deep-linking.html)
+* [为App内容开启深度链接](deep-linking.html)
 
-演示如何添加intent filter来启用链接app内容的深度链接
+  演示如何添加intent filter来启用链接app内容的深度链接
 
-[为索引指定App内容](enable-app-indexing.html)
 
-演示如何给网站的metadata添加注解，使Google的算法能为app内容建立索引
+* [为索引指定App内容](enable-app-indexing.html)
+
+  演示如何给网站的metadata添加注解，使Google的算法能为app内容建立索引

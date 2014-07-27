@@ -60,11 +60,11 @@ new Thread(
 // Starts the thread by calling the run() method in its Runnable
 ).start();
 
-``` 
+```
 
 * 结果notifications显示在图1中，左边是操作正在进行中的notification的快照，右边是操作已经完成的notification的快照。
 
-![fragments-screen-mock](progress_bar_summary.png)  
+![fragments-screen-mock](progress_bar_summary.png)
 图1 操作正在进行中与完成时的进度条
 
 
@@ -76,7 +76,7 @@ new Thread(
 * 在操作开始的时候发布notification，动画将会一直进行直到你更新notification。当操作完成时，调用 [setProgress(0, 0, false)](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)) 方法，然后更新notification来移除这个动画指示器。一定要这么做，否责即使你操作完成了，动画还是会在那运行。同时也要记得更新notification的文字来显示操作完成。
 
 * 为了观察持续的活动的指示器是如何工作的，看前面的代码。定位到下面的几行：
- 
+
 
 ```java
 
@@ -101,6 +101,6 @@ mNotifyManager.notify(id, mBuilder.build());
 
 * 结果显示在图2中:
 
-![fragments-screen-mock](activity_indicator.png)  
+![fragments-screen-mock](activity_indicator.png)
 
 图2 正在进行的活动的指示器

@@ -24,11 +24,11 @@
 
 这节课将会向你展示如何定义这些元素。
 
-##创建一个Sync Adapter类
+## 创建一个Sync Adapter类
 
 在这部分课程中，你将会学习如何创建Sync Adapter类，该类封装了数据传输的代码。创建该类并继承Sync Adapter的基类，为该类定义构造函数，并实现你定义的数据传输任务的方法。
 
-###继承Sync Adapter基类：AbstractThreadedSyncAdapter
+### 继承Sync Adapter基类：AbstractThreadedSyncAdapter
 
 要创建Sync Adapter组件，首先继承[AbstractThreadedSyncAdapter](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html)，然后编写它的构造函数。每次你的Sync Adapter组件创建的时候，构造函数就会执行配置任务，和你使用[Activity.onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate\(android.os.Bundle\))配置Activity是一样的。例如，如果你的应用使用一个Content Provider来存储数据，那么使用构造函数来获取一个[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)实例。由于从Android 3.0开始添加了第二种形式的构造函数，来支持parallelSyncs参数，所以你需要创建两种形式的构造函数来保证兼容性。
 
@@ -77,7 +77,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     }
 ```
 
-###在onPerformSync()中添加数据传输代码
+### 在onPerformSync()中添加数据传输代码
 
 Sync Adapter组件并不会自动地执行数据传输。相反地，它只是对你的数据传输代码进行封装，所以Sync Adapter框架可以在后台执行数据传输，而不会牵连到你的应用。当框架准备同步你的应用数据时，它会调用你的[onPerformSync()](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html#onPerformSync\(android.accounts.Account, android.os.Bundle, java.lang.String, android.content.ContentProviderClient, android.content.SyncResult\))方法的实现。
 
@@ -97,7 +97,7 @@ Sync Adapter组件并不会自动地执行数据传输。相反地，它只是�
 
 **Content Provider客户端（Content provider client）**
 
-一个Content Provider的[ContentProviderClient](http://developer.android.com/reference/android/content/ContentProviderClient.html)对象是由权威参数所指定的。一个[ContentProviderClient](http://developer.android.com/reference/android/content/ContentProviderClient.html)是一个Content Provider的轻量级共有接口。它的基本功能和一个[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)一样。如果你正在使用一个Content Provider来存储你的应用的数据，你可以用该对象和提供器连接。否则的话你可以忽略它。
+一个Content Provider的[ContentProviderClient](http://developer.android.com/reference/android/content/ContentProviderClient.html)对象是由Authority参数所指定的。一个[ContentProviderClient](http://developer.android.com/reference/android/content/ContentProviderClient.html)是一个Content Provider的轻量级共有接口。它的基本功能和一个[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)一样。如果你正在使用一个Content Provider来存储你的应用的数据，你可以用该对象和提供器连接。否则的话你可以忽略它。
 
 **同步结果（Sync result）**
 
@@ -134,7 +134,7 @@ Sync Adapter组件并不会自动地执行数据传输。相反地，它只是�
 
 **下载和上传数据**
 
-一个Sync Adapter不会自动执行数据传输。如果你想要从一个服务器下载数据并将它存储到一个Content Provider中，你必须提供请求数据，下载数据和将数据插入到提供器里的代码。同样地，如果你想把数据发送到一个服务器，你必须要从一个文件，数据库或者提供器中读取数据，并且发送必需的上传请求。你也需要处理在你执行数据传输时所发生的网络错误。
+一个Sync Adapter不会自动执行数据传输。如果你想要从一个服务器下载数据并将它存储到一个Content Provider中，你必须提供请求数据，下载数据和将数据插入到提供器里的代码。同样地，如果你想把数据发送到一个服务器，你必须要从一个文件，数据库或者Provider中读取数据，并且发送必需的上传请求。你也需要处理在你执行数据传输时所发生的网络错误。
 
 **处理数据冲突或者确定当前的数据是怎样的**
 
@@ -142,13 +142,13 @@ Sync Adapter组件并不会自动地执行数据传输。相反地，它只是�
 
 **清理**
 
-在数据传输的尾声，记得要关闭网络连接，清除临时文件盒缓存。
+在数据传输的尾声，记得要关闭网络连接，清除临时文件和缓存。
 
 > **Note：**Sync Adapter框架在一个后台线程中执行[onPerformSync()](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html#onPerformSync\(android.accounts.Account, android.os.Bundle, java.lang.String, android.content.ContentProviderClient, android.content.SyncResult\))方法，所以你不需要配置你自己的后台处理任务。
 
-另外，你应该尝试将你的定期网络相关的任务结合起来，并将它们添加到[onPerformSync()](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html#onPerformSync\(android.accounts.Account, android.os.Bundle, java.lang.String, android.content.ContentProviderClient, android.content.SyncResult\))中。通过将所有网络任务集中到该方法中，你可以节省由启动和停止网络接口所造成的电量损失。有关更多如何在进行网络访问时更高效地使用电池，可以阅读：[Transferring Data Without Draining the Battery](http://developer.android.com/training/efficient-downloads/index.html)，它描述了一些你的数据传输代码可以包含的网络访问任务。
+另外，你应该尝试将你的定期网络相关的任务结合起来，并将它们添加到[onPerformSync()](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html#onPerformSync\(android.accounts.Account, android.os.Bundle, java.lang.String, android.content.ContentProviderClient, android.content.SyncResult\))中。通过将所有网络任务集中到该方法中，你可以节省由启动和停止网络接口所造成的电量损失。有关更多如何在进行网络访问时更高效地使用电池，可以阅读：[Transferring Data Without Draining the Battery](/efficient-downloads/index.html)，它描述了一些你的数据传输代码可以包含的网络访问任务。
 
-##将Sync Adapter和框架进行绑定
+## 将Sync Adapter和框架进行绑定
 
 你现在在一个Sync Adapter框架中已经封装了你的数据传输代码，但是你必须向框架提供你的代码。为了做这一点，你需要创建一个捆绑[Service](http://developer.android.com/reference/android/app/Service.html)，它将一个特殊的Android binder对象从Sync Adapter组件传递给框架。有了这一binder对象，框架可以激活[onPerformSync()](http://developer.android.com/reference/android/content/AbstractThreadedSyncAdapter.html#onPerformSync\(android.accounts.Account, android.os.Bundle, java.lang.String, android.content.ContentProviderClient, android.content.SyncResult\))方法并将数据传递给binder对象。
 
@@ -204,11 +204,11 @@ public class SyncService extends Service {
 
 > **Note：**要看更多Sync Adapter的捆绑服务的例子，可以阅读样例代码。
 
-##添加框架所需的账户
+## 添加框架所需的账户
 
-Sync Adapter框架需要每个Sync Adapter拥有一个账户类型。在[Add the Authenticator Metadata](http://developer.android.com/training/sync-adapters/creating-authenticator.html#CreateAuthenticatorFile) File章节中，你声明了账户类型的值。现在你需要在Android系统中配置该账户类型。要配置账户类型，通过调用[addAccountExplicitly()](http://developer.android.com/reference/android/accounts/AccountManager.html#addAccountExplicitly\(android.accounts.Account, java.lang.String, android.os.Bundle\))添加一个假的账户并使用其账户类型。
+Sync Adapter框架需要每个Sync Adapter拥有一个账户类型。在[创建Stub授权器](creating-authenticator.html)章节中，你声明了账户类型的值。现在你需要在Android系统中配置该账户类型。要配置账户类型，通过调用[addAccountExplicitly()](http://developer.android.com/reference/android/accounts/AccountManager.html#addAccountExplicitly\(android.accounts.Account, java.lang.String, android.os.Bundle\))添加一个假的账户并使用其账户类型。
 
-最佳的调用该方法的地方是在你的应用的启动Activity的[onCreate()](http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#onCreate\(android.os.Bundle\))方法中。下面的代码样例展示了你应该如何做：
+最佳的调用该方法的地方是在你的应用的启动Activity的[onCreate()](http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html#onCreate\(android.os.Bundle\))方法中。下面的代码样例展示了你应该怎么做：
 
 ```java
 public class MainActivity extends FragmentActivity {
@@ -268,27 +268,27 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-##添加Sync Adapter的元数据文件
+## 添加Sync Adapter的元数据文件
 
 要将你的Sync Adapter组件添加到框架中，你需要向框架提供描述组件的元数据，以及额外的标识信息。元数据指定了你为你的Sync Adapter所创建的账户类型，声明了一个和你的应用相关联的Content Provider Authority，对和Sync Adapter相关的一部分系统用户接口进行控制，并声明了其它同步相关的标识。在你的项目中的“/res/xml/”目录下的一个特定的文件内声明这一元数据，你可以为这个文件任意起一个名字，不过通常都叫做：“syncadapter.xml”。
 
-在这一文件中包含了一个单一的XML元素“<sync-adapter>”，并且它包含了下列的属性字段：
+在这一文件中包含了一个单一的XML元素`<sync-adapter>`，并且它包含了下列的属性字段：
 
 **android:contentAuthority**
 
-你的Content Provider的URI Authority。如果你在前一节课程中为你的应用创建了一个置空的Content Provider，使用你在清单文件中添加的[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签内的[android:authorities](http://developer.android.com/guide/topics/manifest/provider-element.html#auth)属性的值。这一属性的更多细节在章节[Declare the Provider in the Manifest](http://developer.android.com/training/sync-adapters/creating-stub-provider.html#DeclareProvider)中有更多的介绍。
+你的Content Provider的URI Authority。如果你在前一节课程中为你的应用创建了一个Stub Content Provider，使用你在清单文件中添加的[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签内的[android:authorities](http://developer.android.com/guide/topics/manifest/provider-element.html#auth)属性的值。这一属性的更多细节在章节[创建Stub Content Provider](creating-stub-provider.html)中有更多的介绍。
 
 如果你正在使用Sync Adapter，从Content Provider将数据传输到服务器，这个值应该和你的数据的URI Authority的值是一样的。这个值也是你在清单文件中添加的[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签内的android:authorities属性的值。
 
 **android:accountType**
 
-Sync Adapter框架所需要的账户类型。这个值必须和你创建验证器的元数据文件中所提供的一致（详细内容可以阅读：[Add the Authenticator Metadata File](http://developer.android.com/training/sync-adapters/creating-authenticator.html#CreateAuthenticatorFile)）。这也是你在上一节中代码片段里的常量“ACCOUNT_TYPE”的值。
+Sync Adapter框架所需要的账户类型。这个值必须和你创建验证器的元数据文件中所提供的一致（详细内容可以阅读：[创建Stub授权器](creating-authenticator.html)）。这也是你在上一节中代码片段里的常量“ACCOUNT_TYPE”的值。
 
 **配置相关属性**
 * **android:userVisible**：指的是Sync Adapter框架所需要的账户类型。默认地，和账户类型相关联的账户图标和标签在系统的设置里的账户选项中可以看见，所以你需要将你的Sync Adapter对用户不可见，除非你拥有一个账户类型或者域名，它们可以轻松地和你的应用相关联。如果你将你的账户类型设置为不可见，你仍然可以允许用户通过应用的一个activity内的用户接口来控制你的Sync Adapter。
 * **android:supportsUploading**：允许你将数据上传到云。如果你的应用仅仅下载数据，那么设置为“false”。
 * **android:allowParallelSyncs**：允许在同一时间你的Sync Adapter组件的多个实例运行。如果你的应用支持多个用户账户并且你希望多个用户并行地传输数据，那么使用这个属性。如果你从不执行多个数据传输，这个选项是没用的。
-* **android:isAlwaysSyncable**：指明Sync Adapter框架可以在任何你指定的时间运行你的Sync Adapter。如果你希望通过代码来控制Sync Adapter的运行，将这个标识设置为“false”，然后调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))来执行Sync Adapter。要学习更多关于运行一个Sync Adapter的知识，可以阅读：[Running a Sync Adapter](http://developer.android.com/training/sync-adapters/running-sync-adapter.html)。
+* **android:isAlwaysSyncable**：指明Sync Adapter框架可以在任何你指定的时间运行你的Sync Adapter。如果你希望通过代码来控制Sync Adapter的运行，将这个标识设置为“false”，然后调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))来执行Sync Adapter。要学习更多关于运行一个Sync Adapter的知识，可以阅读：[执行Sync Adapter](running-sync-adapter.html)。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -302,11 +302,11 @@ Sync Adapter框架所需要的账户类型。这个值必须和你创建验证�
         android:isAlwaysSyncable="true"/>
 ```
 
-##在清单文件中声明Sync Adapter
+## 在清单文件中声明Sync Adapter
 
 一旦你将Sync Adapter组件添加到了你的应用中，你需要声明相关的权限来使用它，并且你需要声明你所添加的捆绑[Service](http://developer.android.com/reference/android/app/Service.html)。
 
-由于Sync Adapter组件运行网络与设备之间传输数据的代码，你需要使用网络的权限。另外，你的应用需要权限来读写Sync Adapter的配置信息，这样你才能通过你应用中的其它组件去控制Sync Adapter。你还需要一个特殊的权限允许你的应用使用你在[Creating a Stub Authenticator](http://developer.android.com/training/sync-adapters/creating-authenticator.html)中所创建的验证器组件。
+由于Sync Adapter组件运行网络与设备之间传输数据的代码，你需要使用网络的权限。另外，你的应用需要权限来读写Sync Adapter的配置信息，这样你才能通过你应用中的其它组件去控制Sync Adapter。你还需要一个特殊的权限允许你的应用使用你在[创建Stub授权器](creating-authenticator.html)中所创建的授权器组件。
 
 要请求这些权限，将下列内容添加到你的应用清单文件中，并作为[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签：
 
@@ -320,11 +320,11 @@ Sync Adapter框架所需要的账户类型。这个值必须和你创建验证�
 
 [**android.permission.WRITE_SYNC_SETTINGS**](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_SYNC_SETTINGS)
 
-允许你的应用对Sync Adapter的配置进行控制。你需要这一权限来通过[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync\(android.accounts.Account, java.lang.String, android.os.Bundle, long\))设置执行同步的时间间隔。另外，调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))不需要用到该权限。更多信息可以阅读：[Running A Sync Adapter](http://developer.android.com/training/sync-adapters/running-sync-adapter.html)。
+允许你的应用对Sync Adapter的配置进行控制。你需要这一权限来通过[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync\(android.accounts.Account, java.lang.String, android.os.Bundle, long\))设置执行同步的时间间隔。另外，调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync\(android.accounts.Account, java.lang.String, android.os.Bundle\))不需要用到该权限。更多信息可以阅读：[执行Sync Adapter](running-sync-adapter.html)。
 
 [**android.permission.AUTHENTICATE_ACCOUNTS**](http://developer.android.com/reference/android/Manifest.permission.html#AUTHENTICATE_ACCOUNTS)
 
-允许你使用在[Creating a Stub Authenticator](http://developer.android.com/training/sync-adapters/creating-authenticator.html)中所创建的验证器组件。
+允许你使用在[创建Stub授权器](creating-authenticator.html)中所创建的验证器组件。
 
 下面的代码片段展示了如何添加权限：
 

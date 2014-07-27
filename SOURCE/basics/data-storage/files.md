@@ -148,7 +148,7 @@ public File getAlbumStorageDir(Context context, String albumName) {
 
 请记住， getExternalFilesDir() 方法会创建的目录会在app被卸载时被系统删除。如果你的文件想在app被删除时仍然保留，请使用getExternalStoragePublicDirectory().
 
-不管你是使用 getExternalStoragePublicDirectory() 来存储可以共享的文件，还是使用 getExternalFilesDir() 来储存那些对与你的app来说是私有的文件，有一点很重要，那就是你要使用那些类似DIRECTORY_PICTURES 的API的常量。那些目录类型参数可以确保那些文件被系统正确的对待。例如，那些以DIRECTORY_RINGTONES 类型保存的文件就会被系统的media scanner认为是ringtone而不是音乐。
+不管你是使用 getExternalStoragePublicDirectory() 来存储可以共享的文件，还是使用 getExternalFilesDir() 来储存那些对与你的app来说是私有的文件，有一点很重要，那就是你要使用那些类似`DIRECTORY_PICTURES` 的API的常量。那些目录类型参数可以确保那些文件被系统正确的对待。例如，那些以`DIRECTORY_RINGTONES` 类型保存的文件就会被系统的media scanner认为是ringtone而不是音乐。
 
 ## Query Free Space[查询剩余空间]
 如果你事先知道你想要保存的文件大小，你可以通过执行[getFreeSpace()](http://developer.android.com/reference/java/io/File.html#getFreeSpace()) or [getTotalSpace()](http://developer.android.com/reference/java/io/File.html#getTotalSpace()) 来判断是否有足够的空间来保存文件，从而避免发生IOException。那些方法提供了当前可用的空间还有存储系统的总容量。

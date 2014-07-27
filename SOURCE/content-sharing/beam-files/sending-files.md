@@ -13,21 +13,22 @@
 3. 每个你希望传送的文件必须是全局可读的。你可以通过[File.setReadable(true,false)](http://developer.android.com/reference/java/io/File.html#setReadable(boolean))来为文件设置相应的读权限。
 4. 你必须提供你要传输文件的URI。Android Beam文件传输无法处理由[FileProvider.getUriForFile](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile(android.content.Context, java.lang.String, java.io.File))生成的URI。
 
-##在清单文件中声明权限和功能
+## 在清单文件中声明权限和功能
 
 首先，编辑你的清单文件来声明你的应用所需要声明的权限和功能。
 
-###声明权限
+### 声明权限
 
 为了允许你的应用使用Android Beam文件传输控制NFC从外部存储发送文件，你必须在你的应用清单声明下面的权限：
-####[NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC)
+
+#### [NFC](http://developer.android.com/reference/android/Manifest.permission.html#NFC)
 允许你的应用通过NFC发送数据。为了声明该权限，添加下面的标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签：
 
 ```xml
 <uses-permission android:name="android.permission.NFC" />
 ```
 
-####[READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE)
+#### [READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE)
 允许你的应用读取外部存储。为了声明该权限，添加下面的标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签：
 
 ```xml
@@ -37,7 +38,7 @@
 
 > **Note：**对于Android 4.2.2（API Level 17）及之前的系统版本，这个权限不是必需的。在后续的系统版本中，若应用需要读取外部存储，可能会需要申明该权限。为了保证将来程序稳定性，建议在该权限申明变成必需的之前，就在清单文件中声明好。
 
-###指定NFC功能
+### 指定NFC功能
 
 指定你的应用使用NFC，添加[`<uses-feature>`](http://developer.android.com/guide/topics/manifest/uses-feature-element.html)标签作为一个[`<manifest>`](http://developer.android.com/guide/topics/manifest/manifest-element.html)标签的子标签。设置`android:required`属性字段为`true`，这样可以使得你的应用只有在NFC可以使用时，才能运行。
 
@@ -51,11 +52,11 @@
 
 注意，如果你的应用将NFC作为可选的一个功能，但期望在NFC不可使用时程序还能继续执行，你就应该设置`android:required`属性字段为`false`，然后在代码中测试NFC的可用性。
 
-###指定Android Beam文件传输
+### 指定Android Beam文件传输
 
 由于Android Beam文件传输只能在Android 4.1（API Level 16）及以上的平台使用，如果你的应用将Android Beam文件传输作为一个不可缺少的核心模块，那么你必须指定[`<uses-sdk>`](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html)标签为：[android:minSdkVersion](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min)="16"。或者，你可以将[android:minSdkVersion](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min)设置为其它值，然后在代码中测试平台版本，这将在下一节中展开。
 
-##测试设备是否支持Android Beam文件传输
+## 测试设备是否支持Android Beam文件传输
 
 为了在你的应用清单文件中，定义NFC是可选的，你应该使用下面的标签：
 
@@ -104,7 +105,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-##创建一个提供文件的回调函数
+## 创建一个提供文件的回调函数
 
 一旦你确认了设备支持Android Beam文件传输，那么可以添加一个回调函数，当Android Beam文件传输监测到用户希望与另一个支持NFC的设备发送文件时，系统会调用它。在该回调函数中，返回一个[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组，Android Beam文件传输将URI对应的文件拷贝发送给要接收的设备。
 
@@ -165,7 +166,7 @@ public class MainActivity extends Activity {
 
 > **Note：**你也可以将[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组通过你应用的[NfcAdapter](http://developer.android.com/reference/android/nfc/NfcAdapter.html)实例，直接提供给NFC框架。如果你能在NFC触碰事件发生之前，定义这些URI，那么你可以选择这个方法。要学习关于这个方法的知识，可以阅读：[NfcAdapter.setBeamPushUris()](http://developer.android.com/reference/android/nfc/NfcAdapter.html#setBeamPushUris\(android.net.Uri[], android.app.Activity\))。
 
-##定义要发送的文件
+## 定义要发送的文件
 为了将一个或更多个文件发送给支持NFC的设备，需要为每一个文件获取一个文件URI（一个具有文件格式（file scheme）的URI），然后将它们添加至一个[Uri](http://developer.android.com/reference/android/net/Uri.html)对象数组中。要传输一个文件，你必须也有读文件的权限。例如，下面的例子展示的是你如何根据文件名获取它的文件URI，然后将URI添加至数组当中：
 
 ```java

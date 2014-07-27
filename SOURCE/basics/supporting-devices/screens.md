@@ -13,7 +13,7 @@ Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应�
 
 同样要注意屏幕的方向(横向或纵向)也是一种需要考虑的屏幕尺寸变化，所以许多app会修改layout，来针对不同的屏幕方向优化用户体验。
 
-##创建不同的layout
+## 创建不同的layout
 
 为了针对不同的屏幕去优化用户体验，你需要对每一种将要支持的屏幕尺寸，创建唯一的XML文件。每一种layout需要保存在相应的资源目录中，目录以`-<screen_size>`为后缀命名。例如，对大尺寸屏幕(large screens)，一个唯一的layout文件应该保存在`res/layout-large/`中。
 
@@ -72,9 +72,9 @@ MyProject/
             main.xml
 ```
 
->**Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](https://developer.android.com/training/multiscreen/index.html)。
+> **Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](https://developer.android.com/training/multiscreen/index.html)。
 
-##创建不同的bitmap
+## 创建不同的bitmap
 
 你应该为4种普遍分辨率:低，中，高，超高精度，都提供相适配的bitmap资源。这能帮助你在所有屏幕分辨率中都能有良好的画质和效果。
 
@@ -104,6 +104,6 @@ MyProject/
 
 任何时候，当你引用`@drawable/awesomeimage`时系统会根据屏幕的分辨率选择恰当的bitmap。
 
->**Note**:低密度(ldpi)资源是非必要的，当你提供了高精度assets，系统会把高密度图像按比例缩小一半，去适配低密度屏幕。
+> **Note**:低密度(ldpi)资源是非必要的，当你提供了高精度assets，系统会把高密度图像按比例缩小一半，去适配低密度屏幕。
 
 更多关于为app创建图标assets的贴士和指导，详见[Iconography design](https://developer.android.com/design/style/iconography.html)。

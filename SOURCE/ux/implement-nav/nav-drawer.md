@@ -2,7 +2,7 @@
 
 > 原文: <http://developer.android.com/training/implementing-navigation/nav-drawer.html>
 
-#创建抽屉式导航(navigation drawer)
+#  创建抽屉式导航(navigation drawer)
 
 navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大部分时候是隐藏的，当用户从屏幕左侧划屏，或在top level模式的app中点击action bar中的app图标时，才会显示。
 
@@ -12,7 +12,7 @@ navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大
 
 > 在你决定在你的app中使用Navigation Drawer之前，你应该先理解在[Navigation Drawer](http://developer.android.com/design/patterns/navigation-drawer.html) design guide中定义的使用情况和设计准则。
 
-##创建一个Drawer Layout
+## 创建一个Drawer Layout
 
 要添加一个navigation drawer，在你的用户界面layout中声明一个用作root view(根视图)的[DrawerLayout](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html)对象。在[DrawerLayout](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html)中为屏幕添加一个包含主要内容的view(当drawer隐藏时的主layout)，和其他一些包含navigation drawer内容的view。
 
@@ -51,7 +51,7 @@ navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大
 
 * drawer视图以`dp`为单位指定它的宽和高来匹配父视图。drawer的宽度不能大于320dp，这样用户总能看到部分主内容。
 
-##初始化Drawer List
+## 初始化Drawer List
 
 在你的activity中，首先要做的事就是要初始化drawer的item列表。这要根据你的app内容来处理，但是一个navigation drawer通常由一个[ListView](http://developer.android.com/reference/android/widget/ListView.html)组成，所以列表应该通过一个[Adapter](http://developer.android.com/reference/android/widget/Adapter.html)(例如[ArrayAdapter](http://developer.android.com/reference/android/widget/ArrayAdapter.html)或[SimpleCursorAdapter](http://developer.android.com/reference/android/widget/SimpleCursorAdapter.html))填入。
 
@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        // 为list view设置adapter 
+        // 为list view设置adapter
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, mPlanetTitles));
         // 为list设置click listener
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 
 这段代码也调用了[setOnItemClickListener()](http://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener%28android.widget.AdapterView.OnItemClickListener%29)来接收navigation drawer列表的点击事件。下一节会说明如何实现这个接口，并且当用户选择一个item时如何改变内容视图(content view)。
 
-##处理导航的点击事件
+## 处理导航的点击事件
 
 当用户选择drawer列表中的item，系统会调用在[setOnItemClickListener()](http://developer.android.com/reference/android/widget/AdapterView.html#setOnItemClickListener%28android.widget.AdapterView.OnItemClickListener%29)中所设置的[OnItemClickListener](http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html)的[onItemClick()](http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html#onItemClick%28android.widget.AdapterView%3C?%3E,%20android.view.View,%20int,%20long%29)。
 
@@ -128,7 +128,7 @@ public void setTitle(CharSequence title) {
 
 ```
 
-##监听打开和关闭事件
+## 监听打开和关闭事件
 
 要监听drawer的打开和关闭事件，在你的[DrawerLayout](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html)中调用[setDrawerListener()](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html#setDrawerListener%28android.support.v4.widget.DrawerLayout.DrawerListener%29)，并传入一个[DrawerLayout.DrawerListener](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.DrawerListener.html)的实现。这个接口提供drawer事件的回调例如[onDrawerOpened()](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.DrawerListener.html#onDrawerOpened%28android.view.View%29)和[onDrawerClosed()](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.DrawerListener.html#onDrawerClosed%28android.view.View%29)。
 
@@ -187,7 +187,7 @@ public class MainActivity extends Activity {
 
 下一节会描述[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)的构造参数，和处理与action bar交互所需的其他步骤。
 
-##使用App图标来打开和关闭
+## 使用App图标来打开和关闭
 
 用户可以在屏幕左侧使用划屏手势来打开和关闭navigation drawer，但是如果你使用[action bar](http://developer.android.com/guide/topics/ui/actionbar.html),你也应该允许用户通过点击app图标来打开或关闭。并且app图标也应该使用一个特殊的图标来指明navigation drawer的存在。你可以通过使用上一节所说的[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)来实现所有的这些操作。
 

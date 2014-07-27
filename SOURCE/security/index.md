@@ -1,13 +1,15 @@
-> 编写:[lltowq](https://github.com/lltowq)(未验证)
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net>
 
-> 校对:
+> 原文:[http://developer.android.com/training/best-security.html](http://developer.android.com/training/best-security.html)
 
 # 安全与隐私
-这些课程与文章提供关于佮保持你的app数据安全。
+这些课程文章告诉你怎样让app数据得到安全保护。
 
-##安全要点
-怎样执行多个任务和保持你app数据或用户数据安全。
-##HTTPS和SSL的安全
-怎样确保当你执行网络传输时app的安全。
-##企业级开发
-怎样实现驱动管理政策对于企业级的app
+#### [安全要点](security-tips.html)
+怎样执在执行多个任务的同时保护app数据和用户数据安全。
+
+#### [HTTPS和SSL的安全](security-ssl.html)
+怎样确保app进行网络传输时是安全的。
+
+#### [企业级开发](enterprise/index.html)
+怎样为企业级的app实施设备管理策略。

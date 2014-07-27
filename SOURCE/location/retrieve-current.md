@@ -7,14 +7,14 @@
 
 位置服务通过一个[LocationClient](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html)（位置服务类LocationClient的一个实例）将当前的位置发送给你的应用。关于位置信息的所有请求都是通过这个类发送。
 
->**注意:** 在开始这个课程之前，确定你的开发环境和测试设备处于正常可用状态。要了解更多，请阅读Google Play services 引导。
+> **注意:** 在开始这个课程之前，确定你的开发环境和测试设备处于正常可用状态。要了解更多，请阅读Google Play services 引导。
 
 ## 确定应用的权限
 使用位置服务的应用必须用户位置权限。Android拥有两种位置权限：[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION) 和 [ACCESS_FINE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION)。选择不同的权限决定你的应用最后获取的位置信息的精度。如果你只请求了一个精度比较低的位置权限，位置服务会对返回的位置信息处理成一个相当于城市级别精确度的位置。
 
 请求[ACCESS_FINE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION)权限时也包含了[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION)权限。
 
-举个例子，如果你要添加[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION)权限，你需要将下面的权限添加到```<manifest>```标签中：
+举个例子，如果你要添加[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION)权限，你需要将下面的权限添加到`<manifest>`标签中：
 ```java
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 ```
@@ -121,7 +121,8 @@ public class MainActivity extends FragmentActivity {
 ```
 
 下面的代码片段使用了这个方法来检查Google Play services是否可用。
-##定义位置服务回调函数
+
+## 定义位置服务回调函数
 为了获取当前的位置，你需要创建一个location client，将它连接到Location Services，然后调用它的 [getLastLocation()](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation()) 方法。最后返回的值是基于你应用请求的权限以及当时启用的位置传感器的最佳位置信息。
 
 在你创建location client之前, 你必须实现一些被 Location Services用来同你的应用通信的接口
@@ -196,7 +197,7 @@ public class MainActivity extends FragmentActivity implements
 
 首先你要在onCreate()方法里面创建location client，然后在onStart()方法里面连接它 then connect it in，这样当你的activity对用户可见时 Location Services 就保存着当前的位置信息了。你需要在onStop()方法里面断开连接，这样当你的activity不可见时，Location Services 就不会保存你的位置信息。下面连接和断开连接的方式对节省电池很有帮助。例如：
 
->**注意:** 当前的位置信息只有在location client 连接到 Location Service时才会被保存。 假设没有其他应用连接到 Location Services，如果你断开 client 的连接，那么这时你调用 [getLastLocation() ](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation())所获取到的位置信息可能已经过时。
+> **注意:** 当前的位置信息只有在location client 连接到 Location Service时才会被保存。 假设没有其他应用连接到 Location Services，如果你断开 client 的连接，那么这时你调用 [getLastLocation() ](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation())所获取到的位置信息可能已经过时。
 
 ```java
 public class MainActivity extends FragmentActivity implements

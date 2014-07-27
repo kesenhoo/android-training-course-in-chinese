@@ -9,10 +9,6 @@
 我们还会学习无线电波的power-use属性配置是如何影响我们对于在何时，用什么，以何种方式来传输数据的选择。
 当然这些选择是为了最小化对电池寿命的影响。
 
-**Dependencies and prerequisites**
-
-Android 2.0 (API Level 5) or higher
-
 **You should also read**
 [Optimizing Battery Life](performance/monitoring-device-state/index.html)
 

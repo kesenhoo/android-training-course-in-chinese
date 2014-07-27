@@ -6,7 +6,7 @@
 
 多点触摸触手势是指在同一时间有多点（手指）触碰屏幕。本节课程讲述如何检测多点触摸手势。
 
-## 追踪多点 ##
+## 追踪多点
 
 当多个手指同时触摸屏幕时，系统会产生如下的触摸事件：
 
@@ -42,7 +42,7 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 ```
 
-## 获取MotionEvent的动作 ##
+## 获取MotionEvent的动作
 
 你应该始终使用[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())函数（或者更好用[MotionEventCompat.getActionMasked()](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html#getActionMasked(android.view.MotionEvent))这个兼容版本）来获取[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)的动作(action)。与旧的[getAction()](http://developer.android.com/reference/android/view/MotionEvent.html#getAction())函数不同的是，[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())本就是设计用来处理多点触摸的。它会返回执行过的动作的掩码值，不包括点的索引位。你可以使用[getActionIndex()](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html#getActionIndex(android.view.MotionEvent))来获得与该动作关联的点的索引值。这在接下来的代码段中可以看到。
 

@@ -20,19 +20,29 @@ Android框架提供了大量的标准工具，用来创建吸引人的，功能�
 
 * [**建立OpenGL ES的环境**](environment.html)
 
+  这节课将向你展示如何配置一个可以画OpenGL图形的应用。
+
 
 * [**定义Shapes**](shapes.html)
+
+  这节课将向你展示如何定义形状，以及你需要了解面和弯曲（faces and winding）这两个概念的原因。
 
 
 * [**绘制Shapes**](draw.html)
 
+  学习如何在你的应用中绘制OpenGL图形。
+
 
 * [**运用投影与相机视图**](projection.html)
+
+  学习如何使用投影和相机视图，来获得你所绘制对象的一个新透视效果。
 
 
 * [**添加移动**](motion.html)
 
+  学习如何对一个OpenGL对象添加基本的运动效果。
+
 
 * [**响应触摸事件**](touch.html)
 
-
+  学习如何对OpenGL图形进行基本的交互。

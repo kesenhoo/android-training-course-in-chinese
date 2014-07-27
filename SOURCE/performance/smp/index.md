@@ -2,4 +2,4 @@
 
 > 校对:
 
-# SMP for Android
+# Symmetric Multi-Processor Primer for Android

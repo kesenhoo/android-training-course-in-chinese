@@ -6,12 +6,6 @@
 
 `Volley` 是一个HTTP库，它能够帮助Android apps更方便的执行网络操作，最重要的是，它更快速高效。可以通过开源的 [AOSP](https://android.googlesource.com/platform/frameworks/volley) 仓库获取到Volley 。
 
-***
-
-**DEPENDENCIES AND PREREQUISITES**
-
-Android 1.6 (API Level 4) or higher
-
 **YOU SHOULD ALSO SEE**
 
 使用Volley来编写一个app，请参考[2013 Google I/O schedule app](https://github.com/google/iosched). 另外需要特别关注下面2个部分：

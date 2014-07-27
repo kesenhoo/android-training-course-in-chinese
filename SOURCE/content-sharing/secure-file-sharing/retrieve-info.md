@@ -8,7 +8,7 @@
 
 这节课将展示如何通过查询服务端应用的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)来获取文件的MIME类型和尺寸。
 
-##获取文件的MIME类型
+## 获取文件的MIME类型
 
 一个文件的数据类型能够告知客户端应用应该如何处理这个文件的内容。为了得到URI所对应文件的数据类型，客户端应用调用[ContentResolver.getType()](http://developer.android.com/reference/android/content/ContentResolver.html#getType\(android.net.Uri\))。这个方法返回了文件的MIME类型。默认的，一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)通过文件的后缀名来确定其MIME类型。
 
@@ -23,7 +23,7 @@
 ...
 ```
 
-##获取文件名和文件大小
+## 获取文件名和文件大小
 [FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)类有一个默认的[query()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query\(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String\))方法的实现，它返回一个[Cursor](http://developer.android.com/reference/android/database/Cursor.html)，它包含了URI所关联的文件的名字和尺寸。默认的实现返回两列：
 
 [**DISPLAY_NAME**](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)

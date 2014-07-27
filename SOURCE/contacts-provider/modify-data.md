@@ -1,9 +1,8 @@
-> 编写:[spencer198711](https://github.com/spencer198711)
+> 编写：[spencer198711](https://github.com/spencer198711) - 校对：
 
-> 校对:
+> 原文：
 
 # 使用Intent修改联系人信息
-
 
 这一课向你展示了如何使用[Intent](http://developer.android.com/reference/android/content/Intent.html)去插入一个新的联系人或者修改联系人的数据。我们不是直接访问Contacts Provider，而是通过Intent去启动Contacts应用的适当的[Activity](http://developer.android.com/reference/android/app/Activity.html)。对于这一课中描述的数据修改行为，如果你向Intent发送扩展的数据，它会自动填充进启动的Activity页面中。
 
@@ -150,9 +149,9 @@ intent.putExtra(Intents.Insert.EMAIL, mEmailAddress.getText())
     startActivity(editIntent);
 ```
 
-##使用Intent让用户去选择是插入还是编辑联系人
+## 使用Intent让用户去选择是插入还是编辑联系人
 
-你可以通过发送ACTION_INSERT_OR_EDIT行为的Intent，让用户去选择是插入联系人还是编辑已有的联系人。例如，一个email客户端应用会允许用户添加一个收件地址到新的联系人，或者仅仅作为额外的邮件地址添加到已有的联系人。需要为这个Intent设置MIME类型Contacts.CONTENT_ITEM_TYPE，但是不需要设置数据URI。
+你可以通过发送`ACTION_INSERT_OR_EDIT`行为的Intent，让用户去选择是插入联系人还是编辑已有的联系人。例如，一个email客户端应用会允许用户添加一个收件地址到新的联系人，或者仅仅作为额外的邮件地址添加到已有的联系人。需要为这个Intent设置MIME类型Contacts.CONTENT_ITEM_TYPE，但是不需要设置数据URI。
 
 当你发送这个Intent后，Contacts应用会展示一个联系人列表，用户可以选择是插入一个新的联系人还是挑选一个存在的联系人去编辑。任何你添加到Intent中得扩展数据字段都会填充在界面上。你可以使用任何在Intents.InsertAPI参考文档中制定的的key值。以下的代码片段展示了如何构建和发送这个Intent：
 
@@ -168,7 +167,7 @@ intent.putExtra(Intents.Insert.EMAIL, mEmailAddress.getText())
 ```
 
 
-    
-    
+
+
 
 
