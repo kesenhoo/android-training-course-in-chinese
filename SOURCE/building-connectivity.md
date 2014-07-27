@@ -27,3 +27,10 @@ These classes teach you how to connect your app to the world beyond the user's d
 
 
 #### [Volley](volley/index.html)
+
+
+#### [云同步：Syncing to the Cloud](cloudsync/index.html)
+
+
+#### [解决云同步的保存冲突：Resolving Cloud Save Conflicts](cloudsave/index.html)
+

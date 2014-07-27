@@ -14,3 +14,7 @@ These classes teach you how to accomplish tasks with graphics that can give your
 #### [使用OpenGL ES显示图像 - Displaying Graphics with OpenGL ES](opengl/index.html)
 
   How to create OpenGL graphics within the Android app framework and respond to touch input.
+
+#### [添加动画 - Adding Animations](animations/index.html)
+
+  How to add transitional animations to your user interface.

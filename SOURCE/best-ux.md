@@ -2,7 +2,24 @@
 
 > 校对:
 
-# UI
+# 交互与界面
+
+These classes focus on the best Android user experience for your app. In some cases, the success of your app on Android is heavily affected by whether your app conforms to the user's expectations for UI and navigation on an Android device. Follow these recommendations to ensure that your app looks and behaves in a way that satisfies Android users.
+
+#### [Designing Effective Navigation](design-nav/index.html)
+
+How to plan your app's screen hierarchy and forms of navigation so users can effectively and intuitively traverse your app content using various navigation patterns.
+
+#### [Implementing Effective Navigation](implement-nav/index.html)
+How to implement various navigation patterns such as swipe views, a navigation drawer, and up navigation.
+
+#### [Notifying the User](notify-user/index.html)
+
+How to display messages called notifications outside of your application's UI.
+
+#### [Adding Search Functionality](search/index.html)
+
+How to properly add a search interface to your app and create a searchable database.
 
 #### [Designing for Multiple Screens](multiscreen/index.html)
 
