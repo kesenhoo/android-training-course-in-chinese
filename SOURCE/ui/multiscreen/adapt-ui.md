@@ -1,11 +1,12 @@
-> 编写:River
+> 编写:[riverfeng](https://github.com/riverfeng)
 
 > 校对:
 
 # 实现可适应的UI流程
+
 在你应用已经可以显示UI的基础上，UI的流程可能会不一样。比如，当你的应用在有两个方框的模式中，点击左边方框的item时，内容显示在右边方框中。如果是在只有一个方框的模式中，当你点击某个item的时候，内容则显示在一个新的activity中。
 
-###确定当前布局
+## 确定当前布局
 当你在实现不同布局的时候，首先，你应该确定用户在当前的情况下看到的view应该是个什么样子。比如，你可能想知道当前用户到底是处于“单个方框”的模式还是“多个方框”的模式。这个时候，你就可以通过查询指定的view是不是存在并是否显示来判断当前的模式：
 
 ```java
@@ -35,7 +36,8 @@ if (catButton != null) {
 }
 ```
 
-###根据当前布局响应
+## 根据当前布局响应
+
 根据当前不同的布局有一些操作肯定会带来不一样的结果。比如，在News Reader示例中，当你点击headlines列表中的某一条headline时，如果你的UI是在多个方框模式中，内容会显示在右边的方框中，如果你的UI是在单个方框模式中，内容则会显示在一个新的独立的Activity中：
 ```java
 @Override
@@ -78,7 +80,9 @@ public void onCreate(Bundle savedInstanceState) {
     }
 }
 ```
-###在其他Activity中复用Fragment
+
+## 在其他Activity中复用Fragment
+
 在设计为多屏幕适配的UI时有一个复用的原则：将你的界面变为单独部分，这样它能在某些屏幕配置上被实现为一个方框，而在其他屏幕配置中，则被实现为一个单独的activity。例如，在News Reader中，新闻内容文字在大屏幕上市显示在屏幕右边的方框中，而在小屏幕中，则是由单独的activity显示的。
 
 像这样的情况，你就应该在不同的activity中使用同一个Fragment，以此来避免代码的重复，而达到代码复用的效果。比如，ArticleFragment在多个方框模式下是这样用的：
@@ -140,7 +144,8 @@ public class HeadlinesFragment extends ListFragment {
 ```
 这种技术在[支持平板与手持设备(Supporting Tablets and Handsets)](file:///F:/Android_training/android-docs/guide/practices/tablets-and-handsets.html)有更加详细的介绍。
 
-###处理屏幕配置变化
+## 处理屏幕配置变化
+
 如果使用的是单独的activity来实现你界面的不同部分，你需要注意的是，屏幕变化（如旋转变化）的时候，你也应该根据屏幕配置的变化来改变你UI的变化。
 
 例如，在传统的Android3.0或以上版本的7寸平板上，News Reader示例在竖屏的时候使用独立的activity显示文章内容，而在横屏的时候，则使用两个方框的模式（即内容显示在右边的方框中）。
