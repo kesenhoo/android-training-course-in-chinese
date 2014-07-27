@@ -13,9 +13,9 @@
 
 你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果. 然而，一个更加合适的Adapter是PagerAdapter 的子类 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html):它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
 
-**Note:** 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。
+> **Note:** 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。
 
-下面是一个使用ViewPager与ImageView作为子视图的示例。
+下面是一个使用ViewPager与ImageView作为子视图的示例。主Activity包含有ViewPager 和adapter。
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -164,6 +164,8 @@ public class ImageDetailActivity extends FragmentActivity {
 }
 ```
 
+
+
 ## Load Bitmaps into a GridView Implementation(实现加载图片到GridView)
 [Grid list building block](http://developer.android.com/design/building-blocks/grid-lists.html) 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。
 
@@ -246,6 +248,8 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 }
 ```
 
+又一次，这一个实现的问题是图片是在UI线程中被设置。当处理小的图片时可以，但其他需要额外操作的处理，都会使你的UI慢下来。
+
 与前面加载到图片到ViewPager一样，如果setImageResource的操作会比较耗时，有可能会卡到UI Thread。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新的解决方案：
 
 ```java
@@ -318,6 +322,6 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 
     ... // include updated BitmapWorkerTask class
 ```
-**Note:**对于 ListView 同样可以套用上面的方法。
+> **Note:**对于 ListView 同样可以套用上面的方法。
 
 上面的方法提供了足够的弹性，使得你可以做从网络加载与Resize大的数码照片等操作而不至于卡到UI Thread。
