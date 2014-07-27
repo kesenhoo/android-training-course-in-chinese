@@ -18,6 +18,6 @@
 
 学习如何获取附近附近的对等设备，如何创建一个设备接入点，如何连接到其他具有Wi-Fi P2P连接功能的设备。
 
-[**使用WiFi P2P服务**](nsd-wifi-index.html)
+[**使用WiFi P2P发现服务**](nsd-wifi-index.html)
 
 学习如何使用WiFi P2P服务去发现附近的不在同一个网络的服务。
