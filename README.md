@@ -52,7 +52,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
    * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html) - @[kesenhoo](https://github.com/kesenhoo)，@[jdneo](https://github.com/jdneo)
    * [解决云同步的保存冲突](http://hukai.me/android-training-course-in-chinese/cloud/cloudsave/index.html) - @[jdneo](https://github.com/jdneo)
-* [Android联系人与位置信息](http://hukai.me/android-training-course-in-chinese/building-userinfo.md)
+* [Android联系人与位置信息](http://hukai.me/android-training-course-in-chinese/building-userinfo.html)
    * [Android联系人信息](http://hukai.me/android-training-course-in-chinese/contacts-provider/index.html) - @[spencer198711](https://github.com/spencer198711)
    * [Android位置信息](http://hukai.me/android-training-course-in-chinese/location/index.html) - @[penkzhou](https://github.com/penkzhou)
 * [Android可穿戴应用](http://hukai.me/android-training-course-in-chinese/building-wearables.html)
