@@ -30,11 +30,11 @@ d. 设置文件名称(比如,MyFirstTestActivityTest),然后点击***Finishi*。
 
 (夹具是用来快速,安全的测试组件功能的工具)
 
-测试夹具由对象必须由一个或多个正在运行测试来初始化。要建立测试夹具,你可以在你的测试中重写setUp（）和tearDown()方法。测试会在运行任何其它测试方法之前自动setUp()方法。你可以用这些方法来保持代码的测试初始化和清理是分开。
+测试夹具由对象必须由一个或多个正在运行测试来初始化。要建立测试夹具,你可以在你的测试中重写[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())和[tearDown()](http://developer.android.com/reference/junit/framework/TestCase.html#tearDown())方法。测试会在运行任何其它测试方法之前自动[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())方法。你可以用这些方法来保持代码的测试初始化和清理是分开。
 
 在你的Eclipse中建立夹具:
 
-1. 在 Package Explorer中双击测试打开之前编写的测试用例,然后修改你的测试用例使它扩展[ActivityTestCase]()的子类。比如这样:
+1. 在 Package Explorer中双击测试打开之前编写的测试用例,然后修改你的测试用例使它扩展[ActivityTestCase](http://developer.android.com/reference/android/test/ActivityTestCase.html)的子类。比如这样:
 
 ```xml
 public class MyFirstTestActivityTest
@@ -65,7 +65,7 @@ public class MyFirstTestActivityTest
 }
 ```
 
-构造函数是由测试运行者初始化测试类反射的,而[setUp()]方法是由测试运行者运行其它测试类之前反射的。
+构造函数是由测试运行者初始化测试类反射的,而[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())方法是由测试运行者运行其它测试类之前反射的。
 
 通常在setUp()方法中你应该这样:
 
@@ -83,7 +83,7 @@ public class MyFirstTestActivityTest
 
 ```
 
-你可以使用[getActivity()]()方法得到正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用。
+你可以使用[getActivity()](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity())方法得到正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用。
 
 ##增加一个测试前提
 
@@ -98,7 +98,7 @@ public void testPreconditions() {
 }
 ```
 
-断言方法是从Junit断言类来的。通常,你可以使用断言验证你想测试一个特定的条件是否是真的。
+断言方法是从Junit[Assert](http://developer.android.com/reference/junit/framework/Assert.html)类来的。通常,你可以使用断言验证你想测试一个特定的条件是否是真的。
 
 *. 如果条件为假，断言方法抛出一个assertionfailederror异常，这是典型的测试者报告。你可以在你的断言失败时给你的断言方法添加一个字符串作为第一个参数从而给出一些上下文详细信息。
 
@@ -129,9 +129,9 @@ public void testMyFirstTestTextView_labelText() {
 
 做这种类型的字符串比较时，从你的资源文件中读取预期字符串是良好的做法，而不是在你代码中硬性编写字符串做比较。这可以防止当字符串定义在资源文件被修改时轻易的打断你的测试。
 
-为进行比较,预期的和实际的字符串都要做为[assertEquals()]方法的参数。如果值是不一样的，断言将抛出一个[AssertionFailedError]()异常。
+为进行比较,预期的和实际的字符串都要做为[assertEquals()](http://developer.android.com/reference/junit/framework/Assert.html#assertEquals(java.lang.String, java.lang.String))方法的参数。如果值是不一样的，断言将抛出一个[AssertionFailedError](http://developer.android.com/reference/junit/framework/AssertionFailedError.html)异常。
 
-如果你添加了一个[testPreconditions()]()方法，把你的测试方法放在[testPreconditions()]()之后。
+如果你添加了一个testPreconditions()方法，把你的测试方法放在testPreconditions之后。
 
 要参看一个完整的测试案例，在参看本节示例中的MyFirstTestActivityTest.java。
 
