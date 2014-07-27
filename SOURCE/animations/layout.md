@@ -2,7 +2,8 @@
 
 > 原文: <http://developer.android.com/training/animation/layout.html>
 
-# 布局切换动画
+# 布局变更动画
+
 布局动画是一种预加载动画，系统在你每次改变的布局配置时运行它。你需要做的仅是在布局文件里设置属性告诉Android系统为你这些布局的变更应用动画。系统动画时为你默认执行的。
 
 > **小贴士:** 如果你想补充自定义布局动画，创建 [LayoutTransition](http://developer.android.com/reference/android/animation/LayoutTransition.html) 对象和然后用 <a href="http://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition)"> setLayoutTransition() </a> 方法把它加到布局中。

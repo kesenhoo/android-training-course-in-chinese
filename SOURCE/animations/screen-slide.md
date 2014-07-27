@@ -174,9 +174,9 @@ ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 ```
 
-详情查看[放大型 Page Transformer（页面转换动画）](#放大型PageTransformer（页面转换动画）)和[潜藏型 Page Transformer（页面转换动画）](潜藏型PageTransformer（页面转换动画）)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视屏。
+详情查看[放大型 Page Transformer（页面转换动画）](#放大型PageTransformer（页面转换动画）)和[潜藏型 Page Transformer（页面转换动画）](#潜藏型PageTransformer（页面转换动画）)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视屏。
 
-## 放大型PageTransformer（页面转换动画）
+### 放大型PageTransformer（页面转换动画）
 
 当在相邻界面滑动时，这个page transformer缩放和渐变动画。当页面越靠近中心，它将渐渐还原到正常大小并且渐入屏幕。
 
@@ -233,7 +233,7 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
 }
 ```
 
-## 潜藏型PageTransformer（页面转换动画）
+### 潜藏型PageTransformer（页面转换动画）
 
 这个page transformer使用默认动画的屏幕左滑动画。但是为右滑使用一种“潜藏”效果的动画。潜藏动画淡出页面，并且线性缩小它。
 
