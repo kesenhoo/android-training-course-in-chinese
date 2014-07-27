@@ -16,13 +16,13 @@
 <!-- more -->
 
 ## Manage Memory on Android 2.3.3 and Lower
-在Android 2.3.3 (API level 10) 以及更低版本上，推荐使用[recycle()](http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()). 如果在你的程序中显示了大量的bitmap数据，你很可能会遇到OutOfMemoryError错误. recycle()方法可以使得程序尽快的reclaim memory.
-**Caution:**只有你确保这个bitmap不再需要用到的时候才应该使用recycle(). 如果你执行recycle()，然后尝试绘画这个bitmap, 你将得到错误:"Canvas: trying to use a recycled bitmap".
+在Android 2.3.3 (API level 10) 以及更低版本上，推荐使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>. 如果在你的程序中显示了大量的bitmap数据，你很可能会遇到[OutOfMemoryError](http://developer.android.com/reference/java/lang/OutOfMemoryError.html)错误. <a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>方法可以使得程序尽快的reclaim memory.
+> **Caution:**只有你确保这个bitmap不再需要用到的时候才应该使用recycle(). 如果你执行recycle()，然后尝试绘画这个bitmap, 你将得到错误:`"Canvas: trying to use a recycled bitmap"`.
 
-下面的例子演示了使用recycle()的例子. 它使用了引用计数的方法(mDisplayRefCount 与 mCacheRefCount)来追踪一个bitmap目前是否有被显示或者是在缓存中. 当下面条件满足时回收bitmap:
+下面的例子演示了使用recycle()的例子. 它使用了引用计数的方法(`mDisplayRefCount` 与 `mCacheRefCount`)来追踪一个bitmap目前是否有被显示或者是在缓存中. 当下面条件满足时回收bitmap:
 
-* mDisplayRefCount 与 mCacheRefCount 的引用计数均为 0.
-* bitmap不为null, 并且它还没有被回收.
+* `mDisplayRefCount` 与 `mCacheRefCount` 的引用计数均为 0.
+* bitmap不为`null`, 并且它还没有被回收.
 
 ```java
 private int mCacheRefCount = 0;
@@ -80,7 +80,7 @@ private synchronized boolean hasValidBitmap() {
 * 你应该总是使用decode方法返回的bitmap, 因为你不可以假设reusing的bitmap是可用的(例如，大小不对).
 
 ### Save a bitmap for later use
-下面演示了一个已经存在的bitmap是如何被存放起来以便后续使用的. 当一个应用运行在Android 3.0或者更高的平台上并且bitmap被从LruCache中移除时, bitmap的一个soft reference会被存放在Hashset中，这样便于之后有可能被inBitmap进行reuse:
+下面演示了一个已经存在的bitmap是如何被存放起来以便后续使用的. 当一个应用运行在Android 3.0或者更高的平台上并且bitmap被从LruCache中移除时, bitmap的一个soft reference会被存放在[Hashset](http://developer.android.com/reference/java/util/HashSet.html)中，这样便于之后有可能被[inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap)进行reuse:
 
 ```java
 HashSet<SoftReference<Bitmap>> mReusableBitmaps;
@@ -137,7 +137,7 @@ public static Bitmap decodeSampledBitmapFromFile(String filename,
 }
 ```
 
-下面的代码演示了上面被执行的addInBitmapOptions()方法. 它会为inBitmap查找一个已经存在的bitmap设置为value. 注意这个方法只是去为inBitmap尝试寻找合适的值，但是并不一定能够找到:
+下面的代码演示了上面被执行的`addInBitmapOptions()`方法. 它会为inBitmap查找一个已经存在的bitmap设置为value. 注意这个方法只是去为inBitmap尝试寻找合适的值，但是并不一定能够找到:
 
 ```java
 private static void addInBitmapOptions(BitmapFactory.Options options,

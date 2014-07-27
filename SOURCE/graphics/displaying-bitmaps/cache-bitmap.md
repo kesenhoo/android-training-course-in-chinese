@@ -13,9 +13,9 @@
 <!-- more -->
 
 ## Use a Memory Cache(使用内存缓存)
-内存缓存以花费宝贵的程序内存为前提来快速访问位图。[LruCache](http://developer.android.com/reference/android/util/LruCache.html) 类(在Support Library 中也可以找到) 特别合适用来caching bitmaps，用一个strong referenced的 LinkedHashMap 来保存最近引用的对象，并且在Cache超出设置大小的时候踢出(evict)最近最少使用到的对象。
+内存缓存以花费宝贵的程序内存为前提来快速访问位图。[LruCache](http://developer.android.com/reference/android/util/LruCache.html) 类(在Support Library 中也可以找到) 特别合适用来caching bitmaps，用一个strong referenced的 [LinkedHashMap](http://developer.android.com/reference/java/util/LinkedHashMap.html) 来保存最近引用的对象，并且在Cache超出设置大小的时候踢出(evict)最近最少使用到的对象。
 
-**Note:** 在过去, 一个比较流行的内存缓存实现方法是使用 SoftReference or WeakReference , 然而这是不推荐的。从Android 2.3 (API Level 9) 开始，GC变得更加频繁的去释放soft/weak references，这使得他们就显得效率低下. 而且在Android 3.0 (API Level 11)之前，备份的bitmap是存放在native memory 中，它不是以可预知的方式被释放，这样可能导致程序超出它的内存限制而崩溃。
+> **Note:** 在过去, 一个比较流行的内存缓存实现方法是使用 SoftReference or WeakReference , 然而这是不推荐的。从Android 2.3 (API Level 9) 开始，GC变得更加频繁的去释放soft/weak references，这使得他们就显得效率低下. 而且在Android 3.0 (API Level 11)之前，备份的bitmap是存放在native memory 中，它不是以可预知的方式被释放，这样可能导致程序超出它的内存限制而崩溃。
 
 为了给LruCache选择一个合适的大小，有下面一些因素需要考虑到：
 
@@ -65,7 +65,7 @@ public Bitmap getBitmapFromMemCache(String key) {
 }
 ```
 
-**Note:**在上面的例子中, 有1/8的程序内存被作为Cache. 在一个常见的设备上(hdpi)，最小大概有4MB (32/8). 如果一个填满图片的GridView组件放置在800x480像素的手机屏幕上，大概会花费1.5MB (800x480x4 bytes), 因此缓存的容量大概可以缓存2.5页的图片内容.
+> **Note:**在上面的例子中, 有1/8的程序内存被作为Cache. 在一个常见的设备上(hdpi)，最小大概有4MB (32/8). 如果一个填满图片的GridView组件放置在800x480像素的手机屏幕上，大概会花费1.5MB (800x480x4 bytes), 因此缓存的容量大概可以缓存2.5页的图片内容.
 
 当加载位图到 ImageView 时，LruCache 会先被检查是否存在这张图片。如果找到有，它会被用来立即更新 ImageView 组件，否则一个后台线程则被触发去处理这张图片。
 
@@ -84,7 +84,7 @@ public void loadBitmap(int resId, ImageView imageView) {
 }
 ```
 
-上面的程序中 BitmapWorkerTask 也需要做添加到内存Cache中的动作：
+上面的程序中 [BitmapWorkerTask](http://developer.android.com/training/displaying-bitmaps/process-bitmap.html#BitmapWorkerTask) 也需要做添加到内存Cache中的动作：
 
 ```java
 class BitmapWorkerTask extends AsyncTask {
@@ -106,9 +106,9 @@ class BitmapWorkerTask extends AsyncTask {
 
 磁盘缓存磁盘缓存可以用来保存那些已经处理好的位图，并且在那些图片在内存缓存中不可用时减少加载的次数。当然从磁盘读取图片会比从内存要慢，而且读取操作需要在后台线程中处理，因为磁盘读取操作是不可预期的。
 
-**Note:**如果图片被更频繁的访问到，也许使用 ContentProvider 会更加的合适，比如在Gallery程序中。
+> **Note:**如果图片被更频繁的访问到，也许使用 [ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html) 会更加的合适，比如在Gallery程序中。
 
-在下面的sample code中实现了一个基本的 DiskLruCache 。然而，Android 4.0 的源代码提供了一个更加robust并且推荐使用的DiskLruCache 方案。(libcore/luni/src/main/java/libcore/io/DiskLruCache.java). 因为向后兼容，所以在前面发布的Android版本中也可以直接使用。 (quick search 提供了一个实现这个解决方案的示例)。
+在下面的sample code中实现了一个基本的 `DiskLruCache` 。然而，Android 4.0 的源代码提供了一个更加robust并且推荐使用的DiskLruCache 方案。(libcore/luni/src/main/java/libcore/io/DiskLruCache.java). 因为向后兼容，所以在前面发布的Android版本中也可以直接使用。 (quick search 提供了一个实现这个解决方案的示例)。
 
 ```java
 private DiskLruCache mDiskCache;
@@ -177,6 +177,8 @@ public static File getCacheDir(Context context, String uniqueName) {
     return new File(cachePath + File.separator + uniqueName);
 }
 ```
+
+> **Note**:即使是初始化磁盘缓存，也需要进行磁盘操作，所以不应该在主线程中进行。但是这也意味着在初始化之前缓存可以被访问。为了解决这种操作，在上面的实现中，lock object用来确保在磁盘缓存完成初始化之前，app无法对它进行读取。
 
 内存缓存的检查是可以在UI线程中进行的，磁盘缓存的检查需要在后台线程中处理。磁盘操作永远都不应该在UI线程中发生。当图片处理完成后，最后的位图需要添加到内存缓存与磁盘缓存中，方便之后的使用。
 
