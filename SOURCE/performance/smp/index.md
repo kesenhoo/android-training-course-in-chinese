@@ -35,10 +35,56 @@
 
 如果你关注一段代码在内存中的读写操作，在sequentially-consistent的CPU架构上，是按照期待的顺序执行的。It’s possible that the CPU is actually reordering instructions and delaying reads and writes, but there is no way for code running on the device to tell that the CPU is doing anything other than execute instructions in a straightforward manner. (We’re ignoring memory-mapped device driver I/O for the moment.)
 
-...未完待续
+To illustrate these points it’s useful to consider small snippets of code, commonly referred to as litmus tests. These are assumed to execute in program order, that is, the order in which the instructions appear here is the order in which the CPU will execute them. We don’t want to consider instruction reordering performed by compilers just yet.
+
+Here’s a simple example, with code running on two threads:
+
+Thread 1	Thread 2
+A = 3
+B = 5	reg0 = B
+reg1 = A
+
+| Thread 1 | Thread 2 |
+| -- | -- |
+| A = 3 B = 5 | reg0 = B reg1 = A |
+
+In this and all future litmus examples, memory locations are represented by capital letters (A, B, C) and CPU registers start with “reg”. All memory is initially zero. Instructions are executed from top to bottom. Here, thread 1 stores the value 3 at location A, and then the value 5 at location B. Thread 2 loads the value from location B into reg0, and then loads the value from location A into reg1. (Note that we’re writing in one order and reading in another.)
+
+Thread 1 and thread 2 are assumed to execute on different CPU cores. You should always make this assumption when thinking about multi-threaded code.
+
+Sequential consistency guarantees that, after both threads have finished executing, the registers will be in one of the following states:
+
+| Registers	| States |
+| -- | -- |
+| reg0=5, reg1=3	| possible (thread 1 ran first) |
+| reg0=0, reg1=0	| possible (thread 2 ran first) |
+| reg0=0, reg1=3	| possible (concurrent execution) |
+| reg0=5, reg1=0	| never |
+
+To get into a situation where we see B=5 before we see the store to A, either the reads or the writes would have to happen out of order. On a sequentially-consistent machine, that can’t happen.
+
+Most uni-processors, including x86 and ARM, are sequentially consistent. Most SMP systems, including x86 and ARM, are not.
 
 #### 1.1.1)Processor consistency
+
+x86 SMP provides processor consistency, which is slightly weaker than sequential. While the architecture guarantees that loads are not reordered with respect to other loads, and stores are not reordered with respect to other stores, it does not guarantee that a store followed by a load will be observed in the expected order.
+
+Consider the following example, which is a piece of Dekker’s Algorithm for mutual exclusion:
+
+Thread 1	Thread 2
+A = true
+reg1 = B
+if (reg1 == false)
+    critical-stuff	B = true
+reg2 = A
+if (reg2 == false)
+    critical-stuff
+
+This results in both reg1 and reg2 set to “false”, allowing the threads to execute code in the critical section simultaneously. To understand how this can happen, it’s useful to know a little about CPU caches.
+
 #### 1.1.2)CPU cache behavior
+
+
 #### 1.1.3)Observability
 #### 1.1.4)ARM’s weak ordering
 
