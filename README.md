@@ -43,7 +43,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
 * [Android图像处理](http://hukai.me/android-training-course-in-chinese/graphics/index.html)
    * [高效显示Bitmap](http://hukai.me/android-training-course-in-chinese/graphics/displaying-bitmaps/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [使用OpenGL ES显示图像](http://hukai.me/android-training-course-in-chinese/graphics/opengl/index.html) - @[jdneo](https://github.com/jdneo)
-* [Android显示动画](http://hukai.me/android-training-course-in-chinese/animations/index.html) - @[XizhiXu](https://github.com/XizhiXu) -  10%
+   * [添加动画](http://hukai.me/android-training-course-in-chinese/animations/index.html) - @[XizhiXu](https://github.com/XizhiXu)
 * [Android网络连接](http://hukai.me/android-training-course-in-chinese/connectivity/index.html)
    * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan)
    * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - @[kesenhoo](https://github.com/kesenhoo)
