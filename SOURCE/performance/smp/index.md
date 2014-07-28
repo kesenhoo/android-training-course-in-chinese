@@ -66,25 +66,7 @@ To get into a situation where we see B=5 before we see the store to A, either th
 Most uni-processors, including x86 and ARM, are sequentially consistent. Most SMP systems, including x86 and ARM, are not.
 
 #### 1.1.1)Processor consistency
-
-x86 SMP provides processor consistency, which is slightly weaker than sequential. While the architecture guarantees that loads are not reordered with respect to other loads, and stores are not reordered with respect to other stores, it does not guarantee that a store followed by a load will be observed in the expected order.
-
-Consider the following example, which is a piece of Dekker’s Algorithm for mutual exclusion:
-
-Thread 1	Thread 2
-A = true
-reg1 = B
-if (reg1 == false)
-    critical-stuff	B = true
-reg2 = A
-if (reg2 == false)
-    critical-stuff
-
-This results in both reg1 and reg2 set to “false”, allowing the threads to execute code in the critical section simultaneously. To understand how this can happen, it’s useful to know a little about CPU caches.
-
 #### 1.1.2)CPU cache behavior
-
-
 #### 1.1.3)Observability
 #### 1.1.4)ARM’s weak ordering
 
@@ -119,17 +101,73 @@ This results in both reg1 and reg2 set to “false”, allowing the threads to e
 
 **“synchronized”**关键字提供了Java一种内置的锁机制。每一个对象都有一个相对应的“monitor”，这个监听器可以提供互斥的访问。
 
-The implementation of the “synchronized” block has the same basic structure as the spin lock example: it begins with an acquiring CAS, and ends with a releasing store. This means that compilers and code optimizers are free to migrate code into a “synchronized” block. One practical consequence: you must not conclude that code inside a synchronized block happens after the stuff above it or before the stuff below it in a function. Going further, if a method has two synchronized blocks that lock the same object, and there are no operations in the intervening code that are observable by another thread, the compiler may perform “lock coarsening” and combine them into a single block.
+“synchronized”代码段的实现机制与自旋锁(spin lock)有着相同的基础结构: 他们都是从获取到CAS开始，以释放CAS结束。这意味着编译器(compilers)与代码优化器(code optimizers)可以轻松的迁移代码到“synchronized”代码段中。一个实践结果是：你**不能**判定synchronized代码段是执行在这段代码下面一部分的前面，还是这段代码上面一部分的后面。更进一步，如果一个方法有两个synchronized代码段并且锁住的是同一个对象，那么在这两个操作的中间代码都无法被其他的线程所检测到，编译器可能会执行“锁粗化lock coarsening”并且把这两者绑定到同一个代码块上。
 
-The other relevant keyword is “volatile”. As defined in the specification for Java 1.4 and earlier, a volatile declaration was about as weak as its C counterpart. The spec for Java 1.5 was updated to provide stronger guarantees, almost to the level of monitor synchronization.
+另外一个相关的关键字是**“volatile”**。在Java 1.4以及之前的文档中是这样定义的：volatile声明和对应的C语言中的一样可不靠。从Java 1.5开始，提供了更有力的保障，甚至和synchronization一样具备强同步的机制。
 
-The effects of volatile accesses can be illustrated with an example. If thread 1 writes to a volatile field, and thread 2 subsequently reads from that same field, then thread 2 is guaranteed to see that write and all writes previously made by thread 1. More generally, the writes made by any thread up to the point where it writes the field will be visible to thead 2 when it does the read. In effect, writing to a volatile is like a monitor release, and reading from a volatile is like a monitor acquire.
+volatile的访问效果可以用下面这个例子来说明。如果线程1给volatile字段做了赋值操作，线程2紧接着读取那个字段的值，那么线程2是被确保能够查看到之前线程1的任何写操作。更通常的情况是，**任何**线程对那个字段的写操作对于线程2来说都是可见的。实际上，写volatile就像是释放件监听器，读volatile就像是获取监听器。
 
-Non-volatile accesses may be reorded with respect to volatile accesses in the usual ways, for example the compiler could move a non-volatile load or store “above” a volatile store, but couldn’t move it “below”. Volatile accesses may not be reordered with respect to each other. The VM takes care of issuing the appropriate memory barriers.
+非volatile的访问有可能因为照顾volatile的访问而需要做顺序的调整。例如编译器可能会往上移动一个非volatile加载操作，但是不会往下移动。Volatile之间的访问不会因为彼此而做出顺序的调整。虚拟机会注意处理如何的内存栅栏(memory barriers)。
 
-It should be mentioned that, while loads and stores of object references and most primitive types are atomic, long and double fields are not accessed atomically unless they are marked as volatile. Multi-threaded updates to non-volatile 64-bit fields are problematic even on uniprocessors.
+当加载与保存大多数的基础数据类型，他们都是原子的atomic, 对于long以及double类型的数据则不具备原子型，除非他们被声明为volatile。即使是在单核处理器上，并发多线程更新非volatile字段值也还是不确定的。
 
 #### 2.2.2)Examples
+
+下面是一个错误实现的单步计数器(monotonic counter)的示例: ([Java theory and practice: Managing volatility](smp.html#more)).
+
+```java
+class Counter {
+    private int mValue;
+
+    public int get() {
+        return mValue;
+    }
+    public void incr() {
+        mValue++;
+    }
+}
+```
+
+假设get()与incr()方法是被多线程调用的。然后我们想确保当get()方法被调用时，每一个线程都能够看到当前的数量。最引人注目的问题是mValue++实际上包含了下面三个操作。
+
+1. reg = mValue
+2. reg = reg + 1
+3. mValue = reg
+
+如果两个线程同时在执行`incr()`方法，其中的一个更新操作会丢失。为了确保正确的执行`++`的操作，我们需要把`incr()`方法声明为“synchronized”。这样修改之后，这段代码才能够在单核多线程的环境中正确的执行。
+
+然而，在SMP的系统下还是会执行失败。不同的线程通过`get()`方法获取到得值可能是不一样的。因为我们是使用通常的加载方式来读取这个值的。我们可以通过声明`get()`方法为synchronized的方式来修正这个错误。通过这些修改，这样的代码才是正确的了。
+
+不幸的是，我们有介绍过有可能发生的锁竞争(lock contention)，这有可能会伤害到程序的性能。除了声明`get()`方法为synchronized之外，我们可以声明`mValue`为**“volatile”**. (请注意`incr()`必须使用synchronize) 现在我们知道volatile的mValue的写操作对于后续的读操作都是可见的。`incr()`将会稍稍有点变慢，但是`get()`方法将会变得更加快速。因此读操作大于写操作时，这会是一个比较好的方案。(请参考AtomicInteger.)
+
+下面是另外一个示例，和之前的C示例有点类似：
+
+```java
+class MyGoodies {
+    public int x, y;
+}
+class MyClass {
+    static MyGoodies sGoodies;
+
+    void initGoodies() {    // runs in thread 1
+        MyGoodies goods = new MyGoodies();
+        goods.x = 5;
+        goods.y = 10;
+        sGoodies = goods;
+    }
+
+    void useGoodies() {    // runs in thread 2
+        if (sGoodies != null) {
+            int i = sGoodies.x;    // could be 5 or 0
+            ....
+        }
+    }
+}
+```
+
+This has the same problem as the C code, namely that the assignment sGoodies = goods might be observed before the initialization of the fields in goods. If you declare sGoodies with the volatile keyword, you can think about the loads as if they were atomic_acquire_load() calls, and the stores as if they were atomic_release_store() calls.
+
+(Note that only the sGoodies reference itself is volatile. The accesses to the fields inside it are not. The statement z = sGoodies.x will perform a volatile load of MyClass.sGoodies followed by a non-volatile load of sGoodies.x. If you make a local reference MyGoodies localGoods = sGoodies, z = localGoods.x will not perform any volatile loads.)
 
 ### 2.3)What to do
 #### 2.3.1)General advice
@@ -141,4 +179,6 @@ It should be mentioned that, while loads and stores of object references and mos
 ## 4)Appendix
 ### 4.1)SMP failure example
 ### 4.2)Implementing synchronization stores
+
+<a name="more"></a>
 ### 4.3)Further reading
