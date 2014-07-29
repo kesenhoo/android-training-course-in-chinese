@@ -68,7 +68,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
    * [为多屏幕设计](http://hukai.me/android-training-course-in-chinese/ui/multiscreen/index.html) - @[riverfeng](https://github.com/riverfeng)
    * [为TV进行设计](http://hukai.me/android-training-course-in-chinese/ui/tv/index.html) - @[xrayzh](https://github.com/xrayzh) - 30%
    * [创建自定义View](http://hukai.me/android-training-course-in-chinese/ui/custom-view/index.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [创建向后兼容的UI](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/index.html) - 待认领
+   * [创建向后兼容的UI](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/index.html) - @[spencer198711](https://github.com/spencer198711)
    * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - @[K0ST](https://github.com/K0ST)
    * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST)
 * [Android用户输入](http://hukai.me/android-training-course-in-chinese/best-user-input.html)
