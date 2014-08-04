@@ -76,7 +76,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
    * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi)
    * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html) - 待认领
 * [Android后台任务](http://hukai.me/android-training-course-in-chinese/best-background.html)
-    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
+   * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - @[lltowq](https://github.com/lltowq)
 * [Android性能优化](http://hukai.me/android-training-course-in-chinese/best-performance.html)
