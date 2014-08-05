@@ -11,19 +11,27 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 请读者点击Star进行关注并支持！
 
 ## 版本信息：
+
 * v0.1 - 2014/08/05
+
+## 离线文档
+
+* PDF:
+* ePub:
+* Mobi:
 
 ## 参与方式
 
 你可以选择以下的方式帮忙修改纠正这份教程：
 
-1. 到Github托管的项目主页，提交Issue或者Pull Request。(请修改位于项目根目录的**SOURCE**文件夹所对应章节的.markdown文件)
-2. 写邮件给项目发起人**[胡凯](http://hukai.me)**的邮箱kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
-3. 加入QQ交流群：363415744，向群主或者管理员提错误。
+1. 通过在线阅读课程的页面，点击目录导航栏左上角的"Edit and Contribute"，会跳转到此页面对应的Github源码页面(此操作会自动帮你Fork项目源码到你的账户并更新文件至最新)，然后你可以在自己的仓库下修改，确定提交之后，Github会自动引导你提交Pull Request。
+2. 在线阅读的文章底部留言，提出问题与修改意见，我们会及时处理。
+3. 写邮件给项目发起人**[胡凯](http://hukai.me)**，邮箱是kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
+4. 加入QQ交流群：**363415744**，向群主或者管理员提错误。
 
 ## 特别致谢
 
-发起这个项目之后，得到很多人的支持，有经验丰富的Android开发者，也有刚接触Android的爱好者。他们有些已经上班，有些还是学生，有些在国内，还有的在美国！感谢所有参与或者关注这个项目的小伙伴!
+发起这个项目之后，得到很多人的支持，有经验丰富的Android开发者，也有刚接触Android的爱好者。他们有些已经上班，有些还是学生，有些在国内，还有的在国外！感谢所有参与或者关注这个项目的小伙伴!
 
 下面是参与翻译的小伙伴(Github ID按照课程结构排序)
 
@@ -52,7 +60,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * @[craftsmanBai](https://github.com/craftsmanBai)
 * @[huanglizhuo](https://github.com/huanglizhuo)
 
-另外特别感谢[安卓巴士社区](www.apkbus.com)，[爱开发社区](akaifa.com)，[码农周刊](weekly.manong.io)对项目的宣传！
+另外感谢[安卓巴士社区](www.apkbus.com)，[爱开发社区](akaifa.com)，[码农周刊](weekly.manong.io)对项目的宣传！
 
 ## License
 本站作品由<https://github.com/kesenhoo/android-training-course-in-chinese>创作，采用[知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可](http://creativecommons.org/licenses/by-nc-sa/4.0/)协议进行许可。
