@@ -1,8 +1,8 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 校对:
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789)
 
 > 原文: <http://developer.android.com/training/basics/firstapp/index.html>
 
-# 建立你的第一个App
+# 建立第一个App
 
 欢迎开始Android应用开发！本章节教你如何建立你的第一个Android应用程序。您将学到如何创建一个Android项目和运行可调试版本的应用程序。你还将学习一些Android应用程序设计的基础知识，包括如何创建一个简单的用户界面，处理用户输入。
 
@@ -18,6 +18,6 @@
 
 如果你尚未完成这些任务，开始[Android SDK](http://developer.android.com/sdk/index.html)的下载和安装步骤。安装完成后，你就可以准备开始本章节的学习了。
 
-本章节通过教程的方式逐步建立一个小型的Android应用，来交给你一下Android开发的基本概念，因此对你来说每一步都很重要。
+本章节通过教程的方式逐步建立一个小型的Android应用，来教给你一下Android开发的基本概念，因此对你来说每一步都很重要。
 
 [开始第一节课](creating-project.html)

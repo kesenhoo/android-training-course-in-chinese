@@ -87,7 +87,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
    * [多线程操作](http://hukai.me/android-training-course-in-chinese/performance/multi-threads/index.html) - @[AllenZheng1991](https://github.com/AllenZheng1991)
    * [避免程序无响应ANR](http://hukai.me/android-training-course-in-chinese/performance/perf-anr/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [JNI Tips](http://hukai.me/android-training-course-in-chinese/performance/perf-jni/index.html) - @[pedant](https://github.com/pedant)
-   * [优化多核处理器(SMP)下的Android程序](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html) - @[kesenhoo](https://github.com/kesenhoo) - 5%
+   * [优化多核处理器(SMP)下的Android程序](http://hukai.me/android-training-course-in-chinese/performance/smp/index.html) - @[kesenhoo](https://github.com/kesenhoo) - 20%
 * [Android安全与隐私](http://hukai.me/android-training-course-in-chinese/best-security.html)
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai)

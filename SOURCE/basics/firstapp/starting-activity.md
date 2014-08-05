@@ -1,10 +1,10 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 校对:
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789)
 
 > 原文: <http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
-# 启动另外的Activity
+# 启动其他Activity
 
-在完成上一课(构建简单用户界面)后，你已经拥有了显示一个activity（唯一屏幕）的app（应用），并且这个activity包含了一个文本字段和一个按钮。
+在完成上一课(建立简单的用户界面)后，你已经拥有了显示一个activity（唯一屏幕）的app（应用），并且这个activity包含了一个文本字段和一个按钮。
 在这节课中，你将会添加一些新的代码到MainActivity中，当用户点击发送(Send)按钮时启动一个新的activity。
 
 ## 响应Send(发送)按钮
@@ -31,22 +31,24 @@ public void sendMessage(View view) {
 ```
 
 请注意，为了让系统能够将这个方法（你刚在MyFirstActivity中添加的sendMessage方法）与在android:onClick属性中提供的方法名字匹配，它们的名字必须一致，特别是，这个方法必须满足以下条件：
-公共的
-没有返回值
-有一个唯一的视图（View）参数（这个视图就是将被点击的视图）
+
+* 公共的
+* 没有返回值
+* 有唯一的视图（View）参数（这个视图就是将被点击的视图）
+
 接下来，你可以在这个方法中编写读取文本内容的代码，并将该内容传到另一个Activity。
 
 ## 构建一个Intent
 
-[Intent](http://developer.android.com/reference/android/content/Intent.html)(意图)是在不同组件中提供运行时连接的对象(比如两个Activity)。Intent(意图)代表一个应用"想去做什么事"，你可以用它做各种各样的任务，不过大部分的时候他们被用来启动另一个Activity。在sendMessage()方法中创建一个Intent(意图)并启动名为DisplayMessageActivity的Activity：
+[Intent](http://developer.android.com/reference/android/content/Intent.html)是在不同组件中提供运行时连接的对象(比如两个Activity)。Intent代表一个应用"想去做什么事"，你可以用它做各种各样的任务，不过大部分的时候他们被用来启动另一个Activity。在sendMessage()方法中创建一个Intent并启动名为DisplayMessageActivity的Activity：
 
 ```java
 Intent intent = new Intent(this, DisplayMessageActivity.class);
 ```
 
-**小提示：**在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )
+**Note:**在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )
 
-在这个Intent构造函数中有两个参数： 第一个参数是Context(上下文)(之所有可以用this是因为当前Activity(MyFirstActivity)是Context的子类) 系统需要传递Intent的应用组件的class对象（在这个案例中，这个activity应该被启动）
+在这个Intent构造函数中有两个参数： 第一个参数是Context(之所有可以用this是因为当前Activity(MyFirstActivity)是Context的子类) 系统需要传递Intent的应用组件的class对象（在这个案例中，这个activity应该被启动）
 
 **注意**：如果你正在使用的是类似Eclipse的IDE，这里对DisplayMessageActivity的引用会报错，因为这个类还不存在；注意这个错误，你很快就要去创建这个类了。
 
@@ -71,6 +73,7 @@ public class MainActivity extends ActionBarActivity {
 通常使用应用程序包名作为前缀来定义意图键是很好的做法。如果应用程序与其他应用程序进行交互就可以确保意图键唯一。
 
 ## 启动第二个Activity
+
 启动一个Activity，你只需要调用startActivity()方法然后传入你的Intent(意图)系统接收到你的请求后会实例化在Intent中指定的Activity,包含这个方法拥有的，被Send(发送)按钮调用的完整sendMessage()方法现在就像这样：
 
 ```java
@@ -87,29 +90,23 @@ public void sendMessage(View view) {
 现在你需要去创建一个DisplayMessageActivity支持程序能够执行起来
 
 ## 创建第二个Activity
+
 使用Eclipse创建新的Activity：
 
-1.在工具栏点击**新建**。
+1. 在工具栏点击**新建**。
 
-2.在弹出窗口打开安卓文件夹，选择安卓活动然后点击**下一步**。
+2. 在弹出窗口打开安卓文件夹，选择安卓活动然后点击**下一步**。
 
-3.选择**BlankActivity**然后点击**下一步**
+3. 选择**BlankActivity**，然后点击**下一步**
 
-4.填写Activity详细信息：
-
-**Project**：MyFirstApp
-
-**Activity Name**：DisplayMessageActivity
-
-**Layout Name**：activity_display_message
-
-**Fragment Layout Name**：fragment_display_message
-
-**Title**：My Message
-
-**Hierarchial Parent**：com.example.myfirstapp.MainActivity
-
-**Navigation Type**：无
+4. 填写Activity详细信息：
+  * **Project**：MyFirstApp
+  * **Activity Name**：DisplayMessageActivity
+  * **Layout Name**：activity_display_message
+  * **Fragment Layout Name**：fragment_display_message
+  * **Title**：My Message
+  * **Hierarchial Parent**：com.example.myfirstapp.MainActivity
+  * **Navigation Type**：无
 
 单击**Finish**。
 
@@ -117,11 +114,9 @@ public void sendMessage(View view) {
 
 打开DisplayMessageActivity.java 文件，如果该文件用Eclipse创建，那么:
 
-此类已经包含了所需[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)) 的默认实现，稍后需要更新此实现方法。
-
-另外还有一个[onCreateOptionsMenu(](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)))实现方式，由于应用程序并不需要所以可以直接删除。
-
-还有 [onOptionsItemSelected(](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)))实现方式，它可以处理操作栏上拉操作。
+* 此类已经包含了所需[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)) 的默认实现，稍后需要更新此实现方法。
+* 另外还有一个[onCreateOptionsMenu(](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)))实现方式，由于应用程序并不需要所以可以直接删除。
+* 还有 [onOptionsItemSelected(](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)))实现方式，它可以处理操作栏上拉操作。
 
 还有一个 PlaceholderFragment ，在本activity中不需要此类。
 
@@ -206,7 +201,7 @@ Activity所有子类都必须实现 onCreate()方法。创建活动新实例时�
 </application>
 ```
 
-android:parentActivityName属性在应用程序中该Activity的逻辑父类Activity的名称。 系统使用此值来实现默认导航操作，比如在安卓4.1（API级别16）或者更高版本。 使用支持库并且如下所示的`meta-data`元素可以为安卓旧版本提供相同功能。
+`android:parentActivityName`属性声明了在应用程序中该Activity逻辑层面的父类Activity的名称。 系统使用此值来实现默认导航操作，比如在安卓4.1（API级别16）或者更高版本。 使用Support Library，如上所示的`meta-data`元素可以为安卓旧版本提供相同功能。
 
 如果正在使用Eclipse开发,现在可以运行应用程序了。 点击发送按钮启动第二个Activity，但它采用的是模板提供的"Hello world"布局，稍后你可以自己更新该布局。因此使用其它IDE也不用担心，因为应用程序尚未编译。
 
