@@ -14,6 +14,12 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 * v0.1 - 2014/08/05
 
+## 离线文档
+
+* PDF: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.pdf>
+* ePub: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.epub>
+* Mobi: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.mobi>
+
 ## 参与方式
 
 你可以选择以下的方式帮忙修改纠正这份教程：
