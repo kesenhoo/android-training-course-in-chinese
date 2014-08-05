@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1407260196048
+# Revision 1407262443016
 
 CACHE:
 cloud/cloudsave/index.html
@@ -12,8 +12,8 @@ animations/crossfade.html
 animations/index.html
 animations/layout.html
 animations/screen-slide.html
-animations/zoom.html
 background-jobs/load-data-background/handle-result.html
+animations/zoom.html
 background-jobs/load-data-background/index.html
 background-jobs/load-data-background/setup-loader.html
 background-jobs/run-background-service/create-service.html
@@ -26,8 +26,8 @@ background-jobs/scheduling/wake-lock.html
 basics/actionbar/adding-buttons.html
 basics/actionbar/index.html
 basics/actionbar/overlaying.html
-basics/actionbar/styling.html
 basics/actionbar/setting-up.html
+basics/actionbar/styling.html
 basics/activity-lifecycle/index.html
 basics/activity-lifecycle/pausing.html
 basics/activity-lifecycle/recreating.html
@@ -55,8 +55,8 @@ basics/supporting-devices/index.html
 basics/supporting-devices/languages.html
 basics/supporting-devices/platforms.html
 basics/supporting-devices/screens.html
-best-performance.html
 best-background.html
+best-performance.html
 best-security.html
 best-testing.html
 best-user-input.html
@@ -71,11 +71,11 @@ connectivity/connect-devices-wireless/index.html
 connectivity/connect-devices-wireless/nsd-wifi-index.html
 connectivity/connect-devices-wireless/nsd.html
 connectivity/connect-devices-wireless/wifi-direct.html
+connectivity/efficient-downloads/connectivity-patterns.html
 connectivity/efficient-downloads/efficient-network-access.html
 connectivity/efficient-downloads/index.html
 connectivity/efficient-downloads/redundant-redundant.html
 connectivity/efficient-downloads/regular-update.html
-connectivity/efficient-downloads/connectivity-patterns.html
 connectivity/network-ops/connecting.html
 connectivity/network-ops/index.html
 connectivity/network-ops/managing.html
@@ -108,9 +108,9 @@ content-sharing/sharing/receive.html
 content-sharing/sharing/send.html
 content-sharing/sharing/shareaction.html
 graphics/displaying-bitmaps/cache-bitmap.html
+graphics/displaying-bitmaps/index.html
 graphics/displaying-bitmaps/display-bitmap.html
 graphics/displaying-bitmaps/load-bitmap.html
-graphics/displaying-bitmaps/index.html
 graphics/displaying-bitmaps/manage-bitmap-memory.html
 graphics/displaying-bitmaps/process-bitmap.html
 graphics/opengl/motion.html
@@ -160,9 +160,9 @@ performance/improving-layouts/loading-ondemand.html
 performance/improving-layouts/optimizing-layout.html
 performance/improving-layouts/reuse-layouts.html
 performance/improving-layouts/smooth-scrolling.html
+performance/memory.html
 performance/monitor-device-state/battery-monitor.html
 performance/monitor-device-state/connectivity-monitor.html
-performance/memory.html
 performance/monitor-device-state/docking-monitor.html
 performance/monitor-device-state/index.html
 performance/monitor-device-state/manifest-receivers.html
@@ -172,8 +172,8 @@ performance/multi-threads/define-runnable.html
 performance/multi-threads/index.html
 performance/multi-threads/run-code.html
 performance/perf-anr/index.html
-performance/perf-jni/index.html
 performance/performance-tips.html
+performance/perf-jni/index.html
 performance/smp/index.html
 security/enterprise/device-management-policy.html
 security/enterprise/index.html
@@ -182,8 +182,8 @@ security/security-tips.html
 testing/activity-testing/activity-basic-testing.html
 testing/activity-testing/activity-function-testing.html
 testing/activity-testing/activity-ui-testing.html
-testing/activity-testing/activity-unit-testing.html
 testing/activity-testing/index.html
+testing/activity-testing/activity-unit-testing.html
 testing/activity-testing/prepare-activity-testing.html
 ui/accessibility/accessible-app.html
 ui/accessibility/accessible-service.html
@@ -243,14 +243,14 @@ wearables/apps/index.html
 wearables/apps/layouts.html
 wearables/apps/packaging.html
 wearables/apps/voice.html
-wearables/data-layer/assets.html
 wearables/data-layer/accessing.html
+wearables/data-layer/assets.html
 wearables/data-layer/data-items.html
 wearables/data-layer/events.html
 wearables/data-layer/index.html
 wearables/data-layer/messages.html
-wearables/notifications/index.html
 wearables/notifications/creating.html
+wearables/notifications/index.html
 wearables/notifications/pages.html
 wearables/notifications/stacks.html
 wearables/notifications/voice-input.html
