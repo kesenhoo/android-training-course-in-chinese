@@ -1,26 +1,31 @@
-# Google Android官方培训课程中文版
+# Google Android官方培训课程中文版(v0.1)
 
 ![Android Training](android_training.jpg)
 
-Google Android团队在2012年起开设了[Training课程](http://developer.android.com/training/index.html)，这是学习Android应用开发的绝佳资料。这个项目是通过Github发起的协作翻译项目，借助开源的力量，完成中文版的输出并不断完善。我们会持续维护这份官方的Android学习资料。欢迎大家的参与！
+Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。我们通过Github发起开源协作翻译的项目，完成中文版的输出。欢迎大家传阅学习，更欢迎读者加入此协作项目，为完善这份教程贡献你的一点力量!
 
-## Github项目主页
+## Github托管主页
 
 **<https://github.com/kesenhoo/android-training-course-in-chinese>**
 
 请读者点击Star进行关注并支持！
 
-## 纠正
+## 版本信息：
+* v0.1 - 2014/08/05
 
-你可以选择以下的方式进行参与：
+## 参与方式
 
-1. 到Github项目主页，直接提交Issue或者Pull Request。(修改项目根目录下**SOURCE**文件夹所对应章节的markdown文件)
-2. 写邮件到kesenhoo at gmail.com，注明出错或者语句不妥的章节段落位置，并给出纠正的建议。
+你可以选择以下的方式帮忙修改纠正这份教程：
+
+1. 到Github托管的项目主页，提交Issue或者Pull Request。(请修改位于项目根目录的**SOURCE**文件夹所对应章节的.markdown文件)
+2. 写邮件给项目发起人**[胡凯](http://hukai.me)**的邮箱kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
 3. 加入QQ交流群：363415744，向群主或者管理员提错误。
 
-## 感谢
+## 特别致谢
 
-感谢下面各位的大力支持，Github ID按照课程结构排序：
+发起这个项目之后，得到很多人的支持，有经验丰富的Android开发者，也有刚接触Android的爱好者。他们有些已经上班，有些还是学生，有些在国内，还有的在美国！感谢所有参与或者关注这个项目的小伙伴!
+
+下面是参与翻译的小伙伴(Github ID按照课程结构排序)
 
 * @[yuanfentiank789](https://github.com/yuanfentiank789)
 * @[vincent4j](https://github.com/vincent4j)
@@ -46,3 +51,8 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
 * @[pedant](https://github.com/pedant)
 * @[craftsmanBai](https://github.com/craftsmanBai)
 * @[huanglizhuo](https://github.com/huanglizhuo)
+
+另外特别感谢[安卓巴士社区](www.apkbus.com)，[爱开发社区](akaifa.com)，[码农周刊](weekly.manong.io)对项目的宣传！
+
+## License
+本站作品由<https://github.com/kesenhoo/android-training-course-in-chinese>创作，采用[知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可](http://creativecommons.org/licenses/by-nc-sa/4.0/)协议进行许可。
