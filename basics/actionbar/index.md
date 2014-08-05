@@ -2,9 +2,9 @@
 
 > 原文: <http://developer.android.com/training/basics/actionbar/index.html>
 
-# 添加 Action Bar
+# 添加 ActionBar
 
-Action bar 是最重要的设计元素之一，你可以在 activity 中实现它。它提供了多种 UI 特性，可以让你的 app 相比于其他 Android app 比较一致，为用户所熟悉。核心的功能包括：
+ActionBar是最重要的设计元素之一，你可以在activity中实现它。它提供了多种 UI 特性，可以让你的 app 相比于其他 Android app 比较一致，为用户所熟悉。核心的功能包括：
 - 一个专门空间，给你的 app 一个个性，并且指示出用户的位置
 - 以一种可预见的方式接入重要的操作（比如检索）
 - 支持导航和视图切换（通过页签和下拉列表）
