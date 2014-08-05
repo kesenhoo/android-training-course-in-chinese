@@ -9,9 +9,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
 
 ## 电子书
 
-* PDF: 敬请期待
-* ePub: 敬请期待
-* Mobi: 敬请期待
+目前支持PDF,ePub,Mobi格式的离线电子书，请到群共享下载！
 
 ## 联系方式
 
@@ -21,7 +19,7 @@ Google Android团队在2012年起开设了[Training课程](http://developer.andr
 <a name="courses"></a>
 ## 课程结构
 
-**目录对应的文件路径：所有的源文件放在项目根目录的`SOURCE`目录下，打开`SOURCE`目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名，所有文章均使用Markdown格式，关于Markdown，请看下面的介绍**
+**目录对应的文件路径：打开master branch根目录下的`SUMMARY.md`文件查看下面章节对应的路径与文件名，所有文章均使用Markdown格式，关于Markdown，请看下面的介绍**
 
 * [序言](http://hukai.me/android-training-course-in-chinese/index.html)
 * [Android入门基础：从这里开始](http://hukai.me/android-training-course-in-chinese/basics/index.html)
@@ -124,16 +122,16 @@ git fetch upstream
 
    * Mac版<http://url.cn/LddkKy>
    * PC版<http://url.cn/LLOySy>
-   * 操作步骤：菜单File->Open Book->打开SOURCE目录，找到对应的章节，开始文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接。 下载链接无法使用的，请加入群，在群共享中进行下载。
+   * 操作步骤：菜单File->Open Book->打开根目录，找到对应的章节，开始文档。也可以选择自己喜欢的Markdown编辑器找到对应的文件，直接。 下载链接无法使用的，请加入群，在群共享中进行下载。
 
 * 5)若是在文件之前或者提交文件之前，原始仓库的内容有更新，需要运行下面的命令来合并更新到本地，再把本地的更新提交到自己的远程仓库，这样才能让自己的远程仓库与原始的Fork仓库保持一致。
 
 ```
 git fetch upstream
 # 拉取把原始远程仓库的更新
-git merge upstream/gh-pages
+git merge upstream/master
 # 把原始远程仓库的更新合并到本地
-git push origin gh-pages
+git push origin master
 # 提交更新到自己的远程仓库
 ```
 
@@ -144,7 +142,7 @@ git add .
 # 把当前修改的所有文件提交到工作区
 git commit
 # 提交修改到本地仓库
-git push origin gh-pages
+git push origin master
 # 把本地修改提交到自己的远程仓库
 ```
 
