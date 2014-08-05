@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.8" data-basepath="../.." data-revision="1406482464556">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="12.8" data-basepath="../.." data-revision="1407206233892">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -153,7 +153,7 @@
         <li class="chapter " data-level="2.1" data-path="basics/firstapp/index.html">
             
             <a href="../../basics/firstapp/index.html">
-                <i class="fa fa-check"></i> <b>2.1.</b> 建立你的第一个App
+                <i class="fa fa-check"></i> <b>2.1.</b> 建立第一个App
             </a>
             
             
@@ -163,7 +163,7 @@
         <li class="chapter " data-level="2.1.1" data-path="basics/firstapp/creating-project.html">
             
             <a href="../../basics/firstapp/creating-project.html">
-                <i class="fa fa-check"></i> <b>2.1.1.</b> 创建一个Android项目
+                <i class="fa fa-check"></i> <b>2.1.1.</b> 创建Android项目
             </a>
             
             
@@ -172,7 +172,7 @@
         <li class="chapter " data-level="2.1.2" data-path="basics/firstapp/running-app.html">
             
             <a href="../../basics/firstapp/running-app.html">
-                <i class="fa fa-check"></i> <b>2.1.2.</b> 执行你的程序
+                <i class="fa fa-check"></i> <b>2.1.2.</b> 执行Android程序
             </a>
             
             
@@ -181,7 +181,7 @@
         <li class="chapter " data-level="2.1.3" data-path="basics/firstapp/building-ui.html">
             
             <a href="../../basics/firstapp/building-ui.html">
-                <i class="fa fa-check"></i> <b>2.1.3.</b> 建立一个简单的用户界面
+                <i class="fa fa-check"></i> <b>2.1.3.</b> 建立简单的用户界面
             </a>
             
             
@@ -190,7 +190,7 @@
         <li class="chapter " data-level="2.1.4" data-path="basics/firstapp/starting-activity.html">
             
             <a href="../../basics/firstapp/starting-activity.html">
-                <i class="fa fa-check"></i> <b>2.1.4.</b> 启动另外的Activity
+                <i class="fa fa-check"></i> <b>2.1.4.</b> 启动其他Activity
             </a>
             
             
@@ -2804,15 +2804,15 @@
     
         <a href="../../basics/index.html" title="Android入门基础：从这里开始" class="chapter done new-chapter" data-progress="2" style="left: 0.398406374501992%;"></a>
     
-        <a href="../../basics/firstapp/index.html" title="建立你的第一个App" class="chapter done " data-progress="2.1" style="left: 0.796812749003984%;"></a>
+        <a href="../../basics/firstapp/index.html" title="建立第一个App" class="chapter done " data-progress="2.1" style="left: 0.796812749003984%;"></a>
     
-        <a href="../../basics/firstapp/creating-project.html" title="创建一个Android项目" class="chapter done " data-progress="2.1.1" style="left: 1.1952191235059761%;"></a>
+        <a href="../../basics/firstapp/creating-project.html" title="创建Android项目" class="chapter done " data-progress="2.1.1" style="left: 1.1952191235059761%;"></a>
     
-        <a href="../../basics/firstapp/running-app.html" title="执行你的程序" class="chapter done " data-progress="2.1.2" style="left: 1.593625498007968%;"></a>
+        <a href="../../basics/firstapp/running-app.html" title="执行Android程序" class="chapter done " data-progress="2.1.2" style="left: 1.593625498007968%;"></a>
     
-        <a href="../../basics/firstapp/building-ui.html" title="建立一个简单的用户界面" class="chapter done " data-progress="2.1.3" style="left: 1.9920318725099602%;"></a>
+        <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="2.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动另外的Activity" class="chapter done " data-progress="2.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="2.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="2.2" style="left: 2.7888446215139444%;"></a>
     
@@ -3309,7 +3309,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_187">
+                    <section class="normal" id="section-gitbook_188">
                     
                         <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
@@ -3386,17 +3386,6 @@ reg1 = A</p>
 <p>To get into a situation where we see B=5 before we see the store to A, either the reads or the writes would have to happen out of order. On a sequentially-consistent machine, that can’t happen.</p>
 <p>Most uni-processors, including x86 and ARM, are sequentially consistent. Most SMP systems, including x86 and ARM, are not.</p>
 <h4 id="1-1-1-processor-consistency">1.1.1)Processor consistency</h4>
-<p>x86 SMP provides processor consistency, which is slightly weaker than sequential. While the architecture guarantees that loads are not reordered with respect to other loads, and stores are not reordered with respect to other stores, it does not guarantee that a store followed by a load will be observed in the expected order.</p>
-<p>Consider the following example, which is a piece of Dekker’s Algorithm for mutual exclusion:</p>
-<p>Thread 1    Thread 2
-A = true
-reg1 = B
-if (reg1 == false)
-    critical-stuff    B = true
-reg2 = A
-if (reg2 == false)
-    critical-stuff</p>
-<p>This results in both reg1 and reg2 set to “false”, allowing the threads to execute code in the critical section simultaneously. To understand how this can happen, it’s useful to know a little about CPU caches.</p>
 <h4 id="1-1-2-cpu-cache-behavior">1.1.2)CPU cache behavior</h4>
 <h4 id="1-1-3-observability">1.1.3)Observability</h4>
 <h4 id="1-1-4-arm-s-weak-ordering">1.1.4)ARM’s weak ordering</h4>
@@ -3419,20 +3408,156 @@ if (reg2 == false)
 <p>我们没有讨论过Java语言的一些相关特性，因此我们首先来简要的看下那些特性。</p>
 <h4 id="2-2-1-java-synchronized-volatile-">2.2.1)Java中的&quot;synchronized&quot;与&quot;volatile&quot;关键字</h4>
 <p><strong>“synchronized”</strong>关键字提供了Java一种内置的锁机制。每一个对象都有一个相对应的“monitor”，这个监听器可以提供互斥的访问。</p>
-<p>The implementation of the “synchronized” block has the same basic structure as the spin lock example: it begins with an acquiring CAS, and ends with a releasing store. This means that compilers and code optimizers are free to migrate code into a “synchronized” block. One practical consequence: you must not conclude that code inside a synchronized block happens after the stuff above it or before the stuff below it in a function. Going further, if a method has two synchronized blocks that lock the same object, and there are no operations in the intervening code that are observable by another thread, the compiler may perform “lock coarsening” and combine them into a single block.</p>
-<p>The other relevant keyword is “volatile”. As defined in the specification for Java 1.4 and earlier, a volatile declaration was about as weak as its C counterpart. The spec for Java 1.5 was updated to provide stronger guarantees, almost to the level of monitor synchronization.</p>
-<p>The effects of volatile accesses can be illustrated with an example. If thread 1 writes to a volatile field, and thread 2 subsequently reads from that same field, then thread 2 is guaranteed to see that write and all writes previously made by thread 1. More generally, the writes made by any thread up to the point where it writes the field will be visible to thead 2 when it does the read. In effect, writing to a volatile is like a monitor release, and reading from a volatile is like a monitor acquire.</p>
-<p>Non-volatile accesses may be reorded with respect to volatile accesses in the usual ways, for example the compiler could move a non-volatile load or store “above” a volatile store, but couldn’t move it “below”. Volatile accesses may not be reordered with respect to each other. The VM takes care of issuing the appropriate memory barriers.</p>
-<p>It should be mentioned that, while loads and stores of object references and most primitive types are atomic, long and double fields are not accessed atomically unless they are marked as volatile. Multi-threaded updates to non-volatile 64-bit fields are problematic even on uniprocessors.</p>
+<p>“synchronized”代码段的实现机制与自旋锁(spin lock)有着相同的基础结构: 他们都是从获取到CAS开始，以释放CAS结束。这意味着编译器(compilers)与代码优化器(code optimizers)可以轻松的迁移代码到“synchronized”代码段中。一个实践结果是：你<strong>不能</strong>判定synchronized代码段是执行在这段代码下面一部分的前面，还是这段代码上面一部分的后面。更进一步，如果一个方法有两个synchronized代码段并且锁住的是同一个对象，那么在这两个操作的中间代码都无法被其他的线程所检测到，编译器可能会执行“锁粗化lock coarsening”并且把这两者绑定到同一个代码块上。</p>
+<p>另外一个相关的关键字是<strong>“volatile”</strong>。在Java 1.4以及之前的文档中是这样定义的：volatile声明和对应的C语言中的一样可不靠。从Java 1.5开始，提供了更有力的保障，甚至和synchronization一样具备强同步的机制。</p>
+<p>volatile的访问效果可以用下面这个例子来说明。如果线程1给volatile字段做了赋值操作，线程2紧接着读取那个字段的值，那么线程2是被确保能够查看到之前线程1的任何写操作。更通常的情况是，<strong>任何</strong>线程对那个字段的写操作对于线程2来说都是可见的。实际上，写volatile就像是释放件监听器，读volatile就像是获取监听器。</p>
+<p>非volatile的访问有可能因为照顾volatile的访问而需要做顺序的调整。例如编译器可能会往上移动一个非volatile加载操作，但是不会往下移动。Volatile之间的访问不会因为彼此而做出顺序的调整。虚拟机会注意处理如何的内存栅栏(memory barriers)。</p>
+<p>当加载与保存大多数的基础数据类型，他们都是原子的atomic, 对于long以及double类型的数据则不具备原子型，除非他们被声明为volatile。即使是在单核处理器上，并发多线程更新非volatile字段值也还是不确定的。</p>
 <h4 id="2-2-2-examples">2.2.2)Examples</h4>
+<p>下面是一个错误实现的单步计数器(monotonic counter)的示例: (<a href="smp.html#more">Java theory and practice: Managing volatility</a>).</p>
+<pre><code class="lang-java">class Counter {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mValue;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">get</span>() {
+        <span class="hljs-keyword">return</span> mValue;
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">incr</span>() {
+        mValue++;
+    }
+}
+</code></pre>
+<p>假设get()与incr()方法是被多线程调用的。然后我们想确保当get()方法被调用时，每一个线程都能够看到当前的数量。最引人注目的问题是mValue++实际上包含了下面三个操作。</p>
+<ol>
+<li>reg = mValue</li>
+<li>reg = reg + 1</li>
+<li>mValue = reg</li>
+</ol>
+<p>如果两个线程同时在执行<code>incr()</code>方法，其中的一个更新操作会丢失。为了确保正确的执行<code>++</code>的操作，我们需要把<code>incr()</code>方法声明为“synchronized”。这样修改之后，这段代码才能够在单核多线程的环境中正确的执行。</p>
+<p>然而，在SMP的系统下还是会执行失败。不同的线程通过<code>get()</code>方法获取到得值可能是不一样的。因为我们是使用通常的加载方式来读取这个值的。我们可以通过声明<code>get()</code>方法为synchronized的方式来修正这个错误。通过这些修改，这样的代码才是正确的了。</p>
+<p>不幸的是，我们有介绍过有可能发生的锁竞争(lock contention)，这有可能会伤害到程序的性能。除了声明<code>get()</code>方法为synchronized之外，我们可以声明<code>mValue</code>为<strong>“volatile”</strong>. (请注意<code>incr()</code>必须使用synchronize) 现在我们知道volatile的mValue的写操作对于后续的读操作都是可见的。<code>incr()</code>将会稍稍有点变慢，但是<code>get()</code>方法将会变得更加快速。因此读操作多于写操作时，这会是一个比较好的方案。(请参考AtomicInteger.)</p>
+<p>下面是另外一个示例，和之前的C示例有点类似：</p>
+<pre><code class="lang-java">class MyGoodies {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> x, y;
+}
+class MyClass {
+    <span class="hljs-keyword">static</span> MyGoodies sGoodies;
+
+    <span class="hljs-keyword">void</span> initGoodies() {    <span class="hljs-comment">// runs in thread 1</span>
+        MyGoodies goods = <span class="hljs-keyword">new</span> MyGoodies();
+        goods.x = <span class="hljs-number">5</span>;
+        goods.y = <span class="hljs-number">10</span>;
+        sGoodies = goods;
+    }
+
+    <span class="hljs-keyword">void</span> useGoodies() {    <span class="hljs-comment">// runs in thread 2</span>
+        <span class="hljs-keyword">if</span> (sGoodies != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">int</span> i = sGoodies.x;    <span class="hljs-comment">// could be 5 or 0</span>
+            ....
+        }
+    }
+}
+</code></pre>
+<p>这段代码同样存在着问题，<code>sGoodies = goods</code>的赋值操作有可能在<code>goods</code>成员变量赋值之前被察觉到。如果你使用<code>volatile</code>声明<code>sGoodies</code>变量，你可以认为load操作为<code>atomic_acquire_load()</code>，并且把store操作认为是<code>atomic_release_store()</code>。</p>
+<p>(请注意仅仅是<code>sGoodies</code>的引用本身为<code>volatile</code>，访问它的内部字段并不是这样的。赋值语句<code>z = sGoodies.x</code>会执行一个volatile load  MyClass.sGoodies的操作，其后会伴随一个non-volatile的load操作：：<code>sGoodies.x</code>。如果你设置了一个本地引用<code>MyGoodies localGoods = sGoodies, z = localGoods.x</code>，这将不会执行任何volatile loads.)</p>
+<p>另外一个在Java程序中更加常用的范式就是臭名昭著的<strong>“double-checked locking”</strong>:</p>
+<pre><code class="lang-java">class MyClass {
+    <span class="hljs-keyword">private</span> Helper helper = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-keyword">public</span> Helper <span class="hljs-title">getHelper</span>() {
+        <span class="hljs-keyword">if</span> (helper == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-keyword">synchronized</span> (<span class="hljs-keyword">this</span>) {
+                <span class="hljs-keyword">if</span> (helper == <span class="hljs-keyword">null</span>) {
+                    helper = <span class="hljs-keyword">new</span> Helper();
+                }
+            }
+        }
+        <span class="hljs-keyword">return</span> helper;
+    }
+}
+</code></pre>
+<p>上面的写法是为了获得一个MyClass的单例。我们只需要创建一次这个实例，通过<code>getHelper()</code>这个方法。为了避免两个线程会同时创建这个实例。我们需要对创建的操作加synchronize机制。然而，我们不想要为了每次执行这段代码的时候都为“synchronized”付出额外的代价，因此我们仅仅在helper对象为空的时候加锁。</p>
+<p>在单核系统上，这是不能正常工作的。JIT编译器会破坏这件事情。请查看<a href="#appendix">4)Appendix</a>的“‘Double Checked Locking is Broken’ Declaration”获取更多的信息, 或者是Josh Bloch’s Effective Java书中的Item 71 (“Use lazy initialization judiciously”)。</p>
+<p>在SMP系统上执行这段代码，引入了一个额外的方式会导致失败。把上面那段代码换成C的语言实现如下：</p>
+<pre><code class="lang-c"><span class="hljs-keyword">if</span> (helper == null) {
+    <span class="hljs-comment">// acquire monitor using spinlock</span>
+    <span class="hljs-keyword">while</span> (atomic_acquire_cas(&amp;<span class="hljs-keyword">this</span>.lock, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>) != success)
+        ;
+    <span class="hljs-keyword">if</span> (helper == null) {
+        newHelper = <span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Helper));
+        newHelper-&gt;x = <span class="hljs-number">5</span>;
+        newHelper-&gt;y = <span class="hljs-number">10</span>;
+        helper = newHelper;
+    }
+    atomic_release_store(&amp;<span class="hljs-keyword">this</span>.lock, <span class="hljs-number">0</span>);
+}
+</code></pre>
+<p>此时问题就更加明显了: <code>helper</code>的store操作发生在memory barrier之前，这意味着其他的线程能够在store x/y之前观察到非空的值。</p>
+<p>你应该尝试确保store helper执行在<code>atomic_release_store()</code>方法之后。通过重新排序代码进行加锁，但是这是无效的，因为往上移动的代码，编译器可以把它移动回原来的位置：在<code>atomic_release_store()</code>前面。
+(<em>这里没有读懂，下次再回读</em>)</p>
+<p>有2个方法可以解决这个问题：</p>
+<ul>
+<li>删除外层的检查。这确保了我们不会在synchronized代码段之外做任何的检查。</li>
+<li>声明helper为volatile。仅仅这样一个小小的修改，在前面示例中的代码就能够在Java 1.5及其以后的版本中正常工作。</li>
+</ul>
+<p>下面的示例演示了使用volatile的2各重要问题：</p>
+<pre><code class="lang-java">class MyClass {
+    <span class="hljs-keyword">int</span> data1, data2;
+    <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">int</span> vol1, vol2;
+
+    <span class="hljs-keyword">void</span> setValues() {    <span class="hljs-comment">// runs in thread 1</span>
+        data1 = <span class="hljs-number">1</span>;
+        vol1 = <span class="hljs-number">2</span>;
+        data2 = <span class="hljs-number">3</span>;
+    }
+
+    <span class="hljs-keyword">void</span> useValues1() {    <span class="hljs-comment">// runs in thread 2</span>
+        <span class="hljs-keyword">if</span> (vol1 == <span class="hljs-number">2</span>) {
+            <span class="hljs-keyword">int</span> l1 = data1;    <span class="hljs-comment">// okay</span>
+            <span class="hljs-keyword">int</span> l2 = data2;    <span class="hljs-comment">// wrong</span>
+        }
+    }
+    <span class="hljs-keyword">void</span> useValues2() {    <span class="hljs-comment">// runs in thread 2</span>
+        <span class="hljs-keyword">int</span> dummy = vol2;
+        <span class="hljs-keyword">int</span> l1 = data1;    <span class="hljs-comment">// wrong</span>
+        <span class="hljs-keyword">int</span> l2 = data2;    <span class="hljs-comment">// wrong</span>
+    }
+</code></pre>
+<p>请注意<code>useValues1()</code>，如果thread 2还没有察觉到<code>vol1</code>的更新操作，那么它也无法知道<code>data1</code>或者<code>data2</code>被设置的操作。一旦它观察到了<code>vol1</code>的更新操作，那么它也能够知道data1的更新操作。然而，对于<code>data2</code>则无法做任何猜测，因为store操作是在volatile store之后发生的。</p>
+<p><code>useValues2()</code>使用了第2个volatile字段：vol2，这会强制VM生成一个memory barrier。这通常不会发生。为了建立一个恰当的“happens-before”关系，2个线程都需要使用同一个volatile字段。在thread 1中你需要知道vol2是在data1/data2之后被设置的。(The fact that this doesn’t work is probably obvious from looking at the code; the caution here is against trying to cleverly “cause” a memory barrier instead of creating an ordered series of accesses.)</p>
 <h3 id="2-3-what-to-do">2.3)What to do</h3>
 <h4 id="2-3-1-general-advice">2.3.1)General advice</h4>
+<p>在C/C++中，使用<code>pthread</code>操作，例如mutexes与semaphores。他们会使用合适的memory barriers，在所有的Android平台上提供正确有效的行为。请确保正确这些技术，例如在没有获得对应的mutex的情况下赋值操作需要很谨慎。</p>
+<p>避免直接使用atomic方法。如果locking与unlocking之间没有竞争，locking与unlocking一个pthread mutex 分别需要一个单独的atomic操作。如果你需要一个lock-free的设计，你必须在开始写代码之前了解整篇文档的要点。（或者是寻找一个已经为SMP ARM设计好的库文件）。</p>
+<p>Be extremely circumspect with &quot;volatile” in C/C++. It often indicates a concurrency problem waiting to happen.</p>
+<p>In Java, the best answer is usually to use an appropriate utility class from the java.util.concurrent package. The code is well written and well tested on SMP.</p>
+<p>Perhaps the safest thing you can do is make your class immutable. Objects from classes like String and Integer hold data that cannot be changed once the class is created, avoiding all synchronization issues. The book Effective Java, 2nd Ed. has specific instructions in “Item 15: Minimize Mutability”. Note in particular the importance of declaring fields “final&quot; (Bloch).</p>
+<p>If neither of these options is viable, the Java “synchronized” statement should be used to guard any field that can be accessed by more than one thread. If mutexes won’t work for your situation, you should declare shared fields “volatile”, but you must take great care to understand the interactions between threads. The volatile declaration won’t save you from common concurrent programming mistakes, but it will help you avoid the mysterious failures associated with optimizing compilers and SMP mishaps.</p>
+<p>The Java Memory Model guarantees that assignments to final fields are visible to all threads once the constructor has finished — this is what ensures proper synchronization of fields in immutable classes. This guarantee does not hold if a partially-constructed object is allowed to become visible to other threads. It is necessary to follow safe construction practices.(Safe Construction Techniques in Java).</p>
 <h4 id="2-3-2-synchronization-primitive-guarantees">2.3.2)Synchronization primitive guarantees</h4>
+<p>The pthread library and VM make a couple of useful guarantees: all accesses previously performed by a thread that creates a new thread are observable by that new thread as soon as it starts, and all accesses performed by a thread that is exiting are observable when a join() on that thread returns. This means you don’t need any additional synchronization when preparing data for a new thread or examining the results of a joined thread.</p>
+<p>Whether or not these guarantees apply to interactions with pooled threads depends on the thread pool implementation.</p>
+<p>In C/C++, the pthread library guarantees that any accesses made by a thread before it unlocks a mutex will be observable by another thread after it locks that same mutex. It also guarantees that any accesses made before calling signal() or broadcast() on a condition variable will be observable by the woken thread.</p>
+<p>Java language threads and monitors make similar guarantees for the comparable operations.</p>
 <h4 id="2-3-3-upcoming-changes-to-c-c-">2.3.3)Upcoming changes to C/C++</h4>
+<p>The C and C++ language standards are evolving to include a sophisticated collection of atomic operations. A full matrix of calls for common data types is defined, with selectable memory barrier semantics (choose from relaxed, consume, acquire, release, acq_rel, seq_cst).</p>
+<p>See the Further Reading section for pointers to the specifications.</p>
 <h2 id="3-closing-notes">3)Closing Notes</h2>
+<p>While this document does more than merely scratch the surface, it doesn’t manage more than a shallow gouge. This is a very broad and deep topic. Some areas for further exploration:</p>
+<ul>
+<li>Learn the definitions of <strong>happens-before</strong>, <strong>synchronizes-with</strong>, and other essential concepts from the Java Memory Model. (It’s hard to understand what “volatile” really means without getting into this.)</li>
+<li>Explore what compilers are and aren’t allowed to do when reordering code. (The JSR-133 spec has some great examples of legal transformations that lead to unexpected results.)</li>
+<li>Find out how to write immutable classes in Java and C++. (There’s more to it than just “don’t change anything after construction”.)</li>
+<li>Internalize the recommendations in the Concurrency section of <strong>Effective Java, 2nd Edition</strong>. (For example, you should avoid calling methods that are meant to be overridden while inside a synchronized block.)</li>
+<li>Understand what sorts of barriers you can use on x86 and ARM. (And other CPUs for that matter, for example Itanium’s acquire/release instruction modifiers.)</li>
+<li>Read through the <strong>java.util.concurrent</strong> and <strong>java.util.concurrent.atomic</strong> APIs to see what&#39;s available.</li>
+<li>Consider using concurrency annotations like <code>@ThreadSafe</code> and <code>@GuardedBy</code> (from net.jcip.annotations).</li>
+</ul>
+<p>The Further Reading section in the appendix has links to documents and web sites that will better illuminate these topics.</p>
+<p><a name="appendix"></a></p>
 <h2 id="4-appendix">4)Appendix</h2>
 <h3 id="4-1-smp-failure-example">4.1)SMP failure example</h3>
 <h3 id="4-2-implementing-synchronization-stores">4.2)Implementing synchronization stores</h3>
+<p><a name="more"></a></p>
 <h3 id="4-3-further-reading">4.3)Further reading</h3>
 
                     
