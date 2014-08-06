@@ -1,6 +1,4 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789)
-
-> 原文: <http://developer.android.com/training/basics/firstapp/building-ui.html>
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 原文: <http://developer.android.com/training/basics/firstapp/building-ui.html>
 
 # 建立一个简单的用户界面
 
