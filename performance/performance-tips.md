@@ -121,9 +121,6 @@ public class Foo {
 
 问题是，VM因为Foo和Foo$Inner是不同的类，会认为在Foo$Inner中直接访问Foo类的私有成员是不合法的。即使Java语言允许内部类访问外部类的私有成员。为了去除这种差异，编译器会产生一些仿造函数：
 
-
-To bridge the gap, the compiler generates a couple of synthetic methods:
-
 ```java
 /*package*/ static int Foo.access$100(Foo foo) {
     return foo.mValue;
