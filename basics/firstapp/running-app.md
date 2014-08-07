@@ -92,7 +92,7 @@ adb install bin/MyFirstApp-debug.apk
 
 ## 在模拟器上运行
 
-无论你是用Eclipse还是命令行，在模拟其中运行程序首先要创建一个模拟器，即 Android Virtual Device (AVD)，配置AVD 可以让你模拟在不同版本和尺寸的Android设备运行应用程序。
+无论你是用 Eclipse 还是命令行，在模拟器中运行程序首先要创建一个 Android Virtual Device (AVD)。AVD 是对 Android 模拟器的配置，可以让你模拟不同的设备。
 
 ![avds-config](avds-config.png)
 
