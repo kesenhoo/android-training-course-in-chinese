@@ -20,14 +20,14 @@
 
 * [连接到网络 - Connecting to the Network](connecting.html)
 
-  Learn how to connect to the network, choose an HTTP client, and perform network operations outside of the UI thread.
+  学习如何连接到网络，选择一个HTTP client，以及在UI线程外执行一个网络操作。
 
 
 * [管理使用的网络 - Managing Network Usage](managing.html)
-
-  Learn how to check a device's network connection, create a preferences UI for controlling network usage, and respond to connection changes.
+  
+  学习如何检查设备的网络连接情况，创建偏好界面来控制网络使用，以及响应连接变化。
 
 
 * [解析XML数据 - Parsing XML Data](xml.html)
 
-  Learn how to parse and consume XML data.
+  学习如何解析及使用XML数据。
