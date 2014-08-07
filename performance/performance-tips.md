@@ -116,7 +116,26 @@ public class Foo {
     }
 }
 ```
-Foo$Inner里面有访问外部类的一个变量。这样的做法会给系统造成额外的麻烦，请尽量避免。
+
+这里重要的是，我们定义了一个私有的内部类（Foo$Inner），它直接访问了外部类中的私有方法以及私有成员对象。这是合法的，这段代码也会如同预期一样打印出"Value is 27"。
+
+问题是，VM因为Foo和Foo$Inner是不同的类，会认为在Foo$Inner中直接访问Foo类的私有成员是不合法的。即使Java语言允许内部类访问外部类的私有成员。为了去除这种差异，编译器会产生一些仿造函数：
+
+
+To bridge the gap, the compiler generates a couple of synthetic methods:
+
+```java
+/*package*/ static int Foo.access$100(Foo foo) {
+    return foo.mValue;
+}
+/*package*/ static void Foo.access$200(Foo foo, int value) {
+    foo.doStuff(value);
+}
+```
+
+每当内部类需要访问外部类中的mValue成员或需要调用doStuff()函数时，它都会调用这些静态方法。这意味着，上面的代码可以归结为，通过accessor函数来访问成员变量。早些时候我们说过，通过accessor会比直接访问域要慢。所以，这是一个特定语言用法造成性能降低的例子。
+
+如果你正在性能热区（hotspot:高频率、重复执行的代码段）使用像这样的代码，你可以把内部类需要访问的域和方法声明为包级访问，而不是私有访问权限。不幸的是，这意味着在相同包中的其他类也可以直接访问这些域，所以在公开的API中你不能这样做。
 
 ## 避免使用float类型
 Android系统中float类型的数据存取速度是int类型的一半，尽量优先采用int类型。
