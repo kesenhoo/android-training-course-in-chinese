@@ -30,7 +30,7 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
 Network network = new BasicNetwork(stack);
 ```
 
-下面的代码片段会掩饰如何一步步建立一个RequestQueue:
+下面的代码片段会演示如何一步步建立一个RequestQueue:
 
 ```java
 RequestQueue mRequestQueue;
