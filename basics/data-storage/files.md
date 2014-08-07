@@ -33,7 +33,7 @@ Android使用与其他平台类似的基于磁盘文件系统(disk-based file sy
 </manifest>
 ```
 
-**Caution:**目前，所有的apps都可以在不指定**写**的权限下做**读**external storage的动作。但是，这会在以后的版本中被修正。如果你的app需要**读**的权限(不是写), 那么你需要声明 [READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE) 权限。为了确保你的app能够在正常工作，你需要现在就声明读权限。但是，如果你的程序有声明**写**的权限，那么就默认有了**读**的权限。
+**Caution:**目前，所有的apps都可以在不指定某个专门的权限下做**读**external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要**读**的权限(不是写), 那么你将需要声明 [READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE) 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。但是，如果你的程序有声明**写**的权限，那么就默认有了**读**的权限。
 
 ```xml
 <manifest ...>
