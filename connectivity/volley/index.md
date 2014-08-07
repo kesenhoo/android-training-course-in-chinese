@@ -16,7 +16,7 @@
 ***
 Volley 有如下的优点：
 
-* 自动执行网络请求。
+* 自动调度网络请求。
 * 高并发网络连接。
 * 通过标准的HTTP的[cache coherence](http://en.wikipedia.org/wiki/Cache_coherence%22)(高速缓存一致性)使得磁盘与内存缓存不可见(Transparent)。
 * 支持指定请求的优先级。
