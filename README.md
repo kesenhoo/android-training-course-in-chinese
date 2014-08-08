@@ -14,6 +14,10 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 * v0.1 - 2014/08/05
 
+### 在线阅读
+
+**<http://hukai.me/android-training-course-in-chinese/index.html>**
+
 ### 离线文档
 
 * PDF: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.pdf>
@@ -24,7 +28,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 你可以选择以下的方式帮忙修改纠正这份教程：
 
-1. 通过在线阅读课程的页面，点击目录导航栏左上角的"Edit and Contribute"，会跳转到此页面对应的Github源码页面(此操作会自动帮你Fork项目源码到你的账户并更新文件至最新)，然后你可以在自己的仓库下修改，确定提交之后，Github会自动引导你提交Pull Request。
+1. 通过[在线阅读](http://hukai.me/android-training-course-in-chinese/index.html)课程的页面，点击目录导航栏左上角的"Edit and Contribute"，会跳转到此页面对应的Github源码页面(此操作会自动帮你Fork项目源码到你的账户并更新文件至最新)，然后你可以在自己的仓库下修改，确定提交之后，Github会自动引导你提交Pull Request。
 2. 在线阅读的文章底部留言，提出问题与修改意见，我们会及时处理。
 3. 写邮件给项目发起人**[胡凯](http://hukai.me)**，邮箱是kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
 4. 加入QQ交流群：**363415744**，向群主或者管理员提错误。
@@ -60,7 +64,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * @[craftsmanBai](https://github.com/craftsmanBai)
 * @[huanglizhuo](https://github.com/huanglizhuo)
 
-另外感谢[安卓巴士社区](www.apkbus.com)，[爱开发社区](akaifa.com)，[码农周刊](weekly.manong.io)对项目的宣传！
+另外感谢[安卓巴士社区](http://www.apkbus.com)，[爱开发社区](http://akaifa.com)，[码农周刊](http://weekly.manong.io)对项目的宣传！
 
 ### License
 本站作品由<https://github.com/kesenhoo/android-training-course-in-chinese>创作，采用[知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可](http://creativecommons.org/licenses/by-nc-sa/4.0/)协议进行许可。
