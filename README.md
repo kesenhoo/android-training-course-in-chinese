@@ -4,23 +4,23 @@
 
 Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。我们通过Github发起开源协作翻译的项目，完成中文版的输出。欢迎大家传阅学习，更欢迎读者加入此协作项目，为完善这份教程贡献你的一点力量!
 
-## Github托管主页
+### Github托管主页
 
 **<https://github.com/kesenhoo/android-training-course-in-chinese>**
 
 请读者点击Star进行关注并支持！
 
-## 版本信息：
+### 版本信息：
 
 * v0.1 - 2014/08/05
 
-## 离线文档
+### 离线文档
 
 * PDF: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.pdf>
 * ePub: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.epub>
 * Mobi: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.mobi>
 
-## 参与方式
+### 参与方式
 
 你可以选择以下的方式帮忙修改纠正这份教程：
 
@@ -29,7 +29,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 3. 写邮件给项目发起人**[胡凯](http://hukai.me)**，邮箱是kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
 4. 加入QQ交流群：**363415744**，向群主或者管理员提错误。
 
-## 特别致谢
+### 特别致谢
 
 发起这个项目之后，得到很多人的支持，有经验丰富的Android开发者，也有刚接触Android的爱好者。他们有些已经上班，有些还是学生，有些在国内，还有的在国外！感谢所有参与或者关注这个项目的小伙伴!
 
@@ -62,5 +62,5 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 另外感谢[安卓巴士社区](www.apkbus.com)，[爱开发社区](akaifa.com)，[码农周刊](weekly.manong.io)对项目的宣传！
 
-## License
+### License
 本站作品由<https://github.com/kesenhoo/android-training-course-in-chinese>创作，采用[知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可](http://creativecommons.org/licenses/by-nc-sa/4.0/)协议进行许可。

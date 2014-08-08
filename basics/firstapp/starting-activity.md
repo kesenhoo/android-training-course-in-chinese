@@ -1,6 +1,4 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789)
-
-> 原文: <http://developer.android.com/training/basics/firstapp/starting-activity.html>
+> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 原文: <http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
 # 启动其他Activity
 
