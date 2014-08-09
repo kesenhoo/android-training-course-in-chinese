@@ -1,8 +1,6 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:[kesenhoo](https://github.com/kesenhoo)
-
-> 原文:<http://developer.android.com/training/wearables/notifications/voice-input.html>
-
 # 在Notifcation中接收语音输入
+
+> 编写:[wangyachen](https://github.com/wangyacheng) - 原文:<http://developer.android.com/training/wearables/notifications/voice-input.html>
 
 如果你的手持式设备上的Notification包含了一个输入文本的action，比如回复邮件，那么这个action正常情况下应该会调起一个activity让用户进行输入。但是，当这个action出现在可穿戴式设备上时，是没有键盘可以让用户进行输入的，所以你应该让用户口述一个回复或者通过[RemoteInput](http://developer.android.com/reference/android/support/v4/app/RemoteInput.html)预先设定好文本信息。
 

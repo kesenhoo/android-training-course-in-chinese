@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/printing/photos.html>
-
 # 打印照片
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/printing/photos.html>
 
 拍摄并分享照片是移动设备最流行的用法之一。如果你的应用拍摄了照片，想要展示他们，或者允许用户共享照片，你就应该考虑在你的应用中可以打印他们。[Android Support Library](http://developer.android.com/tools/support-library/index.html)提供了一个方便的函数，它可以仅仅使用很少量的代码和一些简单的打印布局配置集，就能打印出照片来。
 

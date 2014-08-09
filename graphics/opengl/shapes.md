@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/shapes.html>
-
 # 定义Shapes
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/shapes.html>
 
 在一个OpenGL ES视图的上下文中定义形状，是创建你的杰作所需要的第一步。在不知道关于OpenGL ES如何期望你来定义图形对象的基本知识的时候，通过OpenGL ES 绘图可能会有些困难。
 

@@ -1,11 +1,7 @@
-> 编写：<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
+# 在线程池中的一个线程里执行代码
 
-> 校对：
+> 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/run-code.html>
 
-> 原文地址：<a href="http://developer.android.com/training/multiple-threads/run-code.html" target="_blank">http://developer.android.com/training/multiple-threads/run-code.html</a>
-
-
-#在线程池中的一个线程里执行代码
 在前面的课程中向你展示了如何去定义一个可以管理线程池且能在他们中执行任务代码的类。在这一课中我们将向你展示如何在线程池中执行任务代码。为了达到这个目的，你需要把任务添加到线程池的工作队列中去，当一个线程变成可运行状态时，<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>从工作队列中取出一个任务，然后在该线程中执行。
 
 这节课同时也向你展示了如何去停止一个正在执行的任务，这个任务可能在刚开始执行时是你想要的，但后来发现它所做的工作并不是你所需要的。你可以取消线程正在执行的任务，而不是浪费处理器的运行时间。例如你正在从网络上下载图片且对下载的图片进行了缓存，当检测到正在下载的图片在缓存中已经存在时，你可能希望停止这个下载任务。当然，这都取决于你怎么样去编写你的APP，因为可能压根你就不会在开始下载前进行检测。

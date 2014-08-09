@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/secure-file-sharing/retrieve-info.html>
-
 # 获取文件信息
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/retrieve-info.html>
 
 当一个客户端应用尝试对一个有URI的文件进行操作时，应用可以向服务端应用索取关于文件的信息，包括文件的数据类型和文件大小。数据类型可以帮助客户端应用确定该文件自己能否处理，文件大小能帮助客户端应用为文件设置合理的缓冲区。
 

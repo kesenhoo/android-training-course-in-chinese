@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/zoom.html>
-
 # 缩放View
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/zoom.html>
 
 这节课程师范怎样实现点击缩放动画，这对相册很有用，他能允许相片从缩略图转换成原图并填充屏幕提供动画。
 

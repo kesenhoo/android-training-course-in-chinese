@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/cardflip.html>
-
 # 展示卡片（Card）翻转动画
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/cardflip.html>
 
 这节课展示怎样自定义 fragment 动画和实现卡片翻转。view 内容间的卡片翻转动画模拟卡片翻转的效果。
 

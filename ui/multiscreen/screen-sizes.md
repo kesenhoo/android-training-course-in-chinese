@@ -1,10 +1,8 @@
-> 编写:[riverfeng](https://github.com/riverfeng)
-
-> 校对:
-
 # 兼容不同的屏幕大小
 
-## 这节课教你如何通过以下几种方式支持多屏幕：
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
+
+这节课教你如何通过以下几种方式支持多屏幕：
 
 1：确保你的布局能自适应屏幕
 

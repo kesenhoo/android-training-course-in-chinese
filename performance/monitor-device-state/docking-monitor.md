@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # Determining and Monitoring the Docking State and Type[判断并监测设备的停驻状态与类型]
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 在上一课中有这样一句话：In many cases, the act of charging a device is coincident with putting it into a dock.
 

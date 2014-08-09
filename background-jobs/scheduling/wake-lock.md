@@ -1,8 +1,7 @@
-> 编写:[lttowq](https://github.com/lttowq)(未验证)
-
-> 校对:
-
 # 保持设备唤醒
+
+> 编写:[lttowq](https://github.com/lttowq) - 原文:
+
 为了避免电源消耗，一个Android设备闲置时会迅速进入睡眠状态。然而这里有些时间当一个应用需要唤醒屏幕或者CPU并且保持唤醒完成一些任务。
 
 你采取的方法依赖于你的应用的需要。但是，一般规则是你应该使用最轻量级的方法对的应用，减小你的应用对系统资源的影响。接下来的部分描述怎样处理当设备默认睡眠的行为与你请求不相容的情况。
@@ -87,7 +86,7 @@ public class MyWakefulReceiver extends WakefulBroadcaseReceiver{
 		startWakefulService(context,service);
 	}
 ```
-	
+
 当服务完成，回调[MyWakefulReceiver.completeWakefulIntent()](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent))释放唤醒锁。[completeWakefulIntent()](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent))方法有它的相同参数停止从[WakeflBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html);
 
 ```java

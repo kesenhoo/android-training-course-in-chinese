@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # Manipulating Broadcast Receivers On Demand[按需操控广播接收者]
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 简单的方法是为我们监测的状态创建一个BroadcastReceiver，并在manifest中为每一个状态进行注册监听。然后，每一个Receiver根据当前设备的状态来简单重新安排下一步执行的任务。[这句话感觉理解有点问题]
 

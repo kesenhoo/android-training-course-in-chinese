@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/design-navigation/wireframing.html>
-
 # 综合：设计我们的样例 App
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/design-navigation/wireframing.html>
 
 现在我们对导航模式和界面组合技术有了坚实的理解，是时候应用到我们的界面上了。让我再看看我们第一节课上提到的新闻应用的界面完备图：
 

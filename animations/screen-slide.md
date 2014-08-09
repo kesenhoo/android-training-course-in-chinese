@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/screen-slide.html>
-
 # 使用ViewPager实现屏幕滑动
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/screen-slide.html>
 
 滑屏是在两个完整界面间的转换，它在一些 UI 中很常见，比如设置导向和幻灯放映。这节课将告诉你怎样通过[支持库（support library](http://developer.android.com/tools/support-library/index.html)提供的[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)实现滑屏。[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)能自动实现滑屏动画。下面展示了从一个内容界面到一下界面的滑屏转换是什么样子。
 

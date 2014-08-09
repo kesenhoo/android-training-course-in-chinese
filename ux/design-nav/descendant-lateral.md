@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/design-navigation/descendant-lateral.html>
-
 # 提供向下与横向导航
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/design-navigation/descendant-lateral.html>
 
 一种提供查看应用整体画面的方式就是显示层级导航。这节课我们讨论 *向下导航*，它允许用户进入子界面。我们还讨论 *横向* 导航，它允许用户访问同级界面。
 

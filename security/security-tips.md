@@ -1,10 +1,6 @@
-> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 校正：
-
-> 参考:[http://su1216.iteye.com/blog/](http://su1216.iteye.com/blog/)
->
-> 原文:<http://developer.android.com/training/articles/security-tips.html>
-
 # 安全要点
+
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文:<http://developer.android.com/training/articles/security-tips.html>
 
 Android的安全特性体现在操作系统显著地减少了应用程序的安全问题带来的影响。你可以在默认的系统设置和文件权限设置中建立app，避免了安全带来的一些头疼问题。
 帮助你建立app的一些核心安全特性如下：

@@ -1,8 +1,6 @@
-> 编写:[wly2014](https://github.com/wly2014)- 校对:
-
-> 原文: <http://developer.android.com/training/wearables/data-layer/index.html>
-
 # 发送并同步数据
+
+> 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/index.html>
 
 可穿戴数据层API(The Wearable Data Layer API)，Google Play服务的一部分，为你的手持与可穿戴应用提供了一个交流通道。此API包括一套的，可由系统通过网络和通告你应用数据层重要事件的监听器发送和同步的数据对象：
 

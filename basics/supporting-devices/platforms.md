@@ -1,8 +1,6 @@
-> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/supporting-devices/platforms.html>
-
 # 适配不同的系统版本
+
+> 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/platforms.html>
 
 新的Android版本会为你的app提供更棒的APIs，但你的app仍应该支持旧版本的Android，直到更多的设备升级到新版本为止。这节课程向你展示如何在利用新的APIs的同时仍支持旧版本Android。
 

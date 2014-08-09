@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/implementing-navigation/descendant.html>
-
 # 实现Descendant Navigation
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/descendant.html>
 
 Descendant Navigation是用来向下导航至应用的信息层次。在[Designing Effective Navigation](http://developer.android.com/training/design-navigation/descendant-lateral.html)和[Android Design: Application Structure](http://developer.android.com/design/patterns/app-structure.html)中说明。
 

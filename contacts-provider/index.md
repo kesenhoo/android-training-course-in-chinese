@@ -1,8 +1,6 @@
-> 编写：[spencer198711](https://github.com/spencer198711) - 校对：
-
-> 原文：
-
 # 联系人信息
+
+> 编写：[spencer198711](https://github.com/spencer198711) - 原文：
 
 **[Contacts Provider](http://developer.android.com/guide/topics/providers/contacts-provider.html)**是用户联系人信息的集中仓库， 它包含了来自联系人应用与社交应用的联系人数据。在你的应用中，你可以通过调用[**ContentResolver**](http://developer.android.com/reference/android/content/ContentResolver.html)的方法或者通过发送Intent给联系人应用来访问Contacts Provider的信息。
 

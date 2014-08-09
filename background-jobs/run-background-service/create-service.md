@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # Creating a Background Service:创建IntentService
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+
 IntentService为执行一个操作在单个后台线程，提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。
 
 IntentService有下面几个局限性：

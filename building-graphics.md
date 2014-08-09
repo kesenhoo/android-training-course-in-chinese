@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
+# Android图像与动画
 
-> 原文:<http://developer.android.com/training/building-graphics.html>
-
-# 图像
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/building-graphics.html>
 
 These classes teach you how to accomplish tasks with graphics that can give your app an edge on the competition. If you want to go beyond the basic user interface to create a beautiful visual experience, these classes will help you get there.
 

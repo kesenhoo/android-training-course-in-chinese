@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/secure-file-sharing/sharing-file.html>
-
 # 分享文件
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/sharing-file.html>
 
 一旦你配置了你的应用来使用URI共享文件，你可以响应其他应用关于这些文件的请求。一种响应的方法是在服务端应用端提供一个文件选择接口，它可以由其他应用激活。这种方法可以允许客户端应用端让用户从服务端应用端选择一个文件，然后接收这个文件的URI。
 

@@ -1,8 +1,6 @@
-> 编写: [allenlsy](https://github.com/allenlsy)
-
-> 校对:
-
 # 使用include标签重用layouts
+
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
 
 虽然 Android 提供很多小的可重用的交互组件，你仍然可能需要重用复杂一点的组件，这也许会用到 Layout。为了高效重用整个的 Layout，你可以使用 `<include/>` 和 `<merge/>` 标签把其他 Layout 嵌入当前 Layout。
 

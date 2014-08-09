@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/environment.html>
-
 # 建立OpenGL ES的环境
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/environment.html>
 
 要在你的应用中使用OpenGL ES绘制图像，你必须为它们创建一个View容器。一个比较直接的方法是同时实现一个[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)和一个[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)。[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)是那些用OpenGL所绘制的图形的View容器，而[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)则用来控制在该View中绘制的内容。关于这两个类的更多信息，你可以阅读：[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html)开发手册。
 

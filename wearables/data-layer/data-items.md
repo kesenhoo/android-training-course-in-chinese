@@ -1,8 +1,6 @@
-> 编写:[wly2014](https://github.com/wly2014)- 校对:
-
-> 原文: <http://developer.android.com/training/wearables/data-layer/data-items.html>
-
 # 同步数据单元
+
+> 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/data-items.html>
 
 [DataItem](DataItem.html)是指系统用于同步手持设备与可穿戴设备间数据的接口。一个[DataItem](DataItem.html)通常包括以下几点：
 

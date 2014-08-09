@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST)，校对:
-
-> 原文:<http://developer.android.com/training/accessibility/index.html>
-
 # 实现辅助功能
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/accessibility/index.html>
 
 当我们需要尽可能扩大我们用户的基数的时候，就要开始注意我们软件的可达性了(*Accessibility 易接近，可亲性*)。界面中的小提示对大多数用户而言是可行的，比如说当按钮被按下时视觉上的变化，但是对于那些视力上有些缺陷的用户而言效果就不是那么理想了。
 

@@ -1,8 +1,7 @@
-> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 校正：
-
-> 原文: <http://developer.android.com/training/articles/security-ssl.html>
-
 # 使用HTTPS与SSL
+
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文: <http://developer.android.com/training/articles/security-ssl.html>
+
 
 SSL，传输层安全([TSL](http://en.wikipedia.org/wiki/Transport_Layer_Security))，是一个常见的用来加密客户端和服务器通信的模块。
 但是应用程序错误地使用SSL可能会导致应用程序的数据在网络中被恶意攻击者拦截。为了帮助你确保这种情况不在你的应用程序中发生，这篇文章突出讲解了使用网络安全协议常见的陷阱和使用[Public-Key Infrastructure(PKI)](http://en.wikipedia.org/wiki/Public-key_infrastructure)时一些值得关注的问题。

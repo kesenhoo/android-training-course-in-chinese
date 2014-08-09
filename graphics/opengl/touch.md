@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/touch.html>
-
 # 响应触摸事件
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/touch.html>
 
 让对象根据预设的程序运动，如让一个三角形旋转可以有效地让人引起注意，但是如果你希望可以让OpenGL ES与用户交互呢？让你的OpenGL ES应用可以与触摸交互的关键点在于，拓展你的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的实现，覆写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent\(android.view.MotionEvent\))方法来监听触摸事件。
 

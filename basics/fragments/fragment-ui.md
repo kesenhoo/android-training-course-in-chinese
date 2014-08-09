@@ -1,8 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985) - 校对:
-
-> 原文:<http://developer.android.com/training/basics/fragments/fragment-ui.html>
-
 # 建立灵活动态的UI
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/basics/fragments/fragment-ui.html>
 
 * 如果你的APP设计成要支持范围广泛的屏幕尺寸时，在可利用的屏幕空间内，你可以通过在不同的布局配置中重用你的fragment来优化你的用户体验。
 

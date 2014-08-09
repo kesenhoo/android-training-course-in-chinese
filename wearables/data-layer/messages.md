@@ -1,8 +1,6 @@
-> 编写:[wly2014](https://github.com/wly2014)- 校对:
-
-> 原文: <http://developer.android.com/training/wearables/data-layer/messages.html>
-
 # 发送与接收消息
+
+> 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/messages.html>
 
 使用[MessageApi](MessageApi.html)发送消息，要附加以下几项：
 

@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # 用户输入
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 These classes cover various subjects of user input, such as touch screen gestures and text input through on-screen input methods and hardware keyboards.
 

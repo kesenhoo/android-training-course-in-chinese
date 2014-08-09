@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/beam-files/sending-files.html>
-
 # 发送文件给其他设备
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/beam-files/sending-files.html>
 
 这节课将向你展示如何通过Android Beam文件传输向另一台设备发送大文件。要发送文件，首先需要声明使用NFC和外部存储的权限，你需要测试一下你的设备是否支持NFC，这样，你才能够向Android Beam文件传输提供文件的URI。
 

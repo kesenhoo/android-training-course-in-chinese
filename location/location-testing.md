@@ -1,8 +1,6 @@
-> 编写:[penkzhou](https://github.com/penkzhou)
-
-> 校对:
-
 # 使用模拟位置进行测试
+
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
 
 当你在测试一个使用Location Services基于地理位置的应用时，你是不需要把你的设备从一个地方移动到另一个地方来产生位置数据的。你可以将Location Services设置成模拟模式。在这个模式里面，你可以发送模拟位置给Location Services，然后Location Services再将这些数据发送给位置client。在模拟模式里面，Location Services也可以使用模拟位置对象来触发地理围栏。
 

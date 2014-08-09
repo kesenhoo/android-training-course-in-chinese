@@ -1,8 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985) - 校对:
-
-> 原文:<http://developer.android.com/training/basics/fragments/communicating.html>
-
 # Fragments之间的交互
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/basics/fragments/communicating.html>
 
 * 为了重用Fragment UI组件，你应该把每一个fragment都构建成完全的自包含的、模块化的组件，定义他们自己的布局与行为。当你定义好这些模块化的Fragments的时，你就可以让他们关联acticvity，使他们与Application的逻辑结合起来，实现全局的复合的UI。
 

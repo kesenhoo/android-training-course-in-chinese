@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/movement.html>
-
 # 追踪手势移动
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文：<http://developer.android.com/training/gestures/movement.html>
 
 本节课程讲述如何追踪手势移动。
 

@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/index.html>
-
 # 添加动画
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/index.html>
 
 动画为你 App 上将要发生的事件增加精细的提醒，并且能改进你 App 界面的思维模型。当界面改变其状态时，例如加载内容或新操作可用时，动画特别有帮助。动画也能为你的 App 增添优雅的外观，提供给你的 App 一种优质体验。
 

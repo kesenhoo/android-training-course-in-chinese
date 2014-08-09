@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
+# Android后台任务
 
-> 原文:<http://developer.android.com/training/best-background.html>
-
-# 后台任务
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/best-background.html>
 
 These classes show you how to run jobs in the background to boost your application's performance and minimize its drain on the battery.
 

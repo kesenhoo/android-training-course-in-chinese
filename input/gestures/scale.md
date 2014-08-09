@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/scale.html>
-
 # 拖拽与缩放
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/scale.html>
 
 本节课程讲述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))来截获触摸事件。
 

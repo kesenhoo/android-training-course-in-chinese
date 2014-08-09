@@ -1,8 +1,6 @@
-> 编写:[wly2014](https://github.com/wly2014)- 校对:
-
-> 原文: <http://developer.android.com/training/wearables/data-layer/events.html>
-
 # 处理数据层的事件
+
+> 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/events.html>
 
 当做出数据层上的调用时，你可以得到它完成后的调用状态，也可以用监听器监听到调用最终实现的改变。
 

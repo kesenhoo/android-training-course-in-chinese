@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
+# 创建抽屉式导航(navigation drawer)
 
-> 原文: <http://developer.android.com/training/implementing-navigation/nav-drawer.html>
-
-#  创建抽屉式导航(navigation drawer)
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文: <http://developer.android.com/training/implementing-navigation/nav-drawer.html>
 
 navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大部分时候是隐藏的，当用户从屏幕左侧划屏，或在top level模式的app中点击action bar中的app图标时，才会显示。
 

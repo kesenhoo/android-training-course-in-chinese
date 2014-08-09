@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # Monitoring the Battery Level and Charging State[监测电池的电量与充电状态]
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+
 
 当你想通过改变后台更新操作的频率来减少对电池寿命的影响，那么先手需要检查当前电量与充电状态。
 

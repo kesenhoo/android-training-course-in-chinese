@@ -1,8 +1,6 @@
-> 编写: [allenlsy](https://github.com/allenlsy)
-
-> 校对:
-
 # 按需加载视图
+
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
 
 有时你的 Layout 会用到不怎么重用的复杂视图。不管它是列表项 细节，进度显示器，或是撤销时的提示信息，你可以仅在需要的时候载入它们，提高 UI 渲染速度。
 

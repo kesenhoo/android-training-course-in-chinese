@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/cloudsave/conflict-res.html>
-
 # 解决云同步的保存冲突
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/cloudsave/conflict-res.html>
 
 这篇文章介绍了当应用使用[Cloud Save service](http://developers.google.com/games/services/common/concepts/cloudsave)存储数据到云端时，如何设计一个鲁棒性较高的冲突解决策略。云存储服务允许你为每一个在Google服务上的应用用户，存储他们的应用数据。你的应用可以通过使用云存储API，从Android设备，iOS设备或者web应用恢复或更新这些数据。
 

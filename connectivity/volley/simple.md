@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/volley/simple.html>
-
 # 发送简单的网络请求(Sending a Simple Request)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/simple.html>
 
 使用Volley的方式是，你通过创建一个`RequestQueue`并传递`Request`对象给它。RequestQueue管理工作线程用来执行网络操作，从Cache中读取与写入数据，以及解析Http的响应内容。`Requests`执行raw responses的解析，Volley会把响应的数据分发给主线程。
 

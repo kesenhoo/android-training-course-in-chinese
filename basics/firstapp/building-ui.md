@@ -1,6 +1,6 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 原文: <http://developer.android.com/training/basics/firstapp/building-ui.html>
-
 # 建立一个简单的用户界面
+
+> 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/building-ui.html>
 
 Android的图形用户界面是由多个View和ViewGroup构建出来的。View是通用的UI窗体小组件，比如按钮或者文本框，而ViewGroup是不可见的用于定义子View布局方式的容器，比如网格部件(grid)和垂直列表部件(list)。
 

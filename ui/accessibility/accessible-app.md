@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST)
-
-> 校对:
-
 # 开发辅助程序
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:
 
 本课程将教您：
 

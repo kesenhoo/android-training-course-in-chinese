@@ -1,12 +1,6 @@
-> 编写：<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
+# 为多线程创建线程池
 
-> 校对：
-
-> 原文地址：<a href="http://developer.android.com/training/multiple-threads/create-threadpool.html" target="_blank">http://developer.android.com/training/multiple-threads/create-threadpool.html</a>
-
-
-
-#为多线程创建线程池
+> 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
 在前面的课程中展示了如何在单独的一个线程中执行一个任务。如果你的线程只想执行一次，那么上一课的内容已经能满足你的需要了。
 如果你想在一个数据集中重复执行一个任务，而且你只需要一个执行运行一次。这时，使用一个<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>将能满足你的需求。

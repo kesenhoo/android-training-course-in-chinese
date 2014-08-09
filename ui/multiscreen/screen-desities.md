@@ -1,8 +1,7 @@
-> 编写:[riverfeng](https://github.com/riverfeng)
-
-> 校对:
-
 # 兼容不同的屏幕密度
+
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
+
 这节课将教你如何通过提供不同的资源和使用独立分辨率（dp）来支持不同的屏幕密度。
 
 ## 使用密度独立像素（dp）

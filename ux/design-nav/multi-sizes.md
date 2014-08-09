@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/design-navigation/multiple-sizes.html>
-
 # 为多种大小的屏幕进行规划
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/design-navigation/multiple-sizes.html>
 
 虽然上节中的界面完备图在手持设备和相似大小设备上可行，但并不是和某个设备因素绑死的。Android应用需要适配一大把不同类型的设备，从3"的手机到10"的平板到42"的电视。这节课中我们探讨把完备图中不同界面组合起来的策略和原因。
 

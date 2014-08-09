@@ -1,8 +1,6 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:
-
-> 原文:<http://developer.android.com/training/wearables/notifications/pages.html>
-
 # 为Notification添加显示页面
+
+> 编写:[wangyachen](https://github.com/wangyacheng) - 原文:<http://developer.android.com/training/wearables/notifications/pages.html>
 
 当你想要在不需要用户在他们的手机上打开你的app的情况下，还可以让你表达更多的信息，那么你可以在wear上的Notification中添加一个或更多的页面。
 

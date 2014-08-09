@@ -1,8 +1,6 @@
-> 编写：[spencer198711](https://github.com/spencer198711) - 校对：
-
-> 原文：
-
 # 使用Intent修改联系人信息
+
+> 编写：[spencer198711](https://github.com/spencer198711) - 原文：
 
 这一课向你展示了如何使用[Intent](http://developer.android.com/reference/android/content/Intent.html)去插入一个新的联系人或者修改联系人的数据。我们不是直接访问Contacts Provider，而是通过Intent去启动Contacts应用的适当的[Activity](http://developer.android.com/reference/android/app/Activity.html)。对于这一课中描述的数据修改行为，如果你向Intent发送扩展的数据，它会自动填充进启动的Activity页面中。
 

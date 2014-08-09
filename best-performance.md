@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/best-performance.html>
-
 # 性能优化
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/best-performance.html>
 
 These classes and articles help you build an app that's smooth, responsive, and uses as little battery as possible.
 

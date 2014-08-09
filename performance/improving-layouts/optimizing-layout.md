@@ -1,8 +1,6 @@
-> 编写: [allenlsy](https://github.com/allenlsy)
-
-> 校对:
-
 # 优化layout的层级
+
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
 
 一个常见的误区是，用最基础的 Layout 结构可以使 Layout 性能提高。然而，你的程序的每个组件和 Layout 都需要初始化、布置位置和绘制。例如，嵌套的 LinearLayout 可能会使得 View 的层级结构很深。此外，嵌套使用了 layout_weight 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如使用 ListView 或 GridView 时。
 

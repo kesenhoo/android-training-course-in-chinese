@@ -1,8 +1,6 @@
-> 编写：[spencer198711](https://github.com/spencer198711) - 校对：
-
-> 原文：
-
 # 显示快速联系人徽章(头像)
+
+> 编写：[spencer198711](https://github.com/spencer198711) - 原文：
 
 这一课展示了如何在你的应用界面上添加一个[QuickContactBadge]()，以及如何为它绑定数据。
 QuickContactBadge是一个在初始情况下显示联系人缩略图头像的widget。尽管你可以使用任何[Bitmap]()作为缩略图头像，但是通常你会使用从联系人照片缩略图中解码出来的Bitmap。

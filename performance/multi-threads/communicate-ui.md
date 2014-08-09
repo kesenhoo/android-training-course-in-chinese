@@ -1,11 +1,7 @@
-> 编写:<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
-
-> 校对:
-
-> 原文地址：<a href="http://developer.android.com/training/multiple-threads/communicate-ui.html" target="_blank">http://developer.android.com/training/multiple-threads/communicate-ui.html</a>
-
-
 # 与UI线程通信
+
+> 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/communicate-ui.html>
+
 在前面的课程中你学习了如何在一个被<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>管理的线程中开启一个任务。最后这一节课将会向你展示如何从执行的任务中发送数据给运行在UI线程中的对象。这个功能允许你的任务可以做后台工作，然后把得到的结果数据转移给UI元素使用，例如位图数据。
 
 任何一个APP都有自己特定的一个线程用来运行UI对象，比如<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>对象，这个线程我们称之为UI线程。只有运行在UI线程中的对象能访问运行在其它线程中的对象。因为你的任务执行的线程来自一个线程池而不是执行在UI线程，所以他们不能访问UI对象。为了把数据从一个后台线程转移到UI线程，需要使用一个运行在UI线程里的<a href="http://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>。

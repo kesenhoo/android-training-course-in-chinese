@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/cloudsync/gcm.html>
-
 # 使用Google Cloud Messaging
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/cloudsync/gcm.html>
 
 谷歌云消息（GCM）是一个用来给Android设备发送消息的免费服务。GCM消息可以极大地提升用户体验。它可以你的应用一直保持更新的状态，同时不会使你的设备由于唤醒无线电或者在没有更新时对服务器发起询问而消耗电量。同时，GCM可以让你最多一次性将一条消息发送给1000个人，使得你可以在恰当地时候很轻松地联系大量的用户，同时大量地减轻你的服务器负担。
 

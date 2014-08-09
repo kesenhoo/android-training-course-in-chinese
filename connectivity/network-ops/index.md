@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/basics/network-ops/index.html>
-
 # 网络连接操作
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/network-ops/index.html>
 
 这一章会介绍一些基本的网络操作，监视网络链接（包括网络改变），让用户来控制app对网络的选择使用。还会介绍如何解析与使用XML数据。
 
@@ -24,7 +22,7 @@
 
 
 * [管理使用的网络 - Managing Network Usage](managing.html)
-  
+
   学习如何检查设备的网络连接情况，创建偏好界面来控制网络使用，以及响应连接变化。
 
 

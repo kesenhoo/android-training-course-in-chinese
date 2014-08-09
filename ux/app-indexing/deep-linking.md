@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
-
-> 原文: <http://developer.android.com/training/app-indexing/deep-linking.html>
-
 # 为App内容开启深度链接
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/app-indexing/deep-linking.html>
 
 为使Google能够抓取你的app内容，并允许用户从搜索结果进入你的app，你必须给你的app manifest中相关的activity添加intent filter。这些intent filter能使深度链接与你的任何activity相连。例如，用户可以在购物app中，点击一条深度链接来浏览一个介绍了自己所搜索的产品的页面。
 

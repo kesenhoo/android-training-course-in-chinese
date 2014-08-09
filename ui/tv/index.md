@@ -1,10 +1,6 @@
-> 编写:[xrayzh](https://github.com/xrayzh)
-
-> 校对:
-
-> 原文:<http://developer.android.com/training/tv/index.html>
-
 # 为TV进行设计
+
+> 编写:[xrayzh](https://github.com/xrayzh) -  原文:<http://developer.android.com/training/tv/index.html>
 
 基于Android平台的智能TV，让你可以在家中的TV屏幕上运行你常用的Android应用。在Google应用商店中，有数千个应用已经针对TV设备进行了优化。本课程将演示如何优化你的Android应用，设计TV的布局，使之能够适应用户距离TV几米远并且用遥控器操作的情况。
 

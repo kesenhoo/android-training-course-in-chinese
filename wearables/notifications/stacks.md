@@ -1,8 +1,6 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对:[kesenhoo](https://github.com/kesenhoo)
-
-> 原文:
-
 # 以Stack的方式显示Notifications
+
+> 编写:[wangyachen](https://github.com/wangyacheng) - 原文:
 
 当为手持式设备创建Notification时，你应该将多个相似的Notification合并成一个概括式的Notification。例如，如果你的app创建了一系列接收短信的Notification，你不应该把它们都展示出来，当多于一条短信被接收的时候，用一条Notification提示总结性信息比如"2条新消息"。
 

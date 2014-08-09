@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/printing/custom-docs.html>
-
 # 打印自定义文档
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/printing/custom-docs.html>
 
 对一些应用，比如绘图应用，页面布局应用和其它一些聚焦于图像输出的应用，创建美丽的打印页面是它的核心功能。在这种情况下，仅仅打印一副图片或一个HTML文档就不够了。这种类型应用的打印输出需要精确地控制每个进入页面的东西，包括字体，文本流，分页符，页眉，页脚和一些图像元素。
 

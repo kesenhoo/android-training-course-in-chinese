@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/displaying-bitmaps/index.html>
-
 # 高效显示Bitmap
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/index.html>
 
 这一章节会介绍一些通用的用来处理与加载[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)对象的方法，这些技术能够使得不会卡到程序的UI并且避免程序消耗过度内存.如果你不注意这些，Bitmaps会迅速的消耗你可用的内存而导致程序crash,出现下面的异常:`java.lang.OutofMemoryError: bitmap size exceeds VM budget.`
 

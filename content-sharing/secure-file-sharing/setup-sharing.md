@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/secure-file-sharing/setup-sharing.html>
-
 # 建立文件分享
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/setup-sharing.html>
 
 为了从你的应用安全地将一个文件发送给另一个应用，你需要配置你的应用来提供安全的文件句柄（URI的形式），Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件会基于你在XML文件中的具体配置，为文件创建URI。这节课会向你展示如何在你的应用添加[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)的默认的实现，以及如何指定你要共享的文件。
 

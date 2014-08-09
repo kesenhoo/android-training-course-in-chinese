@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/draw.html>
-
 # 绘制Shapes
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/draw.html>
 
 在你定义了需要OpenGL绘制的形状之后，你可能希望绘制它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中需要更多的代码，因为API中提供了大量对于图形处理流程的控制。
 

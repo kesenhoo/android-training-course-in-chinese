@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/efficient-downloads/connectivity-patterns.html>
-
 # 根据网络类型改变下载模式Modifying your Download Patterns Based on the Connectivity Type
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/connectivity-patterns.html>
+
 并不是所有的网络类型(Wi-Fi,3G,2G,etc)对电量的消耗是同等的。不仅仅Wi-Fi电波比无线电波消耗的电量要少很多，而且不同的无线电波(3G,2G,LTE……)也存在使用不同电量的区别。
 
 ## 1)Use Wi-Fi[使用Wi-Fi]

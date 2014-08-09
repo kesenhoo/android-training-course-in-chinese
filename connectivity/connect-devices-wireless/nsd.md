@@ -1,9 +1,6 @@
-> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
-
-> 原文:
-
 # 使得网络服务可发现
 
+> 编写:[naizhengtan](https://github.com/naizhengtan) - 原文:
 
 网络服务发现（Network Service Discovery）是一种在局域网内可以辨识并使用其他设备上提供的服务的技术。这种技术在端对端应用中能够提供大量帮助，例如文件共享、联机游戏等。Android提供了网络服务发现（NSD）相应的API，大大降低了其实现难度。
 

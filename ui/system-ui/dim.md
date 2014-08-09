@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/dim.html>
-
 # 淡化系统Bar
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/dim.html>
 
 本课程将向你讲解如何在Android 4.0(*API level 14*)与更高的的系统版本上淡化系统Bar(状态栏与导航栏)。早起版本的Android没有提供一个自带的方法来淡化系统Bar。
 

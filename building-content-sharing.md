@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
+# Android分享操作(Building Apps with Content Sharing)
 
-> 原文:<http://developer.android.com/training/building-content-sharing.html>
-
-# 分享(Building Apps with Content Sharing)
+> 编写:[kesenhoo](https://github.com/kesenhoo) -  原文:<http://developer.android.com/training/building-content-sharing.html>
 
 这一系列课程会教你如何创建可以在不同的应用与设备之间进行分享的应用。
 
