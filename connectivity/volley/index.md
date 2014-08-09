@@ -47,7 +47,7 @@ Volley框架的核心代码是托管在AOSP仓库的`frameworks/volley`中，相
 
 * [**生成一个标准的请求(Making a Standard Request)**](request.html)
 
-学习如何使用Volley的out-of-the-box的请求类型(raw strings, images, and JSON)来发送一个请求。
+学习如何使用Volley的out-of-the-box（可直接使用、无需配置）的请求类型(raw strings, images, and JSON)来发送一个请求。
 
 * [**实现自定义的请求(Implementing a Custom Request)**](request-custom.html)
 
