@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.4" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.4" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_28">
+                    <section class="normal" id="section-gitbook_82">
                     
-                        <blockquote>
-<p>编写: <a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 校对:</p>
-<p>原文: <a href="http://developer.android.com/training/basics/actionbar/overlaying.html" target="_blank">http://developer.android.com/training/basics/actionbar/overlaying.html</a></p>
+                        <h1 id="action-bar-">Action Bar 覆盖叠加</h1>
+<blockquote>
+<p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 原文:<a href="http://developer.android.com/training/basics/actionbar/overlaying.html" target="_blank">http://developer.android.com/training/basics/actionbar/overlaying.html</a></p>
 </blockquote>
-<h1 id="action-bar-">Action Bar 覆盖叠加</h1>
 <p>默认情况下，action bar 显示在 activity 窗口的顶部，会稍微地减少其他布局的有效空间。如果在用户交互过程中你要隐藏和显示 action bar，可以通过调用 <a href="https://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a> 中的 <a href="https://developer.android.com/reference/android/app/ActionBar.html#hide(" target="_blank">hide()</a>) 和 <a href="https://developer.android.com/reference/android/app/ActionBar.html#show(" target="_blank">show()</a>) 来实现。但是，这将会导致 activity 基于新尺寸重现计算和重新绘制布局。</p>
 <p>为了避免在 action bar 隐藏和显示过程中调整布局，可以为 action bar 启用叠加模式。在叠加模式下，所有可用的空间都会被用来布局，并且 action bar 会叠加在布局之上。这样布局顶部就会被遮挡，但当 action bar 隐藏或显示时，系统不再需要调整布局而是无缝过渡。</p>
 <blockquote>

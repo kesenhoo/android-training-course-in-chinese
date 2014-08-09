@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_266">
+                    <section class="normal" id="section-gitbook_320">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>原文:<a href="http://developer.android.com/training/wearables/notifications/voice-input.html" target="_blank">http://developer.android.com/training/wearables/notifications/voice-input.html</a></p>
+                        <h1 id="notifcation">在Notifcation中接收语音输入</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 原文:<a href="http://developer.android.com/training/wearables/notifications/voice-input.html" target="_blank">http://developer.android.com/training/wearables/notifications/voice-input.html</a></p>
 </blockquote>
-<h1 id="notifcation">在Notifcation中接收语音输入</h1>
 <p>如果你的手持式设备上的Notification包含了一个输入文本的action，比如回复邮件，那么这个action正常情况下应该会调起一个activity让用户进行输入。但是，当这个action出现在可穿戴式设备上时，是没有键盘可以让用户进行输入的，所以你应该让用户口述一个回复或者通过<a href="http://developer.android.com/reference/android/support/v4/app/RemoteInput.html" target="_blank">RemoteInput</a>预先设定好文本信息。</p>
 <p>当用户通过语音或者选择已经存在可用的消息进行回复时，系统会将文本的反馈信息与你指定的Notification中的action中的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>进行绑定，并且将该intent发送给你的手持设备中的app。</p>
 <blockquote>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_22">
+                    <section class="normal" id="section-gitbook_76">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>校对:</p>
+                        <h1 id="sending-work-requests-to-the-background-serviceintentservice">Sending Work Requests to the Background Service:发送任务请求到IntentService</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:</p>
 </blockquote>
-<h1 id="sending-work-requests-to-the-background-serviceintentservice">Sending Work Requests to the Background Service:发送任务请求到IntentService</h1>
 <p>前一篇文章演示了如何创建一个IntentService类。这次会演示如何通过发送一个Intent来触发IntentService执行任务。这个Intent可以传递一些数据给IntentService。可以在Activity或者Fragment的任何时间点发送这个Intent。</p>
 <p>为了创建一个工作请求并发送到IntentService。需要先创建一个explicit Intent，添加数据到intent，然后通过执行<a href="http://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent" target="_blank">startService()</a>) 把它发送到IntentService。</p>
 <p>下面的是代码示例：</p>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,15 +5073,14 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_46">
+                    <section class="normal" id="section-gitbook_100">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 校对:</p>
-<p>原文:<a href="http://developer.android.com/training/basics/fragments/creating.html" target="_blank">http://developer.android.com/training/basics/fragments/creating.html</a></p>
+                        <h1 id="fragment">创建一个Fragment</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/basics/fragments/creating.html" target="_blank">http://developer.android.com/training/basics/fragments/creating.html</a></p>
 </blockquote>
-<h1 id="fragment">创建一个Fragment</h1>
 <ul>
-<li><p>你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像&quot;子activity&quot;，你可以在不同的activities里面重复使用）。这一课教你继承<a href="developer.android.com/tools/support-library/index.html">Support Library </a>中的<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">Fragment</a>，以使你的应用在Android1.6这样的低版本上扔能保持兼容。
+<li><p>你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像&quot;子activity&quot;，你可以在不同的activities里面重复使用）。这一课教你继承<a href="developer.android.com/tools/support-library/index.html">Support Library </a>中的<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">Fragment</a>，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
  <strong>注意：</strong> 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的<a href="developer.android.com/reference/android/app/Fragment.html">Fragment</a>，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。</p>
 </li>
 <li><p>在开始这节课前，你必须先让你的项目引用Support Library。如果你没有使用过Support Library，你可以根据文档  <a href="http://developer.android.com/intl/zh-cn/tools/support-library/setup.html" target="_blank">Support Library Setup</a> 来设置你的项目使用Support Library。当然，你也可以使用包含<a href="developer.android.com/guide/topics/ui/actionbar.html">action bar</a>的 v7 appcompat library。v7 appcompat library 兼容Android2.1(API level 7),也包含<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">Fragment</a> APIs。</p>

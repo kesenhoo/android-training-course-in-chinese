@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_159">
+                    <section class="normal" id="section-gitbook_213">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/camera/cameradirect.html" target="_blank">http://developer.android.com/training/camera/cameradirect.html</a></p>
+                        <h1 id="">控制相机硬件</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - :<a href="http://developer.android.com/training/camera/cameradirect.html" target="_blank">http://developer.android.com/training/camera/cameradirect.html</a></p>
 </blockquote>
-<h1 id="">控制相机硬件</h1>
 <p>在这一节课，我们会讨论如何通过使用framework的APIs来直接控制相机的硬件。直接控制设备的相机，相比起拍照与录像来说，要复杂一些。然而，如果你想要创建一个专业的特殊的相机程序，这节课会演示这部分内容。</p>
 <h2 id="open-the-camera-object">Open the Camera Object(打开相机对象)</h2>
 <p>获取到 Camera 对象是直接控制Camera的第一步。正如Android自带的相机程序一样，推荐访问Camera的方式是在onCreate方法里面另起一个Thread来打开Camera。这个方法可以避免因为打开工作比较费时而引起ANR。在一个更加基础的实现方法里面，打开Camera的动作被延迟到onResume()方法里面去执行，这样使得代码能够更好的重用，并且保持控制流程不会复杂化。(原文是：In a more basic implementation, opening the camera can be deferred to the onResume() method to facilitate code reuse and keep the flow of control simple.)</p>

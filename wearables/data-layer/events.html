@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.3.5" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.3.5" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_259">
+                    <section class="normal" id="section-gitbook_313">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a>- 校对:</p>
-<p>原文: <a href="http://developer.android.com/training/wearables/data-layer/events.html" target="_blank">http://developer.android.com/training/wearables/data-layer/events.html</a></p>
+                        <h1 id="">处理数据层的事件</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/events.html" target="_blank">http://developer.android.com/training/wearables/data-layer/events.html</a></p>
 </blockquote>
-<h1 id="">处理数据层的事件</h1>
 <p>当做出数据层上的调用时，你可以得到它完成后的调用状态，也可以用监听器监听到调用最终实现的改变。</p>
 <h2 id="">等待数据层调用状态</h2>
 <p>注意到，调用数据层API，有时会返回<a href="PendingResult.html">PendingResult</a>，如 <a href="DataApi.html#putDataItem(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.PutDataRequest">putDataItem()</a>)。PendingResult一被创建，操作就会在后台排列等候。之后你若无动作，这些操作最终会默默完成。然而，通常要处理操作完成后的结果，PendingResult能够让你同步或异步地等待结果。</p>

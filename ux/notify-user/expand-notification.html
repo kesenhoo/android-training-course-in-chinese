@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.4" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.4" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_241">
+                    <section class="normal" id="section-gitbook_295">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
-<p>校对:</p>
+                        <h1 id="bigview">使用BigView样式</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:</p>
 </blockquote>
-<h1 id="bigview">使用BigView样式</h1>
 <ul>
 <li>Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才能出现。当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。</li>
 </ul>
@@ -5089,12 +5088,13 @@
 <ul>
 <li><p>这是一个 normal view的例子</p>
 <p><img src="notifications-normalview.png" alt="fragments-screen-mock"></p>
-<p> 图1 Normal view notification. </p>
+<p> 图1 Normal view notification.</p>
 </li>
 <li><p>这是一个 big view的例子</p>
-<p><img src="notifications-bigview.png" alt="fragments-screen-mock"><br> 图2 Big view notification.</p>
+<p><img src="notifications-bigview.png" alt="fragments-screen-mock">
+ 图2 Big view notification.</p>
 </li>
-<li><p>在这节课的例子应用中， normal view 与 big view给用户相同的功能：  </p>
+<li><p>在这节课的例子应用中， normal view 与 big view给用户相同的功能：</p>
 <ul>
 <li>继续小睡或者消除Notification</li>
 <li>一个查看用户设置的类似计时器的提醒文字的方法，</li>
@@ -5105,16 +5105,16 @@
 </ul>
 <h2 id="notificationactivity">设置Notification用来登陆一个新的Activity</h2>
 <ul>
-<li>这个例子应用用<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>的子类（PingService）来构造以及发布notification。  </li>
+<li>这个例子应用用<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>的子类（PingService）来构造以及发布notification。</li>
 <li>在这个代码片段中，<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>中的方法<a href="developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent">onHandleIntent()</a>) 指定了当用户点击notification时启动一个新的activity。方法<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)定义了pending intent在用户点击notification时被激发，因此登陆这个activity.</li>
 </ul>
 <pre><code class="lang-java">
 Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
 resultIntent.putExtra(CommonConstants.EXTRA_MESSAGE, msg);
-resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | 
+resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
         Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-<span class="hljs-comment">// Because clicking the notification launches a new ("special") activity, </span>
+<span class="hljs-comment">// Because clicking the notification launches a new ("special") activity,</span>
 <span class="hljs-comment">// there's no need to create an artificial back stack.</span>
 PendingIntent resultPendingIntent =
          PendingIntent.getActivity(

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_89">
+                    <section class="normal" id="section-gitbook_143">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
-<p>校对:</p>
+                        <h1 id="stub-content-provider">创建Stub Content Provider</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:</p>
 </blockquote>
-<h1 id="stub-content-provider">创建Stub Content Provider</h1>
 <p>Sync Adapter框架是设计成用来和设备数据一起工作的，这些设备的数据被灵活且高安全的Content Provider所管理。因此，Sync Adapter框架会期望应用所使用的框架已经为它的本地数据定义了Content Provider。如果Sync Adapter框架尝试去运行你的Sync Adapter，而你的应用没有一个Content Provider的话，那么你的Sync Adapter将会崩溃。</p>
 <p>如果你正在开发一个新的应用，它将数据从服务器传输到一台设备上，那么你务必应该考虑将本地数据存储于Content Provider中。因为它对于Sync Adapter来说是很重要的，另外Content Provider可以给予许多安全上的好处，并且是专门被设计成在Android设备上处理数据存储的。要学习如何创建一个Content Provider，可以阅读：<a href="http://developer.android.com/guide/topics/providers/content-provider-creating.html" target="_blank">Creating a Content Provider</a>。</p>
 <p>然而，如果你已经通过别的形式来存储本地数据，你仍然可以使用Sync Adapter来处理数据传输。为了满足Sync Adapter框架对于Content Provider的要求，可以在你的应用中添加一个空的Content Provider（Stub Content Provider）。一个Stub Content Provider实现了Content Provider类，但是所有的方法都返回null或者0。如果你添加了一个空提供器，你可以使用Sync Adapter从任何你选择的存储机制来传输数据。</p>

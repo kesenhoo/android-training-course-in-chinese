@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_119">
+                    <section class="normal" id="section-gitbook_173">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html</a></p>
+                        <h1 id="cached-bitmap">Cached Bitmap</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html</a></p>
 </blockquote>
-<h1 id="cached-bitmap">Cached Bitmap</h1>
 <p>加载单个Bitmap到UI是简单直接的，但是如果你需要一次加载大量的图片，事情则会变得复杂起来。在大多数情况下(例如在ListView,GridView or ViewPager), 显示图片的数量通常是没有限制的。</p>
 <p>通过循环利用子视图可以抑制内存的使用，GC(garbage collector)也会释放那些不再需要使用的bitmap。这些机制都非常好，但是为了保持一个流畅的用户体验，你想要在屏幕滑回来时避免每次重复处理那些图片。内存与磁盘缓存通常可以起到帮助的作用，允许组件快速的重新加载那些处理过的图片。</p>
 <p>这一课会介绍在加载多张位图时使用内存Cache与磁盘Cache来提高反应速度与UI的流畅度。</p>

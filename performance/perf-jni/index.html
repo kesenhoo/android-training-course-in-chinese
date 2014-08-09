@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.7" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.7" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_186">
+                    <section class="normal" id="section-gitbook_239">
                     
-                        <blockquote>
-<p>编写：<a href="https://github.com/pedant" target="_blank">pedant</a>，校对：</p>
-<p>原文：<a href="http://developer.android.com/training/articles/perf-jni.html" target="_blank">http://developer.android.com/training/articles/perf-jni.html</a></p>
+                        <h1 id="jni-tips">JNI Tips</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/pedant" target="_blank">pedant</a> - 原文:<a href="http://developer.android.com/training/articles/perf-jni.html" target="_blank">http://developer.android.com/training/articles/perf-jni.html</a></p>
 </blockquote>
-<h1 id="jni-tips">JNI Tips</h1>
 <p>JNI全称Java Native Interface。它为托管代码（使用Java编程语言编写）与本地代码（使用C/C++编写）提供了一种交互方式。它是<font color='red'>与厂商无关的（vendor-neutral）</font>,支持从动态共享库中加载代码，虽然这样会稍显麻烦，但有时这是相当有效的。</p>
 <p>如果你对JNI还不是太熟悉，可以先通读<a href="http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/jniTOC.html" target="_blank">Java Native Interface Specification</a>这篇文章来对JNI如何工作以及哪些特性可用有个大致的印象。这种接口的一些方面不能立即一读就显而易见，所以你会发现接下来的几个章节很有用处。</p>
 <h1 id="javavm--jnienv">JavaVM 及 JNIEnv</h1>

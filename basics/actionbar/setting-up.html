@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,19 +5073,18 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_29">
+                    <section class="normal" id="section-gitbook_83">
                     
-                        <blockquote>
-<p>编写: <a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 校对:</p>
-<p>原文: <a href="http://developer.android.com/training/basics/actionbar/setting-up.html" target="_blank">http://developer.android.com/training/basics/actionbar/setting-up.html</a></p>
+                        <h1 id="-action-bar">建立 Action Bar</h1>
+<blockquote>
+<p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 原文:<a href="http://developer.android.com/training/basics/actionbar/setting-up.html" target="_blank">http://developer.android.com/training/basics/actionbar/setting-up.html</a></p>
 </blockquote>
-<h1 id="-action-bar">建立 Action Bar</h1>
-<p>Action bar 最基本的形式，就是为 activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，对于所有的 activity 来说，action bar 对告知用户他们当前所处的位置十分有用，并为你的 app 保持了一致性。</p>
+<p>Action bar 最基本的形式，就是为 activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，对于所有的 activity 来说，action bar 对告知用户他们当前所处的位置十分有用，并为你的 app 维护了持续的同一标识。</p>
 <p><img src="actionbar-basic.png" alt="actionbar-basic">
 图 1. 一个有 app icon 和 activity 标题的 action bar</p>
 <p>设置一个基本的 action bar，需要你的 app 使用一个 action bar 可用的 activity 主题。如何声明这样的主题取决于你的 app 支持的 Android 最低版本。所以本课程根据你的 app 支持的 Android 最低版本分为两部分。</p>
 <h2 id="-android-30-">仅支持 Android 3.0 及以上版本</h2>
-<p>从 Android 3.0(API lever 11) 开始，所有使用 Theme.Holo 主题（或者它的子类）的所有 activity 都包含 action bar，当 <code>targetSdkVersion</code> 或 <code>minSdkVersion</code> 属性被设置成 “11” 或更大时，它是默认主题。</p>
+<p>从 Android 3.0(API lever 11) 开始，所有使用 <code>Theme.Holo</code> 主题（或者它的子类）的activity 都包含了 action bar，当 <code>targetSdkVersion</code> 或 <code>minSdkVersion</code> 属性被设置成 “11” 或更大时，它是默认主题。</p>
 <p>所以，为你的 activity 添加 action bar，只需简单地设置属性为 <code>11</code> 或者更大。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"11"</span> <span class="hljs-attribute">...</span> /&gt;</span>
@@ -5093,21 +5092,21 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
 <blockquote>
-<p>注释：如果创建一个自定义主题，需确保它使用一个 Theme.Holo 主题作为父辈。详情请查看 <a href="styling.html">Action bar 风格化</a></p>
+<p>Notes: 如果你创建了一个自定义主题，需确保这个主题使用一个 Theme.Holo的主题作为父辈。详情请查看 <a href="styling.html">Action bar 的风格化</a></p>
 </blockquote>
-<p>到此，你的 app 使用了 Theme.Holo 主题，并且所有的 activity 都显示 action bar。</p>
+<p>到此，你的 app 使用了 <code>Theme.Holo</code> 主题，并且所有的 activity 都显示 action bar。</p>
 <h2 id="-android-21-">支持 Android 2.1 及以上版本</h2>
 <p>当 app 运行在 Andriod 3.0 以下版本（不低于 Android 2.1）时，如果要添加 action bar，需要加载 Android Support 库。</p>
-<p>通过阅读 <code>安装 Support 库</code> 文档和安装 <code>v7 appcompat 库</code> 来开始（下载完库包之后，按照 <code>添加资源库</code> 的说明来添加）。</p>
-<p>一旦 Support 库集成到你的 app 工程之中：</p>
+<p>开始之前，通过阅读<a href="http://developer.android.com/tools/support-library/setup.html" target="_blank"> Support Library Setup</a>文档来建立<strong>v7 appcompat</strong> library（下载完library包之后，按照<a href="http://developer.android.com/tools/support-library/setup.html#libs-with-res" target="_blank">Adding libraries with resources</a>的指引进行操作）。</p>
+<p>一旦 Support Library集成到你的 app 工程之中：</p>
 <p>1、更新 activity，以便于它继承于 ActionBarActivity。例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> {</span> ... }
 </code></pre>
-<p>2、在 mainfest 文件中，更新 <code>&lt;application&gt;</code> 元素或者单一的 <code>&lt;activity&gt;</code> 元素来使用一个 <code>Theme.AppCompat</code> 主题。例如：</p>
+<p>2、在 mainfest 文件中，更新 <code>&lt;application&gt;</code> 标签或者单一的 <code>&lt;activity&gt;</code> 标签来使用一个 <code>Theme.AppCompat</code> 主题。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@style/Theme.AppCompat.Light"</span> <span class="hljs-attribute">...</span> &gt;</span>
 </code></pre>
 <blockquote>
-<p>注释：如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请查看 <a href="styling.html">Action bar 风格化</a></p>
+<p>Notes: 如果创建一个自定义主题，需确保它使用一个 Theme.AppCompat 主题作为父辈。详情请查看 <a href="styling.html">Action bar 风格化</a></p>
 </blockquote>
 <p>当 app 运行在 Android 2.1(API level 7) 或者以上时，activity 将包含 action bar。</p>
 <p>切记，在 manifest 中正确地设置 app 支持的 API level：</p>

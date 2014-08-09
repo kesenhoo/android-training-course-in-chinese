@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_37">
+                    <section class="normal" id="section-gitbook_91">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
-<p>原文:<a href="http://developer.android.com/training/basics/data-storage/files.html" target="_blank">http://developer.android.com/training/basics/data-storage/files.html</a></p>
+                        <h1 id="saving-to-files">保存到文件(Saving to Files)</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/data-storage/files.html" target="_blank">http://developer.android.com/training/basics/data-storage/files.html</a></p>
 </blockquote>
-<h1 id="saving-to-files">保存到文件(Saving to Files)</h1>
 <p>Android使用与其他平台类似的基于磁盘文件系统(disk-based file systems)。这节课会描述如何在Android文件系统上使用 <a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a> 的读写APIs。File 对象非常适合用来读写那种流式顺序的数据。例如，很适合用来读写图片文件或者是网络中交换的数据。这节课会演示在app中如何执行基本的文件操作任务。假定你已经对linux的文件系统与java.io中标准的I/O APIs有一定认识。</p>
 <h2 id="internalexternalchoose-internal-or-external-storage">存储在Internal还是External(Choose Internal or External Storage)</h2>
 <p>所有的Android设备都有两个文件存储区域：&quot;internal&quot; 与 &quot;external&quot; 存储。 那两个名称来自与早先的Android系统中，那个时候大多数的设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把&quot;internal&quot; 与 &quot;external&quot; 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为&quot;internal&quot;与&quot;external&quot;的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：</p>
@@ -5109,7 +5108,7 @@
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p><strong>Caution:</strong>目前，所有的apps都可以在不指定<strong>写</strong>的权限下做<strong>读</strong>external storage的动作。但是，这会在以后的版本中被修正。如果你的app需要<strong>读</strong>的权限(不是写), 那么你需要声明 <a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a> 权限。为了确保你的app能够在正常工作，你需要现在就声明读权限。但是，如果你的程序有声明<strong>写</strong>的权限，那么就默认有了<strong>读</strong>的权限。</p>
+<p><strong>Caution:</strong>目前，所有的apps都可以在不指定某个专门的权限下做<strong>读</strong>external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要<strong>读</strong>的权限(不是写), 那么你将需要声明 <a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a> 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。但是，如果你的程序有声明<strong>写</strong>的权限，那么就默认有了<strong>读</strong>的权限。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span>
     ...

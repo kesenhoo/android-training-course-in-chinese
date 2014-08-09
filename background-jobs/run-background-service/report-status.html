@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_20">
+                    <section class="normal" id="section-gitbook_74">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>校对:</p>
+                        <h1 id="reporting-work-status">Reporting Work Status:报告后台任务的执行状态</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:</p>
 </blockquote>
-<h1 id="reporting-work-status">Reporting Work Status:报告后台任务的执行状态</h1>
 <p>这章节会演示如何回传IntentService中执行的任务状态与结果给发送方。 例如，回传任务的状态给Activity并进行更新UI。推荐的方式是使用<a href="http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html" target="_blank">LocalBroadcastManager</a>，这个组件可以限制broadcast只在自己的App中进行传递。</p>
 <h2 id="report-status-from-an-intentservice">Report Status From an IntentService</h2>
 <p>为了在IntentService中向其他组件发送任务状态，首先创建一个Intent并在data字段中包含需要传递的信息。作为一个可选项，还可以给这个Intent添加一个action与data URI。</p>

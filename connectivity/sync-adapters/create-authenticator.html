@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_86">
+                    <section class="normal" id="section-gitbook_142">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
-<p>校对:</p>
+                        <h1 id="stub">创建Stub授权器</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:</p>
 </blockquote>
-<h1 id="stub">创建Stub授权器</h1>
 <p>Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会有一个账户，服务器存储端会有登录验证。因此，框架期望你提供一个叫做授权器的组件作为你的Sync Adapter的一部分。该组件会植入Android账户及认证框架，并提供一个标准的接口来处理用户凭据，比如登录信息。</p>
 <p>甚至，如果你的应用不使用账户，你仍然需要提供一个授权器组件。如果你不使用账户或者服务器登录，授权器所处理的信息将被忽略，所以你可以提供一个授权器组件，它包括了一个“空”的实现（译者注：也即标题中的Stub）。同时你需要提供一个捆绑的<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>，来允许Sync Adapter框架来调用授权器的方法。</p>
 <p>这节课将向你展示如何定义一个Stub授权器的所有满足其实现要求的部件。如果你想要提供一个真实的处理用户账户的授权器，可以阅读：<a href="http://developer.android.com/reference/android/accounts/AbstractAccountAuthenticator.html" target="_blank">AbstractAccountAuthenticator</a>。</p>

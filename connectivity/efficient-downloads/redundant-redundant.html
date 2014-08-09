@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.3.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.3.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_77">
+                    <section class="normal" id="section-gitbook_131">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/efficient-downloads/redundant-redundant.html" target="_blank">http://developer.android.com/training/efficient-downloads/redundant-redundant.html</a></p>
+                        <h1 id="redundant-downloads-are-redundant">Redundant Downloads are Redundant(重复的下载是冗余的)</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/efficient-downloads/redundant-redundant.html" target="_blank">http://developer.android.com/training/efficient-downloads/redundant-redundant.html</a></p>
 </blockquote>
-<h1 id="redundant-downloads-are-redundant">Redundant Downloads are Redundant(重复的下载是冗余的)</h1>
 <p>减少下载的最基本方法是仅仅下载那些你需要的。从数据的角度看，我们可以通过传递类似上次更新时间这样的参数来制定查询数据的条件。同样，在下载图片的时候，server那边最好能够减少图片的大小，而不是让我们下载完整大小的图片。</p>
 <h2 id="1cache-files-locally">1)Cache Files Locally(缓存文件到本地)</h2>
 <p>避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请从缓存中获取最新的数据，当数据过期的时候，会提示进行刷新。</p>

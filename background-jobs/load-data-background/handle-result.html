@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_13">
+                    <section class="normal" id="section-gitbook_68">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>校对:</p>
+                        <h1 id="">处理查询的结果</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:</p>
 </blockquote>
-<h1 id="">处理查询的结果</h1>
 <p>正如前面一节课讲到的，你应该在 <a href="1">onCreateLoader()</a>的回调里面使用CursorLoader执行加载数据的操作。接下去Loader会提供查询数据的结果给Activity或者FragmentActivity实现的<a href="2">LoaderCallbacks.onLoadFinished()</a>回调方法。这个回调方法的参数之一是<a href="4">Cursor</a>，它包含了查询的数据。你可以使用Cursor对象来更新需要显示的数据或者进行下一步的处理。</p>
 <p>除了<a href="1">onCreateLoader()</a>与<a href="2">onLoadFinished()</a>，你也需要实现<a href="3">onLoaderReset()</a>。这个方法在CursorLoader检测到<a href="4">Cursor</a>上的数据发生变化的时候会被触发。当数据发生变化时，系统会触发重新查询的操作。</p>
 <!-- More -->

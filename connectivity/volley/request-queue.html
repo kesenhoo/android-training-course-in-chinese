@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.5.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.5.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_96">
+                    <section class="normal" id="section-gitbook_151">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/volley/request-queue.html" target="_blank">http://developer.android.com/training/volley/request-queue.html</a></p>
+                        <h1 id="setting-up-a-requestqueue">建立请求队列(Setting Up a RequestQueue)</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/volley/request-queue.html" target="_blank">http://developer.android.com/training/volley/request-queue.html</a></p>
 </blockquote>
-<h1 id="setting-up-a-requestqueue">建立请求队列(Setting Up a RequestQueue)</h1>
 <p>前一节课演示了如何使用<code>Volley.newRequestQueue</code>这一简便的方法来建立一个<code>RequestQueue</code>，这是利用了Volley默认的优势。这节课会介绍如何显式的建立一个RequestQueue，以便满足你自定义的需求。</p>
 <p>这节课同样会介绍一种推荐的实现方式：创建一个单例的RequestQueue，这使得RequestQueue能够持续保持在你的app的生命周期中。</p>
 <h2 id="set-up-a-network-and-cache">Set Up a Network and Cache</h2>
@@ -5100,7 +5099,7 @@
 }
 Network network = <span class="hljs-keyword">new</span> BasicNetwork(stack);
 </code></pre>
-<p>下面的代码片段会掩饰如何一步步建立一个RequestQueue:</p>
+<p>下面的代码片段会演示如何一步步建立一个RequestQueue:</p>
 <pre><code class="lang-java">RequestQueue mRequestQueue;
 
 <span class="hljs-comment">// Instantiate the cache</span>

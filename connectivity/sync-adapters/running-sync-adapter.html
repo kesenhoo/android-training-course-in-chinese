@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.4" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.4.4" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_92">
+                    <section class="normal" id="section-gitbook_146">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a></p>
-<p>校对:</p>
+                        <h1 id="sync-adpater">执行Sync Adpater</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:</p>
 </blockquote>
-<h1 id="sync-adpater">执行Sync Adpater</h1>
 <p>在这系列课程中之前的一些课程中，你学习了如何创建一个封装数据传输代码的Sync Adapter组件，以及如何添加其它的组件，来允许你将Sync Adapter集成到系统当中。现在我们已经拥有了所有需要的东西，来安装包含有一个Sync Adapter的应用，但是这里是没有任何代码是去运行Sync Adapter的。</p>
 <p>你应该基于计划任务的调度或者一些事件的间接结果来执行Sync Adapter。例如，你可能希望你的Sync Adapter运行一个定期的计划任务，每隔一段时间或每天的一个固定的时间。或者你还希望当设备上的数据发生变化后，执行你的Sync Adapter。你应该避免将运行Sync Adapter作为用户某个行为的直接结果，因为这样做的话你就无法利用Sync Adapter框架可以按计划调度的特性。例如，你应该在UI中避免使用刷新按钮。</p>
 <p>下列情况可以作为运行Sync Adapter的时机：</p>

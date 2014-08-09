@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_240">
+                    <section class="normal" id="section-gitbook_294">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a></p>
-<p>校对:</p>
+                        <h1 id="notification">建立一个Notification</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:</p>
 </blockquote>
-<h1 id="notification">建立一个Notification</h1>
 <ul>
 <li><p>这节课向你说明如何创建与发布一个Notification。</p>
 </li>
@@ -5150,7 +5149,7 @@ NotificationCompat.Builder mBuilder;
 <span class="hljs-comment">// Sets an ID for the notification</span>
 <span class="hljs-keyword">int</span> mNotificationId = <span class="hljs-number">001</span>;
 <span class="hljs-comment">// Gets an instance of the NotificationManager service</span>
-NotificationManager mNotifyMgr = 
+NotificationManager mNotifyMgr =
         (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 <span class="hljs-comment">// Builds the notification and issues it.</span>
 mNotifyMgr.notify(mNotificationId, mBuilder.build());

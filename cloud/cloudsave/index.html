@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.7" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.7" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_2">
+                    <section class="normal" id="section-gitbook_56">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/cloudsave/conflict-res.html" target="_blank">http://developer.android.com/training/cloudsave/conflict-res.html</a></p>
+                        <h1 id="">解决云同步的保存冲突</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/cloudsave/conflict-res.html" target="_blank">http://developer.android.com/training/cloudsave/conflict-res.html</a></p>
 </blockquote>
-<h1 id="">解决云同步的保存冲突</h1>
 <p>这篇文章介绍了当应用使用<a href="http://developers.google.com/games/services/common/concepts/cloudsave" target="_blank">Cloud Save service</a>存储数据到云端时，如何设计一个鲁棒性较高的冲突解决策略。云存储服务允许你为每一个在Google服务上的应用用户，存储他们的应用数据。你的应用可以通过使用云存储API，从Android设备，iOS设备或者web应用恢复或更新这些数据。</p>
 <p>在云存储过程中的保存和加载是很直接的：它只是一个数据和byte数组之间的相互转换，并将这些数组存储在云端。然而，当你的用户有多个设备，并且两个以上的设备尝试将它们的数据存储在云端时，这一保存可能会引起冲突，因此你必须决定应该如何处理。你在云端存储的数据结构在很大程度上决定了你的冲突解决方案的鲁棒性，所以小心地设计你的数据，使得你的冲突检测解决方案的逻辑可以正确地处理每一种情况。</p>
 <p>本篇文章从描述一些有缺陷的方法入手，并解释他们为何具有缺陷。之后呈现一个解决方案来避免冲突。用于讨论的例子关注于游戏，但解决问题的宗旨是可以适用于任何将数据存储于云端的应用的。</p>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_194">
+                    <section class="normal" id="section-gitbook_248">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a></p>
-<p>校对:</p>
+                        <h1 id="ui">测试UI组件</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:</p>
 </blockquote>
-<h1 id="ui">测试UI组件</h1>
 <p>通常情况下，你的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>，包括用户界面组件（如按钮，复选框，可编辑的文本域，和选框）允许你的用户与Android应用程序交互。本节介绍如何用一个简单的按钮的界面交互测试。你可以使用相同的步骤来测试其他的，更复杂的UI组件。</p>
 <p><strong>注意</strong></p>
 <p>这一节叫做白盒测试，因为你拥有要测试应用程序的源码。Android仪表框架适用于创建应用程序中UI部件的白盒测试。用户界面测试的另一种类型是黑盒测试就是那种你可能无法得知应用程序源代码的类型。这种类型的测试可以用来测试你的应用程序如何与其他应用程序，或与系统进行交互。黑盒测试是不包括在本节中的。了解更多关于如何在你的Android应用程序进行黑盒测试，请参看<a href="http://developer.android.com/tools/testing/testing_ui.html" target="_blank">UI Testing guide</a>。</p>
@@ -5098,10 +5097,10 @@
         setActivityInitialTouchMode(true);
 
         mClickFunActivity = getActivity();
-        mClickMeButton = (Button) 
+        mClickMeButton = (Button)
                 mClickFunActivity
                 .findViewById(R.id.launch_next_activity_button);
-        mInfoTextView = (TextView) 
+        mInfoTextView = (TextView)
                 mClickFunActivity.findViewById(R.id.info_text_view);
     }
 }

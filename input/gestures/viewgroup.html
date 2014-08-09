@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.6" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.6" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_142">
+                    <section class="normal" id="section-gitbook_196">
                     
-                        <blockquote>
-<p>编写: <a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 校对:</p>
-<p>原文：<a href="http://developer.android.com/training/gestures/viewgroup.html" target="_blank">http://developer.android.com/training/gestures/viewgroup.html</a></p>
+                        <h1 id="viewgroup">管理ViewGroup中的触摸事件</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 原文:<a href="http://developer.android.com/training/gestures/viewgroup.html" target="_blank">http://developer.android.com/training/gestures/viewgroup.html</a></p>
 </blockquote>
-<h1 id="viewgroup">管理ViewGroup中的触摸事件</h1>
 <p>处理<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>中的触摸事件需要特别注意，因为通常情况下都是<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>中的子view处理不同的触摸事件，而不是<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>自己处理。为了确保每个view能正确地接受到它们想要的触摸事件，可以重载<a href="http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent" target="_blank">onInterceptTouchEvent()</a>)函数。</p>
 <h2 id="viewgroup">在ViewGroup中截获触摸事件</h2>
 <p>每当在<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>的表面上检测到一个触摸事件，包括它子view的表面，<a href="http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent" target="_blank">onInterceptTouchEvent()</a>)都会被调用。如果<a href="http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent" target="_blank">onInterceptTouchEvent()</a>)返回<code>true</code>，<a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>就被截获了，表示它不再会被传递到子view了，而是传递给该父view的<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent" target="_blank">onTouchEvent()</a>)方法。</p>

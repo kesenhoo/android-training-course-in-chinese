@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.4" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.4" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_196">
+                    <section class="normal" id="section-gitbook_249">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a></p>
-<p>校对:</p>
+                        <h1 id="">创建单元测试</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:</p>
 </blockquote>
-<h1 id="">创建单元测试</h1>
 <p>一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>测试单元是快速验证一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的状态以及与其它独立组件(也就是和系统其它部分分离的部分)交互的最优方式。一个测试单元通常是测试代码中可能性最小的代码块(可以是一个方法,类,或者组件),而且也不依赖于系统或网络资源。比如说,你可以写一个测试单元去检查Activity是否有正确的布局或者它的触发器,以及Intent对象的正确性。</p>
 <p>测试单元一般不适合测试与系统有复杂交互事件的UI。相反,你应该使用像ActivityInstrumentationTestCase2的类作为测试UI组建的描述。</p>
 <p>这节内容将会教你编写一个测试单元来验证一个Intent是否正确触发了另一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。由于测试是与环境独立的,所以<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>被发送给Android系统的,但你可以检查Intent对象的有效数据的正确性。对于一个完备的测试案例, 可以参考一下示例代码中的LaunchActivityTest.java。</p>

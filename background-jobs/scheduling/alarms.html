@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.3.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.3.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_77">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/lttowq" target="_blank">lttowq</a>(未验证)</p>
-<p>校对:</p>
+                        <h1 id="">调度重复的闹钟</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/lttowq" target="_blank">lttowq</a> - 原文:</p>
 </blockquote>
-<h1 id="">调度重复的闹钟</h1>
 <p>闹钟(<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">基本类AlarmManager</a>)给你一种方式执行基本时间操作你app生命周期外。例如你可以使用闹钟初始化一个长时间操作，例如开启一个服务一天为了下载天气预报。</p>
 <p>闹钟的特性</p>
 <ul>
@@ -5088,8 +5087,7 @@
 <li>它们执行在你的应用之外，所以你可以使用它触发事件或动作即使你的app没有运行或设备处于睡眠状态。</li>
 <li>它们可以帮助你app最小化资源请求。你可以调度无需依赖的或者连续运行在后台的服务。</li>
 </ul>
-<h5 id="">注意</h5>
-<p>对于定时操作保证结果在你app生命周期之内，替代可虑使用<a href="https://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>类结合<a href="https://developer.android.com/reference/java/util/Timer.html" target="_blank">定时器</a>与<a href="https://developer.android.com/reference/java/lang/Thread.html" target="_blank">线程</a>。这个方法给你Android更好的控制系统资源。</p>
+<p><strong>Note:</strong>对于定时操作保证结果在你app生命周期之内，替代可虑使用<a href="https://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>类结合<a href="https://developer.android.com/reference/java/util/Timer.html" target="_blank">定时器</a>与<a href="https://developer.android.com/reference/java/lang/Thread.html" target="_blank">线程</a>。这个方法给你Android更好的控制系统资源。</p>
 <h2 id="">理解交替使用</h2>
 <p>一个重复闹钟是相对简单的机制和有限的灵活性。它或许不是最好的选择对于你的app，特别是如果你的app需要触发网络操作。一个坏的闹钟设计能造成电池漏电和让一个有意义的服务负载。</p>
 <p>一个普通的情景对于触发一个你的app同步数据和一个服务器的生命周期外的操作。这个案例你可能冒险使用一个重复的闹钟。但是你自己服务器是本地你的app数据，使用<a href="https://developer.android.com/google/gcm/index.html" target="_blank">Google Cloud Messaging</a>(GCM)在结合你的<a href="https://developer.android.com/training/sync-adapters/index.html" target="_blank">sync adapter</a>是更好解决方案比<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>。一个同步适配器给你所有相同的调度选项作为<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>，但是它提供你更灵活性。比如：

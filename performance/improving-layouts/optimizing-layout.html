@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.3.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_170">
+                    <section class="normal" id="section-gitbook_224">
                     
-                        <blockquote>
-<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a></p>
-<p>校对:</p>
+                        <h1 id="layout">优化layout的层级</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文:</p>
 </blockquote>
-<h1 id="layout">优化layout的层级</h1>
 <p>一个常见的误区是，用最基础的 Layout 结构可以使 Layout 性能提高。然而，你的程序的每个组件和 Layout 都需要初始化、布置位置和绘制。例如，嵌套的 LinearLayout 可能会使得 View 的层级结构很深。此外，嵌套使用了 layout_weight 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如使用 ListView 或 GridView 时。</p>
 <p>本课中，你将学习使用 <a href="http://developer.android.com/tools/help/hierarchy-viewer.html" target="_blank">Hierarchy Viewer</a> （层级浏览器，译者注）和 <a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank">Layoutopt</a> （Layout优化工具，译者注）来检查和优化 Layout。</p>
 <h2 id="-layout">检查 Layout</h2>

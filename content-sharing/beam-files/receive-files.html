@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.3.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.3.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_105">
+                    <section class="normal" id="section-gitbook_159">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 校对:</p>
-<p>原文:<a href="http://developer.android.com/training/beam-files/receive-files.html" target="_blank">http://developer.android.com/training/beam-files/receive-files.html</a></p>
+                        <h1 id="">接收其他设备的文件</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/beam-files/receive-files.html" target="_blank">http://developer.android.com/training/beam-files/receive-files.html</a></p>
 </blockquote>
-<h1 id="">接收其他设备的文件</h1>
 <p>Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android Media Scanner扫描拷贝的文件，并在<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a> provider中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，以及在接收设备上应该如何放置拷贝的文件。</p>
 <h2 id="">响应请求并显示数据</h2>
 <p>当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，包含了一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，它有一个<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>的Action，第一个传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，intent会被发送至系统。为了让你的应用能够响应这个intent，我们需要为响应的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>所对应的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>标签添加<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签，在<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签中，添加下面的子标签：</p>

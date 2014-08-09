@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.2" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.2" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_138">
+                    <section class="normal" id="section-gitbook_192">
                     
-                        <blockquote>
-<p>编写: <a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 校对:</p>
-<p>原文：<a href="http://developer.android.com/training/gestures/movement.html" target="_blank">http://developer.android.com/training/gestures/movement.html</a></p>
+                        <h1 id="">追踪手势移动</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 原文：<a href="http://developer.android.com/training/gestures/movement.html" target="_blank">http://developer.android.com/training/gestures/movement.html</a></p>
 </blockquote>
-<h1 id="">追踪手势移动</h1>
 <p>本节课程讲述如何追踪手势移动。</p>
 <p>每当触摸位置、压力、大小发生变化时，<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent" target="_blank">onTouchEvent()</a>)函数都会随着新的<a href="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE" target="_blank">ACTION_MOVE</a>事件参数被重新调用一次。正如<a href="/detector.html"><strong>检测常用的手势</strong></a>中描述的那样，触摸事件全部都记录在<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent" target="_blank">onTouchEvent()函数</a>)的<a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>参数中。</p>
 <p>因为基于手指的触摸的交互方式并不总是非常精确，所以检测触摸事件更多的是基于手势移动而非简单地触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单地点击），Android引入了“touch slop”的概念。Touch slop是指用户触摸事件在可被识别为移动手势前，移动过的那一段像素距离。关于这一主题的更多讨论，可以在<a href="viewgroup.html">管理ViewGroup中的触摸事件</a>中查看。</p>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.2" data-basepath=".." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.2" data-basepath=".." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_154">
+                    <section class="normal" id="section-gitbook_208">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a></p>
-<p>校对:</p>
+                        <h1 id="">获取位置更新</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:</p>
 </blockquote>
-<h1 id="">获取位置更新</h1>
 <p>如果你的应用需要导航或者记录路径，你可能会周期性地去获取用户的位置信息。此时你可以使用Location Services 里面的 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">LocationClient.getLastLocation()</a>)来进行周期性的位置信息更新。使用这个方法之后，Location Services 会基于当前可用的位置信息提供源（比如WiFi和GPS）返回最准确的位置信息更新。</p>
 <p>你可以使用一个location client从 Location Services 那里请求周期性的位置更新。根据不同请求的形式，Location Services 要么调用一个回调函数并传入一个 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象，或者发送一个包含位置信息的 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a> 。位置更新的精度和频率与你的应用所申请的权限相关联。</p>
 <h2 id="">确定应用的权限</h2>

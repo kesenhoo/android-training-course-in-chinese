@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.4" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.1.4" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_265">
+                    <section class="normal" id="section-gitbook_319">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 校对:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a></p>
-<p>原文:</p>
+                        <h1 id="stacknotifications">以Stack的方式显示Notifications</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 原文:</p>
 </blockquote>
-<h1 id="stacknotifications">以Stack的方式显示Notifications</h1>
 <p>当为手持式设备创建Notification时，你应该将多个相似的Notification合并成一个概括式的Notification。例如，如果你的app创建了一系列接收短信的Notification，你不应该把它们都展示出来，当多于一条短信被接收的时候，用一条Notification提示总结性信息比如&quot;2条新消息&quot;。</p>
 <p>尽管如此，概括式的Notification在wear上并不是很有用处，因为用户不可能在wear上还能够阅读每条消息的详细内容(他们必须在手持式设备上打开你的app才能看到更多信息)。所以对wear而言，你应该将所有的Notification都集中起来，以stack的形式进行展示。这个stack展示的时候就像一张卡片，用户可以在上面以扩展的方式分别看到其他的Notification。通过新方法<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setGroup(java.lang.String" target="_blank">setGroup()</a>能够实现该功能，同时，还能让你保持手持式设备上显示为一条概括式的Notification。</p>
 <p><img src="11_bundles_A.png" alt="">

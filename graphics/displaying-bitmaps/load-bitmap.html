@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.1" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.1" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_122">
+                    <section class="normal" id="section-gitbook_176">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 校对:</p>
-<p>原文:<a href="http://developer.android.com/training/displaying-bitmaps/load-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/load-bitmap.html</a></p>
+                        <h1 id="loading-large-bitmaps-efficiently">Loading Large Bitmaps Efficiently(有效地加载大尺寸位图)</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/displaying-bitmaps/load-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/load-bitmap.html</a></p>
 </blockquote>
-<h1 id="loading-large-bitmaps-efficiently">Loading Large Bitmaps Efficiently(有效地加载大尺寸位图)</h1>
 <p>图片有不同的形状与大小。在大多数情况下它们的实际大小都比需要呈现出来的要大很多。例如，系统的Gallery程序会显示那些你使用设备camera拍摄的图片，但是那些图片的分辨率通常都比你的设备屏幕分辨率要高很多。</p>
 <p>考虑到程序是在有限的内存下工作，理想情况是你只需要在内存中加载一个低分辨率的版本即可。这个低分辨率的版本应该是与你的UI大小所匹配的，这样才便于显示。一个高分辨率的图片不会提供任何可见的好处，却会占用宝贵的(precious)的内存资源，并且会在快速滑动图片时导致(incurs)附加的效率问。</p>
 <p>这一课会介绍如何通过加载一个低版本的图片到内存中去decoding大的bitmaps，从而避免超出程序的内存限制。</p>

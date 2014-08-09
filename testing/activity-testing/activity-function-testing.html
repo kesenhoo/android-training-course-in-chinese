@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.5" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="13.1.5" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5071,13 +5071,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_193">
+                    <section class="normal" id="section-gitbook_246">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a></p>
-<p>校对:</p>
+                        <h1 id="">创建功能测试</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:</p>
 </blockquote>
-<h1 id="">创建功能测试</h1>
 <p>功能测试包括验证单个应用组件是否与使用者期望的那样(与其它组件)协同工作。比如,你可以创建一个功能测试验证在用户执行UI交互时<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>是否正确启动目标<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。</p>
 <p>要为你的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>创建功能测试,你的测试类应该扩展<a href="http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html" target="_blank">ActivityInstrumentationTestCase2</a>。与<a href="http://developer.android.com/reference/android/test/ActivityUnitTestCase.html" target="_blank">ActivityUnitTestCase</a>不同的是在<a href="http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html" target="_blank">ActivityInstrumentationTestCase2</a>中可以与Android系统通信以及发送键盘输入和点击事件到UI。</p>
 <p>要了解一个完整的测试例子,看一下示例应用中的SenderActivityTest.java。</p>
@@ -5092,10 +5091,10 @@
 <p>你应该这样实现你的方法:</p>
 <pre><code class="lang-xml">@MediumTest
 public void testSendMessageToReceiverActivity() {
-    final Button sendToReceiverButton = (Button) 
+    final Button sendToReceiverButton = (Button)
             mSenderActivity.findViewById(R.id.send_message_button);
 
-    final EditText senderMessageEditText = (EditText) 
+    final EditText senderMessageEditText = (EditText)
             mSenderActivity.findViewById(R.id.message_input_edit_text);
 
     // Set up an ActivityMonitor
@@ -5138,7 +5137,7 @@ ActivityMonitor receiverActivityMonitor =
 
 // Validate that ReceiverActivity is started
 TouchUtils.clickView(this, sendToReceiverButton);
-ReceiverActivity receiverActivity = (ReceiverActivity) 
+ReceiverActivity receiverActivity = (ReceiverActivity)
         receiverActivityMonitor.waitForActivityWithTimeout(TIMEOUT_IN_MS);
 assertNotNull(&quot;ReceiverActivity is null&quot;, receiverActivity);
 assertEquals(&quot;Monitor for ReceiverActivity has not been called&quot;,

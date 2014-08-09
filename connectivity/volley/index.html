@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.5" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.5" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_93">
+                    <section class="normal" id="section-gitbook_147">
                     
-                        <blockquote>
-<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，校对:</p>
-<p>原文:<a href="http://developer.android.com/training/volley/index.html" target="_blank">http://developer.android.com/training/volley/index.html</a></p>
+                        <h1 id="volleytransmitting-network-data-using-volley">使用Volley传输网络数据(Transmitting Network Data Using Volley)</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/volley/index.html" target="_blank">http://developer.android.com/training/volley/index.html</a></p>
 </blockquote>
-<h1 id="volleytransmitting-network-data-using-volley">使用Volley传输网络数据(Transmitting Network Data Using Volley)</h1>
 <p><code>Volley</code> 是一个HTTP库，它能够帮助Android apps更方便的执行网络操作，最重要的是，它更快速高效。可以通过开源的 <a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">AOSP</a> 仓库获取到Volley 。</p>
 <p><strong>YOU SHOULD ALSO SEE</strong></p>
 <p>使用Volley来编写一个app，请参考<a href="https://github.com/google/iosched" target="_blank">2013 Google I/O schedule app</a>. 另外需要特别关注下面2个部分：</p>
@@ -5091,7 +5090,7 @@
 <hr>
 <p>Volley 有如下的优点：</p>
 <ul>
-<li>自动执行网络请求。</li>
+<li>自动调度网络请求。</li>
 <li>高并发网络连接。</li>
 <li>通过标准的HTTP的<a href="http://en.wikipedia.org/wiki/Cache_coherence%22" target="_blank">cache coherence</a>(高速缓存一致性)使得磁盘与内存缓存不可见(Transparent)。</li>
 <li>支持指定请求的优先级。</li>
@@ -5122,7 +5121,7 @@
 <ul>
 <li><a href="request.html"><strong>生成一个标准的请求(Making a Standard Request)</strong></a></li>
 </ul>
-<p>学习如何使用Volley的out-of-the-box的请求类型(raw strings, images, and JSON)来发送一个请求。</p>
+<p>学习如何使用Volley的out-of-the-box（可直接使用、无需配置）的请求类型(raw strings, images, and JSON)来发送一个请求。</p>
 <ul>
 <li><a href="request-custom.html"><strong>实现自定义的请求(Implementing a Custom Request)</strong></a></li>
 </ul>

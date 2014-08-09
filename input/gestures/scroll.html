@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.3" data-basepath="../.." data-revision="1407262443015">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="9.1.3" data-basepath="../.." data-revision="1407596072792">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,13 +5073,12 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_141">
+                    <section class="normal" id="section-gitbook_195">
                     
-                        <blockquote>
-<p>编写: <a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 校对:</p>
-<p>原文：<a href="http://developer.android.com/training/gestures/scroll.html" target="_blank">http://developer.android.com/training/gestures/scroll.html</a></p>
+                        <h1 id="scroll">Scroll手势动画</h1>
+<blockquote>
+<p>编写:<a href="https://github.com/Andrwyw" target="_blank">Andrwyw</a> - 原文:<a href="http://developer.android.com/training/gestures/scroll.html" target="_blank">http://developer.android.com/training/gestures/scroll.html</a></p>
 </blockquote>
-<h1 id="scroll">Scroll手势动画</h1>
 <p>Android中通常使用<a href="http://developer.android.com/reference/android/widget/ScrollView.html" target="_blank">ScrollView</a>类来实现滚动（scroll）。任何可能超过父类边界的布局都应该嵌套在一个<a href="http://developer.android.com/reference/android/widget/ScrollView.html" target="_blank">ScrollView</a>中，以提供一个由系统框架管理的可滚动的view。仅仅在某些特殊情形下，才需要实现一个自定义scroller。本节课程描述了这样一个情形：使用scrollers显示滚动效果来响应触摸手势。</p>
 <p>你可以使用scrollers(<a href="http://developer.android.com/reference/android/widget/Scroller.html" target="_blank">Scroller</a>或者<a href="http://developer.android.com/reference/android/widget/OverScroller.html" target="_blank">OverScroller</a>)收集数据，这些数据可用来产生滚动动画以响应一个触摸事件。这两个类很相似，但是<a href="http://developer.android.com/reference/android/widget/OverScroller.html" target="_blank">OverScroller</a>有一些函数，在平移或惯性滑动手势后，能向用户指出他们已经达到内容尽头了。<strong>InteractiveChart</strong>例子使用了<a href="http://developer.android.com/reference/android/widget/EdgeEffect.html" target="_blank">EdgeEffect</a>类（实际上是<a href="http://developer.android.com/reference/android/support/v4/widget/EdgeEffectCompat.html" target="_blank">EdgeEffectCompat</a>类），用来在用户到达内容尽头时显示发光效果。</p>
 <blockquote>
