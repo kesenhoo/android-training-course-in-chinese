@@ -95,7 +95,7 @@ adb install bin/MyFirstApp-debug.apk
 
 创建一个 AVD:
 1. 启动 Android Virtual Device Manager（AVD Manager）的两种方式：
-  * 用Eclipse, 点击工具栏里面Android Virtual Device Manager Android<img src="avd_manager.png" />。
+  * 用Eclipse, 点击工具栏里面Android Virtual Device Manager<img src="avd_manager.png" />。
   * 在命令行窗口中，把当前目录切换到`<sdk>/tools/` 后执行：
 
 ```java
