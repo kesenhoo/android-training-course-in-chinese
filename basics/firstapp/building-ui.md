@@ -64,7 +64,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 #### [android:layout_width](http://developer.android.com/reference/android/view/View.html#attr_android:layout_width) 和[android:layout_height](http://developer.android.com/reference/android/view/View.html#attr_android:layout_height)
 
-对于宽和高不建议指定具体的大小，使用`wrap_content`指定之后，这个视图只是占据内容大小的空间。如果你使用了`fill_parent`，这时[EditText](http://developer.android.com/reference/android/widget/EditText.html)将会布满整个屏幕，因为它将适应父布局的大小。想要看到更多信息，请参考 [布局向导](http://developer.android.com/guide/topics/ui/declaring-layout.html)。
+对于宽和高不建议指定具体的大小，使用`wrap_content`指定之后，这个视图只是占据内容大小的空间。如果你使用了`match_parent`，这时[EditText](http://developer.android.com/reference/android/widget/EditText.html)将会布满整个屏幕，因为它将适应父布局的大小。想要看到更多信息，请参考 [布局向导](http://developer.android.com/guide/topics/ui/declaring-layout.html)。
 
 #### [android:hint](http://developer.android.com/reference/android/widget/TextView.html#attr_android:hint)
 
