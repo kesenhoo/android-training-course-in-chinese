@@ -40,12 +40,12 @@ protected void onStop() {
 ```
 
 * 当你的activity已经停止,[Activity](http://developer.android.com/reference/android/app/Activity.html)对象会保存在内存中，并且在activity resume的时候重新被调用到。你不需要在恢复到Resumed state状态前重新初始化那些被保存在内存中的组件。系统同样保存了每一个在布局中的视图的当前状态，如果用户在EditText组件中输入了text，它会被保存，因此不需要保存与恢复它。
-* **Note:**即时系统会在activity stop的时候销毁这个activity，它仍然会保存View objects (such as text in an [EditText](http://developer.android.com/reference/android/widget/EditText.html)) 到一个[Bundle](http://developer.android.com/reference/android/os/Bundle.html)中，并且在用户返回这个activity时恢复他们(下一个会介绍在activity销毁与重新建立时如何使用[Bundle](http://developer.android.com/reference/android/os/Bundle.html)来保存其他数据的状态).
+* **Note:**即使系统会在activity stop的时候销毁这个activity，它仍然会保存[View](http://developer.android.com/reference/android/view/View.html)对象的状态(比如[EditText](http://developer.android.com/reference/android/widget/EditText.html)中的文字) 到一个[Bundle](http://developer.android.com/reference/android/os/Bundle.html)中，并且在用户返回这个activity时恢复他们(下一个会介绍在activity销毁与重新建立时如何使用[Bundle](http://developer.android.com/reference/android/os/Bundle.html)来保存其他数据的状态).
 
 ## Start/Restart Your Activity[启动与重启你的activity]
 * 当你的activity从Stopped状态回到前台时，它会调用onRestart().系统再调用onStart()方法，onStart()方法会在每次你的activity可见时都会被调用。onRestart()方法则是只在activity从stopped状态恢复时才会被调用，因此你可以使用它来执行一些特殊的恢复(restoration)工作，请注意之前是被stopped而不是destrory。
-* 使用onRestart()来恢复activity状态是不太常见的，因此对于这个方法如何使用没有任何的guidelines。然而，因此你的onStop()方法应该做清除所有activity资源的操作，你将会在重新启动activtiy时re-instantiate那些被清除的资源，同样, 你也需要在activity第一次创建时instantiate那些资源。介于上面的原因，你应该使用onStart()作为onStop()所对应方法。因为系统会在创建activity与从停止状态重启activity时都会调用onStart().*(这个地方的意思应该是说你在onStop里面做了哪些清除的操作就应该在onStart里面重新把那些清除掉的资源重新创建出来)*
-* 例如：因为用户很可能在回到这个activity之前需要过一段时间，所以onStart()方法是一个比较好的地方用来验证某些必须的功能是否已经Ready。
+* 使用onRestart()来恢复activity状态是不太常见的，因此对于这个方法如何使用没有任何的guidelines。然而，因此你的onStop()方法应该做清除所有activity资源的操作，你需要在重新启动activtiy时重新实例化那些被清除的资源，同样, 你也需要在activity第一次创建时实例化那些资源。介于上面的原因，你应该使用onStart()作为onStop()所对应方法。因为系统会在创建activity与从停止状态重启activity时都会调用onStart().*(这个地方的意思应该是说你在onStop里面做了哪些清除的操作就应该在onStart里面重新把那些清除掉的资源重新创建出来)*
+* 例如：因为用户很可能在回到这个activity之前需要过一段时间，所以onStart()方法是一个比较好的地方来验证某些必须的系统特性是否可用。
 
 ```java
 @Override
