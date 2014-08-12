@@ -1,8 +1,6 @@
-> 编写:[wly2014](https://github.com/wly2014)- 校对:
-
-> 原文: <http://developer.android.com/training/wearables/data-layer/assets.html>
-
 # 传输资源
+
+> 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/assets.html>
 
 将一个[Asset](Asset.html)附加到数据元上，并放入复制而来的数据库中，通过蓝牙来传送大量的二进制数据。
 

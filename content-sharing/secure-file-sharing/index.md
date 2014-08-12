@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/secure-file-sharing/index.html>
-
 # 分享文件
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/index.html>
 
 一个应用经常需要向其他应用发送一个甚至多个文件。例如，一个图库应用可能需要向图片编辑器提供多个文件，或者一个文件管理器可能希望允许用户在外部存储的不同区域之间复制粘贴文件。这里，我们提出一种让应用可以分享文件的方法，即对应用所发出的文件请求进行响应。
 

@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/crossfade.html>
-
 # View间渐变
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/crossfade.html>
 
 渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。当你不使用它们，不管怎么样转换经常感到生硬而仓促。
 

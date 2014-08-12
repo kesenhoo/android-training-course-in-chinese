@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/basics/intents/sending.html>
-
 # Intent的发送
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/intents/sending.html>
+
 Android中最重要的功能之一就是可以利用一个带有`action`的`intent`使得当前app能够跳转到其他的app。例如：如果你的app拥有一个地址想要显示在地图上，你并不需要在你的app里面创建一个activity用来显示地图。你只需要使用Intent来发出查看地址的请求。Android系统则会启动能够显示地图的程序来呈现那个地址。
 
 正如在1.1章节:[Building Your First App:建立你的第一个App](/basics/firstapp/index.html)中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显示（explicit）的intent，它指定了需要叫起组件。然而，当你想要叫起不同的app来执行那个动作，则必须使用隐式（implicit）的intent。

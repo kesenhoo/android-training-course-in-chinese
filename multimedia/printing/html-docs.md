@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/printing/html-docs.html>
-
 # 打印HTML文档
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/printing/html-docs.html>
 
 在Android上要打印比一副照片更丰富的内容，换句话说，若需要将文本和图片组合在一个打印的文档中。Android框架提供了一种使用HTML语言来组织一个文档并打印的方法，它使用的代码数量是很小的。
 

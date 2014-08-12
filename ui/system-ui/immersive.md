@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/immersive.html>
-
 # 全屏沉浸式应用
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/immersive.html>
 
 **这节课将教您**
 

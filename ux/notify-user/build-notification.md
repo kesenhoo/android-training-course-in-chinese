@@ -1,9 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985)
-
-> 校对:
-
-
 # 建立一个Notification
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:
 
 * 这节课向你说明如何创建与发布一个Notification。
 
@@ -13,7 +10,7 @@
 ## 创建Notification Buider
 
 * 创建Notification时，可以用[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)对象指定Notification的UI内容与行为。一个[Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)至少包含以下内容：
-   
+
   * 一个小的icon，用[setSmallIcon()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setSmallIcon(int))方法设置
   * 一个标题，用[setContentTitle()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentTitle(java.lang.CharSequence))方法设置。
   * 详细的文本，用[setContentText()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentText(java.lang.CharSequence))方法设置
@@ -85,7 +82,7 @@ NotificationCompat.Builder mBuilder;
 // Sets an ID for the notification
 int mNotificationId = 001;
 // Gets an instance of the NotificationManager service
-NotificationManager mNotifyMgr = 
+NotificationManager mNotifyMgr =
         (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 // Builds the notification and issues it.
 mNotifyMgr.notify(mNotificationId, mBuilder.build());

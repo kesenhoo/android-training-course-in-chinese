@@ -1,9 +1,7 @@
-> 编写:[lttowq](https://github.com/lttowq)(未验证)
+# 调度重复的闹钟
 
-> 校对:
+> 编写:[lttowq](https://github.com/lttowq) - 原文:
 
-
-#调度重复的闹钟
 闹钟([基本类AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html))给你一种方式执行基本时间操作你app生命周期外。例如你可以使用闹钟初始化一个长时间操作，例如开启一个服务一天为了下载天气预报。
 
 闹钟的特性
@@ -13,8 +11,7 @@
 * 它们执行在你的应用之外，所以你可以使用它触发事件或动作即使你的app没有运行或设备处于睡眠状态。
 *	它们可以帮助你app最小化资源请求。你可以调度无需依赖的或者连续运行在后台的服务。
 
-#####注意
-对于定时操作保证结果在你app生命周期之内，替代可虑使用[Handler](https://developer.android.com/reference/android/os/Handler.html)类结合[定时器](https://developer.android.com/reference/java/util/Timer.html)与[线程](https://developer.android.com/reference/java/lang/Thread.html)。这个方法给你Android更好的控制系统资源。
+**Note:**对于定时操作保证结果在你app生命周期之内，替代可虑使用[Handler](https://developer.android.com/reference/android/os/Handler.html)类结合[定时器](https://developer.android.com/reference/java/util/Timer.html)与[线程](https://developer.android.com/reference/java/lang/Thread.html)。这个方法给你Android更好的控制系统资源。
 
 ##理解交替使用
 

@@ -1,6 +1,7 @@
-> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 校正：
->
-> 原文: <http://developer.android.com/training/enterprise/device-management-policy.html>
+# 使用设备管理条例增强安全性
+
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文: <http://developer.android.com/training/enterprise/device-management-policy.html>
+
 
 在Android 2.2(API Level 8)之后，Android平台通过设备管理API提供了系统级的设备管理能力。
 

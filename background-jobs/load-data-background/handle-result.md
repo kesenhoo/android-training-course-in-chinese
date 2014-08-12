@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # 处理查询的结果
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 正如前面一节课讲到的，你应该在 [onCreateLoader()](1)的回调里面使用CursorLoader执行加载数据的操作。接下去Loader会提供查询数据的结果给Activity或者FragmentActivity实现的[LoaderCallbacks.onLoadFinished()](2)回调方法。这个回调方法的参数之一是[Cursor](4)，它包含了查询的数据。你可以使用Cursor对象来更新需要显示的数据或者进行下一步的处理。
 

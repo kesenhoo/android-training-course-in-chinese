@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/articles/perf-anr.html>
-
 # 避免出现程序无响应ANR(Keeping Your App Responsive)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/articles/perf-anr.html>
 
 可能你写的代码在性能测试上表现良好，但是你的应用仍然有时候会反应迟缓(sluggish)，停顿(hang)或者长时间卡死(frezze)，或者应用处理输入的数据花费时间过长。对于你的应用来说最槽糕的事情是出现"程序无响应(Application Not Responding)" (ANR)的警示框。
 

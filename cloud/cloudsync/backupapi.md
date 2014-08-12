@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/cloudsync/backupapi.html>
-
 # Using the Backup API[使用Backup API]
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/cloudsync/backupapi.html>
+
 当一个用户购买了新的设备或者是把当前的设备做了的恢复出厂设置的操作，用户希望在进行初始化设置的时候，Google Play能够把之前安装过的应用恢复到设备上。默认情况是，那些操作不会发生，用户之前的设置与数据都会丢失.
 
 对于一些数据量相对较少的情况下(通常少于1MB)，例如用户偏好设置，笔记，游戏分数或者是其他的一些状态数据，可以使用Backup API来提供一个轻量级的解决方案。这一课会介绍如何使用Backup API.

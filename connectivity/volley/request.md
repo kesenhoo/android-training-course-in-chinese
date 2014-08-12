@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/volley/request.html>
-
 # 创建标准的网络请求(Making a Standard Request)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/request.html>
 
 这一课会介绍如何使用Volley支持的常用请求类型：
 

@@ -1,8 +1,6 @@
-> 编写:[wangyachen](https://github.com/wangyacheng) - 校对: [kesenhoo](https://github.com/kesenhoo)
-
-> 原文: <http://developer.android.com/training/wearables/notifications/creating.html>
-
 # 创建Notification
+
+> 编写:[wangyachen](https://github.com/wangyacheng) - 原文: <http://developer.android.com/training/wearables/notifications/creating.html>
 
 为了创建一个手持设备上的并且也能同时发送给可穿戴设备的Notification，需要使用 [NotificationCompat.Builder](http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)。当你使用这个类创建Notification之后，如何正确展示的工作就交由系统去完成，无论是在手持式设备上还是可穿戴设备上。
 

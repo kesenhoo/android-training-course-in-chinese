@@ -1,8 +1,6 @@
-> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/supporting-devices/screens.html>
-
 # 适配不同的屏幕
+
+> 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/screens.html>
 
 Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应该想到你的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，你的app就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化你的app外观。
 

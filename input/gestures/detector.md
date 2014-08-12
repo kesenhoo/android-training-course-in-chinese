@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/detector.html>
-
 # 检测常用的手势
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/detector.html>
 
 当用户用一根或多根手指触碰屏幕时，一个“触摸手势”就发生了，并且你的应用可把这样的触摸方式解释成一种特定的手势。手势检测有以下两个相应的阶段：
 

@@ -1,8 +1,7 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/beam-files/receive-files.html>
-
 # 接收其他设备的文件
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/beam-files/receive-files.html>
+
 Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android Media Scanner扫描拷贝的文件，并在[MediaStore](http://developer.android.com/reference/android/provider/MediaStore.html) provider中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，以及在接收设备上应该如何放置拷贝的文件。
 
 ## 响应请求并显示数据

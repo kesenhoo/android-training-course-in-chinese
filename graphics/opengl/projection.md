@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/projection.html>
-
 # 运用投影与相机视图
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/projection.html>
 
 在OpenGL ES环境中，投影和相机视图允许你显示绘图对象时，其效果更加酷似于你用肉眼看到的真实物体。这个物理视图的仿真是使用绘制对象坐标的数学变换实现的：
 * **投影（Projection）：**这个变换会基于显示它们的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于视图窗口比例的不匹配而发生形变。一个投影变换一般仅需要在渲染器的[onSurfaceChanged()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged\(javax.microedition.khronos.opengles.GL10, int, int\))方法中，OpenGL视图的比例建立时或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读[Mapping Coordinates for Drawn Objects](http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping)。

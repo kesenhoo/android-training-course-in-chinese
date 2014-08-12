@@ -1,8 +1,6 @@
-> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/supporting-devices/languages.html>
-
 # 适配不同的语言
+
+> 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/languages.html>
 
 把UI中的字符串存储在外部文件，通过代码提取，总是一种很好的做法。Android可以通过工程中的资源目录轻松实现这一功能。
 

@@ -1,8 +1,6 @@
-> 编写:[zhaochunqi](https://github.com/zhaochunqi)
-
-> 校对:
-
 # 处理键盘输入
+
+> 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:
 
 Android 系统展示了一个屏幕上的键盘－被称为软输入法－当一个文本域在UI中接收到聚焦时。为了提供最好的用户体验，你可以指定你期望的输入类型(电话号码或Email地址)和输入法的表现形式(是否需要自动纠正拼写错误)。
 

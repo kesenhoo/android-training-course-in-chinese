@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/sharing/receive.html>
-
 # 接收从其他App返回的数据
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/sharing/receive.html>
 
 就像你的程序能够发送数据到其他程序一样，其他程序也能够方便的接收发送过来的数据。需要考虑的是用户与你的程序如何进行交互，你想要从其他程序接收哪些数据类型。例如，一个社交网络程序会希望能够从其他程序接受文本数据，像一个有趣的网址链接。Google+的Android客户端会接受文本数据与单张或者多张图片。用这个app，用户可以简单的从Gallery程序选择一张图片来启动Google+进行发布。
 
@@ -82,6 +80,6 @@ void handleSendMultipleImages(Intent intent) {
 ```
 
 请注意，因为你无法知道其他程序发送过来的数据内容是文本还是其他的数据，因此你需要避免在UI线程里面去处理那些获取到的数据。
-更新UI可以像更新EditText一样简单，也可以是更加复杂一点的操作，例如过滤出感兴趣的图片。It's really specific to your application what happens next.
+更新UI可以像更新EditText一样简单，也可以是更加复杂一点的操作，例如过滤出感兴趣的图片。这完全取决于你的应用接下来要做些什么。
 
 *********************************

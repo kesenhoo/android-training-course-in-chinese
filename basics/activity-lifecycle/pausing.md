@@ -1,8 +1,6 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/activity-lifecycle/pausing.html>
-
 # 暂停与恢复Activity
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/activity-lifecycle/pausing.html>
 
 * 在使用通常的app时，前端的activity有时候会被其他可见的组件而阻塞(obstructed)，这样会导致当前的activity进入Pause状态。例如，当打开一个半透明的activity时(例如以对话框的形式) ，之前的activity会被暂停. 只要这个activity仍然被部分可见，之前的activity则一直处于Paused状态。
 * 然而，一旦之前的activity被完全阻塞并不可见，它则会进入Stop状态(将在下一小节讨论)。

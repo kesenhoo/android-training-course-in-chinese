@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/sharing/shareaction.html>
-
 # 添加一个简便的分享动作
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/sharing/shareaction.html>
 
 这一课会介绍在ActionBar 中添加一个高效率且比较友好的Share功能，会使用到ActionProvider(在Android 4.0上才被引进)。它会handle出现share功能的appearance与hehavior。在ShareActionProvider的例子里面，你之需要提供一个share intent，剩下的就交给[ShareActionProvider](https://developer.android.com/reference/android/widget/ShareActionProvider.html)来做。
 

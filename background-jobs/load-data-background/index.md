@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/load-data-background/index.html>
-
 # 使用CursorLoader在后台加载数据
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/load-data-background/index.html>
 
 从[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)查询你需要显示的数据是比较耗时的。如果你在Activity中直接执行查询的操作，那么有可能导致Activity出现ANR的错误。即使没有发生ANR，用户也会看到一个令人烦恼的UI延迟。为了避免那些问题，你应该在另外一个线程中执行查询的操作，等待查询操作完成，然后再显示查询结果。
 

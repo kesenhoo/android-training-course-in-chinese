@@ -1,13 +1,11 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/basics/data-storage/database.html>
-
 # Saving to database保存到数据库
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/data-storage/database.html>
 
 对于重复或者结构化的数据（如联系人信息）等保存到DB是个不错的主意。这节课假定你已经熟悉SQL数据库的操作。在Android上可能会使用到的APIs，可以从[android.database.sqlite](http://developer.android.com/reference/android/database/sqlite/package-summary.html)包中找到。
 
 ## Define a Schema and Contract[定义Schema与Contract]
-SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。
+SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。
 
 Contract Clsss是一些常量的容器。它定义了例如URIs, 表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。
 

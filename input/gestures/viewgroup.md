@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/viewgroup.html>
-
 # 管理ViewGroup中的触摸事件
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/viewgroup.html>
 
 处理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件需要特别注意，因为通常情况下都是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的子view处理不同的触摸事件，而不是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)自己处理。为了确保每个view能正确地接受到它们想要的触摸事件，可以重载[onInterceptTouchEvent()](http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent))函数。
 

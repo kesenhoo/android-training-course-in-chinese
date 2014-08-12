@@ -1,6 +1,6 @@
 # 建立 Action Bar
 
-> 编写: [Vincent 4J](http://github.com/vincent4j) - 原文: <http://developer.android.com/training/basics/actionbar/setting-up.html>
+> 编写:[Vincent 4J](http://github.com/vincent4j) - 原文:<http://developer.android.com/training/basics/actionbar/setting-up.html>
 
 Action bar 最基本的形式，就是为 activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，对于所有的 activity 来说，action bar 对告知用户他们当前所处的位置十分有用，并为你的 app 维护了持续的同一标识。
 

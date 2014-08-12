@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/design-navigation/screen-planning.html>
-
 # 规划界面和他们之间的关系
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/design-navigation/screen-planning.html>
 
 多数 App 都有一种内在的信息模型，它能被表示成一个对象类型的树或图。更浅显的说，你可以画一个有不同类型信息的图，这些信息代表用户在你 App 里与之互动的各种东西。软件工程师和数据架构师经常使用实例-关系图（Entity-Relationship Diagram，ERD）描述一个应用的信息模型。
 

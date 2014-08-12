@@ -1,11 +1,8 @@
-> 编写:<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
+# 多线程操作
 
-> 校对:
-
-> 原文地址：<a href="http://developer.android.com/training/multiple-threads/index.html" target="_blank">http://developer.android.com/training/multiple-threads/index.html</a>
+> 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/index.html>
 
 
-#多线程操作
 
 如果你把一个会长时间运行且数据密集的操作分割成一个个小的操作，然后运行在多个线程上，它的执行速度和效率都会得到提高。在一个有多核CPU的设备上，系统可以并行运行多个线程，而不是让每个操作在等待其它操作执行完后再伺机执行。例如，如果要解码大量的图片文件并以缩略图的形式把图片显示在屏幕上，当你每个解码单独用一个线程去执行时，会发现速度快了很多。
 

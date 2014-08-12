@@ -1,11 +1,7 @@
-> 编写：<a href="https://github.com/AllenZheng1991" target="_blank">AllenZheng1991</a>
-
-> 校对：
-
-> 原文地址：<a href="http://developer.android.com/training/multiple-threads/define-runnable.html" target="_blank">http://developer.android.com/training/multiple-threads/define-runnable.html</a>
-
-
 #在一个线程中执行一段特定的代码
+
+> 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/define-runnable.html>
+
 这一课向你展示了如何通过实现<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>接口得到一个能在重写的<a href="http://developer.android.com/reference/java/lang/Runnable.html#run()" target="_blank">Runnable.run()</a>方法中执行一段代码的单独的线程。另外你可以传递一个<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>对象到另一个对象，然后这个对象可以把它附加到一个线程，并执行它。一个或多个执行特定操作的<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>对象有时也被称为一个任务。
 
 <a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Thread</a>和<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>只是两个基本的线程类，通过他们能发挥的作用有限，但是他们是强大的Android线程类的基础类，例如Android中的<a href="http://developer.android.com/reference/android/os/HandlerThread.html" target="_blank">HandlerThread</a>,<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a>和<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>都是以它们为基础。<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Thread</a>和<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>同时也是<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>类的基础。<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>类能自动管理线程和任务队列，甚至可以并行执行多个线程。

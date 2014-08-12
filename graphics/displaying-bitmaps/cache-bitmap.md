@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html>
-
 # Cached Bitmap
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/cache-bitmap.html>
 
 加载单个Bitmap到UI是简单直接的，但是如果你需要一次加载大量的图片，事情则会变得复杂起来。在大多数情况下(例如在ListView,GridView or ViewPager), 显示图片的数量通常是没有限制的。
 

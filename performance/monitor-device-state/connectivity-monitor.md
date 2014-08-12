@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # Determining and Monitoring the Connectivity Status[判断并监测网络连接状态]
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 通常我们会有一些计划的任务，比如重复闹钟，后台定时启动的任务等。但是如果我们的网络没有连接上，那么就没有必要启动那些需要连接网络的任务。我们可以使用ConnectivityManager来检查是否连接上网络，是何种网络。[通过网络的连接状况改变，相应的改变app的行为，减少无谓的操作，从而延长设备的续航能力]
 

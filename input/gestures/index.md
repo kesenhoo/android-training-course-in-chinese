@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/index.html>
-
 # 使用触摸手势
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/index.html>
 
 这一章节讲述，如何编写允许用户通过触摸手势进行交互的app。Android提供了多种API帮你创建和检测手势。
 

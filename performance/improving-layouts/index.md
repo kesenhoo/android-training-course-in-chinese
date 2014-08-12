@@ -1,8 +1,6 @@
-> 编写: [allenlsy](https://github.com/allenlsy)，校对:
-
-> 原文: <http://developer.android.com/training/improving-layouts/index.html>
-
 # 提升Layout的性能
+
+> 编写: [allenlsy](https://github.com/allenlsy) - 原文: <http://developer.android.com/training/improving-layouts/index.html>
 
 Layout 是 Android 应用中直接影响用户体验的关键部分。如果实现的不好，你的 Layout 会导致稍微费内存一点的程序变得非常卡顿。Android SDK 带有帮助你找到 Layout 性能问题的工具。使用它，你会用最小的内存空间实现流畅的 UI。
 

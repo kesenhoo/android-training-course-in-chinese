@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/displaying-bitmaps/manage-bitmap-memory.html>
-
 # 管理Bitmap的内存占用
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/manage-bitmap-memory.html>
 
 作为缓存Bitmaps的进一步延伸, 为了促进GC与bitmap的重用，你还有一些特定的事情可以做. 推荐的策略会根据Android的版本不同而有所差异. [BitmapFun](http://developer.android.com/shareables/training/BitmapFun.zip)的示例程序会演示如何设计你的程序使得能够在不同的Android平台上高效的运行.
 

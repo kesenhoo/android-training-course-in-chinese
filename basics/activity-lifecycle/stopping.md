@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/activity-lifecycle/stopping.html>
-
 # 停止与重启Activity
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/basics/activity-lifecycle/stopping.html>
+
 * 恰当的停止与重启你的activity是很重要的，在activity生命周期中，他们能确保用户感知到程序的存在并不会丢失他们的进度。在下面一些关键的场景中会涉及到停止与重启：
     * 用户打开最近使用app的菜单并切换你的app到另外一个app，这个时候你的app是被停止的。如果用户通过统一的办法回到你的app，那么你的activity会重启.
     * 用户在你的app里面执行启动一个新的activity的操作，当前activity会在第二个activity被创建后停止。如果用户点击back按钮，第一个activtiy会被重启.

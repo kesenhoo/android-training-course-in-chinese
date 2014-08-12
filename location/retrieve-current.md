@@ -1,8 +1,7 @@
-> 编写:[penkzhou](https://github.com/penkzhou)
-
-> 校对:
-
 # 获取当前位置
+
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+
 位置服务会自动持有用户当前的位置信息，你的应用在需要位置的时候获取一下即可。位置的精确度基于你所请求的位置权限以及当前设备已经激活的位置传感器。
 
 位置服务通过一个[LocationClient](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html)（位置服务类LocationClient的一个实例）将当前的位置发送给你的应用。关于位置信息的所有请求都是通过这个类发送。

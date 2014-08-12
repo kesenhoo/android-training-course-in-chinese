@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo) - 校对:
-
-> 原文:<http://developer.android.com/training/secure-file-sharing/request-file.html>
-
 # 请求分享一个文件
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/request-file.html>
 
 当一个应用希望访问由其它应用所共享的文件时，请求应用（即客户端）经常会向其它应用（服务端）发送一个文件请求。在大多数情况下，这个请求会在服务端应用启动一个Activity，来显示可以共享的文件。当服务端应用向客户端应用返回了URI后，用户即选择了文件。
 

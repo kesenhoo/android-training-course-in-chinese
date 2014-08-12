@@ -1,8 +1,6 @@
-> 编写: [Vincent 4J](http://github.com/vincent4j) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/actionbar/styling.html>
-
 # Action Bar 风格化
+
+> 编写:[Vincent 4J](http://github.com/vincent4j) -  原文:<http://developer.android.com/training/basics/actionbar/styling.html>
 
 Action bar 为用户提供一种熟悉可预测的方式来展示操作和导航，但是这并不意味着你的 app 要看起来和其他 app 一样。如果你想将 action bar 的风格设计的合乎你产品的定位，你只需简单地使用 Android 的 [式样和主题](https://developer.android.com/guide/topics/ui/themes.html) 资源。
 

@@ -1,8 +1,6 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/wearables/apps/index.html>
-
 # 创建可穿戴的应用
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/wearables/apps/index.html>
 
 可穿戴应用直接运行在穿戴设备上，应用可以直接访问例如传感器与GPU这样的硬件。这些应用和一般的Android应用的基础部分是一致的，只是在设计与可用性还有一些特殊功能上有比较大差异。手持设备与可穿戴设备上的应用主要有下面的一些差异：
 

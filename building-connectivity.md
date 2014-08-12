@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
+# Android网络连接与云服务
 
-> 原文:<http://developer.android.com/training/training/building-connectivity.html>
-
-# 连接
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/training/building-connectivity.html>
 
 These classes teach you how to connect your app to the world beyond the user's device. You'll learn how to connect to other devices in the area, connect to the Internet, backup and sync your app's data, and more.
 

@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/implementing-navigation/ancestral.html>
-
 # 提供向上的导航
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/ancestral.html>
 
 所有不是从主屏幕("home"屏幕)进入app的，都应该给用户提供一种方法，通过点击[action bar](http://developer.android.com/guide/topics/ui/actionbar.html)中的Up按钮。可以回到app的结构层次中逻辑父屏幕。本课程向你说明如何正确地实现这一操作。
 

@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/run-background-service/index.html>
-
 # 在IntentService中执行后台任务
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/index.html>
+
 
 除非你特别指定，否则大部分在前台UI界面上的操作都执行在一个叫做UI Thread的特殊线程中。这可能会导致某些问题，因为耗时操作可能会干扰界面的响应性能。为了避免这样的问题，Android Framework提供了几个类，用来帮助你把那些耗时操作移动到后台线程中执行。那些类中最常用的就是[IntentService](http://developer.android.com/reference/android/app/IntentService.html).
 

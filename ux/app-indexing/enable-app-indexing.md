@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
-
-> 原文: <http://developer.android.com/training/app-indexing/enabling-app-indexing.html>
-
 # 为索引指定App内容
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文: <http://developer.android.com/training/app-indexing/enabling-app-indexing.html>
 
 Google的网页爬虫机器([Googlebot](https://support.google.com/webmasters/answer/182072?hl=en))会抓取页面，并为Google搜索引擎建立索引，也能为你的Android app内容建立索引。通过选择加入这一功能，你可以允许Googlebot通过抓取在Google Play Store中的APK内容，为你的app内容建立索引。要指出哪些app内容你想被Google索引，只需要添加链接元素到现有的[Sitemap](https://support.google.com/webmasters/answer/156184?hl=en)文件，或添加到你的网站中每个页面的`<head>`元素中，以相同的方式为你的页面添加。
 

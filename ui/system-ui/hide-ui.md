@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/status.html>
-
 # 隐藏系统Bar
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/status.html>
 
 **这节课将教您**
 

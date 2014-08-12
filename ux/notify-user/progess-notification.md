@@ -1,8 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985)
-
-> 校对:
-
 # 显示Notification进度
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:
 
 * Notifications可以包含一个展示用户正在进行的操作状态的动画进度指示器。如果你可以在任何时候估算这个操作得花多少时间以及当前已经完成多少，你可以用“determinate（确定的，下同）”形式的指示器（一个进度条）。如果你不能估算这个操作的长度，使用“indeterminate（不确定，下同）”形式的指示器（一个活动的指示器）。
 

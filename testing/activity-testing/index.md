@@ -1,8 +1,6 @@
-> 编写:[huanglizhuo](https://github.com/huanglizhuo)，校对:
-
-> 原文:<http://developer.android.com/training/activity-testing/index.html>
-
 # 测试你的Activity
+
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/index.html>
 
 你应该把编写和运行测试作为你Android应用开发周期的一部分.编写好的测试可以帮助你在开发过程中尽早发现漏洞,并让你对自己的代码更有信心.
 

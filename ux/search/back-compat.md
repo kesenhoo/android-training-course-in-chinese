@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
-
-> 原文: <http://developer.android.com/training/search/backward-compat.html>
-
 # 保持向下兼容
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/search/backward-compat.html>
 
 [SearchView](http://developer.android.com/reference/android/widget/SearchView.html)和action bar只在Android 3.0以及以上版本可用。为了支持旧版本平台，你可以回到搜素对话框。搜索框是系统提供的UI，在调用时会覆盖在你的应用的最顶端。
 

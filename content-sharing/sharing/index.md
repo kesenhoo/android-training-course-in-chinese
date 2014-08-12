@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/sharing/index.html>
-
 # 分享简单的数据
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/sharing/index.html>
+
 Android程序中很炫的一个功能是程序之间可以互相通信。为什么要重新发明一个已经存在于另外一个程序中的功能呢，而且这个功能并非自己程序的核心部分。
 
 这一章节会讲述一些通常使用的方法来在不同程序之间通过使用[Intent](https://developer.android.com/reference/android/content/Intent.html) APIs与[ActionProvider](https://developer.android.com/reference/android/view/ActionProvider.html)对象来发送与接受content。

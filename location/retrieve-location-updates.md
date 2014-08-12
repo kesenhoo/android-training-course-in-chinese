@@ -1,8 +1,7 @@
-> 编写:[penkzhou](https://github.com/penkzhou)
-
-> 校对:
-
 # 获取位置更新
+
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+
 如果你的应用需要导航或者记录路径，你可能会周期性地去获取用户的位置信息。此时你可以使用Location Services 里面的 [LocationClient.getLastLocation()](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation())来进行周期性的位置信息更新。使用这个方法之后，Location Services 会基于当前可用的位置信息提供源（比如WiFi和GPS）返回最准确的位置信息更新。
 
 你可以使用一个location client从 Location Services 那里请求周期性的位置更新。根据不同请求的形式，Location Services 要么调用一个回调函数并传入一个 [Location](http://developer.android.com/reference/android/location/Location.html) 对象，或者发送一个包含位置信息的 [Intent](http://developer.android.com/reference/android/content/Intent.html) 。位置更新的精度和频率与你的应用所申请的权限相关联。

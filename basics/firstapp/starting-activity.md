@@ -1,6 +1,6 @@
-> 编写: [yuanfentiank789](https://github.com/yuanfentiank789) - 原文: <http://developer.android.com/training/basics/firstapp/starting-activity.html>
-
 # 启动其他Activity
+
+> 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
 在完成上一课(建立简单的用户界面)后，你已经拥有了显示一个activity（唯一屏幕）的app（应用），并且这个activity包含了一个文本字段和一个按钮。
 在这节课中，你将会添加一些新的代码到MainActivity中，当用户点击发送(Send)按钮时启动一个新的activity。

@@ -1,8 +1,6 @@
-> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
-
-> 原文:
-
 # 使用WiFi P2P发现服务
+
+> 编写:[naizhengtan](https://github.com/naizhengtan) - 原文:
 
 在本章第一节“[使得网络服务可发现](nsd.html)”中介绍了如何在局域网中发现并连接到其他设备的服务上。
 然而，即使在不接入网络的环境中，Wi-Fi P2P的发现服务也可以使你的应用直接连接到附近的设备。

@@ -1,8 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985)，校对:
-
-> 原文:<http://developer.android.com/training/notify-user/index.html>
-
 # 通知提示用户
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/index.html>
 
 * Notification是一种在你APP常规UI外展示、用来指示某个事件发生的用户交互元素。用户可以在使用其它apps时查看notification，并在方便的时候做出回应。
 

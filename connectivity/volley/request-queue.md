@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/volley/request-queue.html>
-
 # 建立请求队列(Setting Up a RequestQueue)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/request-queue.html>
 
 前一节课演示了如何使用`Volley.newRequestQueue`这一简便的方法来建立一个`RequestQueue`，这是利用了Volley默认的优势。这节课会介绍如何显式的建立一个RequestQueue，以便满足你自定义的需求。
 

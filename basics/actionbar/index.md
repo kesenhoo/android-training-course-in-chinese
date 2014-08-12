@@ -1,6 +1,6 @@
 # 添加Action Bar
 
-> 编写: [Vincent 4J](http://github.com/vincent4j) - 原文: <http://developer.android.com/training/basics/actionbar/index.html>
+> 编写:[Vincent 4J](http://github.com/vincent4j) - 原文:<http://developer.android.com/training/basics/actionbar/index.html>
 
 Action Bar是你可以为activity实现的最重要的设计元素之一。它提供了多种 UI 特性，可以让你的 app 和其他 Android app 保持较多的一致性，为用户所熟悉。核心的功能包括：
 - 一个专门的空间用来显示你的app的标识，并且还可以指出目前所处在app的哪个页面。

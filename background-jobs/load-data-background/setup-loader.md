@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
-
-> 校对:
-
 # 使用CursorLoader执行查询任务
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 CursorLoader依靠ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行的时候可以与用户继续其他的交互。
 

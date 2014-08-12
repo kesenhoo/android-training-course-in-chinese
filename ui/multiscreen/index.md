@@ -1,8 +1,6 @@
-> 编写:[riverfeng](https://github.com/riverfeng)
-
-> 校对:
-
 # 为多屏幕设计
+
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
 
 从小屏手机到大屏电视，android拥有数百种不同屏幕尺寸的设备，因此，设计兼容不同屏幕尺寸的应用程序满足不同的用户体验就变得非常重要。
 

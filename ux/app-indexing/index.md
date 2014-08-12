@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/app-indexing/index.html>
-
 # 使得你的App内容可被Google搜索
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/app-indexing/index.html>
 
 随着移动app变得越来越普遍，用户不仅仅从网站上查找相关信息，也在他们安装的app上查找。你可以使Google能够抓取你的app内容，当内容与你自己的网页一致时，Google搜索的结果会将你的app作为目标展示给用户。
 

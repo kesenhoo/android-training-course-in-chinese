@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/volley/index.html>
-
 # 使用Volley传输网络数据(Transmitting Network Data Using Volley)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/index.html>
 
 `Volley` 是一个HTTP库，它能够帮助Android apps更方便的执行网络操作，最重要的是，它更快速高效。可以通过开源的 [AOSP](https://android.googlesource.com/platform/frameworks/volley) 仓库获取到Volley 。
 
@@ -49,7 +47,7 @@ Volley框架的核心代码是托管在AOSP仓库的`frameworks/volley`中，相
 
 * [**生成一个标准的请求(Making a Standard Request)**](request.html)
 
-学习如何使用Volley的out-of-the-box的请求类型(raw strings, images, and JSON)来发送一个请求。
+学习如何使用Volley的out-of-the-box（可直接使用、无需配置）的请求类型(raw strings, images, and JSON)来发送一个请求。
 
 * [**实现自定义的请求(Implementing a Custom Request)**](request-custom.html)
 

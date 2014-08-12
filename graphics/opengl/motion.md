@@ -1,8 +1,6 @@
-> 编写:[jdneo](https://github.com/jdneo)，校对:
-
-> 原文:<http://developer.android.com/training/graphics/opengl/motion.html>
-
 # 添加移动
+
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/motion.html>
 
 在屏幕上绘制图形是OpenGL的一个基本特性，但你也可以通过其它的Android图形框架类做这些事情，包括[Canvas](http://developer.android.com/reference/android/graphics/Canvas.html)和[Drawable](http://developer.android.com/reference/android/graphics/drawable/Drawable.html)对象。OpenGL ES提供额外的功能，能够在三维空间对绘制图形进行移动和变换操作，或者还可以通过其它独有的方法创建出引人入胜的用户体验。
 

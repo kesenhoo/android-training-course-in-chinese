@@ -1,8 +1,6 @@
-> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
-
-> 原文:
-
 # 使用WiFi建立P2P连接
+
+> 编写:[naizhengtan](https://github.com/naizhengtan) - 原文:
 
 Android提供的Wi-Fi端对端（P2P）技术允许应用程序无需连接到网络和热点的情况下连接到附近的设备。（Android Wi-Fi P2P框架遵循[Wi-Fi Direct™](http://www.wi-fi.org/discover-and-learn/wi-fi-direct) 证书程序）
 Wi-Fi P2P技术使得应用程序可以快速发现附近的设备并与之交互。

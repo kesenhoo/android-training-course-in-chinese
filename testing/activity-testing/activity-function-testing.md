@@ -1,8 +1,6 @@
-> 编写:[huanglizhuo](https://github.com/huanglizhuo)
-
-> 校对:
-
 # 创建功能测试
+
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
 
 功能测试包括验证单个应用组件是否与使用者期望的那样(与其它组件)协同工作。比如,你可以创建一个功能测试验证在用户执行UI交互时[Activity](http://developer.android.com/reference/android/app/Activity.html)是否正确启动目标[Activity](http://developer.android.com/reference/android/app/Activity.html)。
 
@@ -23,10 +21,10 @@
 ```xml
 @MediumTest
 public void testSendMessageToReceiverActivity() {
-    final Button sendToReceiverButton = (Button) 
+    final Button sendToReceiverButton = (Button)
             mSenderActivity.findViewById(R.id.send_message_button);
 
-    final EditText senderMessageEditText = (EditText) 
+    final EditText senderMessageEditText = (EditText)
             mSenderActivity.findViewById(R.id.message_input_edit_text);
 
     // Set up an ActivityMonitor
@@ -74,7 +72,7 @@ ActivityMonitor receiverActivityMonitor =
 
 // Validate that ReceiverActivity is started
 TouchUtils.clickView(this, sendToReceiverButton);
-ReceiverActivity receiverActivity = (ReceiverActivity) 
+ReceiverActivity receiverActivity = (ReceiverActivity)
         receiverActivityMonitor.waitForActivityWithTimeout(TIMEOUT_IN_MS);
 assertNotNull("ReceiverActivity is null", receiverActivity);
 assertEquals("Monitor for ReceiverActivity has not been called",

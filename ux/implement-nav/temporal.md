@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/implementing-navigation/temporal.html>
-
 # 提供向后的导航
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/temporal.html>
 
 向后导航(Back navigation)是用户根据屏幕历史记录返回之前所查看的界面。所有Android设备都可以为这种导航提供后退按钮，所以**你的app不需要在UI中添加后退按钮**。
 

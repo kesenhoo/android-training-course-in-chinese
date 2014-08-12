@@ -1,9 +1,6 @@
-> 编写：[pedant](https://github.com/pedant)，校对：
-
-> 原文：[http://developer.android.com/training/articles/perf-jni.html](http://developer.android.com/training/articles/perf-jni.html)
-
-
 # JNI Tips
+
+> 编写:[pedant](https://github.com/pedant) - 原文:<http://developer.android.com/training/articles/perf-jni.html>
 
 JNI全称Java Native Interface。它为托管代码（使用Java编程语言编写）与本地代码（使用C/C++编写）提供了一种交互方式。它是<font color='red'>与厂商无关的（vendor-neutral）</font>,支持从动态共享库中加载代码，虽然这样会稍显麻烦，但有时这是相当有效的。
 

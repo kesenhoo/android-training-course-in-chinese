@@ -1,8 +1,7 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/efficient-downloads/efficient-network-access.html>
-
 # Optimizing Downloads for Efficient Network Access(用有效的网络访问来最优化下载)
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/efficient-network-access.html>
+
 也许使用无线电波(wireless radio)进行传输数据会是我们app最耗电的操作之一。所以为了最小化网络连接的电量消耗，懂得连接模式(connectivity model)会如何影响底层的音频硬件设备是至关重要的。
 这节课介绍了无线电波状态机(wireless radio state machine)，并解释了app的connectivity model是如何与状态机进行交互的。然后会提出建议的方法来最小化我们的数据连接，使用预取(prefetching)与捆绑(bundle)的方式进行数据的传输，这些操作都是为了最小化电量的消耗。
 

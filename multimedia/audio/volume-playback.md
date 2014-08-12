@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/managing-audio/volume-playback.html>
-
 # 控制音量与音频播放
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/managing-audio/volume-playback.html>
 
 一个好的用户体验是可预期可控的。如果App是在播放音频，那么显然我们需要做到能够通过硬件按钮，软件按钮，蓝牙耳麦等来控制音量。
 同样的，我们需要能够进行play, stop, pause, skip, and previous等动作，并且进行对应的响应。

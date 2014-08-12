@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)
+# Android交互与界面设计
 
-> 校对:
-
-# 交互与界面
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
 These classes focus on the best Android user experience for your app. In some cases, the success of your app on Android is heavily affected by whether your app conforms to the user's expectations for UI and navigation on an Android device. Follow these recommendations to ensure that your app looks and behaves in a way that satisfies Android users.
 

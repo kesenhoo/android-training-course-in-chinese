@@ -1,8 +1,6 @@
-> 编写:[riverfeng](https://github.com/riverfeng)
-
-> 校对:
-
 # 实现可适应的UI流程
+
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
 
 在你应用已经可以显示UI的基础上，UI的流程可能会不一样。比如，当你的应用在有两个方框的模式中，点击左边方框的item时，内容显示在右边方框中。如果是在只有一个方框的模式中，当你点击某个item的时候，内容则显示在一个新的activity中。
 

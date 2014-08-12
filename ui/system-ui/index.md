@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/index.html>
-
 # 管理系统UI
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/index.html>
 
 系统Bar是用来展示通知、表现设备状态和完成设备导航的屏幕区域。通常上来说，系统Bar包括状态栏和导航栏，他们一般都是与程序同时显示在屏幕上的。而照片、视频等这类沉浸式的应用可以临时弱化系统Bar图标来创造一个更加专注的体验环境，甚至可以完全隐藏系统Bar。
 
