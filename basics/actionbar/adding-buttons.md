@@ -30,9 +30,9 @@ res/menu/main_activity_actions.xml
 
 上述声明是这样的，当 action bar 有可用空间时，检索操作将作为一个操作按钮来显示，但设置操作将一直只在 action overflow 中显示。（默认情况下，所有的操作都显示在 action overflow 中，但为每一个操作指明设计意图是很好的做法。）
 
-icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的名字。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string resource`，详情请参见 [创建一个简单的 UI](firstapp/building-ui.html) 。
+icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的名字。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string resource`，详情请参见 [创建一个简单的 UI](../firstapp/building-ui.html) 。
 
->注释：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](supporting-devices/screens.html) 课程中将会更详细地讨论。
+> **Note**：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](../supporting-devices/screens.html) 课程中将会更详细地讨论。
 
 如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
 
@@ -51,7 +51,7 @@ res/menu/main_activity_actions.xml
 
 ## 为 Action Bar 添加操作
 
-为 action bar 布局菜单条目，是通过在 activity 中实现 [onCreateOptionsMenu()](https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)) 回调方法来 `inflate` 菜单资源从而获取 [Menu](https://developer.android.com/reference/android/view/Menu.html) 对象。例如：
+为 action bar 布局菜单条目，是通过在 activity 中实现 <a href="https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a> 回调方法来 `inflate` 菜单资源从而获取 [Menu](https://developer.android.com/reference/android/view/Menu.html) 对象。例如：
 
 ```java
 @Override
@@ -65,7 +65,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 ## 为操作按钮添加响应事件
 
-当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中 [ onOptionsItemSelected()](https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)) 回调方法。在该方法的实现里面调用 [getItemId()](https://developer.android.com/reference/android/view/MenuItem.html#getItemId()) 获取 [MenuItem](https://developer.android.com/reference/android/view/MenuItem.html) 来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
+当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用[MenuItem](https://developer.android.com/reference/android/view/MenuItem.html)的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
 
 ```java
 @Override
@@ -116,7 +116,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 </application>
 ```
 
-然后，通过调用 [setDisplayHomeAsUpEnabled()](https://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled(boolean)) 来把 app icon 设置成可用的向上按钮：
+然后，通过调用<a href="https://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled(boolean)">setDisplayHomeAsUpEnabled()</a> 来把 app icon 设置成可用的向上按钮：
 
 ```java
 @Override
@@ -132,5 +132,5 @@ public void onCreate(Bundle savedInstanceState) {
 
 由于系统已经知道 `MainActivity` 是 `DisplayMessageActivity` 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。
 
-更多关于向上导航的信息，请见 [提供向上导航](ux/implementing-navigation/ancestral.html)。
+更多关于向上导航的信息，请见 [提供向上导航](../../ux/implement-nav/ancestral.html)。
 

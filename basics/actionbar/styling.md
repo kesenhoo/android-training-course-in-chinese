@@ -6,7 +6,7 @@ Action bar 为用户提供一种熟悉可预测的方式来展示操作和导航
 
 Android 包括一少部分内置的 activity 主题，这些主题中包含 “暗” 或 “淡” 的 action bar 式样。你也可以扩展这些主题，以便于更好的为你的 action bar 自定义外观。
 
-> 注释：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） [Theme.AppCompat](https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat) 家族式样（甚至 [Theme.Holo](https://developer.android.com/reference/android/R.style.html#Theme_Holo) 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个式样属性都必须被声明两次：一次使用平台的式样属性（`android:` 属性），另一次使用 Support 库中的式样属性（`appcompat.R.attr` 属性 —— 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。
+> **Note**：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） [Theme.AppCompat](https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat) 家族式样（甚至 [Theme.Holo](https://developer.android.com/reference/android/R.style.html#Theme_Holo) 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个式样属性都必须被声明两次：一次使用平台的式样属性（[android:](http://developer.android.com/reference/android/R.attr.html) 属性），另一次使用 Support 库中的式样属性（[appcompat.R.attr](http://developer.android.com/reference/android/support/v7/appcompat/R.attr.html) 属性 —— 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。
 
 ## 使用一个 Android 主题
 
@@ -19,7 +19,7 @@ Android 包含两个基本的 activity 主题，这两个主题决定了 action 
 
 ![actionbar-theme-light-solid@2x.png](actionbar-theme-light-solid@2x.png)
 
-这些主题即可以被应用到 app 全局，又可以为单一的 activity 通过在 manifest 文件中设置 [application](https://developer.android.com/guide/topics/manifest/application-element.html) 元素 或 [activity](https://developer.android.com/guide/topics/manifest/application-element.html) 元素的 `android:theme` 属性。
+这些主题即可以被应用到 app 全局，又可以为单一的 activity 通过在 manifest 文件中设置 [`<application>`](https://developer.android.com/guide/topics/manifest/application-element.html) 元素 或 [`<activity>`](https://developer.android.com/guide/topics/manifest/application-element.html) 元素的 `android:theme` 属性。
 
 例如：
 ```xml
@@ -101,7 +101,9 @@ res/values/themes.xml
     </style>
 </resources>
 ```
+
 然后，将你的主题应该到你的 app 全局或单个的 activity 之中：
+
 ```xml
 <application android:theme="@style/CustomActionBarTheme" ... />
 ```
@@ -201,8 +203,9 @@ res/values/themes.xml
 ## 自定义 Tab Indicator
 
 为 activity 创建一个自定义主题，通过重写 [actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性来改变 [navigation tabs](https://developer.android.com/guide/topics/ui/actionbar.html#Tabs) 使用的指示器。[actionBarTabStyle](https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle) 属性指向另一个式样资源；在该式样资源里，通过指定一个状态列表 drawable 来重写 [background](https://developer.android.com/reference/android/R.attr.html#background) 属性。
+![](actionbar-theme-custom-tabs@2x.png)
 
-> 注释：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) 文档。
+> **Note**：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList) 文档。
 
 例如，这是一个状态列表 drawable，为一个 action bar tab 的多种不同状态分别指定背景图片：
 
