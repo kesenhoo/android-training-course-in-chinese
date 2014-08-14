@@ -16,12 +16,12 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 res/menu/main_activity_actions.xml
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <!-- 检索 应该以按钮显示 -->
+    <!-- Search, should appear as action button -->
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
           android:title="@string/action_search"
           android:showAsAction="ifRoom" />
-    <!-- 设置 应该放在action overflow -->
+    <!-- Settings, should always be in the overflow -->
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:showAsAction="never" />
@@ -40,7 +40,7 @@ res/menu/main_activity_actions.xml
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
-    <!-- 检索 应该以按钮显示 -->
+    <!-- Search, should appear as action button -->
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
           android:title="@string/action_search"
@@ -56,7 +56,7 @@ res/menu/main_activity_actions.xml
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
-    // 在action bar中填入菜单
+    // Inflate the menu items for use in the action bar
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.main_activity_actions, menu);
     return super.onCreateOptionsMenu(menu);
@@ -70,7 +70,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 ```java
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
-    // 处理 action bar 中被按下的条目
+    // Handle presses on the action bar items
     switch (item.getItemId()) {
         case R.id.action_search:
             openSearch();
@@ -98,12 +98,12 @@ public boolean onOptionsItemSelected(MenuItem item) {
 ```xml
 <application ... >
     ...
-    <!-- 主/home activity (它没有父activity) -->
+    <!-- The main/home activity (it has no parent activity) -->
     <activity
         android:name="com.example.myfirstapp.MainActivity" ...>
         ...
     </activity>
-    <!-- 主 activity 的子-->
+    <!-- A child of the main activity -->
     <activity
         android:name="com.example.myfirstapp.DisplayMessageActivity"
         android:label="@string/title_activity_display_message"
@@ -125,7 +125,7 @@ public void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_displaymessage);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    // 如果你的 minSdkVersion 是11或更高,使用:
+    // If your minSdkVersion is 11 or higher, instead use:
     // getActionBar().setDisplayHomeAsUpEnabled(true);
 }
 ```
