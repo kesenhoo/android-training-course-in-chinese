@@ -22,9 +22,9 @@
 添加相应的方法在`MainActivity`类中：
 
 ```java
-/* 当用户点击第二个按钮时调用 */
+/** Called when the user clicks the Send button */
 public void sendMessage(View view) {
-    // 做出响应的代码
+    // Do something in response to button
 }
 ```
 
@@ -92,7 +92,7 @@ public class MainActivity extends ActionBarActivity {
 包含新的代码，被Send(发送)按钮调用的完整`sendMessage()`方法现在就像这样：
 
 ```java
-/** 当用户点击第二个按钮时调用 */
+/** Called when the user clicks the Send button */
 public void sendMessage(View view) {
     Intent intent = new Intent(this, DisplayMessageActivity.class);
     EditText editText = (EditText) findViewById(R.id.edit_message);
@@ -158,9 +158,9 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // 处理 action bar item 的点击操作. action bar 会
-        // 自动处理在Home/Up上的点击, 
-        // 只要你在AndroidManifest.xml中指定了parent activity.
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -169,7 +169,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     }
 
     /**
-     *  包含一个简单的view的placeholder fragment
+     * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
 
@@ -251,16 +251,16 @@ String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // 从intent取出消息
+    // Get the message from the intent
     Intent intent = getIntent();
     String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-    // 创建 text view
+    // Create the text view
     TextView textView = new TextView(this);
     textView.setTextSize(40);
     textView.setText(message);
 
-    // 将text view 设为 activity layout
+    // Set the text view as the activity layout
     setContentView(textView);
 }
 ```
