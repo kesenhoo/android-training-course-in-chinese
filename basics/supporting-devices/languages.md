@@ -8,7 +8,7 @@
 
 ## 创建区域设置目录和字符串文件
 
-为了支持多国语言，在`res/`中创建一个额外的`values`目录以连字符和ISO国家代码结尾命名，比如`values-es/` 是包含简单的区域资源，语言代码为"es"的区域设置目录。Android会在运行时根据设备的区域设置，加载相应的资源。
+为了支持多国语言，在`res/`中创建一个额外的`values`目录以连字符和ISO国家代码结尾命名，比如`values-es/` 是包含简单的区域资源，语言代码为"es"的区域设置目录。Android会在运行时根据设备的区域设置，加载相应的资源。详见[Providing Alternative Resources](http://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources)。
 
 若你决定支持某种语言，则需要创建资源子目录和字符串资源文件，例如:
 
@@ -70,10 +70,10 @@ MyProject/
 例如:
 
 ```java
-// 从你的 app's 资源中获取一个字符串资源
+// Get a string resource from your app's Resources
 String hello = getResources().getString(R.string.hello_world);
 
-// 或者提供给一个需要字符串作为参数的方法
+// Or supply a string resource to a method that requires a string
 TextView textView = new TextView(this);
 textView.setText(R.string.hello_world);
 ```
