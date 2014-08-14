@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.1)
+# Google Android官方培训课程中文版(v0.2)
 
 ![Android Training](android_training.jpg)
 
@@ -15,6 +15,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 ### 版本信息：
 
 * v0.1 - 2014/08/05
+* v0.2 - 2014/08/14
 
 ### 在线阅读
 
