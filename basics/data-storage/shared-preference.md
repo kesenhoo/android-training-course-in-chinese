@@ -6,7 +6,7 @@
 这节课会演示如何使用 SharedPreferences APIs 来存储与检索简单的数据。
 **Note:** SharedPreferences APIs 仅仅提供了读写key-value对的功能，请不要与 Preference APIs相混淆。后者可以帮助你建立一个设置用户配置的页面（尽管它实际上是使用SharedPreferences 来实现保存用户配置的)。如果想了解更多关于Preference APIs的信息，请参考Settings 指南。
 
-## 获取SharedPreference(Get a Handle to a SharedPreferences)
+## 掌握SharedPreference(Get a Handle to a SharedPreferences)
 
 你可以通过下面两个方法之一来创建或者访问shared preference 文件:
 
