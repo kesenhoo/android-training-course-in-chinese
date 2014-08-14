@@ -39,7 +39,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 发起这个项目之后，得到很多人的支持，有经验丰富的Android开发者，也有刚接触Android的爱好者。他们有些已经上班，有些还是学生，有些在国内，还有的在国外！感谢所有参与或者关注这个项目的小伙伴!
 
-下面是参与翻译的小伙伴(Github ID按照课程结构排序)
+下面是参与翻译的小伙伴(Github ID按照课程结构排序)：
 
 * @[yuanfentiank789](https://github.com/yuanfentiank789)
 * @[vincent4j](https://github.com/vincent4j)
@@ -65,11 +65,9 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * @[pedant](https://github.com/pedant)
 * @[craftsmanBai](https://github.com/craftsmanBai)
 * @[huanglizhuo](https://github.com/huanglizhuo)
+* @发起人:[胡凯](<http://hukai.me>)，博客：<http://hukai.me>，Github：<https://github.com/kesenhoo>
 
-
-* 发起人:[胡凯](<http://hukai.me>)，博客：<http://hukai.me>，Github：<https://github.com/kesenhoo>
-  
-另外感谢[安卓巴士社区](http://www.apkbus.com)，[爱开发社区](http://akaifa.com)，[码农周刊](http://weekly.manong.io)对项目的宣传！
+还有众多参与纠错校正的同学名字就不一一列举了，谢谢所有关注这个项目的小伙伴！特别感谢[安卓巴士社区](http://www.apkbus.com)，[爱开发社区](http://akaifa.com)，[码农周刊](http://weekly.manong.io)对项目的宣传！
 
 ### License
 本站作品由<https://github.com/kesenhoo/android-training-course-in-chinese>创作，采用[知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可](http://creativecommons.org/licenses/by-nc-sa/4.0/)协议进行许可。
