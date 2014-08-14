@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>重新创建Activity | Google Android官方培训课程中文版(v0.1)</title>
+        <title>重新创建Activity | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4.4" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4.4" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_87">
+                    <section class="normal" id="section-gitbook_51">
                     
                         <h1 id="activity">重新创建Activity</h1>
 <blockquote>
@@ -5081,8 +5081,8 @@
 </blockquote>
 <ul>
 <li>有几个场景中,Activity是由于正常的程序行为而被Destory的，例如当用户点击返回按钮或者是你的Activity通过调用finish()来发出停止信号。系统也有可能会在你的Activity处于stop状态且长时间不被使用，或者是在前台activity需要更多系统资源的时候把关闭后台进程，这样来获取更多的内存。</li>
-<li>当你的Activity是因为用户点击Back按钮或者是activity通过调用finish()结束自己时，系统就丢失了Activity实例这个概念，因为前面的行为意味着不再需要这个activity了。然而，如果因为系统资源紧张而导致Activity的Destory, 系统会在用户回到这个Activity时有这个Activity存在过的记录，系统会使用那些保存的记录数据（描述了当Activity被Destory时的状态）来重新创建一个新的Account实例。那些被系统用来恢复之前状态而保存的数据被叫做 &quot;instance state&quot; ，它是一些存放在 Bundle 对象中的key-value pairs.</li>
-<li><strong>Caution:</strong>你的Activity会在每次旋转屏幕时被destroyed与recreated。当屏幕改变方向时，系统会Destory与Recreate前台的activity，因为屏幕配置被改变，你的Activity可能需要加载一些alternative的资源(例如layout).</li>
+<li>当你的Activity是因为用户点击Back按钮或者是activity通过调用finish()结束自己时，系统就丢失了Activity实例这个概念，因为前面的行为意味着不再需要这个activity了。然而，如果因为系统资源紧张而导致Activity的Destory, 系统会在用户回到这个Activity时有这个Activity存在过的记录，系统会使用那些保存的记录数据（描述了当Activity被Destory时的状态）来重新创建一个新的Account实例。那些被系统用来恢复之前状态而保存的数据被叫做 &quot;instance state&quot; ，它是一些存放在 Bundle 对象中的键值对.</li>
+<li><strong>Caution:</strong>你的Activity会在每次旋转屏幕时被destroyed与recreated。当屏幕改变方向时，系统会Destory与Recreate前台的activity，因为屏幕配置被改变，你的Activity可能需要加载一些备选的资源(例如layout).</li>
 </ul>
 <!-- more -->
 <ul>

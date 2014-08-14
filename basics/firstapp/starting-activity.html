@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>启动其他Activity | Google Android官方培训课程中文版(v0.1)</title>
+        <title>启动其他Activity | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.4" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.4" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,30 +5073,30 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_98">
+                    <section class="normal" id="section-gitbook_62">
                     
                         <h1 id="activity">启动其他Activity</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/yuanfentiank789" target="_blank">yuanfentiank789</a> - 原文:<a href="http://developer.android.com/training/basics/firstapp/starting-activity.html" target="_blank">http://developer.android.com/training/basics/firstapp/starting-activity.html</a></p>
 </blockquote>
 <p>在完成上一课(建立简单的用户界面)后，你已经拥有了显示一个activity（唯一屏幕）的app（应用），并且这个activity包含了一个文本字段和一个按钮。
-在这节课中，你将会添加一些新的代码到MainActivity中，当用户点击发送(Send)按钮时启动一个新的activity。</p>
+在这节课中，你将会添加一些新的代码到<code>MainActivity</code>中，当用户点击发送(Send)按钮时启动一个新的activity。</p>
 <h2 id="send">响应Send(发送)按钮</h2>
-<p>响应按钮的on-click(点击)事件，打开fragment_main.xml布局文件然后在<a href="http://developer.android.com/reference/android/widget/Button.html" target="_blank">Button</a>(按钮)元素中添加android:onclick属性:</p>
-<pre><code class="lang-java">&lt;Button
-    android:layout_width=<span class="hljs-string">"wrap_content"</span>
-    android:layout_height=<span class="hljs-string">"wrap_content"</span>
-    android:text=<span class="hljs-string">"@string/button_send"</span>
-    android:onClick=<span class="hljs-string">"sendMessage"</span> /&gt;
+<p>响应按钮的on-click(点击)事件，打开<code>fragment_main.xml</code>布局文件然后在<a href="http://developer.android.com/reference/android/widget/Button.html" target="_blank">Button</a>(按钮)元素中添加<a href="http://developer.android.com/reference/android/view/View.html#attr_android:onClick" target="_blank">android:onclick</a>属性:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">Button
+</span>    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/button_send"</span>
+    <span class="hljs-attribute">android:onClick</span>=<span class="hljs-value">"sendMessage"</span> /&gt;</span>
 </code></pre>
-<p><code>android:onclick</code>属性的值：sendMessage就是当用户点击你屏幕按钮时触发方法的名字。</p>
-<p>添加相应的方法在MainActivity 类中：</p>
+<p><code>android:onclick</code>属性的值<code>&quot;sendMessage&quot;</code>就是当用户点击你屏幕按钮时触发方法的名字。</p>
+<p>添加相应的方法在<code>MainActivity</code>类中：</p>
 <pre><code class="lang-java"><span class="hljs-javadoc">/** Called when the user clicks the Send button */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span>(View view) {
     <span class="hljs-comment">// Do something in response to button</span>
 }
 </code></pre>
-<p>请注意，为了让系统能够将这个方法（你刚在MyFirstActivity中添加的sendMessage方法）与在android:onClick属性中提供的方法名字匹配，它们的名字必须一致，特别是，这个方法必须满足以下条件：</p>
+<p>请注意，为了让系统能够将这个方法（你刚在MyFirstActivity中添加的sendMessage方法）与在<code>android:onClick</code>属性中提供的方法名字匹配，它们的名字必须一致，特别是，这个方法必须满足以下条件：</p>
 <ul>
 <li>公共的</li>
 <li>没有返回值</li>
@@ -5104,27 +5104,46 @@
 </ul>
 <p>接下来，你可以在这个方法中编写读取文本内容的代码，并将该内容传到另一个Activity。</p>
 <h2 id="intent">构建一个Intent</h2>
-<p><a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>是在不同组件中提供运行时连接的对象(比如两个Activity)。Intent代表一个应用&quot;想去做什么事&quot;，你可以用它做各种各样的任务，不过大部分的时候他们被用来启动另一个Activity。在sendMessage()方法中创建一个Intent并启动名为DisplayMessageActivity的Activity：</p>
+<p><a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>是在不同组件中提供运行时连接的对象(比如两个Activity)。<code>Intent</code>代表一个应用&quot;想去做什么事&quot;，你可以用它做各种各样的任务，不过大部分的时候他们被用来启动另一个Activity。</p>
+<p>在<code>sendMessage()</code>方法中创建一个<code>Intent</code>并启动名为<code>DisplayMessageActivity</code>的Activity：</p>
 <pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, DisplayMessageActivity.class);
 </code></pre>
-<p><strong>Note:</strong>在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )</p>
-<p>在这个Intent构造函数中有两个参数： 第一个参数是Context(之所有可以用this是因为当前Activity(MyFirstActivity)是Context的子类) 系统需要传递Intent的应用组件的class对象（在这个案例中，这个activity应该被启动）</p>
-<p><strong>注意</strong>：如果你正在使用的是类似Eclipse的IDE，这里对DisplayMessageActivity的引用会报错，因为这个类还不存在；注意这个错误，你很快就要去创建这个类了。</p>
-<p>一个Intent(意图)不仅允许你启动另一个Activity，同时也可以传递一个数据包到另一个Activity，在sendMessage()方法里用<a href="http://developer.android.com/reference/android/app/Activity.html#findViewById(int" target="_blank">findViewById()</a>)方法得到EditText元素，然后将它的文本信息添加到Intent(意图):</p>
+<p>在这之前你需要导入Intent类:</p>
+<pre><code class="lang-java"><span class="hljs-keyword">import</span> android.content.Intent;
+</code></pre>
+<blockquote>
+<p><strong>Tip:</strong>在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )</p>
+</blockquote>
+<p>在这个Intent构造函数中有两个参数：</p>
+<ul>
+<li><p>第一个参数是<a href="http://developer.android.com/reference/android/content/Context.html" target="_blank">Context</a>(之所有可以用<code>this</code>是因为当前<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>(MyFirstActivity)是<code>Context</code>的子类)</p>
+</li>
+<li><p>系统需要传递<code>Intent</code>的应用组件的<a href="http://developer.android.com/reference/java/lang/Class.html" target="_blank">class</a>对象（在这个案例中，为应该被启动的activity）。</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>：如果你正在使用的是类似Eclipse的IDE，这里对<code>DisplayMessageActivity</code>的引用会报错，因为这个类还不存在；暂时先忽略这个错误，你很快就要去创建这个类了。</p>
+</blockquote>
+<p>一个Intent(意图)不仅允许你启动另一个Activity，同时也可以传递一个数据包到另一个Activity，在<code>sendMessage()</code>方法里用<a href="http://developer.android.com/reference/android/app/Activity.html#findViewById(int)">findViewById()</a>方法得到<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>元素，然后将它的文本信息添加到Intent(意图):</p>
 <pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, DisplayMessageActivity.class);
 EditText editText = (EditText) findViewById(R.id.edit_message);
 String message = editText.getText().toString();
 intent.putExtra(EXTRA_MESSAGE, message);
 </code></pre>
-<p>Intent 可以携带各种数据类型的集合来作为key-value附加对。 putExtra() 方法把键名作为第一个参数，把值作为第二个参数。 为了接下来的活动能够查询额外数据，应该用公共常量为意图额外定义键。所以把EXTRA_MESSAGE定义添加到MainActivity类：</p>
+<blockquote>
+<p><strong>Note:</strong>你需要导入<code>android.widget.EditText</code>类，再定义<code>EXTRA_MESSAGE</code>的值。</p>
+</blockquote>
+<p><code>Intent</code>可以携带各种数据类型的集合的key-value附加对，称作extras。 <a href="http://developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, android.os.Bundle)">putExtra()</a>方法把键名作为第一个参数，把值作为第二个参数。</p>
+<p>为了让下一个activity能够查询额外数据(extra data)，应该用公共常量为<code>Intent</code>定义键。所以把<code>EXTRA_MESSAGE</code>定义添加到<code>MainActivity</code>类：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> {</span>
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> String EXTRA_MESSAGE = <span class="hljs-string">"com.example.myfirstapp.MESSAGE"</span>;
     ...
 }
 </code></pre>
-<p>通常使用应用程序包名作为前缀来定义意图键是很好的做法。如果应用程序与其他应用程序进行交互就可以确保意图键唯一。</p>
+<p>通常使用应用程序包名作为前缀来定义意图键是很好的做法。在应用程序与其他应用程序进行交互时仍可以确保意图键唯一。</p>
 <h2 id="activity">启动第二个Activity</h2>
-<p>启动一个Activity，你只需要调用startActivity()方法然后传入你的Intent(意图)系统接收到你的请求后会实例化在Intent中指定的Activity,包含这个方法拥有的，被Send(发送)按钮调用的完整sendMessage()方法现在就像这样：</p>
+<p>启动一个Activity，你只需要调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>方法然后传入你的<code>Intent</code>(意图)，系统接收到你的请求后会实例化在<code>Intent</code>中指定的<code>Activity</code>。</p>
+<p>包含新的代码，被Send(发送)按钮调用的完整<code>sendMessage()</code>方法现在就像这样：</p>
 <pre><code class="lang-java"><span class="hljs-javadoc">/** Called when the user clicks the Send button */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendMessage</span>(View view) {
     Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, DisplayMessageActivity.class);
@@ -5134,15 +5153,15 @@ intent.putExtra(EXTRA_MESSAGE, message);
     startActivity(intent);
 }
 </code></pre>
-<p>现在你需要去创建一个DisplayMessageActivity支持程序能够执行起来</p>
+<p>现在你需要去创建一个<code>DisplayMessageActivity</code>类使程序能够执行起来。</p>
 <h2 id="activity">创建第二个Activity</h2>
 <p>使用Eclipse创建新的Activity：</p>
 <ol>
-<li><p>在工具栏点击<strong>新建</strong>。</p>
+<li><p>在工具栏点击<strong>新建</strong><img src="eclipse-new.png" /></p>
 </li>
-<li><p>在弹出窗口打开安卓文件夹，选择安卓活动然后点击<strong>下一步</strong>。</p>
+<li><p>在弹出窗口打开<strong>Android</strong>文件夹，选择<strong>Android Activity</strong>然后点击<strong>Next</strong>。</p>
 </li>
-<li><p>选择<strong>BlankActivity</strong>，然后点击<strong>下一步</strong></p>
+<li><p>选择<strong>BlankActivity</strong>(或<strong>Blank Activity with Fragment</strong>)，然后点击<strong>Next</strong></p>
 </li>
 <li><p>填写Activity详细信息：</p>
 <ul>
@@ -5157,16 +5176,20 @@ intent.putExtra(EXTRA_MESSAGE, message);
 </li>
 </ol>
 <p>单击<strong>Finish</strong>。</p>
-<p>如果使用的是不同的IDE或者命令行工具，需要在项目的 src/目录创建一个名为DisplayMessageActivity.java，与MainActivity.java同目录的文件。</p>
-<p>打开DisplayMessageActivity.java 文件，如果该文件用Eclipse创建，那么:</p>
+<p><img src="adt-new-activity.png" alt="adt-new-activity"></p>
+<p>如果使用的是不同的IDE或者命令行工具，需要在项目的 <code>src/</code>目录创建一个名为<code>DisplayMessageActivity.java</code>，与<code>MainActivity.java</code>同目录的文件。</p>
+<p>打开<code>DisplayMessageActivity.java</code>文件，如果该文件用Eclipse创建，那么:</p>
 <ul>
-<li>此类已经包含了所需<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle" target="_blank">onCreate()</a>) 的默认实现，稍后需要更新此实现方法。</li>
-<li>另外还有一个<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu" target="_blank">onCreateOptionsMenu(</a>))实现方式，由于应用程序并不需要所以可以直接删除。</li>
-<li>还有 <a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem" target="_blank">onOptionsItemSelected(</a>))实现方式，它可以处理操作栏上拉操作。</li>
+<li>此类已经包含了所需<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()的默认实现，稍后需要更新此实现方法。</li>
+<li>另外还有一个<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a>实现方式，由于这个应用程序并不需要所以可以直接删除。</li>
+<li>还有<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>实现方式，它可以处理操作栏上拉操作，无需改动。</li>
+<li>还有一个继承<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>的<code>PlaceholderFragment</code> ，在本activity的最终版本中不需要此类。</li>
 </ul>
-<p>还有一个 PlaceholderFragment ，在本activity中不需要此类。</p>
-<p>Fragments把应用程序的功能和用户界面分解成可以复用的模块。想了解更Fragments信息，请参阅 <a href="http://developer.android.com/guide/components/fragments.html" target="_blank">Fragments API Guide</a>，此处暂不使用Fragment。</p>
-<p>DisplayMessageActivity 类现在应该是这样的：</p>
+<p>Fragments把应用程序的功能和用户界面分解成可以复用的模块。想了解更Fragments信息，请参阅 <a href="http://developer.android.com/guide/components/fragments.html" target="_blank">Fragments API Guide</a>，此activity的最终版本不使用Fragment。</p>
+<blockquote>
+<p><strong>Note</strong>:如果你用的不是最新版本的ADT插件，你的activity看起来会不一样，请确保安装了最新的版本来完成教程。</p>
+</blockquote>
+<p><code>DisplayMessageActivity</code>类现在应该是这样的：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DisplayMessageActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> {</span>
 
     <span class="hljs-annotation">@Override</span>
@@ -5209,39 +5232,47 @@ intent.putExtra(EXTRA_MESSAGE, message);
     }
 }
 </code></pre>
-<p>如果使用IDE而不是Eclipse,参照用上述代码来更新你的 DisplayMessageActivity。</p>
-<p>Activity所有子类都必须实现 onCreate()方法。创建活动新实例时系统会调用该方式，此时必须用 setContentView()来定义Activity布局，以对Activity进行初始化。</p>
-<h2 id="">添加标题字符串</h2>
-<p>如果你使用Eclipse开发，则可以跳过本部分，因为模板提供了新活动的标题字符串。如果你使用的IDE不是Eclipse，需要把新Activity的标题添加到strings.xml文件：</p>
-<pre><code class="lang-java">&lt;resources&gt;
+<p>如果使用IDE不是Eclipse,参照用上述代码来更新你的<code>DisplayMessageActivity</code>。</p>
+<p>Activity所有子类都必须实现<code>onCreate()</code>方法。创建activity的实例时系统会调用该方式，此时必须用 <a href="http://developer.android.com/reference/android/app/Activity.html#setContentView(android.view.View)">setContentView()</a>来定义Activity布局，以对Activity进行初始化。</p>
+<blockquote>
+<p><strong>Note</strong>:如果你使用的IDE不是Eclipse，你的工程中可能不会包含由<code>setContentView()</code>请求的<code>activity_display_message</code> layout，但这没关系，因为等下会修改这个方法。</p>
+</blockquote>
+<h3 id="">添加标题字符串</h3>
+<p>如果你使用Eclipse开发，则可以跳过本部分，因为模板提供了新activity的标题字符串。如果你使用的IDE不是Eclipse，需要把新Activity的标题添加到strings.xml文件：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
     ...
-    &lt;string name="title_activity_display_message"&gt;My Message&lt;/string&gt;
-&lt;/resources&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title_activity_display_message"</span>&gt;</span>My Message<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
-<h2 id="activitymanifest">将Activity加入manifest(清单)文件</h2>
-<p>所有Activity必须使用 <code>activity</code>元素在AndroidManifest.xml清单文件声明，如果使用Eclipse创建Activity，则会自动在AndroidManifest.xml配置好对应<code>activity</code>元素，其它IDE需要手动配置，最终结果应该看起来这样：</p>
-<pre><code class="lang-java">&lt;application ... &gt;
+<h3 id="activitymanifest">将Activity加入manifest(清单)文件</h3>
+<p>所有Activity必须使用 <a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>元素在<code>AndroidManifest.xml</code>清单文件声明。</p>
+<p>如果使用Eclipse创建Activity，则会自动在AndroidManifest.xml配置好对应<code>activity</code>元素，其它IDE需要手动配置，最终结果应该看起来这样：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
     ...
-    &lt;activity
-        android:name="com.example.myfirstapp.DisplayMessageActivity"
-        android:label="@string/title_activity_display_message"
-        android:parentActivityName="com.example.myfirstapp.MainActivity" &gt;
-        &lt;meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.myfirstapp.MainActivity" /&gt;
-    &lt;/activity&gt;
-&lt;/application&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.myfirstapp.DisplayMessageActivity"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/title_activity_display_message"</span>
+        <span class="hljs-attribute">android:parentActivityName</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> &gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta-data
+</span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.support.PARENT_ACTIVITY"</span>
+            <span class="hljs-attribute">android:value</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 </code></pre>
-<p><code>android:parentActivityName</code>属性声明了在应用程序中该Activity逻辑层面的父类Activity的名称。 系统使用此值来实现默认导航操作，比如在安卓4.1（API级别16）或者更高版本。 使用Support Library，如上所示的<code>meta-data</code>元素可以为安卓旧版本提供相同功能。</p>
+<p><code>android:parentActivityName</code>属性声明了在应用程序中该Activity逻辑层面的父类Activity的名称。 系统使用此值来实现默认导航操作，比如在Android 4.1（API level 16）或者更高版本中的<a href="http://developer.android.com/design/patterns/navigation.html" target="_blank">Up navigation</a>。 使用<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">Support Library</a>，如上所示的<a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html" target="_blank"><code>&lt;meta-data&gt;</code></a>元素可以为安卓旧版本提供相同功能。</p>
+<blockquote>
+<p><strong>Note</strong>:你的Android SDK应该已经包含了最新的Android Support Library，它包含在ADT插件中。但如果你用的是别的IDE你就需要在<a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank"> Adding Platforms and Packages </a>中安装。当在Eclipse中使用模板时，Support Library会自动加入你的工程中(在Android Dependencies中你可以看到相应的JAR文件)。如果不使用Eclipse，你就需要手动将Support Library添加到你的工程中，参考<a href="http://developer.android.com/tools/support-library/setup.html" target="_blank">setting up the Support Library</a>。</p>
+</blockquote>
 <p>如果正在使用Eclipse开发,现在可以运行应用程序了。 点击发送按钮启动第二个Activity，但它采用的是模板提供的&quot;Hello world&quot;布局，稍后你可以自己更新该布局。因此使用其它IDE也不用担心，因为应用程序尚未编译。</p>
 <h2 id="intent">获取Intent</h2>
-<p>每一个被Intent调用的Activity，不管用户将它导航到哪，你都可以在启动的Activity中通过getIntent()方法得到Intent以及Intent包含的数据。在DisplayMessageActivity类的onCreate()方法中，得到intent以及MyFirstActivity提供的附加信息：</p>
+<p>不管用户导航到哪，每一个<code>Activity</code>是被<code>Intent</code>调用，你都可以在启动的<code>Activity</code>中通过<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>方法得到<code>Intent</code>以及<code>Intent</code>包含的数据。</p>
+<p>在<code>DisplayMessageActivity</code>类的<code>onCreate()</code>方法中，得到<code>intent</code>以及<code>MyFirstActivity</code>提供的附加信息：</p>
 <pre><code class="lang-java">Intent intent = getIntent();
 String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 </code></pre>
 <h2 id="">显示信息</h2>
-<p>在屏幕上显示信息，创建一个TextView部件，并且使用setText()设置它的值，然后通过setContentView()方法将TextView作为root(根)视图添加到Activity的布局。</p>
-<p>DisplayMessageActivity完整的onCreate()方法现在看起来如下：</p>
+<p>要在屏幕上显示信息，创建一个<a href="http://developer.android.com/reference/android/widget/TextView.html" target="_blank">TextView</a>部件，并且使用<a href="http://developer.android.com/reference/android/widget/TextView.html#setText(char[], int, int)">setText()</a>设置它的值，然后通过<code>setContentView()</code>方法将<code>TextView</code>作为root(根)视图添加到Activity的布局。</p>
+<p><code>DisplayMessageActivity</code>完整的<code>onCreate()</code>方法现在看起来如下：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保存到文件 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>保存到文件 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.2" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.2" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_91">
+                    <section class="normal" id="section-gitbook_55">
                     
                         <h1 id="saving-to-files">保存到文件(Saving to Files)</h1>
 <blockquote>
@@ -5108,12 +5108,13 @@
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p><strong>Caution:</strong>目前，所有的apps都可以在不指定某个专门的权限下做<strong>读</strong>external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要<strong>读</strong>的权限(不是写), 那么你将需要声明 <a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a> 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。但是，如果你的程序有声明<strong>写</strong>的权限，那么就默认有了<strong>读</strong>的权限。</p>
+<p><strong>Caution:</strong>目前，所有的apps都可以在不指定某个专门的权限下做<strong>读</strong>external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要<strong>读</strong>的权限(不是写), 那么你将需要声明 <a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a> 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.READ_EXTERNAL_STORAGE"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
+<p>但是，如果你的程序有声明<strong>读</strong>的权限，那么就默认有了<strong>写</strong>的权限。</p>
 <p>对于internal storage，你不需要声明任何权限，因为你的程序默认就有读写程序目录下的文件的权限。</p>
 <h2 id="internal-storagesave-a-file-on-internal-storage">保存到Internal Storage(Save a File on Internal Storage)</h2>
 <p>当保存文件到internal storage时，你可以通过执行下面两个方法之一来获取合适的目录作为File的对象：</p>

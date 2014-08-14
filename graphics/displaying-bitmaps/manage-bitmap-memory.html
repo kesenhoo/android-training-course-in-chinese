@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>管理Bitmap的内存占用 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>管理Bitmap的内存占用 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.4" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="4.1.4" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_177">
+                    <section class="normal" id="section-gitbook_140">
                     
                         <h1 id="bitmap">管理Bitmap的内存占用</h1>
 <blockquote>
@@ -5144,7 +5144,7 @@
 }
 </code></pre>
 <h2 id="manage-memory-on-android-30-and-higher">Manage Memory on Android 3.0 and Higher</h2>
-<p>在Android 3.0 (API Level 11) 介绍了<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap" target="_blank">BitmapFactory.Options.inBitmap</a>. 如果这个值被设置了，decode方法会在加载内容的时候去reuse已经存在的bitmap. 这意味着bitmap的内存是被reused的，这样可以提升性能, 并且减少了内存的allocation与de-allocation. 在使用inBitmap时有几个注意点(caveats):</p>
+<p>在Android 3.0 (API Level 11) 引进了<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap" target="_blank">BitmapFactory.Options.inBitmap</a>. 如果这个值被设置了，decode方法会在加载内容的时候去reuse已经存在的bitmap. 这意味着bitmap的内存是被reused的，这样可以提升性能, 并且减少了内存的allocation与de-allocation. 在使用inBitmap时有几个注意点(caveats):</p>
 <ul>
 <li>reused的bitmap必须和原数据内容大小一致, 并且是JPEG 或者 PNG 的格式 (或者是某个resource 与 stream).</li>
 <li>reused的bitmap的<a href="http://developer.android.com/reference/android/graphics/Bitmap.Config.html" target="_blank">configuration</a>值如果有设置，则会覆盖掉<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inPreferredConfig" target="_blank">inPreferredConfig</a>值.</li>

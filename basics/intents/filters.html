@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Intent过滤 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>Intent过滤 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.7.3" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.7.3" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,14 +5073,14 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_104">
+                    <section class="normal" id="section-gitbook_68">
                     
                         <h1 id="intent">Intent过滤</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/intents/filters.html" target="_blank">http://developer.android.com/training/basics/intents/filters.html</a></p>
 </blockquote>
 <p>前两节课主要讲了从你的app启动另外一个app。但是如果你的app可以响应前面发出的action，那么你的app应该做好响应的准备。例如，如果你创建了一个social app，它可以分享messages 或者 photos 给好友，那么最好你的app能够接收ACTION_SEND 的intent,这样当用户在其他app触发分享功能的时候，你的app能够出现在待选对话框。</p>
-<p>为了使得其他的app能够启动你的activity，你需要在你的manifest文件的<activity> 标签下添加<intent-filter> 的属性。</p>
+<p>为了使得其他的app能够启动你的activity，你需要在你的manifest文件的<code>&lt;activity&gt;</code>标签下添加<code>&lt;intent-filter&gt;</code>的属性。</p>
 <p>当你的app被安装到设备上时，系统可以识别你的intent filter并把这些信息记录下来。当其他app通过执行 startActivity() 或者 startActivityForResult()方法，并使用implicit intent时，系统可以自动查找出那些可以响应这个intent的activity。</p>
 <!-- more -->
 <h2 id="add-an-intent-filterintent-filter">Add an Intent Filter(添加Intent Filter)</h2>

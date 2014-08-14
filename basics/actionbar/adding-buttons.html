@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>添加Action按钮 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>添加Action按钮 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.2" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.2" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_80">
+                    <section class="normal" id="section-gitbook_44">
                     
                         <h1 id="-action-">添加 Action 按钮</h1>
 <blockquote>
@@ -5099,9 +5099,9 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">menu</span>&gt;</span>
 </code></pre>
 <p>上述声明是这样的，当 action bar 有可用空间时，检索操作将作为一个操作按钮来显示，但设置操作将一直只在 action overflow 中显示。（默认情况下，所有的操作都显示在 action overflow 中，但为每一个操作指明设计意图是很好的做法。）</p>
-<p>icon 属性要求每张图片提供一个 <code>resource ID</code>。在 <code>@drawable/</code> 之后的名字必须是存储在项目目录 <code>res/drawable/</code> 下图片的名字。例如：<code>ic_action_search.png</code> 对应 &quot;@drawable/ic_action_search&quot;。同样地，title 属性使用通过 XML 文件定义在项目目录 <code>res/values/</code> 中的一个 <code>string resource</code>，详情请参见 <a href="firstapp/building-ui.html">创建一个简单的 UI</a> 。</p>
+<p>icon 属性要求每张图片提供一个 <code>resource ID</code>。在 <code>@drawable/</code> 之后的名字必须是存储在项目目录 <code>res/drawable/</code> 下图片的名字。例如：<code>ic_action_search.png</code> 对应 &quot;@drawable/ic_action_search&quot;。同样地，title 属性使用通过 XML 文件定义在项目目录 <code>res/values/</code> 中的一个 <code>string resource</code>，详情请参见 <a href="../firstapp/building-ui.html">创建一个简单的 UI</a> 。</p>
 <blockquote>
-<p>注释：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 <a href="supporting-devices/screens.html">支持不同屏幕</a> 课程中将会更详细地讨论。</p>
+<p><strong>Note</strong>：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 <a href="../supporting-devices/screens.html">支持不同屏幕</a> 课程中将会更详细地讨论。</p>
 </blockquote>
 <p>如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 <code>android</code> 命名空间下 <code>showAsAction</code> 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：</p>
 <p>res/menu/main_activity_actions.xml</p>
@@ -5116,7 +5116,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">menu</span>&gt;</span>
 </code></pre>
 <h2 id="-action-bar-">为 Action Bar 添加操作</h2>
-<p>为 action bar 布局菜单条目，是通过在 activity 中实现 <a href="https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu" target="_blank">onCreateOptionsMenu()</a>) 回调方法来 <code>inflate</code> 菜单资源从而获取 <a href="https://developer.android.com/reference/android/view/Menu.html" target="_blank">Menu</a> 对象。例如：</p>
+<p>为 action bar 布局菜单条目，是通过在 activity 中实现 <a href="https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a> 回调方法来 <code>inflate</code> 菜单资源从而获取 <a href="https://developer.android.com/reference/android/view/Menu.html" target="_blank">Menu</a> 对象。例如：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span>(Menu menu) {
     <span class="hljs-comment">// Inflate the menu items for use in the action bar</span>
@@ -5126,7 +5126,7 @@
 }
 </code></pre>
 <h2 id="">为操作按钮添加响应事件</h2>
-<p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中 <a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem" target="_blank"> onOptionsItemSelected()</a>) 回调方法。在该方法的实现里面调用 <a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId(" target="_blank">getItemId()</a>) 获取 <a href="https://developer.android.com/reference/android/view/MenuItem.html" target="_blank">MenuItem</a> 来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 <code>&lt;item&gt;</code> 元素中 <code>&lt;android:id&gt;</code> 属性的值。</p>
+<p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用<a href="https://developer.android.com/reference/android/view/MenuItem.html" target="_blank">MenuItem</a>的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 <code>&lt;item&gt;</code> 元素中 <code>&lt;android:id&gt;</code> 属性的值。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span>(MenuItem item) {
     <span class="hljs-comment">// Handle presses on the action bar items</span>
@@ -5167,7 +5167,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 </code></pre>
-<p>然后，通过调用 <a href="https://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled(boolean" target="_blank">setDisplayHomeAsUpEnabled()</a>) 来把 app icon 设置成可用的向上按钮：</p>
+<p>然后，通过调用<a href="https://developer.android.com/reference/android/app/ActionBar.html#setDisplayHomeAsUpEnabled(boolean)">setDisplayHomeAsUpEnabled()</a> 来把 app icon 设置成可用的向上按钮：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
@@ -5179,7 +5179,7 @@
 }
 </code></pre>
 <p>由于系统已经知道 <code>MainActivity</code> 是 <code>DisplayMessageActivity</code> 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。</p>
-<p>更多关于向上导航的信息，请见 <a href="ux/implementing-navigation/ancestral.html">提供向上导航</a>。</p>
+<p>更多关于向上导航的信息，请见 <a href="../../ux/implement-nav/ancestral.html">提供向上导航</a>。</p>
 
                     
                     </section>

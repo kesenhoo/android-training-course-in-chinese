@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保存到数据库 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>保存到数据库 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.3" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.3" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_90">
+                    <section class="normal" id="section-gitbook_54">
                     
                         <h1 id="saving-to-database">Saving to database保存到数据库</h1>
 <blockquote>
@@ -5081,7 +5081,7 @@
 </blockquote>
 <p>对于重复或者结构化的数据（如联系人信息）等保存到DB是个不错的主意。这节课假定你已经熟悉SQL数据库的操作。在Android上可能会使用到的APIs，可以从<a href="http://developer.android.com/reference/android/database/sqlite/package-summary.html" target="_blank">android.database.sqlite</a>包中找到。</p>
 <h2 id="define-a-schema-and-contractschemacontract">Define a Schema and Contract[定义Schema与Contract]</h2>
-<p>SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。</p>
+<p>SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。</p>
 <p>Contract Clsss是一些常量的容器。它定义了例如URIs, 表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。</p>
 <p>一个组织你的contract类的好方法是在你的类的根层级定义一些全局变量，然后为每一个table来创建内部类。</p>
 <p><strong>Note:</strong>通过实现 <a href="http://developer.android.com/reference/android/provider/BaseColumns.html" target="_blank">BaseColumns</a> 的接口，你的内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这样能够使得你的DB与Android的framework能够很好的相容。</p>

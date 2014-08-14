@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>执行Android程序 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>执行Android程序 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.2" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.2" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_96">
+                    <section class="normal" id="section-gitbook_61">
                     
                         <h1 id="android">执行Android程序</h1>
 <blockquote>
@@ -5084,20 +5084,20 @@
 <p>在运行应用之前，你得认识项目里的几个文件和目录：</p>
 <p><strong>AndroidManifest.xml</strong></p>
 <p><a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">manifest file</a> 描述了应用程序的基本特性并且定义了每一个组件。当你学了更多课程，你将会理解这里的各种声明。
-其中一个很重要的点是：你的manifest应该包括<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank"><uses-sdk></a> 标签。它会利用 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank">android:minSdkVersion</a>和 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">android:targetSdkVersion</a> 两个属性来声明你应用程序对于不同的android版本的兼容性。在你的第一个应用里，它看起来应该是这样：</p>
+其中一个很重要的一个元素是：你的manifest应该包括<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank"><code>&lt;uses-sdk&gt;</code></a> 元素。它会利用 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank">android:minSdkVersion</a>和 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">android:targetSdkVersion</a> 两个属性来声明你应用程序对于不同的android版本的兼容性。在你的第一个应用里，它看起来应该是这样：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span> <span class="hljs-attribute">...</span> &gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"8"</span> <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"19"</span> /&gt;</span>
-...
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"8"</span> <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"19"</span> /&gt;</span>
+    ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>你应该总是把 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">android:targetSdkVersion</a> 设置的尽可能的高并且在对应版本的Android系统上测试你的应用。详见 <a href="/basics/supporting-devices/platforms.html">适配不同的系统版本</a></p>
+<p>你应该总是把 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">android:targetSdkVersion</a> 设置的尽可能的高并且在对应版本的Android系统上测试你的应用。详见 <a href="../supporting-devices/platforms.html">适配不同的系统版本</a></p>
 <p><strong>src/</strong></p>
 <p>这是存放应用的主要源代码的文件夹，默认情况下，里面会包括一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的类，这个类会在点击应用程序图标启动的时候运行。</p>
 <p><strong>res/</strong></p>
-<p>包含一些存放资源文件的目录，例如：</p>
+<p>包含一些存放资源文件(<a href="http://developer.android.com/guide/topics/resources/overview.html" target="_blank">app resources</a>)的目录，例如：</p>
 <pre><code class="lang-xml">drawable-hdpi/
 </code></pre>
-<p>存放适用于HDPI屏幕的图片素材。同理其他类似文件夹存放适用于其他屏幕的图片素材。</p>
+<p>存放适用于HDPI屏幕的图片素材(例如bitmap位图)。同理其他类似文件夹存放适用于其他屏幕的图片素材。</p>
 <pre><code class="lang-xml">layout/
 </code></pre>
 <p>存放定义用户界面的的文件。</p>
@@ -5107,65 +5107,62 @@
 <p>当完成该项目的编译和运行工作后，默认的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>类启动并加载一个布局文件，界面显示 &quot;Hello World.&quot;这本身没有什么值得兴奋的，重要的是你学会了如何运行一个Android应用在你开始进行开发之前。</p>
 <h2 id="">在真实设备上运行</h2>
 <p>如果你有一个真实的Android设备，以下的步骤可以使你在你的设备上安装和运行你的应用程序：</p>
-<ul>
+<ol>
 <li>把你的设备用USB线连接到计算机上。如果你是在windows系统上进行开发的，你可能还需要安装你设备对应的USB驱动，详见<a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB Drivers</a> 文档。</li>
-<li><p>开启设备上的USB调试选项。</p>
+<li><p>开启设备上的<strong>USB调试</strong>选项。</p>
 <ul>
 <li>在大部分运行Andriod3.2或更老版本系统的设备上，这个选项位于“<strong>设置</strong>&gt;<strong>应用程序</strong>&gt;<strong>开发选项</strong>”里。</li>
-<li><p>在Andriod 4.0或更新版本中，这个选项在“<strong>设置</strong>&gt;<strong>开发人员选项</strong>”里。</p>
+<li>在Andriod 4.0或更新版本中，这个选项在“<strong>设置</strong>&gt;<strong>开发人员选项</strong>”里。</li>
+</ul>
 <blockquote>
-<p><strong>注意:</strong> 从Android4.2开始，开发人员选项在默认情况下是隐藏的，想让它可见，可以去“设置&gt;关于手机（或者关于设备）”点击“版本号”七次。再返回就能找到开发人员选项了。</p>
+<p><strong>Note:</strong> 从Android4.2开始，<strong>开发人员选项</strong>在默认情况下是隐藏的，想让它可见，可以去<strong>设置&gt;关于手机（或者关于设备)</strong>点击<strong>版本号</strong>七次。再返回就能找到<strong>开发人员选项</strong>了。</p>
 </blockquote>
 </li>
-</ul>
-</li>
-</ul>
+</ol>
 <p>用Eclipse在设备里运行程序：</p>
-<ul>
-<li>打开项目文件，点击工具栏里的<strong>Run</strong>按钮。</li>
-</ul>
-<p><img src="eclipse-run.png" alt="eclipse-run"></p>
-<ul>
-<li>在 Run as 弹出窗口中，选择 Android Application 然后点击 OK。</li>
-</ul>
+<ol>
+<li><p>打开项目文件，点击工具栏里的<strong>Run</strong><img src="eclipse-run.png" />按钮。</p>
+</li>
+<li><p>在 <strong>Run as</strong> 弹出窗口中，选择 <strong>Android Application</strong> 然后点击 <strong>OK</strong>。</p>
+</li>
+</ol>
 <p>Eclipse 会把应用程序安装到你的设备中并启动应用程序。</p>
 <p>或者也可以利用命令行安装运行你的应用程序。</p>
-<ul>
+<ol>
 <li>命令行切换当前目录到Andriod项目的根目录，执行：</li>
-</ul>
+</ol>
 <pre><code class="lang-java">ant debug
 </code></pre>
-<ul>
-<li>确保 Android SDK里的 platform-tools/ 路径已经添加到环境变量的Path中，执行：</li>
-</ul>
+<ol>
+<li>确保 Android SDK里的 <code>platform-tools/</code> 路径已经添加到环境变量的<code>PATH</code>中，执行：</li>
+</ol>
 <pre><code class="lang-java">adb install bin/MyFirstApp-debug.apk
 </code></pre>
-<ul>
+<ol>
 <li>在你的Android设备中找到 MyFirstActivity，点击打开。</li>
-</ul>
-<p>以上就是创建并在设备上运行一个应用的全部过程！想要开始开发，点击<a href="http://developer.android.com/training/basics/firstapp/building-ui.html" target="_blank">next lesson</a>。</p>
+</ol>
+<p>以上就是创建并在设备上运行一个应用的全部过程！想要开始开发，点击<a href="building-ui.html">next lesson</a>。</p>
 <h2 id="">在模拟器上运行</h2>
-<p>无论你是用 Eclipse 还是命令行，在模拟器中运行程序首先要创建一个 Android Virtual Device (AVD)。AVD 是对 Android 模拟器的配置，可以让你模拟不同的设备。</p>
+<p>无论你是用 Eclipse 还是命令行，在模拟器中运行程序首先要创建一个 <a href="http://developer.android.com/tools/devices/index.html" target="_blank">Android Virtual Device</a> (AVD)。AVD 是对 Android 模拟器的配置，可以让你模拟不同的设备。</p>
 <p><img src="avds-config.png" alt="avds-config"></p>
 <p>创建一个 AVD:</p>
-<ul>
+<ol>
 <li>启动 Android Virtual Device Manager（AVD Manager）的两种方式：<ul>
-<li>用Eclipse, 点击工具栏里面Android Virtual Device Manager Android。</li>
+<li>用Eclipse, 点击工具栏里面Android Virtual Device Manager<img src="avd_manager.png" />。</li>
 <li>在命令行窗口中，把当前目录切换到<code>&lt;sdk&gt;/tools/</code> 后执行：</li>
 </ul>
 </li>
-</ul>
-<p><img src="avd_manager.png" alt="avd_manager"></p>
+</ol>
 <pre><code class="lang-java">android avd
 </code></pre>
-<ul>
+<ol>
 <li>在 Android Virtual Device Manager 面板中，点击<strong>New</strong>.</li>
-<li>填写AVD的详细信息，包括名字，平台版本，SD卡大小以及屏幕大小（默认是HVGA）。</li>
-<li>点击 Create AVD.</li>
-<li>在Android Virtual Device Manager 选中创建的新AVD，点击 Start。</li>
+<li>填写AVD的详细信息，包括名字，平台版本，SD卡大小以及屏幕皮肤（默认是HVGA）。</li>
+<li>点击 <strong>Create AVD</strong>.</li>
+<li>在Android Virtual Device Manager 选中创建的新AVD，点击 <strong>Start</strong>。</li>
 <li>在模拟器启动完毕后，解锁模拟器的屏幕。</li>
-</ul>
-<p>接下来就可以像前边讲过的一样用Eclipse或命令行来往模拟器发布运行你的应用程序了。</p>
+</ol>
+<p>接下来就可以像前边讲过的一样用Eclipse或命令行来向模拟器安装运行你的应用程序了。</p>
 
                     
                     </section>

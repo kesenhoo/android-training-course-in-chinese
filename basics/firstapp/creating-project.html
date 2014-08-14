@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建Android项目 | Google Android官方培训课程中文版(v0.1)</title>
+        <title>创建Android项目 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.1" data-basepath="../.." data-revision="1407596072792">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.1.1" data-basepath="../.." data-revision="1407996027118">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -85,7 +85,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.1)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.2)</a>
     </h1>
 </div>
 
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_95">
+                    <section class="normal" id="section-gitbook_59">
                     
                         <h1 id="android">创建Android项目</h1>
 <blockquote>
@@ -5081,13 +5081,14 @@
 </blockquote>
 <p>一个Android项目包含了生产Android应用所需要的全部源代码文件，使用Android SDK Tools可以很容易地创建一个新的Android项目，同时创建好项目默认的目录和文件。</p>
 <p>本小节介绍如何使用Eclipse（已安装ADT插件）或SDK Tools命令行来创建一个新的项目。</p>
-<p><strong>注意</strong>：如果你使用Eclipse开发，应该确保已经安装了Android SDK，并且为Eclipse安装了ADT（version 22.6.2或更高版本）插件。否则，请先阅读 <a href="http://developer.android.com/sdk/installing/index.html" target="_blank">Installing the Android SDK</a>按照向导完成安装。</p>
+<blockquote>
+<p><strong>Note</strong>：如果你使用Eclipse开发，应该确保已经安装了Android SDK，并且为Eclipse安装了<a href="http://developer.android.com/tools/sdk/eclipse-adt.html" target="_blank">ADT plugin</a>（version 22.6.2或更高版本）插件。否则，请先阅读 <a href="http://developer.android.com/sdk/installing/index.html" target="_blank">Installing the Android SDK</a>按照向导完成安装。</p>
+</blockquote>
 <h2 id="eclipse">使用Eclipse创建项目</h2>
 <ol>
-<li><p>点击Eclipse工具栏的<strong>New</strong>按钮.如下图所示
-<img src="eclipse-new.png" alt="eclipse-new"></p>
+<li><p>点击Eclipse工具栏的<strong>New</strong>按钮<img src="eclipse-new.png"/>.</p>
 </li>
-<li><p>在弹出的窗口中打开Android文件夹，选择<strong>Android Application Project</strong>，点击<strong>Next</strong>.</p>
+<li><p>在弹出的窗口中打开<strong>Android</strong>文件夹，选择<strong>Android Application Project</strong>，点击<strong>Next</strong>.</p>
 </li>
 <li><p>填写如下图弹出的表格：
 <img src="adt-firstapp-setup.png" alt="adt-firstapp-setup"></p>
@@ -5095,38 +5096,43 @@
 <li><strong>Application Name</strong>:此处填写想呈现给用户的应用名称，此处我们使用“My First App&quot;.</li>
 <li><strong>Project Name</strong>:是项目的文件夹名称和在Eclipse中显示的名称.</li>
 <li><strong>Package Name</strong>:是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，因此，通常使用你所在公司组织或发布实体的反向域名作为包名的开始是一个很好的选择。此处可以使用&quot;com.example.myfirstapp&quot; ，但是你不能在 Google Play上发布使用 &quot;com.example&quot;作为包名的应用.</li>
-<li><strong>Minimum Required SDK</strong>:用API level表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能尽在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考<a href="/basics/supporting-devices/platforms.html">兼容不同的系统版本</a>),此处采用默认值即可。</li>
-<li><strong>Target SDK</strong>:表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。</li>
-<li><strong>Compile With</strong>:是你的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用<a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">SDK Manager</a>来完成安装)，你仍然可以使用较老的版本编译项目，但把该值设为最新版本，你可以使用Android的最新特性同时可以优化应用来提高用户体验，运行在最新的设备上.</li>
+<li><strong>Minimum Required SDK</strong>:用API level表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能尽在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考<a href="../supporting-devices/platforms.html">兼容不同的系统版本</a>),此处采用默认值即可。</li>
+<li><strong>Target SDK</strong>:表示你测试过你的应用支持的最高Android版本(同样用<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank">API level</a>表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。</li>
+<li><strong>Compile With</strong>:是你的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用<a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">SDK Manager</a>来完成安装)，你仍然可以使用较老的版本编译项目，但把该值设为最新版本，使你可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。</li>
 <li><strong>Theme</strong>:为你的应用指定界面风格，此处采用默认值即可。</li>
 </ul>
 <p>点击<strong>Next</strong></p>
 </li>
 <li><p>接下来的窗口配置项目，保持默认值即可，点击<strong>Next</strong>。</p>
 </li>
-<li>这一步帮助你给你的应用创建一个启动图标，你也可以自定义应用启动图标，通过用工具为各种屏幕密度的屏幕各创建一个对应图标。但在发布应用之前，应确保你设计的图标符合<a href="http://developer.android.com/design/style/iconography.html" target="_blank">Iconography</a>中规定的设计规范。点击<strong>Next</strong>。</li>
+<li>这一步帮助你给你的应用创建一个启动图标，你也可以通过几种方式来自定义应用启动图标，通过用工具为各种屏幕密度的屏幕各创建一个对应图标。但在发布应用之前，应确保你设计的图标符合<a href="http://developer.android.com/design/style/iconography.html" target="_blank">Iconography</a>中规定的设计规范。
+点击<strong>Next</strong>。</li>
 <li>这一步为默认的入口Activity选择一个模板，此处选择<strong>BlankActivity</strong>，然后点击<strong>Next</strong>。</li>
-<li>这一步保持Activitiy的默认配置即可。</li>
+<li>这一步保持Activitiy的默认配置即可。点击<strong>finish</strong>。</li>
 </ol>
 <p>到此为止，你的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
 <h2 id="">使用命令行创建项目</h2>
-<p>如果你没有使用Eclipse + ADT开发Android项目，也可以在命令行使用SDK提供的tools来创建一个Android项目。</p>
+<p>如果你没有使用Eclipse + ADT开发Android项目，你可以在命令行使用SDK提供的tools来创建一个Android项目。</p>
 <ul>
-<li>打开命令行切换到SDK根目录/tools目录下；</li>
-<li>执行</li>
+<li>打开命令行切换到SDK根目录的<code>tools/</code>目录下；</li>
+<li>执行:</li>
 </ul>
 <pre><code class="lang-java">    android list targets
 </code></pre>
-<p>会在屏幕上打印出所有你使用Android SDK下载好的可用platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform，可以使你的应用支持较老版本的platform，同时允许你为最新的Android设备优化你的应用。如果你没有看到任何可用的platform，你需要使用SDK Manager完成下载安装，参见 <a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">Adding Platforms and Packages</a>。</p>
+<p>会在屏幕上打印出所有你的Android SDK中下载好的可用Android  platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform。你仍可以使你的应用支持较老版本的platform，但设置为最新版本允许你为最新的Android设备优化你的应用。
+如果你没有看到任何可用的platform，你需要使用Android SDK Manager完成下载安装，参见 <a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">Adding Platforms and Packages</a>。</p>
 <ul>
-<li>执行</li>
+<li>执行：</li>
 </ul>
 <pre><code class="lang-java">android create project --target &lt;target-id&gt; --name MyFirstApp \
 --path &lt;path-to-workspace&gt;/MyFirstApp --activity MainActivity \
 --<span class="hljs-keyword">package</span> com.example.myfirstapp
 </code></pre>
-<p>替换<code>&lt;target-id&gt;</code>为上一步记录好的Id，替换<code>&lt;path-to-workspace&gt;</code>为你想要保存项目的路径，到此为止，你的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
-<p><strong>Note</strong>:把<code>platform-tools/</code>和 <code>tools/</code>添加到环境变量<code>PATH</code>，开发更方便。</p>
+<p>替换<code>&lt;target-id&gt;</code>为上一步记录好的Id，替换<code>&lt;path-to-workspace&gt;</code>为你想要保存项目的路径。</p>
+<p>到此为止，你的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
+<blockquote>
+<p><strong>Tip</strong>:把<code>platform-tools/</code>和 <code>tools/</code>添加到环境变量<code>PATH</code>，开发更方便。</p>
+</blockquote>
 
                     
                     </section>
