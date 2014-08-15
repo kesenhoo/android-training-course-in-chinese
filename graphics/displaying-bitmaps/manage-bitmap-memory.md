@@ -71,7 +71,7 @@ private synchronized boolean hasValidBitmap() {
 ```
 
 ## Manage Memory on Android 3.0 and Higher
-在Android 3.0 (API Level 11) 介绍了[BitmapFactory.Options.inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap). 如果这个值被设置了，decode方法会在加载内容的时候去reuse已经存在的bitmap. 这意味着bitmap的内存是被reused的，这样可以提升性能, 并且减少了内存的allocation与de-allocation. 在使用inBitmap时有几个注意点(caveats):
+在Android 3.0 (API Level 11) 引进了[BitmapFactory.Options.inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap). 如果这个值被设置了，decode方法会在加载内容的时候去reuse已经存在的bitmap. 这意味着bitmap的内存是被reused的，这样可以提升性能, 并且减少了内存的allocation与de-allocation. 在使用inBitmap时有几个注意点(caveats):
 
 * reused的bitmap必须和原数据内容大小一致, 并且是JPEG 或者 PNG 的格式 (或者是某个resource 与 stream).
 * reused的bitmap的[configuration](http://developer.android.com/reference/android/graphics/Bitmap.Config.html)值如果有设置，则会覆盖掉[inPreferredConfig](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inPreferredConfig)值.
