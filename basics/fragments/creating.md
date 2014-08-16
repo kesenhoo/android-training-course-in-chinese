@@ -66,7 +66,7 @@ res/layout-large/news_articles.xml
 </LinearLayout>
 ```
 
-**Tip：**更多关于不同屏幕尺寸创建不同布局的信息，请阅读[Supporting Different Screen Sizes](../../ui/multiscreen/screen-sizes.html)
+> **Tip：**更多关于不同屏幕尺寸创建不同布局的信息，请阅读[Supporting Different Screen Sizes](../../ui/multiscreen/screen-sizes.html)
 
 
 * 然后将这个布局文件用到你的activity中。
