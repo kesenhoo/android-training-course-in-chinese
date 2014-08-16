@@ -39,7 +39,7 @@ public class HeadlinesFragment extends ListFragment {
 }
 ```
 
-* 现在Fragment就可以通过调用OnHeadlineSelectedListener接口实例的mCallback中的onArticleSelected()（也可以是其它方法）方法与activity传递消息。
+* 现在Fragment就可以通过调用`OnHeadlineSelectedListener`接口实例的`mCallback`中的`onArticleSelected()`（也可以是其它方法）方法与activity传递消息。
 
 * 举个例子，在fragment中的下面的方法在用户点击列表条目时被调用，fragment 用回调接口来传递事件给父Activity.
 
@@ -72,11 +72,9 @@ public static class MainActivity extends Activity
 
 ## 传消息给Fragment
 
-* 宿主activity通过[findFragmentById()](developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int))方法来获取[fragment](developer.android.com/reference/android/support/v4/app/Fragment.html)的实例，然后直接调用Fragment的public方法来向fragment传递消息。
-
+* 宿主activity通过<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)">findFragmentById()</a>方法来获取[fragment](http://developer.android.com/reference/android/support/v4/app/Fragment.html)的实例，然后直接调用Fragment的public方法来向fragment传递消息。
 
 * 例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息传递给这个展示数据的Fragment.
-
 
 ```java
 public static class MainActivity extends Activity
