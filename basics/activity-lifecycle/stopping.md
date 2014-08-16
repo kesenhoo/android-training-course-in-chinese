@@ -6,8 +6,9 @@
     * 用户打开最近使用app的菜单并切换你的app到另外一个app，这个时候你的app是被停止的。如果用户通过统一的办法回到你的app，那么你的activity会重启.
     * 用户在你的app里面执行启动一个新的activity的操作，当前activity会在第二个activity被创建后停止。如果用户点击back按钮，第一个activtiy会被重启.
     * 用户在使用你的app时接受到一个来电通话.
-* [Activity](http://developer.android.com/reference/android/app/Activity.html)类提供了onStop()与onRestart(), 方法来允许你在activity停止与重启时进行调用。不像暂停状态是部分阻塞UI，停止状态是UI不在可见并且用户的焦点转移到另一个activity中.
-* **Note:**因为系统在activity停止时会在内存中保存了Activity实例。有些时候你不需要实现onStop(),onRestart()甚至是onStart()方法. 因为大多数的activity相对比较简单，activity会自己停止与重启，你只需要使用onPause()来停止正在运行的动作并断开系统资源链接。
+* [Activity](http://developer.android.com/reference/android/app/Activity.html)类提供了<a href="http://developer.android.com/reference/android/app/Activity.html#onStop()">onStop()</a>与<a href="http://developer.android.com/reference/android/app/Activity.html#onRestart()">onRestart()</a>, 方法来允许你在activity停止与重启时进行调用。不像暂停状态是部分阻塞UI，停止状态是UI不再可见并且用户的焦点转移到另一个activity中.
+
+> **Note:**因为系统在activity停止时会在内存中保存了Activity实例。有些时候你不需要实现onStop(),onRestart()甚至是onStart()方法. 因为大多数的activity相对比较简单，activity会自己停止与重启，你只需要使用onPause()来停止正在运行的动作并断开系统资源链接。
 <!-- more -->
 
 ![basic-lifecycle-stopped](basic-lifecycle-stopped.png)
@@ -15,7 +16,7 @@
 * **Figure 1.**上图显示：当用户离开你的activity，系统会调用onStop()来停止activity (1). 这个时候如果用户返回，系统会调用onRestart()(2), 之后会迅速调用[onStart()](3) 与onResume()(4). 请注意：无论什么原因导致activity停止，系统总是会在onStop()之前调用onPause()方法。
 
 ## Stop Your Activity[停止你的activity]
-* 当你的activity调用onStop()方法, activity不再可见，并且应该释放那些不再需要的所有资源。一旦你的activity停止了，系统会在不再需要这个activity时摧毁它的实例。在极端情况下，系统会直接杀死你的app进程，并且不执行activity的onDestroy()回调方法, 因此你需要使用onStop()来释放资源，从而避免内存泄漏。*(这点需要注意)*
+* 当你的activity调用onStop()方法, activity不再可见，并且应该释放那些不再需要的所有资源。一旦你的activity停止了，系统会在不再需要这个activity时摧毁它的实例。在极端情况下，系统会直接杀死你的app进程，并且不执行activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onDestroy()">onDestroy()</a>回调方法, 因此你需要使用onStop()来释放资源，从而避免内存泄漏。*(这点需要注意)*
 * 尽管onPause()方法是在onStop()之前调用，你应该使用onStop()来执行那些CPU intensive的shut-down操作，例如writing information to a database.
 * 例如，下面是一个在onStop()的方法里面保存笔记草稿到persistent storage的示例:
 
@@ -40,6 +41,7 @@ protected void onStop() {
 ```
 
 * 当你的activity已经停止,[Activity](http://developer.android.com/reference/android/app/Activity.html)对象会保存在内存中，并且在activity resume的时候重新被调用到。你不需要在恢复到Resumed state状态前重新初始化那些被保存在内存中的组件。系统同样保存了每一个在布局中的视图的当前状态，如果用户在EditText组件中输入了text，它会被保存，因此不需要保存与恢复它。
+
 * **Note:**即使系统会在activity stop的时候销毁这个activity，它仍然会保存[View](http://developer.android.com/reference/android/view/View.html)对象的状态(比如[EditText](http://developer.android.com/reference/android/widget/EditText.html)中的文字) 到一个[Bundle](http://developer.android.com/reference/android/os/Bundle.html)中，并且在用户返回这个activity时恢复他们(下一个会介绍在activity销毁与重新建立时如何使用[Bundle](http://developer.android.com/reference/android/os/Bundle.html)来保存其他数据的状态).
 
 ## Start/Restart Your Activity[启动与重启你的activity]
