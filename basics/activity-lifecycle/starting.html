@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4.1" data-basepath="../.." data-revision="1407996027118">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4.1" data-basepath="../.." data-revision="1408265758561">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,14 +5073,14 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_52">
+                    <section class="normal" id="section-gitbook_34">
                     
                         <h1 id="activity">启动与销毁Activity</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/activity-lifecycle/starting.html" target="_blank">http://developer.android.com/training/basics/activity-lifecycle/starting.html</a></p>
 </blockquote>
 <ul>
-<li>不像其他编程范式一样：程序从main()方法开始启动。Android系统根据生命周期的不同阶段唤起对应的回调函数来执行代码。系统存在启动与销毁一个activity的一套有序的回调函数。</li>
+<li>不像其他编程范式一样：程序从<code>main()</code>方法开始启动。Android系统根据生命周期的不同阶段唤起对应的回调函数来执行代码。系统存在启动与销毁一个activity的一套有序的回调函数。</li>
 <li>这一个课会介绍那些生命周期中最重要的回调函数，并演示如何处理启动一个activity所涉及到的回调函数。</li>
 </ul>
 <h2 id="understand-the-lifecycle-callbacks">Understand the Lifecycle Callbacks[理解生命周期的回调]</h2>
@@ -5104,13 +5104,13 @@
 <li><strong>Stopped</strong>：在这个状态, activity完全被隐藏，不被用户可见。可以认为是在后台。当stopped, activity实例与它的所有状态信息都会被保留，但是activity不能执行任何代码。</li>
 </ul>
 </li>
-<li>其它状态 (Created and Started)都是短暂的，系统快速的执行那些回调函数并通过执行下一阶段的回调函数移动到下一个状态。也就是说，在系统调用onCreate(), 之后会迅速调用onStart(), 之后再迅速执行onResume()。上面就是基本的activity生命周期。</li>
+<li>其它状态 (Created and Started)都是短暂的，系统快速的执行那些回调函数并通过执行下一阶段的回调函数移动到下一个状态。也就是说，在系统调用<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>, 之后会迅速调用<a href="http://developer.android.com/reference/android/app/Activity.html#onStart()">onStart()</a>, 之后再迅速执行<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>。上面就是基本的activity生命周期。</li>
 </ul>
 <h2 id="specify-your-apps-launcher-activityactivity">Specify Your App&#39;s Launcher Activity[指定你的程序首次启动的Activity]</h2>
 <ul>
 <li>当用户从主界面点击你的程序图标时，系统会调用你的app里面的被声明为&quot;launcher&quot; (or &quot;main&quot;) activity中的onCreate()方法。这个Activity被用来当作你的程序的主要进入点。</li>
-<li>你可以在AndroidManifest.xml中定义哪个activity作为你的主activity。</li>
-<li>这个main activity必须在manifest使用包括 MAIN action and LAUNCHER category 的 <intent-filter> 标签来声明。例如：</li>
+<li>你可以在<a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">AndroidManifest.xml</a>中定义哪个activity作为你的主activity。</li>
+<li>这个main activity必须在manifest使用包括 MAIN action and LAUNCHER category 的<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签来声明。例如：</li>
 </ul>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".MainActivity"</span> <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
@@ -5119,8 +5119,11 @@
     <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
+<blockquote>
+<p><strong>Note</strong>:当你使用Android SDK工具来创建Android工程时，工程中就包含了一个默认的声明有这个filter的activity类。</p>
+</blockquote>
 <ul>
-<li>如果你的程序中没有一个activity声明了MAIN action 或者LAUNCHER category，那么在设备的主界面列表里面不会呈现你的app图标。</li>
+<li>如果你的程序中没有一个activity声明了<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_MAIN" target="_blank">MAIN</a> action 或者<a href="http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LAUNCHER" target="_blank">LAUNCHER</a> category，那么在设备的主界面列表里面不会呈现你的app图标。</li>
 </ul>
 <h2 id="create-a-new-instance">Create a New Instance[创建一个新的实例]</h2>
 <ul>
@@ -5154,15 +5157,17 @@ file
 <ul>
 <li>一旦结束onCreate 操作，系统会迅速调用onStart() 与onResume()方法。你的activity不会在Created或者Started状态停留。技术上来说, activity在onStart()被调用后会开始被用户可见，但是 onResume()会迅速被执行使得activity停留在Resumed状态，直到一些因素发生变化才会改变这个状态。例如接受到一个来电，用户切换到另外一个activity，或者是设备屏幕关闭。</li>
 <li>在后面的课程中，你将看到其他方法是如何使用的，onStart() 与 onResume()在用户从Paused or Stopped状态中恢复的时候非常有用。</li>
-<li><strong>Note:</strong> onCreate() 方法包含了一个参数叫做savedInstanceState，这将会在后面的课程：重新创建一个activity的时候涉及到。</li>
 </ul>
+<blockquote>
+<p><strong>Note:</strong> onCreate() 方法包含了一个参数叫做savedInstanceState，这将会在后面的课程：重新创建一个activity的时候涉及到。</p>
+</blockquote>
 <p><img src="basic-lifecycle-create.png" alt="basic_lifecycle-create"></p>
 <ul>
 <li>Figure 2. 上图显示了onCreate(), onStart(), and onResume()是如何执行的。当这三个顺序执行的回调函数完成后，activity会到达Resumed状态。</li>
 </ul>
 <h2 id="destroy-the-activityactivity">Destroy the Activity[销毁Activity]</h2>
 <ul>
-<li>activity的第一个生命周期回调函数是 onCreate(),它最后一个回调是 onDestroy().系统会执行这个方法作为你 的activity要从系统中完全移除的信号。</li>
+<li>activity的第一个生命周期回调函数是 onCreate(),它最后一个回调是 <a href="http://developer.android.com/reference/android/app/Activity.html#onDestroy()">onDestroy()</a>.系统会执行这个方法作为你 的activity要从系统中完全移除的信号。</li>
 <li>大多数 apps并不需要实现这个方法，因为局部类的references会被destroyed并且你的activity应该在onPause() 与 onStop()中执行清除的操作。然而，如果你的activity包含了你在onCreate时创建的后台线程，或者是其他有可能导致内存泄漏的资源，你应该在OnDestroy()时杀死他们。</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>

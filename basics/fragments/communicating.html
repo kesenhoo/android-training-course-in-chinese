@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.3" data-basepath="../.." data-revision="1407996027118">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.3" data-basepath="../.." data-revision="1408265758561">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5073,7 +5073,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_63">
+                    <section class="normal" id="section-gitbook_45">
                     
                         <h1 id="fragments">Fragments之间的交互</h1>
 <blockquote>
@@ -5116,7 +5116,7 @@
 }
 </code></pre>
 <ul>
-<li><p>现在Fragment就可以通过调用OnHeadlineSelectedListener接口实例的mCallback中的onArticleSelected()（也可以是其它方法）方法与activity传递消息。</p>
+<li><p>现在Fragment就可以通过调用<code>OnHeadlineSelectedListener</code>接口实例的<code>mCallback</code>中的<code>onArticleSelected()</code>（也可以是其它方法）方法与activity传递消息。</p>
 </li>
 <li><p>举个例子，在fragment中的下面的方法在用户点击列表条目时被调用，fragment 用回调接口来传递事件给父Activity.</p>
 </li>
@@ -5146,10 +5146,10 @@
 </code></pre>
 <h2 id="fragment">传消息给Fragment</h2>
 <ul>
-<li>宿主activity通过<a href="developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int">findFragmentById()</a>)方法来获取<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">fragment</a>的实例，然后直接调用Fragment的public方法来向fragment传递消息。</li>
-</ul>
-<ul>
-<li>例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息传递给这个展示数据的Fragment.</li>
+<li><p>宿主activity通过<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)">findFragmentById()</a>方法来获取<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">fragment</a>的实例，然后直接调用Fragment的public方法来向fragment传递消息。</p>
+</li>
+<li><p>例如，想象一下，上面所示的activity可能包含另外一个fragment,这个fragment用来展示从上面的回调方法中返回的指定的数据。在这种情况下，activity可以把从回调方法中接收到的信息传递给这个展示数据的Fragment.</p>
+</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span>
         <span class="hljs-keyword">implements</span> <span class="hljs-title">HeadlinesFragment</span>.<span class="hljs-title">OnHeadlineSelectedListener</span>{</span>
