@@ -70,7 +70,7 @@ MyProject/
             main.xml
 ```
 
-> **Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](https://developer.android.com/training/multiscreen/index.html)。
+> **Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](../../ui/multiscreen/index.html)。
 
 ## 创建不同的bitmap
 
@@ -104,4 +104,4 @@ MyProject/
 
 > **Note**:低密度(ldpi)资源是非必要的，当你提供了高精度assets，系统会把高密度图像按比例缩小一半，去适配低密度屏幕。
 
-更多关于为app创建图标assets的贴士和指导，详见[Iconography design](https://developer.android.com/design/style/iconography.html)。
+更多关于为app创建图标assets的信息和指导，详见[Iconography design](https://developer.android.com/design/style/iconography.html)。
