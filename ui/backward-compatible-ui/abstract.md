@@ -1,12 +1,12 @@
 # 抽象出新的APIs
 
-> 编写:[spencer198711](https://github.com/spencer198711)- 原文:
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:
 
 假如你想使用[Action Bar Tabs](http://developer.android.com/guide/topics/ui/actionbar.html#Tabs)作为你的应用的顶层导航的主要形式。不幸的是，[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)APIs只在Android 3.0（API等级11）之后才能使用。因此，如果你想要在运行之前版本的Android平台的设备上分发你的应用，你需要提供一个支持新的API的实现，同时提供一个回退机制，使得能够使用旧的APIs。
 
-在本课程中，使用了具有面向特定版本实现的抽象类去构建一个tab页形式的用户界面，并以此提供向后兼容性。这一课描述了如何为新的tab API创建一个抽象层，并以此作为构建tab组件的第一步。  
+在本课程中，使用了具有面向特定版本实现的抽象类去构建一个tab页形式的用户界面，并以此提供向后兼容性。这一课描述了如何为新的tab API创建一个抽象层，并以此作为构建tab组件的第一步。
 
-##为抽象做准备
+## 为抽象做准备
 
 在Java编程语言中，抽象包含了创建一个或者多个接口或抽象类去隐藏具体的实现细节。在新版本的Android API的情况中，你可以使用抽象去构建能感知版本的组件，这个组件会在新版本的设备上使用当前的APIs，当回退到老的设备上同时存在兼容的APIs。
 
@@ -14,7 +14,7 @@
 
 在为新的APIs创建抽象类之后，任何数量的实现都可以在运行的过程中去创建和选择使用哪种。出于后向兼容的目的，这些实现可以通过所需的API级别而有所变化。一个实现可能会使用最新发布的APIs，而其他的则会去使用比较老的APIs。
 
-##创建抽象的Tab接口
+## 创建抽象的Tab接口
 
 为了能够创建一个向后兼容的tabs，你首先需要决定你的应用需要哪些功能和哪些特定的APIs接口。在顶层分节tabs的情况下，假设你有以下功能需求：
 
@@ -30,7 +30,7 @@ Tabs的关键APIs是[ActionBar](http://developer.android.com/reference/android/a
 
 * Figure 1.抽象基类和版本相关的子类实现类结构图
 
-##Abstract ActionBar.Tab
+## Abstract ActionBar.Tab
 
 通过创建一个代表tab的抽象类来开始着手构建tab抽象层，这个类是[Actionbar.Tab](http://developer.android.com/reference/android/app/ActionBar.Tab.html)接口的镜像:
 
@@ -52,7 +52,7 @@ public abstract class CompatTab {
 
 在这里，为了简化诸如tab对象和Activity的联系（未在代码片段中显示）等公共的功能，你可以使用一个抽象类而不是去使用接口。
 
-##抽象出Action Bar Tab的方法
+## 抽象出Action Bar Tab的方法
 
 下一步，定义一个能够允许你往Activity中创建和添加tab抽象类，并定义类似[ActionBar.newTab()](http://developer.android.com/reference/android/app/ActionBar.html#newTab())和[ActionBar.addTab()](http://developer.android.com/reference/android/app/ActionBar.html#addTab(android.app.ActionBar.Tab))的方法。
 
@@ -68,10 +68,3 @@ public abstract class TabHelper {
 ```
 
 在下一课程中，你将会创建TabHelper和CompatTab的实现，它能够在新旧不同的平台版本上都能工作。
-
-
-
-
-
-
-

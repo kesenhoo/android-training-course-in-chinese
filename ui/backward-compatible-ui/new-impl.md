@@ -4,7 +4,7 @@
 
 这一课展示了如何编写CompatTab和TabHelper等抽象类的子类，并且使用了较新的APIs。你的应用可以在支持这些新的APIs的平台版本的设备上使用这种实现方式。
 
-##使用较新的APIs实现Tabs
+## 使用较新的APIs实现Tabs
 
 CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使用了使用较新的APIs。由于抽象类在之前的课程中定义并且是对新APIs接口（类结构、方法签名等等）的镜像，使用新APIs的具体子类只是简单的代理方法调用和方法调用的结果。
 
@@ -16,7 +16,7 @@ CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使�
 
 * Figure 1. Class diagram for the Honeycomb implementation of tabs.
 
-##实现CompatTabHoneycomb
+## 实现CompatTabHoneycomb
 
 CompatTabHoneycomb是CompatTab抽象类的具体实现并用来引用单独的tabs。CompatTabHoneycomb只是简单的代理[ActionBar.Tab](http://developer.android.com/reference/android/app/ActionBar.Tab.html)对象的方法调用。
 开始使用ActionBar.Tab的APIs实现CompatTabHoneycomb：
@@ -41,7 +41,7 @@ public class CompatTabHoneycomb extends CompatTab {
 }
 ```
 
-##实现TabHelperHoneycomb
+## 实现TabHelperHoneycomb
 
 TabHelperHoneycomb是TabHelper抽象类的具体实现，TabHelperHoneycomb代理方法调用到[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)对象，而这个ActionBar对象是从包含他的Activity中获取的。
 
@@ -71,6 +71,3 @@ public class TabHelperHoneycomb extends TabHelper {
     // the base implementation.
 }
 ```
-
-
-
