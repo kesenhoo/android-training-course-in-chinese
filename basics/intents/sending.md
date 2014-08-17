@@ -69,7 +69,7 @@ calendarIntent.putExtra(Events.EVENT_LOCATION, "Secret dojo");
 
 **Note:** 这个intent for Calendar的例子只使用于>=API Level 14。
 
-**Note:** 请尽可能的定义你的intent更加确切。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为 image/*.这样能够阻止其他能够 "查看" 其他数据类型的app（like a map app) 被这个intent叫起。
+**Note:** 请尽可能的定义你的intent更加确切。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为 image/*.这样能够阻止其他能够 "查看" 其他数据类型的app（比如一个地图app) 被这个intent叫起。
 
 ## Verify There is an App to Receive the Intent[验证是否有App去接收这个Intent]
 尽管Android系统会确保每一个确定的intent会被系统内置的app(such as the Phone, Email, or Calendar app)之一接收，但是你还是应该在触发一个intent之前做验证是否有App接受这个intent的步骤。
