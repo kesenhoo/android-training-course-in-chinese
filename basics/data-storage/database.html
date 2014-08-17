@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.3" data-basepath="../.." data-revision="1408265758561">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.3" data-basepath="../.." data-revision="1408290329181">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5084,19 +5084,24 @@
 <p>SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。</p>
 <p>Contract Clsss是一些常量的容器。它定义了例如URIs, 表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。</p>
 <p>一个组织你的contract类的好方法是在你的类的根层级定义一些全局变量，然后为每一个table来创建内部类。</p>
+<blockquote>
 <p><strong>Note:</strong>通过实现 <a href="http://developer.android.com/reference/android/provider/BaseColumns.html" target="_blank">BaseColumns</a> 的接口，你的内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这样能够使得你的DB与Android的framework能够很好的相容。</p>
+</blockquote>
 <p>例如，下面的例子定义了表名与这个表的列名：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedEntry</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BaseColumns</span> {</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TABLE_NAME = <span class="hljs-string">"entry"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_ENTRY_ID = <span class="hljs-string">"entryid"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_TITLE = <span class="hljs-string">"title"</span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_SUBTITLE = <span class="hljs-string">"subtitle"</span>;
-    ...
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedReaderContract</span> {</span>
+    <span class="hljs-comment">// To prevent someone from accidentally instantiating the contract class,</span>
+    <span class="hljs-comment">// give it an empty constructor.</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">FeedReaderContract</span>() {}
+
+    <span class="hljs-comment">/* Inner class that defines the table contents */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedEntry</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">BaseColumns</span> {</span>
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TABLE_NAME = <span class="hljs-string">"entry"</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_ENTRY_ID = <span class="hljs-string">"entryid"</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_TITLE = <span class="hljs-string">"title"</span>;
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COLUMN_NAME_SUBTITLE = <span class="hljs-string">"subtitle"</span>;
+        ...
+    }
 }
-</code></pre>
-<p>为了防止一些人不小心实例化contract类，像下面一样给一个空的构造器。</p>
-<pre><code class="lang-java"><span class="hljs-comment">// Prevents the FeedReaderContract class from being instantiated.</span>
-<span class="hljs-keyword">private</span> <span class="hljs-title">FeedReaderContract</span>() {}
 </code></pre>
 <h2 id="create-a-database-using-a-sql-helpersql-helperdb">Create a Database Using a SQL Helper[使用SQL Helper创建DB]</h2>
 <p>当你定义好了你的DB应该是什么样之后，你应该实现那些创建与维护db与table的方法。下面是一些典型的创建与删除table的语句。</p>
@@ -5113,10 +5118,12 @@
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SQL_DELETE_ENTRIES =
     <span class="hljs-string">"DROP TABLE IF EXISTS "</span> + TABLE_NAME_ENTRIES;
 </code></pre>
-<p>就像保存文件到设备的 internal storage 一样，Android会保存db到你的程序的private的空间上。你的数据是受保护的，因为那些区域默认是私有的，不可被其他程序所访问。</p>
-<p>在<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>类中有一些很有用的APIs。当你使用这个类来做一些与你的db有关的操作时，系统会对那些有可能比较耗时的操作（例如创建与更新等）在真正需要的时候才去执行，而不是在app刚启动的时候就去做那些动作。你所需要做的仅仅是执行 getWritableDatabase() 或者 getReadableDatabase().</p>
+<p>就像保存文件到设备的<a href="http://developer.android.com/guide/topics/data/data-storage.html#filesInternal" target="_blank">internal storage</a> 一样，Android会保存db到你的程序的private的空间上。你的数据是受保护的，因为那些区域默认是私有的，不可被其他程序所访问。</p>
+<p>在<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>类中有一些很有用的APIs。当你使用这个类来做一些与你的db有关的操作时，系统会对那些有可能比较耗时的操作（例如创建与更新等）在真正需要的时候才去执行，而不是在app刚启动的时候就去做那些动作。你所需要做的仅仅是执行<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getWritableDatabase()">getWritableDatabase()</a>或者<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getReadableDatabase()">getReadableDatabase()</a>.</p>
+<blockquote>
 <p><strong>Note:</strong>因为那些操作可能是很耗时的，请确保你在background thread（AsyncTask or IntentService）里面去执行 getWritableDatabase() 或者 getReadableDatabase() 。</p>
-<p>为了使用 SQLiteOpenHelper, 你需要创建一个子类并重写 onCreate(), onUpgrade() 与 onOpen()等callback方法。你也许还需要实现 onDowngrade(), 但是这并不是必需的。</p>
+</blockquote>
+<p>为了使用 SQLiteOpenHelper, 你需要创建一个子类并重写<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase)">onCreate()</a>, <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)">onUpgrade()</a>与<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onOpen(android.database.sqlite.SQLiteDatabase)">onOpen()</a>等callback方法。你也许还需要实现<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onDowngrade(android.database.sqlite.SQLiteDatabase, int, int)">onDowngrade()</a>, 但是这并不是必需的。</p>
 <p>例如，下面是一个实现了SQLiteOpenHelper 类的例子：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedReaderDbHelper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SQLiteOpenHelper</span> {</span>
     <span class="hljs-comment">// If you change the database schema, you must increment the database version.</span>
@@ -5144,7 +5151,7 @@
 <pre><code class="lang-java">FeedReaderDbHelper mDbHelper = <span class="hljs-keyword">new</span> FeedReaderDbHelper(getContext());
 </code></pre>
 <h2 id="put-information-into-a-database-db">Put Information into a Database [添加信息到DB]</h2>
-<p>通过传递一个 ContentValues 对象到 insert() 方法：</p>
+<p>通过传递一个 <a href="http://developer.android.com/reference/android/content/ContentValues.html" target="_blank">ContentValues</a> 对象到<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#insert(java.lang.String, java.lang.String, android.content.ContentValues)">insert()</a>方法：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Gets the data repository in write mode</span>
 SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -5161,9 +5168,9 @@ newRowId = db.insert(
          FeedReaderContract.FeedEntry.COLUMN_NAME_NULLABLE,
          values);
 </code></pre>
-<p>insert() 方法的第一个参数是table名，第二个参数会使得系统自动对那些 ContentValues 没有提供数据的列填充数据为null，如果第二个参数传递的是null，那么系统则不会对那些没有提供数据的列进行填充。</p>
+<p><code>insert()</code>方法的第一个参数是table名，第二个参数会使得系统自动对那些<code>ContentValues</code> 没有提供数据的列填充数据为<code>null</code>，如果第二个参数传递的是null，那么系统则不会对那些没有提供数据的列进行填充。</p>
 <h2 id="read-information-from-a-database-db">Read Information from a Database [从DB中读取信息]</h2>
-<p>为了从DB中读取数据，需要使用 query() 方法， 传递你需要查询的条件。查询后会返回一个 Cursor 对象。</p>
+<p>为了从DB中读取数据，需要使用<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#query(boolean, java.lang.String, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.String)">query()</a>方法， 传递你需要查询的条件。查询后会返回一个 <a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a> 对象。</p>
 <pre><code class="lang-java">SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 <span class="hljs-comment">// Define a projection that specifies which columns from the database</span>
@@ -5189,6 +5196,7 @@ Cursor c = db.query(
     sortOrder                                 <span class="hljs-comment">// The sort order</span>
     );
 </code></pre>
+<p>要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说你应该先调用<code>moveToFirst()</code>确定结果的“读取点”(read position)。对每一行，你可以使用cursor的其中一个get方法比如<code>getString()</code>或<code>getLong()</code>。对于每一个get方法必须传递索引位置(index position)，索引位置可以通过调用<code>getColumnIndex()</code>或<code>getColumnIndexOrThrow()</code>取得。</p>
 <p>下面是演示如何从course对象中读取数据信息：</p>
 <pre><code class="lang-java">cursor.moveToFirst();
 <span class="hljs-keyword">long</span> itemId = cursor.getLong(
@@ -5196,8 +5204,8 @@ Cursor c = db.query(
 );
 </code></pre>
 <h2 id="delete-information-from-a-database-db">Delete Information from a Database [删除DB中的信息]</h2>
-<p>和查询信息一样，删除数据，同样需要提供一些删除标准。DB的API提供了一个防止SQL注入的机制来创建查询与删除标准。
-<strong>SQL Injection</strong>(<em>随着B/S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入</em>)</p>
+<p>和查询信息一样，删除数据，同样需要提供一些删除标准。DB的API提供了一个防止SQL注入的机制来创建查询与删除标准。</p>
+<p><strong>SQL Injection</strong>(<em>随着B/S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入</em>)</p>
 <p>这个机制把查询语句划分为选项条款与选项参数两部分。条款部分定义了查询的列是怎么样的，参数部分用来测试是否符合前面的条款。(<em>这里翻译的怪怪的，附上原文，The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause.</em>) 因为处理的结果与通常的SQL语句不同，这样可以避免SQL注入问题。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Define 'where' part of query.</span>
 String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + <span class="hljs-string">" LIKE ?"</span>;

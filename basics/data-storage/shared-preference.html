@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.1" data-basepath="../.." data-revision="1408265758561">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.6.1" data-basepath="../.." data-revision="1408290329181">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5080,27 +5080,31 @@
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/data-storage/shared-preference.html" target="_blank">http://developer.android.com/training/basics/data-storage/shared-preference.html</a></p>
 </blockquote>
 <p>如果你有一个相对较小的key-value集合需要保存，你应该使用<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> APIs。 SharedPreferences 对象指向了一个保存key-value pairs的文件，并且它提供了简单的方法来读写这个文件。每一个 SharedPreferences 文件都是由framework管理的并且可以是私有或者可分享的。
-这节课会演示如何使用 SharedPreferences APIs 来存储与检索简单的数据。
-<strong>Note:</strong> SharedPreferences APIs 仅仅提供了读写key-value对的功能，请不要与 Preference APIs相混淆。后者可以帮助你建立一个设置用户配置的页面（尽管它实际上是使用SharedPreferences 来实现保存用户配置的)。如果想了解更多关于Preference APIs的信息，请参考Settings 指南。</p>
+这节课会演示如何使用 SharedPreferences APIs 来存储与检索简单的数据。</p>
+<blockquote>
+<p><strong>Note:</strong> SharedPreferences APIs 仅仅提供了读写key-value对的功能，请不要与<a href="http://developer.android.com/reference/android/preference/Preference.html" target="_blank">Preference</a> APIs相混淆。后者可以帮助你建立一个设置用户配置的页面（尽管它实际上是使用SharedPreferences 来实现保存用户配置的)。如果想了解更多关于Preference APIs的信息，请参考<a href="http://developer.android.com/guide/topics/ui/settings.html" target="_blank">Settings</a> 指南。</p>
+</blockquote>
 <h2 id="sharedpreferenceget-a-handle-to-a-sharedpreferences">获取SharedPreference(Get a Handle to a SharedPreferences)</h2>
 <p>你可以通过下面两个方法之一来创建或者访问shared preference 文件:</p>
 <ul>
-<li><strong>getSharedPreferences()</strong> — 如果你需要多个通过名称参数来区分的shared preference文件, 名称可以通过第一个参数来指定。你可以在你的app里面通过任何一个Context 来执行这个方法。</li>
-<li><strong>getPreferences()</strong> — 当你的activity仅仅需要一个shared preference文件时。因为这个方法会检索activitiy下的默认的shared preference文件，并不需要提供文件名称。</li>
+<li><a href="http://developer.android.com/reference/android/content/Context.html#getSharedPreferences(java.lang.String, int)">getSharedPreferences()</a> — 如果你需要多个通过名称参数来区分的shared preference文件, 名称可以通过第一个参数来指定。你可以在你的app里面通过任何一个<a href="http://developer.android.com/reference/android/content/Context.html" target="_blank">Context</a> 来执行这个方法。</li>
+<li><a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a> — 当你的activity仅仅需要一个shared preference文件时。因为这个方法会检索activitiy下的默认的shared preference文件，并不需要提供文件名称。</li>
 </ul>
-<p>例如：下面的示例是在 Fragment 中被执行的，它会访问名为 R.string.preference_file_key 的shared preference文件，并使用private模式来打开它，这样的话，此时文件就仅仅可以被你的app访问了。</p>
+<p>例如：下面的示例是在 <a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a> 中被执行的，它会访问名为 <code>R.string.preference_file_key</code> 的shared preference文件，并使用private模式来打开它，这样的话，此时文件就仅仅可以被你的app访问了。</p>
 <pre><code class="lang-java">Context context = getActivity();
 SharedPreferences sharedPref = context.getSharedPreferences(
         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 </code></pre>
-<p>当命名你的shared preference文件时，你应该像 &quot;com.example.myapp.PREFERENCE_FILE_KEY&quot; 这样来命名。</p>
-<p>当然，如果你的activity仅仅需要一个shared preference文件时，你可以使用<a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int" target="_blank">getPreferences()</a>)方法：</p>
+<p>当命名你的shared preference文件时，你应该像 <code>&quot;com.example.myapp.PREFERENCE_FILE_KEY&quot;</code> 这样来命名。</p>
+<p>当然，如果你的activity仅仅需要一个shared preference文件时，你可以使用<a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a>方法：</p>
 <pre><code class="lang-java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 </code></pre>
+<blockquote>
 <p><strong>Caution:</strong> 如果你创建了一个<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_READABLE" target="_blank">MODE_WORLD_READABLE</a>或者<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_WRITEABLE" target="_blank">MODE_WORLD_WRITEABLE</a> 模式的shared preference文件，那么任何其他的app只要知道文件名，则可以访问这个文件。</p>
+</blockquote>
 <h2 id="shared-preferencewrite-to-shared-preferences">写Shared Preference(Write to Shared Preferences)</h2>
-<p>为了写shared preferences文件，需要通过执行 edit() 来创建一个 SharedPreferences.Editor。</p>
-<p>通过类似 putInt() 与 putString()方法来传递keys与values。然后执行 commit() 来提交改变. (<em>后来有建议除非是出于线程同步的需要，否则请使用apply()方法来替代commit()，因为后者有可能会卡到UI Thread.</em>)</p>
+<p>为了写<code>shared preferences</code>文件，需要通过执行<a href="http://developer.android.com/reference/android/content/SharedPreferences.html#edit()">edit()</a>来创建一个 <a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html" target="_blank">SharedPreferences.Editor</a>。</p>
+<p>通过类似<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putInt(java.lang.String, int)">putInt()</a>与<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putString(java.lang.String, java.lang.String)">putString()</a>方法来传递keys与values。然后执行<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#commit()">commit()</a> 来提交改变. (<em>后来有建议除非是出于线程同步的需要，否则请使用apply()方法来替代commit()，因为后者有可能会卡到UI Thread.</em>)</p>
 <pre><code class="lang-java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 SharedPreferences.Editor editor = sharedPref.edit();
 editor.putInt(getString(R.string.saved_high_score), newHighScore);

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9" data-basepath="../.." data-revision="1408265758561">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9" data-basepath="../.." data-revision="1408290329181">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5077,8 +5077,31 @@
                     
                         <h1 id="ui">创建向后兼容的UI</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 原文:</p>
 </blockquote>
+<p>这一课展示了如何以向后兼容的方式使用在新版本的Android上可用的UI组件和API，确保你的应用在之前的版本上依然能够运行。</p>
+<p>贯穿整个课程，在Android 3.0被新引入的<a href="http://developer.android.com/guide/topics/ui/actionbar.html#Tabs" target="_blank">Action Bar Tabs</a>功能在本课程中作为指导例子，但是你可以在其他UI组件和API功能上运用这种方式。</p>
+<h2 id="lessons">Lessons</h2>
+<ul>
+<li><p><a href="abstract.html"><strong>抽象出新的APIs</strong></a></p>
+<p>  决定你的应用需要的功能和接口。学习如何为你的应用定义面向特定应用的、作为中间媒介并抽象出UI组件具体实现的java接口。</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="new-impl.html"><strong>代理至新的APIs</strong></a></p>
+<p>  学习如何创建使用新的APIs的接口的具体实现</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="old-impl.html"><strong>使用旧的APIs实现新API的效果</strong></a></p>
+<p>  学习如何创建使用老的APIs的自定义的接口实现</p>
+</li>
+</ul>
+<ul>
+<li><p><a href="using-component.html"><strong>使用能感知版本的组件</strong></a></p>
+<p>  学习如何在运行的时候去选择一个具体的实现，并且开始在你的应用中使用接口。</p>
+</li>
+</ul>
 
                     
                     </section>

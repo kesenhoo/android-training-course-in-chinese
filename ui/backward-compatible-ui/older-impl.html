@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9.3" data-basepath="../.." data-revision="1408265758561">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9.3" data-basepath="../.." data-revision="1408290329181">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5077,8 +5077,71 @@
                     
                         <h1 id="apisapi">使用旧的APIs实现新API的效果</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写: <a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 原文:</p>
 </blockquote>
+<p>这一课讨论了如何创建一个支持旧的设备并且与新的APIs接口相同的实现。</p>
+<h2 id="">决定一个替代方案</h2>
+<p>在以向后兼容的方式使用较新的UI功能的时候，最具挑战的任务是为旧的平台版本决定一个解决方案。在很多情况下，使用旧的UI框架中的功能是有可能完成这些新的UI组件的。例如：</p>
+<ul>
+<li>Action Bar可以使用水平的包含图片按钮的LinearLayout来实现，这个在Activity中的LinearLayout作为自定义标题栏或者仅仅作为视图。下拉功能行为可以使用设备的菜单按钮来实现。</li>
+<li>Action Bar的tab页可以使用包含按钮的水平的LinearLayout，或者使用<a href="http://developer.android.com/reference/android/widget/TabWidget.html" target="_blank">TabWidget</a>UI控件来实现。</li>
+<li><a href="http://developer.android.com/reference/android/widget/NumberPicker.html" target="_blank">NumberPicker</a>和<a href="http://developer.android.com/reference/android/widget/Switch.html" target="_blank">Switch</a>控件可以分别通过使用<a href="http://developer.android.com/reference/android/widget/Spinner.html" target="_blank">Spinner</a>和<a href="http://developer.android.com/reference/android/widget/ToggleButton.html" target="_blank">ToggleButton</a>控件来实现。</li>
+<li><a href="http://developer.android.com/reference/android/widget/ListPopupWindow.html" target="_blank">ListPopupWindow</a>和<a href="http://developer.android.com/reference/android/widget/PopupMenu.html" target="_blank">PopupMenu</a>控件可以通过使用<a href="http://developer.android.com/reference/android/widget/PopupWindow.html" target="_blank">PopupWindow</a>来实现。</li>
+</ul>
+<p>为了往老的设备上向后移植UI组件，这些一般不是一刀切的解决方案。注意用户体验：在老的设备上，用户可能不熟悉新的界面设计模式和UI组件，思考一下如何使用熟悉的控件去实现相同的功能。在很多种情况下，这些通常不会被注意到，特别是在如果新的UI组件在应用程序的生态系统中是突出的（比如Action Bar），或者交互模型是非常简单和直观的(比如使用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>去滑动界面)。</p>
+<h2 id="apistabs">使用旧的APIs实现Tabs</h2>
+<p>你可以使用<a href="http://developer.android.com/reference/android/widget/TabWidget.html" target="_blank">TabWidget</a>和<a href="http://developer.android.com/reference/android/widget/TabHost.html" target="_blank">TabHost</a>（尽管其中一个也可以使用水平方向的Button控件）去创建Action Bar Tabs的老的实现。可以在TabHelperEclair和CompatTabEclair的类中去实现，因为这些实现使用了不迟于Android 2.0（Eclair）的APIs。</p>
+<p><img src="backward-compatible-ui-classes-eclair.png" alt="backward-compatible-ui-classes-eclair"></p>
+<ul>
+<li>Figure 1. Eclair版本上实现tabs的类图</li>
+</ul>
+<p>CompatTabEclair在实例变量中保存了诸如tab文本和tab图标等tab属性，因为在老的版本中没有ActionBar.Tab对象去处理这些数据存储。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompatTabEclair</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CompatTab</span> {</span>
+    <span class="hljs-comment">// Store these properties in the instance,</span>
+    <span class="hljs-comment">// as there is no ActionBar.Tab object.</span>
+    <span class="hljs-keyword">private</span> CharSequence mText;
+    ...
+
+    <span class="hljs-keyword">public</span> CompatTab <span class="hljs-title">setText</span>(<span class="hljs-keyword">int</span> resId) {
+        <span class="hljs-comment">// Our older implementation simply stores this</span>
+        <span class="hljs-comment">// information in the object instance.</span>
+        mText = mActivity.getResources().getText(resId);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+
+    ...
+    <span class="hljs-comment">// Do the same for other properties (icon, callback, etc.)</span>
+}
+</code></pre>
+<p>TabHelperEclair利用了TabHost控件的方法去创建<a href="http://developer.android.com/reference/android/widget/TabHost.TabSpec.html" target="_blank">TabHost.TabSpec</a>对象和tab的页面指示效果：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TabHelperEclair</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TabHelper</span> {</span>
+    <span class="hljs-keyword">private</span> TabHost mTabHost;
+    ...
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span>() {
+        <span class="hljs-keyword">if</span> (mTabHost == <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Our activity layout for pre-Honeycomb devices</span>
+            <span class="hljs-comment">// must contain a TabHost.</span>
+            mTabHost = (TabHost) mActivity.findViewById(
+                    android.R.id.tabhost);
+            mTabHost.setup();
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addTab</span>(CompatTab tab) {
+        ...
+        TabSpec spec = mTabHost
+                .newTabSpec(tag)
+                .setIndicator(tab.getText()); <span class="hljs-comment">// And optional icon</span>
+        ...
+        mTabHost.addTab(spec);
+    }
+
+    <span class="hljs-comment">// The other important method, newTab() is part of</span>
+    <span class="hljs-comment">// the base implementation.</span>
+}
+</code></pre>
+<p>现在你已经有了两种CompatTab和TabHelper的实现，一种是使用了新的APIs为了能够在Android 3.0或其后版本设备上能够运行，另一种则是使用了旧的APIs为了在Android 2.0或之前的设备上能够运行。下一课讨论在应用中使用这两种实现。</p>
 
                     
                     </section>

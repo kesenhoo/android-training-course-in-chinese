@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9.4" data-basepath="../.." data-revision="1408265758561">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.9.4" data-basepath="../.." data-revision="1408290329181">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -5075,10 +5075,99 @@
                 
                     <section class="normal" id="section-gitbook_205">
                     
-                        <h1 id="">使用版本敏感的组件</h1>
+                        <h1 id="">使用能感知版本的组件</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 原文:</p>
 </blockquote>
+<p>既然对TabHelper和CompatTab你已经有了两种具体实现，一个为Android 3.0和其后版本，一个为Android 3.0之前的版本。现在，该使用这些实现做些事情了。这一课讨论了创建在这两种实现之前切换的逻辑，创建能够感知版本的界面布局，最终使用我们创建的后向兼容的UI组件。</p>
+<h2 id="">添加切换逻辑</h2>
+<p>TabHelper抽象类基于当前设备的平台版本，是用来创建适当版本的TabHelper和CompatTab实例的工厂类：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TabHelper</span> {</span>
+    ...
+    <span class="hljs-comment">// Usage is TabHelper.createInstance(activity)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> TabHelper <span class="hljs-title">createInstance</span>(FragmentActivity activity) {
+        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TabHelperHoneycomb(activity);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TabHelperEclair(activity);
+        }
+    }
+
+    <span class="hljs-comment">// Usage is mTabHelper.newTab("tag")</span>
+    <span class="hljs-keyword">public</span> CompatTab <span class="hljs-title">newTab</span>(String tag) {
+        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CompatTabHoneycomb(mActivity, tag);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CompatTabEclair(mActivity, tag);
+        }
+    }
+    ...
+}
+</code></pre>
+<h2 id="activity">创建能感知版本的Activity布局</h2>
+<p>下一步是提供能够支持两种tab实现的Activity界面布局。对于老的实现（TabHelperEclair），你需要确保你的界面布局包含TabWidget和TabHost，同时存在一个包含tab内容的布局容器。</p>
+<p>res/layout/main.xml:</p>
+<pre><code class="lang-java">&lt;!-- This layout is for API level 5-10 only. --&gt;
+&lt;TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"&gt;
+
+    &lt;LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"&gt;
+
+        &lt;TabWidget
+            android:id="@android:id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" /&gt;
+
+        &lt;FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" /&gt;
+
+    &lt;/LinearLayout&gt;
+&lt;/TabHost&gt;
+</code></pre>
+<p>对于TabHelperHoneycomb的实现，你唯一要做的就是一个包含tab内容的FrameLayout，这是由于ActionBar已经提供了tab相关的页面。</p>
+<p>res/layout-v11/main.xml:</p>
+<pre><code class="lang-java">&lt;FrameLayout xmlns:android=<span class="hljs-string">"http://schemas.android.com/apk/res/android"</span>
+    android:id=<span class="hljs-string">"@android:id/tabcontent"</span>
+    android:layout_width=<span class="hljs-string">"match_parent"</span>
+    android:layout_height=<span class="hljs-string">"match_parent"</span> /&gt;
+</code></pre>
+<p>在运行的时候，Android将会根据平台版本去决定使用哪个版本的main.xml布局文件。这根上一节中选择哪一个版本的TabHelper所展示的逻辑是相同的。</p>
+<h2 id="activitytabhelper">在Activity中使用TabHelper</h2>
+<p>在Activity的onCreate()方法中，你可以获得一个TabHelper对象，并且使用以下代码添加tabs：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+    setContentView(R.layout.main);
+
+    TabHelper tabHelper = TabHelper.createInstance(<span class="hljs-keyword">this</span>);
+    tabHelper.setUp();
+
+    CompatTab photosTab = tabHelper
+            .newTab(<span class="hljs-string">"photos"</span>)
+            .setText(R.string.tab_photos);
+    tabHelper.addTab(photosTab);
+
+    CompatTab videosTab = tabHelper
+            .newTab(<span class="hljs-string">"videos"</span>)
+            .setText(R.string.tab_videos);
+    tabHelper.addTab(videosTab);
+}
+</code></pre>
+<p>当运行这个应用的时候，代码会自动显示对应的界面布局和实例化对应的TabHelperHoneycomb或TabHelperEclair对象，而实际使用的类对于Actvity来说是不透明的，因为它们拥有共同的TabHelper接口。</p>
+<p>以下是这种实现运行在Android 2.3和Android 4.0上的界面截图：</p>
+<p><img src="backward-compatible-ui-gb.png" alt="backward-compatible-ui-gb">
+<img src="backward-compatible-ui-ics.png" alt="backward-compatible-ui-ics"></p>
+<ul>
+<li>Figure 1.向后兼容的tabs运行在Android 2.3设备上（使用TabHelperEclair）和运行在Android 4.0设备上的截图</li>
+</ul>
 
                     
                     </section>
