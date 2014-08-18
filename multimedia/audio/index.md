@@ -15,7 +15,7 @@
 
 * [**管理音频焦点 - Managing Audio Focus**](audio-focus.html)
 
-  由于有多个应用可能播放音频,考虑他们应该如何交互非常重要.为了防止多个音乐app同时播放音频,Android使用音频焦点(audio focus)来节制音频的播放.学习如何请求audio focus,监听音频焦点的丢失以及在这种情况发生时如何做出回应.
+  由于有多个应用可能播放音频,考虑他们应该如何交互非常重要.为了防止多个音乐app同时播放音频,Android使用音频焦点(audio focus)来控制音频的播放.学习如何请求audio focus,监听音频焦点的丢失以及在这种情况发生时如何做出回应.
 
 
 * [**兼容音频输出设备 - Dealing with Audio Output Hardware**](audio-output.html)
