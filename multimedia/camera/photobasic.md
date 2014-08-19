@@ -42,7 +42,7 @@ private void dispatchTakePictureIntent(int actionCode) {
 ## Get the Thumbnail(获取缩略图)
 如果拍一张照片并不能满足你的app的雄心壮志，那么你可能想要从相机应用那里取回你的图片，并用它做些什么。
 
-Android的Camera程序会把拍好的照片编码为缩小的[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)，使用extra value的方式添加到返回的[Intent](http://developer.android.com/reference/android/content/Intent.html)当中，，并传送给[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))，对应的key为data。下面的代码取出了图片并使用一个[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)展示。
+Android的Camera程序会把拍好的照片编码为缩小的[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)，使用extra value的方式添加到返回的[Intent](http://developer.android.com/reference/android/content/Intent.html)当中，并传送给[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))，对应的key为data。下面的代码取出了图片并使用一个[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)展示。
 
 ```java
 @Override
