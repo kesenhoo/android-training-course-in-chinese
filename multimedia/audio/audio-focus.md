@@ -88,7 +88,7 @@ OnAudioFocusChangeListener afChangeListener = new OnAudioFocusChangeListener() {
 ## Duck! [闪避]
 Ducking是一个特殊的机制使得允许音频间歇性的短暂播放。在Ducking的情况下，正常播放的歌曲会降低音量来凸显这个短暂的音频声音，这样既让这个短暂的声音比较突出，又不至于打断正常的声音。
 
-下面的代码片段在我们的播放器暂时失去音频焦点时降低音量，并在重新获得音频焦点之后恢复原来音量。
+下面的代码片段让我们的播放器在暂时失去音频焦点时降低音量，并在重新获得音频焦点之后恢复原来音量。
 
 ```java
 OnAudioFocusChangeListener afChangeListener = new OnAudioFocusChangeListener() {
