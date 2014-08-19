@@ -132,25 +132,6 @@ private void dispatchTakePictureIntent() {
 }
 ```
 
-## Set the file name(设置文件名)
-正如上面描述的那样，文件的路径会有设备的系统环境决定。你自己需要做的只是定义个不会引起文件名冲突的命名scheme。下面会演示一种解决方案：
-
-```java
-private File createImageFile() throws IOException {
-    // Create an image file name
-    String timeStamp =
-        new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-    String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-    File image = File.createTempFile(
-        imageFileName,
-        JPEG_FILE_SUFFIX,
-        getAlbumDir()
-    );
-    mCurrentPhotoPath = image.getAbsolutePath();
-    return image;
-}
-```
-
 ## Add the Photo to a Gallery(添加照片到相册)
 当你通过intent创建一张照片，你应该知道你的图片在哪，因为你决定将它存储在哪。对其他人来说，也许查看你的照片最简单的方式是通过系统的Media Provider。
 
