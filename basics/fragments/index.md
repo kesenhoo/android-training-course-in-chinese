@@ -2,7 +2,7 @@
 
 > 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/basics/fragments/index.html>
 
-* 为了在Android上创建动态的、多窗口的用户交互体验，你需要将UI组件和Activity操作封装成模块进行使用,在activity中你可以对这些模块进行切入切出操作。你可以用[Fragment](http://developer.android.com/intl/zh-cn/reference/android/app/Fragment.html)来创建这些模块，Fragment就像一个嵌套的activity,拥有自己的布局（layout）以及管理自己的生命周期。
+* 为了在Android上创建动态的、多窗口的用户交互体验，你需要将UI组件和Activity操作封装成模块进行使用，在activity中你可以对这些模块进行切入切出操作。你可以用[Fragment](http://developer.android.com/intl/zh-cn/reference/android/app/Fragment.html)来创建这些模块，Fragment就像一个嵌套的activity，拥有自己的布局（layout）以及管理自己的生命周期。
 
 * 如果一个fragment定义了自己的布局，那么在activity中它可以与其他的fragments生成不同的组合，从而为不同的屏幕尺寸生成不同的布局（一个小的屏幕一次只放一个fragment，大的屏幕则可以两个或以上的fragment）。
 
