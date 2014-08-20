@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1408290329183
+# Revision 1408542191071
 
 CACHE:
 cloud/cloudsave/index.html
@@ -57,8 +57,8 @@ basics/supporting-devices/platforms.html
 basics/supporting-devices/screens.html
 best-background.html
 best-performance.html
-best-testing.html
 best-security.html
+best-testing.html
 best-user-input.html
 best-ux.html
 building-connectivity.html
@@ -71,16 +71,16 @@ connectivity/connect-devices-wireless/index.html
 connectivity/connect-devices-wireless/nsd-wifi-index.html
 connectivity/connect-devices-wireless/nsd.html
 connectivity/connect-devices-wireless/wifi-direct.html
-connectivity/efficient-downloads/efficient-network-access.html
 connectivity/efficient-downloads/connectivity-patterns.html
+connectivity/efficient-downloads/efficient-network-access.html
 connectivity/efficient-downloads/index.html
 connectivity/efficient-downloads/redundant-redundant.html
 connectivity/efficient-downloads/regular-update.html
-connectivity/network-ops/connecting.html
 connectivity/network-ops/index.html
+connectivity/network-ops/connecting.html
 connectivity/network-ops/managing.html
-connectivity/network-ops/xml.html
 connectivity/sync-adapters/create-authenticator.html
+connectivity/network-ops/xml.html
 connectivity/sync-adapters/create-stub-provider.html
 connectivity/sync-adapters/create-sync-adapter.html
 connectivity/sync-adapters/index.html
@@ -138,8 +138,8 @@ input/keyboard-input/type.html
 input/keyboard-input/visibility.html
 location/activity-recognition.html
 location/display-address.html
-location/geofencing.html
 location/index.html
+location/geofencing.html
 location/location-testing.html
 location/retrieve-current.html
 location/retrieve-location-updates.html
@@ -213,8 +213,8 @@ ui/tv/optimize-layouts-tv.html
 ui/tv/optimize-nav-tv.html
 ui/tv/unsupport-features-tv.html
 ux/app-indexing/deep-linking.html
-ux/app-indexing/enable-app-indexing.html
 ux/app-indexing/index.html
+ux/app-indexing/enable-app-indexing.html
 ux/design-nav/ancestral-temporal.html
 ux/design-nav/descendant-lateral.html
 ux/design-nav/index.html

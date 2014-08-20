@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.2" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.2" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter done " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter done " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter done " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,40 +5057,45 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_163">
+                    <section class="normal" id="section-gitbook_394">
                     
                         <h1 id="">简单的录像</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/camera/videobasics.html" target="_blank">http://developer.android.com/training/camera/videobasics.html</a></p>
 </blockquote>
-<p>这节课会介绍如何使用现有的Camera程序来录制一个视频。和拍照一样，我们没有必要去重新发明录像程序。大多数的Android程序都有自带Camera来进行录像。(<em>这一课的内容大多数与前面一课类似，简要带过，一些细节不赘述了</em>)</p>
+<p>这节课会介绍如何使用现有的Camera程序来录制一个视频。</p>
+<p>你的应用有自己的任务，整合视频只是其中的一小部分，你想要以最简单的方法录制视频，而不是重新发明一个摄像机。幸运的是，大多数Android设备已经有了一个能录制视频的camera应用。在这一节里，你让它为你做这件事。</p>
 <h2 id="request-camera-permission-">Request Camera Permission [请求权限]</h2>
+<p>为了让别人知道你的应用依赖照相机，在你的manifest文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span>
+                  <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"true"</span> /&gt;</span>
     ...
-<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>与上一课的拍照一样，你可以在启动Camera之前，使用hasSystemFeature(PackageManager.FEATURE_CAMERA).来检查是否存在Camera。</p>
+<p>如果你的程序并不需要一定有Camera，可以添加<code>android:required=&quot;false&quot;</code> 的tag属性。这样的话，Google Play 会允许没有camera的设备下载这个程序。当然你有必要在使用Camera之前通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有Camera。如果没有，你应该关闭你的Camera相关的功能！</p>
 <!-- more -->
 <h2 id="record-a-video-with-a-camera-app">Record a Video with a Camera App(使用相机程序来录制视频)</h2>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakeVideoIntent</span>() {
+<p>Android中将动作委托给其他应用的方法是：启动一个Intent来完成你想要的动作。这个步骤包含三部分： Intent 本身，启动的外部 Activity, 与一些处理返回视频的代码。</p>
+<p>这里是一个能广播录制视频intent的函数</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_VIDEO_CAPTURE = <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakeVideoIntent</span>() {
     Intent takeVideoIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-    startActivityForResult(takeVideoIntent, ACTION_TAKE_VIDEO);
-}
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isIntentAvailable</span>(Context context, String action) {
-    <span class="hljs-keyword">final</span> PackageManager packageManager = context.getPackageManager();
-    <span class="hljs-keyword">final</span> Intent intent = <span class="hljs-keyword">new</span> Intent(action);
-    List&lt;ResolveInfo&gt; list =
-        packageManager.queryIntentActivities(intent,
-            PackageManager.MATCH_DEFAULT_ONLY);
-    <span class="hljs-keyword">return</span> list.size() &gt; <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (takeVideoIntent.resolveActivity(getPackageManager()) != <span class="hljs-keyword">null</span>) {
+        startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+    }
 }
 </code></pre>
+<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理对应intent的活动组件(activity component)中的第一个activity(译注:就是检查有没有能处理这个intent的Activity)。执行这个检查非常必要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有app能处理你的intent，你的app就会crash。所以只要返回值不为null，触发intent就是安全的。</p>
 <h2 id="view-the-video">View the Video(查看视频)</h2>
-<p>Android的Camera程序会把拍好的视频地址返回。下面的代码演示了，如何查询到这个视频并显示到VideoView.</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleCameraVideo</span>(Intent intent) {
-    mVideoUri = intent.getData();
-    mVideoView.setVideoURI(mVideoUri);
+<p>Android的Camera程序会把指向视频存储地址<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>添加到<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)。下面的代码演示了取出这个视频并显示到VideoView。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span>(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data) {
+    <span class="hljs-keyword">if</span> (requestCode == REQUEST_VIDEO_CAPTURE &amp;&amp; resultCode == RESULT_OK) {
+        Uri videoUri = intent.getData();
+        mVideoView.setVideoURI(videoUri);
+    }
 }
 </code></pre>
 

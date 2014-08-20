@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.3.2" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.3.2" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,7 +5057,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_57">
+                    <section class="normal" id="section-gitbook_288">
                     
                         <h1 id="">适配不同的屏幕</h1>
 <blockquote>
@@ -5114,8 +5098,8 @@
             main.xml
         layout-land/
             main.xml
-</code></pre><p>默认的，<code>layout/main.xml</code>文件用作纵向屏幕layout。</p>
-<p>如果你想给横向屏幕提供一个特殊的layout，也适配于大屏幕，那么你需要使用<code>large</code>和<code>land</code>修饰符。</p>
+</code></pre><p>默认的，<code>layout/main.xml</code>文件用作竖屏的layout。</p>
+<p>如果你想给横屏提供一个特殊的layout，也适配于大屏幕，那么你需要使用<code>large</code>和<code>land</code>修饰符。</p>
 <pre><code> MyProject/
     res/
         layout/              # default (portrait)
@@ -5138,7 +5122,7 @@
 <li>mdpi:  1.0 (基准)</li>
 <li>ldpi:  0.75</li>
 </ul>
-<p>这意味着，如果你针对超高密度的设备生成了一张200x200的图像，同样的你应该对150x150 高密度,100x100中密度, 和75x75低密度的设备生成同样的资源。</p>
+<p>这意味着，如果你针对xhdpi的设备生成了一张200x200的图像，同样的你应该对为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。</p>
 <p>然后，将这些文件放入相应的drawable资源目录中:</p>
 <pre><code>MyProject/
     res/
@@ -5152,7 +5136,7 @@
             awesomeimage.png
 </code></pre><p>任何时候，当你引用<code>@drawable/awesomeimage</code>时系统会根据屏幕的分辨率选择恰当的bitmap。</p>
 <blockquote>
-<p><strong>Note</strong>:低密度(ldpi)资源是非必要的，当你提供了高精度assets，系统会把高密度图像按比例缩小一半，去适配低密度屏幕。</p>
+<p><strong>Note</strong>:低密度(ldpi)资源是非必要的，当你提供了hdpi的图像，系统会把hdpi的图像按比例缩小一半，去适配ldpi的屏幕。</p>
 </blockquote>
 <p>更多关于为app创建图标assets的信息和指导，详见<a href="https://developer.android.com/design/style/iconography.html" target="_blank">Iconography design</a>。</p>
 

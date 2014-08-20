@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>ActionBar的风格化 | Google Android官方培训课程中文版(v0.2)</title>
+        <title>自定义ActionBar的风格 | Google Android官方培训课程中文版(v0.2)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.0">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.3" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.3" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter  " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,16 +5057,16 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_30">
+                    <section class="normal" id="section-gitbook_261">
                     
-                        <h1 id="action-bar-">Action Bar 风格化</h1>
+                        <h1 id="actionbar">自定义ActionBar的风格</h1>
 <blockquote>
 <p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> -  原文:<a href="http://developer.android.com/training/basics/actionbar/styling.html" target="_blank">http://developer.android.com/training/basics/actionbar/styling.html</a></p>
 </blockquote>
-<p>Action bar 为用户提供一种熟悉可预测的方式来展示操作和导航，但是这并不意味着你的 app 要看起来和其他 app 一样。如果你想将 action bar 的风格设计的合乎你产品的定位，你只需简单地使用 Android 的 <a href="https://developer.android.com/guide/topics/ui/themes.html" target="_blank">式样和主题</a> 资源。</p>
-<p>Android 包括一少部分内置的 activity 主题，这些主题中包含 “暗” 或 “淡” 的 action bar 式样。你也可以扩展这些主题，以便于更好的为你的 action bar 自定义外观。</p>
+<p>Action bar 为用户提供一种熟悉可预测的方式来展示操作和导航，但是这并不意味着你的 app 要看起来和其他 app 一样。如果你想将 action bar 的风格设计的合乎你产品的定位，你只需简单地使用 Android 的 <a href="https://developer.android.com/guide/topics/ui/themes.html" target="_blank">样式和主题</a> 资源。</p>
+<p>Android 包括一少部分内置的 activity 主题，这些主题中包含 “暗” 或 “淡” 的 action bar 样式。你也可以扩展这些主题，以便于更好的为你的 action bar 自定义外观。</p>
 <blockquote>
-<p><strong>Note</strong>：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） <a href="https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat" target="_blank">Theme.AppCompat</a> 家族式样（甚至 <a href="https://developer.android.com/reference/android/R.style.html#Theme_Holo" target="_blank">Theme.Holo</a> 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个式样属性都必须被声明两次：一次使用平台的式样属性（<a href="http://developer.android.com/reference/android/R.attr.html" target="_blank">android:</a> 属性），另一次使用 Support 库中的式样属性（<a href="http://developer.android.com/reference/android/support/v7/appcompat/R.attr.html" target="_blank">appcompat.R.attr</a> 属性 —— 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。</p>
+<p><strong>Note</strong>：如果你为 action bar 使用了 Support 库的 API，那你必须使用（或重写） <a href="https://developer.android.com/reference/android/support/v7/appcompat/R.style.html#Theme_AppCompat" target="_blank">Theme.AppCompat</a> 家族样式（甚至 <a href="https://developer.android.com/reference/android/R.style.html#Theme_Holo" target="_blank">Theme.Holo</a> 家族，在 API level 11 或更高版本中可用）。如此一来，你声明的每一个样式属性都必须被声明两次：一次使用系统平台的样式属性（<a href="http://developer.android.com/reference/android/R.attr.html" target="_blank">android:</a> 属性），另一次使用 Support 库中的样式属性（<a href="http://developer.android.com/reference/android/support/v7/appcompat/R.attr.html" target="_blank">appcompat.R.attr</a> 属性 - 这些属性的上下文其实就是你的 app）。更多细节请查看下面的示例。</p>
 </blockquote>
 <h2 id="-android-">使用一个 Android 主题</h2>
 <p>Android 包含两个基本的 activity 主题，这两个主题决定了 action bar 的颜色：</p>
@@ -5106,14 +5090,14 @@
 </ul>
 <p>一定要确保你使用的 action bar icon 的颜色与 action bar 本身的颜色有差异。为了能帮助到你，<a href="https://developer.android.com/design/downloads/index.html#action-bar-icon-pack" target="_blank">Action Bar Icon Pack</a> 为 Holo “暗”和“淡”的 action bar 提供了标准的 action icon。</p>
 <h2 id="">自定义背景</h2>
-<p>为 activity 创建一个自定义主题，通过重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 属性来改变 action bar 的背景。<a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 属性指向另一个式样；在该式样里，通过指定一个 drawable 资源来重写 <a href="https://developer.android.com/reference/android/R.attr.html#background" target="_blank">background</a> 属性。</p>
+<p>为 activity 创建一个自定义主题，通过重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 属性来改变 action bar 的背景。<a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 属性指向另一个样式；在该样式里，通过指定一个 drawable 资源来重写 <a href="https://developer.android.com/reference/android/R.attr.html#background" target="_blank">background</a> 属性。</p>
 <p><img src="actionbar-theme-custom@2x.png" alt="actionbar-theme-custom@2x.png"></p>
 <p>如果你的 app 使用了 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#Tabs" target="_blank">navigation tabs</a> 或 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#SplitBar" target="_blank">split action bar</a> ，你也可以通过分别设置 <a href="https://developer.android.com/reference/android/R.attr.html#backgroundStacked" target="_blank">backgroundStacked</a> 和 <a href="https://developer.android.com/reference/android/R.attr.html#backgroundSplit" target="_blank">backgroundSplit</a> 属性来为这些条指定背景。</p>
 <blockquote>
-<p>注意：声明一个合适的父主题，进而你的自定义主题和式样可以继承父主题的式样，这点很重要。如果没有父式样，你的 action bar 将会失去很多式样属性，除非你自己显式的对他们进行声明。</p>
+<p><strong>Note</strong>：为你的自定义主题和样式声明一个合适的父主题，这点很重要。如果没有父样式，你的action bar将会失去很多默认的样式属性，除非你自己显式的对他们进行声明。</p>
 </blockquote>
 <h3 id="-android-30-">仅支持 Android 3.0 和更高</h3>
-<p>当仅支持 Android 3.0 和更高版本时，你可以像这样定义 action bar 的背景：</p>
+<p>当仅支持 Android 3.0 和更高版本时，你可以像下面这样定义 action bar 的背景：</p>
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
@@ -5163,17 +5147,18 @@
 <h2 id="">自定义文本颜色</h2>
 <p>修改 action bar 中的文本颜色，你需要分别重写每个元素的属性：</p>
 <ul>
-<li>Action bar 的标题：创建一种自定义式样，并指定 <code>textColor</code> 属性；同时，在你的自定义 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 中为 <a href="https://developer.android.com/reference/android/R.attr.html#titleTextStyle" target="_blank">titleTextStyle</a> 属性指定为刚才的自定义式样。</li>
-</ul>
+<li><p>Action bar 的标题：创建一种自定义样式，并指定 <code>textColor</code> 属性；同时，在你的自定义 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarStyle" target="_blank">actionBarStyle</a> 中为 <a href="https://developer.android.com/reference/android/R.attr.html#titleTextStyle" target="_blank">titleTextStyle</a> 属性指定为刚才的自定义样式。</p>
 <blockquote>
-<p>注释：被应用到 <a href="https://developer.android.com/reference/android/R.attr.html#titleTextStyle" target="_blank">titleTextStyle</a> 的自定义式样应该使用 <a href="https://developer.android.com/reference/android/R.style.html#TextAppearance_Holo_Widget_ActionBar_Title" target="_blank">TextAppearance.Holo.Widget.ActionBar.Title</a> 作为父式样。</p>
+<p><strong>Note</strong>：被应用到 <a href="https://developer.android.com/reference/android/R.attr.html#titleTextStyle" target="_blank">titleTextStyle</a> 的自定义样式应该使用 <a href="https://developer.android.com/reference/android/R.style.html#TextAppearance_Holo_Widget_ActionBar_Title" target="_blank">TextAppearance.Holo.Widget.ActionBar.Title</a> 作为父样式。</p>
 </blockquote>
+</li>
+</ul>
 <ul>
-<li>Action bar 的页签：在你的 activity 主题中重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabTextStyle" target="_blank"> actionBarTabTextStyle</a></li>
+<li>Action bar tabs：在你的 activity 主题中重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabTextStyle" target="_blank"> actionBarTabTextStyle</a></li>
 <li>Action 按钮：在你的 activity 主题中重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionMenuTextColor" target="_blank">actionMenuTextColor</a></li>
 </ul>
 <h3 id="-android-30-">仅支持 Android 3.0 和更高</h3>
-<p>当仅支持 Android 3.0 和更高时，你的式样 XML 文件应该是这样的：</p>
+<p>当仅支持 Android 3.0 和更高时，你的样式 XML 文件应该是这样的：</p>
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
@@ -5205,7 +5190,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
 <h3 id="-android-21-">支持 Android 2.1 和更高</h3>
-<p>当使用 Support 库时，你的式样 XML 文件应该是这样的：</p>
+<p>当使用 Support 库时，你的样式 XML 文件应该是这样的：</p>
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
@@ -5247,10 +5232,10 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
 <h2 id="-tab-indicator">自定义 Tab Indicator</h2>
-<p>为 activity 创建一个自定义主题，通过重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle" target="_blank">actionBarTabStyle</a> 属性来改变 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#Tabs" target="_blank">navigation tabs</a> 使用的指示器。<a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle" target="_blank">actionBarTabStyle</a> 属性指向另一个式样资源；在该式样资源里，通过指定一个状态列表 drawable 来重写 <a href="https://developer.android.com/reference/android/R.attr.html#background" target="_blank">background</a> 属性。
+<p>为 activity 创建一个自定义主题，通过重写 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle" target="_blank">actionBarTabStyle</a> 属性来改变 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#Tabs" target="_blank">navigation tabs</a> 使用的指示器。<a href="https://developer.android.com/reference/android/R.attr.html#actionBarTabStyle" target="_blank">actionBarTabStyle</a> 属性指向另一个样式资源；在该样式资源里，通过指定一个state-list drawable 来重写 <a href="https://developer.android.com/reference/android/R.attr.html#background" target="_blank">background</a> 属性。
 <img src="actionbar-theme-custom-tabs@2x.png" alt=""></p>
 <blockquote>
-<p><strong>Note</strong>：一个状态列表 drawable 是重要的，以便通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList" target="_blank">State List</a> 文档。</p>
+<p><strong>Note</strong>：一个state-list drawable 是重要的，它可以通过不同的背景来指出当前选择的 tab 与其他 tab 的区别。更多关于如何创建一个 drawable 资源来处理多个按钮状态，请阅读 <a href="https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList" target="_blank">State List</a> 文档。</p>
 </blockquote>
 <p>例如，这是一个状态列表 drawable，为一个 action bar tab 的多种不同状态分别指定背景图片：</p>
 <p>res/drawable/actionbar_tab_indicator.xml</p>
@@ -5296,7 +5281,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">selector</span>&gt;</span>
 </code></pre>
 <h3 id="-android-30-">仅支持 Android 3.0 和更高</h3>
-<p>当仅支持 Android 3.0 和更高时，你的式样 XML 文件应该是这样的：</p>
+<p>当仅支持 Android 3.0 和更高时，你的样式 XML 文件应该是这样的：</p>
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
@@ -5315,7 +5300,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
 <h3 id="-android-21-">支持 Android 2.1 和更高</h3>
-<p>当使用 Support 库时，你的式样 XML 文件应该是这样的：</p>
+<p>当使用 Support 库时，你的样式 XML 文件应该是这样的：</p>
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
@@ -5342,9 +5327,9 @@
 <blockquote>
 <p><strong>更多资源</strong></p>
 <ul>
-<li>关于 action bar 的更多式样属性，请查看 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#Style" target="_blank">Action Bar</a> 指南</li>
-<li>学习更多式样的工作机制，请查看 <a href="https://developer.android.com/guide/topics/ui/themes.html" target="_blank">式样和主题</a> 指南</li>
-<li>全面的 action bar 式样，请尝试 <a href="http://www.actionbarstylegenerator.com/" target="_blank">Android Action Bar 式样生成器</a></li>
+<li>关于 action bar 的更多样式属性，请查看 <a href="https://developer.android.com/guide/topics/ui/actionbar.html#Style" target="_blank">Action Bar</a> 指南</li>
+<li>学习更多样式的工作机制，请查看 <a href="https://developer.android.com/guide/topics/ui/themes.html" target="_blank">样式和主题</a> 指南</li>
+<li>全面的 action bar 样式，请尝试 <a href="http://www.actionbarstylegenerator.com/" target="_blank">Android Action Bar 样式生成器</a></li>
 </ul>
 </blockquote>
 

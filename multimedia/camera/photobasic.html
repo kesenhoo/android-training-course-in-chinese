@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.1" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="3.2.1" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter done " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter done " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter done " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter done " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter done " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter done " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter done " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,79 +5057,114 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_161">
+                    <section class="normal" id="section-gitbook_392">
                     
                         <h1 id="">简单的拍照</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/camera/photobasics.html" target="_blank">http://developer.android.com/training/camera/photobasics.html</a></p>
 </blockquote>
-<p>假设你想通过你的客户端程序实现一个聚合全球天气的地图，上面会有各地的当前天气图片。那么集合图片只是你程序的一部分。你想要最简单的动作来获取图片，而不是重新发明（reinvent）一个camera。幸运的是，大多数Android设备都已经至少安装了一款相机程序。在这节课中，你会学习，如何拍照</p>
+<p>这节课解释了如何使用已有相机应用捕获图片。</p>
+<p>假设你实现了一个众包的天气服务，通过把你的app客户端拍下的天气图片汇聚在一起组成全球气象图。整合图片只是你程序的一小部分。你想要最简单的动作来获取图片，而不是重新发明（reinvent）一个camera。幸运的是，大多数Android设备都已经至少安装了一款相机程序。在这节课中，你会学习如何拍照</p>
 <!-- more -->
 <h2 id="request-camera-permission">Request Camera Permission(请求使用相机权限)</h2>
-<p>在写程序之前，需要在你的程序的manifest文件中添加下面的权限：</p>
+<p>如果拍照是你的应用的必要功能，那么限制它在在Google Play中仅对有相机设备可见。为了让别人知道你的应用依赖照相机，在你的manifest文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
 <pre><code class="lang-xml"> <span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
 </code></pre>
-<p>如果你的程序并不需要一定有Camera，可以添加<code>android:required=&quot;false&quot;</code> 的tag属性。这样的话，Google Play 也会允许没有camera的设备下载这个程序。当然你有必要在使用Camera之前通过hasSystemFeature(PackageManager.FEATURE_CAMERA)方法来检查设备上是否有Camera。如果没有，你应该关闭你的Camera相关的功能！</p>
+<p>如果你的程序并不需要一定有Camera，可以添加<code>android:required=&quot;false&quot;</code> 的tag属性。这样的话，Google Play 也会允许没有camera的设备下载这个程序。当然你有必要在使用Camera之前通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有Camera。如果没有，你应该关闭你的Camera相关的功能！</p>
 <h2 id="take-a-photo-with-the-camera-app">Take a Photo with the Camera App(使用相机应用程序进行拍照]</h2>
-<p>Android中的方法是：启动一个Intent来完成你想要的动作。这个步骤包含三部分： Intent 本身，启动的外部 Activity, 与一些处理返回照片的代码。如：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakePictureIntent</span>(<span class="hljs-keyword">int</span> actionCode) {
+<p>Android中将动作委托给其他应用的方法是：启动一个Intent来完成你想要的动作。这个步骤包含三部分： Intent 本身，启动的外部 Activity, 与一些处理返回照片的代码。</p>
+<p>这是一个能发送捕获照片intent的函数</p>
+<pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_IMAGE_CAPTURE = <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakePictureIntent</span>(<span class="hljs-keyword">int</span> actionCode) {
     Intent takePictureIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    startActivityForResult(takePictureIntent, actionCode);
+    <span class="hljs-keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="hljs-keyword">null</span>) {
+        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+    }
 }
 </code></pre>
-<p>当然在发出Intent之前，你需要检查是否有app会来handle这个intent，否则会引起启动失败：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isIntentAvailable</span>(Context context, String action) {
-    <span class="hljs-keyword">final</span> PackageManager packageManager = context.getPackageManager();
-    <span class="hljs-keyword">final</span> Intent intent = <span class="hljs-keyword">new</span> Intent(action);
-    List&lt;ResolveInfo&gt; list =
-            packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-    <span class="hljs-keyword">return</span> list.size() &gt; <span class="hljs-number">0</span>;
+<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理对应intent的活动组件(activity component)中的第一个activity(译注:就是检查有没有能处理这个intent的Activity)。执行这个检查非常必要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有app能处理你的intent，你的app就会crash。所以只要返回值不为null，触发intent就是安全的</p>
+<h2 id="get-the-thumbnail">Get the Thumbnail(获取缩略图)</h2>
+<p>如果拍一张照片并不能满足你的app的雄心壮志，那么你可能想要从相机应用那里取回你的图片，并用它做些什么。</p>
+<p>Android的Camera程序会把拍好的照片编码为缩小的<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>，使用extra value的方式添加到返回的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>当中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)，对应的key为data。下面的代码取出了图片并使用一个<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>展示。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span>(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data) {
+    <span class="hljs-keyword">if</span> (requestCode == REQUEST_IMAGE_CAPTURE &amp;&amp; resultCode == RESULT_OK) {
+        Bundle extras = data.getExtras();
+        Bitmap imageBitmap = (Bitmap) extras.get(<span class="hljs-string">"data"</span>);
+        mImageView.setImageBitmap(imageBitmap);
+    }
 }
 </code></pre>
-<h2 id="view-the-photo">View the Photo(查看照片)</h2>
-<p>Android的Camera程序会把拍好的照片编码为bitmap，使用extra value的方式添加到返回的 Intent 当中， 对应的key为data。</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleSmallCameraPhoto</span>(Intent intent) {
-    Bundle extras = intent.getExtras();
-    mImageBitmap = (Bitmap) extras.get(<span class="hljs-string">"data"</span>);
-    mImageView.setImageBitmap(mImageBitmap);
-}
+<p><strong>Note:</strong> 这张从&quot;data&quot;中取出的缩略图可能适用于作为icon，但作用并不多。处理一张全尺寸图片需要做更多的工作。</p>
+<h2 id="save-the-full-size-photo">Save the Full-size Photo(保存全尺寸照片)</h2>
+<p>如果你提供一个file对象给Android的Camera程序，它会保存这张全图到给定的路径下。你必须提供存储图片所需要的完全限定文件名(fully qualified file name)。</p>
+<p>一般，任何用户使用设备相机捕获的图片应该被存放在设备的公共外部存储中，这样它们就能被所有的图片访问。通过传入<a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES" target="_blank">DIRECTORY_PICTURES</a>参数，<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String" target="_blank">getExternalStoragePublicDirectory()</a>)将返回存储公共图片的适当目录。因为这个方法提供的目录被所有app共享，读和写这个目录分别需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>和<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。写权限隐式的声明了读权限，所以如果你需要外部存储的写权限，那么你仅仅需要请求一项权限：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p><strong>Note:</strong> 这仅仅是处理一张很少的缩略图而已，如果是大的全图，需要做更多的事情来避免ANR。</p>
-<h2 id="save-the-photo">Save the Photo(保存照片)</h2>
-<p>如果你提供一个file对象给Android的Camera程序，它会保存这张全图到给定的路径下。你必须提供存储的卷名，文件夹名与文件名。对于2.2以上的系统，如下操作即可：</p>
-<pre><code class="lang-java">storageDir = <span class="hljs-keyword">new</span> File(
-    Environment.getExternalStoragePublicDirectory(
-        Environment.DIRECTORY_PICTURES
-    ),
-    getAlbumName()
-);
+<p>然而，如果你需要图片为你的app私有，你可以使用<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String" target="_blank">getExternalFilesDir()</a>)提供的目录。在Android 4.3及以下的版本，写这个目录需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。从Android 4.4开始，不再需要因为这个原因声明这个权限了。因为这个目录不能被其他app访问，所以你可以通过添加<a href="http://developer.android.com/guide/topics/manifest/uses-permission-element.html#maxSdk" target="_blank">maxSdkVersion</a>属性，声明只在低版本的Android设备上请求这个权限。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span>
+                     <span class="hljs-attribute">android:maxSdkVersion</span>=<span class="hljs-value">"18"</span> /&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<h2 id="set-the-file-name">Set the file name(设置文件名)</h2>
-<p>正如上面描述的那样，文件的路径会有设备的系统环境决定。你自己需要做的只是定义个不会引起文件名冲突的命名scheme。下面会演示一种解决方案：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> File <span class="hljs-title">createImageFile</span>() <span class="hljs-keyword">throws</span> IOException {
+<p><strong>Note:</strong> 所有存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String" target="_blank">getExternalFilesDir()</a>)提供的目录中的文件会在用户卸载你的app后被删除。</p>
+<p>一旦你选定了你的文件的目录，你需要创建一个不会冲突(collision-resistant)的文件名。你可能同样希望将路径存储在成员变量中以便以后使用。这是一个使用日期时间戳为新照片生成唯一文件名的范例解决方案：</p>
+<pre><code class="lang-java">String mCurrentPhotoPath;
+
+<span class="hljs-keyword">private</span> File <span class="hljs-title">createImageFile</span>() <span class="hljs-keyword">throws</span> IOException {
     <span class="hljs-comment">// Create an image file name</span>
-    String timeStamp =
-        <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMdd_HHmmss"</span>).format(<span class="hljs-keyword">new</span> Date());
-    String imageFileName = JPEG_FILE_PREFIX + timeStamp + <span class="hljs-string">"_"</span>;
+    String timeStamp = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMdd_HHmmss"</span>).format(<span class="hljs-keyword">new</span> Date());
+    String imageFileName = <span class="hljs-string">"JPEG_"</span> + timeStamp + <span class="hljs-string">"_"</span>;
+    File storageDir = Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES);
     File image = File.createTempFile(
-        imageFileName,
-        JPEG_FILE_SUFFIX,
-        getAlbumDir()
+        imageFileName,  <span class="hljs-comment">/* prefix */</span>
+        <span class="hljs-string">".jpg"</span>,         <span class="hljs-comment">/* suffix */</span>
+        storageDir      <span class="hljs-comment">/* directory */</span>
     );
-    mCurrentPhotoPath = image.getAbsolutePath();
+
+    <span class="hljs-comment">// Save a file: path for use with ACTION_VIEW intents</span>
+    mCurrentPhotoPath = <span class="hljs-string">"file:"</span> + image.getAbsolutePath();
     <span class="hljs-keyword">return</span> image;
 }
 </code></pre>
-<h2 id="append-the-file-name-onto-the-intent">Append the file name onto the Intent(把文件名添加到网络上)</h2>
-<p>Once you have a place to save your image, pass that location to the camera application via the Intent.</p>
-<pre><code class="lang-java">File f = createImageFile();
-takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+<p>有了上面的方法给新照片创建文件对象，你可以像这样创建并触发一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>：</p>
+<pre><code class="lang-java">String mCurrentPhotoPath;
+<span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_TAKE_PHOTO = <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakePictureIntent</span>() {
+    Intent takePictureIntent = <span class="hljs-keyword">new</span> Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    <span class="hljs-comment">// Ensure that there's a camera activity to handle the intent</span>
+    <span class="hljs-keyword">if</span> (takePictureIntent.resolveActivity(getPackageManager()) != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Create the File where the photo should go</span>
+        File photoFile = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">try</span> {
+            photoFile = createImageFile();
+        } <span class="hljs-keyword">catch</span> (IOException ex) {
+            <span class="hljs-comment">// Error occurred while creating the File</span>
+            ...
+        }
+        <span class="hljs-comment">// Continue only if the File was successfully created</span>
+        <span class="hljs-keyword">if</span> (photoFile != <span class="hljs-keyword">null</span>) {
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                    Uri.fromFile(photoFile));
+            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        }
+    }
+}
 </code></pre>
 <h2 id="add-the-photo-to-a-gallery">Add the Photo to a Gallery(添加照片到相册)</h2>
-<p>对于大多数人来说，最简单查看你的照片的方式是通过系统的Media Provider。下面会演示如何触发系统的Media Scanner来添加你的照片到Media Provider的DB中，这样使得相册程序与其他程序能够读取到那些图片。</p>
+<p>当你通过intent创建一张照片，你应该知道你的图片在哪，因为你决定将它存储在哪。对其他人来说，也许查看你的照片最简单的方式是通过系统的Media Provider。</p>
+<p><strong>Note:</strong> 如果你将你的图片存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String" target="_blank">getExternalFilesDir()</a>)提供的目录中，媒体扫描器(media scanner)不能访问到你的文件，因为它们是你的app私有的。</p>
+<p>下面的例子演示了如何触发系统的Media Scanner来添加你的照片到Media Provider的数据库中，这样使得Android相册(Gallery)程序与其他程序能够读取到那些图片。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">galleryAddPic</span>() {
     Intent mediaScanIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
     File f = <span class="hljs-keyword">new</span> File(mCurrentPhotoPath);
@@ -5155,7 +5174,7 @@ takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
 }
 </code></pre>
 <h2 id="decode-a-scaled-image">Decode a Scaled Image(解码缩放图片)</h2>
-<p>在有限的内存下，管理全尺寸的图片会很麻烦。下面会介绍如何缩放图片来适应程序的显示：</p>
+<p>在有限的内存下，管理许多全尺寸的图片很棘手。如果你发现你的应用在展示了少量图片后消耗了所有内存，你可以通过缩放图片到目标视图尺寸，之后再载入内存中的方法，来显著降低动态堆使用，下面的例子演示了这个技术：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPic</span>() {
     <span class="hljs-comment">// Get the dimensions of the View</span>
     <span class="hljs-keyword">int</span> targetW = mImageView.getWidth();

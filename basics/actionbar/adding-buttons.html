@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.2" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.2" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter  " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter  " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter  " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,15 +5057,15 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_26">
+                    <section class="normal" id="section-gitbook_257">
                     
-                        <h1 id="-action-">添加 Action 按钮</h1>
+                        <h1 id="action">添加Action按钮</h1>
 <blockquote>
 <p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 原文:<a href="http://developer.android.com/training/basics/actionbar/adding-buttons.html" target="_blank">http://developer.android.com/training/basics/actionbar/adding-buttons.html</a></p>
 </blockquote>
-<p>Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或文本被称作操作按钮。不匹配的或不足够重要的操作被隐藏在 action overflow 中。</p>
+<p>Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或 文本被称作<strong>action buttons(操作按钮)</strong>。安排不下的或不足够重要的操作被隐藏在 <strong>action overflow</strong> 中。</p>
 <p><img src="actionbar-actions.png" alt="actionbar-actions">
-图 1. 一个有检索操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作</p>
+图 1. 一个有search操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作。</p>
 <h2 id="-xml-">在 XML 中指定操作</h2>
 <p>所有的操作按钮和 action overflow 中其他可用的条目都被定义在 <a href="https://developer.android.com/guide/topics/resources/menu-resource.html" target="_blank">菜单资源</a> 的 XML 文件中。通过在项目的 <code>res/menu</code> 目录中新增一个 XML 文件来为 action bar 添加操作。</p>
 <p>为你想添加到 action bar 中的每个条目添加一个 <code>&lt;item&gt;</code> 元素。例如：</p>
@@ -5103,7 +5087,7 @@
 <blockquote>
 <p><strong>Note</strong>：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 <a href="../supporting-devices/screens.html">支持不同屏幕</a> 课程中将会更详细地讨论。</p>
 </blockquote>
-<p>如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 <code>android</code> 命名空间下 <code>showAsAction</code> 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：</p>
+<p>如果你为了兼容 Android 2.1 的版本使用了 Support 库，在 <code>android</code> 命名空间下 <code>showAsAction</code> 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：</p>
 <p>res/menu/main_activity_actions.xml</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">menu</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
       <span class="hljs-attribute">xmlns:yourapp</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span> &gt;</span>
@@ -5126,7 +5110,7 @@
 }
 </code></pre>
 <h2 id="">为操作按钮添加响应事件</h2>
-<p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用<a href="https://developer.android.com/reference/android/view/MenuItem.html" target="_blank">MenuItem</a>的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 <code>&lt;item&gt;</code> 元素中 <code>&lt;android:id&gt;</code> 属性的值。</p>
+<p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用<a href="https://developer.android.com/reference/android/view/MenuItem.html" target="_blank">MenuItem</a>的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下  - 返回的 ID 会匹配你声明对应的 <code>&lt;item&gt;</code> 元素中 <code>&lt;android:id&gt;</code> 属性的值。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span>(MenuItem item) {
     <span class="hljs-comment">// Handle presses on the action bar items</span>
@@ -5143,9 +5127,9 @@
 }
 </code></pre>
 <h2 id="-activity-">为下级 Activity 添加向上按钮</h2>
-<p>在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的向上按钮。</p>
+<p>在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的<strong>up button(向上按钮)</strong>。</p>
 <p><img src="actionbar-up.png" alt="actionbar-up.png">
-图 2. Gmail 中向上按钮</p>
+图 2. Gmail 中的 up button。</p>
 <p>当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 <a href="https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html" target="_blank">ActionBarActivity</a> 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。</p>
 <p>如何在 mainfest 中声明一个 activity 的父辈，例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
@@ -5178,7 +5162,7 @@
     <span class="hljs-comment">// getActionBar().setDisplayHomeAsUpEnabled(true);</span>
 }
 </code></pre>
-<p>由于系统已经知道 <code>MainActivity</code> 是 <code>DisplayMessageActivity</code> 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。</p>
+<p>由于系统已经知道 <code>MainActivity</code> 是 <code>DisplayMessageActivity</code> 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity - 你不需要去处理向上按钮的事件。</p>
 <p>更多关于向上导航的信息，请见 <a href="../../ux/implement-nav/ancestral.html">提供向上导航</a>。</p>
 
                     
@@ -5192,7 +5176,7 @@
         <a href="../../basics/actionbar/setting-up.html" class="navigation navigation-prev " aria-label="Previous page: 建立ActionBar"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../basics/actionbar/styling.html" class="navigation navigation-next " aria-label="Next page: ActionBar的风格化"><i class="fa fa-angle-right"></i></a>
+        <a href="../../basics/actionbar/styling.html" class="navigation navigation-next " aria-label="Next page: 自定义ActionBar的风格"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.4" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.2.4" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,20 +5057,20 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_28">
+                    <section class="normal" id="section-gitbook_259">
                     
-                        <h1 id="action-bar-">Action Bar 覆盖叠加</h1>
+                        <h1 id="actionbar">ActionBar的覆盖叠加</h1>
 <blockquote>
 <p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 原文:<a href="http://developer.android.com/training/basics/actionbar/overlaying.html" target="_blank">http://developer.android.com/training/basics/actionbar/overlaying.html</a></p>
 </blockquote>
-<p>默认情况下，action bar 显示在 activity 窗口的顶部，会稍微地减少其他布局的有效空间。如果在用户交互过程中你要隐藏和显示 action bar，可以通过调用 <a href="https://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a> 中的 <a href="https://developer.android.com/reference/android/app/ActionBar.html#hide()">hide()</a>和<a href="https://developer.android.com/reference/android/app/ActionBar.html#show()">show()</a>来实现。但是，这将会导致 activity 基于新尺寸重现计算和重新绘制布局。</p>
-<p>为了避免在 action bar 隐藏和显示过程中调整布局，可以为 action bar 启用叠加模式(overlay mode)。在叠加模式下，所有可用的空间都会被用来布局，并且 action bar 会叠加在布局之上。这样布局顶部就会被遮挡，但当 action bar 隐藏或显示时，系统不再需要调整布局而是无缝过渡。</p>
+<p>默认情况下，action bar 显示在 activity 窗口的顶部，会稍微地减少其他布局的有效空间。如果在用户交互过程中你要隐藏和显示 action bar，可以通过调用 <a href="https://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a> 中的 <a href="https://developer.android.com/reference/android/app/ActionBar.html#hide()">hide()</a>和<a href="https://developer.android.com/reference/android/app/ActionBar.html#show()">show()</a>来实现。但是，这将会导致 activity 基于新尺寸重新计算与绘制布局。</p>
+<p>为了避免在 action bar 隐藏和显示过程中调整布局的大小，可以为 action bar 启用叠加模式(<strong>overlay mode</strong>)。在叠加模式下，所有可用的空间都会被用来布局就像ActionBar不存在一样，并且 action bar 会叠加在你的布局之上。这样布局顶部就会有点被遮挡，但当 action bar 隐藏或显示时，系统不再需要调整布局而是无缝过渡。</p>
 <blockquote>
-<p>提示：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 <a href="styling.html">Action Bar 风格化</a>。</p>
+<p><strong>Note</strong>：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 <a href="styling.html">自定义ActionBar的风格</a>。</p>
 </blockquote>
 <p><img src="actionbar-overlay@2x.png" alt="actionbar-overlay@2x">
 图 1. 叠加模式下的 gallery action bar</p>
-<h2 id="">启用叠加模式</h2>
+<h2 id="overlay-mode">启用叠加模式(Overlay Mode)</h2>
 <p>要为 action bar 启用叠加模式，需要自定义一个主题，该主题继承于已经存在的 action bar 主题，并设置 <code>android:windowActionBarOverlay</code> 属性的值为 <code>true</code>。</p>
 <h3 id="-android-30-">仅支持 Android 3.0 和以上</h3>
 <p>如果 <a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank">minSdkVersion</a> 为 <code>11</code> 或更高，自定义主题必须继承 <a href="https://developer.android.com/reference/android/R.style.html#Theme_Holo" target="_blank">Theme.Holo</a> 主题（或者它的子主题）。例如：</p>
@@ -5111,9 +5095,9 @@
     </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
-<p>请注意，这主题包含两种不同的 <code>windowActionBarOverlay</code> 式样定义：一个带 <code>android:</code> 前缀，另一个不带。带前缀的适用于包含该式样的 Android 版本，不带前缀的适用于通过从 Support 库中读取式样的旧版本。</p>
+<p>请注意，这主题包含两种不同的 <code>windowActionBarOverlay</code> 式样定义：一个带 <code>android:</code> 前缀，另一个不带。带前缀的适用于包含该式样的 Android 系统版本，不带前缀的适用于通过从 Support 库中读取式样的旧版本。</p>
 <h2 id="">指定布局的顶部边距</h2>
-<p>当 action bar 启用叠加模式时，它可能会遮挡住本应保持可见状态的布局。为了确保这些布局始终位于 action bar 下部，可以使用 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarSize" target="_blank">actionBarSize</a> 属性来指定顶部外边距或顶部内边距的高度来到达。例如：</p>
+<p>当 action bar 启用叠加模式时，它可能会遮挡住本应保持可见状态的布局。为了确保这些布局始终位于 action bar 下部，可以使用 <a href="https://developer.android.com/reference/android/R.attr.html#actionBarSize" target="_blank">actionBarSize</a> 属性来指定顶部margin或padding的高度来到达。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">RelativeLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
@@ -5130,7 +5114,7 @@
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">RelativeLayout</span>&gt;</span>
 </code></pre>
-<p>在这种情况下，不带前缀的 <code>?attr/actionBarSize</code> 适用于 Android 3.0 和更高的所有版本。</p>
+<p>在这种情况下，不带前缀的 <code>?attr/actionBarSize</code> 适用于包括Android 3.0 和更高的所有版本。</p>
 
                     
                     </section>
@@ -5140,7 +5124,7 @@
         </div>
 
         
-        <a href="../../basics/actionbar/styling.html" class="navigation navigation-prev " aria-label="Previous page: ActionBar的风格化"><i class="fa fa-angle-left"></i></a>
+        <a href="../../basics/actionbar/styling.html" class="navigation navigation-prev " aria-label="Previous page: 自定义ActionBar的风格"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../basics/supporting-devices/index.html" class="navigation navigation-next " aria-label="Next page: 兼容不同的设备"><i class="fa fa-angle-right"></i></a>

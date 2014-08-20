@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.4" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,21 +5057,18 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_31">
+                    <section class="normal" id="section-gitbook_262">
                     
-                        <h1 id="activitymanaging-the-activity-lifecycle">管理Activity的生命周期(Managing the Activity Lifecycle)</h1>
+                        <h1 id="activity">管理Activity的生命周期</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/activity-lifecycle/index.html" target="_blank">http://developer.android.com/training/basics/activity-lifecycle/index.html</a></p>
 </blockquote>
-<ul>
-<li>当用户进入，退出，回到你的App，在程序中的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a> 实例都经历了生命周期中的不同状态。例如，当你的activity第一次启动的时候，它来到系统的前台，开始接受用户的焦点。在此期间，Android系统调用了一系列的生命周期中的方法。如果用户执行了启动另一个activity或者切换到另一个app的操作, 系统又会调用一些生命周期中的方法。</li>
-<li>在生命周期的回调方法里面，你可以声明当用户离开或者重新进入这个Activity所需要执行的操作。例如, 如果你建立了一个streaming video player, 在用户切换到另外一个app的时候，你应该暂停video 并终止网络连接。当用户返回时，你可以重新建立网络连接并允许用户从同样的位置恢复播放。</li>
-<li>这一章会介绍一些<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>中重要的生命周期回调方法，如何使用那些方法使得程序符合用户的期望且在activity不需要的时候不会导致系统资源的浪费。</li>
-<li>完整的Demo示例：<a href="http://developer.android.com/shareables/training/ActivityLifecycle.zip" target="_blank">ActivityLifecycle.zip</a></li>
-</ul>
+<p>当用户进入，退出，回到你的App，在程序中的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a> 实例都经历了生命周期中的不同状态。例如，当你的activity第一次启动的时候，它来到系统的前台，开始接受用户的焦点。在此期间，Android系统调用了一系列的生命周期中的方法。如果用户执行了启动另一个activity或者切换到另一个app的操作, 系统又会调用一些生命周期中的方法。</p>
+<p>在生命周期的回调方法里面，你可以声明当用户离开或者重新进入这个Activity所需要执行的操作。例如, 如果你建立了一个streaming video player, 在用户切换到另外一个app的时候，你应该暂停video 并终止网络连接。当用户返回时，你可以重新建立网络连接并允许用户从同样的位置恢复播放。</p>
+<p>这一章会介绍一些<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>中重要的生命周期回调方法，如何使用那些方法使得程序符合用户的期望且在activity不需要的时候不会导致系统资源的浪费。</p>
+<p><strong>完整的Demo示例</strong>：<a href="http://developer.android.com/shareables/training/ActivityLifecycle.zip" target="_blank">ActivityLifecycle.zip</a></p>
 <!-- more -->
 <h2 id="lessons">Lessons</h2>
-<p>这一章我们将学习下面4个课程:</p>
 <ul>
 <li><p><a href="starting.html"><strong>启动与销毁Activity</strong></a></p>
 <p>学习关于activity生命周期的基础知识，用户如何启动你的应用以及如何执行activity的创建。</p>

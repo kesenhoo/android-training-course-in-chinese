@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.1" data-basepath="../.." data-revision="1408290329181">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="1.5.1" data-basepath="../.." data-revision="1408542191070">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -231,7 +231,7 @@
                         
                             <b>1.1.4.</b>
                         
-                         启动其他Activity
+                         启动其他的Activity
                     </a>
                 
             
@@ -301,7 +301,7 @@
                         
                             <b>1.2.3.</b>
                         
-                         ActionBar的风格化
+                         自定义ActionBar的风格
                     </a>
                 
             
@@ -999,29 +999,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/volume-playback.html">
-            
-                
-                    <a href="../../multimedia/audio/volume-playback.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.1.3.</b>
-                        
-                         控制你得应用的音量与播放
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3.1.4" data-path="multimedia/audio/audio-output.html">
+        <li class="chapter " data-level="3.1.3" data-path="multimedia/audio/audio-output.html">
             
                 
                     <a href="../../multimedia/audio/audio-output.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.4.</b>
+                            <b>3.1.3.</b>
                         
                          兼容音频输出设备
                     </a>
@@ -4576,7 +4560,7 @@
     
         <a href="../../basics/firstapp/building-ui.html" title="建立简单的用户界面" class="chapter done " data-progress="1.1.3" style="left: 1.9920318725099602%;"></a>
     
-        <a href="../../basics/firstapp/starting-activity.html" title="启动其他Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
+        <a href="../../basics/firstapp/starting-activity.html" title="启动其他的Activity" class="chapter done " data-progress="1.1.4" style="left: 2.3904382470119523%;"></a>
     
         <a href="../../basics/actionbar/index.html" title="添加ActionBar" class="chapter done " data-progress="1.2" style="left: 2.7888446215139444%;"></a>
     
@@ -4584,7 +4568,7 @@
     
         <a href="../../basics/actionbar/adding-buttons.html" title="添加Action按钮" class="chapter done " data-progress="1.2.2" style="left: 3.585657370517928%;"></a>
     
-        <a href="../../basics/actionbar/styling.html" title="ActionBar的风格化" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
+        <a href="../../basics/actionbar/styling.html" title="自定义ActionBar的风格" class="chapter done " data-progress="1.2.3" style="left: 3.9840637450199203%;"></a>
     
         <a href="../../basics/actionbar/overlaying.html" title="ActionBar的覆盖层叠" class="chapter done " data-progress="1.2.4" style="left: 4.382470119521912%;"></a>
     
@@ -4660,11 +4644,11 @@
     
         <a href="../../multimedia/audio/index.html" title="管理音频播放" class="chapter  " data-progress="3.1" style="left: 18.725099601593627%;"></a>
     
-        <a href="../../multimedia/audio/volume-playback.html" title="控制你得应用的音量与播放" class="chapter  " data-progress="3.1.3" style="left: 19.12350597609562%;"></a>
+        <a href="../../multimedia/audio/volume-playback.html" title="控制音量与音频播放" class="chapter  " data-progress="3.1.1" style="left: 19.12350597609562%;"></a>
     
         <a href="../../multimedia/audio/audio-focus.html" title="管理音频焦点" class="chapter  " data-progress="3.1.2" style="left: 19.52191235059761%;"></a>
     
-        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.4" style="left: 19.9203187250996%;"></a>
+        <a href="../../multimedia/audio/audio-output.html" title="兼容音频输出设备" class="chapter  " data-progress="3.1.3" style="left: 19.9203187250996%;"></a>
     
         <a href="../../multimedia/camera/index.html" title="拍照" class="chapter  " data-progress="3.2" style="left: 20.318725099601593%;"></a>
     
@@ -5073,26 +5057,26 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_46">
+                    <section class="normal" id="section-gitbook_277">
                     
                         <h1 id="fragment">创建一个Fragment</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/basics/fragments/creating.html" target="_blank">http://developer.android.com/training/basics/fragments/creating.html</a></p>
 </blockquote>
 <ul>
-<li><p>你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像&quot;子activity&quot;，你可以在不同的activities里面重复使用）。这一课教你继承<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">Support Library </a>中的<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
- <strong>Note：</strong> 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。</p>
-</li>
-<li><p>在开始这节课前，你必须先让你的项目引用Support Library。如果你没有使用过Support Library，你可以根据文档  <a href="http://developer.android.com/intl/zh-cn/tools/support-library/setup.html" target="_blank">Support Library Setup</a> 来设置你的项目使用Support Library。当然，你也可以使用包含<a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">action bar</a>的 v7 appcompat library。v7 appcompat library 兼容Android2.1(API level 7),也包含<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a> APIs。</p>
-</li>
-<li>你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像&quot;子activity&quot;，你可以在不同的activities里面重复使用）。这一课教你继承<a href="developer.android.com/tools/support-library/index.html">Support Library </a>中的<a href="developer.android.com/reference/android/support/v4/app/Fragment.html">Fragment</a>，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
-<strong>Note：</strong> 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的<a href="developer.android.com/reference/android/app/Fragment.html">Fragment</a>，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。</li>
+<li>你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像&quot;子activity&quot;，你可以在不同的activities里面重复使用）。这一课教你继承<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">Support Library </a>中的<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>，以使你的应用在Android1.6这样的低版本上仍能保持兼容。</li>
+</ul>
+<blockquote>
+<p><strong>Note：</strong> 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。</p>
+</blockquote>
+<ul>
+<li>在开始这节课前，你必须先让你的项目引用Support Library。如果你没有使用过Support Library，你可以根据文档  <a href="http://developer.android.com/intl/zh-cn/tools/support-library/setup.html" target="_blank">Support Library Setup</a> 来设置你的项目使用Support Library。当然，你也可以使用包含<a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">action bar</a>的 <strong>v7 appcompat</strong> library。v7 appcompat library 兼容Android2.1(API level 7)，也包含了<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a> APIs。</li>
 </ul>
 <h2 id="fragment">创建一个Fragment类</h2>
 <ul>
-<li><p>创建一个fragment,首先需要继承<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>类，然后在关键的生命周期方法中插入你APP的逻辑，就像<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">activity</a>一样。</p>
+<li><p>创建一个fragment，首先需要继承<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>类，然后在关键的生命周期方法中插入你APP的逻辑，就像<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">activity</a>一样。</p>
 </li>
-<li><p>其中一个区别是当你创建<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>的时候，你必须重写<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html#onCreateView(android.view.LayoutInflater,%20android.view.ViewGroup,%20android.os.Bundle" target="_blank">onCreateView()</a>)回调方法来定义你的布局。事实上，这是使Fragment运行起来，唯一一个需要你重写的回调方法。比如，下面是一个自定义布局的示例fragment.</p>
+<li><p>其中一个区别是当你创建<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>的时候，你必须重写<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)">onCreateView()</a>回调方法来定义你的布局。事实上，这是使Fragment运行起来，唯一一个需要你重写的回调方法。比如，下面是一个自定义布局的示例fragment.</p>
 </li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-keyword">import</span> android.os.Bundle;
@@ -5110,16 +5094,18 @@
 }
 </code></pre>
 <ul>
-<li>就像activity一样，当fragment从activity添加或者移除、当activity生命周期发生变化时，fragment应该是实现生命周期回调来管理它的状态。例如，当activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onPause(" target="_blank">onPause()</a>)被调用时，它里面的所有fragment的<a href="http://developer.android.com/reference/android/app/Activity.html#onPause(" target="_blank">onPause()</a>)方法也会被触发。</li>
+<li>就像activity一样，当fragment从activity添加或者移除、当activity生命周期发生变化时，fragment应该是实现生命周期回调来管理它的状态。例如，当activity的onPause()被调用时，它里面的所有fragment的onPause()方法也会被触发。</li>
 </ul>
 <p>更多关于fragment的声明周期和回调方法，详见<a href="http://developer.android.com/guide/components/fragments.html" target="_blank">Fragments</a> developer guide.</p>
 <h2 id="xmlfragmentactivity">用XML将fragment添加到activity</h2>
 <ul>
-<li><p>fragments是可以重用的，模块化的UI组件，每一个Fragment的实例都必须与一个<a href="http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html" target="_blank">FragmentActivity</a>关联。你可以在activity的XML布局文件中定义每一个fragment来实现这种关联。
-  <strong>Notes：</strong><a href="http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html" target="_blank">FragmentActivity</a>是Support Library提供的一个特殊activity ，用来在API11版本以下的系统上处理fragment.如果你APP中的最低版本大于等于11，你可以使用普通的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>.</p>
-</li>
-<li><p>下面是一个XML布局的例子，当屏幕被认为是large(用目录名称中的<code>large</code>字符来区分)时，它在布局中增加了两个fragment.</p>
-</li>
+<li>fragments是可以重用的，模块化的UI组件，每一个Fragment的实例都必须与一个<a href="http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html" target="_blank">FragmentActivity</a>关联。你可以在activity的XML布局文件中定义每一个fragment来实现这种关联。</li>
+</ul>
+<blockquote>
+<p><strong>Notes：</strong><a href="http://developer.android.com/reference/android/support/v4/app/FragmentActivity.html" target="_blank">FragmentActivity</a>是Support Library提供的一个特殊activity ，用来在API11版本以下的系统上处理fragment。如果你APP中的最低版本大于等于11，你可以使用普通的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。</p>
+</blockquote>
+<ul>
+<li>下面是一个XML布局的例子，当屏幕被认为是large(用目录名称中的<code>large</code>字符来区分)时，它在布局中增加了两个fragment.</li>
 </ul>
 <p>res/layout-large/news_articles.xml</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
@@ -5141,7 +5127,9 @@
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>  <strong>Notes：</strong>更多关于不同屏幕尺寸创建不同布局的信息，请阅读<a href="http://developer.android.com/training/multiscreen/screensizes.html" target="_blank">Supporting Different Screen Sizes</a></p>
+<blockquote>
+<p><strong>Notes：</strong>更多关于不同屏幕尺寸创建不同布局的信息，请阅读<a href="../../ui/multiscreen/screen-sizes.html">Supporting Different Screen Sizes</a></p>
+</blockquote>
 <ul>
 <li>然后将这个布局文件用到你的activity中。</li>
 </ul>
@@ -5158,8 +5146,10 @@
 </code></pre>
 <ul>
 <li>如果你用的是<a href="http://developer.android.com/intl/zh-cn/tools/support-library/features.html#v7-appcompat" target="_blank"> v7 appcompat library</a>，你的activity应该改为继承<a href="http://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html" target="_blank">ActionBarActivity</a>，ActionBarActivity是FragmentActivity的一个子类（更多关于这方面的内容，请阅读<a href="http://developer.android.com/training/basics/actionbar/index.html" target="_blank">Adding the Action Bar</a>）。</li>
-<li><strong>Note：</strong>当你用XML布局文件的方式将Fragment添加进activity时，你的Fragment是不能被动态移除的。如果你想要在用户交互的时候把fragment切入与切出，你必须在activity启动后，将fragment添加进activity.这将在下节课讲到。</li>
 </ul>
+<blockquote>
+<p><strong>Note：</strong>当你用XML布局文件的方式将Fragment添加进activity时，你的Fragment是不能被动态移除的。如果你想要在用户交互的时候把fragment切入与切出，你必须在activity启动后，再将fragment添加进activity。这将在下节课讲到。</p>
+</blockquote>
 
                     
                     </section>
