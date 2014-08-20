@@ -50,7 +50,6 @@
    * [管理音频播放](multimedia/audio/index.md)
        * [控制音量与音频播放](multimedia/audio/volume-playback.md)
        * [管理音频焦点](multimedia/audio/audio-focus.md)
-       * [控制你得应用的音量与播放](multimedia/audio/volume-playback.md)
        * [兼容音频输出设备](multimedia/audio/audio-output.md)
    * [拍照](multimedia/camera/index.md)
        * [简单的拍照](multimedia/camera/photobasic.md)
