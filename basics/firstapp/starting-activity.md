@@ -1,4 +1,4 @@
-# 启动其他Activity
+# 启动其他的Activity
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
@@ -133,7 +133,7 @@ public void sendMessage(View view) {
 
 * 此类已经包含了所需<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()的默认实现，稍后需要更新此实现方法。
 * 另外还有一个<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a>实现方式，由于这个应用程序并不需要所以可以直接删除。
-* 还有<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>实现方式，它可以处理操作栏上拉操作，无需改动。
+* 还有<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>实现方式，它可以处理ActionBar的Up操作，请保持目前演示代码，无需改动。
 * 还有一个继承[Fragment](http://developer.android.com/reference/android/app/Fragment.html)的`PlaceholderFragment` ，在本activity的最终版本中不需要此类。
 
 Fragments把应用程序的功能和用户界面分解成可以复用的模块。想了解更Fragments信息，请参阅 [Fragments API Guide](http://developer.android.com/guide/components/fragments.html)，此activity的最终版本不使用Fragment。

@@ -1,4 +1,4 @@
-# 建立 Action Bar
+# 建立ActionBar
 
 > 编写:[Vincent 4J](http://github.com/vincent4j) - 原文:<http://developer.android.com/training/basics/actionbar/setting-up.html>
 
