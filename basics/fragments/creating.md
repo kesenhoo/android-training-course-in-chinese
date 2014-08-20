@@ -6,8 +6,6 @@
    **Note：** 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的[Fragment](http://developer.android.com/reference/android/app/Fragment.html)，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。
 
 * 在开始这节课前，你必须先让你的项目引用Support Library。如果你没有使用过Support Library，你可以根据文档  [Support Library Setup](http://developer.android.com/intl/zh-cn/tools/support-library/setup.html) 来设置你的项目使用Support Library。当然，你也可以使用包含[action bar](http://developer.android.com/guide/topics/ui/actionbar.html)的 v7 appcompat library。v7 appcompat library 兼容Android2.1(API level 7),也包含[Fragment](http://developer.android.com/reference/android/support/v4/app/Fragment.html) APIs。
-* 你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像"子activity"，你可以在不同的activities里面重复使用）。这一课教你继承[Support Library ](developer.android.com/tools/support-library/index.html)中的[Fragment](developer.android.com/reference/android/support/v4/app/Fragment.html)，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
-  **Note：** 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的[Fragment](developer.android.com/reference/android/app/Fragment.html)，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。
 
 ## 创建一个Fragment类
 
