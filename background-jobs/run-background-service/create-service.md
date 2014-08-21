@@ -2,7 +2,7 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
-IntentService为执行一个操作在单个后台线程，提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。
+IntentService为在单个后台线程执行一个操作提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。
 
 IntentService有下面几个局限性：
 
@@ -57,4 +57,4 @@ IntentService需要在manifest文件的<application>标签下进行定义，如�
 
 注意<service>标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。
 
-至此，已经学习了IntentService的基础知识，下节会学习如何发送任务到IntentService。
+至此，你已经有了一个基本的IntentService类，你可以通过Intent对象向它发送操作请求。构造这些对象以及发送它们到你的IntentService的方式，将在接下来的课程中描述。
