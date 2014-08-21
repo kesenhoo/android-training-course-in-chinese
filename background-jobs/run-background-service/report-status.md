@@ -111,7 +111,7 @@ public class DisplayActivity extends FragmentActivity {
                 mIntentFilter);
 ```
 
-发送一个广播并不会start或者resume一个Activity。BroadcastReceiver可以接收广播数据，即使是你的app是在后台运行中。但是这不会强迫使得你的app变成foreground的。如果想在app不可见的时候通知用户一个后台的事件，建议使用[Notification](http://developer.android.com/reference/android/app/Notification.html)。永远不要为了响应一个广播而去启动Activity。
+发送一个广播Intent并不会start或resume一个Activity。即使是你的app在后台运行，Activity的BroadcastReceiver也可以接收、处理Intent对象。但是这不会迫使你的app进入前台。当你的app不可见时，如果想通知用户一个发生在后台的事件，建议使用[Notification](http://developer.android.com/reference/android/app/Notification.html)。永远不要为了响应一个广播Intent而去启动Activity。
 
 ***
 **笔者评论:**使用LocalBroadcastManager结合IntentService其实是一种很典型高效的做法，同时也更符合OO的思想，通过广播注册与反注册的方式，对两个组件进行解耦。如果使用Handler传递到后台线程作为回调，容易带来的内存泄漏。原因是：匿名内部类对外面的Actvitiy持有引用，如果在Acitivity被销毁的时候，没有对Handler进行显式的解绑，会导致Activity无法正常销毁，这样自然就有了内存泄漏。当然，如果用文章中的方案，通常也要记得在Activity的onPause的时候进行unRegisterReceiver，除非你有充足的理由为解释这里为何要继续保留。
