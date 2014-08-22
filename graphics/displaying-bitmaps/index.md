@@ -8,7 +8,7 @@
 
 * 移动设备的系统资源有限。Android设备对于单个程序至少需要16MB的内存。[Android Compatibility Definition Document (CDD)](http://source.android.com/compatibility/downloads.html), Section 3.7. Virtual Machine Compatibility 给出了对于不同大小与密度的屏幕的最低内存需求. 程序应该在这个最低内存限制下最优化程序的效率。当然，大多数设备的都有更高的限制需求.
 * Bitmap会消耗很多内存，特别是对于类似照片等更加丰富的图片. 例如，[Galaxy Nexus](http://www.android.com/devices/detail/galaxy-nexus)的照相机能够拍摄2592x1936 pixels (5 MB)的图片. 如果bitmap的配置是使用[ARGB_8888](http://developer.android.com/reference/android/graphics/Bitmap.Config.html) (从Android 2.3开始的默认配置) ，那么加载这张照片到内存会大概需要19MB(`2592*1936*4` bytes) 的内存, 这样的话会迅速消耗掉设备的整个内存.
-* Android app的UI通常会在一次操作中立即加载许多张bitmaps. 例如在[ListView](http://developer.android.com/reference/android/widget/ListView.html), [GridView](http://developer.android.com/reference/android/widget/GridView.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 等组件中通常会需要一次加载许多张bitmaps，而且需要多加载一些内容为了用户可能的滑动操作。
+* Android app的UI通常会在一次操作中立即加载许多张bitmaps. 例如在[ListView](http://developer.android.com/reference/android/widget/ListView.html), [GridView](http://developer.android.com/reference/android/widget/GridView.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 等组件中通常会需要一次加载许多张bitmaps，而且需要预先加载一些没有在屏幕上显示的内容，为用户滑动时显示做准备。
 
 ## Lessons
 * [**Loading Large Bitmaps Efficiently:高效的加载大图**](load-bitmap.html)
