@@ -14,7 +14,7 @@
 <!-- more -->
 
 ## Manage Memory on Android 2.3.3 and Lower(在Android 2.3.3及以下版本管理内存)
-在Android 2.3.3 (API level 10) 以及更低版本上，推荐使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>. 如果在你的程序中显示了大量的bitmap数据，你很可能会遇到[OutOfMemoryError](http://developer.android.com/reference/java/lang/OutOfMemoryError.html)错误. <a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>方法可以使得程序尽快的re释放内存.
+在Android 2.3.3 (API level 10) 以及更低版本上，推荐使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>. 如果在你的程序中显示了大量的bitmap数据，你很可能会遇到[OutOfMemoryError](http://developer.android.com/reference/java/lang/OutOfMemoryError.html)错误. <a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>方法可以使得程序尽快的释放内存.
 > **Caution:**只有你确保这个bitmap不再需要用到的时候才应该使用recycle(). 如果你执行recycle()，然后尝试绘制这个bitmap, 你将得到错误:`"Canvas: trying to use a recycled bitmap"`.
 
 下面的代码片段演示了使用recycle()的例子. 它使用了引用计数的方法(`mDisplayRefCount` 与 `mCacheRefCount`)来追踪一个bitmap目前是否有被显示或者是在缓存中. 当下面条件满足时回收bitmap:
