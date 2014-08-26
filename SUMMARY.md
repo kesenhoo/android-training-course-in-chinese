@@ -64,7 +64,7 @@
        * [高效加载大图](graphics/displaying-bitmaps/load-bitmap.md)
        * [非UI线程处理Bitmap](graphics/displaying-bitmaps/process-bitmap.md)
        * [缓存Bitmap](graphics/displaying-bitmaps/cache-bitmap.md)
-       * [管理Bitmap的内存占用](graphics/displaying-bitmaps/manage-bitmap-memory.md)
+       * [管理Bitmap的内存占用](graphics/displaying-bitmaps/manage-memory.md)
        * [在UI上显示Bitmap](graphics/displaying-bitmaps/display-bitmap.md)
    * [使用OpenGL ES显示图像](graphics/opengl/index.md)
        * [建立OpenGL ES的环境](graphics/opengl/environment.md)
