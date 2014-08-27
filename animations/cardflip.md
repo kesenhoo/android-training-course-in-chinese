@@ -180,7 +180,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建Fragment
 
-为卡片正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。在父activity中，你可以在你想要显示卡片时新建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：
+为卡片正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。在父activity中，你可以在你想要显示卡片时创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：
 
 ```java
 public class CardFlipActivity extends Activity {
