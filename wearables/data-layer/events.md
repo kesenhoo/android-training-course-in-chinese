@@ -136,7 +136,8 @@ try {
 
 ### 使用监听 Activity
 
-如果你的应用只关心数据事件，当用户正与应用交互并且不需要长时间运行的service来处理数据改变时，你可以在一个activity中通过实现如下一个和多个接口监听事件：
+如果你的应用只关心当用户与应用交互时产生的数据层事件，并且不需要一个长时间运行的service来处理每一次数据的改变，那么你可以在一个activity中通过实现如下一个和多个接口监听事件：
+
 
 * DataApi.DataListener
 * MessageApi.MessageListener
