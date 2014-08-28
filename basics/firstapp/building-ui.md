@@ -124,7 +124,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
     ... />
 ```
 
-为了提示布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动回占据剩余空间，EditText的宽度最终成了不起作用的属性。
+为了提升布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动回占据剩余空间，EditText的宽度最终成了不起作用的属性。
 
 ```xml
 <EditText
