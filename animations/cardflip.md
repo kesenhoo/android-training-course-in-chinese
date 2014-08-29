@@ -2,7 +2,7 @@
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/cardflip.html>
 
-这节课展示怎样自定义 fragment 动画和实现卡片翻转。view 内容间的卡片翻转动画模拟卡片翻转的效果。
+这节课展示如何使用自定义 fragment 动画实现卡片翻转动画。通过展示一个模拟卡片翻转的动画实现 view 内容的卡片翻转效果。
 
 下面是卡片翻转动画的样子：
 
@@ -30,7 +30,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建Animator（动画者）
 
-创建卡片翻转动画，你需要两个 animator 来让卡片正面其一：右侧部分弹出，然后向左转动，其二左侧部分陷入，然后向右转动。你还需要两个 animator 将卡片背面其一：右侧部分陷入，然后向左转动，其二左侧弹出，然后向右转动。
+创建卡片翻转动画，你需要两个 animator 让前面的卡片向右翻转消失，向左翻转出现。你还需要两个 animator 让背面的卡片向左翻转出现，向右翻转消失。
 
 **card_flip_left_in.xml**
 
@@ -136,7 +136,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建View
 
-卡片的每一面是一个能包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了一面展示文本的布局：
+卡片的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了卡片展示文本一面的布局：
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -180,9 +180,9 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建Fragment
 
-为正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。你可以在展示卡片的父activity中新建他们的实例。下面的例子展示父activity内嵌套的fragment：
+为卡片正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。在父activity中，你可以在你想要显示卡片时创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：
 
-```xml
+```java
 public class CardFlipActivity extends Activity {
     ...
     /**
@@ -240,13 +240,13 @@ public class CardFlipActivity extends Activity {
 }
 ```
 
-既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示背面了。创建一个方法来显示背面需要做下面这些事情：
+既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面需要做下面这些事情：
 
 * 为fragment转换设置你刚做的自定义动画
 
 * 用新fragment替换当前显示的fragment，并且应用你刚创建的动画到这个事件中。
 
-* 添加之前显示的fragment到fragment的back stack中，所以当你摁 *Back* 键时，卡片会翻转回来。
+* 添加之前显示的fragment到fragment的back stack中，所以当用户摁 *Back* 键时，卡片会翻转回来。
 
 ```java
 private void flipCard() {
