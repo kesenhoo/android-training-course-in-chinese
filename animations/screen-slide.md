@@ -160,11 +160,11 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
 为展示不同于默认滑屏效果的动画，实现 [ViewPager.PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。
 
-在你，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>的实现中，基于当前界面上页面的 `position`（`position` 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>方法的参数给出）决定哪些页面需要被动画转换，通过这样你就能新建自己的动画。
+在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>的实现中，基于当前界面上页面的 `position`（`position` 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>方法的参数给出）决定哪些页面需要被动画转换，通过这样你就能新建自己的动画。
 
-`position` 参数表示给定页面相对于屏幕中的页面的位置。它的值在用户滑动页面过程中动态变化。当页面填充屏幕，它的值为 0。当页面刚从屏幕右边拖走，它的值为 1。如果用户滑动到半路，那么左边 position 为 -0.5 并且 右边 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> setAlpha() </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> setTranslationX() </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> setScaleY() </a>这些方法设定页面属性来自定义滑动动画。
+`position` 参数表示给定页面相对于屏幕中的页面的位置。它的值在用户滑动页面过程中动态变化。当页面填充屏幕，它的值为 0。当页面刚从屏幕右边拖走，它的值为 1。如果用户在页面一和页面二间滑动到一半，那么页面一的 position 为 -0.5 并且 页面二的 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> setAlpha() </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> setTranslationX() </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> setScaleY() </a>这些方法设定页面属性来自定义滑动动画。
 
-当你有了一个 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 的实现后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> setPageTransformer() </a>来应用这些自定义动画。例如，如果你有一个 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 叫做 `ZoomOutPageTransformer`，你可以这样设置自定义动画：
+当你实现了 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> setPageTransformer() </a>来应用这些自定义动画。例如，如果你有一个叫做`ZoomOutPageTransformer`的[PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)，你可以这样设置自定义动画：
 
 ```java
 ViewPager mPager = (ViewPager) findViewById(R.id.pager);
@@ -172,11 +172,11 @@ ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 ```
 
-详情查看[放大型 Page Transformer（页面转换动画）](#放大型PageTransformer（页面转换动画）)和[潜藏型 Page Transformer（页面转换动画）](#潜藏型PageTransformer（页面转换动画）)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视屏。
+详情查看[放大型 Page Transformer（页面转换动画）](#放大型PageTransformer（页面转换动画）)和[潜藏型 Page Transformer（页面转换动画）](#潜藏型PageTransformer（页面转换动画）)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视频。
 
 ### 放大型PageTransformer（页面转换动画）
 
-当在相邻界面滑动时，这个page transformer缩放和渐变动画。当页面越靠近中心，它将渐渐还原到正常大小并且渐入屏幕。
+当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐明。
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
