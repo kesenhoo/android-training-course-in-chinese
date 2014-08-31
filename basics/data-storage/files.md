@@ -160,9 +160,8 @@ public File getAlbumStorageDir(Context context, String albumName) {
 
 如果你事先知道你想要保存的文件大小，你可以通过执行<a href="http://developer.android.com/reference/java/io/File.html#getFreeSpace()">getFreeSpace()</a> or <a href="http://developer.android.com/reference/java/io/File.html#getTotalSpace()">getTotalSpace()</a> 来判断是否有足够的空间来保存文件，从而避免发生[IOException](http://developer.android.com/reference/java/io/IOException.html)。那些方法提供了当前可用的空间还有存储系统的总容量。
 
-然而，系统并不能保证你可以写入通过`getFreeSpace()`查询到的容量文件， 如果查询的剩余容易比你的文件大小多几MB，或者说文件系统使用率还不足90%，这样则可以继续进行写的操作，否则你最好不要写进去。
-
-> **Note：**你并没有强制要求在写文件之前一定有要去检查剩余容量。你可以尝试先做写的动作，然后通过捕获 IOException 。这种做法仅适合于你并不知道你想要写的文件的确切大小。
+然而，系统并不能保证你可以写入通过`getFreeSpace()`查询到的容量文件， 如果查询的剩余容量比你的文件大小多几MB，或者说文件系统使用率还不足90%，这样则可以继续进行写的操作，否则你最好不要写进去。
+> **Note：**你并没有被强制要求在写文件之前一定有要去检查剩余容量。你可以尝试先做写的动作，然后通过捕获 IOException 。这种做法仅适合于你事先并不知道你想要写的文件的确切大小。例如，如果在把PNG图片转换成JPEG之前，你并不知道最终生成的图片大小是多少。
 
 ## 删除文件
 
@@ -182,4 +181,4 @@ myContext.deleteFile(fileName);
 * 所有保存到internal storage的文件。
 * 所有使用getExternalFilesDir()方式保存在external storage的文件。
 
-> 然而，你应该手动删除所有通过 getCacheDir() 方式创建的缓存文件，还有那些通常来说不会再用的文件。
+> 然而，通常来说，你应该手动删除所有通过 getCacheDir() 方式创建的缓存文件，还有那些不会再用到的文件。
