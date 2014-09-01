@@ -12,7 +12,7 @@
 
 ## Lessons
 
-* [**简单的拍照操作 - Taking Photos Simply**](photobasics.html)
+* [**简单的拍照操作 - Taking Photos Simply**](photobasic.html)
 
   用仅仅几行代码调用其他应用拍照。
 
