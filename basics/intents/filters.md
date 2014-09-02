@@ -1,4 +1,4 @@
-# 允许其他app启动你的activity
+# Intent过滤
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/intents/filters.html>
 
@@ -10,7 +10,8 @@
 
 <!-- more -->
 
-## Add an Intent Filter(添加Intent Filter)
+## 添加Intent Filter
+
 为了尽可能确切的定义你的activity能够handle哪些intent，每一个intent filter都应该尽可能详尽的定义好action与data。
 
 如果activity中的intent filt满足以下intent对象的标准，系统就能够把特定的intent发送给activity：
@@ -66,9 +67,10 @@
 
 > **Note:**为了接受implicit intents, 你必须在你的intent filter中包含 CATEGORY_DEFAULT 的category。
 
-关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看上一课：[Getting a Result from an Activity:接收Activity返回的结果](result.html)
+关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看上一课：[接收Activity返回的结果(Getting a Result from an Activity)](result.html)
 
-## Handle the Intent in Your Activity [在你的Activity中Handle发送过来的Intent]
+## 在你的Activity中Handle发送过来的Intent
+
 为了决定采用哪个action，你可以读取Intent的内容。
 
 你可以执行<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a> 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，但是你最好是在`onCreate()`或者` onStart()`里面去执行。
@@ -93,7 +95,8 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-## Return a Result(返回Result)
+## 返回Result
+
 如果你想返回一个result给启动你的那个activity，仅仅需要执行<a href="http://developer.android.com/reference/android/app/Activity.html#setResult(int, android.content.Intent)">setResult()</a>，通过指定一个result code与result intent。当你的操作成功之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。
 
 ```java
