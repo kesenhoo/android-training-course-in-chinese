@@ -12,16 +12,16 @@
 
 ## Lessons
 
-* [**简单的拍照操作 - Taking Photos Simply**](photobasics.html)
+* [**简单的拍照操作(Taking Photos Simply)**](photobasics.html)
 
   用仅仅几行代码调用其他应用拍照。
 
 
-* [**简单的录像操作 - Recording Videos Simply**](videobasics.html)
+* [**简单的录像操作(Recording Videos Simply)**](videobasics.html)
 
   用仅仅几行代码调用其他应用录像
 
 
-* [**控制相机硬件 - Controlling the Camera**](cameradirect.html)
+* [**控制相机硬件(Controlling the Camera)**](cameradirect.html)
 
   直接控制相机硬件，实现你自己的相机应用。
