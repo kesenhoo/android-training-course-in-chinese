@@ -112,7 +112,7 @@ public void sendMessage(View view) {
 
 2. 在弹出窗口打开**Android**文件夹，选择**Android Activity**然后点击**Next**。
 
-3. 选择**BlankActivity**(或**Blank Activity with Fragment**)，然后点击**Next**
+3. 选择**Blank Activity with Fragment**，然后点击**Next**
 
 4. 填写Activity详细信息：
   * **Project**：MyFirstApp

@@ -20,7 +20,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 > **Note**：在eclipse中，当你打开布局文件的时候，首先看到的是图形化布局编辑器，这个编辑页是使用所见即所得的工具帮助你创建布局。对于本课来说，你是直接在XML里进行操作，因此点击屏幕下方的fragment_main.xml标签进入XML编辑页。
 
-你创建项目时选择的BlankActivity 模板生成的fragment_main.xml文件包含一个[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)的根View和一个[TextView](http://developer.android.com/reference/android/widget/TextView.html)的子View。
+你创建项目时选择的Blank Activity With Fragment 模板生成的fragment_main.xml文件包含一个[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)的根View和一个[TextView](http://developer.android.com/reference/android/widget/TextView.html)的子View。
 
 首先，删除[`<TextView>`](http://developer.android.com/reference/android/widget/TextView.html)标签并修改[`<RelativeLayout>`](http://developer.android.com/reference/android/widget/RelativeLayout.html)为 [`<LinearLayout>`](http://developer.android.com/reference/android/widget/LinearLayout.html),然后添加[android:orientation](http://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:orientation) 属性并设置该属性为`horizontal`，修改后结果如下：
 
@@ -124,7 +124,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
     ... />
 ```
 
-为了提升布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动回占据剩余空间，EditText的宽度最终成了不起作用的属性。
+为了提升布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动会占据剩余空间，EditText的宽度最终成了不起作用的属性。
 
 ```xml
 <EditText
