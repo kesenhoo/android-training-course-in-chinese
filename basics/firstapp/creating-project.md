@@ -20,7 +20,7 @@
   * **Application Name**:此处填写想呈现给用户的应用名称，此处我们使用“My First App".
   * **Project Name**:是项目的文件夹名称和在Eclipse中显示的名称.
   * **Package Name**:是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，因此，通常使用你所在公司组织或发布实体的反向域名作为包名的开始是一个很好的选择。此处可以使用"com.example.myfirstapp" ，但是你不能在 Google Play上发布使用 "com.example"作为包名的应用.
-  * **Minimum Required SDK**:用API level表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能尽在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
+  * **Minimum Required SDK**:用API level表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
   * **Target SDK**:表示你测试过你的应用支持的最高Android版本(同样用[API level](http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#ApiLevels)表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。
   * **Compile With**:是你的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用[SDK Manager](http://developer.android.com/sdk/installing/adding-packages.html)来完成安装)，你仍然可以使用较老的版本编译项目，但把该值设为最新版本，使你可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。
   * **Theme**:为你的应用指定界面风格，此处采用默认值即可。
