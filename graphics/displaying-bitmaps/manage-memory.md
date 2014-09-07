@@ -2,18 +2,18 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/manage-memory.html>
 
-作为缓存Bitmaps的进一步延伸, 为了促进GC与bitmap的重用，你还有一些特定的事情可以做. 推荐的策略会根据Android的版本不同而有所差异. [BitmapFun](http://developer.android.com/shareables/training/BitmapFun.zip)的示例程序会演示如何设计你的程序使得能够在不同的Android平台上高效的运行.
+作为缓存Bitmaps的进一步延伸, 为了促进GC与bitmap的重用，你还有一些特定的事情可以做. 推荐的策略会根据Android的版本不同而有所差异. [DisplayingBitmaps](http://developer.android.com/downloads/samples/DisplayingBitmaps.zip)的示例程序会演示如何设计你的程序使得能够在不同的Android平台上高效的运行.
 
 为了给这节课奠定基础，我们首先要知道Android管理bitmap memory的演变进程:
 
 * 在Android 2.2 (API level 8)以及之前, 当GC发生时, 你的应用的线程是会stopped的. 这导致了一个滞后，它会降低效率. **在Android 2.3上，添加了并发GC的机制, 这意味着在一个bitmap不再被引用到之后，内存会被立即回收.**
-* 在Android 2.3.3 (API level 10)以及之前, 一个bitmap的像素级数据是存放在native内存中的. 这些数据与bitmap本身是隔离的, bitmap本身是被存放在Dalvik heap中.在native内存中的pixel数据的释放是不可预测的,这意味着有可能导致一个程序容易超过它的内存限制并Crash. **自Android 3.0 (API Level 11)起, pixel数据则是与bitmap本身一起存放在dalvik heap中.**
+* 在Android 2.3.3 (API level 10)以及之前, 一个bitmap的像素级数据是存放在native内存中的. 这些数据与bitmap本身是隔离的, bitmap本身是被存放在Dalvik heap中。在native内存中的pixel数据的释放是不可预测的，这意味着有可能导致一个程序容易超过它的内存限制并Crash。 **自Android 3.0 (API Level 11)起, pixel数据则是与bitmap本身一起存放在dalvik heap中。**
 
-下面会介绍如何在不同的Android版本上优化bitmap内存使用.
+下面会介绍如何在不同的Android版本上优化bitmap内存使用。
 
 <!-- more -->
 
-## Manage Memory on Android 2.3.3 and Lower(在Android 2.3.3及以下版本管理内存)
+## 在Android 2.3.3及以下版本管理内存(Manage Memory on Android 2.3.3 and Lower)
 在Android 2.3.3 (API level 10) 以及更低版本上，推荐使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>. 如果在你的程序中显示了大量的bitmap数据，你很可能会遇到[OutOfMemoryError](http://developer.android.com/reference/java/lang/OutOfMemoryError.html)错误. <a href="http://developer.android.com/reference/android/graphics/Bitmap.html#recycle()">recycle()</a>方法可以使得程序尽快的释放内存.
 > **Caution:**只有你确保这个bitmap不再需要用到的时候才应该使用recycle(). 如果你执行recycle()，然后尝试绘制这个bitmap, 你将得到错误:`"Canvas: trying to use a recycled bitmap"`.
 
@@ -70,10 +70,10 @@ private synchronized boolean hasValidBitmap() {
 }
 ```
 
-## Manage Memory on Android 3.0 and Higher(在Android 3.0及以上版本管理内存)
-在Android 3.0 (API Level 11) 引进了[BitmapFactory.Options.inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap). 如果这个值被设置了，decode方法会在加载内容的时候去重用已经存在的bitmap. 这意味着bitmap的内存是被重新利用的，这样可以提升性能, 并且减少了内存的分配与回收.然而,使用[inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap)有一些限制.特别是在Android 4.4 (API level 19)之前,只支持同等大小的位图.详情请查看[inBitmap文档](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap).
+## 在Android 3.0及以上版本管理内存(Manage Memory on Android 3.0 and Higher)
+在Android 3.0 (API Level 11) 引进了[BitmapFactory.Options.inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap). 如果这个值被设置了，decode方法会在加载内容的时候去重用已经存在的bitmap. 这意味着bitmap的内存是被重新利用的，这样可以提升性能, 并且减少了内存的分配与回收。然而，使用[inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap)有一些限制。特别是在Android 4.4 (API level 19)之前，只支持同等大小的位图。详情请查看[inBitmap文档](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap).
 
-### Save a bitmap for later use(保存bitmap供以后使用)
+### 保存bitmap供以后使用(Save a bitmap for later use)
 下面演示了一个已经存在的bitmap是如何被存放起来以便后续使用的. 当一个应用运行在Android 3.0或者更高的平台上并且bitmap从LruCache中移除时, bitmap的一个软引用会被存放在[Hashset](http://developer.android.com/reference/java/util/HashSet.html)中，这样便于之后可能被[inBitmap](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inBitmap)重用:
 
 ```java
@@ -111,7 +111,7 @@ mMemoryCache = new LruCache<String, BitmapDrawable>(mCacheParams.memCacheSize) {
 }
 ```
 
-### Use an existing bitmap(使用一个已经存在的bitmap)
+### 使用已经存在的bitmap(Use an existing bitmap)
 在运行的程序中，decoder方法会去做检查看是否有可用的bitmap. 例如:
 
 ```java
@@ -153,7 +153,7 @@ private static void addInBitmapOptions(BitmapFactory.Options options,
     }
 }
 
-// This method iterates through the reusable bitmaps, looking for one 
+// This method iterates through the reusable bitmaps, looking for one
 // to use for inBitmap:
 protected Bitmap getBitmapFromReusableSet(BitmapFactory.Options options) {
         Bitmap bitmap = null;

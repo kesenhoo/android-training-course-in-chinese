@@ -10,10 +10,10 @@
 
 <!-- more -->
 
-## Use a Memory Cache(使用内存缓存)
+## 使用内存缓存(Use a Memory Cache)
 内存缓存以花费宝贵的程序内存为前提来快速访问位图。[LruCache](http://developer.android.com/reference/android/util/LruCache.html) 类(在API Level 4的Support Library中也可以找到) 特别合适用来caching bitmaps，用一个强引用(strong referenced)的 [LinkedHashMap](http://developer.android.com/reference/java/util/LinkedHashMap.html) 来保存最近引用的对象，并且在Cache超出设置大小的时候踢出(evict)最近最少使用到的对象。
 
-> **Note:** 在过去, 一个比较流行的内存缓存实现方法是使用软引用(SoftReference)或弱引用(WeakReference)bitmap缓存, 然而这是不推荐的。从Android 2.3 (API Level 9) 开始，GC变得更加频繁的去释放soft/weak references，这使得他们就显得效率低下. 而且在Android 3.0 (API Level 11)之前，备份的bitmap是存放在native memory 中，它不是以可预知的方式被释放，这样可能导致程序超出它的内存限制而崩溃。
+> **Note:** 在过去, 一个比较流行的内存缓存的实现方法是使用软引用(SoftReference)或弱引用(WeakReference)bitmap缓存, 然而这是不推荐的。从Android 2.3 (API Level 9) 开始，GC变得更加频繁的去释放soft/weak references，这使得他们就显得效率低下。而且在Android 3.0 (API Level 11)之前，备份的bitmap是存放在native memory 中，它不是以可预知的方式被释放，这样可能导致程序超出它的内存限制而崩溃。
 
 为了给LruCache选择一个合适的大小，有下面一些因素需要考虑到：
 
@@ -100,10 +100,10 @@ class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
 }
 ```
 
-## Use a Disk Cache(使用磁盘缓存)
+## 使用磁盘缓存(Use a Disk Cache)
 内存缓存能够提高访问最近查看过的位图的速度，但是你不能保证这个图片会在Cache中。像类似 GridView 等带有大量数据的组件很容易就填满内存Cache。你的程序可能会被类似Phone call等任务而中断，这样后台程序可能会被杀死，那么内存缓存就会被销毁。一旦用户恢复前面的状态，你的程序就又需要重新处理每个图片。
 
-磁盘缓存磁盘缓存可以用来保存那些已经处理好的位图，并且在那些图片在内存缓存中不可用时减少加载的次数。当然从磁盘读取图片会比从内存要慢，而且读取操作需要在后台线程中处理，因为磁盘读取操作是不可预期的。
+磁盘缓存可以用来保存那些已经处理好的位图，并且在那些图片在内存缓存中不可用时减少加载的次数。当然从磁盘读取图片会比从内存要慢，而且读取操作需要在后台线程中处理，因为磁盘读取操作是不可预期的。
 
 > **Note:**如果图片被更频繁的访问到，也许使用 [ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html) 会更加的合适，比如在Gallery程序中。
 
@@ -207,11 +207,11 @@ public static File getDiskCacheDir(Context context, String uniqueName) {
 }
 ```
 
-> **Note**:即使是初始化磁盘缓存，也需要进行磁盘操作，所以不应该在主线程中进行。但是这也意味着在初始化之前缓存可以被访问。为了解决这种操作，在上面的实现中，有一个锁对象(lock object)用来确保在磁盘缓存完成初始化之前，app无法对它进行读取。
+> **Note**:初始化磁盘缓存涉及到I/O操作，所以不应该在主线程中进行。但是这也意味着在初始化完成之前缓存可以被访问。为了解决这个问题，在上面的实现中，有一个锁对象(lock object)用来确保在磁盘缓存完成初始化之前，app无法对它进行读取。
 
 内存缓存的检查是可以在UI线程中进行的，磁盘缓存的检查需要在后台线程中处理。磁盘操作永远都不应该在UI线程中发生。当图片处理完成后，最后的位图需要添加到内存缓存与磁盘缓存中，方便之后的使用。
 
-## Handle Configuration Changes(处理配置改变)
+## 处理配置改变(Handle Configuration Changes)
 运行时配置改变，例如屏幕方向的改变会导致Android去destory并restart当前运行的Activity。(关于这一行为的更多信息，请参考[Handling Runtime Changes](http://developer.android.com/guide/topics/resources/runtime-changes.html)). 你需要在配置改变时避免重新处理所有的图片，这样才能提供给用户一个良好的平滑过度的体验。
 
 幸运的是，在前面介绍Use a Memory Cache的部分，你已经知道如何建立一个内存缓存。通过调用[setRetainInstance(true)](http://developer.android.com/reference/android/app/Fragment.html#setRetainInstance(boolean))保留一个[Fragment](http://developer.android.com/reference/android/app/Fragment.html)实例, 这个缓存可以通过被保留的Fragment传递给新的Activity实例。在这个activity被recreate之后, 这个保留的 Fragment 会被重新附着上。这样你就可以访问Cache对象，从中获取到图片信息并快速的重新添加到ImageView对象中。
