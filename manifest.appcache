@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1409494907575
+# Revision 1407253957629
 
 CACHE:
 building-wearables.html
@@ -18,8 +18,8 @@ background-jobs/run-background-service/index.html
 background-jobs/run-background-service/report-status.html
 background-jobs/run-background-service/send-request.html
 background-jobs/scheduling/alarms.html
-background-jobs/scheduling/wake-lock.html
 background-jobs/scheduling/index.html
+background-jobs/scheduling/wake-lock.html
 basics/actionbar/adding-buttons.html
 basics/actionbar/index.html
 basics/actionbar/overlaying.html
@@ -63,10 +63,10 @@ building-content-sharing.html
 building-graphics.html
 building-multimedia.html
 building-userinfo.html
-connectivity/cloudsave/index.html
-connectivity/cloudsync/backupapi.html
-connectivity/cloudsync/gcm.html
-connectivity/cloudsync/index.html
+cloud/cloudsave/index.html
+cloud/cloudsync/backupapi.html
+cloud/cloudsync/gcm.html
+cloud/cloudsync/index.html
 connectivity/connect-devices-wireless/index.html
 connectivity/connect-devices-wireless/nsd-wifi-index.html
 connectivity/connect-devices-wireless/nsd.html
@@ -77,8 +77,8 @@ connectivity/efficient-downloads/index.html
 connectivity/efficient-downloads/redundant-redundant.html
 connectivity/efficient-downloads/regular-update.html
 connectivity/network-ops/connecting.html
-connectivity/network-ops/index.html
 connectivity/network-ops/managing.html
+connectivity/network-ops/index.html
 connectivity/network-ops/xml.html
 connectivity/sync-adapters/create-authenticator.html
 connectivity/sync-adapters/create-stub-provider.html
@@ -111,8 +111,8 @@ graphics/displaying-bitmaps/cache-bitmap.html
 graphics/displaying-bitmaps/display-bitmap.html
 graphics/displaying-bitmaps/index.html
 graphics/displaying-bitmaps/load-bitmap.html
+graphics/displaying-bitmaps/manage-bitmap-memory.html
 graphics/displaying-bitmaps/process-bitmap.html
-graphics/displaying-bitmaps/manage-memory.html
 graphics/opengl/motion.html
 graphics/opengl/draw.html
 graphics/opengl/environment.html
@@ -138,17 +138,17 @@ input/keyboard-input/type.html
 input/keyboard-input/visibility.html
 location/activity-recognition.html
 location/display-address.html
-location/geofencing.html
 location/index.html
+location/geofencing.html
 location/location-testing.html
 location/retrieve-current.html
 location/retrieve-location-updates.html
-multimedia/audio/audio-output.html
 multimedia/audio/audio-focus.html
+multimedia/audio/audio-output.html
 multimedia/audio/index.html
 multimedia/audio/volume-playback.html
-multimedia/camera/cameradirect.html
 multimedia/camera/index.html
+multimedia/camera/cameradirect.html
 multimedia/camera/photobasic.html
 multimedia/camera/videobasic.html
 multimedia/printing/custom-docs.html
@@ -181,13 +181,13 @@ security/security-ssl.html
 security/security-tips.html
 testing/activity-testing/activity-basic-testing.html
 testing/activity-testing/activity-function-testing.html
-testing/activity-testing/activity-ui-testing.html
 testing/activity-testing/activity-unit-testing.html
+testing/activity-testing/activity-ui-testing.html
 testing/activity-testing/index.html
 testing/activity-testing/prepare-activity-testing.html
 ui/accessibility/accessible-app.html
-ui/accessibility/accessible-service.html
 ui/accessibility/index.html
+ui/accessibility/accessible-service.html
 ui/backward-compatible-ui/abstract.html
 ui/backward-compatible-ui/index.html
 ui/backward-compatible-ui/new-impl.html
@@ -208,8 +208,8 @@ ui/system-ui/hide-ui.html
 ui/system-ui/immersive.html
 ui/system-ui/hide-nav.html
 ui/system-ui/visibility.html
-ui/tv/optimize-layouts-tv.html
 ui/tv/index.html
+ui/tv/optimize-layouts-tv.html
 ui/tv/optimize-nav-tv.html
 ui/tv/unsupport-features-tv.html
 ux/app-indexing/deep-linking.html
@@ -236,8 +236,8 @@ ux/notify-user/update-notification.html
 ux/search/back-compat.html
 ux/search/index.html
 ux/search/search.html
-wearables/apps/bt-debugging.html
 ux/search/setup.html
+wearables/apps/bt-debugging.html
 wearables/apps/creating.html
 wearables/apps/index.html
 wearables/apps/layouts.html
@@ -282,10 +282,10 @@ gitbook/jsrepl/jsrepl.js
 gitbook/jsrepl/langs/javascript/jsrepl_js.js
 gitbook/jsrepl/sandbox.html
 gitbook/jsrepl/sandbox.js
-gitbook/plugins/gitbook-plugin-disqus/plugin.js
-gitbook/plugins/gitbook-plugin-mathjax/plugin.js
 gitbook/print.css
 gitbook/style.css
+gitbook/plugins/gitbook-plugin-disqus/plugin.js
+gitbook/plugins/gitbook-plugin-mathjax/plugin.js
 
 NETWORK:
 *
