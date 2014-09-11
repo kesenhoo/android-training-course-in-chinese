@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.3)
+# Google Android官方培训课程中文版(v0.4)
 
 ![Android Training](android_training.jpg)
 
@@ -17,6 +17,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * v0.1 - 2014/08/05
 * v0.2 - 2014/08/14
 * v0.3 - 2014/08/31
+* v0.4 - 2014/09/11
 
 ### 在线阅读
 
@@ -24,9 +25,9 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 ### 离线文档
 
-* PDF: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.pdf>
-* ePub: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.epub>
-* Mobi: <http://hukai.me/eBooks/Google_Android_Training_Course_In_Chinese.mobi>
+* PDF: <http://hukai.me/eBooks/AndroidTrainingCHS.pdf>
+* ePub: <http://hukai.me/eBooks/AndroidTrainingCHS.epub>
+* Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
 
 ### 参与方式
 
@@ -67,7 +68,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * @[pedant](https://github.com/pedant)
 * @[craftsmanBai](https://github.com/craftsmanBai)
 * @[huanglizhuo](https://github.com/huanglizhuo)
-* @发起人:[胡凯](<http://hukai.me>)，博客：<http://hukai.me>，Github：<https://github.com/kesenhoo>
+* @发起人:[胡凯](<http://hukai.me>)，博客：<http://hukai.me>，Github：<https://github.com/kesenhoo>，微博：<http://weibo.com/kesenhoo>
 
 还有众多参与纠错校正的同学名字就不一一列举了，谢谢所有关注这个项目的小伙伴！特别感谢[安卓巴士社区](http://www.apkbus.com)，[爱开发社区](http://akaifa.com)，[码农周刊](http://weekly.manong.io)对项目的宣传！
 
