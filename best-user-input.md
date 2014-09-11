@@ -1,13 +1,13 @@
 # 用户输入
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:http://developer.android.com/training/best-user-input.html
 
-These classes cover various subjects of user input, such as touch screen gestures and text input through on-screen input methods and hardware keyboards.
+本课程涵盖的主题包括多种多样用户输入，例如触摸屏幕手势、通过屏幕输入法和硬件键盘的文本输入。
 
-#### [Using Touch Gestures](input/gestures/index.html)
+#### [使用触摸手势](input/gestures/index.html)
 
-How to write apps that allow users to interact with the touch screen via touch gestures.
+介绍如何编写允许用户通过触摸手势与触摸屏幕进行交互的app程序。
 
-#### [Handling Keyboard Input](input/keyboard-input/index.html)
+#### [处理键盘输入事件](input/keyboard-input/index.html)
 
-How to specify the appearance and behaviors of soft input methods (such as on-screen keyboards) and how to optimize the experience with hardware keyboards.
+介绍在软输入方法下（如屏幕键盘按键情况下）程序的响应表现和执行动作，以及如何优化在硬件键盘按键下的用户体验。
