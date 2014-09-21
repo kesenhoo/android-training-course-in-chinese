@@ -2,7 +2,7 @@
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/zoom.html>
 
-这节课程师范怎样实现点击缩放动画，这对相册很有用，他能允许相片从缩略图转换成原图并填充屏幕提供动画。
+这节课示范怎样实现点击缩放动画，这对相册很有用，他能允许相片从缩略图转换成原图并填充屏幕提供动画。
 
 下面展示了触摸缩放动画效果是什么样子，它将缩略图扩大并填充屏幕。
 
