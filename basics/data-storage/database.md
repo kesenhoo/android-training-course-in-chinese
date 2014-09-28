@@ -189,7 +189,7 @@ values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
 
 // Which row to update, based on the ID
 String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
-String[] selelectionArgs = { String.valueOf(rowId) };
+String[] selectionArgs = { String.valueOf(rowId) };
 
 int count = db.update(
     FeedReaderDbHelper.FeedEntry.TABLE_NAME,
