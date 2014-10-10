@@ -126,9 +126,6 @@ private void crossfade() {
             .setDuration(mShortAnimationDuration)
             .setListener(null);
 
-    // Animate the loading view to 0% opacity. After the animation ends,
-    // set its visibility to GONE as an optimization step (it won't
-    // participate in layout passes, etc.)
     // 加载View开始动画逐渐变为0%的不透明度，
     // 动画结束后，设置可见性为GONE（消失）作为一个优化步骤
     //（它将不再参与布局的传递等过程）
