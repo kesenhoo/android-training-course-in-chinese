@@ -115,7 +115,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-        // Instantiate a ViewPager and a PagerAdapter.
+        // 初始化 ViewPager 和 PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -202,7 +202,6 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
             view.setAlpha(0);
 
         } else if (position <= 1) { // [-1,1]
-            // Modify the default slide transition to shrink the page as well
             // 修改默认的滑动过渡效果为缩放效果
             float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
             float vertMargin = pageHeight * (1 - scaleFactor) / 2;
@@ -267,6 +266,7 @@ public class DepthPageTransformer implements ViewPager.PageTransformer {
 
         } else if (position <= 0) { // [-1,0]
             // Use the default slide transition when moving to the left page
+            // 向左面滑屏使用默认的过渡动画
             view.setAlpha(1);
             view.setTranslationX(0);
             view.setScaleX(1);
