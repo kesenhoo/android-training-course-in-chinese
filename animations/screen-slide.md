@@ -96,18 +96,17 @@ import android.support.v4.app.FragmentManager;
 ...
 public class ScreenSlidePagerActivity extends FragmentActivity {
     /**
-     * The number of pages (wizard steps) to show in this demo.
+     * 本演示代码的显示页数 (看作向导步骤).
      */
     private static final int NUM_PAGES = 5;
 
     /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
+     * Pager控件，用来处理动画并允许整页横向滑动来展示上一个和下一个“向导步骤”
      */
     private ViewPager mPager;
 
     /**
-     * The pager adapter, which provides the pages to the view pager widget.
+     * Pager适配器，用于提供ViewPager控件的具体页面。
      */
     private PagerAdapter mPagerAdapter;
 
@@ -116,7 +115,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-        // Instantiate a ViewPager and a PagerAdapter.
+        // 初始化 ViewPager 和 PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -125,18 +124,17 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
+            // 如果用户当前正在看第一步（也就是第一页），那就要让系统来处理返回按钮。
+            //这个是结束（finish()）当前活动并弹出回退栈。
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
+            // 否则，返回前一页
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
     }
 
     /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
+     * 一个简单的Pager控件适配器，它顺序地展示了5个ScreenSlidePageFragment对象
      */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
@@ -199,12 +197,12 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
         int pageWidth = view.getWidth();
         int pageHeight = view.getHeight();
 
-        if (position < -1) { // [-Infinity,-1)
-            // This page is way off-screen to the left.
+        if (position < -1) { // [-∞,-1)
+            // 这一页已经是最左边的屏幕页
             view.setAlpha(0);
 
         } else if (position <= 1) { // [-1,1]
-            // Modify the default slide transition to shrink the page as well
+            // 修改默认的滑动过渡效果为缩放效果
             float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
             float vertMargin = pageHeight * (1 - scaleFactor) / 2;
             float horzMargin = pageWidth * (1 - scaleFactor) / 2;
@@ -214,17 +212,17 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
                 view.setTranslationX(-horzMargin + vertMargin / 2);
             }
 
-            // Scale the page down (between MIN_SCALE and 1)
+            // 开始根据缩放系数进行变化 (在 MIN_SCALE 和 1 之间变化)
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
 
-            // Fade the page relative to its size.
+            // 根据大小（缩放系数）变化化透明度实现淡化页面效果
             view.setAlpha(MIN_ALPHA +
                     (scaleFactor - MIN_SCALE) /
                     (1 - MIN_SCALE) * (1 - MIN_ALPHA));
 
-        } else { // (1,+Infinity]
-            // This page is way off-screen to the right.
+        } else { // (1,+∞ ]
+            // 这一页已经是最右边的屏幕页
             view.setAlpha(0);
         }
     }
@@ -262,32 +260,33 @@ public class DepthPageTransformer implements ViewPager.PageTransformer {
     public void transformPage(View view, float position) {
         int pageWidth = view.getWidth();
 
-        if (position < -1) { // [-Infinity,-1)
-            // This page is way off-screen to the left.
+        if (position < -1) { // [-∞ ,-1)
+            // 这一页已经是最左边的屏幕页
             view.setAlpha(0);
 
         } else if (position <= 0) { // [-1,0]
             // Use the default slide transition when moving to the left page
+            // 向左面滑屏使用默认的过渡动画
             view.setAlpha(1);
             view.setTranslationX(0);
             view.setScaleX(1);
             view.setScaleY(1);
 
         } else if (position <= 1) { // (0,1]
-            // Fade the page out.
+            // 淡出页面
             view.setAlpha(1 - position);
 
-            // Counteract the default slide transition
+            // 抵消默认的整页过渡
             view.setTranslationX(pageWidth * -position);
 
-            // Scale the page down (between MIN_SCALE and 1)
+            // 根据缩放系数变化 (在 MIN_SCALE 和 1 之间变化)
             float scaleFactor = MIN_SCALE
                     + (1 - MIN_SCALE) * (1 - Math.abs(position));
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
 
-        } else { // (1,+Infinity]
-            // This page is way off-screen to the right.
+        } else { // (1,+∞]
+            // 这一页已经是最右边的屏幕页
             view.setAlpha(0);
         }
     }
