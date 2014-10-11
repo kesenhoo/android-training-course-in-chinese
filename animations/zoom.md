@@ -50,11 +50,9 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
     </LinearLayout>
 
-    <!-- This initially-hidden ImageView will hold the expanded/zoomed version of
-         the images above. Without transformations applied, it takes up the entire
-         screen. To achieve the "zoom" animation, this view's bounds are animated
-         from the bounds of the thumbnail button above, to its final laid-out
-         bounds.
+    <!-- 这个初始化状态为隐藏的ImageView将会持有一个扩大/缩放版本的图片，并且浮于布局上层，
+         没有动画施加在上面，并且占据整个屏幕。要实现“缩放”的动画，这个View是从上面的缩
+         略图按钮的边界开始，扩大至最终的放大后的边界。
          -->
 
     <ImageView
@@ -73,13 +71,12 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```java
 public class ZoomActivity extends FragmentActivity {
-    // Hold a reference to the current animator,
-    // so that it can be canceled mid-way.
+    // 持有一个当前animator的引用,
+    // 以后以便于中途取消动画.
     private Animator mCurrentAnimator;
 
-    // The system "short" animation time duration, in milliseconds. This
-    // duration is ideal for subtle animations or animations that occur
-    // very frequently.
+    //这个系统内的“短”动画时长是以毫秒为单位的。
+    //这个时长对于精确控制的动画或频繁激发的动画是非常理想的。
     private int mShortAnimationDuration;
 
     @Override
@@ -87,8 +84,7 @@ public class ZoomActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoom);
 
-        // Hook up clicks on the thumbnail views.
-
+        // 为缩略图连结点击事件
         final View thumb1View = findViewById(R.id.thumb_button_1);
         thumb1View.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +92,8 @@ public class ZoomActivity extends FragmentActivity {
                 zoomImageFromThumb(thumb1View, R.drawable.image1);
             }
         });
-
-        // Retrieve and cache the system's default "short" animation time.
+        
+        //获取并缓存系统默认定义的“短”动画时长
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
     }
@@ -119,49 +115,43 @@ public class ZoomActivity extends FragmentActivity {
 
 ```java
 private void zoomImageFromThumb(final View thumbView, int imageResId) {
-    // If there's an animation in progress, cancel it
-    // immediately and proceed with this one.
+    //如果一个动画正在进行过程中，那么就要立即取消之前的动画并进行这一个。
     if (mCurrentAnimator != null) {
         mCurrentAnimator.cancel();
     }
 
-    // Load the high-resolution "zoomed-in" image.
+    // 载入一个高分辨率的所谓 "已放大" 的图片.
     final ImageView expandedImageView = (ImageView) findViewById(
             R.id.expanded_image);
     expandedImageView.setImageResource(imageResId);
 
-    // Calculate the starting and ending bounds for the zoomed-in image.
-    // This step involves lots of math. Yay, math.
+    // 为放大的图片计算开始动画和结束动画的矩形边界
+    // 这个步骤牵扯到了大量的数学计算，YEAH!!坑爹的数学!!
     final Rect startBounds = new Rect();
     final Rect finalBounds = new Rect();
     final Point globalOffset = new Point();
 
-    // The start bounds are the global visible rectangle of the thumbnail,
-    // and the final bounds are the global visible rectangle of the container
-    // view. Also set the container view's offset as the origin for the
-    // bounds, since that's the origin for the positioning animation
-    // properties (X, Y).
+    // 动画开始的边界是缩略图对全局可见的矩形，最终的边界是外部包裹的布局可见矩形。
+    // 这里还设置了包裹视图的偏移量为原点的边界,因为这是原点为定位的动画属性(X, Y)。
     thumbView.getGlobalVisibleRect(startBounds);
-    findViewById(R.id.container)
-            .getGlobalVisibleRect(finalBounds, globalOffset);
+    findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
     startBounds.offset(-globalOffset.x, -globalOffset.y);
     finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
-    // Adjust the start bounds to be the same aspect ratio as the final
-    // bounds using the "center crop" technique. This prevents undesirable
-    // stretching during the animation. Also calculate the start scaling
-    // factor (the end scaling factor is always 1.0).
+    // 调整开始边界要和使用了“centerCrop”技术的最终边界保持相同的纵横比。
+    // 这可以在动画过程中防止不希望出现的拉伸现象。还计算了开始大小的缩放系数
+    // (结束大小的系数则一直为1.0)
     float startScale;
     if ((float) finalBounds.width() / finalBounds.height()
             > (float) startBounds.width() / startBounds.height()) {
-        // Extend start bounds horizontally
+        // 水平扩展开始边界
         startScale = (float) startBounds.height() / finalBounds.height();
         float startWidth = startScale * finalBounds.width();
         float deltaWidth = (startWidth - startBounds.width()) / 2;
         startBounds.left -= deltaWidth;
         startBounds.right += deltaWidth;
     } else {
-        // Extend start bounds vertically
+        // 竖直扩展开始边界
         startScale = (float) startBounds.width() / finalBounds.width();
         float startHeight = startScale * finalBounds.height();
         float deltaHeight = (startHeight - startBounds.height()) / 2;
@@ -169,9 +159,7 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
         startBounds.bottom += deltaHeight;
     }
 
-    // Hide the thumbnail and show the zoomed-in view. When the animation
-    // begins, it will position the zoomed-in view in the place of the
-    // thumbnail.
+    // 隐藏缩略图并显示放大后的View。当动画开始，将在缩略图的位置定位放大的视图
     thumbView.setAlpha(0f);
     expandedImageView.setVisibility(View.VISIBLE);
 
@@ -181,8 +169,7 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
     expandedImageView.setPivotX(0f);
     expandedImageView.setPivotY(0f);
 
-    // Construct and run the parallel animation of the four translation and
-    // scale properties (X, Y, SCALE_X, and SCALE_Y).
+    // 构建并并行化运行4个平移动画和缩放属性(X, Y, SCALE_X, and SCALE_Y)
     AnimatorSet set = new AnimatorSet();
     set
             .play(ObjectAnimator.ofFloat(expandedImageView, View.X,
@@ -208,9 +195,8 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
     set.start();
     mCurrentAnimator = set;
 
-    // Upon clicking the zoomed-in image, it should zoom back down
-    // to the original bounds and show the thumbnail instead of
-    // the expanded image.
+    // 点击放大后的图片，应该是缩放回原来的边界并显示缩略图
+    // 而不是显示扩大的图
     final float startScaleFinal = startScale;
     expandedImageView.setOnClickListener(new View.OnClickListener() {
         @Override
