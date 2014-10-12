@@ -24,20 +24,21 @@ public class PhotoThumbnailFragment extends FragmentActivity implements
 为了初始化查询，需要执行[LoaderManager.initLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks<D>))。这个方法可以初始化后台任务。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在`onCreate()`或者`onCreateView()`。例如：
 
 ```java
-// Identifies a particular Loader being used in this component
+// 标识一个特定的Loader加载器来使用这个组件
     private static final int URL_LOADER = 0;
     ...
-    /* When the system is ready for the Fragment to appear, this displays
-     * the Fragment's View
-     */
+     /**
+       * 当系统已经准备好显示Fragment时，
+       * 这里显示Fragment的布局
+       */
     public View onCreateView(
             LayoutInflater inflater,
             ViewGroup viewGroup,
             Bundle bundle) {
         ...
         /*
-         * Initializes the CursorLoader. The URL_LOADER value is eventually passed
-         * to onCreateLoader().
+         *初始化一个CursorLoader.  URL_LOADER 值最终会被传递到
+         *  onCreateLoader().
          */
         getLoaderManager().initLoader(URL_LOADER, null, this);
         ...
