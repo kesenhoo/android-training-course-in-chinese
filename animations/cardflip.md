@@ -36,14 +36,15 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Before rotating, immediately set the alpha to 0. -->
+
+    <!--旋转之前，立刻设置透明度alpha为0-->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
         android:propertyName="alpha"
         android:duration="0" />
 
-    <!-- Rotate. -->
+    <!--旋转-->
     <objectAnimator
         android:valueFrom="-180"
         android:valueTo="0"
@@ -51,7 +52,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!-- Half-way through the rotation (see startOffset), set the alpha to 1. -->
+    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1-->
     <objectAnimator
         android:valueFrom="0.0"
         android:valueTo="1.0"
@@ -65,7 +66,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Rotate. -->
+    <!-- 旋转. -->
     <objectAnimator
         android:valueFrom="0"
         android:valueTo="180"
@@ -73,7 +74,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!-- Half-way through the rotation (see startOffset), set the alpha to 0. -->
+    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0-->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
@@ -87,14 +88,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Before rotating, immediately set the alpha to 0. -->
+    <!--旋转之前，立刻设置透明度alpha为0-->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
         android:propertyName="alpha"
         android:duration="0" />
 
-    <!-- Rotate. -->
+    <!-- 旋转. -->
     <objectAnimator
         android:valueFrom="180"
         android:valueTo="0"
@@ -102,7 +103,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!-- Half-way through the rotation (see startOffset), set the alpha to 1. -->
+    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1-->
     <objectAnimator
         android:valueFrom="0.0"
         android:valueTo="1.0"
@@ -116,7 +117,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Rotate. -->
+    <!-- 旋转. -->
     <objectAnimator
         android:valueFrom="0"
         android:valueTo="-180"
@@ -124,7 +125,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!-- Half-way through the rotation (see startOffset), set the alpha to 0. -->
+    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0-->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
@@ -186,7 +187,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 public class CardFlipActivity extends Activity {
     ...
     /**
-     * A fragment representing the front of the card.
+     * 一个呈现在卡片前方的fragment
      */
     public class CardFrontFragment extends Fragment {
         @Override
@@ -197,7 +198,7 @@ public class CardFlipActivity extends Activity {
     }
 
     /**
-     * A fragment representing the back of the card.
+     * 一个呈现在卡片后方的fragment
      */
     public class CardBackFragment extends Fragment {
         @Override
@@ -255,34 +256,31 @@ private void flipCard() {
         return;
     }
 
-    // Flip to the back.
+    // 向后翻转.
 
     mShowingBack = true;
 
-    // Create and commit a new fragment transaction that adds the fragment for the back of
-    // the card, uses custom animations, and is part of the fragment manager's back stack.
-
+    // 创建并提交一个新的Fragment事务用于在卡片后面添加Fragment，使用自定义动画，并且加入
+    // Fragment管理器回退栈
     getFragmentManager()
             .beginTransaction()
 
-            // Replace the default fragment animations with animator resources representing
-            // rotations when switching to the back of the card, as well as animator
-            // resources representing rotations when flipping back to the front (e.g. when
-            // the system Back button is pressed).
+            // 用动画器资源呈现卡片自前向后的旋转效果替换默认的Fragment动画，
+            // 当翻转到前面的时候动画器资源也可以呈现自后向前的旋转效果（例如按下系统返回键时）
             .setCustomAnimations(
                     R.animator.card_flip_right_in, R.animator.card_flip_right_out,
                     R.animator.card_flip_left_in, R.animator.card_flip_left_out)
 
-            // Replace any fragments currently in the container view with a fragment
-            // representing the next page (indicated by the just-incremented currentPage
-            // variable).
+            // 用一个Fragment替换任何当前在容器布局内的Fragment来呈现下一页
+            //（通过仅自增的变量currentPage来表示）
             .replace(R.id.container, new CardBackFragment())
 
             // Add this transaction to the back stack, allowing users to press Back
             // to get to the front of the card.
+            // 添加这个事务到回退栈，允许用户来按下返回按钮来回退到卡片正面.
             .addToBackStack(null)
 
-            // Commit the transaction.
+            // 提交完成事务.
             .commit();
 }
 ```
