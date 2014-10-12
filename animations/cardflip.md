@@ -274,9 +274,7 @@ private void flipCard() {
             // 用一个Fragment替换任何当前在容器布局内的Fragment来呈现下一页
             //（通过仅自增的变量currentPage来表示）
             .replace(R.id.container, new CardBackFragment())
-
-            // Add this transaction to the back stack, allowing users to press Back
-            // to get to the front of the card.
+            
             // 添加这个事务到回退栈，允许用户来按下返回按钮来回退到卡片正面.
             .addToBackStack(null)
 
