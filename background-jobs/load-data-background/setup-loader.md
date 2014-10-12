@@ -75,7 +75,7 @@ public Loader<Cursor> onCreateLoader(int loaderID, Bundle bundle)
                         null             // 默认排序
         );
         default:
-            // An invalid id was passed in
+            // 一个非法的id传入
             return null;
     }
 }
