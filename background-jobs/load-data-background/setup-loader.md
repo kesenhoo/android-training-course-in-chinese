@@ -52,18 +52,17 @@ public class PhotoThumbnailFragment extends FragmentActivity implements
 一旦后台任务被初始化好，它会执行你实现的回调方法[onCreateLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onCreateLoader(int, android.os.Bundle))。为了启动查询任务，会在这个方法里面返回CursorLoader。你可以初始化一个空的CursorLoader然后使用它的方法来定义你的查询条件，或者你可以在初始化CursorLoader对象的时候就同时定义好查询条件：
 
 ```
-/*
-* Callback that's invoked when the system has initialized the Loader and
-* is ready to start the query. This usually happens when initLoader() is
-* called. The loaderID argument contains the ID value passed to the
-* initLoader() call.
-*/
+/**
+ * 系统在完成Loader的初始化并且准备好查询的时候会回调这个方法。
+ * 这个通常在initLoader()方法被调用发生。包含loaderID值的参数
+ * 通过initLoader()方法的传递得到。
+ */
 @Override
 public Loader<Cursor> onCreateLoader(int loaderID, Bundle bundle)
 {
-    /*
-     * Takes action based on the ID of the Loader that's being created
-     */
+     /*
+      * 通过加载器ID执行创建加载器动作
+      */
     switch (loaderID) {
         case URL_LOADER:
             // Returns a new CursorLoader
