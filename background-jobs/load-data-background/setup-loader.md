@@ -67,12 +67,12 @@ public Loader<Cursor> onCreateLoader(int loaderID, Bundle bundle)
         case URL_LOADER:
             // Returns a new CursorLoader
             return new CursorLoader(
-                        getActivity(),   // Parent activity context
-                        mDataUrl,        // Table to query
-                        mProjection,     // Projection to return
-                        null,            // No selection clause
-                        null,            // No selection arguments
-                        null             // Default sort order
+                        getActivity(),   // 父Activity上下文
+                        mDataUrl,        // 要查询的表
+                        mProjection,     // 要返回的Projection
+                        null,            // 没有条件从句
+                        null,            // 没有条件参数
+                        null             // 默认排序
         );
         default:
             // An invalid id was passed in
