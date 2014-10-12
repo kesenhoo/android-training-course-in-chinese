@@ -204,8 +204,7 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
                 mCurrentAnimator.cancel();
             }
 
-            // Animate the four positioning/sizing properties in parallel,
-            // back to their original values.
+            // 开始并行动画这四个位置/大小属性，直到归至原始值。
             AnimatorSet set = new AnimatorSet();
             set.play(ObjectAnimator
                         .ofFloat(expandedImageView, View.X, startBounds.left))
