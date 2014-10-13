@@ -90,7 +90,7 @@ public class DisplayActivity extends FragmentActivity {
 为了给系统注册这个BroadcastReceiver，需要通过LocalBroadcastManager执行registerReceiver()的方法。如下所示：
 
 ```java
-// I实例化一个新的 DownloadStateReceiver
+        // 实例化一个新的 DownloadStateReceiver
         DownloadStateReceiver mDownloadStateReceiver =
                 new DownloadStateReceiver();
 
