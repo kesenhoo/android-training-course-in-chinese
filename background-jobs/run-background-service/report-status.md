@@ -93,7 +93,7 @@ public class DisplayActivity extends FragmentActivity {
 // I实例化一个新的 DownloadStateReceiver
         DownloadStateReceiver mDownloadStateReceiver =
                 new DownloadStateReceiver();
-        // Registers the DownloadStateReceiver and its intent filters
+
         // 注册DownloadStateReceiver和Intent过滤器
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 mDownloadStateReceiver,
@@ -104,7 +104,7 @@ public class DisplayActivity extends FragmentActivity {
 一个BroadcastReceiver可以处理多种类型的广播数据。每个广播数据都有自己的ACTION。这个功能使得不用定义多个不同的BroadcastReceiver来分别处理不同的ACTION数据。为BroadcastReceiver定义另外一个IntentFilter，只需要创建一个新的IntentFilter并重复执行registerReceiver()即可。例如:
 
 ```java
-/*
+        /*
          * 实例化一个新的动作过滤器.
          * 不需要数据类型过滤器.
          */
