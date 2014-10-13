@@ -12,11 +12,12 @@
 ```java
 public final class Constants {
     ...
-    // Defines a custom Intent action
+    // 定义一个自定义的Intent动作名
     public static final String BROADCAST_ACTION =
         "com.example.android.threadsample.BROADCAST";
     ...
-    // Defines the key for the status "extra" in an Intent
+
+    // 定义一个附加键名来表示状态用于包装在一个Intent中
     public static final String EXTENDED_DATA_STATUS =
         "com.example.android.threadsample.STATUS";
     ...
@@ -24,14 +25,15 @@ public final class Constants {
 public class RSSPullService extends IntentService {
 ...
     /*
-     * Creates a new Intent containing a Uri object
-     * BROADCAST_ACTION is a custom Intent action
+     * 创建一个新的包含名Uri的对象
+     * BROADCAST_ACTION是一个自定义的Intent动作
+     *
      */
     Intent localIntent =
             new Intent(Constants.BROADCAST_ACTION)
-            // Puts the status into the Intent
+            // 把status放到Intent中
             .putExtra(Constants.EXTENDED_DATA_STATUS, status);
-    // Broadcasts the Intent to receivers in this app.
+    // 广播Intent给应用中的接收器
     LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
 ...
 }
@@ -46,18 +48,20 @@ public class RSSPullService extends IntentService {
 为了接受广播的数据对象，需要使用BroadcastReceiver的子类并实现[BroadcastReceiver.onReceive()](http://developer.android.com/reference/android/content/BroadcastReceiver.html#onReceive(android.content.Context, android.content.Intent))的方法，这里可以接收LocalBroadcastManager发出的广播数据。
 
 ```java
-// Broadcast receiver for receiving status updates from the IntentService
+
+// 广播接收器，用于接受IntentService更新的状态
 private class ResponseReceiver extends BroadcastReceiver
 {
-    // Prevents instantiation
+    // 防止实例化
     private DownloadStateReceiver() {
     }
-    // Called when the BroadcastReceiver gets an Intent it's registered to receive
-    @
+
+    // 它会被注册来接收Intent，当广播接收器获得这个Intent时调用。
+    @Override
     public void onReceive(Context context, Intent intent) {
 ...
         /*
-         * Handle Intents here.
+         * 在这里处理Intent.
          */
 ...
     }
@@ -67,18 +71,18 @@ private class ResponseReceiver extends BroadcastReceiver
 一旦定义了BroadcastReceiver，也应该定义actions，categories与data用来做广播过滤。为了实现这些，需要使用[IntentFilter](http://developer.android.com/reference/android/content/IntentFilter.html).如下所示：
 
 ```java
-// Class that displays photos
+// 用于现实照片的类
 public class DisplayActivity extends FragmentActivity {
     ...
     public void onCreate(Bundle stateBundle) {
         ...
         super.onCreate(stateBundle);
         ...
-        // The filter's action is BROADCAST_ACTION
+        // 过滤器的动作条件是自定义的BROADCAST_ACTION
         IntentFilter mStatusIntentFilter = new IntentFilter(
                 Constants.BROADCAST_ACTION);
 
-        // Adds a data filter for the HTTP scheme
+        // 为http协议添加一个数据过滤器
         mStatusIntentFilter.addDataScheme("http");
 
 ```
@@ -86,10 +90,11 @@ public class DisplayActivity extends FragmentActivity {
 为了给系统注册这个BroadcastReceiver，需要通过LocalBroadcastManager执行registerReceiver()的方法。如下所示：
 
 ```java
-// Instantiates a new DownloadStateReceiver
+// I实例化一个新的 DownloadStateReceiver
         DownloadStateReceiver mDownloadStateReceiver =
                 new DownloadStateReceiver();
         // Registers the DownloadStateReceiver and its intent filters
+        // 注册DownloadStateReceiver和Intent过滤器
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 mDownloadStateReceiver,
                 mStatusIntentFilter);
@@ -100,8 +105,8 @@ public class DisplayActivity extends FragmentActivity {
 
 ```java
 /*
-         * Instantiates a new action filter.
-         * No data filter is needed.
+         * 实例化一个新的动作过滤器.
+         * 不需要数据类型过滤器.
          */
         statusIntentFilter = new IntentFilter(Constants.ACTION_ZOOM_IMAGE);
         ...
