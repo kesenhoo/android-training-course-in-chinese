@@ -37,7 +37,7 @@ SimpleCursorAdapter mAdapter =
             mToFields,           // Layout fields to use
             0                    // No flags
     );
-// Sets the adapter for the view
+// 为View设置适配器
 mListView.setAdapter(mAdapter);
 ...
 /*
