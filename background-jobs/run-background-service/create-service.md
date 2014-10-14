@@ -23,15 +23,15 @@ IntentService有下面几个局限性：
 public class RSSPullService extends IntentService {
     @Override
     protected void onHandleIntent(Intent workIntent) {
-        // Gets data from the incoming Intent
+        // 从传入的intent获取数据 
         String dataString = workIntent.getDataString();
         ...
-        // Do work here, based on the contents of dataString
+        // 根据dataString的内容在这里进行操作
         ...
     }
 }
 ```
-
+ 
 注意一个普通Service组件的其他回调，例如`onStartCommand()`会被IntentService自动触发。在IntentService中，要避免override那些回调。
 
 ## 2)在Manifest文件中定义IntentService
@@ -43,8 +43,7 @@ IntentService需要在manifest文件的<application>标签下进行定义，如�
         android:label="@string/app_name">
         ...
         <!--
-            Because android:exported is set to "false",
-            the service is only available to this app.
+            因为android:exported 被设置为false，该服务只能在本应用中使用
         -->
         <service
             android:name=".RSSPullService"

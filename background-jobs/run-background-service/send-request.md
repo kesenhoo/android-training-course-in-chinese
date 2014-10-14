@@ -12,9 +12,7 @@
 
 ```java
 /*
- * Creates a new Intent to start the RSSPullService
- * IntentService. Passes a URI in the
- * Intent's "data" field.
+ * 创建一个新的Intent来启动RSSPullService，通过intent的"data"属性传入一个URI
  */
 mServiceIntent = new Intent(getActivity(), RSSPullService.class);
 mServiceIntent.setData(Uri.parse(dataUrl));
@@ -25,7 +23,7 @@ mServiceIntent.setData(Uri.parse(dataUrl));
 * 执行startService()
 
 ```java
-// Starts the IntentService
+// 启动IntentService
 getActivity().startService(mServiceIntent);
 ```
 

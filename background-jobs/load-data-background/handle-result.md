@@ -23,11 +23,10 @@ public String[] mFromColumns = {
 public int[] mToFields = {
     R.id.PictureName
 };
-// Gets a handle to a List View
+// 取得ListView的引用[原词是句柄handle]
 ListView mListView = (ListView) findViewById(R.id.dataList);
 /*
- * Defines a SimpleCursorAdapter for the ListView
- *
+ * 为ListView定义一个SimpleCursorAdapter
  */
 SimpleCursorAdapter mAdapter =
     new SimpleCursorAdapter(
@@ -38,20 +37,19 @@ SimpleCursorAdapter mAdapter =
             mToFields,           // Layout fields to use
             0                    // No flags
     );
-// Sets the adapter for the view
+// 为View设置适配器
 mListView.setAdapter(mAdapter);
 ...
 /*
- * Defines the callback that CursorLoader calls
- * when it's finished its query
+ * 定义CursorLoader完成查询时候的回调
  */
 @Override
 public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
     ...
-    /*
-     * Moves the query results into the adapter, causing the
-     * ListView fronting this adapter to re-display
-     */
+
+     /*
+      * 转移查询结果给适配器，并激发适配器更新前端的ListView数据
+      */
     mAdapter.changeCursor(cursor);
 }
 ```
@@ -64,15 +62,14 @@ public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
 
 ```java
 /*
- * Invoked when the CursorLoader is being reset. For example, this is
- * called if the data in the provider changes and the Cursor becomes stale.
+ * CursorLoader被重置时调用。举个栗子，当提供者中的数据发生变动Cursor变得陈旧
+ * 时会被调用。
  */
 @Override
 public void onLoaderReset(Loader<Cursor> loader) {
 
     /*
-     * Clears out the adapter's reference to the Cursor.
-     * This prevents memory leaks.
+     * 清除适配器里对Cursor的引用，可以防止内存泄漏。
      */
     mAdapter.changeCursor(null);
 }

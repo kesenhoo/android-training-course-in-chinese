@@ -265,7 +265,6 @@ public class DepthPageTransformer implements ViewPager.PageTransformer {
             view.setAlpha(0);
 
         } else if (position <= 0) { // [-1,0]
-            // Use the default slide transition when moving to the left page
             // 向左面滑屏使用默认的过渡动画
             view.setAlpha(1);
             view.setTranslationX(0);

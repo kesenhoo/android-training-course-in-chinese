@@ -163,9 +163,8 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
     thumbView.setAlpha(0f);
     expandedImageView.setVisibility(View.VISIBLE);
 
-    // Set the pivot point for SCALE_X and SCALE_Y transformations
-    // to the top-left corner of the zoomed-in view (the default
-    // is the center of the view).
+    // 设置锚点，以放大后的View左上角坐标为准来准备 SCALE_X 和 SCALE_Y 变换
+    // (默认为View的中心)
     expandedImageView.setPivotX(0f);
     expandedImageView.setPivotY(0f);
 
@@ -205,8 +204,7 @@ private void zoomImageFromThumb(final View thumbView, int imageResId) {
                 mCurrentAnimator.cancel();
             }
 
-            // Animate the four positioning/sizing properties in parallel,
-            // back to their original values.
+            // 开始并行动画这四个位置/大小属性，直到归至原始值。
             AnimatorSet set = new AnimatorSet();
             set.play(ObjectAnimator
                         .ofFloat(expandedImageView, View.X, startBounds.left))
