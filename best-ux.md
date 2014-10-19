@@ -1,4 +1,4 @@
-# Android交互与界面设计
+# Android交互设计
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
 
