@@ -2,7 +2,7 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/network-ops/connecting.html>
 
-这一课会演示如何实现一个简单的连接到网络的程序。它提供了一些你应该follow的最好示例，用来创建最简单的网络连接程序。请注意，想要执行网络操作首先需要在程序的manifest文件中添加下面的permissions:
+这一课会演示如何实现一个简单的连接到网络的程序。它提供了一些你应该遵循的最佳示例，用来创建最简单的网络连接程序。请注意，想要执行网络操作首先需要在程序的manifest文件中添加下面的permissions:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />

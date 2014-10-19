@@ -10,7 +10,7 @@
 <!-- More -->
 
 ```java
-long currentTime = System.currentTimeMillis());
+long currentTime = System.currentTimeMillis();
 
 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -65,7 +65,3 @@ private void enableHttpResponseCache() {
 
 上面的sample code会在Android 4.0以上的设备上开启response cache，同时不会影响到之前的程序。在cache被开启之后，所有cache中的HTTP请求都可以直接在本地存储中进行响应，并不需要开启一个新的网络连接。
 被cache起来的response可以被server所确保没有过期，这样就减少了带宽。没有被cached的response会因方便下次请求而被存储在response cache中。
-
-***
-
-**Ps:Cache机制在很多实际项目上都有使用到，实际操作会复杂许多，有机会希望能够分享一个Cache的例子。**

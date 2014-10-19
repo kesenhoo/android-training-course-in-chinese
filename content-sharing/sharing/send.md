@@ -60,7 +60,7 @@ startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.
 
 **请注意下面的内容：**
 
-* 你可以使用`*/*`这样的方式来制定MIME类型，但是这仅仅会match到那些能够处理一般数据类型的Activity(即一般的Activity无法详尽所有的MIME类型)
+* 你可以使用`*/*`这样的方式来指定MIME类型，但是这仅仅会match到那些能够处理一般数据类型的Activity(即一般的Activity无法详尽所有的MIME类型)
 * 接收的程序需要有访问URI资源的权限。下面有一些方法来处理这个问题：
 	* 把文件写到外部存储设备上，类似SDCard，这样所有的app都可以进行读取。使用Uri.fromFile()方法来创建可以用在分享时传递到intent里面的Uri.。然而，请记住，不是所有的程序都遵循`file://`这样格式的Uri。
 	* 在调用 getFileStreamPath()返回一个File之后，使用带有`MODE_WORLD_READABLE` 模式的openFileOutput() 方法把数据写入到你自己的程序目录下。像上面一样，使用Uri.fromFile()创建一个`file://`格式的Uri用来添加到intent里面进行分享。

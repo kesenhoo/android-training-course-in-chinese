@@ -48,7 +48,7 @@ public void testSendMessageToReceiverActivity() {
 
 ##设立一个ActivityMonitor
 
-为了再你的应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html),你可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)是由系统在每当一个Activity与你的要求符合是开启的。如果发现匹配,监视器的撞击计数就会更新。
+为了在你的应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html),你可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)是由系统在每当一个Activity与你的要求符合是开启的。如果发现匹配,监视器的撞击计数就会更新。
 
 通常来说要使用[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html),你应该这样:
 

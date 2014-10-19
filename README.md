@@ -12,22 +12,21 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 请读者点击Star进行关注并支持！
 
-### 版本信息
-
-* v0.1 - 2014/08/05
-* v0.2 - 2014/08/14
-* v0.3 - 2014/08/31
-* v0.4 - 2014/09/11
-
 ### 在线阅读
 
 **<http://hukai.me/android-training-course-in-chinese/index.html>**
 
 ### 离线文档
-
 * PDF: <http://hukai.me/eBooks/AndroidTrainingCHS.pdf>
 * ePub: <http://hukai.me/eBooks/AndroidTrainingCHS.epub>
 * Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
+
+
+* v0.1 - 2014/08/05
+* v0.2 - 2014/08/14
+* v0.3 - 2014/08/31
+* v0.4 - 2014/09/11
+* v0.5 - 2014/10/18
 
 ### 参与方式
 
@@ -120,7 +119,8 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 下面是参与翻译的小伙伴(Github ID按照课程结构排序)：
 
-|  |  |  |
+
+| 0 | 1 | 2 |
 | -- | -- | -- |
 | @[yuanfentiank789](https://github.com/yuanfentiank789) | @[vincent4j](https://github.com/vincent4j) | @[Lin-H](https://github.com/Lin-H) |
 | @[kesenhoo](https://github.com/kesenhoo) | @[fastcome1985](https://github.com/fastcome1985) | @[jdneo](https://github.com/jdneo) |
@@ -132,6 +132,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 | @[pedant](https://github.com/pedant) | @[craftsmanBai](https://github.com/craftsmanBai) | @[huanglizhuo](https://github.com/huanglizhuo) |
 | 0:9 | 1:9 | 2:9 |
 | 0:10 | 1:10 | 2:10 |
+
 
 @发起人:[胡凯](<http://hukai.me>)，博客：<http://hukai.me>，Github：<https://github.com/kesenhoo>，微博：<http://weibo.com/kesenhoo>
 
