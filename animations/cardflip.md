@@ -1,4 +1,4 @@
-# 展示卡片（Card）翻转动画
+# 展示卡片翻转动画
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/cardflip.html>
 
@@ -28,7 +28,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 * layout/fragment_card_back.xml
 * layout/fragment_card_front.xml
 
-## 创建Animator（动画者）
+## 创建Animator
 
 创建卡片翻转动画，你需要两个 animator 让前面的卡片向右翻转消失，向左翻转出现。你还需要两个 animator 让背面的卡片向左翻转出现，向右翻转消失。
 
@@ -274,7 +274,7 @@ private void flipCard() {
             // 用一个Fragment替换任何当前在容器布局内的Fragment来呈现下一页
             //（通过仅自增的变量currentPage来表示）
             .replace(R.id.container, new CardBackFragment())
-            
+
             // 添加这个事务到回退栈，允许用户来按下返回按钮来回退到卡片正面.
             .addToBackStack(null)
 

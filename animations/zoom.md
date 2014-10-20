@@ -92,7 +92,7 @@ public class ZoomActivity extends FragmentActivity {
                 zoomImageFromThumb(thumb1View, R.drawable.image1);
             }
         });
-        
+
         //获取并缓存系统默认定义的“短”动画时长
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);

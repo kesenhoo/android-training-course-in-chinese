@@ -1,4 +1,4 @@
-# 使用ViewPager实现屏幕滑动
+# 使用ViewPager实现屏幕侧滑
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/screen-slide.html>
 
@@ -156,7 +156,7 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
 ## 用PageTransformer自定义动画
 
-为展示不同于默认滑屏效果的动画，实现 [ViewPager.PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。
+为展示不同于默认滑屏效果的动画，实现 [ViewPager.PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。
 
 在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>的实现中，基于当前界面上页面的 `position`（`position` 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>方法的参数给出）决定哪些页面需要被动画转换，通过这样你就能新建自己的动画。
 
@@ -170,9 +170,9 @@ ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 ```
 
-详情查看[放大型 Page Transformer（页面转换动画）](#放大型PageTransformer（页面转换动画）)和[潜藏型 Page Transformer（页面转换动画）](#潜藏型PageTransformer（页面转换动画）)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视频。
+详情查看[缩放型 Page Transformer](#缩放型PageTransformer)和[潜藏型 Page Transformer](#潜藏型PageTransformer)部分和 [PageTransformer](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视频。
 
-### 放大型PageTransformer（页面转换动画）
+### 缩放PageTransformer
 
 当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐明。
 
