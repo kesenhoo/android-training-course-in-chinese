@@ -1,6 +1,6 @@
 # 显示位置地址
 
-> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:<http://developer.android.com/training/location/display-address.html>
 
 [获取当前的位置](retrieve-current.html)和[接收位置更新](receive-location-updates.html)课程描述了如何以一个[Location](http://developer.android.com/reference/android/location/Location.html)对象的形式获取用户当前的位置信息，这个位置信息包括了经纬度。尽管经纬度对计算地理距离和在地图上显示位置很有帮助，但是更多情况下位置信息的地址更有用。
 

@@ -1,10 +1,10 @@
 # 联系人信息
 
-> 编写：[spencer198711](https://github.com/spencer198711) - 原文：
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/contacts-provider/index.html>
 
 **[Contacts Provider](http://developer.android.com/guide/topics/providers/contacts-provider.html)**是用户联系人信息的集中仓库， 它包含了来自联系人应用与社交应用的联系人数据。在你的应用中，你可以通过调用[**ContentResolver**](http://developer.android.com/reference/android/content/ContentResolver.html)的方法或者通过发送Intent给联系人应用来访问Contacts Provider的信息。
 
-这个章节会讲解获取联系人列表，显示指定联系人详细以及通过intent来修改联系人信息。这些基础技能能够进行扩展执行更复杂的任务。同时，这个章节也会帮助你了解Contacts Provider的整个架构与操作方法。
+这个章节会讲解获取联系人列表，显示指定联系人详情以及通过intent来修改联系人信息。这些基础技能能够进行扩展执行更复杂的任务。同时，这个章节也会帮助你了解Contacts Provider的整个架构与操作方法。
 
 ## Lessons
 

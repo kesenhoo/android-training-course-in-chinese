@@ -1,6 +1,6 @@
 # 获取当前位置
 
-> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:<http://developer.android.com/training/location/retrieve-current.html>
 
 位置服务会自动持有用户当前的位置信息，你的应用在需要位置的时候获取一下即可。位置的精确度基于你所请求的位置权限以及当前设备已经激活的位置传感器。
 

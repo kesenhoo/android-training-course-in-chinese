@@ -86,7 +86,7 @@
        * [使用WiFi P2P服务](connectivity/connect-devices-wireless/nsd-wifi-index.md)
    * [执行网络操作](connectivity/network-ops/index.md)
        * [连接到网络](connectivity/network-ops/connecting.md)
-       * [管理使用的网络](connectivity/network-ops/managing.md)
+       * [管理网络](connectivity/network-ops/managing.md)
        * [解析XML数据](connectivity/network-ops/xml.md)
    * [高效下载](connectivity/efficient-downloads/index.md)
        * [为网络访问更加高效而优化下载](connectivity/efficient-downloads/efficient-network-access.md)

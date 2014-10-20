@@ -1,6 +1,6 @@
 # 识别用户的当下活动
 
-> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:<http://developer.android.com/training/location/activity-recognition.html>
 
 活动识别会去探测用户当前的身体活动，比如步行，驾驶以及站立。通过一个不同于请求位置更新或者地理围栏的活动识别client来请求用户活动更新，但是请求方式是类似的。根据你设置的更新频率，Location Services会返回包含一个或者多个活动以及它们出现对应的概率的反馈信息。这一课将会向你展示如何从Location Services请求活动识别更新。
 
