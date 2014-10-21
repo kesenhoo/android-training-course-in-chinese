@@ -1,11 +1,12 @@
-# Optimizing Downloads for Efficient Network Access(用有效的网络访问来最优化下载)
+# Optimizing Downloads for Efficient Network Access
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/efficient-network-access.html>
 
 也许使用无线电波(wireless radio)进行传输数据会是我们app最耗电的操作之一。所以为了最小化网络连接的电量消耗，懂得连接模式(connectivity model)会如何影响底层的音频硬件设备是至关重要的。
 这节课介绍了无线电波状态机(wireless radio state machine)，并解释了app的connectivity model是如何与状态机进行交互的。然后会提出建议的方法来最小化我们的数据连接，使用预取(prefetching)与捆绑(bundle)的方式进行数据的传输，这些操作都是为了最小化电量的消耗。
 
-## The Radio State Machine(无线电状态机)
+## 1)The Radio State Machine
+
 一个完全活动的无线电会消耗很大部分的电量，因此需要学习如何在不同状态下进行过渡，这样能够避免电量的浪费。
 典型的3G无线电网络有三种能量状态：
 
@@ -24,7 +25,8 @@
 * 这种方法在浏览通常的网页操作上是特别有效的，因为它可以阻止一些不必要的浪费。而且相对较短的后期处理时间也保证了当一个session结束的时候，无线电波可以转移到相对较低的能量状态。
 * 不幸的是，这个方法会导致在现代的智能机系统例如Android上的apps效率低下。因为Android上的apps不仅仅可以在前台运行，也可以在后台运行。(无线电波的状态改变会影响到本来的设计，有些想在前台运行的可能会因为切换到低能量状态而影响程序效率。坊间说手机在电量低的状态下无线电波的强度会增大好几倍来保证信号，可能与这个有关。)
 
-## How Apps Impact the Radio State Machine[看apps如何影响无线状态机(使用bundle与unbundle传输数据的差异)]
+## 2)How Apps Impact the Radio State Machine
+
 每一次新创建一个网络连接，无线电波就切换到full power状态。在上面典型的3G无线电波状态机情况下，无线电波会在传输数据时保持在full power的状态，结束之后会有一个附加的5秒时间切换到low power,再之后会经过12秒进入到low  energy的状态。因此对于典型的3G设备，每一次数据传输的会话都会引起无线电波都会持续消耗大概20秒的能量。
 
 实际上，这意味着一个app传递1秒钟的unbundled data会使得无线电波持续活动18秒(18=1秒的传输数据+5秒过渡时间回到low power+12秒过渡时间回到standby)。因此每一分钟，它会消耗18秒high power的电量，42秒的low power的电量。
@@ -34,7 +36,8 @@
 
 ![graphs.png](graphs.png "Figure 2. Relative wireless radio power use for bundled versus unbundled transfers.")
 
-## Prefetch Data(预取数据)
+## 3)Prefetch Data
+
 预取(Prefetching)数据是一种减少独立数据传输会话数量的有效方法。预取技术允许你在单次操作的时候，通过一次连接，在最大能力下，根据给出的时间下载到所有的数据。
 
 通过前面的传输数据的技术，你减少了大量的无线电波激活时间。这样的话，不仅仅是保存了电量，也提高了潜在风险，降低了带宽，减少了下载时间。
@@ -63,7 +66,7 @@
 
 另一个方法是预取所有的标题，缩略信息，文章文字，甚至是所有文章的图片-根据既设的后台程序进行逐一获取。这样做的风险是花费了大量的带宽与电量去下载一些不会阅读到的内容，因此这需要比较小心思考是否合适。其中的一个解决方案是，当在连接至Wi-Fi时有计划的下载所有的内容，并且如果有可能最好是设备正在充电的时候。关于这个的细节的实现，我们将在后面的课程中涉及到。【这让我想起了网易新闻的离线下载，在连接到Wi-Fi的时候，可以选择下载所有的内容到本地，之后直接打开阅读】
 
-## Batch Transfers and Connections(批量传输与连接)
+## 4)Batch Transfers and Connections
 
 使用典型3G无线网络制式的时候，每一次初始化一个连接(与需要传输的数据量无关)，你都有可能导致无线电波持续花费大约20秒的电量。
 
@@ -71,7 +74,7 @@
 
 因此，对数据进行bundle操作并且创建一个序列来存放这些bundle好的数据就显的非常重要。操作正确的话，可以使得大量的数据集中进行发送，这样使得无线电波的激活时间尽可能的少，同时减少大部分电量的花费。这样做的潜在好处是尽可能在每次传输数据的会话中尽可能多的传输数据而且减少了会话的次数。
 
-## Reduce Connections(减少连接次数)
+## 5)Reduce Connections
 
 重用已经存在的网络连接比起重新建立一个新的连接通常来说是更有效率的。重用网络连接同样可以使得在拥挤不堪的网络环境中进行更加智能的互动。当可以捆绑所有请求在一个GET里面的时候不要同时创建多个网络连接或者把多个GET请求进行串联。
 
@@ -79,9 +82,9 @@
 
 之前说道，如果关闭一个连接过于及时，会导致后面再次请求时重新建立一个在Server与Client之间的连接，而我们说过要尽量避免建立重复的连接，那么有个有效的折中办法是不要立即关闭，而是在timeout之前关闭(即稍微晚点却又不至于到timeout)。
 
-**Note**:使用HttpUrlConnection，而不是Apache的HttpClient,前者有做response cache.
+> **Note**:使用HttpUrlConnection，而不是Apache的HttpClient,前者有做response cache.
 
-## Use the DDMS Network Traffic Tool to Identify Areas of Concern[使用DDMS网络通信工具来检测网络使用情况]
+## 6)Use the DDMS Network Traffic Tool to Identify Areas of Concern
 
 The Android [DDMS (Dalvik Debug Monitor Server)](http://developer.android.com/guide/developing/debugging/ddms.html) 包含了一个查看网络使用详情的栏目来允许跟踪app的网络请求。使用这个工具，可以监测app是在何时，如何传输数据的，从而可以进行代码的优化。
 

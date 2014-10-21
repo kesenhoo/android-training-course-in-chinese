@@ -1,4 +1,4 @@
-# 解析XML数据Parsing XML Data
+# 解析XML数据
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/network-ops/xml.html>
 
@@ -8,7 +8,7 @@ Extensible Markup Language (XML) .很多网站或博客上都提供XML feed来�
 
 *([?]这里很奇怪，为什么是Upload，看文章最后一段代码示例的注释，应该是Download才对)*
 
-## Choose a Parser(选择一个解析器)
+## 1)Choose a Parser
 我们推荐[XmlPullParser](http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html), 它是在Android上一个高效且可维护的解析XML方法。 Android 上有这个接口的两种实现方式：
 
 * [KXmlParser](http://kxml.sourceforge.net/) via [XmlPullParserFactory.newPullParser()](http://developer.android.com/reference/org/xmlpull/v1/XmlPullParserFactory.html#newPullParser()).
@@ -18,7 +18,7 @@ Extensible Markup Language (XML) .很多网站或博客上都提供XML feed来�
 
 <!-- more -->
 
-## Analyze the Feed(分析Feed)
+## 2)Analyze the Feed
 解析一个feed的第一步是决定需要获取哪些字段。这样解析器才去抽取出那些需要的字段而忽视剩下的。
 下面一段章节概览Sample app中截取的一段代码示例.
 ```xml
@@ -53,9 +53,10 @@ Extensible Markup Language (XML) .很多网站或博客上都提供XML feed来�
 ...
 </feed>
 ```
-在sample app中抽取了entry 标签与它的子标签 title, link,summary.
 
-## Instantiate the Parser(实例化解析器)
+在sample app中抽取了entry 标签与它的子标签 title,link,summary.
+
+## 3)Instantiate the Parser
 下一步就是实例化一个parser并开始解析的操作。请看下面的示例：
 
 ```java
@@ -78,7 +79,8 @@ public class StackOverflowXmlParser {
 }
 ```
 
-## Read the Feed(读取Feed)
+## 4)Read the Feed
+
 The readFeed() 实际上并没有处理feed的内容。它只是在寻找一个 "entry" 的标签作为递归（recursively）处理整个feed的起点。如果一个标签它不是"entry", readFeed()方法会跳过它. 当整个feed都被递归处理后，readFeed() 会返回一个包含了entry标签（包括里面的数据成员）的 List 。
 
 ```java
@@ -102,17 +104,17 @@ private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOExc
 }
 ```
 
-## Parse XML(解析XML)
+## 5)Parse XML
 解析步骤如下：
 
-* 正如在上面“ 分析Feed”所说的, 判断出你想要的tag。这个example抽取了 entry 标签与它的内部标签 title, link,summary.
+* 正如在上面“ 分析Feed”所说的, 判断出你想要的tag。这个example抽取了 entry 标签与它的内部标签 title,link,summary.
 * 创建下面的方法:
 	* 为每一个你想要获取的标签创建一个 "read" 方法。例如 readEntry(), readTitle() 等等. 解析器从input stream中读取tag . 当读取到 entry, title, link 或者 summary 标签时，它会为那些标签调用相应的方法，否则，跳过这个标签。
 	* 为每一个不同的标签的提取数据方法进行优化，例如：
 		* 对于 title and summary tags, 解析器调用 readText(). 通过调用parser.getText().来获取返回数据。
 		* 对于 link tag,解析器先判断这个link是否是我们想要的类型，然后再读取数据。可以使用 parser.getAttributeValue() 来获取返回数据。
 		* 对于 entry tag, 解析起调用 readEntry(). 这个方法解析entry的内部标签并返回一个带有title, link, and summary数据成员的Entry对象。
-	* 一个帮助方法： skip() . 关于这部分的讨论，请看下面一部分内容：Skip Tags You Don't Care About
+	* 一个帮助方法：skip() . 关于这部分的讨论，请看下面一部分内容：Skip Tags You Don't Care About
 
 下面的代码演示了如何解析 entries, titles, links, 与 summaries.
 
@@ -199,7 +201,7 @@ private String readText(XmlPullParser parser) throws IOException, XmlPullParserE
 }
 ```
 
-## Skip Tags You Don't Care About(跳过你不在意标签)
+## 6)Skip Tags You Don't Care About
 下面演示解析器的 skip() 方法:
 
 ```java
@@ -235,7 +237,7 @@ private void skip(XmlPullParser parser) throws XmlPullParserException, IOExcepti
 * The fourth time through the while loop, the next tag the parser encounters is the END_TAG </uri>. The value for depth is decremented to 1.
 * The fifth time and final time through the while loop, the next tag the parser encounters is the END_TAG </author>. The value for depth is decremented to 0, indicating that the <author>element has been successfully skipped.
 
-## Consume XML Data(使用XML数据)
+## 6)Consume XML Data
 示例程序是在 AsyncTask 中获取与解析XML数据的。当获取到数据后，程序会在main activity(NetworkActivity)里面进行更新操作。
 
 在下面示例代码中，loadPage() 方法做了下面的事情：

@@ -1,10 +1,10 @@
-# Redundant Downloads are Redundant(重复的下载是冗余的)
+# Redundant Downloads are Redundant
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/redundant-redundant.html>
 
 减少下载的最基本方法是仅仅下载那些你需要的。从数据的角度看，我们可以通过传递类似上次更新时间这样的参数来制定查询数据的条件。同样，在下载图片的时候，server那边最好能够减少图片的大小，而不是让我们下载完整大小的图片。
 
-## 1)Cache Files Locally(缓存文件到本地)
+## 1)Cache Files Locally
 避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请从缓存中获取最新的数据，当数据过期的时候，会提示进行刷新。
 
 <!-- More -->
@@ -42,9 +42,10 @@ Context.getCache();
 
 上面两个Cache的文件都会在app卸载的时候被清除。
 
-**Ps:请注意这点:发现很多应用总是随便在sdcard下面创建一个目录用来存放缓存，可是这些缓存又不会随着程序的卸载而被删除，这其实是很令人讨厌的，程序都被卸载了，为何还要留那么多垃圾文件，而且这些文件有可能会泄漏一些隐私信息。除非你的程序是音乐下载，拍照程序等等，这些确定程序生成的文件是会被用户需要留下的，不然都应该使用上面的那种方式来获取Cache目录**
+**Ps:请注意这点:发现很多应用总是随便在sdcard下面创建一个目录用来存放缓存，可是这些缓存又不会随着程序的卸载而被删除，这其实是不符合规范，程序都被卸载了，为何还要留那么多垃圾文件，而且这些文件有可能会泄漏一些隐私信息。除非你的程序是音乐下载，拍照程序等等，这些确定程序生成的文件是会被用户需要留下的，不然都应该使用上面的那种方式来获取Cache目录**
 
-## 2)Use the HttpURLConnection Response Cache(使用HttpURLConnection Response缓存)
+## 2)Use the HttpURLConnection Response Cache
+
 在`Android 4.0`里面为HttpURLConnection增加了一个response cache(这是一个很好的减少http请求次数的机制，Android官方推荐使用HttpURLConnection而不是Apache的DefaultHttpClient，就是因为前者不仅仅有针对android做http请求的优化，还在4.0上增加了Reponse Cache，这进一步提高了效率)
 
 我们可以使用反射机制开启HTTP response cache，看下面的例子：

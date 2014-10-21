@@ -8,11 +8,11 @@
 
 这节课也会介绍如何添加一个请求到RequesutQueue以及如何取消一个请求。
 
-## Add the INTERNET Permission
+## 1)Add the INTERNET Permission
 
 为了使用Volley，你必须添加`android.permission.INTERNET `权限到你的manifest文件中。没有这个权限，你的app将无法访问网络。
 
-## Use newRequestQueue
+## 2)Use newRequestQueue
 
 Volley提供了一个简便的方法：`Volley.newRequestQueue`用来为你建立一个`RequestQueue`，使用默认值，并启动这个队列。例如：
 
@@ -46,7 +46,7 @@ Volley总是把解析过后的数据返回到主线程中。在主线程中更�
 
 关于如何创建你自己的请求队列，不要使用Volley.newRequestQueue方法，请查看[建立一个请求队列Setting Up a RequestQueue](request-queue.html)。
 
-## Send a Request
+## 3)Send a Request
 
 为了发送一个请求，你只需要构造一个请求并通过`add()`方法添加到`RequestQueue`中。一旦你添加了这个请求，它会通过队列，得到处理，然后得到原始的响应数据并返回。
 
@@ -58,7 +58,7 @@ Volley总是把解析过后的数据返回到主线程中。在主线程中更�
 
 ![volley-request](volley-request.png)
 
-## Cancel a Request
+## 4)Cancel a Request
 
 为了取消一个请求，对你的请求对象执行`cancel()`方法。一旦取消，Volley会确保你的响应Handler不会被执行。这意味着在实际操作中你可以在activity的`onStop()`方法中取消所有pending在队列中的请求。你不需要通过检测`getActivity() == null`来丢弃你的响应handler，其他类似`onSaveInstanceState()`等保护性的方法里面也都不需要检测。
 

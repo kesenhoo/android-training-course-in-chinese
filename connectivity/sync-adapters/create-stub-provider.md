@@ -1,6 +1,6 @@
 # 创建Stub Content Provider
 
-> 编写:[jdneo](https://github.com/jdneo) - 原文:
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/sync-adapters/creating-stub-provider.html>
 
 Sync Adapter框架是设计成用来和设备数据一起工作的，这些设备的数据被灵活且高安全的Content Provider所管理。因此，Sync Adapter框架会期望应用所使用的框架已经为它的本地数据定义了Content Provider。如果Sync Adapter框架尝试去运行你的Sync Adapter，而你的应用没有一个Content Provider的话，那么你的Sync Adapter将会崩溃。
 

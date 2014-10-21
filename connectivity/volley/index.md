@@ -1,4 +1,4 @@
-# 使用Volley传输网络数据(Transmitting Network Data Using Volley)
+# 使用Volley传输网络数据
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/index.html>
 

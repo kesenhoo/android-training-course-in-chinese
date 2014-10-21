@@ -1,4 +1,4 @@
-# 管理使用的网络Managing Network Usage
+# 管理网络
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/network-ops/managing.html>
 
@@ -11,10 +11,10 @@
 
 <!-- more -->
 
-## Check a Device's Network Connection(检查设备的网络连接信息)
+## 1)Check a Device's Network Connection
 设备可以有许多种网络连接。关于所有可能的网络连接类型，请看[ConnectivityManager](http://developer.android.com/reference/android/net/ConnectivityManager.html).
 
-通常Wi-Fi是比较快的。移动数据通常都是需要按流量计费，会比较贵. 通常我们会选择让app在连接到WiFi时去获取大量的数据。
+通常Wi-Fi是比较快的。移动数据通常都是需要按流量计费，会比较贵。 通常我们会选择让app在连接到WiFi时去获取大量的数据。
 
 那么，我们就需要在执行网络操作之前检查当前连接的网络信息。这样可以防止你的程序不经意连接使用了非意向的网络频道。为了实现这个目的，我们需要使用到下面两个类：
 
@@ -48,7 +48,7 @@ public boolean isOnline() {
 
 你可以使用[NetworkInfo.DetailedState](http://developer.android.com/reference/android/net/NetworkInfo.DetailedState.html), 来获取更加详细的网络信息。
 
-## Manage Network Usage(管理网络使用)
+## 2)Manage Network Usage
 你可以实现一个偏好设置的activity ，来允许用户设置程序的网络资源的使用。例如:
 
 * 你可以允许用户在仅仅连接到WiFi时上传视频。
@@ -86,7 +86,7 @@ public boolean isOnline() {
 </manifest>
 ```
 
-## Implement a Preferences Activity(实现一个偏好设置activity)
+## 3)Implement a Preferences Activity
 正如上面看到的那样，SettingsActivity is a subclass ofPreferenceActivity.
 
 所实现的功能见下图：
@@ -140,7 +140,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 }
 ```
 
-## Respond to Preference Changes(对偏好改变进行响应)
+## 4)Respond to Preference Changes
 当用户在设置界面改变了偏好，它通常都会对app的行为产生影响。
 在下面的代码示例中，app会在onStart(). 方法里面检查偏好设置。如果设置的类型与当前设备的网络连接类型相一致，那么程序就会下载数据并刷新显示。(for example, if the setting is "Wi-Fi" and the device has a Wi-Fi connection)。(这是一个很好的代码示例，如何选择合适的网络类型进行下载操作)
 ```java
@@ -233,7 +233,7 @@ public class NetworkActivity extends Activity {
 }
 ```
 
-## Detect Connection Changes(监测网络连接的改变)
+## 5)Detect Connection Changes
 最后一部分是关于 BroadcastReceiver 的子类： NetworkReceiver. 当设备网络连接改变时，NetworkReceiver会监听到 CONNECTIVITY_ACTION, 这时需要判断当前网络连接类型并相应的设置好 wifiConnected 与 mobileConnected .
 
 我们需要控制好BroadcastReceiver的使用，不必要的声明注册会浪费系统资源。通常是在 onCreate() 去registers 这个BroadcastReceiver ， 在onPause()或者onDestroy() 时unregisters它。这样做会比直接在manifest里面直接注册 <receiver> 更轻量. 当你在manifest里面注册了一个 <receiver> ，你的程序可以在任何时候被唤醒, 即使你已经好几个星期没有使用这个程序了。而通过前面的办法进行注册，可以确保用户离开你的程序之后，不会因为那个Broadcast而被唤起。如果你确保知道何时需要使用到它，你可以在合适的地方使用 [setComponentEnabledSetting()](http://developer.android.com/reference/android/content/pm/PackageManager.html#setComponentEnabledSetting(android.content.ComponentName, int, int)) 来开启或者关闭它。
@@ -272,5 +272,3 @@ public void onReceive(Context context, Intent intent) {
     }
 }
 ```
-
-***
