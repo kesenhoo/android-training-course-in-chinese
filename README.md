@@ -93,7 +93,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [创建向后兼容的UI](http://hukai.me/android-training-course-in-chinese/ui/backward-compatible-ui/index.html) - @[spencer198711](https://github.com/spencer198711)
    * [实现辅助功能](http://hukai.me/android-training-course-in-chinese/ui/accessibility/index.html) - @[K0ST](https://github.com/K0ST)
    * [管理系统UI](http://hukai.me/android-training-course-in-chinese/ui/system-ui/index.html) - @[K0ST](https://github.com/K0ST)
-   * [创建Material Design的应用](http://hukai.me/android-training-course-in-chinese/material/index.html) - @2014/10/20 - 待认领
+   * [创建Material Design的应用](http://hukai.me/android-training-course-in-chinese/material/index.html) - @[allenlsy](https://github.com/allenlsy)
 * [Android用户输入](http://hukai.me/android-training-course-in-chinese/best-user-input.html)
    * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - @[Andrwyw](https://github.com/Andrwyw)
    * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi)
