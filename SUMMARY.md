@@ -165,7 +165,7 @@
        * [规划屏幕界面与他们之间的关系](ux/design-nav/screen-planning.md)
        * [为多种大小的屏幕进行规划](ux/design-nav/multi-sizes.md)
        * [提供向下和横向导航](ux/design-nav/descendant-lateral.md)
-       * [提供向上和时间导航](ux/design-nav/ancestral-temporal.md)
+       * [提供向上和操作顺序导航](ux/design-nav/ancestral-temporal.md)
        * [综合：设计样例 App](ux/design-nav/wireframing.md)
    * [实现高效的导航](ux/implement-nav/index.md)
        * [使用Tabs创建Swipe视图](ux/implement-nav/lateral.md)

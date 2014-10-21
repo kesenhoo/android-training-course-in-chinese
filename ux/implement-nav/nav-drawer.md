@@ -2,13 +2,11 @@
 
 > 编写:[Lin-H](https://github.com/Lin-H) - 原文: <http://developer.android.com/training/implementing-navigation/nav-drawer.html>
 
-navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大部分时候是隐藏的，当用户从屏幕左侧划屏，或在top level模式的app中点击action bar中的app图标时，才会显示。
+Navigation drawer是一个在屏幕左侧边缘显示导航选项的面板。大部分时候是隐藏的，当用户从屏幕左侧划屏，或在top level模式的app中点击action bar中的app图标时，才会显示。
 
 这节课叙述如何使用[Support Library](http://developer.android.com/tools/support-library/index.html)中的[DrawerLayout](http://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html) API，来实现navigation drawer。
 
-> **Navigation Drawer Design**
-
-> 在你决定在你的app中使用Navigation Drawer之前，你应该先理解在[Navigation Drawer](http://developer.android.com/design/patterns/navigation-drawer.html) design guide中定义的使用情况和设计准则。
+> **Navigation Drawer Design**：在你决定在你的app中使用Navigation Drawer之前，你应该先理解在[Navigation Drawer](http://developer.android.com/design/patterns/navigation-drawer.html) design guide中定义的使用情况和设计准则。
 
 ## 创建一个Drawer Layout
 

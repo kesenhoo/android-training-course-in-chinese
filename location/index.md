@@ -6,7 +6,7 @@
 
 这个课程教你如何在你的应用里使用位置服务，获取周期性的位置更新，查询地址，创建并监视地理围栏以及探测用户的活动。这个课程包括示例应用和代码片段，你可以使用它们让你的应用拥有位置感知能力。
 
-> 注意: 因为这个课程基于Google Play services client library，在使用这些示例应用和代码段之前确保你安装了最新版本的Google Play services client library。要想学习如何安装最新版的client library，请参考安装[Google Play services](http://developer.android.com/google/play-services/setup.html)向导。
+> **Note**: 因为这个课程基于Google Play services client library，在使用这些示例应用和代码段之前确保你安装了最新版本的Google Play services client library。要想学习如何安装最新版的client library，请参考安装[Google Play services](http://developer.android.com/google/play-services/setup.html)向导。
 
 ## Lessons
 
@@ -22,7 +22,7 @@
 
 * [**显示一个地点位置**](display-address.html)
 
-    学习如何讲一个位置的经纬度转化成一个地址（反向 geocoding）。
+    学习如何将一个位置的经纬度转化成一个地址（反向geocoding）。
 
 
 * [**创建和监视Geofences**](geofencing.html)

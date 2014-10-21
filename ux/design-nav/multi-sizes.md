@@ -4,13 +4,11 @@
 
 虽然上节中的界面完备图在手持设备和相似大小设备上可行，但并不是和某个设备因素绑死的。Android应用需要适配一大把不同类型的设备，从3"的手机到10"的平板到42"的电视。这节课中我们探讨把完备图中不同界面组合起来的策略和原因。
 
-> **注意:** 为电视设计应用程序还需要注意其他的因素，包括互动方式（就是说，它没触屏），长距离情况下文本的可读性，还有其他。虽然这种讨论在本课范畴之外，你仍然可以在 [Google TV](https://developers.google.com/tv) 文档的[设计模式](https://developers.google.com/tv/android/docs/gtv_android_patterns)中找到有关为电视设计的信息。
+> **Note:** 为电视设计应用程序还需要注意其他的因素，包括互动方式（就是说，它没触屏），长距离情况下文本的可读性，还有其他。虽然这种讨论在本课范畴之外，你仍然可以在 [Google TV](https://developers.google.com/tv) 文档的[设计模式](https://developers.google.com/tv/android/docs/gtv_android_patterns)中找到有关为电视设计的信息。
 
 ## 用多视窗布局（Multi-pane Layout）组合界面
 
-> **多视窗布局（Multi-pane Layout）设计**
-
-> 设计指南请阅读 Android 设计部分的[多视窗布局](http://developer.android.com/design/patterns/multi-pane-layouts.html)模式指导。
+> **多视窗布局（Multi-pane Layout）设计**：设计指南请阅读 Android 设计部分的[多视窗布局](http://developer.android.com/design/patterns/multi-pane-layouts.html)模式指导。
 
 3 到 4" 的屏幕通常只适合每次展示单个纵向内容视窗，一个列表，或某列表项的具体信息，等等。所以在这些设备上，界面通常对映于信息层次上的某一级（类别 → 列表 → 详情）。
 
