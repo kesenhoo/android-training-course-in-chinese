@@ -55,13 +55,13 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或者活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <!-- ActionBar styles -->
+    <!-- ActionBar 样式 -->
     <style name="MyActionBar"
            parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/actionbar_background</item>
@@ -82,21 +82,21 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或者活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
 
-    <!-- ActionBar styles -->
+    <!-- ActionBar 样式 -->
     <style name="MyActionBar"
            parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/actionbar_background</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="background">@drawable/actionbar_background</item>
     </style>
 </resources>
@@ -127,7 +127,7 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或者活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@style/Theme.Holo">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
@@ -135,19 +135,19 @@ res/values/themes.xml
         <item name="android:actionMenuTextColor">@color/actionbar_text</item>
     </style>
 
-    <!-- ActionBar styles -->
+    <!-- ActionBar 样式 -->
     <style name="MyActionBar"
            parent="@style/Widget.Holo.ActionBar">
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
-    <!-- ActionBar title text -->
+    <!-- ActionBar 标题文本 -->
     <style name="MyActionBarTitleText"
            parent="@style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">@color/actionbar_text</item>
     </style>
 
-    <!-- ActionBar tabs text styles -->
+    <!-- ActionBar Tab标签 文本样式 -->
     <style name="MyActionBarTabText"
            parent="@style/Widget.Holo.ActionBar.TabText">
         <item name="android:textColor">@color/actionbar_text</item>
@@ -163,40 +163,40 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或者活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@style/Theme.AppCompat">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="android:actionMenuTextColor">@color/actionbar_text</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="actionBarTabTextStyle">@style/MyActionBarTabText</item>
         <item name="actionMenuTextColor">@color/actionbar_text</item>
     </style>
 
-    <!-- ActionBar styles -->
+    <!-- ActionBar 样式 -->
     <style name="MyActionBar"
            parent="@style/Widget.AppCompat.ActionBar">
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
-    <!-- ActionBar title text -->
+    <!-- ActionBar 标题文本 -->
     <style name="MyActionBarTitleText"
            parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/actionbar_text</item>
-        <!-- The textColor property is backward compatible with the Support Library -->
+        <!-- 文本颜色属性textColor是可以配合支持库向后兼容的 -->
     </style>
 
-    <!-- ActionBar tabs text -->
+    <!-- ActionBar Tab标签文本样式 -->
     <style name="MyActionBarTabText"
            parent="@style/Widget.AppCompat.ActionBar.TabText">
         <item name="android:textColor">@color/actionbar_text</item>
-        <!-- The textColor property is backward compatible with the Support Library -->
+        <!-- 文本颜色属性textColor是可以配合支持库向后兼容的 -->
     </style>
 </resources>
 ```
@@ -215,9 +215,9 @@ res/drawable/actionbar_tab_indicator.xml
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!-- STATES WHEN BUTTON IS NOT PRESSED -->
+<!-- 按钮没有按下的状态 -->
 
-    <!-- Non focused states -->
+    <!-- 没有焦点的状态 -->
     <item android:state_focused="false" android:state_selected="false"
           android:state_pressed="false"
           android:drawable="@drawable/tab_unselected" />
@@ -225,7 +225,7 @@ res/drawable/actionbar_tab_indicator.xml
           android:state_pressed="false"
           android:drawable="@drawable/tab_selected" />
 
-    <!-- Focused states (such as when focused with a d-pad or mouse hover) -->
+    <!-- 有焦点的状态 (例如D-Pad控制或者鼠标经过) -->
     <item android:state_focused="true" android:state_selected="false"
           android:state_pressed="false"
           android:drawable="@drawable/tab_unselected_focused" />
@@ -234,9 +234,9 @@ res/drawable/actionbar_tab_indicator.xml
           android:drawable="@drawable/tab_selected_focused" />
 
 
-<!-- STATES WHEN BUTTON IS PRESSED -->
+<!--  按钮按下的状态D -->
 
-    <!-- Non focused states -->
+    <!-- 没有焦点的状态 -->
     <item android:state_focused="false" android:state_selected="false"
           android:state_pressed="true"
           android:drawable="@drawable/tab_unselected_pressed" />
@@ -244,7 +244,7 @@ res/drawable/actionbar_tab_indicator.xml
         android:state_pressed="true"
         android:drawable="@drawable/tab_selected_pressed" />
 
-    <!-- Focused states (such as when focused with a d-pad or mouse hover) -->
+    <!--有焦点的状态 (例如D-Pad控制或者鼠标经过)-->
     <item android:state_focused="true" android:state_selected="false"
           android:state_pressed="true"
           android:drawable="@drawable/tab_unselected_pressed" />
@@ -262,16 +262,16 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@style/Theme.Holo">
         <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>
     </style>
 
-    <!-- ActionBar tabs styles -->
+    <!-- ActionBar tabs 标签样式 -->
     <style name="MyActionBarTabs"
            parent="@style/Widget.Holo.ActionBar.TabView">
-        <!-- tab indicator -->
+        <!-- 标签指示器 -->
         <item name="android:background">@drawable/actionbar_tab_indicator</item>
     </style>
 </resources>
@@ -285,22 +285,22 @@ res/values/themes.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 应用于程序或活动的主题 -->
     <style name="CustomActionBarTheme"
            parent="@style/Theme.AppCompat">
         <item name="android:actionBarTabStyle">@style/MyActionBarTabs</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="actionBarTabStyle">@style/MyActionBarTabs</item>
     </style>
 
-    <!-- ActionBar tabs styles -->
+    <!-- ActionBar tabs 样式 -->
     <style name="MyActionBarTabs"
            parent="@style/Widget.AppCompat.ActionBar.TabView">
-        <!-- tab indicator -->
+        <!-- 标签指示器 -->
         <item name="android:background">@drawable/actionbar_tab_indicator</item>
 
-        <!-- Support library compatibility -->
+        <!-- 支持库兼容 -->
         <item name="background">@drawable/actionbar_tab_indicator</item>
     </style>
 </resources>
