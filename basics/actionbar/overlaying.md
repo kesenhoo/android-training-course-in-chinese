@@ -21,7 +21,7 @@
 
 ```xml
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 为程序或者活动应用的主题样式 -->
     <style name="CustomActionBarTheme"
            parent="@android:style/Theme.Holo">
         <item name="android:windowActionBarOverlay">true</item>
@@ -35,12 +35,12 @@
 
 ```xml
 <resources>
-    <!-- the theme applied to the application or activity -->
+    <!-- 为程序或者活动应用的主题样式 -->
     <style name="CustomActionBarTheme"
            parent="@android:style/Theme.AppCompat">
         <item name="android:windowActionBarOverlay">true</item>
 
-        <!-- Support library compatibility -->
+        <!-- 兼容支持库 -->
         <item name="windowActionBarOverlay">true</item>
     </style>
 </resources>
@@ -64,7 +64,7 @@
 如果在 action bar 中使用 Support 库，需要移除 `android:` 前缀。例如：
 
 ```xml
-<!-- Support library compatibility -->
+<!-- 兼容支持库 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
