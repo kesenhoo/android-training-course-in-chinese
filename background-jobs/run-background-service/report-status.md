@@ -111,6 +111,7 @@ public class DisplayActivity extends FragmentActivity {
         statusIntentFilter = new IntentFilter(Constants.ACTION_ZOOM_IMAGE);
         ...
         // Registers the receiver with the new filter
+        // 用新的意图过滤器注册广播接收器
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(
                 mDownloadStateReceiver,
                 mIntentFilter);
