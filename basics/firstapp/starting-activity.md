@@ -22,9 +22,9 @@
 添加相应的方法在`MainActivity`类中：
 
 ```java
-/** Called when the user clicks the Send button */
+/** 当用户点击按钮时会被调用 */
 public void sendMessage(View view) {
-    // Do something in response to button
+    // 响应按钮的事件处理逻辑
 }
 ```
 
@@ -158,9 +158,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // 处理ActionBar的条目按键。actionbar会自动处理Home/Up按钮上的事件，
+        // 你只要在AndroidManifest.xml指定一个父Activity即可。
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -169,7 +168,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * 一个包含简单的View的占位用的碎片。
      */
     public static class PlaceholderFragment extends Fragment {
 

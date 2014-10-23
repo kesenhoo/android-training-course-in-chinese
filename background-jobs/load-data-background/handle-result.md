@@ -30,11 +30,11 @@ ListView mListView = (ListView) findViewById(R.id.dataList);
  */
 SimpleCursorAdapter mAdapter =
     new SimpleCursorAdapter(
-            this,                // Current context
-            R.layout.list_item,  // Layout for a single row
-            null,                // No Cursor yet
-            mFromColumns,        // Cursor columns to use
-            mToFields,           // Layout fields to use
+            this,                // 当前上下文
+            R.layout.list_item,  // 一个只有单行的文本的布局
+            null,                // 暂时还没有Cursor游标
+            mFromColumns,        // 要使用游标的列
+            mToFields,           // Layout fields to use 
             0                    // No flags
     );
 // 为View设置适配器
