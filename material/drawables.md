@@ -1,22 +1,22 @@
 # 使用Drawables
 
-> 编写: - 原文:
+> 编写: [allenlsy](https://github.com/allenlsy) - 原文: <https://developer.android.com/training/material/drawables.html>
 
-# 使用Drawable
+## 使用Drawable
 
 以下这些drawable的特性，能帮助你在应用中实现Material Design：
 
-* Drawable调色
+* Drawable染色
 * 提取主色调
 * 向量Drawable
 
 本课教你如何在应用中使用这些特性：
 
-## 调色 Drawable 资源
+## 给 Drawable 资源染色
 
 使用 Android 5.0 (API level 21)以上版本，你可以使用alpha mask（透明度图层，译者注）给位图和nine patches图片染色。你可以用颜色Resource或者主题属性来获取颜色（比如，`?android:attr/colorPrimary`）。通常，你只需要创建一次这些颜色asset，并在主题中自动匹配这些颜色。
 
-你可以用`setTint()`方法应用一种调色到BitmapDrawable或者NinePatchDrawable对象。你也在layout中使用`android:tint`和`android:initMode`属性设置tint color和模式。
+你可以用`setTint()`方法将一种染色方式应用到BitmapDrawable或者NinePatchDrawable对象。你也在layout中使用`android:tint`和`android:initMode`属性设置tint color和模式。
 
 ## 从图片中提取主色调
 

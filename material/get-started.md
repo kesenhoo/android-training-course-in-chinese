@@ -37,7 +37,7 @@
 </resources>
 ```
 
-Material 主题提供了更新后的系统组件，使你可以设置调色板和在触摸和 Activity 变换时使用默认的动画。更多信息，请参见 Material 主题章节。
+Material 主题提供了更新后的系统组件，使你可以设置调色板和在触摸和 Activity 切换时使用默认的动画。更多信息，请参见 Material 主题章节。
 
 ## 设计你的 Layouts
 
@@ -109,6 +109,6 @@ public class MyActivity extends Activity {
 }
 ```
 
-当你从当前 activity 进入另一个 activity 时，退出变换动画会被调用。
+当你从当前 activity 进入另一个 activity 时，退出切换动画会被调用。
 
 想学习更多新的动画 API，参见自定义动画章节。

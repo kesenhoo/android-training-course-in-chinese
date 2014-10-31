@@ -38,7 +38,7 @@ Material Design 是一个全面的关于视觉，动作和交互的指南，实�
 
 #### [ 自定义动画 ](animations.html)
 
-学习如何为视图和 Activity 变换创建自定义动画
+学习如何为视图和 Activity 切换创建自定义动画
 
 #### [ 维护兼容性 ](compatibility.html)
 

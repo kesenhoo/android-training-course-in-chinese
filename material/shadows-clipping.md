@@ -12,7 +12,7 @@ Elevation对于创建临时上升这种动画同样很有用。
 
 ## 給视图赋Elevation值
 
-视图的 Z 值有两个组成部分，elevation 和 translation (变换，译者注)。elevation 是一个必须部分，translation 是用于动画的：
+视图的 Z 值有两个组成部分，elevation 和 translation (切换动画，译者注)。elevation 是一个必须部分，translation 是用于动画的：
 
 Z = elevation + translationZ
 
