@@ -4,7 +4,7 @@
 
 要创建一个 Material Design 应用：
 
-1. 学习 Material Design 规格标准
+1. 学习 [Material Design 规格标准](http://www.google.com/design/spec/material-design/introduction.html)
 2. 应用 Material Design 主题
 3. 创建遵从 Material Design 的 Layout 文件
 4. 定义视图的 elevation 值来修改阴影
@@ -13,7 +13,7 @@
 
 ## 维护兼容性
 
-你可以添加 Material Design 特性，同时保持对 Android 5.0 之前版本的兼容。更多信息，请参见维护兼容性章节。
+你可以添加 Material Design 特性，同时保持对 Android 5.0 之前版本的兼容。更多信息，请参见[维护兼容性章节](https://developer.android.com/training/material/compatibility.html)。
 
 ## 使用 Material Design 更新现有应用
 
@@ -41,7 +41,7 @@ Material 主题提供了更新后的系统组件，使你可以设置调色板�
 
 ## 设计你的 Layouts
 
-另外，要应用自定义的 Material 主题，你的 layout 应该要符合 Material 设计规范。在设计 Layout 时，尤其要注意一下方面：
+另外，要应用自定义的 Material 主题，你的 layout 应该要符合 [Material 设计规范](http://www.google.com/design/spec)。在设计 Layout 时，尤其要注意一下方面：
 
 * 基准线网格
 * Keyline
