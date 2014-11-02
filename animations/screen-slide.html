@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用ViewPager实现屏幕滑动 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>使用ViewPager实现屏幕侧滑 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.3.2" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.3.2" data-basepath=".." data-revision="1414941355497">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter  " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter  " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter  " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,9 +3644,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_41">
+                    <section class="normal" id="section-gitbook_9">
                     
-                        <h1 id="-viewpager-">使用ViewPager实现屏幕滑动</h1>
+                        <h1 id="-viewpager-">使用ViewPager实现屏幕侧滑</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/screen-slide.html" target="_blank">http://developer.android.com/training/animation/screen-slide.html</a></p>
 </blockquote>
@@ -3787,7 +3787,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 }
 </code></pre>
 <h2 id="-pagetransformer-">用PageTransformer自定义动画</h2>
-<p>为展示不同于默认滑屏效果的动画，实现 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">ViewPager.PageTransformer</a> 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。</p>
+<p>为展示不同于默认滑屏效果的动画，实现 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">ViewPager.PageTransformer</a> 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。</p>
 <p>在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>的实现中，基于当前界面上页面的 <code>position</code>（<code>position</code> 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>方法的参数给出）决定哪些页面需要被动画转换，通过这样你就能新建自己的动画。</p>
 <p><code>position</code> 参数表示给定页面相对于屏幕中的页面的位置。它的值在用户滑动页面过程中动态变化。当页面填充屏幕，它的值为 0。当页面刚从屏幕右边拖走，它的值为 1。如果用户在页面一和页面二间滑动到一半，那么页面一的 position 为 -0.5 并且 页面二的 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> setAlpha() </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> setTranslationX() </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> setScaleY() </a>这些方法设定页面属性来自定义滑动动画。</p>
 <p>当你实现了 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a> 后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> setPageTransformer() </a>来应用这些自定义动画。例如，如果你有一个叫做<code>ZoomOutPageTransformer</code>的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a>，你可以这样设置自定义动画：</p>
@@ -3795,8 +3795,8 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 ...
 mPager.setPageTransformer(<span class="hljs-keyword">true</span>, <span class="hljs-keyword">new</span> ZoomOutPageTransformer());
 </code></pre>
-<p>详情查看<a href="#放大型PageTransformer（页面转换动画）">放大型 Page Transformer（页面转换动画）</a>和<a href="#潜藏型PageTransformer（页面转换动画）">潜藏型 Page Transformer（页面转换动画）</a>部分和 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a> 视频。</p>
-<h3 id="-pagetransformer-">放大型PageTransformer（页面转换动画）</h3>
+<p>详情查看<a href="#缩放型PageTransformer">缩放型 Page Transformer</a>和<a href="#潜藏型PageTransformer">潜藏型 Page Transformer</a>部分和 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a> 视频。</p>
+<h3 id="-pagetransformer">缩放PageTransformer</h3>
 <p>当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐明。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -3932,6 +3932,10 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     
 
     
+    <script src="../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
     <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
 
@@ -3941,12 +3945,12 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"disqus":{"shortName":"kesenhoo"}};
+    var config = {"disqus":{"shortName":"kesenhoo"},"ga":{"token":"UA-37679268-1","configuration":"auto"}};
     gitbook.start(config);
 });
 </script>
 
-        
+        <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-37679268-1', 'auto');ga('send', 'pageview');</script>
     </body>
     
 </html>
