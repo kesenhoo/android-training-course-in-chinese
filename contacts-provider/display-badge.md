@@ -41,17 +41,14 @@ QuickContactBadge视图提供了对联系人数据的即时访问，是作为一
 
 对于Android 3.0（API版本为11）以及以后的版本，需要在查询映射中添加以下列：
 
-*[Contacts._ID]()
-
-*[Contacts.LOOKUP_KEY]()
-
-*[Contacts.PHOTO_THUMBNAIL_URI]()
+* [Contacts._ID]()
+* [Contacts.LOOKUP_KEY]()
+* [Contacts.PHOTO_THUMBNAIL_URI]()
 
 对于Android 2.3.3（API版本为10）以及之前的版本，则使用以下列：
 
-*[Contacts._ID]()
-
-*[Contacts.LOOKUP_KEY]()
+* [Contacts._ID]()
+* [Contacts.LOOKUP_KEY]()
 
 这一课的剩余部分假设你已经获取到了包含这些以及其他你可能选择的数据列的Cursor对象。想要学习如何获取这些列对象的Cursor，请参阅课程[获取联系人列表]()。
 
@@ -98,7 +95,7 @@ mBadge.assignContactUri(mContactUri);
 
 为QuickContactBadge设置联系人URI并不会自动加载联系人的缩略图照片。为了加载联系人照片，需要从联系人的Cursor对象的一行数据中获取照片的URI，使用这个URI去打开包含压缩的缩略图照片的文件，并把这个文件读到Bitmap对象中。
 
->[PHOTO_THUMBNAIL_URI]这一列在Android 3.0之前的版本是不存在的，对于这些版本，你必须从[Contacts.Photo]表中获取照片的URI。
+> [PHOTO_THUMBNAIL_URI]这一列在Android 3.0之前的版本是不存在的，对于这些版本，你必须从[Contacts.Photo]表中获取照片的URI。
 
 首先，为包含Contacts._ID和Contacts.LOOKUP_KEY的Cursor数据列设置对应的变量，这在之前已经有描述：
 
