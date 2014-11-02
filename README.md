@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.5)
+# Google Android官方培训课程中文版(v0.6)
 
 ![Android Training](android_training.jpg)
 
@@ -21,6 +21,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * ePub: <http://hukai.me/eBooks/AndroidTrainingCHS.epub>
 * Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
 
+* v0.6 - 2014/11/02
 * v0.5 - 2014/10/18
 * v0.4 - 2014/09/11
 * v0.3 - 2014/08/31
