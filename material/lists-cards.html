@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建Lists与Cards | Google Android官方培训课程中文版(v0.5)</title>
+        <title>创建Lists与Cards | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.3" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.3" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,14 +3644,161 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_159">
+                    <section class="normal" id="section-gitbook_156">
                     
                         <h1 id="-lists-cards">创建Lists与Cards</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文: <a href="https://developer.android.com/training/material/lists-cards.html" target="_blank">https://developer.android.com/training/material/lists-cards.html</a></p>
 </blockquote>
-<p>待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！</p>
+<p>要在应用中创建复杂的列表和使用 Material Design 的卡片列表，你可以使用 <code>RecyclerView</code> 和 <code>CardView</code>。</p>
+<h2 id="-">创建列表</h2>
+<p><code>RecyclerView</code> 组件是一个更高级和伸缩性更强的 ListView。这个组件是一个显示大量数据的容器，通过维护有限量的View，来达到滚动时的高效。当你的数据集在运行过程中会根据用户行为或网络事件更新时，应该使用 <code>RecyclerView</code>。</p>
+<p><code>RecyclerView</code> 通过以下方式简化显示流程，并操作大量数据：</p>
+<ul>
+<li>使用 Layout manager 来定位元素</li>
+<li>常用操作的默认动画，比如添加或移除元素</li>
+</ul>
+<p>你也可以为 RecyclerView 自定义 Layout manager 和动画。</p>
+<p><img src="RecyclerView.png" alt=""></p>
+<p>要使用 RecyclerView 组件，你需要定义一个 adapter 和 layout manager。创建 adapter，要继承 <code>RecyclerView.Adapter</code> 类。实现类的细节取决于你的数据集和视图类型。更多信息，请看以下样例。</p>
+<p><img src="list_mail.png" alt=""></p>
+<p>Layout manager 给元素视图在 RecyclerView 中定位，并决定什么时候重用不在不可见的元素视图。要重用（或回收）视图，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 <code>findViewById()</code> 查找。</p>
+<p><code>RecyclerView</code> 提供这些内建的 layout manager:</p>
+<ul>
+<li><code>LinearLayoutManager</code> 用于显示横向或纵向的滚动列表</li>
+<li><code>GridLayoutManager</code> 用于显示方格元素</li>
+<li><code>StaggeredGridLayoutManager</code> 在 staggered 方格中显示元素</li>
+</ul>
+<p>创建一个自定义的 layout manager，要继承于 <code>RecyclerView.LayoutManager</code> 类</p>
+<h2 id="-">动画</h2>
+<p>添加和删除元素的动画在RecyclerView中是默认被启用的。要自定义动画，你需要继承<code>RecyclerView.ItemAnimator</code> 类，使用<code>RecyclerView.setItemAnimator()</code>方法。</p>
+<h3 id="-">例子</h3>
+<p>以下代码示例了如何添加RecyclerView 到一个Layout:</p>
+<pre><code class="lang-xml"><span class="hljs-comment">&lt;!-- A RecyclerView with some commonly used attributes --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">android.support.v7.widget.RecyclerView
+</span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/my_recycler_view"</span>
+    <span class="hljs-attribute">android:scrollbars</span>=<span class="hljs-value">"vertical"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>/&gt;</span>
+</code></pre>
+<p>添加 RecycclerView 组件到Layout之后，获得一个到RecyclerView的对象，连接它到Layout manager，再附上 adapter用于数据显示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+    <span class="hljs-keyword">private</span> RecyclerView mRecyclerView;
+    <span class="hljs-keyword">private</span> RecyclerView.Adapter mAdapter;
+    <span class="hljs-keyword">private</span> RecyclerView.LayoutManager mLayoutManager;
 
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.my_activity);
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        <span class="hljs-comment">// use this setting to improve performance if you know that changes</span>
+        <span class="hljs-comment">// in content do not change the layout size of the RecyclerView</span>
+        mRecyclerView.setHasFixedSize(<span class="hljs-keyword">true</span>);
+
+        <span class="hljs-comment">// use a linear layout manager</span>
+        mLayoutManager = <span class="hljs-keyword">new</span> LinearLayoutManager(<span class="hljs-keyword">this</span>);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        <span class="hljs-comment">// specify an adapter (see also next example)</span>
+        mAdapter = <span class="hljs-keyword">new</span> MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+    ...
+}
+</code></pre>
+<p>Adapter 支持获取数据集元素，创建元素的视图，并可以将新元素的内容去替代不可见元素视图中的内容。以下代码展示了一个简单的实现，其中的数据集包含了一个字符串数组，元素用 TextView 显示：</p>
+<pre><code class="lang-java">
+public class MyAdapter extends RecyclerView.Adapter&lt;MyAdapter.ViewHolder&gt; {
+    private String[] mDataset;
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        // each data item is just a string in this case
+        public TextView mTextView;
+        public ViewHolder(TextView v) {
+            super(v);
+            mTextView = v;
+        }
+    }
+
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public MyAdapter(String[] myDataset) {
+        mDataset = myDataset;
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                   int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext())
+                               .inflate(R.layout.my_text_view, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+        ...
+        ViewHolder vh = new ViewHolder(v);
+        return vh;
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        holder.mTextView.setText(mDataset[position]);
+
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mDataset.length;
+    }
+}
+</code></pre>
+<h2 id="-">创建卡片</h2>
+<p><img src="card_travel.png" alt=""></p>
+<p>CardView 继承于FrameLayout类，它可以在卡片中显示信息，并保持在不同平台上拥有统一的风格。CardView组件可以设定阴影和圆角。</p>
+<p>创建一个带阴影的卡片，使用 <code>card_view:cardElevation</code> 属性。CardView 使用了Android 5.0 (API level 21)中的真是高度值以及动态阴影效果，在5.0一下的版本中有编程实现阴影想过的备选方案。更多内容，请参见保持兼容性章节。</p>
+<p>使用以下属性来自定义CardView：</p>
+<ul>
+<li>使用<code>card_view:cardCornerRadius</code>在layout中设置圆角</li>
+<li>使用<code>CardView.setRadius</code>在代码中设置圆角</li>
+<li>使用<code>card_view:carBackgroundColor</code>来设置背景颜色</li>
+</ul>
+<p>以下代码展示如何在layout中添加CardView:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">xmlns:card_view</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="hljs-attribute">...</span> &gt;</span>
+    <span class="hljs-comment">&lt;!-- A CardView that contains a TextView --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">android.support.v7.widget.CardView
+</span>        <span class="hljs-attribute">xmlns:card_view</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/card_view"</span>
+        <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"center"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"200dp"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"200dp"</span>
+        <span class="hljs-attribute">card_view:cardCornerRadius</span>=<span class="hljs-value">"4dp"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">TextView
+</span>            <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/info_text"</span>
+            <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+            <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">android.support.v7.widget.CardView</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>更多信息，参见CardView的API文档。</p>
+<h2 id="-">添加依赖</h2>
+<p>RecyclerView和CardView都是v7 support 库的一部分。要使用这两个组件，在你的Gradle依赖中添加两个模块：</p>
+<pre><code>dependencies {
+    ...
+    compile &#39;com.android.support:cardview-v7:21.0.+&#39;
+    compile &#39;com.android.support:recyclerview-v7:21.0.+&#39;
+}
+</code></pre>
                     
                     </section>
                 

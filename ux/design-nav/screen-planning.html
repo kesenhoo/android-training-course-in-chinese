@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>规划屏幕界面与他们之间的关系 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>规划屏幕界面与他们之间的关系 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.1" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.1" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_250">
+                    <section class="normal" id="section-gitbook_248">
                     
                         <h1 id="-">规划界面和他们之间的关系</h1>
 <blockquote>
@@ -3657,9 +3657,9 @@
 <p>一旦你定义了信息模型，你就可以开始定义那些使用户在你的 App  中有效地发掘，查看和操作数据的上下文环境了。实际上，一种方法就是确定供用户导航和交互数据所需的 <em>界面完备集</em>（归纳了所有界面的集合）。但我们实际发现的画面集合应该根据目标设备变化。在设计过程中早点考虑到这点很重要，这样可以保证程序可以适应运行环境。</p>
 <p>在我们的例子中，我们想让用户<strong>查看</strong>，<strong>保存</strong>和<strong>分享</strong>分类好了的<strong>新闻</strong>和<strong>图片</strong>。下面是涵盖了这些用例的画面完备列表。</p>
 <ul>
-<li>用来接触新闻和图片的 Home 或者 Launchpad 画面</li>
+<li>用来访问新闻和图片的 Home 或者 &quot;Launchpad&quot; 画面</li>
 <li>类别列表</li>
-<li>某个分类下新新闻列表</li>
+<li>某个分类下的新闻列表</li>
 <li>新闻详细信息 View （在这里面我们可以保存和分享）</li>
 <li>图片列表，不分类</li>
 <li>图片详细信息 View （在这里面我们可以保存和分享）</li>
@@ -3674,7 +3674,7 @@
 <h2 id="-">脱离简陋设计</h2>
 <p>就此，我们有希望根据这张完备的界面图设计一个功能完备应用。一个简陋的 UI 可以由列表和导向子画面的按钮组成。</p>
 <ul>
-<li>导向不同部分的按钮（例如，事件，图片，保存的项目）</li>
+<li>导向不同页面的按钮（例如，事件，图片，保存的项目）</li>
 <li>纵向列表表示集合（例如，事件列表，图片列表，等等）</li>
 <li>详细信息（例如，事件 View ，图片 View ，等等）</li>
 </ul>

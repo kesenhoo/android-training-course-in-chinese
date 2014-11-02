@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立请求队列 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>建立请求队列 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.7.2" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.7.2" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_34">
+                    <section class="normal" id="section-gitbook_95">
                     
                         <h1 id="-setting-up-a-requestqueue-">建立请求队列(Setting Up a RequestQueue)</h1>
 <blockquote>
@@ -3652,7 +3652,7 @@
 </blockquote>
 <p>前一节课演示了如何使用<code>Volley.newRequestQueue</code>这一简便的方法来建立一个<code>RequestQueue</code>，这是利用了Volley默认的优势。这节课会介绍如何显式的建立一个RequestQueue，以便满足你自定义的需求。</p>
 <p>这节课同样会介绍一种推荐的实现方式：创建一个单例的RequestQueue，这使得RequestQueue能够持续保持在你的app的生命周期中。</p>
-<h2 id="set-up-a-network-and-cache">Set Up a Network and Cache</h2>
+<h2 id="1-set-up-a-network-and-cache">1)Set Up a Network and Cache</h2>
 <p>一个RequestQueue需要两部分来支持它的工作：一部分是网络操作用来执行请求的数据传输，另外一个是用来处理缓存操作的Cache。在Volley的工具箱中包含了标准的实现方式：<code>DiskBasedCache</code>提供了每个文件与对应响应数据一一映射的缓存实现。 <code>BasicNetwork</code>提供了一个网络传输的实现，连接方式可以是<a href="http://developer.android.com/reference/android/net/http/AndroidHttpClient.html" target="_blank">AndroidHttpClient</a> 或者是 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>.</p>
 <p><code>BasicNetwork</code>是Volley默认的网络操作实现方式。一个BasicNetwork必须使用HTTP Client进行初始化。这个Client通常是AndroidHttpClient 或者 HttpURLConnection:</p>
 <ul>
@@ -3707,7 +3707,7 @@ mRequestQueue.add(stringRequest);
 ...
 </code></pre>
 <p>如果你仅仅是想做一个单次的请求并且不想要线程池一直保留，你可以通过使用在前面一课：<a href="simple.html">发送一个简单的请求(Sending a Simple Request)</a>文章中提到<code>Volley.newRequestQueue()</code>方法在任何需要的时刻创建RequestQueue，然后在你的响应回调里面执行<code>stop()</code>方法来停止操作。但是更通常的做法是创建一个RequestQueue并设置为一个单例。下面将演示这种做法。</p>
-<h2 id="use-a-singleton-pattern">Use a Singleton Pattern</h2>
+<h2 id="2-use-a-singleton-pattern">2)Use a Singleton Pattern</h2>
 <p>如果你的程序需要持续的使用网络，更加高效的方式应该是建立一个RequestQueue的单例，这样它能够持续保持在整个app的生命周期中。你可以通过多种方式来实现这个单例。推荐的方式是实现一个单例类，里面封装了RequestQueue对象与其他Volley的方法。另外一个方法是继承Application类，并在<code>Application.OnCreate()</code>方法里面建立RequestQueue。但是这个方法是不推荐的。因为一个static的单例能够以一种更加模块化的方式提供同样的功能。</p>
 <p>一个关键的概念是RequestQueue必须和Application context所关联的。而不是Activity的context。这可以确保RequestQueue可以在你的app生命周期中一直存活，而不会因为activity的重新创建而重新创建RequestQueue。(例如，当用户旋转设备时)。</p>
 <p>下面是一个单例类，提供了RequestQueue与ImageLoader的功能：</p>

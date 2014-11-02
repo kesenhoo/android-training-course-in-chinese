@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建Stub授权器 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>创建Stub授权器 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.6.1" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.6.1" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,11 +3644,11 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_25">
+                    <section class="normal" id="section-gitbook_87">
                     
                         <h1 id="-stub-">创建Stub授权器</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:</p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/sync-adapters/creating-authenticator.html" target="_blank">http://developer.android.com/training/sync-adapters/creating-authenticator.html</a></p>
 </blockquote>
 <p>Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会有一个账户，服务器存储端会有登录验证。因此，框架期望你提供一个叫做授权器的组件作为你的Sync Adapter的一部分。该组件会植入Android账户及认证框架，并提供一个标准的接口来处理用户凭据，比如登录信息。</p>
 <p>甚至，如果你的应用不使用账户，你仍然需要提供一个授权器组件。如果你不使用账户或者服务器登录，授权器所处理的信息将被忽略，所以你可以提供一个授权器组件，它包括了一个“空”的实现（译者注：也即标题中的Stub）。同时你需要提供一个捆绑的<a href="http://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>，来允许Sync Adapter框架来调用授权器的方法。</p>

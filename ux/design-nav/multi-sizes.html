@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>为多种大小的屏幕进行规划 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>为多种大小的屏幕进行规划 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.2" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.2" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_249">
+                    <section class="normal" id="section-gitbook_247">
                     
                         <h1 id="-">为多种大小的屏幕进行规划</h1>
 <blockquote>
@@ -3652,12 +3652,11 @@
 </blockquote>
 <p>虽然上节中的界面完备图在手持设备和相似大小设备上可行，但并不是和某个设备因素绑死的。Android应用需要适配一大把不同类型的设备，从3&quot;的手机到10&quot;的平板到42&quot;的电视。这节课中我们探讨把完备图中不同界面组合起来的策略和原因。</p>
 <blockquote>
-<p><strong>注意:</strong> 为电视设计应用程序还需要注意其他的因素，包括互动方式（就是说，它没触屏），长距离情况下文本的可读性，还有其他。虽然这种讨论在本课范畴之外，你仍然可以在 <a href="https://developers.google.com/tv" target="_blank">Google TV</a> 文档的<a href="https://developers.google.com/tv/android/docs/gtv_android_patterns" target="_blank">设计模式</a>中找到有关为电视设计的信息。</p>
+<p><strong>Note:</strong> 为电视设计应用程序还需要注意其他的因素，包括互动方式（就是说，它没触屏），长距离情况下文本的可读性，还有其他。虽然这种讨论在本课范畴之外，你仍然可以在 <a href="https://developers.google.com/tv" target="_blank">Google TV</a> 文档的<a href="https://developers.google.com/tv/android/docs/gtv_android_patterns" target="_blank">设计模式</a>中找到有关为电视设计的信息。</p>
 </blockquote>
 <h2 id="-multi-pane-layout-">用多视窗布局（Multi-pane Layout）组合界面</h2>
 <blockquote>
-<p><strong>多视窗布局（Multi-pane Layout）设计</strong></p>
-<p>设计指南请阅读 Android 设计部分的<a href="http://developer.android.com/design/patterns/multi-pane-layouts.html" target="_blank">多视窗布局</a>模式指导。</p>
+<p><strong>多视窗布局（Multi-pane Layout）设计</strong>：设计指南请阅读 Android 设计部分的<a href="http://developer.android.com/design/patterns/multi-pane-layouts.html" target="_blank">多视窗布局</a>模式指导。</p>
 </blockquote>
 <p>3 到 4&quot; 的屏幕通常只适合每次展示单个纵向内容视窗，一个列表，或某列表项的具体信息，等等。所以在这些设备上，界面通常对映于信息层次上的某一级（类别 → 列表 → 详情）。</p>
 <p>更大的诸如平板和电视上的屏幕通常会有更多的可用界面空间，并且他们能够展示多个内容视窗。横屏中，视窗从左到右以细节程度递增的顺序排列。因常年使用桌面应用和网站，用户变得特别适应大屏上的多视窗。很多桌面应用和网站提供左侧导航视窗，或者使用总/分（master/detail）俩视窗布局。</p>

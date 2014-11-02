@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>管理使用的网络 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>管理网络 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.2" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.2" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter  " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,9 +3644,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_84">
                     
-                        <h1 id="-managing-network-usage">管理使用的网络Managing Network Usage</h1>
+                        <h1 id="-">管理网络</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/network-ops/managing.html" target="_blank">http://developer.android.com/training/basics/network-ops/managing.html</a></p>
 </blockquote>
@@ -3658,9 +3658,9 @@
 </ul>
 <!-- more -->
 
-<h2 id="check-a-device-s-network-connection-">Check a Device&#39;s Network Connection(检查设备的网络连接信息)</h2>
+<h2 id="1-check-a-device-s-network-connection">1)Check a Device&#39;s Network Connection</h2>
 <p>设备可以有许多种网络连接。关于所有可能的网络连接类型，请看<a href="http://developer.android.com/reference/android/net/ConnectivityManager.html" target="_blank">ConnectivityManager</a>.</p>
-<p>通常Wi-Fi是比较快的。移动数据通常都是需要按流量计费，会比较贵. 通常我们会选择让app在连接到WiFi时去获取大量的数据。</p>
+<p>通常Wi-Fi是比较快的。移动数据通常都是需要按流量计费，会比较贵。 通常我们会选择让app在连接到WiFi时去获取大量的数据。</p>
 <p>那么，我们就需要在执行网络操作之前检查当前连接的网络信息。这样可以防止你的程序不经意连接使用了非意向的网络频道。为了实现这个目的，我们需要使用到下面两个类：</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/net/ConnectivityManager.html" target="_blank">ConnectivityManager</a>: Answers queries about the state of network connectivity. It also notifies applications when network connectivity changes.</li>
@@ -3687,7 +3687,7 @@ Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobil
 }
 </code></pre>
 <p>你可以使用<a href="http://developer.android.com/reference/android/net/NetworkInfo.DetailedState.html" target="_blank">NetworkInfo.DetailedState</a>, 来获取更加详细的网络信息。</p>
-<h2 id="manage-network-usage-">Manage Network Usage(管理网络使用)</h2>
+<h2 id="2-manage-network-usage">2)Manage Network Usage</h2>
 <p>你可以实现一个偏好设置的activity ，来允许用户设置程序的网络资源的使用。例如:</p>
 <ul>
 <li>你可以允许用户在仅仅连接到WiFi时上传视频。</li>
@@ -3722,7 +3722,7 @@ Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobil
     <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<h2 id="implement-a-preferences-activity-activity-">Implement a Preferences Activity(实现一个偏好设置activity)</h2>
+<h2 id="3-implement-a-preferences-activity">3)Implement a Preferences Activity</h2>
 <p>正如上面看到的那样，SettingsActivity is a subclass ofPreferenceActivity.</p>
 <p>所实现的功能见下图：</p>
 <p><img src="network-settings1.png" alt="network-settings1.png">
@@ -3770,7 +3770,7 @@ Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobil
     }
 }
 </code></pre>
-<h2 id="respond-to-preference-changes-">Respond to Preference Changes(对偏好改变进行响应)</h2>
+<h2 id="4-respond-to-preference-changes">4)Respond to Preference Changes</h2>
 <p>当用户在设置界面改变了偏好，它通常都会对app的行为产生影响。
 在下面的代码示例中，app会在onStart(). 方法里面检查偏好设置。如果设置的类型与当前设备的网络连接类型相一致，那么程序就会下载数据并刷新显示。(for example, if the setting is &quot;Wi-Fi&quot; and the device has a Wi-Fi connection)。(这是一个很好的代码示例，如何选择合适的网络类型进行下载操作)</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
@@ -3861,7 +3861,7 @@ Log.d(DEBUG_TAG, <span class="hljs-string">"Mobile connected: "</span> + isMobil
 
 }
 </code></pre>
-<h2 id="detect-connection-changes-">Detect Connection Changes(监测网络连接的改变)</h2>
+<h2 id="5-detect-connection-changes">5)Detect Connection Changes</h2>
 <p>最后一部分是关于 BroadcastReceiver 的子类： NetworkReceiver. 当设备网络连接改变时，NetworkReceiver会监听到 CONNECTIVITY_ACTION, 这时需要判断当前网络连接类型并相应的设置好 wifiConnected 与 mobileConnected .</p>
 <p>我们需要控制好BroadcastReceiver的使用，不必要的声明注册会浪费系统资源。通常是在 onCreate() 去registers 这个BroadcastReceiver ， 在onPause()或者onDestroy() 时unregisters它。这样做会比直接在manifest里面直接注册 <receiver> 更轻量. 当你在manifest里面注册了一个 <receiver> ，你的程序可以在任何时候被唤醒, 即使你已经好几个星期没有使用这个程序了。而通过前面的办法进行注册，可以确保用户离开你的程序之后，不会因为那个Broadcast而被唤起。如果你确保知道何时需要使用到它，你可以在合适的地方使用 <a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#setComponentEnabledSetting(android.content.ComponentName, int, int" target="_blank">setComponentEnabledSetting()</a>) 来开启或者关闭它。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> {</span>

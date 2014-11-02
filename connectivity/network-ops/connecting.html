@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>连接到网络 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>连接到网络 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.1" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.1" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter  " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,9 +3644,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_18">
+                    <section class="normal" id="section-gitbook_83">
                     
-                        <h1 id="-connecting-to-the-network">连接到网络Connecting to the Network</h1>
+                        <h1 id="-">连接到网络</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/network-ops/connecting.html" target="_blank">http://developer.android.com/training/basics/network-ops/connecting.html</a></p>
 </blockquote>
@@ -3654,9 +3654,9 @@
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.INTERNET"</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
 </code></pre>
-<h2 id="choose-an-http-client-http-client-">Choose an HTTP Client(选择一个HTTP Client)</h2>
-<p>大多数连接网络的Android app会使用HTTP来发送与接受数据。Android提供了两种HTTP clients: <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 与Apache <a href="http://developer.android.com/reference/org/apache/http/client/HttpClient.html" target="_blank">HttpClient</a>。他们二者均支持HTTPS ，都以流方式进行上传与下载，都有可配置timeout, IPv6 与连接池（connection pooling）. <strong>推荐从Gingerbread版本开始使用 HttpURLConnection</strong> 。关于这部分的更多详情，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</p>
-<h2 id="check-the-network-connection-">Check the Network Connection(检测网络连接)</h2>
+<h2 id="1-choose-an-http-client">1)Choose an HTTP Client</h2>
+<p>大多数连接网络的Android app会使用HTTP来发送与接受数据。Android提供了两种HTTP clients: <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 与Apache <a href="http://developer.android.com/reference/org/apache/http/client/HttpClient.html" target="_blank">HttpClient</a>。他们二者均支持HTTPS ，都以流方式进行上传与下载，都有可配置timeout, IPv6 与连接池（connection pooling）. <strong>推荐从Android 2.3 Gingerbread版本开始使用 HttpURLConnection</strong> 。关于这部分的更多详情，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</p>
+<h2 id="2-check-the-network-connection">2)Check the Network Connection</h2>
 <p>在你的app尝试进行网络连接之前，需要检测当前是否有可用的网络。请注意，设备可能会不在网络覆盖范围内，或者用户可能关闭Wi-Fi与移动网络连接。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myClickHandler</span>(View view) {
     ...
@@ -3671,12 +3671,12 @@
     ...
 }
 </code></pre>
-<h2 id="perform-network-operations-on-a-separate-thread-thread-">Perform Network Operations on a Separate Thread(在另外一个Thread执行网络操作)</h2>
+<h2 id="3-perform-network-operations-on-a-separate-thread">3)Perform Network Operations on a Separate Thread</h2>
 <p>网络操作会遇到不可预期的延迟。显然为了避免一个不好的用户体验，总是在UI Thread之外去执行网络操作。AsyncTask 类提供了一种简单的方式来处理这个问题。关于更多的详情，请参考:<a href="http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html" target="_blank">Multithreading For Performance</a>.</p>
 <p>在下面的代码示例中，myClickHandler() 方法会触发一个新的DownloadWebpageTask().execute(stringUrl). 它继承自AsyncTask，实现了下面两个方法:</p>
 <ul>
-<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>) 执行 downloadUrl()方法。Web URL作为参数，方法downloadUrl() 获取并处理网页返回的数据，执行完毕后，传递结果到onPostExecute()。参数类型为String.</li>
-<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>) 获取到返回数据并显示到UI上。</li>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">doInBackground()</a> 执行 downloadUrl()方法。Web URL作为参数，方法downloadUrl() 获取并处理网页返回的数据，执行完毕后，传递结果到onPostExecute()。参数类型为String。</li>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">onPostExecute()</a> 获取到返回数据并显示到UI上。</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpExampleActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String DEBUG_TAG = <span class="hljs-string">"HttpExample"</span>;
@@ -3741,7 +3741,7 @@
 <li>The InputStream is passed to the readIt() method, which converts the stream to a string.</li>
 <li>Finally, the AsyncTask&#39;s onPostExecute() method displays the string in the main activity&#39;s UI.</li>
 </ul>
-<h2 id="connect-and-download-data-">Connect and Download Data(连接并下载数据)</h2>
+<h2 id="4-connect-and-download-data">4)Connect and Download Data</h2>
 <p>在执行网络交互的线程里面，你可以使用 HttpURLConnection 来执行一个 GET 类型的操作并下载数据。在你调用 connect()之后，你可以通过调用getInputStream()来得到一个包含数据的<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 对象。</p>
 <p>在下面的代码示例中， doInBackground() 方法会调用downloadUrl(). 这个 downloadUrl() 方法使用给予的URL，通过 HttpURLConnection 连接到网络。一旦建立连接，app使用 getInputStream() 来获取数据。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Given a URL, establishes an HttpUrlConnection and retrieves</span>
@@ -3780,7 +3780,7 @@
 }
 </code></pre>
 <p>请注意，getResponseCode() 会返回连接状态码( status code). 这是一种获知额外网络连接信息的有效方式。status code 是 200 则意味着连接成功.</p>
-<h2 id="convert-the-inputstream-to-a-string-inputstream-string-">Convert the InputStream to a String(把InputStream的数据转换为String)</h2>
+<h2 id="5-convert-the-inputstream-to-a-string">5)Convert the InputStream to a String</h2>
 <p>InputStream 是一种可读的byte数据源。如果你获得了一个 InputStream, 通常会进行decode或者转换为制定的数据类型。例如，如果你是在下载一张image数据，你可能需要像下面一下进行decode：</p>
 <pre><code class="lang-java">InputStream is = <span class="hljs-keyword">null</span>;
 ...
@@ -3810,7 +3810,7 @@ imageView.setImageBitmap(bitmap);
         <a href="../../connectivity/network-ops/index.html" class="navigation navigation-prev " aria-label="Previous page: 执行网络操作"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../connectivity/network-ops/managing.html" class="navigation navigation-next " aria-label="Next page: 管理使用的网络"><i class="fa fa-angle-right"></i></a>
+        <a href="../../connectivity/network-ops/managing.html" class="navigation navigation-next " aria-label="Next page: 管理网络"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

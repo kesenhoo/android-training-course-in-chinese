@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>获取位置更新 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>获取位置更新 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.2" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,11 +3644,11 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_154">
+                    <section class="normal" id="section-gitbook_146">
                     
                         <h1 id="-">获取位置更新</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:</p>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/receive-location-updates.html" target="_blank">http://developer.android.com/training/location/receive-location-updates.html</a></p>
 </blockquote>
 <p>如果你的应用需要导航或者记录路径，你可能会周期性地去获取用户的位置信息。此时你可以使用Location Services 里面的 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">LocationClient.getLastLocation()</a>)来进行周期性的位置信息更新。使用这个方法之后，Location Services 会基于当前可用的位置信息提供源（比如WiFi和GPS）返回最准确的位置信息更新。</p>
 <p>你可以使用一个location client从 Location Services 那里请求周期性的位置更新。根据不同请求的形式，Location Services 要么调用一个回调函数并传入一个 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象，或者发送一个包含位置信息的 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a> 。位置更新的精度和频率与你的应用所申请的权限相关联。</p>
@@ -3661,7 +3661,7 @@
 <h2 id="-google-play-services">检测Google Play Services</h2>
 <p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
 <blockquote>
-<p><strong>注意:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
+<p><strong>Note:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
 </blockquote>
 <p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
@@ -3837,7 +3837,7 @@
 </ul>
 <p>最快更新频率</p>
 <ul>
-<li>最快更新频率通过<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long" target="_blank">LocationRequest.setFastestInterval()</a>方法设置。这个方法设置你的应用能够接收位置更新最快的频率。你必须设置这个频率因为其他应用也会影响位置更新的频率。 Location Services 会以选择所有请求位置更新的应用中频率最快的发送位置更新。。如果这个频率比你的应用能处理的频率还要快，那么你的应用可能会出现UI闪烁或者数据溢出。为了防止这样的情况出现，调用LocationRequest.setFastestInterval()方法来设置位置更新频率的上限，同时还可以节约电量。当你通过 LocationRequest.setInterval()方法设置理想的更新频率，通过 LocationRequest.setFastestInterval()设置更新频率的上限，然后你的应用就会在系统中获得最快的位置更新频率。如果其他应用设置的更新频率更快，那么你的应用也跟着受益。如果其他应用的更新频率没有你的频率快，那么你的应用将会以你通过LocationRequest.setInterval()方法设置的频率更新位置信息。</li>
+<li>最快更新频率通过<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long" target="_blank">LocationRequest.setFastestInterval()</a>方法设置。这个方法设置你的应用能够接收位置更新最快的频率。你必须设置这个频率因为其他应用也会影响位置更新的频率。Location Services 会以选择所有请求位置更新的应用中频率最快的发送位置更新。如果这个频率比你的应用能处理的频率还要快，那么你的应用可能会出现UI闪烁或者数据溢出。为了防止这样的情况出现，调用<code>LocationRequest.setFastestInterval()</code>方法来设置位置更新频率的上限，同时还可以节约电量。当你通过 LocationRequest.setInterval()方法设置理想的更新频率，通过 LocationRequest.setFastestInterval()设置更新频率的上限，然后你的应用就会在系统中获得最快的位置更新频率。如果其他应用设置的更新频率更快，那么你的应用也跟着受益。如果其他应用的更新频率没有你的频率快，那么你的应用将会以你通过LocationRequest.setInterval()方法设置的频率更新位置信息。</li>
 </ul>
 <p>接着，设置精度参数。在一个前台应用（foreground app）中，你需要不断地获取高精度的位置更新，因此需要使用<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_HIGH_ACCURACY" target="_blank">LocationRequest.PRIORITY_HIGH_ACCURACY</a>。</p>
 <p>下面的代码片段展示了如何在<code>onCreate()</code>方法里面设置更新频率和精度：</p>
@@ -3882,7 +3882,7 @@
 }
 </code></pre>
 <blockquote>
-<p><strong>注意：</strong> 如果你的应用在获取位置更新后需要访问网络或者进行长时的操作，你可以将最快更新频率调整至更慢的值。这样可以让你的应用不会接受无法使用的位置更新。一旦这样的长时操作完成，将最快更新频率设回原值。</p>
+<p><strong>Note:</strong> 如果你的应用在获取位置更新后需要访问网络或者进行长时的操作，你可以将最快更新频率调整至更慢的值。这样可以让你的应用不会接受无法使用的位置更新。一旦这样的长时操作完成，将最快更新频率设回原值。</p>
 </blockquote>
 <h2 id="-">开始进行位置更新</h2>
 <p>To send the request for location updates, create a location client in onCreate(), then connect it and make the request by calling requestLocationUpdates(). Since your client must be connected for your app to receive updates, you should connect the client in onStart(). This ensures that you always have a valid, connected client while your app is visible. Since you need a connection before you can request updates, make the update request in ConnectionCallbacks.onConnected()</p>

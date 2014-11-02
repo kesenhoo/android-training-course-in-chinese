@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>提供向上和时间导航 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>提供向上和操作顺序导航 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.4" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.1.4" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,16 +3644,15 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_246">
+                    <section class="normal" id="section-gitbook_244">
                     
-                        <h1 id="-">提供向上导航与时间导航</h1>
+                        <h1 id="-">提供向上导航与操作顺序导航</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/design-navigation/ancestral-temporal.html" target="_blank">http://developer.android.com/training/design-navigation/ancestral-temporal.html</a></p>
 </blockquote>
-<p>既然现在我们能进入应用界面某个层级，我需要提供一个方法来在层级里向上导航到父亲或祖先界面中。此外，我们应该保证通过 <em>Back</em> 按钮来操作的历史导航遵循 Android 惯例。</p>
+<p>既然现在我们能进入应用界面某个层级，我需要提供一个方法来在层级里向上导航到父亲或祖先界面中。此外，我们应该保证通过 <em>Back</em> 按钮来回退历史导航记录。</p>
 <blockquote>
-<p><strong>回退/向上导航设计</strong></p>
-<p>设计指南请阅读 Android 设计文档的<a href="http://developer.android.com/design/patterns/navigation.html" target="_blank">Navigation</a>模式指导</p>
+<p><strong>回退/向上导航设计</strong>：设计指南请阅读 Android 设计文档的<a href="http://developer.android.com/design/patterns/navigation.html" target="_blank">Navigation</a>模式指导</p>
 </blockquote>
 <h2 id="-back-">支持时间导航：<strong><em>Back</em></strong></h2>
 <p>时间导航，或者说在历史的界面间导航，在 Android 系统中由来已久。不论其他状态如何，所有 Android 用户都期望 <em>Back</em> 按钮能带他们回到之前的界面。历史界面集全都以用户的 Launcher 应用为基础（电话的 “Home” 键）。也就是说，按下 <em>Back</em> 键足够多次数后你应该回到 Launcher，之后 <em>Back</em> 键不做任何事情。</p>
@@ -3667,7 +3666,7 @@
 <p>Android 3.0 引入了 <em>Up</em> 记号，它被展示在了 Action Bar 上代替了上述的 <em>Home</em> 按钮。点击 <em>Up</em>，用户将被带入到结构中的父界面。这个导航操作通常就是进入前一个界面（就像之前 <em>Back</em> 按钮讨论中描述的一样），但是并不是永远都这样。因此，开发者必须保证 <em>Up</em> 对于每个界面都会导航到某个既定的父亲界面。</p>
 <p><img src="app-navigation-ancestral-navigate-up.png" alt="app-navigation-ancestral-navigate-up"></p>
 <p><strong> 图 2.</strong> 从联系人 App 中进入电子邮件 App 然后按 <em>Up</em> 导航的行为</p>
-<p>某些情况下，<em>Up</em> 适合执行某个行为而非导航到一个父亲节点。以 Android 3.0 平板上的 Gamil 应用为例。当查看一封邮件的对话时把设备平放，对话列表和对话详情将并排显示。这是一种<a href="multiple-sizes.html">之前课程</a>中的父、子界面组合。然而，当竖屏查看邮件对话时，只有对话详情被显示。<em>Up</em> 按钮被用来使父视窗滑入屏幕显示。当左侧视窗可见时再按一次 <em>Up</em> 按钮，单个对话便回到全屏的对话列表中。</p>
+<p>某些情况下，<em>Up</em> 适合执行某个行为而非导航到一个父亲节点。以 Android 3.0 平板上的 Gmail 应用为例。当查看一封邮件的对话时把设备平放，对话列表和对话详情将并排显示。这是一种<a href="multiple-sizes.html">之前课程</a>中的父、子界面组合。然而，当竖屏查看邮件对话时，只有对话详情被显示。<em>Up</em> 按钮被用来使父视窗滑入屏幕显示。当左侧视窗可见时再按一次 <em>Up</em> 按钮，单个对话便回到全屏的对话列表中。</p>
 <blockquote>
 <p><strong>实现提醒：</strong> 实现 <em>Home</em> 或 <em>Up</em> 的最佳做法就是保证清除back stack中的子界面。对于 <em>Home</em>，主界面是唯一留在back stack中的界面。对于 <em>Up</em> 导航，当前界面也应该从back stack中移除，除非 <em>Back</em> 在不同界面层级间导航。你可以将<a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP" target="_blank"> FLAG_ACTIVITY_CLEAR_TOP</a>和<a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK" target="_blank">FLAG_ACTIVITY_NEW_TASK</a>这两个 Intent 标记一起使用来实现它。</p>
 </blockquote>

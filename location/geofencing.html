@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建并监视异常区域 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>创建并监视异常区域 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.4" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.4" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3648,18 +3648,18 @@
                     
                         <h1 id="-">创建并监视异常区域</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:</p>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/geofencing.html" target="_blank">http://developer.android.com/training/location/geofencing.html</a></p>
 </blockquote>
 <p>地理围栏将用户当前位置感知和附件地点特征感知相结合，定义了用户对位置的接近程度。为了让一个位置有感知，你必须确定这个位置的经纬度。为了度量用户对位置的接近程度，你需要添加一个半径。综合经纬度和半径即可确定一个地理围栏。当然你可以一次性定义多个地理围栏。</p>
 <p>Location Services将一个地理围栏看成是一片区域而不是一个点和一个接近程度。这样可以让它去探测用户是否进入或者正在某个地理围栏中。对于每个地理围栏，你可以让Location Services给你发送进入或者退出地理围栏事件。你还可以通过设置一一个毫秒级别的有效时间来限制地理围栏的生命周期。当地理围栏失效后，Location Services会自动移除这个地理围栏。</p>
-<h2 id="-">请求地理围栏监视</h2>
+<h2 id="1-">1)请求地理围栏监视</h2>
 <p>请求地理围栏监视的第一步就是设置必要的权限。在使用地理围栏时，你必须设置<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>权限。添加如下代码即可：</p>
 <pre><code class="lang-java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.ACCESS_FINE_LOCATION"</span>/&gt;
 </code></pre>
-<h3 id="-google-play-services-">检查Google Play Services是否可用</h3>
+<h3 id="1-1-google-play-services-">1.1)检查Google Play Services是否可用</h3>
 <p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
 <blockquote>
-<p><strong>注意:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
+<p><strong>Note:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
 </blockquote>
 <p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
@@ -3765,7 +3765,7 @@
 </ul>
 <p>有效时间</p>
 <ul>
-<li>地理围栏保持激活状态的时间。一旦达到了有效时间，Location Services会删除这个地理围栏。大部分时候，你都应该为你的应用设置一个有效时间，但对于家居或者工作空间等类型的应用，可能设置需要永久的地理围栏。nces for the user&#39;s home or place of work.</li>
+<li>地理围栏保持激活状态的时间。一旦达到了有效时间，Location Services会删除这个地理围栏。大部分时候，你都应该为你的应用设置一个有效时间，但对于家居或者工作空间等类型的应用，可能设置需要永久的地理围栏。</li>
 </ul>
 <p>触发事件类型</p>
 <ul>
@@ -3775,9 +3775,9 @@
 <ul>
 <li>一个与地理围栏一同保存的字符串。你必须保证这个字符串唯一，这样你就可以使用它从Location Services的记录里来移除特定地理围栏。</li>
 </ul>
-<h3 id="-">定义地理围栏存储</h3>
+<h3 id="1-2-">1.2)定义地理围栏存储</h3>
 <p>一个地理围栏应用需要将地理围栏数据做持久化的读写。但是你不能使用<a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a> 进行这样的操作；你可以使用数据库等方式来保存地理围栏的相关数据。</p>
-<p>作为一个保存地理围栏数据的实例，下面的代码片段定义了两个使用<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> 的类来进行地理围栏的数据持久化。 <code>SimpleGeofence</code>类， 类似于一条数据库记录，为一个<a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a> 对象存储数据。<code>SimpleGeofenceStore</code>类，类似于一个数据库，对<code>SimpleGeofence</code> 的读写应用到 <a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> 实例。</p>
+<p>作为一个保存地理围栏数据的实例，下面的代码片段定义了两个使用<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> 的类来进行地理围栏的数据持久化。 <code>SimpleGeofence</code>类， 类似于一条数据库记录，为一个<a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a> 对象存储数据。<code>SimpleGeofenceStore</code>类，类似于一个数据库，对<code>SimpleGeofence</code>的读写应用到 <a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> 实例。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
     ...
     <span class="hljs-javadoc">/**
@@ -4012,8 +4012,8 @@
     ...
 }
 </code></pre>
-<h3 id="-">创建地理围栏对象</h3>
-<p>下面的代码片段使用<code>SimpleGeofence</code>和<code>SimpleGeofenceStore</code>类从用户界面上获取地理围栏数据，然后将这些数据保存到<code>``SimpleGeofence</code>对象里面，接着把这些<code>SimpleGeofence</code>对象保存到一个<code>SimpleGeofenceStore</code>里面，然后就可以创建 <a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a>对象了:</p>
+<h3 id="1-3-">1.3)创建地理围栏对象</h3>
+<p>下面的代码片段使用<code>SimpleGeofence</code>和<code>SimpleGeofenceStore</code>类从用户界面上获取地理围栏数据，然后将这些数据保存到<code>SimpleGeofence</code>对象里面，接着把这些<code>SimpleGeofence</code>对象保存到一个<code>SimpleGeofenceStore</code>里面，然后就可以创建 <a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a>对象了:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
     ...
     <span class="hljs-comment">/*
@@ -4104,7 +4104,7 @@
 }
 </code></pre>
 <p>除了这些你要监视的<a href="http://developer.android.com/reference/com/google/android/gms/location/Geofence.html" target="_blank">Geofence</a>列表之外，你还需要为Location Services添加<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，这个Intent在你的应用探测到地理围栏触发事件时会将这个事件发送给你的应用。</p>
-<h3 id="-intent">为地理围栏触发事件定义Intent</h3>
+<h3 id="1-4-intent">1.4)为地理围栏触发事件定义Intent</h3>
 <p>从Location Services发送来的Intent能够触发各种应用内的动作，但是不能用它来打开一个Activity或者Fragment，因为应用内的组件只能在响应用户动作时才能可见。大多数情况下，处理这一类的Intent最好使用<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>。一个<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>可以推送一个通知，可以进行长时的后台作业，可以将intent发送给其他的services，还可以广播intent。下面的代码展示了如何定义一个<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>来启动一个IntentService:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
     ...
@@ -4129,7 +4129,7 @@
 }
 </code></pre>
 <p>现在你已经拥有了所有发送监视地理围栏请求给Location Services的代码了。</p>
-<h3 id="-">发送监视请求</h3>
+<h3 id="1-5-">1.5)发送监视请求</h3>
 <p>发送监视请求需要两个异步操作。第一个操作就是为这个请求获取一个location client，第二个操作就是使用这个client来生成请求。这两个操作里面，Location Services都会在操作结束的时候调用一个回调函数。处理这些操作最好的方法就是将这些方法调用连接起来。下面的代码展示了如何建立一个Activity，接着定义回调方法，然后以合适的顺序调用他们。
 首先，让Activity实现必要的回调接口。需要添加以下接口：
 <a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html" target="_blank">ConnectionCallbacks</a></p>
@@ -4152,7 +4152,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">开始请求进程</h3>
+<h3 id="1-6-">1.6)开始请求进程</h3>
 <p>接下啦，在连接Location Services的时候定义一个启动请求进程的方法。记得将这个请求设置为全局变量，这样就可以让你使用回调方法<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">ConnectionCallbacks.onConnected()</a>)来添加地理围栏，或者移除地理围栏。</p>
 <p>为了防止当你的应用在第一个请求还没结束就开始第二个请求的时候不出现竞争状况，你可以定义一个boolean标志位来记录当前请求的状态：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
@@ -4218,7 +4218,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">发送添加地理围栏的请求</h3>
+<h3 id="1-7-">1.7)发送添加地理围栏的请求</h3>
 <p>在你对回调方法<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">ConnectionCallbacks.onConnected()</a>)的实现里面，调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#addGeofences(java.util.List&lt;com.google.android.gms.location.Geofence&gt;, android.app.PendingIntent, com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener" target="_blank">LocationClient.addGeofences()</a>)。注意如果连接失败，<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>)方法不会被调用，这个请求也会停止。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -4248,7 +4248,7 @@
 }
 </code></pre>
 <p>注意<a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#addGeofences(java.util.List&lt;com.google.android.gms.location.Geofence&gt;, android.app.PendingIntent, com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener" target="_blank">addGeofences()</a>)方法会直接返回，但是请求的状态却不是直接返回的，只有等到Location Services调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnAddGeofencesResultListener.html#onAddGeofencesResult(int, java.lang.String[]" target="_blank">onAddGeofencesResult()</a>方法。一旦这个方法被调用，你就能知道这个请求是否成功。</p>
-<h3 id="-location-services-">通过Location Services检测请求返回的结果</h3>
+<h3 id="1-8-location-services-">1.8)通过Location Services检测请求返回的结果</h3>
 <p>当 Location Services 你对回调函数<a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnAddGeofencesResultListener.html#onAddGeofencesResult(int, java.lang.String[]" target="_blank">onAddGeofencesResult()</a>的实现的时候，说明请求已经结束，你可以检测最终的结果状态码。如果请求成功，那么你轻轻的地理围栏是激活的，如果没有成功，那么你请求的地理围栏没有激活。如果没成功，你需要重试或者报告错误。例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -4286,7 +4286,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">处理断开连接</h3>
+<h3 id="1-9-">1.9)处理断开连接</h3>
 <p>某些情况下，Location Services可能会在你调用disconnect()方法之前断开连接。为了处理这种情况，你需要实现onDisconnected()方法。在这个方法里面，设置请求状态标志位来表示这个请求已经不处于进程中，然后删除这个client：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -4308,7 +4308,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">处理连接错误</h3>
+<h3 id="1-10-">1.10)处理连接错误</h3>
 <p>在处理正常的回调函数之外，你还得提供一个回调函数来处理连接出现错误的情况。这个回调函数重用了前面在检查Google Play service的时候用到的DialogFragment类。它还可以重用之前在onActivityResult()方法里用来接收当用户和错误对话框交互时产生的结果用到的代码。下面的代码展示了如何实现回调函数：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -4359,9 +4359,9 @@
     ...
 }
 </code></pre>
-<h2 id="-">处理地理围栏触发事件</h2>
+<h2 id="2-">2)处理地理围栏触发事件</h2>
 <p>当Location Services探测到用户进入或者退出一个地理围栏，它会发送一个Intent，这个Intent就是</p>
-<h3 id="-intentservice">定义一个IntentService</h3>
+<h3 id="2-1-intentservice">2.1)定义一个IntentService</h3>
 <p>下面的代码展示了如何定义一个当一个地理围栏触发事件出现的时候发送通知。当用户点击这个通知，这个应用的主界面出现：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ReceiveTransitionsIntentService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span> {</span>
     ...
@@ -4431,7 +4431,7 @@
     ...
 }
 </code></pre>
-<h3 id="-manifest-intentservice">在manifest里面设置IntentService</h3>
+<h3 id="2-2-manifest-intentservice">2.2)在manifest里面设置IntentService</h3>
 <p>为了在系统里面申明这个IntentService，在manifest里面添加一个<code>&lt;service&gt;</code> 元素即可。例如：</p>
 <pre><code class="lang-java">&lt;service
     android:name="com.example.android.location.ReceiveTransitionsIntentService"
@@ -4440,7 +4440,7 @@
 &lt;/service&gt;
 </code></pre>
 <p>注意你不必为这个service设置intent filters，因为它只接收特定的intent。这些地理围栏触发事件的intent是如何被创建的，请参看<a href="geofencing.html#requestmonitoring">发送监视请求</a>这一课。</p>
-<h2 id="-">停止地理围栏监视</h2>
+<h2 id="3-">3)停止地理围栏监视</h2>
 <p>要停止地理围栏监视，你要移除这些地理围栏。你可以移除特定的某个地理围栏集合或者移除与某个<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>相关所有的地理围栏。这个过程与添加地理围栏类似。第一个操作就是获取一个移除请求的location client，然后使用这个client来生成请求。</p>
 <p>Location Services在它完成移除地理围栏这个过程的时候调用的回调函数定义在<a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnRemoveGeofencesResultListener.html" target="_blank">LocationClient.OnRemoveGeofencesResultListener</a>这个接口里面。在你的类里面申明这个接口，然后为它的两个方法添加定义：</p>
 <p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnRemoveGeofencesResultListener.html#onRemoveGeofencesByPendingIntentResult(int, android.app.PendingIntent" target="_blank">onRemoveGeofencesByPendingIntentResult()</a></p>
@@ -4452,7 +4452,7 @@
 <li>这个回调函数是Location Services完成移除特定地理围栏ID集合的地理围栏的请求时调用的，它由 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#removeGeofences(java.util.List&lt;java.lang.String&gt;, com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener" target="_blank">removeGeofences(List<String>, LocationClient.OnRemoveGeofencesResultListener)</a>方法生成的。</li>
 </ul>
 <p>这些实现的代码将在下一个代码区域出现。</p>
-<h3 id="-">移除所有的地理围栏</h3>
+<h3 id="3-1-">3.1)移除所有的地理围栏</h3>
 <p>因为移除地理围栏使用了添加地理围栏时的一些方法，你只需要添加另外几种请求类型即可：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -4582,7 +4582,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">移除特定的地理围栏</h3>
+<h3 id="3-2-">3.2)移除特定的地理围栏</h3>
 <p>移除个别地理围栏和地理围栏集合与移除所有地理围栏的过程类似。为了确定你要移除的地理围栏，需要将他们的地理围栏ID存储到一个字符串列表里面。将这个列表传给<code>removeGeofences</code>方法。这个方法接下来就可以启动这个移除过程了。</p>
 <p>开始的时候要添加一个请求类型来申明这是一个删除里一个列表里面的地理围栏请求。同时还要全局变量来保存地理围栏的ID列表：</p>
 <pre><code class="lang-java">...

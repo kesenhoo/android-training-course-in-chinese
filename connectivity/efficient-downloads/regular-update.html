@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>最小化更新操作的影响 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>最小化更新操作的影响 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.2" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.2" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,16 +3644,16 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_80">
                     
-                        <h1 id="minimizing-the-effect-of-regular-updates-">Minimizing the Effect of Regular Updates(最小化定期更新操作的副作用)</h1>
+                        <h1 id="minimizing-the-effect-of-regular-updates">Minimizing the Effect of Regular Updates</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/efficient-downloads/regular-update.html" target="_blank">http://developer.android.com/training/efficient-downloads/regular-update.html</a></p>
 </blockquote>
 <p>最佳的定时更新频率是不确定的，通常由设备状态，网络连接状态，用户行为与用户定义明确的偏好而决定。</p>
 <p><a href="http://developer.android.com/training/monitoring-device-state/index.html" target="_blank">Optimizing Battery Life</a>这一章有讨论如何根据设备状态来修改更新频率。里面介绍了当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率。</p>
 <p>这一课会介绍更新频率是多少才会使得更新操作对无线电状态机的影响最小。(C2DM与指数退避算法的使用)</p>
-<h2 id="use-google-cloud-messaging-as-an-alternative-to-polling-c2dm-">Use Google Cloud Messaging as an Alternative to Polling[使用C2DM作为轮询方式之一]</h2>
+<h2 id="1-use-google-cloud-messaging-as-an-alternative-to-polling">1)Use Google Cloud Messaging as an Alternative to Polling</h2>
 <p>关于<code>Android Cloud to Device Messaging</code> (C2DM)详情 ,请参考:<a href="http://code.google.com/intl/zh-CN/android/c2dm/" target="_blank">http://code.google.com/intl/zh-CN/android/c2dm/</a></p>
 <!-- More -->
 
@@ -3663,7 +3663,7 @@
 <p>C2DM需要通过使用固定TCP/IP来实现操作。当在你的设备上可以实现固定IP的时候，最好使用C2DM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
 。很明显，使用C2DM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。</p>
 <p><strong>Ps:大陆的Google框架通常被移除掉，这导致C2DM实际上根本没有办法在大陆的App上使用</strong></p>
-<h2 id="optimize-polling-with-inexact-repeating-alarms-and-exponential-backoffs-">Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs(通过不定时的重复提醒与指数退避来优化轮询操作)</h2>
+<h2 id="2-optimize-polling-with-inexact-repeating-alarms-and-exponential-backoffs-">2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs(通过不定时的重复提醒与指数退避来优化轮询操作)</h2>
 <p>如果需要使用轮询机制，在不影响用户体验的前提下，当然设置默认更新频率是越低越好(减少电量的浪费)。</p>
 <p>一个简单的方法是给用户提供更新频率的选择，允许用户自己来处理如何平衡数据及时性与电量的消耗。</p>
 <p>当设置安排好更新操作后，可以使用不确定重复提醒的方式来允许系统把当前这个操作进行定向移动(比如推迟一会)。</p>

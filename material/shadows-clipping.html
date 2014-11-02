@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>定义Shadows与Clipping视图 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>定义Shadows与Clipping视图 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.4" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.4" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,13 +3644,57 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_160">
+                    <section class="normal" id="section-gitbook_158">
                     
                         <h1 id="-shadows-clipping-">定义Shadows与Clipping视图</h1>
 <blockquote>
 <p>编写: - 原文:</p>
 </blockquote>
-<p>待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！</p>
+<p>Material Design 引入了UI元素深度的概念。深度可以帮助用户理解每个元素的不同重要性，让用户集中注意力做手头的工作。</p>
+<p>视图的elevation，用 z 属性来表示，它决定了阴影的大小：更大的 Z 值可以投射出更大的阴影。视图只会把阴影投射到 Z=0 的平面上；他们不会把阴影投射到介于自己和 Z=0 平面之间的视图上。</p>
+<p>Z 值较大的视图会遮盖住Z值较小的视图。不过，Z值大小不会影响视图的大小。</p>
+<p>Elevation对于创建临时上升这种动画同样很有用。</p>
+<h2 id="-elevation-">給视图赋Elevation值</h2>
+<p>视图的 Z 值有两个组成部分，elevation 和 translation (变换，译者注)。elevation 是一个必须部分，translation 是用于动画的：</p>
+<p>Z = elevation + translationZ</p>
+<p><img src="shadow-depth.png" alt=""></p>
+<p>要在layout中设置视图的elevation，使用<code>android:elevation</code>属性。要在Activity代码中设置elevation，使用<code>View.setElevation()</code>方法。</p>
+<p>要设置视图的translation，使用<code>View.setTranslationZ()</code>方法。</p>
+<p>新的<code>ViewPropertyAnimator.z()</code> 和 <code>ViewPropertyAnimator.translationZ()</code> 方法使你可以很容易的实现elevation动画。更多信息，请查看ViewPropertyAnimator和<a href="https://developer.android.com/guide/topics/graphics/prop-animation.html" target="_blank">属性动画开发指南</a>。</p>
+<p>你也可以使用 StateListAnimator 来声明动画。这非常适用于要通过状态改变来触发动画的情况，比如当用户按下按钮。更多信息，请查看<a href="https://developer.android.com/training/material/animations.html#ViewState" target="_blank">Animate View State Changes（当视图状态变化的动画，译者注）</a>。</p>
+<p>Z值和X，Y值的测量单位是一样的。</p>
+<h2 id="-">自定义视图的阴影和轮廓</h2>
+<p>视图背景的边界决定了阴影的形状。轮廓是一个图形对象的外围形状，决定了触摸反馈动画的ripple区域。</p>
+<p>考虑以下是个视图：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">TextView
+</span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/myview"</span>
+    <span class="hljs-attribute">...</span>
+    <span class="hljs-attribute">android:elevation</span>=<span class="hljs-value">"2dp"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@drawable/myrect"</span> /&gt;</span>
+</code></pre>
+<p>背景drawable定义为一个圆角的矩形：</p>
+<pre><code class="lang-xml"><span class="hljs-comment">&lt;!-- res/drawable/myrect.xml --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">shape</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+       <span class="hljs-attribute">android:shape</span>=<span class="hljs-value">"rectangle"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">solid</span> <span class="hljs-attribute">android:color</span>=<span class="hljs-value">"#42000000"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">corners</span> <span class="hljs-attribute">android:radius</span>=<span class="hljs-value">"5dp"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">shape</span>&gt;</span>
+</code></pre>
+<p>这个视图会投影出圆角，因为这是背景drawble的轮廓。如果提供一个自定义的轮廓，会覆盖这个默认的阴影形状。</p>
+<p>以下方式可以自定义视图的轮廓：</p>
+<ol>
+<li>继承 <code>ViewOutlineProvider</code> 类</li>
+<li>覆写 <code>getOutline()</code> 函数.</li>
+<li>用 <code>View.setOutlineProvider()</code> 方法来设定视图的轮廓提供者.</li>
+</ol>
+<p>使用<code>Outline</code>类的函数，你可以创建椭圆和带圆角的矩形轮廓。视图的轮廓提供者会从视图的背景中获取轮廓。要避免视图投射阴影，你可以设置轮廓提供者为 null。</p>
+<h2 id="clip-">Clip 视图</h2>
+<p>Clipping 视图是你轻松的改变视图的形状。附着视图可以是为了设计的一致性，也可以是为了当用户输入信息时，改变视图的形状。你可以通过<code>View.setClipToOutline()</code> 将视图附着给一个轮廓，或使用<code>android:clipToOutline</code>属性。只有矩形、原型和圆角矩形轮廓支持附着，你可以通过<code>Outlin.canClip()</code>方法来检查是否支持附着。</p>
+<p>把视图附着给drawabl的形状，要将这个drawable设置为视图的北京，并调用<code>View.setClipToOutline()</code> 方法。</p>
+<p>附着视图是一个昂贵的操作，所以不要对附着过的形状是进行动画。要实现这个效果，使用 <a href="https://developer.android.com/training/material/animations.html#Reveal" target="_blank">Reveal Effect</a> 动画</p>
+<p>Clipping views enables you to easily change the shape of a view. You can clip views for consistency with other design elements or to change the shape of a view in response to user input. You can clip a view to its outline area using the View.setClipToOutline() method or the android:clipToOutline attribute. Only rectangle, circle, and round rectangle outlines support clipping, as determined by the Outline.canClip() method.</p>
+<p>To clip a view to the shape of a drawable, set the drawable as the background of the view (as shown above) and call the View.setClipToOutline() method.</p>
+<p>Clipping views is an expensive operation, so don&#39;t animate the shape you use to clip a view. To achieve this effect, use the Reveal Effect animation.</p>
 
                     
                     </section>

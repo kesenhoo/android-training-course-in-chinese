@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>自定义ActionBar的风格 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>自定义ActionBar的风格 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.2.3" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.2.3" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter  " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter  " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter  " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter  " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter  " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter  " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_59">
+                    <section class="normal" id="section-gitbook_27">
                     
                         <h1 id="-actionbar-">自定义ActionBar的风格</h1>
 <blockquote>
@@ -3688,13 +3688,13 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或者活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@android:style/Theme.Holo.Light.DarkActionBar"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBar&lt;/item&gt;</span>
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBar"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:background"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">drawable/actionbar_background&lt;/item&gt;</span>
@@ -3709,21 +3709,21 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或者活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Theme.AppCompat.Light.DarkActionBar"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBar&lt;/item&gt;</span>
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"actionBarStyle"</span>&gt;@style/MyActionBar&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBar"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:background"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">drawable/actionbar_background&lt;/item&gt;</span>
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"background"</span>&gt;@drawable/actionbar_background&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
@@ -3749,7 +3749,7 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或者活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Theme.Holo"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBar&lt;/item&gt;</span>
@@ -3757,19 +3757,19 @@
         &lt;item name=<span class="hljs-string">"android:actionMenuTextColor"</span>&gt;@color/actionbar_text&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBar"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.Holo.ActionBar"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:titleTextStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBarTitleText&lt;/item&gt;</span>
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar title text --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 标题文本 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTitleText"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/TextAppearance.Holo.Widget.ActionBar.Title"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:textColor"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">color/actionbar_text&lt;/item&gt;</span>
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar tabs text styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar Tab标签 文本样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTabText"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.Holo.ActionBar.TabText"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:textColor"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">color/actionbar_text&lt;/item&gt;</span>
@@ -3781,40 +3781,40 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或者活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Theme.AppCompat"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBar&lt;/item&gt;</span>
         &lt;item name=<span class="hljs-string">"android:actionBarTabTextStyle"</span>&gt;@style/MyActionBarTabText&lt;/item&gt;
         &lt;item name=<span class="hljs-string">"android:actionMenuTextColor"</span>&gt;@color/actionbar_text&lt;/item&gt;
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"actionBarStyle"</span>&gt;@style/MyActionBar&lt;/item&gt;
         &lt;item name=<span class="hljs-string">"actionBarTabTextStyle"</span>&gt;@style/MyActionBarTabText&lt;/item&gt;
         &lt;item name=<span class="hljs-string">"actionMenuTextColor"</span>&gt;@color/actionbar_text&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBar"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.AppCompat.ActionBar"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:titleTextStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBarTitleText&lt;/item&gt;</span>
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"titleTextStyle"</span>&gt;@style/MyActionBarTitleText&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar title text --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar 标题文本 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTitleText"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/TextAppearance.AppCompat.Widget.ActionBar.Title"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:textColor"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">color/actionbar_text&lt;/item&gt;</span>
-        &lt;!-- The textColor property is backward compatible with the Support Library --&gt;
+        &lt;!-- 文本颜色属性textColor是可以配合支持库向后兼容的 --&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar tabs text --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar Tab标签文本样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTabText"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.AppCompat.ActionBar.TabText"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:textColor"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">color/actionbar_text&lt;/item&gt;</span>
-        &lt;!-- The textColor property is backward compatible with the Support Library --&gt;
+        &lt;!-- 文本颜色属性textColor是可以配合支持库向后兼容的 --&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
@@ -3829,9 +3829,9 @@
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">selector</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
 
-<span class="hljs-comment">&lt;!-- STATES WHEN BUTTON IS NOT PRESSED --&gt;</span>
+<span class="hljs-comment">&lt;!-- 按钮没有按下的状态 --&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- Non focused states --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 没有焦点的状态 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:state_focused</span>=<span class="hljs-value">"false"</span> <span class="hljs-attribute">android:state_selected</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_unselected"</span> /&gt;</span>
@@ -3839,7 +3839,7 @@
           <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_selected"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- Focused states (such as when focused with a d-pad or mouse hover) --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 有焦点的状态 (例如D-Pad控制或者鼠标经过) --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:state_focused</span>=<span class="hljs-value">"true"</span> <span class="hljs-attribute">android:state_selected</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_unselected_focused"</span> /&gt;</span>
@@ -3848,9 +3848,9 @@
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_selected_focused"</span> /&gt;</span>
 
 
-<span class="hljs-comment">&lt;!-- STATES WHEN BUTTON IS PRESSED --&gt;</span>
+<span class="hljs-comment">&lt;!--  按钮按下的状态D --&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- Non focused states --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 没有焦点的状态 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:state_focused</span>=<span class="hljs-value">"false"</span> <span class="hljs-attribute">android:state_selected</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"true"</span>
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_unselected_pressed"</span> /&gt;</span>
@@ -3858,7 +3858,7 @@
         <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"true"</span>
         <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_selected_pressed"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- Focused states (such as when focused with a d-pad or mouse hover) --&gt;</span>
+    <span class="hljs-comment">&lt;!--有焦点的状态 (例如D-Pad控制或者鼠标经过)--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:state_focused</span>=<span class="hljs-value">"true"</span> <span class="hljs-attribute">android:state_selected</span>=<span class="hljs-value">"false"</span>
           <span class="hljs-attribute">android:state_pressed</span>=<span class="hljs-value">"true"</span>
           <span class="hljs-attribute">android:drawable</span>=<span class="hljs-value">"@drawable/tab_unselected_pressed"</span> /&gt;</span>
@@ -3872,16 +3872,16 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Theme.Holo"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarTabStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBarTabs&lt;/item&gt;</span>
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar tabs styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar tabs 标签样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTabs"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.Holo.ActionBar.TabView"</span>&gt;</span><span class="css">
-        &lt;!<span class="hljs-tag">--</span> <span class="hljs-tag">tab</span> <span class="hljs-tag">indicator</span> <span class="hljs-tag">--</span>&gt;
+        &lt;!<span class="hljs-tag">--</span> 标签指示器 <span class="hljs-tag">--</span>&gt;
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:background"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">drawable/actionbar_tab_indicator&lt;/item&gt;</span>
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
@@ -3891,22 +3891,22 @@
 <p>res/values/themes.xml</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- the theme applied to the application or activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 应用于程序或活动的主题 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"CustomActionBarTheme"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Theme.AppCompat"</span>&gt;</span><span class="css">
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:actionBarTabStyle"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">style/MyActionBarTabs&lt;/item&gt;</span>
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"actionBarTabStyle"</span>&gt;@style/MyActionBarTabs&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- ActionBar tabs styles --&gt;</span>
+    <span class="hljs-comment">&lt;!-- ActionBar tabs 样式 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"MyActionBarTabs"</span>
            <span class="hljs-attribute">parent</span>=<span class="hljs-value">"@style/Widget.AppCompat.ActionBar.TabView"</span>&gt;</span><span class="css">
-        &lt;!<span class="hljs-tag">--</span> <span class="hljs-tag">tab</span> <span class="hljs-tag">indicator</span> <span class="hljs-tag">--</span>&gt;
+        &lt;!<span class="hljs-tag">--</span> 标签指示器 <span class="hljs-tag">--</span>&gt;
         &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:background"</span>&gt;<span class="hljs-at_rule">@<span class="hljs-keyword">drawable/actionbar_tab_indicator&lt;/item&gt;</span>
 
-        &lt;!-- Support library compatibility --&gt;
+        &lt;!-- 支持库兼容 --&gt;
         &lt;item name=<span class="hljs-string">"background"</span>&gt;@drawable/actionbar_tab_indicator&lt;/item&gt;
     </span></span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>

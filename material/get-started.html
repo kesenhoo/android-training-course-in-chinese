@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>开始使用Material Design | Google Android官方培训课程中文版(v0.5)</title>
+        <title>开始使用Material Design | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.1" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6.1" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3648,9 +3648,89 @@
                     
                         <h1 id="-material-design">开始使用Material Design</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文: <a href="https://developer.android.com/training/material/get-started.html" target="_blank">https://developer.android.com/training/material/get-started.html</a></p>
 </blockquote>
-<p>待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！</p>
+<p>要创建一个 Material Design 应用：</p>
+<ol>
+<li>学习 <a href="http://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material Design 规格标准</a></li>
+<li>应用 Material Design 主题</li>
+<li>创建遵从 Material Design 的 Layout 文件</li>
+<li>定义视图的 elevation 值来修改阴影</li>
+<li>使用系统组件来创建列表和卡片</li>
+<li>自定义动画</li>
+</ol>
+<h2 id="-">维护兼容性</h2>
+<p>你可以添加 Material Design 特性，同时保持对 Android 5.0 之前版本的兼容。更多信息，请参见<a href="https://developer.android.com/training/material/compatibility.html" target="_blank">维护兼容性章节</a>。</p>
+<h2 id="-material-design-">使用 Material Design 更新现有应用</h2>
+<p>要更新现有应用，使其使用 Material Design，你需要翻新你的 layout 文件来遵从 Material Design 标准，并确保其包含了正确的深度，触摸反馈和动画。</p>
+<h2 id="-material-design-">使用 Material Design 创建新的应用</h2>
+<p>如果你要创建使用 Material Design 的新的应用，Material Design 指南提供了一套跨平台统一的设计。请遵从指南，使用新功能来进行 Android 应用的设计和开发。</p>
+<h2 id="-material-">应用 Material 主题</h2>
+<p>要在应用中使用 Material 主题，需要定义一个继承于 <code>android:Theme.Material</code> 的 style 文件：</p>
+<pre><code class="lang-xml"><span class="hljs-comment">&lt;!-- res/values/styles.xml --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- your theme inherits from the material theme --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"AppTheme"</span> <span class="hljs-attribute">parent</span>=<span class="hljs-value">"android:Theme.Material"</span>&gt;</span><span class="css">
+    &lt;!<span class="hljs-tag">--</span> <span class="hljs-tag">theme</span> <span class="hljs-tag">customizations</span> <span class="hljs-tag">--</span>&gt;
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<p>Material 主题提供了更新后的系统组件，使你可以设置调色板和在触摸和 Activity 变换时使用默认的动画。更多信息，请参见 Material 主题章节。</p>
+<h2 id="-layouts">设计你的 Layouts</h2>
+<p>另外，要应用自定义的 Material 主题，你的 layout 应该要符合 <a href="http://www.google.com/design/spec" target="_blank">Material 设计规范</a>。在设计 Layout 时，尤其要注意一下方面：</p>
+<ul>
+<li>基准线网格</li>
+<li>Keyline</li>
+<li>间隙</li>
+<li>触摸目标的大小</li>
+<li>Layout 结构</li>
+</ul>
+<h2 id="-elevation">定义视图的 Elevation</h2>
+<p>视图可以投射阴影， elevation 值决定了阴影的大小和顺序。要设定 elevation 值，请使用 <code>android:elevation</code> 属性：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">TextView
+</span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/my_textview"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/next"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@color/white"</span>
+    <span class="hljs-attribute">android:elevation</span>=<span class="hljs-value">"5dp"</span> /&gt;</span>
+</code></pre>
+<p>新的 <code>translationZ</code> 属性使得你可以设计临时变更 elevation 的动画。elevation 变化在做触摸反馈时很有用。</p>
+<p>更多信息，请参见定义阴影和 Clipping 视图章节。</p>
+<h2 id="-">创建列表和卡片</h2>
+<p>RecyclerView 是一个可插入性更强的 ListView，它支持不同的 layout 类型，并可以提升性能。CardView 使得你可以在卡片内显示一部分内容，并且和其他应用保持外观一致。以下是一段样例代码展示如何在 layout 中添加 CardView</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.v7.widget.CardView
+</span>    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/card_view"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"200dp"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"200dp"</span>
+    <span class="hljs-attribute">card_view:cardCornerRadius</span>=<span class="hljs-value">"3dp"</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.v7.widget.CardView</span>&gt;</span>
+</code></pre>
+<p>更多信息，请参见列表和卡片章节。</p>
+<h2 id="-">自定义动画</h2>
+<p>Android 5.0 (API level 21) 包含了新的动画 API。比如，你可以在 activity 中定义进入和退出 activity 时的动画。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> {</span>
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        <span class="hljs-comment">// enable transitions</span>
+        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+        setContentView(R.layout.activity_my);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSomeButtonClicked</span>(View view) {
+        getWindow().setExitTransition(<span class="hljs-keyword">new</span> Explode());
+        Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, MyOtherActivity.class);
+        startActivity(intent,
+                      ActivityOptions
+                          .makeSceneTransitionAnimation(<span class="hljs-keyword">this</span>).toBundle());
+    }
+}
+</code></pre>
+<p>当你从当前 activity 进入另一个 activity 时，退出变换动画会被调用。</p>
+<p>想学习更多新的动画 API，参见自定义动画章节。</p>
 
                     
                     </section>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>发送简单的网络请求 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>发送简单的网络请求 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.7.1" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.7.1" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_35">
+                    <section class="normal" id="section-gitbook_97">
                     
                         <h1 id="-sending-a-simple-request-">发送简单的网络请求(Sending a Simple Request)</h1>
 <blockquote>
@@ -3653,9 +3653,9 @@
 <p>使用Volley的方式是，你通过创建一个<code>RequestQueue</code>并传递<code>Request</code>对象给它。RequestQueue管理工作线程用来执行网络操作，从Cache中读取与写入数据，以及解析Http的响应内容。<code>Requests</code>执行raw responses的解析，Volley会把响应的数据分发给主线程。</p>
 <p>这节课会介绍如何使用<code>Volley.newRequestQueue</code>这个建立请求队列的方法来发送一个请求，在下一节课<a href="request-queue.html">建立一个请求队列Setting Up a RequestQueue</a>中会介绍你自己如何建立一个请求队列。</p>
 <p>这节课也会介绍如何添加一个请求到RequesutQueue以及如何取消一个请求。</p>
-<h2 id="add-the-internet-permission">Add the INTERNET Permission</h2>
+<h2 id="1-add-the-internet-permission">1)Add the INTERNET Permission</h2>
 <p>为了使用Volley，你必须添加<code>android.permission.INTERNET</code>权限到你的manifest文件中。没有这个权限，你的app将无法访问网络。</p>
-<h2 id="use-newrequestqueue">Use newRequestQueue</h2>
+<h2 id="2-use-newrequestqueue">2)Use newRequestQueue</h2>
 <p>Volley提供了一个简便的方法：<code>Volley.newRequestQueue</code>用来为你建立一个<code>RequestQueue</code>，使用默认值，并启动这个队列。例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">final</span> TextView mTextView = (TextView) findViewById(R.id.text);
 ...
@@ -3683,13 +3683,13 @@ queue.add(stringRequest);
 </code></pre>
 <p>Volley总是把解析过后的数据返回到主线程中。在主线程中更加合适使用接收到到的数据用来操作UI控件，这样你可以在响应的handler中轻松的修改UI，但是对于库提供的一些其他方法是有些特殊的，例如与取消有关的。</p>
 <p>关于如何创建你自己的请求队列，不要使用Volley.newRequestQueue方法，请查看<a href="request-queue.html">建立一个请求队列Setting Up a RequestQueue</a>。</p>
-<h2 id="send-a-request">Send a Request</h2>
+<h2 id="3-send-a-request">3)Send a Request</h2>
 <p>为了发送一个请求，你只需要构造一个请求并通过<code>add()</code>方法添加到<code>RequestQueue</code>中。一旦你添加了这个请求，它会通过队列，得到处理，然后得到原始的响应数据并返回。</p>
 <p>当你执行<code>add()</code>方法时，Volley触发执行一个缓存处理线程以及网络一系列的网络处理线程。当你添加一个请求到队列中，它将被缓存线程所捕获并触发：如果这个请求可以被缓存处理，那么会在缓存线程中执行响应数据的解析并返回到主线程。如果请求不能被缓存所处理，它会被放到网络队列中。网络线程池中的第一个可用的网络线程会从队列中获取到这个请求并执行HTTP操作，解析响应数据，把数据写到缓存中之后再把解析之后的数据返回到主线程。</p>
 <p>请注意那些比较耗时的操作，例如I/O与解析parsing/decoding都是执行在工作线程。<strong>你可以在任何线程中添加一个请求，但是响应结果都是返回到主线程的。</strong></p>
 <p>下图1，演示了一个请求的生命周期：</p>
 <p><img src="volley-request.png" alt="volley-request"></p>
-<h2 id="cancel-a-request">Cancel a Request</h2>
+<h2 id="4-cancel-a-request">4)Cancel a Request</h2>
 <p>为了取消一个请求，对你的请求对象执行<code>cancel()</code>方法。一旦取消，Volley会确保你的响应Handler不会被执行。这意味着在实际操作中你可以在activity的<code>onStop()</code>方法中取消所有pending在队列中的请求。你不需要通过检测<code>getActivity() == null</code>来丢弃你的响应handler，其他类似<code>onSaveInstanceState()</code>等保护性的方法里面也都不需要检测。</p>
 <p>为了利用这种优势，你应该跟踪所有已经发送的请求，以便在需要的时候，可以取消他们。<strong>有一个简便的方法</strong>：你可以为每一个请求对象都绑定一个tag对象。你可以使用这个tag来提供取消的范围。例如，你可以为你的所有请求都绑定到执行的Activity上，然后你可以在<code>onStop()</code>方法执行<code>requestQueue.cancelAll(this)</code> 。同样的，你可以为ViewPager中的所有请求缩略图Request对象分别打上对应Tab的tag。并在滑动时取消这些请求，用来确保新生成的tab不会被前面tab的请求任务所卡到。</p>
 <p>下面一个使用String来打Tag的例子：</p>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>获取当前位置 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>获取当前位置 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.1" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.1" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,16 +3644,16 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_152">
+                    <section class="normal" id="section-gitbook_154">
                     
                         <h1 id="-">获取当前位置</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:</p>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/retrieve-current.html" target="_blank">http://developer.android.com/training/location/retrieve-current.html</a></p>
 </blockquote>
 <p>位置服务会自动持有用户当前的位置信息，你的应用在需要位置的时候获取一下即可。位置的精确度基于你所请求的位置权限以及当前设备已经激活的位置传感器。</p>
 <p>位置服务通过一个<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">LocationClient</a>（位置服务类LocationClient的一个实例）将当前的位置发送给你的应用。关于位置信息的所有请求都是通过这个类发送。</p>
 <blockquote>
-<p><strong>注意:</strong> 在开始这个课程之前，确定你的开发环境和测试设备处于正常可用状态。要了解更多，请阅读Google Play services 引导。</p>
+<p><strong>Note:</strong> 在开始这个课程之前，确定你的开发环境和测试设备处于正常可用状态。要了解更多，请阅读Google Play services 引导。</p>
 </blockquote>
 <h2 id="-">确定应用的权限</h2>
 <p>使用位置服务的应用必须用户位置权限。Android拥有两种位置权限：<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a> 和 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>。选择不同的权限决定你的应用最后获取的位置信息的精度。如果你只请求了一个精度比较低的位置权限，位置服务会对返回的位置信息处理成一个相当于城市级别精确度的位置。</p>
@@ -3662,7 +3662,7 @@
 <pre><code class="lang-java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;
 </code></pre>
 <h2 id="-google-play-services">检测Google Play Services</h2>
-<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
+<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">onActivityResult()</a>即可。</p>
 <p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
     ...
@@ -3830,9 +3830,9 @@
 </code></pre>
 <h2 id="-location-client">连接 Location Client</h2>
 <p>既然这个回调函数已经写好了，现在我们可以创建location client并将它连接到Location Services。</p>
-<p>首先你要在onCreate()方法里面创建location client，然后在onStart()方法里面连接它 then connect it in，这样当你的activity对用户可见时 Location Services 就保存着当前的位置信息了。你需要在onStop()方法里面断开连接，这样当你的activity不可见时，Location Services 就不会保存你的位置信息。下面连接和断开连接的方式对节省电池很有帮助。例如：</p>
+<p>首先你要在onCreate()方法里面创建location client，然后在onStart()方法里面连接它，这样当你的activity对用户可见时 Location Services 就保存着当前的位置信息了。你需要在onStop()方法里面断开连接，这样当你的activity不可见时，Location Services 就不会保存你的位置信息。下面连接和断开连接的方式对节省电池很有帮助。例如：</p>
 <blockquote>
-<p><strong>注意:</strong> 当前的位置信息只有在location client 连接到 Location Service时才会被保存。 假设没有其他应用连接到 Location Services，如果你断开 client 的连接，那么这时你调用 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">getLastLocation() </a>)所获取到的位置信息可能已经过时。</p>
+<p><strong>Note:</strong> 当前的位置信息只有在location client 连接到 Location Service时才会被保存。 假设没有其他应用连接到 Location Services，如果你断开 client 的连接，那么这时你调用 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">getLastLocation() </a>所获取到的位置信息可能已经过时。</p>
 </blockquote>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
@@ -3872,7 +3872,7 @@
 }
 </code></pre>
 <h2 id="-">获取当前的位置信息</h2>
-<p>为了获取当前的位置信息，调用<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">getLastLocation()</a>)方法。例如：</p>
+<p>为了获取当前的位置信息，调用<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">getLastLocation()</a>方法。例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
         <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> {</span>
@@ -3884,7 +3884,7 @@
     ...
 }
 </code></pre>
-<p>下一课，<a href="receive-location-updates.html">获取位置更新</a>，教你如果周期性地从Location Services获取位置信息更新。</p>
+<p>下一课，<a href="receive-location-updates.html">获取位置更新</a>，教你如何周期性地从Location Services获取位置信息更新。</p>
 
                     
                     </section>

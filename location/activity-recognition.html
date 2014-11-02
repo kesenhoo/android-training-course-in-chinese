@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>识别用户的当下活动 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>识别用户的当下活动 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.5" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="7.2.5" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,25 +3644,25 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_147">
+                    <section class="normal" id="section-gitbook_148">
                     
                         <h1 id="-">识别用户的当下活动</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:</p>
+<p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/activity-recognition.html" target="_blank">http://developer.android.com/training/location/activity-recognition.html</a></p>
 </blockquote>
 <p>活动识别会去探测用户当前的身体活动，比如步行，驾驶以及站立。通过一个不同于请求位置更新或者地理围栏的活动识别client来请求用户活动更新，但是请求方式是类似的。根据你设置的更新频率，Location Services会返回包含一个或者多个活动以及它们出现对应的概率的反馈信息。这一课将会向你展示如何从Location Services请求活动识别更新。</p>
-<h2 id="-">请求活动识别更新</h2>
+<h2 id="1-">1)请求活动识别更新</h2>
 <p>从Location Services请求活动识别更新的过程与请求周期性的位置更新类似。你通过一个client发送请求，接着Location Services 以 <a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>的形式将更新数据返回。然而，你在开始之前必须设置好对应的权限。下面的课程将会教你如何设置权限，连接client以及请求更新。</p>
-<h3 id="-">设置接收更新数据的权限</h3>
+<h3 id="1-1-">1.1)设置接收更新数据的权限</h3>
 <p>一个应用想要获得活动识别数据就必须拥有<code>com.google.android.gms.permission.ACTIVITY_RECOGNITION</code>权限。为了让你的应用有这个权限，在你的manifest文件里面将如下代码放到<code>&lt;manifest&gt;</code>标签的里面。</p>
 <pre><code class="lang-java">&lt;uses-permission
     android:name=<span class="hljs-string">"com.google.android.gms.permission.ACTIVITY_RECOGNITION"</span>/&gt;
 </code></pre>
 <p>活动识别不需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>权限和 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>权限。</p>
-<h3 id="-google-play-services-">检查Google Play Services是否可用</h3>
+<h3 id="1-2-google-play-services-">1.2)检查Google Play Services是否可用</h3>
 <p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
 <blockquote>
-<p><strong>注意:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
+<p><strong>Note:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
 </blockquote>
 <p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> {</span>
@@ -3761,10 +3761,10 @@
 }
 </code></pre>
 <p>下面的代码片段使用了这个方法来检查Google Play services是否可用。</p>
-<h3 id="-">发送活动更新数据请求</h3>
+<h3 id="1-3-">1.3)发送活动更新数据请求</h3>
 <p>一般的更新数据请求都是从一个实现了Location Services回调函数的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a> 或者<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>发出来的。生成这个请求的过程是一个异步过程，它是在你请求到活动识别client的连接的时候开始的。当这个client连接上的时候，Location Services对调用你对<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>方法的实现。在这个方法里面，你可以发送更新数据的请求到Location Services；这个请求是异步的。一旦你生成这个请求，你就可以断开client的连接了。</p>
 <p>这个过程会在下面的代码里面描述。</p>
-<h3 id="-activity-fragment">定义 Activity 和 Fragment</h3>
+<h3 id="1-4-activity-fragment">1.4)定义 Activity 和 Fragment</h3>
 <p>定义一个实现如下接口的<a href="http://developer .android.com/reference/android/support/v4/app/FragmentActivity.html" target="_blank">FragmentActivity</a> 或者<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a>：</p>
 <p><a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html" target="_blank">ConnectionCallbacks</a></p>
 <ul>
@@ -3832,7 +3832,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">开启请求进程</h3>
+<h3 id="1-5-">1.5)开启请求进程</h3>
 <p>定义一个请求活动识别更新的方法。在这个方法里面，请求到Location Services的连接。你可以在activity的任何地方调用这个方法；这个方法是用来开启请求更新数据的方法链。</p>
 <p>为了避免在你的第一个请求结束之前开启第二个请求时出现竞争的情况，你可以定义一个boolean标志位来记录当前请求的状态。在开始请求的时候设置标志位值为<code>true</code> ，在请求结束的时候设置标志位为<code>false</code> 。</p>
 <p>下面的代码展示了如何开始一个更新请求：</p>
@@ -3911,7 +3911,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">处理断开连接</h3>
+<h3 id="1-6-">1.6)处理断开连接</h3>
 <p>在某些情况下，Location Services可能会在你调用<a href="http://developer.android.com/reference/com/google/android/gms/location/ActivityRecognitionClient.html#disconnect(" target="_blank">disconnect()</a>)方法之前断开与活动识别client的连接。为了处理这种情况，实现<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onDisconnected(" target="_blank">onDisconnected()</a>)方法即可。在这个方法里面，设置请求标志位来表示这个请求是否有效，并根据这个标志位来删除client：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> {</span>
@@ -3930,7 +3930,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">处理连接错误</h3>
+<h3 id="1-7-">1.7)处理连接错误</h3>
 <p>在处理正常的回调函数之外，你还得提供一个回调函数来处理连接出现错误的情况。这个回调函数重用了前面在检查Google Play service的时候用到的DialogFragment类。它还可以重用之前在onActivityResult()方法里用来接收当用户和错误对话框交互时产生的结果用到的代码。下面的代码展示了如何实现回调函数：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>,
@@ -3981,10 +3981,10 @@
     ...
 }
 </code></pre>
-<h2 id="-">处理活动更新数据</h2>
+<h2 id="2-">2)处理活动更新数据</h2>
 <p>为了处理Location Services每一个周期发送的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，你可以定义一个<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>以及它的<a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a>方法。 Location Services以<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>对象的形式返回活动识别更新数据，并使用了你在调用<a href="http://developer.android.com/reference/com/google/android/gms/location/ActivityRecognitionClient.html#requestActivityUpdates(long, android.app.PendingIntent" target="_blank">requestActivityUpdates()</a>)方法时产生的<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a> 。因为你为这个<a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>提供了一个单独的intent，那么接收这个intent的唯一组件就是<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>了。</p>
 <p>下面的代码展示了如何来检查活动识别更新数据。</p>
-<h3 id="-intentservice">定义一个IntentService</h3>
+<h3 id="2-1-intentservice">2.1)定义一个IntentService</h3>
 <p>首先定义这个类以及它的<a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a>方法：</p>
 <pre><code class="lang-java"><span class="hljs-javadoc">/**
  * Service that receives ActivityRecognition updates. It receives
@@ -4074,7 +4074,7 @@
     ...
 }
 </code></pre>
-<h3 id="-manifest-intentservice">在manifest文件里面添加IntentService</h3>
+<h3 id="2-2-manifest-intentservice">2.2)在manifest文件里面添加IntentService</h3>
 <p>为了让系统识别这个IntentService，你需要在应用的manifest文件里面添加<code>&lt;service&gt;</code>标签：</p>
 <pre><code class="lang-java">&lt;service
     android:name="com.example.android.location.ActivityRecognitionIntentService"
@@ -4083,7 +4083,7 @@
 &lt;/service&gt;
 </code></pre>
 <p>注意你不必为这个服务去设置特定的intent filters，因为它只接受特定的intent。定义Activity和Fragment这一段已经描述了活动更新intent是如何被创建的。</p>
-<h2 id="-">停止活动识别更新</h2>
+<h2 id="3-">3)停止活动识别更新</h2>
 <p>停止活动识别更新的过程与开启活动识别更新的过程类似，只要将调用的方法<a href="http://developer.android.com/reference/com/google/android/gms/location/ActivityRecognitionClient.html#removeActivityUpdates(android.app.PendingIntent" target="_blank">removeActivityUpdates()</a>换成<a href="http://developer.android.com/reference/com/google/android/gms/location/ActivityRecognitionClient.html#requestActivityUpdates(long, android.app.PendingIntent" target="_blank">requestActivityUpdates()</a>即可。</p>
 <p>停止更新的过程使用了你在添加请求更新时使用过的几个方法，开始的时候要为两种操作定义请求类型：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
@@ -4138,7 +4138,7 @@
     ...
 }
 </code></pre>
-<h3 id="-">开始请求停止更新</h3>
+<h3 id="3-1-">3.1)开始请求停止更新</h3>
 <p>定义一个方法来请求停止活动识别更新。在这个方法里面，设置号请求类型，然后向Location Services发起连接。接着你就可以在activity里面的任何地方调用这个方法了。这样做的目的就是开启停止活动更新的方法链：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> {</span>

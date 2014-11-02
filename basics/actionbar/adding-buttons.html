@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>添加Action按钮 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>添加Action按钮 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.2.2" data-basepath="../.." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.2.2" data-basepath="../.." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../../animations/crossfade.html" title="View间渐变" class="chapter  " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter  " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter  " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../../animations/cardflip.html" title="展示卡片翻转动画" class="chapter  " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter  " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../../connectivity/network-ops/managing.html" title="管理网络" class="chapter  " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter  " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter  " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter  " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter  " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,7 +3644,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_55">
+                    <section class="normal" id="section-gitbook_23">
                     
                         <h1 id="-action-">添加Action按钮</h1>
 <blockquote>
@@ -3658,12 +3658,12 @@
 <p>为你想添加到 action bar 中的每个条目添加一个 <code>&lt;item&gt;</code> 元素。例如：</p>
 <p>res/menu/main_activity_actions.xml</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">menu</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span> &gt;</span>
-    <span class="hljs-comment">&lt;!-- Search, should appear as action button --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 搜索, 应该作为动作按钮展示--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/action_search"</span>
           <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/ic_action_search"</span>
           <span class="hljs-attribute">android:title</span>=<span class="hljs-value">"@string/action_search"</span>
           <span class="hljs-attribute">android:showAsAction</span>=<span class="hljs-value">"ifRoom"</span> /&gt;</span>
-    <span class="hljs-comment">&lt;!-- Settings, should always be in the overflow --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 设置, 在溢出菜单中展示 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/action_settings"</span>
           <span class="hljs-attribute">android:title</span>=<span class="hljs-value">"@string/action_settings"</span>
           <span class="hljs-attribute">android:showAsAction</span>=<span class="hljs-value">"never"</span> /&gt;</span>
@@ -3678,7 +3678,7 @@
 <p>res/menu/main_activity_actions.xml</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">menu</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
       <span class="hljs-attribute">xmlns:yourapp</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span> &gt;</span>
-    <span class="hljs-comment">&lt;!-- Search, should appear as action button --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 搜索, 应该展示为动作按钮 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/action_search"</span>
           <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/ic_action_search"</span>
           <span class="hljs-attribute">android:title</span>=<span class="hljs-value">"@string/action_search"</span>
@@ -3690,7 +3690,7 @@
 <p>为 action bar 布局菜单条目，是通过在 activity 中实现 <a href="https://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a> 回调方法来 <code>inflate</code> 菜单资源从而获取 <a href="https://developer.android.com/reference/android/view/Menu.html" target="_blank">Menu</a> 对象。例如：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onCreateOptionsMenu</span>(Menu menu) {
-    <span class="hljs-comment">// Inflate the menu items for use in the action bar</span>
+    <span class="hljs-comment">// 为ActionBar扩展菜单项</span>
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.main_activity_actions, menu);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.onCreateOptionsMenu(menu);
@@ -3700,7 +3700,7 @@
 <p>当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用<a href="https://developer.android.com/reference/android/view/MenuItem.html" target="_blank">MenuItem</a>的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下  - 返回的 ID 会匹配你声明对应的 <code>&lt;item&gt;</code> 元素中 <code>&lt;android:id&gt;</code> 属性的值。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span>(MenuItem item) {
-    <span class="hljs-comment">// Handle presses on the action bar items</span>
+    <span class="hljs-comment">// 处理动作按钮的点击事件</span>
     <span class="hljs-keyword">switch</span> (item.getItemId()) {
         <span class="hljs-keyword">case</span> R.id.action_search:
             openSearch();
@@ -3721,17 +3721,17 @@
 <p>如何在 mainfest 中声明一个 activity 的父辈，例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
     ...
-    <span class="hljs-comment">&lt;!-- The main/home activity (it has no parent activity) --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 主 main/home 活动 (没有上级活动) --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">activity
 </span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> <span class="hljs-attribute">...</span>&gt;</span>
         ...
     <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- A child of the main activity --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 主活动的一个子活动--&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">activity
 </span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.myfirstapp.DisplayMessageActivity"</span>
         <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/title_activity_display_message"</span>
         <span class="hljs-attribute">android:parentActivityName</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> &gt;</span>
-        <span class="hljs-comment">&lt;!-- Parent activity meta-data to support 4.0 and lower --&gt;</span>
+        <span class="hljs-comment">&lt;!--  meta-data 用于支持 support 4.0 以及一下来指明上级活动 --&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">meta-data
 </span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.support.PARENT_ACTIVITY"</span>
             <span class="hljs-attribute">android:value</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> /&gt;</span>
@@ -3745,7 +3745,7 @@
     setContentView(R.layout.activity_displaymessage);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(<span class="hljs-keyword">true</span>);
-    <span class="hljs-comment">// If your minSdkVersion is 11 or higher, instead use:</span>
+    <span class="hljs-comment">// 如果你的minSdkVersion属性是11活更高, 应该这么用:</span>
     <span class="hljs-comment">// getActionBar().setDisplayHomeAsUpEnabled(true);</span>
 }
 </code></pre>

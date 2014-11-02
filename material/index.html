@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建使用Material Design的应用 | Google Android官方培训课程中文版(v0.5)</title>
+        <title>创建使用Material Design的应用 | Google Android官方培训课程中文版(v0.6)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6" data-basepath=".." data-revision="1413739873744">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="11.6" data-basepath=".." data-revision="1414938644389">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../" >Google Android官方培训课程中文版(v0.5)</a>
+        <a href="../" >Google Android官方培训课程中文版(v0.6)</a>
     </h1>
 </div>
 
@@ -919,7 +919,7 @@
         <li class="chapter " data-level="5.3.2" data-path="animations/screen-slide.html">
             
             <a href="../animations/screen-slide.html">
-                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕滑动
+                <i class="fa fa-check"></i> <b>5.3.2.</b> 使用ViewPager实现屏幕侧滑
             </a>
             
             
@@ -1036,7 +1036,7 @@
         <li class="chapter " data-level="6.2.2" data-path="connectivity/network-ops/managing.html">
             
             <a href="../connectivity/network-ops/managing.html">
-                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理使用的网络
+                <i class="fa fa-check"></i> <b>6.2.2.</b> 管理网络
             </a>
             
             
@@ -1855,7 +1855,7 @@
         <li class="chapter " data-level="10.1.4" data-path="ux/design-nav/ancestral-temporal.html">
             
             <a href="../ux/design-nav/ancestral-temporal.html">
-                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和时间导航
+                <i class="fa fa-check"></i> <b>10.1.4.</b> 提供向上和操作顺序导航
             </a>
             
             
@@ -3229,7 +3229,7 @@
     
         <a href="../animations/crossfade.html" title="View间渐变" class="chapter done " data-progress="5.3.1" style="left: 26.523297491039425%;"></a>
     
-        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕滑动" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
+        <a href="../animations/screen-slide.html" title="使用ViewPager实现屏幕侧滑" class="chapter done " data-progress="5.3.2" style="left: 26.881720430107528%;"></a>
     
         <a href="../animations/cardflip.html" title="展示卡片翻转动画" class="chapter done " data-progress="5.3.3" style="left: 27.240143369175627%;"></a>
     
@@ -3251,7 +3251,7 @@
     
         <a href="../connectivity/network-ops/connecting.html" title="连接到网络" class="chapter done " data-progress="6.2.1" style="left: 30.46594982078853%;"></a>
     
-        <a href="../connectivity/network-ops/managing.html" title="管理使用的网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
+        <a href="../connectivity/network-ops/managing.html" title="管理网络" class="chapter done " data-progress="6.2.2" style="left: 30.82437275985663%;"></a>
     
         <a href="../connectivity/network-ops/xml.html" title="解析XML数据" class="chapter done " data-progress="6.2.3" style="left: 31.182795698924732%;"></a>
     
@@ -3409,7 +3409,7 @@
     
         <a href="../ux/design-nav/descendant-lateral.html" title="提供向下和横向导航" class="chapter done " data-progress="10.1.3" style="left: 58.78136200716846%;"></a>
     
-        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和时间导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
+        <a href="../ux/design-nav/ancestral-temporal.html" title="提供向上和操作顺序导航" class="chapter done " data-progress="10.1.4" style="left: 59.13978494623656%;"></a>
     
         <a href="../ux/design-nav/wireframing.html" title="综合：设计样例 App" class="chapter done " data-progress="10.1.5" style="left: 59.49820788530466%;"></a>
     
@@ -3644,13 +3644,37 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_158">
+                    <section class="normal" id="section-gitbook_155">
                     
                         <h1 id="-material-design-">创建使用Material Design的应用</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文: <a href="https://developer.android.com/training/material/index.html" target="_blank">https://developer.android.com/training/material/index.html</a></p>
 </blockquote>
-<p>待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！</p>
+<p>Material Design 是一个全面的关于视觉，动作和交互的指南，实现跨平台的设计。要在你的 Android 应用中使用 Material Design， 你需要遵从 Material Design 规格文档，并学习在 Android 5.0 中新添加的组件和功能。</p>
+<p>本课会通过以下方面教你如何创建 Material Design 设计的应用：</p>
+<ul>
+<li>Material Design 主题</li>
+<li>用于卡片和列表的小组件</li>
+<li>定义Shadows与Clipping视图</li>
+<li>向量 drawable</li>
+<li>自定义动画</li>
+</ul>
+<p>本课还将告诉你在使用 Material Design 时如何兼容 Android 5.0 (API level 21) 之前的版本</p>
+<h1 id="-">课程</h1>
+<h4 id="-material-design-get-started-html-"><a href="get-started.html"> 开始使用Material Design </a></h4>
+<p>学习如何升级应用，使用 Material Design 特性</p>
+<h4 id="-material-design-theme-html-"><a href="theme.html"> 使用 Material Design 主题 </a></h4>
+<p>学习如何使用 Material Design 主题</p>
+<h4 id="-lists-cards-html-"><a href="lists-cards.html"> 用于卡片和列表的小组件 </a></h4>
+<p>学习如何创建列表和卡片视图，使得应用和其他系统组件风格统一</p>
+<h4 id="-shadows-clipping-shadows-clipping-html-"><a href="shadows-clipping.html"> 定义Shadows与Clipping视图 </a></h4>
+<p>学习如何设置 evaluation 来自定义阴影，以及创建 Clipping 视图</p>
+<h4 id="-drawables-drawables-html-"><a href="drawables.html"> 使用 Drawables </a></h4>
+<p>学习如何创建向量 Drawable 以及如何给 drawable 资源着色</p>
+<h4 id="-animations-html-"><a href="animations.html"> 自定义动画 </a></h4>
+<p>学习如何为视图和 Activity 变换创建自定义动画</p>
+<h4 id="-compatibility-html-"><a href="compatibility.html"> 维护兼容性 </a></h4>
+<p>学习如何兼容 Android 5.0 以下的版本</p>
 
                     
                     </section>
