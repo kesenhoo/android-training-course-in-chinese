@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
   }
 ```
 
-这个方法的优点像醒锁([在 Keep the CPU On讨论]())，它不需要特殊的权限，平台正确
+这个方法有点像醒锁([在 Keep the CPU On讨论]())，它不需要特殊的权限，平台正确
 管理你的用户在应用之间移动，不需要你的应用担心释放未使用资源。
 
 另外一种实现在你的应用布局xml文件里，通过使用[android:keepScreenOn](https://developer.android.com/reference/android/R.attr.html#keepScreenOn)属性:
