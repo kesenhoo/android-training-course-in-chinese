@@ -232,7 +232,7 @@ Activity所有子类都必须实现`onCreate()`方法。创建activity的实例�
 
 不管用户导航到哪，每一个`Activity`是被`Intent`调用，你都可以在启动的`Activity`中通过<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>方法得到`Intent`以及`Intent`包含的数据。
 
-在`DisplayMessageActivity`类的`onCreate()`方法中，得到`intent`以及`MyFirstActivity`提供的附加信息：
+在`DisplayMessageActivity`类的`onCreate()`方法中，得到`intent`以及`MainActivity`提供的附加信息：
 
 ```java
 Intent intent = getIntent();
