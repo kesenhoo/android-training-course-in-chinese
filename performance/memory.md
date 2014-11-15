@@ -6,12 +6,12 @@ Random Access Memory(RAM)在任何软件开发环境中都是一个很宝贵的�
 
 为了GC能够从你的app中及时回收内存，你需要避免Memory Leaks(通常由于在全局成员变量中持有对象引用而导致)并且在适当的时机(下面会讲到的lifecycle callbacks)来释放引用。对于大多数apps来说，Dalvik的GC会自动把离开活动线程的对象进行回收。
 
-这篇文章会解释Android如何管理app的进程与内存分配，并且你可以在开发Android应用的时候主动的减少内存的使用。关于Java的资源管理机制，请参加其它书籍或者线上材料。如果你正在寻找如何分析你的内存使用情况的文章，请参考这里[Investigating Your RAM Usage](http://developer.android.com/tools/debugging/debugging-memory.html)。
+这篇文章会解释Android是如何管理app的进程与内存分配，以及在开发Android应用的时候如何主动的减少内存的使用。关于Java的资源管理机制，请参加其它书籍或者线上材料。如果你正在寻找如何分析你的内存使用情况的文章，请参考这里[Investigating Your RAM Usage](http://developer.android.com/tools/debugging/debugging-memory.html)。
 
 <!-- More -->
 
 ## 第1部分:Android是如何管理内存的 ##
-Android并没有提供内存的交换区(Swap space)，但是它有使用[paging](http://en.wikipedia.org/wiki/Paging)与[memory-mapping(mmapping)](http://en.wikipedia.org/wiki/Memory-mapped_files)的机制来管理内存。这意味着任何你修改的内存(无论是通过分配新的对象还是访问到mmaped pages的内容)都会贮存在RAM中，而且不能被paged out。因此唯一完整释放内存的方法是释放那些你可能hold住的对象的引用，这样使得它能够被GC回收。只有一种例外是：如果系统想要在其他地方进行reuse。
+Android并没有提供内存的交换区(Swap space)，但是它有使用[paging](http://en.wikipedia.org/wiki/Paging)与[memory-mapping(mmapping)](http://en.wikipedia.org/wiki/Memory-mapped_files)的机制来管理内存。这意味着任何你修改的内存(无论是通过分配新的对象还是访问到mmaped pages的内容)都会贮存在RAM中，而且不能被paged out。因此唯一完整释放内存的方法是释放那些你可能hold住的对象的引用，这样使得它能够被GC回收。只有一种例外是：如果系统想要在其他地方reuse这个对象。
 
 ### 1)共享内存 ###
 Android通过下面几个方式在不同的Process中来共享RAM:
@@ -33,14 +33,14 @@ Android通过下面几个方式在不同的Process中来共享RAM:
 * Dalvik heap与逻辑上的heap size不吻合，这意味着Android并不会去做heap中的碎片整理用来关闭空闲区域。Android仅仅会在heap的尾端出现不使用的空间时才会做收缩逻辑heap size大小的动作。但是这并不是意味着被heap所使用的物理内存大小不能被收缩。在垃圾回收之后，Dalvik会遍历heap并找出不使用的pages，然后使用madvise把那些pages返回给kernal。因此，成对的allocations与deallocations大块的数据可以使得物理内存能够被正常的回收。然而，回收碎片化的内存则会使得效率低下很多，因为那些碎片化的分配页面也许会被其他地方所共享到。
 
 ### 3)限制应用的内存 ###
-为了维持多任务的功能环境，Android为每一个app都设置了一个硬性的heap size限制。准确的heap size限制随着不同设备的不同RAM大小而各有差异。如果你的app已经到了heap的限制大小并且再尝试分配内存的话，会引起OutOfMemoryError的错误。
+为了维持多任务的功能环境，Android为每一个app都设置了一个硬性的heap size限制。准确的heap size限制随着不同设备的不同RAM大小而各有差异。如果你的app已经到了heap的限制大小并且再尝试分配内存的话，会引起`OutOfMemoryError`的错误。
 
-在一些情况下，你也许想要查询当前设备的heap size限制大小是多少，然后决定cache的大小。可以通过getMemoryClass()来查询。这个方法会返回一个整数，表明你的app heap size限制是多少megabates。
+在一些情况下，你也许想要查询当前设备的heap size限制大小是多少，然后决定cache的大小。可以通过`getMemoryClass()`来查询。这个方法会返回一个整数，表明你的app heap size限制是多少megabates。
 
 ### 4)切换应用 ###
-当用户在不同应用之间进行切换的时候，不是使用交换空间的办法。Android会把那些不包含foreground组件的进程放到LRU cache中。例如，当用户刚开始启动了一个应用，这个时候为它创建了一个进程，但是当用户离开这个应用，这个进程并没有离开。系统会把这个进程放到cache中，如果用户后来回到这个应用，这个进程能够被resued，从而实现app的快速切换。
+Android并不会在用户切换不同应用时候做交换内存的操作。Android会把那些不包含foreground组件的进程放到LRU cache中。例如，当用户刚开始启动了一个应用，这个时候为它创建了一个进程，但是当用户离开这个应用，这个进程并没有离开。系统会把这个进程放到cache中，如果用户后来回到这个应用，这个进程能够被resued，从而实现app的快速切换。
 
-如果你的应用有一个被缓存的进程，它被保留在内存中，并且当前不再需要它了，这会对系统的整个性能有影响。因此当系统开始进入低内存状态时，它会由系统根据LRU的规则与其他因素选择杀掉某些进程，为了保持你的进程能够尽可能长久的被cached，请参考下面的章节学习何时释放你的引用。
+如果你的应用有一个当前并不需要使用到的被缓存的进程，它被保留在内存中，这会对系统的整个性能有影响。因此当系统开始进入低内存状态时，它会由系统根据LRU的规则与其他因素选择杀掉某些进程，为了保持你的进程能够尽可能长久的被cached，请参考下面的章节学习何时释放你的引用。
 
 更对关于不在foreground的进程是Android是如何决定kill掉哪一类进程的问题，请参考[Processes and Threads](http://developer.android.com/guide/components/processes-and-threads.html).
 
@@ -64,7 +64,7 @@ Android通过下面几个方式在不同的Process中来共享RAM:
 
 为了能够接收到用户离开你的UI时的通知，你需要实现Activtiy类里面的[onTrimMemory()](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#onTrimMemory(int))回调方法。你应该使用这个方法来监听到[TRIM_MEMORY_UI_HIDDEN](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_UI_HIDDEN)级别, 它意味着你的UI已经隐藏，你应该释放那些仅仅被你的UI使用的资源。
 
-请注意：你的app仅仅会在所有UI组件的被隐藏的时候接收到onTrimMemory()的回调并带有参数TRIM_MEMORY_UI_HIDDEN。这与onStop()的回调是不同的，onStop会在activity的实例隐藏时会执行，例如当用户从你的app的某个activity跳转到另外一个activity时onStop会被执行。因此你应该实现onStop回调，并且在此回调里面释放activity的资源，例如网络连接，unregister广播接收者。除非接收到[onTrimMemory(TRIM_MEMORY_UI_HIDDEN)](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#onTrimMemory(int))的回调，否者你不应该释放你的UI资源。这确保了用户从其他activity切回来时，你的UI资源仍然可用，并且可以迅速恢复activity。
+请注意：你的app仅仅会在所有UI组件的被隐藏的时候接收到onTrimMemory()的回调并带有参数`TRIM_MEMORY_UI_HIDDEN`。这与onStop()的回调是不同的，onStop会在activity的实例隐藏时会执行，例如当用户从你的app的某个activity跳转到另外一个activity时onStop会被执行。因此你应该实现onStop回调，并且在此回调里面释放activity的资源，例如网络连接，unregister广播接收者。除非接收到[onTrimMemory(TRIM_MEMORY_UI_HIDDEN)](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#onTrimMemory(int))的回调，否者你不应该释放你的UI资源。这确保了用户从其他activity切回来时，你的UI资源仍然可用，并且可以迅速恢复activity。
 
 ### 3)当内存紧张时释放部分内存 ###
 在你的app生命周期的任何阶段，onTrimMemory回调方法同样可以告诉你整个设备的内存资源已经开始紧张。你应该根据onTrimMemory方法中的内存级别来进一步决定释放哪些资源。
@@ -95,7 +95,7 @@ Android通过下面几个方式在不同的Process中来共享RAM:
 ### 5)避免bitmaps的浪费
 当你加载一个bitmap时，仅仅需要保留适配当前屏幕设备分辨率的数据即可，如果原图高于你的设备分辨率，需要做缩小的动作。请记住，增加bitmap的尺寸会对内存呈现出2次方的增加，因为X与Y都在增加。
 
-**Note:**在Android 2.3.x (API level 10)及其以下, bitmap对象是的pixel data是存放在native内存中的，它不便于调试。然而，从Android 3.0(API level 11)开始，bitmap pixel data是分配在你的app的Dalvik heap中, 这提升了GC的工作并且更加容易Debug。因此如果你的app使用bitmap并在旧的机器上引发了一些内存问题，切换到3.0以上的机器上进行Debug。
+**Note:**在Android 2.3.x (API level 10)及其以下, bitmap对象的pixel data是存放在native内存中的，它不便于调试。然而，从Android 3.0(API level 11)开始，bitmap pixel data是分配在你的app的Dalvik heap中, 这提升了GC的工作效率并且更加容易Debug。因此如果你的app使用bitmap并在旧的机器上引发了一些内存问题，切换到3.0以上的机器上进行Debug。
 
 ### 6)使用优化的数据容器
 利用Android Framework里面优化过的容器类，例如[SparseArray](http://developer.android.com/reference/android/util/SparseArray.html), SparseBooleanArray, 与 LongSparseArray. 通常的HashMap的实现方式更加消耗内存，因为它需要一个额外的实例对象来记录Mapping操作。另外，SparseArray更加高效在于他们避免了对key与value的autobox自动装箱，并且避免了装箱后的解箱。
