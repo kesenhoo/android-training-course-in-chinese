@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.1.4" data-basepath="../.." data-revision="1414941355497">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.1.4" data-basepath="../.." data-revision="1416067654549">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3836,7 +3836,7 @@ intent.putExtra(EXTRA_MESSAGE, message);
 <p>如果正在使用Eclipse开发,现在可以运行应用程序了。 点击发送按钮启动第二个Activity，但它采用的是模板提供的&quot;Hello world&quot;布局，稍后你可以自己更新该布局。因此使用其它IDE也不用担心，因为应用程序尚未编译。</p>
 <h2 id="-intent">获取Intent</h2>
 <p>不管用户导航到哪，每一个<code>Activity</code>是被<code>Intent</code>调用，你都可以在启动的<code>Activity</code>中通过<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>方法得到<code>Intent</code>以及<code>Intent</code>包含的数据。</p>
-<p>在<code>DisplayMessageActivity</code>类的<code>onCreate()</code>方法中，得到<code>intent</code>以及<code>MyFirstActivity</code>提供的附加信息：</p>
+<p>在<code>DisplayMessageActivity</code>类的<code>onCreate()</code>方法中，得到<code>intent</code>以及<code>MainActivity</code>提供的附加信息：</p>
 <pre><code class="lang-java">Intent intent = getIntent();
 String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 </code></pre>
