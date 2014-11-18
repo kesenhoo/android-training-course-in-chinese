@@ -8,13 +8,13 @@
 
 * Drawable染色
 * 提取主色调
-* 向量Drawable
+* 矢量Drawable
 
 本课教你如何在应用中使用这些特性：
 
 ## 给 Drawable 资源染色
 
-使用 Android 5.0 (API level 21)以上版本，你可以使用alpha mask（透明度图层，译者注）给位图和nine patches图片染色。你可以用颜色Resource或者主题属性来获取颜色（比如，`?android:attr/colorPrimary`）。通常，你只需要创建一次这些颜色asset，并在主题中自动匹配这些颜色。
+使用 Android 5.0 (API level 21)以上版本，你可以使用alpha mask（透明度图层，译者注）给位图和nine patches图片染色。你可以用颜色Resource或者主题属性来获取颜色（比如，`?android:attr/colorPrimary`）。通常，你只需要创建一次这些颜色asset，便可以在主题中自动匹配这些颜色。
 
 你可以用`setTint()`方法将一种染色方式应用到BitmapDrawable或者NinePatchDrawable对象。你也在layout中使用`android:tint`和`android:initMode`属性设置tint color和模式。
 
@@ -42,12 +42,12 @@ dependencies {
 }
 ```
 
-更多信息，请参见API文档的Palette类部分。
+更多信息，请参见Palette类的API文档。
 
 
-## 创建向量drawable
+## 创建矢量drawable
 
-在Android 5.0 (API level 21)以上版本中，你可以定义向量drawable，用于无损的拉伸图片。相对于一张普通图片需要为每个不同屏幕密度的设备提供一个图片来说，一个向量图片只需要一个asset文件。要创建向量图片，你可以在`<vector>` XML元素中定义形状。
+在Android 5.0 (API level 21)以上版本中，你可以定义矢量drawable，用于无损的拉伸图片。相对于一张普通图片需要为每个不同屏幕密度的设备提供一个图片来说，一个矢量图片只需要一个asset文件。要创建矢量图片，你可以在`<vector>` XML元素中定义形状。
 
 以下代码定义了一个心形：
 
@@ -73,5 +73,4 @@ dependencies {
 </vector>
 ```
 
-向量图片在Android中用`VectorDrawable`对象来表示。更多关于`pathData`语法的信息，请看[SVG Path](http://www.w3.org/TR/SVG11/paths.html#PathData)的文档。更多关于向量drawable动画的信息，请参见[向量drawable动画](https://developer.android.com/training/material/animations.html#AnimVector)。
-
+矢量图片在Android中用`VectorDrawable`对象来表示。更多关于`pathData`语法的信息，请看[SVG Path](http://www.w3.org/TR/SVG11/paths.html#PathData)的文档。更多关于矢量drawable动画的信息，请参见[矢量drawable动画](https://developer.android.com/training/material/animations.html#AnimVector)。
