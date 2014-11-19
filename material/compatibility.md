@@ -20,7 +20,7 @@
 
 在`res/layout-v21/`中定义Android 5.0 (API level 21) 以上系统的Layout，在`res/layout`中定义早前版本Android的Layout。比如，`res/layout/my_activity.xml`是对于`res/layout-v21/my_activity.xml`的一个后备Layout。
 
-为了避免代码重复，在`res/values`中定义style，然后再`res/values-v21`中修改新API需要的style。使用style的继承，在`res/values/`中定义父style，在`res/values-v21/`中继承。
+为了避免代码重复，在`res/values`中定义style，然后在`res/values-v21`中修改新API需要的style。使用style的继承，在`res/values/`中定义父style，在`res/values-v21/`中继承。
 
 ## 使用 Support Library
 
@@ -82,7 +82,7 @@ dependencies {
 * 触摸反馈
 * Reveal 动画（填充动画效果，译者注）
 * 基于路径的动画
-* 向量drawable
+* 矢量drawable
 * Drawable染色
 
 要保持向下兼容，请在使用这些特性是，使用以下代码在运行时检查系统版本：
