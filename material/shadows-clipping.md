@@ -1,10 +1,10 @@
 # 定义Shadows与Clipping视图
 
-> 编写: - 原文:
+> 编写: [allenlsy](https://github.com/allenlsy) - 原文: <https://developer.android.com/training/material/shadows-clipping.html>
 
 Material Design 引入了UI元素深度的概念。深度可以帮助用户理解每个元素的不同重要性，让用户集中注意力做手头的工作。
 
-视图的elevation，用 z 属性来表示，它决定了阴影的大小：更大的 Z 值可以投射出更大的阴影。视图只会把阴影投射到 Z=0 的平面上；他们不会把阴影投射到介于自己和 Z=0 平面之间的视图上。
+视图的elevation，用 Z 属性来表示，它决定了阴影的大小：更大的 Z 值可以投射出更大的阴影。视图只会把阴影投射到 Z=0 的平面上；他们不会把阴影投射到介于自己和 Z=0 平面之间的视图上。
 
 Z 值较大的视图会遮盖住Z值较小的视图。不过，Z值大小不会影响视图的大小。
 
@@ -12,11 +12,11 @@ Elevation对于创建临时上升这种动画同样很有用。
 
 ## 給视图赋Elevation值
 
-视图的 Z 值有两个组成部分，elevation 和 translation (变换，译者注)。elevation 是一个必须部分，translation 是用于动画的：
+视图的 Z 值有两个组成部分，elevation 和 translation。elevation 是一个必须部分，translation 是用于动画的：
 
 Z = elevation + translationZ
 
-![](shadow-depth.png)
+![](shadows-depth.png)
 
 要在layout中设置视图的elevation，使用`android:elevation`属性。要在Activity代码中设置elevation，使用`View.setElevation()`方法。
 
@@ -65,14 +65,8 @@ Z值和X，Y值的测量单位是一样的。
 
 ## Clip 视图
 
-Clipping 视图是你轻松的改变视图的形状。附着视图可以是为了设计的一致性，也可以是为了当用户输入信息时，改变视图的形状。你可以通过`View.setClipToOutline()` 将视图附着给一个轮廓，或使用`android:clipToOutline`属性。只有矩形、原型和圆角矩形轮廓支持附着，你可以通过`Outlin.canClip()`方法来检查是否支持附着。
+Clipping 视图使你轻松的改变视图的形状。附着视图可以是为了设计的一致性，也可以是为了当用户输入信息时，改变视图的形状。你可以通过`View.setClipToOutline()` 将视图附着给一个轮廓，或使用`android:clipToOutline`属性。只有矩形、原型和圆角矩形轮廓支持附着，你可以通过`Outlin.canClip()`方法来检查是否支持附着。
 
-把视图附着给drawabl的形状，要将这个drawable设置为视图的北京，并调用`View.setClipToOutline()` 方法。
+把视图附着给drawable的形状，要将这个drawable设置为视图的背景，并调用`View.setClipToOutline()` 方法。
 
 附着视图是一个昂贵的操作，所以不要对附着过的形状是进行动画。要实现这个效果，使用 [Reveal Effect](https://developer.android.com/training/material/animations.html#Reveal) 动画
-
-Clipping views enables you to easily change the shape of a view. You can clip views for consistency with other design elements or to change the shape of a view in response to user input. You can clip a view to its outline area using the View.setClipToOutline() method or the android:clipToOutline attribute. Only rectangle, circle, and round rectangle outlines support clipping, as determined by the Outline.canClip() method.
-
-To clip a view to the shape of a drawable, set the drawable as the background of the view (as shown above) and call the View.setClipToOutline() method.
-
-Clipping views is an expensive operation, so don't animate the shape you use to clip a view. To achieve this effect, use the Reveal Effect animation.
