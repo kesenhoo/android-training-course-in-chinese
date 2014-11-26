@@ -248,7 +248,7 @@
        * [制定重复定时的任务](background-jobs/scheduling/alarms.md)
 * [Android性能优化](best-performance.md)
    * [管理应用的内存](performance/memory.md)
-   * [性能优化Tips](performance/performance-tips.md)
+   * [代码性能优化建议](performance/performance-tips.md)
    * [提升Layout的性能](performance/improving-layouts/index.md)
        * [优化layout的层级](performance/improving-layouts/optimizing-layout.md)
        * [使用include标签重用layouts](performance/improving-layouts/reuse-layouts.md)
