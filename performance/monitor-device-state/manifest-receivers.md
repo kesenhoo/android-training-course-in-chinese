@@ -1,6 +1,6 @@
-# Manipulating Broadcast Receivers On Demand[按需操控广播接收者]
+# 按需操控广播接收者
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/monitoring-device-state/manifest-receivers.html>
 
 简单的方法是为我们监测的状态创建一个BroadcastReceiver，并在manifest中为每一个状态进行注册监听。然后，每一个Receiver根据当前设备的状态来简单重新安排下一步执行的任务。[这句话感觉理解有点问题]
 
@@ -10,7 +10,7 @@
 
 <!-- More -->
 
-## 1)Toggle and Cascade State Change Receivers to Improve Efficiency[切换是否开启这些状态Receivers来提高效率]
+## 切换是否开启这些状态Receivers来提高效率
 我们可以使用PackageManager来切换任何一个在mainfest里面定义好的组件的开启状态。
 可以使用下面的方法来开启或者关闭任何一个broadcast receiver:
 
