@@ -262,7 +262,7 @@
    * [多线程操作](performance/multi-threads/index.md)
        * [在一个线程中执行一段特定的代码](performance/multi-threads/define-runnable.md)
        * [为多线程创建线程池](performance/multi-threads/create-threadpool.md)
-       * [在线程池中的一个线程里执行代码](performance/multi-threads/run-code.md)
+       * [启动与停止线程池中的线程](performance/multi-threads/run-code.md)
        * [与UI线程通信](performance/multi-threads/communicate-ui.md)
    * [避免出现程序无响应ANR](performance/perf-anr/index.md)
    * [JNI使用指南](performance/perf-jni/index.md)
