@@ -9,6 +9,7 @@
 这一课会介绍更新频率是多少才会使得更新操作对无线电状态机的影响最小。(C2DM与指数退避算法的使用)
 
 ## 1)Use Google Cloud Messaging as an Alternative to Polling
+
 关于`Android Cloud to Device Messaging` (C2DM)详情 ,请参考:[http://code.google.com/intl/zh-CN/android/c2dm/](http://code.google.com/intl/zh-CN/android/c2dm/)
 
 <!-- More -->
@@ -24,7 +25,8 @@ C2DM需要通过使用固定TCP/IP来实现操作。当在你的设备上可以�
 
 **Ps:大陆的Google框架通常被移除掉，这导致C2DM实际上根本没有办法在大陆的App上使用**
 
-## 2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs(通过不定时的重复提醒与指数退避来优化轮询操作)
+## 2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs
+
 如果需要使用轮询机制，在不影响用户体验的前提下，当然设置默认更新频率是越低越好(减少电量的浪费)。
 
 一个简单的方法是给用户提供更新频率的选择，允许用户自己来处理如何平衡数据及时性与电量的消耗。

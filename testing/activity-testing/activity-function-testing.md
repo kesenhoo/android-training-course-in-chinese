@@ -1,6 +1,6 @@
 # 创建功能测试
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-functional-testing.html>
 
 功能测试包括验证单个应用组件是否与使用者期望的那样(与其它组件)协同工作。比如,你可以创建一个功能测试验证在用户执行UI交互时[Activity](http://developer.android.com/reference/android/app/Activity.html)是否正确启动目标[Activity](http://developer.android.com/reference/android/app/Activity.html)。
 

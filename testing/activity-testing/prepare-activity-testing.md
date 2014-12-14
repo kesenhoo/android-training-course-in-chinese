@@ -1,6 +1,6 @@
 # 建立测试环境
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/preparing-activity-testing.html>
 
 再开始编写,运行你的测试之前,你应该建立你的测试开发环境。本小节将会教你怎样建立Eclipse IDE来构建和运行你的测试,以及怎样用Gradle框架在命令行下构建和运行你的测试。
 

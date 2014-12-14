@@ -1,6 +1,6 @@
 # 测试UI组件
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-ui-testing.html>
 
 通常情况下，你的[Activity](http://developer.android.com/reference/android/app/Activity.html)，包括用户界面组件（如按钮，复选框，可编辑的文本域，和选框）允许你的用户与Android应用程序交互。本节介绍如何用一个简单的按钮的界面交互测试。你可以使用相同的步骤来测试其他的，更复杂的UI组件。
 
