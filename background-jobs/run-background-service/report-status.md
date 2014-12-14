@@ -1,6 +1,6 @@
-# Reporting Work Status:报告后台任务的执行状态
+# Reporting Work Status
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/report-status.html>
 
 这章节会演示如何回传IntentService中执行的任务状态与结果给发送方。 例如，回传任务的状态给Activity并进行更新UI。推荐的方式是使用[LocalBroadcastManager](http://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html)，这个组件可以限制broadcast只在自己的App中进行传递。
 

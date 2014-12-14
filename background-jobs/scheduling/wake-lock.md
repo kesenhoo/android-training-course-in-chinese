@@ -1,6 +1,6 @@
 # 保持设备唤醒
 
-> 编写:[lttowq](https://github.com/lttowq) - 原文:
+> 编写:[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/wakelock.html>
 
 为了避免电源消耗，一个Android设备闲置时会迅速进入睡眠状态。然而这里有些时间当一个应用需要唤醒屏幕或者CPU并且保持唤醒完成一些任务。
 

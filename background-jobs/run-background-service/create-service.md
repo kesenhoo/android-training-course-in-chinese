@@ -1,6 +1,6 @@
-# Creating a Background Service:创建IntentService
+# Creating a Background Service
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/create-service.html>
 
 IntentService为在单个后台线程执行一个操作提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。
 
@@ -23,7 +23,7 @@ IntentService有下面几个局限性：
 public class RSSPullService extends IntentService {
     @Override
     protected void onHandleIntent(Intent workIntent) {
-        // 从传入的intent获取数据 
+        // 从传入的intent获取数据
         String dataString = workIntent.getDataString();
         ...
         // 根据dataString的内容在这里进行操作
@@ -31,7 +31,7 @@ public class RSSPullService extends IntentService {
     }
 }
 ```
- 
+
 注意一个普通Service组件的其他回调，例如`onStartCommand()`会被IntentService自动触发。在IntentService中，要避免override那些回调。
 
 ## 2)在Manifest文件中定义IntentService

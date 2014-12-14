@@ -1,6 +1,6 @@
-# Sending Work Requests to the Background Service:发送任务请求到IntentService
+# Sending Work Requests to the Background Service
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/send-request.html>
 
 前一篇文章演示了如何创建一个IntentService类。这次会演示如何通过发送一个Intent来触发IntentService执行任务。这个Intent可以传递一些数据给IntentService。可以在Activity或者Fragment的任何时间点发送这个Intent。
 
