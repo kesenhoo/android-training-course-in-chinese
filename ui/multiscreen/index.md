@@ -1,6 +1,6 @@
 # 为多屏幕设计
 
-> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/index.html>
 
 从小屏手机到大屏电视，android拥有数百种不同屏幕尺寸的设备，因此，设计兼容不同屏幕尺寸的应用程序满足不同的用户体验就变得非常重要。
 
@@ -10,7 +10,7 @@
 
 本课程提供了一个简单的示例[NewsReader](http://developer.android.com/shareables/training/NewsReader.zip)。这个示例中提供的代码对多屏幕适配是非常好的一个练习，并且你也可以将这个示例中的代码运用到你自己的项目中。
 
-注意：这节课中相关的例子为了兼容android3.0以下的版本使用了support library中的fragment，如果你需要使用该示例，请先下载support library并添加到例子中。
+> Notes：这节课中相关的例子为了兼容android 3.0以下的版本使用了support library中的fragment，如果你需要使用该示例，请先下载support library并添加到例子中。
 
 ## Lessons
 
