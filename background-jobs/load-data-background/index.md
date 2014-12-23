@@ -10,7 +10,7 @@
 
 ## 下载演示代码
 
-** [ThreadSample](file:///Users/hook/Desktop/docs/shareables/training/ThreadSample.zip) **
+** [ThreadSample](http://developer.android.com/shareables/training/ThreadSample.zip) **
 
 ## Lessons
 

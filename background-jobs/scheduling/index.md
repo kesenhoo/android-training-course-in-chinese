@@ -10,12 +10,18 @@
 2.其他的应用也许不需要屏幕开着，但或许会请求CPU保持运行直到一个关键操作结束。
 
 这节课描述如何在必要的时候保持设备唤醒但消耗它的电量。
-#Lesson
-[Keeping the Device Awake]()
+
+## Sample
+
+<http://developer.android.com/shareables/training/Scheduler.zip>
+
+## Lesson
+
+### [Keeping the Device Awake](wakelock.html)
 
 * 学习当需要时如何保持屏幕和CPU唤醒，同时减少对电池的生命周期的影响。
 
-[Scheduling Repeating Alarms]()
+### [Scheduling Repeating Alarms](alarms.html)
 
 * 学习使用重复闹钟对于发生在生命周期外之应用的作业调度，即使应用没有运行或者设备处于睡眠状态。
 
