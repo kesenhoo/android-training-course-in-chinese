@@ -1,6 +1,6 @@
 # 开发辅助程序
 
-> 编写:[K0ST](https://github.com/K0ST) - 原文:
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/accessibility/accessible-app.html>
 
 本课程将教您：
 
@@ -8,7 +8,7 @@
 
 2. 设计焦点导航（*Focus Navigation*）
 
-3. 执行可达性事件(*Accessibility Events*)
+3. 触发可达性事件(*Accessibility Events*)
 
 4. 测试你的程序
 
@@ -38,7 +38,7 @@ label.setContentDescription(contentDescription);
 来试试吧！下载TalkBack(谷歌开发的一款可达性应用)，在**Settings > Accessibility > TalkBack**将它开启。然后使用你的应用听听看TalkBack发出的语音提示。
 
 
-##设计焦点导航
+## 设计焦点导航
 
 你的应用除了支持触摸操作外，更应该支持其他的导航方式。很多Android设备不仅仅提供了触摸屏，还提供了其他的导航硬件比如说十字键、方向键、轨迹球等等。除此之外，最新的Android发行版本也支持蓝牙或USB的外接设备，比如键盘等等。
 
@@ -60,7 +60,7 @@ label.setContentDescription(contentDescription);
 ```
 证实您的应用运行正确的直观方法，最简单的方式就是在Android虚拟机里运行您的应用，然后使用虚拟器的方向键来在各个元素之间导航，使用OK按钮来代替触摸元素的事件。
 
-##填充可达性事件
+## 触发可达性事件
 
 如果你在你的Android框架中使用了View组件，当你选中了一个View或者是焦点变化的时候，可达性事件(*AccessibilityEvent*)都会产生。这些事件会被传递到Accessibility Service中进行处理，实现一些辅助功能，如语音提示等。
 
@@ -77,7 +77,7 @@ public void onTextChanged(String before, String after) {
 }
 ```
 
-##测试你的程序
+## 测试你的程序
 
 请确保您在添加可达性功能后测试它的有效性。为了测试内容描述可可达性事件，请安装并启用一个Accessibility Service。其中的一个选择就是使用TalkBack，它是一个免费的开源的屏幕读取软件，可在Google Play上进行下载。Service启动后，请测试您应用中所有的功能，同时听听TalkBack的语音反馈。
 

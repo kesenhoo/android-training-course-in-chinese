@@ -6,7 +6,7 @@
 
 本章将给您演示如何最大化利用Android框架中的Accessibility特性。包括如何利用焦点导航(*focus navigation*)与内容描述(*content description*)对你的应用的可达性进行优化。也包括了了创建Accessibility Service， 使用户与应用（不仅仅是你自己的应用）之间的交互更加容易。
 
-## 课程
+## Lessons
 
 * [**开发Accessibility应用**](accessible-app.html)
 
