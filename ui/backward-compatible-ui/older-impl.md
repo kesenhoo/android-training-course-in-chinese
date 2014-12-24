@@ -1,6 +1,6 @@
 # 使用旧的APIs实现新API的效果
 
-> 编写: [spencer198711](https://github.com/spencer198711) - 原文:
+> 编写: [spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/older-implementation.html>
 
 这一课讨论了如何创建一个支持旧的设备并且与新的APIs接口相同的实现。
 

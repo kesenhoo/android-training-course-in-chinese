@@ -1,6 +1,6 @@
 # 代理至新的APIs
 
-> 编写: [spencer198711](https://github.com/spencer198711) - 原文:
+> 编写: [spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/new-implementation.html>
 
 这一课展示了如何编写CompatTab和TabHelper等抽象类的子类，并且使用了较新的APIs。你的应用可以在支持这些新的APIs的平台版本的设备上使用这种实现方式。
 
