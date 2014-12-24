@@ -1,6 +1,6 @@
 # 使用BigView样式
 
-> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/expanded.html>
 
 * Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才能出现。当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。
 

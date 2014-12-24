@@ -1,6 +1,6 @@
 # 建立一个Notification
 
-> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/build-notification.html>
 
 * 这节课向你说明如何创建与发布一个Notification。
 

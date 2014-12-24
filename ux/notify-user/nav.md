@@ -1,6 +1,6 @@
 # 启动Activity时保留导航
 
-> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/navigation.html>
 
 * 部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 [Notifications](developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse) API引导，分为下列两种主要情况：
 
