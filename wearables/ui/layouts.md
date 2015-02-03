@@ -132,4 +132,87 @@ Specify a layout definition file for round screens with the roundLayout attribut
 ## 使用形状感知的Layout
 
 <!--The BoxInsetLayout class included in the Wearable UI Library extends FrameLayout and lets you define a single layout that works for both square and round screens. This class applies the required window insets depending on the screen shape and lets you easily align views on the center or near the edges of the screen.-->
-包含在你的Wearable UI库中的 **BoxInsetLayout** 继承自 [FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)允许你定义一个同时适配方形和圆形屏幕的layout。
+包含在你的Wearable UI库中的 **BoxInsetLayout** 继承自 [FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)允许你定义一个同时适配方形和圆形屏幕的layout。这个类适用于需要根据屏幕形状插入间隔的情况并允许你简单的对齐views在屏幕边缘或中心。
+
+<!--The gray square in figure 2 shows the area where BoxInsetLayout can automatically place its child views on round screens after applying the required window insets. To be displayed inside this area, children views specify the layout_box atribute with these values:-->
+figure 2中，在 **BoxInsetLayout** 里的灰色方形区域会在圆形屏幕里应用所需的窗口间隔后自动放置child views。为了显示在这个区域内，子views需要具体声明附加属性 *layout_box* 为这些值：
+
+<!--A combination of top, bottom, left, and right. For example, "left|top" positions the child's left and top edges inside the gray square in figure 2.
+The all value positions all the child's content inside the gray square in figure 2.-->
+* 一个*top*, *bottom*, *left*, *right*的复合属性。比如 *"left|top"* 说明子view的左和上边缘如figure 2。
+* *all* 说明子view的内容在灰色方形内如figure 2。
+
+![](https://developer.android.com/wear/images/02_uilib.png)
+
+<!--Figure 2. Window insets on a round screen.-->
+**Figure 2.** *在圆形屏幕上的窗口间隔*
+
+<!--On square screens, the window insets are zero and the layout_box attribute is ignored.-->
+在方形屏幕上，窗口间隔为0、 *layout_box* 属性会被忽略。
+
+![](https://developer.android.com/wear/images/03_uilib.png)
+
+<!--Figure 3. A layout definition that works on both square and round screens.-->
+**Figure 3.** *同一个layout定义工作在方形和圆形屏幕上*
+
+<!--The layout shown in figure 3 uses BoxInsetLayout and works on square and round screens:-->
+这个layout在figure 3中展示了在圆形和方形屏幕上使用 *BoxInsetLayout* ：
+
+	<android.support.wearable.view.BoxInsetLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:app="http://schemas.android.com/apk/res-auto"
+	*   android:background="@drawable/robot_background"
+	    android:layout_height="match_parent"
+	    android:layout_width="match_parent"
+	*   android:padding="15dp">
+
+	    <FrameLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	*       android:padding="5dp"
+	*       app:layout_box="all">
+
+	        <TextView
+	            android:gravity="center"
+	            android:layout_height="wrap_content"
+	            android:layout_width="match_parent"
+	            android:text="@string/sometext"
+	            android:textColor="@color/black" />
+
+	        <ImageButton
+	            android:background="@null"
+	            android:layout_gravity="bottom|left"
+	            android:layout_height="50dp"
+	            android:layout_width="50dp"
+	            android:src="@drawable/ok" />
+
+	        <ImageButton
+	            android:background="@null"
+	            android:layout_gravity="bottom|right"
+	            android:layout_height="50dp"
+	            android:layout_width="50dp"
+	            android:src="@drawable/cancel" />
+	    </FrameLayout>
+	</android.support.wearable.view.BoxInsetLayout>
+	
+<!--Notice the parts of the layout marked in bold:-->
+注意layout中这些被加*的部分
+
+<!--android:padding="15dp"
+This line assigns padding to the BoxInsetLayout element. Because the window insets on round devices are larger than 15dp, this padding only applies to square screens.
+android:padding="5dp"
+This line assigns padding to the inner FrameLayout element. This padding applies to both square and round screens. The total padding between the buttons and the window insets is 20 dp on square screens (15+5) and 5 dp on round screens.
+app:layout_box="all"
+This line ensures that the FrameLayout element and its children are boxed inside the area defined by the window insets on round screens. This line has no effect on square screens.-->
+
+* android:padding="15dp"
+ 
+  这行指定了 *BoxInsetLayout* 元素的padding。因为在圆形设备商窗口间隔大于15dp，这个padding只工作在方形屏幕上。
+  
+* android:padding="5dp"
+ 
+  这行指定 *FrameLayout* 内部的元素padding。这个padding同时生效在方形和圆形屏幕上。在方形屏幕上总的padding是20dp(15+5)、在圆形屏幕上是5dp。
+
+* app:layout_box="all"
+ 
+  这行声明 *FrameLayout* 和它的子views都被放在有窗口间隔的圆形屏幕里。这行在方形屏幕上没有任何效果。
