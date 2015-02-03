@@ -111,3 +111,25 @@ Specify a layout definition file for round screens with the roundLayout attribut
 ## 取得layout views
 
 <!--The layouts that you specify for square or round screens are not inflated until WatchViewStub detects the shape of the screen, so your app cannot access their views immediately. To access these views, set a listener in your activity to be notified when the shape-specific layout has been inflated:-->
+你为方形或圆形屏幕定义的layouts在WatchViewStub检查完屏幕形状之前不会被inflated。所以你的app不能立即取得它们的views。为了取得这些views，你需要在你的activity中设置一个listener，当屏幕适配的layout被inflated时会通知这个listener：
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.activity_wear);
+
+	    WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+	    stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+	        @Override public void onLayoutInflated(WatchViewStub stub) {
+	            // Now you can access your views
+	            TextView tv = (TextView) stub.findViewById(R.id.text);
+	            ...
+	        }
+	    });
+	}
+	
+<!--Use a Shape-Aware Layout-->
+## 使用形状感知的Layout
+
+<!--The BoxInsetLayout class included in the Wearable UI Library extends FrameLayout and lets you define a single layout that works for both square and round screens. This class applies the required window insets depending on the screen shape and lets you easily align views on the center or near the edges of the screen.-->
+包含在你的Wearable UI库中的 **BoxInsetLayout** 继承自 [FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)允许你定义一个同时适配方形和圆形屏幕的layout。
