@@ -19,12 +19,17 @@ This section discusses how to modify an existing app to run on TV devices, or cr
 
 Before you begin building apps for TV, you must:
 
-* [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
-	* The updated SDK tools enable you to build and test apps for TV.
-* [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
-	* The updated platform version provides new APIs for TV apps.
-* [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)
-	* In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher.
+- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+
+	The updated SDK tools enable you to build and test apps for TV.
+		
+- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+
+	The updated platform version provides new APIs for TV apps.
+
+- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)
+
+	In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher.
 
 ### Declare a TV Activity
 
