@@ -139,7 +139,7 @@ Use the fragment manager to add the CardFragment instance to its container-->
 
 <!--The CardScrollView element in the example layout above lets you assign gravity to the card when its content is smaller than the container. This example aligns the card to the bottom of the screen:-->
 
-这个例子上的 *CardScrollView* 节点让你可以配置gravity当包含的内容小于容器时。这个例子为card对齐屏幕底部：
+这个例子上的 *CardScrollView* 节点让你可以配置gravity，当包含的内容小于容器时。这个例子为card对齐屏幕底部：
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -153,4 +153,4 @@ Use the fragment manager to add the CardFragment instance to its container-->
 	
 <!--CardScrollView detects the shape of the screen and displays the card differently on round and square devices, using wider side margins on round screens. However, placing the CardScrollView element inside a BoxInsetLayout and using the layout_box="bottom" attribute is useful to align the card to the bottom of round screens without cropping its content.-->
 
-*CardScrollView* 检查屏幕形状后以不用的显示卡片在圆形和方形设备上，使用更宽的侧边缘在圆形屏幕上。不管怎样，在 *BoxInsetLayout* 中放置 *CardScrollView* 节点然后使用layout_box="bottom"属性对圆形屏幕上的卡片对齐底部并且没有内容被剪裁是有有用的。
+*CardScrollView* 检查屏幕形状后以不同的显示方式显示卡片在圆形或方形设备上，它使用更宽的侧边缘在圆形屏幕上。不管怎样，在 *BoxInsetLayout* 中放置 *CardScrollView* 节点然后使用layout_box="bottom"属性对圆形屏幕上的卡片对齐底部并且没有内容被剪裁是有有用的。
