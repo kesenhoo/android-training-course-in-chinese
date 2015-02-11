@@ -137,7 +137,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 
 | 0 | 1 | 2 |
-| -- | -- | -- |
+|---|---|---|
 | @[yuanfentiank789](https://github.com/yuanfentiank789) | @[vincent4j](https://github.com/vincent4j) | @[Lin-H](https://github.com/Lin-H) |
 | @[kesenhoo](https://github.com/kesenhoo) | @[fastcome1985](https://github.com/fastcome1985) | @[jdneo](https://github.com/jdneo) |
 | @[XizhiXu](https://github.com/XizhiXu) | @[naizhengtan](https://github.com/naizhengtan) | @[spencer198711](https://github.com/spencer198711) |
