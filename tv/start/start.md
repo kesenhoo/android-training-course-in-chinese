@@ -38,19 +38,19 @@ TV应用使用与手机和平板同样的架构。 这种相似性意味着你�
 <!--
 * Update your SDK tools to version 24.0.0 or higher
 	The updated SDK tools enable you to build and test apps for TV.
-* Update your SDK with Android 5.0 (API 21) or higher 
+* Update your SDK with Android 5.0 (API 21) or higher
 	The updated platform version provides new APIs for TV apps.
-* Create or update your app project 
-	In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher. 
+* Create or update your app project
+	In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher.
 -->
 
-- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)  
 	最新的SDK tools能确保编译和测试TV应用
 
-- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)  
 	最新的platform版本提供TV应用的新API
 
-- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)
+- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)  
 	为了支持TV新API, 你必须设置新项目或者修改原项目的目标平台为Android 5.0 (API level 21)或者更高。
 
 
