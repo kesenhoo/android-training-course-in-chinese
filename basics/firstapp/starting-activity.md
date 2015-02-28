@@ -55,7 +55,7 @@ import android.content.Intent;
 > **Tip:**在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )
 
 在这个Intent构造函数中有两个参数：
-* 第一个参数是[Context](http://developer.android.com/reference/android/content/Context.html)(之所有可以用`this`是因为当前[Activity](http://developer.android.com/reference/android/app/Activity.html)(MyFirstActivity)是`Context`的子类)
+* 第一个参数是[Context](http://developer.android.com/reference/android/content/Context.html)(之所以用`this`是因为当前[Activity](http://developer.android.com/reference/android/app/Activity.html)(MyFirstActivity)是`Context`的子类)
 
 * 系统需要传递`Intent`的应用组件的[class](http://developer.android.com/reference/java/lang/Class.html)对象（在这个案例中，为应该被启动的activity）。
 
