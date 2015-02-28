@@ -115,4 +115,23 @@ adapter是实现细节依赖于你的特定的某组pages。由adapter提供每�
 **Figure 1:**GridViewPager例子
 
 <!--GridViewPager provides support for scrolling in cards whose content does not fit the device screen. This example configures each card to expand as required, so users can scroll through the card's content. When users reach the end of a scrollable card, a swipe in the same direction shows the next page on the grid, if one is available.-->
-好长啊..
+*GridViewPager* 提供了滚动支持当cards内容超出设备屏幕。这种例子配置了每张card需要被扩展，所以用户可以滚动卡片的内容。当用户到大可滚动卡片的底部，向同样方向滑动将显示grid中的下个page（当下一page可用时）。
+
+<!--You can specify a custom background for each page with the getBackground() method. When users swipe to navigate across pages, GridViewPager applies parallax and crossfade effects between different backgrounds automatically.-->
+你可以使用 *getBackground()* 方法自定义每页page的背景。当用户划过page，*GridViewPager* 自动使用视差滚动和淡出效果在不同的背景之间。
+
+## 分配adapter实例给page grid
+<!--In your activity, assign an instance of your adapter implementation to the GridViewPager component:-->
+在你的activity中，分配一个你的adapter实现实例给 *GridViewPager* 组件：
+
+	public class MainActivity extends Activity {
+
+	    @Override
+	    protected void onCreate(Bundle savedInstanceState) {
+	        super.onCreate(savedInstanceState);
+	        setContentView(R.layout.activity_main);
+	        ...
+	        final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
+	        pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+	    }
+	}
