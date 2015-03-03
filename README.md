@@ -87,14 +87,15 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android可穿戴应用](http://hukai.me/android-training-course-in-chinese/building-wearables.html)
    * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.html) - @[wangyachen](https://github.com/wangyachen)
    * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https:://github.com/kesenhoo)
-   * [创建自定义的UI]() - @2014/09/28 - 待认领
+   * [创建自定义的UI](http://hukai.me/android-training-course-in-chinese/wearables/ui/index.html) - @[Roya](https://github.com/RoyaAoki)
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
 * [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
-   * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @awong1900
+   * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
    * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @2014/10/20 - 待认领
    * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @2014/10/20 - 待认领
    * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @2014/10/20 - 待认领
    * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @2014/10/20 - 待认领
+   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @2014/10/20 - 待认领
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
@@ -150,7 +151,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 | @[K0ST](https://github.com/K0ST) | @[Andrwyw](https://github.com/Andrwyw) | @[zhaochunqi](https://github.com/zhaochunqi) |
 | @[lltowq](https://github.com/lltowq) | @[allenlsy](https://github.com/allenlsy) | @[AllenZheng1991](https://github.com/AllenZheng1991) |
 | @[pedant](https://github.com/pedant) | @[craftsmanBai](https://github.com/craftsmanBai) | @[huanglizhuo](https://github.com/huanglizhuo) |
-| 0:9 | 1:9 | 2:9 |
+| @[Roya](https://github.com/RoyaAoki) | @[awong1900](https://github.com/awong1900) | 2:9 |
 | 0:10 | 1:10 | 2:10 |
 
 
