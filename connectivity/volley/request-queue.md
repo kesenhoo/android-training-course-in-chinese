@@ -6,7 +6,7 @@
 
 这节课同样会介绍一种推荐的实现方式：创建一个单例的RequestQueue，这使得RequestQueue能够持续保持在你的app的生命周期中。
 
-## Set Up a Network and Cache
+## 1)Set Up a Network and Cache
 一个RequestQueue需要两部分来支持它的工作：一部分是网络操作用来执行请求的数据传输，另外一个是用来处理缓存操作的Cache。在Volley的工具箱中包含了标准的实现方式：`DiskBasedCache`提供了每个文件与对应响应数据一一映射的缓存实现。 `BasicNetwork`提供了一个网络传输的实现，连接方式可以是[AndroidHttpClient](http://developer.android.com/reference/android/net/http/AndroidHttpClient.html) 或者是 [HttpURLConnection](http://developer.android.com/reference/java/net/HttpURLConnection.html).
 
 `BasicNetwork`是Volley默认的网络操作实现方式。一个BasicNetwork必须使用HTTP Client进行初始化。这个Client通常是AndroidHttpClient 或者 HttpURLConnection:
@@ -69,7 +69,7 @@ mRequestQueue.add(stringRequest);
 
 如果你仅仅是想做一个单次的请求并且不想要线程池一直保留，你可以通过使用在前面一课：[发送一个简单的请求(Sending a Simple Request)](simple.html)文章中提到`Volley.newRequestQueue()`方法在任何需要的时刻创建RequestQueue，然后在你的响应回调里面执行`stop()`方法来停止操作。但是更通常的做法是创建一个RequestQueue并设置为一个单例。下面将演示这种做法。
 
-## Use a Singleton Pattern
+## 2)Use a Singleton Pattern
 
 如果你的程序需要持续的使用网络，更加高效的方式应该是建立一个RequestQueue的单例，这样它能够持续保持在整个app的生命周期中。你可以通过多种方式来实现这个单例。推荐的方式是实现一个单例类，里面封装了RequestQueue对象与其他Volley的方法。另外一个方法是继承Application类，并在`Application.OnCreate()`方法里面建立RequestQueue。但是这个方法是不推荐的。因为一个static的单例能够以一种更加模块化的方式提供同样的功能。
 

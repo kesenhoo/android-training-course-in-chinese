@@ -1,4 +1,4 @@
-# 启动其他Activity
+# 启动其他的Activity
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
@@ -22,9 +22,9 @@
 添加相应的方法在`MainActivity`类中：
 
 ```java
-/** Called when the user clicks the Send button */
+/** 当用户点击按钮时会被调用 */
 public void sendMessage(View view) {
-    // Do something in response to button
+    // 响应按钮的事件处理逻辑
 }
 ```
 
@@ -55,7 +55,7 @@ import android.content.Intent;
 > **Tip:**在Eclipse中，按Ctrl + Shift + O 可以导入缺失的类(在Mac中使用Cmd + Shift + O )
 
 在这个Intent构造函数中有两个参数：
-* 第一个参数是[Context](http://developer.android.com/reference/android/content/Context.html)(之所有可以用`this`是因为当前[Activity](http://developer.android.com/reference/android/app/Activity.html)(MyFirstActivity)是`Context`的子类)
+* 第一个参数是[Context](http://developer.android.com/reference/android/content/Context.html)(之所以用`this`是因为当前[Activity](http://developer.android.com/reference/android/app/Activity.html)(MyFirstActivity)是`Context`的子类)
 
 * 系统需要传递`Intent`的应用组件的[class](http://developer.android.com/reference/java/lang/Class.html)对象（在这个案例中，为应该被启动的activity）。
 
@@ -112,7 +112,7 @@ public void sendMessage(View view) {
 
 2. 在弹出窗口打开**Android**文件夹，选择**Android Activity**然后点击**Next**。
 
-3. 选择**BlankActivity**(或**Blank Activity with Fragment**)，然后点击**Next**
+3. 选择**Blank Activity with Fragment**，然后点击**Next**
 
 4. 填写Activity详细信息：
   * **Project**：MyFirstApp
@@ -133,7 +133,7 @@ public void sendMessage(View view) {
 
 * 此类已经包含了所需<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()的默认实现，稍后需要更新此实现方法。
 * 另外还有一个<a href="http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu)">onCreateOptionsMenu()</a>实现方式，由于这个应用程序并不需要所以可以直接删除。
-* 还有<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>实现方式，它可以处理操作栏上拉操作，无需改动。
+* 还有<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>实现方式，它可以处理ActionBar的Up操作，请保持目前演示代码，无需改动。
 * 还有一个继承[Fragment](http://developer.android.com/reference/android/app/Fragment.html)的`PlaceholderFragment` ，在本activity的最终版本中不需要此类。
 
 Fragments把应用程序的功能和用户界面分解成可以复用的模块。想了解更Fragments信息，请参阅 [Fragments API Guide](http://developer.android.com/guide/components/fragments.html)，此activity的最终版本不使用Fragment。
@@ -158,9 +158,8 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // 处理ActionBar的条目按键。actionbar会自动处理Home/Up按钮上的事件，
+        // 你只要在AndroidManifest.xml指定一个父Activity即可。
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -169,7 +168,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     * 一个包含简单的View的占位用的碎片。
      */
     public static class PlaceholderFragment extends Fragment {
 
@@ -233,7 +232,7 @@ Activity所有子类都必须实现`onCreate()`方法。创建activity的实例�
 
 不管用户导航到哪，每一个`Activity`是被`Intent`调用，你都可以在启动的`Activity`中通过<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>方法得到`Intent`以及`Intent`包含的数据。
 
-在`DisplayMessageActivity`类的`onCreate()`方法中，得到`intent`以及`MyFirstActivity`提供的附加信息：
+在`DisplayMessageActivity`类的`onCreate()`方法中，得到`intent`以及`MainActivity`提供的附加信息：
 
 ```java
 Intent intent = getIntent();

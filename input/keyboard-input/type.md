@@ -1,6 +1,6 @@
 # 指定输入法类型
 
-> 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:
+> 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:<http://developer.android.com/training/keyboard-input/style.html>
 
 每个文本域期待特定的文本类型，如Email，电话号码，或者纯文本。为应用中的每一个文本域指定特定的输入类型以便系统展示更为合适的软键盘输入法(比如屏幕上键盘)是很重要的。
 

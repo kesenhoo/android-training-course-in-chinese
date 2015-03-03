@@ -1,10 +1,10 @@
 # 优化layout的层级
 
-> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:<http://developer.android.com/training/improving-layouts/optimizing-layout.html>
 
 一个常见的误区是，用最基础的 Layout 结构可以使 Layout 性能提高。然而，你的程序的每个组件和 Layout 都需要初始化、布置位置和绘制。例如，嵌套的 LinearLayout 可能会使得 View 的层级结构很深。此外，嵌套使用了 layout_weight 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如使用 ListView 或 GridView 时。
 
-本课中，你将学习使用 [Hierarchy Viewer](http://developer.android.com/tools/help/hierarchy-viewer.html) （层级浏览器，译者注）和 [Layoutopt](http://developer.android.com/tools/help/layoutopt.html) （Layout优化工具，译者注）来检查和优化 Layout。
+本课中，你将学习使用 [Hierarchy Viewer](http://developer.android.com/tools/help/hierarchy-viewer.html)和[Layoutopt](http://developer.android.com/tools/help/layoutopt.html)来检查和优化 Layout。
 
 ## 检查 Layout
 
@@ -49,11 +49,11 @@ Hierarchy Viewer 会让你选择设备或者模拟器上正在运行的进程，
 
 ## 使用 Lint
 
-> 大部分叫做 lint 的编程工具，都是类似于代码规范的检测工具。比如JSLint，CSSLinkt, JSONLint 等等。译者注。
+> 大部分叫做 lint 的编程工具，都是类似于代码规范的检测工具。比如JSLint，CSSLinkt， JSONLint 等等。译者注。
 
 经常运行 [Lint](http://tools.android.com/tips/lint) 工具来检查 Layout 可能的优化方法，是个很好的实践。Lint 已经取代了 Layoutopt 工具，它拥有更强大的功能。Lint 中包含的一些检测[规则](http://tools.android.com/tips/lint-checks)有：
 
-* 使用复合 drawable —— 用一个 drawable 替代一个包含 `ImageView` 和 `TextView` 的 `LinearLayout` 时会更有效率。
+* 使用compound drawable —— 用一个 drawable 替代一个包含 `ImageView` 和 `TextView` 的 `LinearLayout` 时会更有效率。
 * 合并根 frame —— 如果 `FrameLayout` 是 Layout 的根节点，并且没有使用padding 或者背景等，那么用 merge 标签替代他们会稍微高效些。
 * 没用的子节点 —— 一个没有子节点或者背景的 Layout 应该被去掉，来提高性能
 * 没用的父节点 —— 一个节点如果只有一个子节点，并且它不是 `ScrollView` 或根节点，并且它没有背景，这样的节点应该直接被子节点取代。

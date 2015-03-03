@@ -1,6 +1,6 @@
 # 使用Sync Adapter传输数据
 
-> 编写:[jdneo](https://github.com/jdneo) - 原文:
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/sync-adapters/index.html>
 
 在一台Android设备和网络服务器之间同步数据，可以让你的应用更加实用，更加吸引用户的注意。例如，将数据传输到服务器可以实现一个有用的备份，另一方面，将数据从服务器中获取可以让用户随时随地都能使用你的应用。在一些情况中，用户可能会发觉在线编辑他们的数据并将其发送到设备上，会是一件很方便的事情；或者他们有时会希望将收集的数据上传到一个统一的存储区域中。
 

@@ -12,10 +12,8 @@
 
 **同时您应该阅读**
 
-[Action Bar](http://developer.android.com/guide/topics/ui/actionbar.html) Api指南
-
-[Android 设计指南](http://developer.android.com/design/index.html)
-
+* [Action Bar API 指南](http://developer.android.com/guide/topics/ui/actionbar.html)
+* [Android Design Guide](http://developer.android.com/design/index.html)
 
 本课程将教您如何在不同版本的Android下隐藏状态栏。隐藏状态栏（或者是导航栏）可以让内容得到更多的展示空间，从而提供一个更加沉浸式的用户体验。
 
@@ -28,7 +26,7 @@
 ![status_bar_hide](status_bar_hide.png)
 
 
-## 在4.0及以下版本中隐藏状态栏
+## 1)在4.0及以下版本中隐藏状态栏
 
 在Android 4.0及更低的版本中，你可以通过设置`WindowManager`来隐藏状态栏。你可以动态的隐藏，或者在你的manifest文件中设置activity的主题。如果你的应用的状态栏在运行过程中会一直隐藏，那么推荐你使用改写manifest设定主题的方法（严格上来讲，即便设置了manifest你也可以动态的改变主题）。
 
@@ -41,7 +39,7 @@
 ```
 
 设置主题的优势是：
-* 易于维护，切不容易出错
+* 易于维护，且不容易出错
 * 有更流畅的UI转换，因为在初始化你的Activity之前，系统已经得到了需要渲染UI的信息
 
 另一方面我们可以选择使用`WindowManager`来动态隐藏状态栏。这个方法可以更简单的在用户与App进行交互式展示与隐藏状态栏。
@@ -67,7 +65,7 @@ public class MainActivity extends Activity {
 
 设置了`FLAG_LAYOUT_IN_SCREEN`之后，你可以使用与启用`FLAG_FULLSCREEN`后相同的屏幕区域。这个方法防止了状态栏隐藏和展示的时候内容区域的大小变化。
 
-## 在4.1及以上版本中隐藏状态栏
+## 2)在4.1及以上版本中隐藏状态栏
 
 在Android 4.1(API level 16)以及更高的版本中，你可以使用`setSystemUiVisibility()`来进行动态隐藏。`setSystemUiVisibility()`在View层面设置了UI的标签，然后这些设置被整合到了Window层面。`setSystemUiVisibility()`给了你一个比设置`WindowManager`标签更加粒度化的操作。下面的代码隐藏了状态栏：
 
@@ -84,12 +82,12 @@ actionBar.hide();
 
 注意以下几点：
 * 一旦UI标签被清除(比如跳转到另一个activity),如果你还想隐藏状态栏你就必须再次设定它。详细可以看第五节如何监听并响应UI可见性的变化。
-* 在不同的地方设置UI标签是有所区别的。如果你在activity的onCreate()方法中隐藏系统栏，当用户按下home键系统栏就会重新显示。当用户再重新打开activity的时候，onCreate()不会被调用，所以系统栏还会保持可见。如果你想让在不同activity之间切换时，系统UI保持不变，你需要在onReasume()与onWindowFocusChaned()里设定UI标签。
+* 在不同的地方设置UI标签是有所区别的。如果你在activity的onCreate()方法中隐藏系统栏，当用户按下home键系统栏就会重新显示。当用户再重新打开activity的时候，onCreate()不会被调用，所以系统栏还会保持可见。如果你想让在不同activity之间切换时，系统UI保持不变，你需要在onResume()与onWindowFocusChaned()里设定UI标签。
 * setSystemUiVisibility()仅仅在被调用的View显示的时候才会生效。
 * 当从View导航到别的地方时，用setSystemUiVisibility()设置的标签会被清除。
 
 
-## 让内容显示在状态栏之后
+## 3)让内容显示在状态栏之后
 
 在Android 4.1及以上版本，你可以将应用的内容显示在状态栏之后，这样当状态栏显示与隐藏的时候，内容区域的大小就不会发生变化。要做到这个效果，我们需要用到`SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN`这个标志。同时，你也有可能需要`SYSTEM_UI_FLAG_LAYOUT_STABLE`这个标志来帮助你的应用维持一个稳定的布局。
 
@@ -97,7 +95,7 @@ actionBar.hide();
 
 在一些情况下，你可能需要修改默认的padding大小来获取合适的布局。为了控制内容区域的布局相对系统栏（它占据了一个叫做“内容嵌入”`content insets`的区域）的位置，你可以重写`fitSystemWindows(Rect insets)`方法。当窗口的内容嵌入区域发生变化时，`fitSystemWindows()`方法会被view的hierarchy调用，让View做出相应的调整适应。重写这个方法你就可以按你的意愿处理嵌入区域与应用的布局。
 
-## 同步状态栏与Action Bar的变化
+## 4)同步状态栏与Action Bar的变化
 
 在Android 4.1及以上的版本，为了防止在Action Bar隐藏和显示的时候布局发生变化，你可以使用Action Bar的overlay模式。在Overlay模式中，Activity的布局占据了所有可能的空间，好像Action Bar不存在一样，系统会在布局的上方绘制Aciton Bar。虽然这会遮盖住上方的一些布局，但是当Action Bar显示或者隐藏的时候，系统就不需要重新改变布局区域的大小，使之无缝的变化。
 

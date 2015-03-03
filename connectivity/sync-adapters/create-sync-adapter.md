@@ -1,6 +1,6 @@
 # 创建Sync Adpater
 
-> 编写:[jdneo](https://github.com/jdneo) - 原文:
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/sync-adapters/creating-sync-adapter.html>
 
 在你应用中的Sync Adapter组件会封装在设备和服务器之间传输数据的任务代码。基于你提供的调度和触发器，Sync Adapter框架会在Sync Adapter组件中运行你的代码。要将同步适配组件添加到你的应用，你需要添加下列部件：
 

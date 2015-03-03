@@ -1,8 +1,8 @@
 # 使得ListView滑动顺畅
 
-> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:<http://developer.android.com/training/improving-layouts/smooth-scrolling.html>
 
-保持程序流畅的关键，是让主线程（UI 线程）不要进行大量运算。你要确保在其他线程执行磁盘读写、网络读写或是 SQL 操作等。为了测试你的应用的状态，你可以启用 [StrictMode](http://developer.android.com/reference/android/os/StrictMode.html) (严格模式，译者注）。
+保持程序流畅的关键，是让主线程（UI 线程）不要进行大量运算。你要确保在其他线程执行磁盘读写、网络读写或是 SQL 操作等。为了测试你的应用的状态，你可以启用 [StrictMode](http://developer.android.com/reference/android/os/StrictMode.html)。
 
 ## 使用后台线程
 

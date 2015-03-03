@@ -1,11 +1,11 @@
-# 添加 Action 按钮
+# 添加Action按钮
 
 > 编写:[Vincent 4J](http://github.com/vincent4j) - 原文:<http://developer.android.com/training/basics/actionbar/adding-buttons.html>
 
-Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或文本被称作操作按钮。不匹配的或不足够重要的操作被隐藏在 action overflow 中。
+Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或 文本被称作**action buttons(操作按钮)**。安排不下的或不足够重要的操作被隐藏在 **action overflow** 中。
 
 ![actionbar-actions](actionbar-actions.png)
-图 1. 一个有检索操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作
+图 1. 一个有search操作按钮和 action overflow 的 action bar，在 action overflow 里能展现额外的操作。
 
 ## 在 XML 中指定操作
 
@@ -16,12 +16,12 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 res/menu/main_activity_actions.xml
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <!-- Search, should appear as action button -->
+    <!-- 搜索, 应该作为动作按钮展示-->
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
           android:title="@string/action_search"
           android:showAsAction="ifRoom" />
-    <!-- Settings, should always be in the overflow -->
+    <!-- 设置, 在溢出菜单中展示 -->
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:showAsAction="never" />
@@ -34,13 +34,13 @@ icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之�
 
 > **Note**：当在创建 icon 和其他 bitmap 图片时，你得为优化不同屏幕密度下的显示效果提供多个版本，这一点很重要。在 [支持不同屏幕](../supporting-devices/screens.html) 课程中将会更详细地讨论。
 
-如果你为了兼容 Android 2.1 以下版本使用了 Support 库，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
+如果你为了兼容 Android 2.1 的版本使用了 Support 库，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
 
 res/menu/main_activity_actions.xml
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
-    <!-- Search, should appear as action button -->
+    <!-- 搜索, 应该展示为动作按钮 -->
     <item android:id="@+id/action_search"
           android:icon="@drawable/ic_action_search"
           android:title="@string/action_search"
@@ -56,7 +56,7 @@ res/menu/main_activity_actions.xml
 ```java
 @Override
 public boolean onCreateOptionsMenu(Menu menu) {
-    // Inflate the menu items for use in the action bar
+    // 为ActionBar扩展菜单项
     MenuInflater inflater = getMenuInflater();
     inflater.inflate(R.menu.main_activity_actions, menu);
     return super.onCreateOptionsMenu(menu);
@@ -65,12 +65,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 ## 为操作按钮添加响应事件
 
-当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用[MenuItem](https://developer.android.com/reference/android/view/MenuItem.html)的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 —— 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
+当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用[MenuItem](https://developer.android.com/reference/android/view/MenuItem.html)的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下  - 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `<android:id>` 属性的值。
 
 ```java
 @Override
 public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle presses on the action bar items
+    // 处理动作按钮的点击事件
     switch (item.getItemId()) {
         case R.id.action_search:
             openSearch();
@@ -86,10 +86,10 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 ## 为下级 Activity 添加向上按钮
 
-在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的向上按钮。
+在不是主要入口的其他所有屏中（activity 不位于主屏时），需要在 action bar 中为用户提供一个导航到逻辑父屏的**up button(向上按钮)**。
 
 ![actionbar-up.png](actionbar-up.png)
-图 2. Gmail 中向上按钮
+图 2. Gmail 中的 up button。
 
 当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
 
@@ -98,17 +98,17 @@ public boolean onOptionsItemSelected(MenuItem item) {
 ```xml
 <application ... >
     ...
-    <!-- The main/home activity (it has no parent activity) -->
+    <!-- 主 main/home 活动 (没有上级活动) -->
     <activity
         android:name="com.example.myfirstapp.MainActivity" ...>
         ...
     </activity>
-    <!-- A child of the main activity -->
+    <!-- 主活动的一个子活动-->
     <activity
         android:name="com.example.myfirstapp.DisplayMessageActivity"
         android:label="@string/title_activity_display_message"
         android:parentActivityName="com.example.myfirstapp.MainActivity" >
-        <!-- Parent activity meta-data to support 4.0 and lower -->
+        <!--  meta-data 用于支持 support 4.0 以及一下来指明上级活动 -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.myfirstapp.MainActivity" />
@@ -125,12 +125,12 @@ public void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_displaymessage);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    // If your minSdkVersion is 11 or higher, instead use:
+    // 如果你的minSdkVersion属性是11活更高, 应该这么用:
     // getActionBar().setDisplayHomeAsUpEnabled(true);
 }
 ```
 
-由于系统已经知道 `MainActivity` 是 `DisplayMessageActivity` 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity —— 你不需要去处理向上按钮的事件。
+由于系统已经知道 `MainActivity` 是 `DisplayMessageActivity` 的父 activity，当用户按下向上按钮时，系统会导航到恰当的父 activity - 你不需要去处理向上按钮的事件。
 
 更多关于向上导航的信息，请见 [提供向上导航](../../ux/implement-nav/ancestral.html)。
 

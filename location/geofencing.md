@@ -1,23 +1,26 @@
 # 创建并监视异常区域
 
-> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:<http://developer.android.com/training/location/geofencing.html>
 
 地理围栏将用户当前位置感知和附件地点特征感知相结合，定义了用户对位置的接近程度。为了让一个位置有感知，你必须确定这个位置的经纬度。为了度量用户对位置的接近程度，你需要添加一个半径。综合经纬度和半径即可确定一个地理围栏。当然你可以一次性定义多个地理围栏。
 
 Location Services将一个地理围栏看成是一片区域而不是一个点和一个接近程度。这样可以让它去探测用户是否进入或者正在某个地理围栏中。对于每个地理围栏，你可以让Location Services给你发送进入或者退出地理围栏事件。你还可以通过设置一一个毫秒级别的有效时间来限制地理围栏的生命周期。当地理围栏失效后，Location Services会自动移除这个地理围栏。
 
-##请求地理围栏监视
+## 1)请求地理围栏监视
+
 请求地理围栏监视的第一步就是设置必要的权限。在使用地理围栏时，你必须设置[ACCESS_FINE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION)权限。添加如下代码即可：
 ```java
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 ```
 
-### 检查Google Play Services是否可用
+### 1.1)检查Google Play Services是否可用
+
 位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用[GooglePlayServicesUtil.isGooglePlayServicesAvailable()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context)，这个方法将会返回一个结果代码。你可以通过查询[ConnectionResult](http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html)的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用[GooglePlayServicesUtil.getErrorDialog()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int))获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个[DialogFragment](http://developer.android.com/reference/android/support/v4/app/DialogFragment.html)中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))即可。
 
-> **注意:** 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。
+> **Note:** 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。
 
 因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：
+
 ```java
 public class MainActivity extends FragmentActivity {
     ...
@@ -123,7 +126,7 @@ public class MainActivity extends FragmentActivity {
 * 为地理围栏定义一个圆形区域。使用经纬度标记一个兴趣地点，然后使用半径定义地理围栏有效区域。半径越大，用户越有可能触发地理围栏的警报。例如，为一个家庭灯具地理围栏应用设置一个大的半径，这样当用户回家就可能触发地理围栏，然后灯就亮了。
 
 有效时间
-* 地理围栏保持激活状态的时间。一旦达到了有效时间，Location Services会删除这个地理围栏。大部分时候，你都应该为你的应用设置一个有效时间，但对于家居或者工作空间等类型的应用，可能设置需要永久的地理围栏。nces for the user's home or place of work.
+* 地理围栏保持激活状态的时间。一旦达到了有效时间，Location Services会删除这个地理围栏。大部分时候，你都应该为你的应用设置一个有效时间，但对于家居或者工作空间等类型的应用，可能设置需要永久的地理围栏。
 
 触发事件类型
 * Location Services 能探测到用户进入地理围栏的有效范围内或者走出有效范围的事件。
@@ -131,10 +134,11 @@ public class MainActivity extends FragmentActivity {
 地理围栏 ID
 * 一个与地理围栏一同保存的字符串。你必须保证这个字符串唯一，这样你就可以使用它从Location Services的记录里来移除特定地理围栏。
 
-### 定义地理围栏存储
+### 1.2)定义地理围栏存储
+
 一个地理围栏应用需要将地理围栏数据做持久化的读写。但是你不能使用[Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html) 进行这样的操作；你可以使用数据库等方式来保存地理围栏的相关数据。
 
-作为一个保存地理围栏数据的实例，下面的代码片段定义了两个使用[SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) 的类来进行地理围栏的数据持久化。 ```SimpleGeofence```类， 类似于一条数据库记录，为一个[Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html) 对象存储数据。```SimpleGeofenceStore```类，类似于一个数据库，对```SimpleGeofence``` 的读写应用到 [SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) 实例。
+作为一个保存地理围栏数据的实例，下面的代码片段定义了两个使用[SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) 的类来进行地理围栏的数据持久化。 `SimpleGeofence`类， 类似于一条数据库记录，为一个[Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html) 对象存储数据。`SimpleGeofenceStore`类，类似于一个数据库，对`SimpleGeofence`的读写应用到 [SharedPreferences](http://developer.android.com/reference/android/content/SharedPreferences.html) 实例。
 
 ```java
 public class MainActivity extends FragmentActivity {
@@ -372,8 +376,10 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-### 创建地理围栏对象
-下面的代码片段使用`SimpleGeofence`和`SimpleGeofenceStore`类从用户界面上获取地理围栏数据，然后将这些数据保存到```SimpleGeofence`对象里面，接着把这些`SimpleGeofence`对象保存到一个`SimpleGeofenceStore`里面，然后就可以创建 [Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html)对象了:
+### 1.3)创建地理围栏对象
+
+下面的代码片段使用`SimpleGeofence`和`SimpleGeofenceStore`类从用户界面上获取地理围栏数据，然后将这些数据保存到`SimpleGeofence`对象里面，接着把这些`SimpleGeofence`对象保存到一个`SimpleGeofenceStore`里面，然后就可以创建 [Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html)对象了:
+
 ```java
 public class MainActivity extends FragmentActivity {
     ...
@@ -464,10 +470,13 @@ public class MainActivity extends FragmentActivity {
     ...
 }
 ```
+
 除了这些你要监视的[Geofence](http://developer.android.com/reference/com/google/android/gms/location/Geofence.html)列表之外，你还需要为Location Services添加[Intent](http://developer.android.com/reference/android/content/Intent.html)，这个Intent在你的应用探测到地理围栏触发事件时会将这个事件发送给你的应用。
 
-### 为地理围栏触发事件定义Intent
+### 1.4)为地理围栏触发事件定义Intent
+
 从Location Services发送来的Intent能够触发各种应用内的动作，但是不能用它来打开一个Activity或者Fragment，因为应用内的组件只能在响应用户动作时才能可见。大多数情况下，处理这一类的Intent最好使用[IntentService](http://developer.android.com/reference/android/app/IntentService.html)。一个[IntentService](http://developer.android.com/reference/android/app/IntentService.html)可以推送一个通知，可以进行长时的后台作业，可以将intent发送给其他的services，还可以广播intent。下面的代码展示了如何定义一个[PendingIntent](http://developer.android.com/reference/android/app/PendingIntent.html)来启动一个IntentService:
+
 ```java
 public class MainActivity extends FragmentActivity {
     ...
@@ -491,9 +500,11 @@ public class MainActivity extends FragmentActivity {
     ...
 }
 ```
+
 现在你已经拥有了所有发送监视地理围栏请求给Location Services的代码了。
 
-### 发送监视请求
+### 1.5)发送监视请求
+
 发送监视请求需要两个异步操作。第一个操作就是为这个请求获取一个location client，第二个操作就是使用这个client来生成请求。这两个操作里面，Location Services都会在操作结束的时候调用一个回调函数。处理这些操作最好的方法就是将这些方法调用连接起来。下面的代码展示了如何建立一个Activity，接着定义回调方法，然后以合适的顺序调用他们。
 首先，让Activity实现必要的回调接口。需要添加以下接口：
 [ConnectionCallbacks](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html)
@@ -515,10 +526,12 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-### 开始请求进程
+### 1.6)开始请求进程
+
 接下啦，在连接Location Services的时候定义一个启动请求进程的方法。记得将这个请求设置为全局变量，这样就可以让你使用回调方法[ConnectionCallbacks.onConnected()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle))来添加地理围栏，或者移除地理围栏。
 
 为了防止当你的应用在第一个请求还没结束就开始第二个请求的时候不出现竞争状况，你可以定义一个boolean标志位来记录当前请求的状态：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -584,8 +597,10 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-### 发送添加地理围栏的请求
+### 1.7)发送添加地理围栏的请求
+
 在你对回调方法[ConnectionCallbacks.onConnected()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle))的实现里面，调用 [LocationClient.addGeofences()](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#addGeofences(java.util.List<com.google.android.gms.location.Geofence>, android.app.PendingIntent, com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener))。注意如果连接失败，[onConnected()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle))方法不会被调用，这个请求也会停止。
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -614,10 +629,13 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 注意[addGeofences()](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#addGeofences(java.util.List<com.google.android.gms.location.Geofence>, android.app.PendingIntent, com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener))方法会直接返回，但是请求的状态却不是直接返回的，只有等到Location Services调用 [onAddGeofencesResult()](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnAddGeofencesResultListener.html#onAddGeofencesResult(int, java.lang.String[])方法。一旦这个方法被调用，你就能知道这个请求是否成功。
 
-### 通过Location Services检测请求返回的结果
+### 1.8)通过Location Services检测请求返回的结果
+
 当 Location Services 你对回调函数[onAddGeofencesResult()](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnAddGeofencesResultListener.html#onAddGeofencesResult(int, java.lang.String[])的实现的时候，说明请求已经结束，你可以检测最终的结果状态码。如果请求成功，那么你轻轻的地理围栏是激活的，如果没有成功，那么你请求的地理围栏没有激活。如果没成功，你需要重试或者报告错误。例如：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -656,7 +674,8 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-### 处理断开连接
+### 1.9)处理断开连接
+
 某些情况下，Location Services可能会在你调用disconnect()方法之前断开连接。为了处理这种情况，你需要实现onDisconnected()方法。在这个方法里面，设置请求状态标志位来表示这个请求已经不处于进程中，然后删除这个client：
 ```java
 public class MainActivity extends FragmentActivity implements
@@ -679,7 +698,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
-###处理连接错误
+
+### 1.10)处理连接错误
+
 在处理正常的回调函数之外，你还得提供一个回调函数来处理连接出现错误的情况。这个回调函数重用了前面在检查Google Play service的时候用到的DialogFragment类。它还可以重用之前在onActivityResult()方法里用来接收当用户和错误对话框交互时产生的结果用到的代码。下面的代码展示了如何实现回调函数：
 ```java
 public class MainActivity extends FragmentActivity implements
@@ -732,11 +753,13 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-## 处理地理围栏触发事件
+## 2)处理地理围栏触发事件
+
 当Location Services探测到用户进入或者退出一个地理围栏，它会发送一个Intent，这个Intent就是
 
-### 定义一个IntentService
+### 2.1)定义一个IntentService
 下面的代码展示了如何定义一个当一个地理围栏触发事件出现的时候发送通知。当用户点击这个通知，这个应用的主界面出现：
+
 ```java
 public class ReceiveTransitionsIntentService extends IntentService {
     ...
@@ -807,7 +830,7 @@ public class ReceiveTransitionsIntentService extends IntentService {
 }
 ```
 
-### 在manifest里面设置IntentService
+### 2.2)在manifest里面设置IntentService
 为了在系统里面申明这个IntentService，在manifest里面添加一个`<service>` 元素即可。例如：
 ```java
 <service
@@ -818,7 +841,8 @@ public class ReceiveTransitionsIntentService extends IntentService {
 ```
 注意你不必为这个service设置intent filters，因为它只接收特定的intent。这些地理围栏触发事件的intent是如何被创建的，请参看[发送监视请求](geofencing.html#requestmonitoring)这一课。
 
-## 停止地理围栏监视
+## 3)停止地理围栏监视
+
 要停止地理围栏监视，你要移除这些地理围栏。你可以移除特定的某个地理围栏集合或者移除与某个[PendingIntent](http://developer.android.com/reference/android/app/PendingIntent.html)相关所有的地理围栏。这个过程与添加地理围栏类似。第一个操作就是获取一个移除请求的location client，然后使用这个client来生成请求。
 
 Location Services在它完成移除地理围栏这个过程的时候调用的回调函数定义在[LocationClient.OnRemoveGeofencesResultListener](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnRemoveGeofencesResultListener.html)这个接口里面。在你的类里面申明这个接口，然后为它的两个方法添加定义：
@@ -831,8 +855,10 @@ Location Services在它完成移除地理围栏这个过程的时候调用的回
 
 这些实现的代码将在下一个代码区域出现。
 
-### 移除所有的地理围栏
+### 3.1)移除所有的地理围栏
+
 因为移除地理围栏使用了添加地理围栏时的一些方法，你只需要添加另外几种请求类型即可：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -845,6 +871,7 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 在连接上Location Services的时候启动移除的请求。如果连接失败，那么[onConnected()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html#onConnected(android.os.Bundle)方法就不会被调用，请求也就停止了。下面的代码就展示了如何启动这个请求：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -893,7 +920,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 当Location Services调用这个函数的时候就表明连接已经打开，可以进行移除所有地理围栏的请求了。在这个请求完成之后就可以断开连接了。例如：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -922,7 +951,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 对[removeGeofences(PendingIntent, LocationClient.OnRemoveGeofencesResultListener)](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#removeGeofences(android.app.PendingIntent, com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener))会直接返回，而移除地理围栏的请求的结果要等到Location Services 调用onRemoveGeofencesByPendingIntentResult()方法才会返回。下面的代码展示了如何定义这个方法：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -966,10 +997,12 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-### 移除特定的地理围栏
+### 3.2)移除特定的地理围栏
+
 移除个别地理围栏和地理围栏集合与移除所有地理围栏的过程类似。为了确定你要移除的地理围栏，需要将他们的地理围栏ID存储到一个字符串列表里面。将这个列表传给`removeGeofences`方法。这个方法接下来就可以启动这个移除过程了。
 
 开始的时候要添加一个请求类型来申明这是一个删除里一个列表里面的地理围栏请求。同时还要全局变量来保存地理围栏的ID列表：
+
 ```java
 ...
     // Enum type for controlling the type of removal requested
@@ -977,7 +1010,9 @@ public class MainActivity extends FragmentActivity implements
     // Store the list of geofence Ids to remove
     String<List> mGeofencesToRemove;
 ```
+
 接下来，定义一个你要移除的地理围栏列表。例如，下面的代码就移除了地理围栏ID为1的地理围栏：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -990,7 +1025,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 下面的代码定义了`removeGeofences()`方法：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -1041,7 +1078,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 当Location Services 调用这个回调函数说明这个连接成功，可以进行移除一个列表的地理围栏请求了。完成请求后就可以断开连接。例如：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -1064,7 +1103,9 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 定义 [onRemoveGeofencesByRequestIdsResult()](http://developer.android.com/reference/com/google/android/gms/location/LocationClient.OnRemoveGeofencesResultListener.html#onRemoveGeofencesByRequestIdsResult(int, java.lang.String[])方法的实现。 Location Services 调用这个方法的时候说明移除一个列表的地理围栏的请求已经完成了。在这个方法里面，检测得到的状态码并作出对应的动作：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         ConnectionCallbacks,
@@ -1104,6 +1145,7 @@ public class MainActivity extends FragmentActivity implements
     ...
 }
 ```
+
 你可以将地理围栏同其他位置感知的特性结合起来，比如周期性的位置更新或者用户的活动识别。
 
 下一课，[识别用户的活动状态](activity-recognition.html)将会告诉你如何请求和接受活动更新。Location Services 会以一个正常的频率向你发送当前用户的身体活动信息。基于这些信息，你可以改变你的应用的一些行为。；例如，当你探测到用户由驾驶改为步行的时候，你可以把应用的信息更新频率设置为更长的时间。

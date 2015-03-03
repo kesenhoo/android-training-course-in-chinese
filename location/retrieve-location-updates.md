@@ -1,12 +1,13 @@
 # 获取位置更新
 
-> 编写:[penkzhou](https://github.com/penkzhou) - 原文:
+> 编写:[penkzhou](https://github.com/penkzhou) - 原文:<http://developer.android.com/training/location/receive-location-updates.html>
 
 如果你的应用需要导航或者记录路径，你可能会周期性地去获取用户的位置信息。此时你可以使用Location Services 里面的 [LocationClient.getLastLocation()](https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation())来进行周期性的位置信息更新。使用这个方法之后，Location Services 会基于当前可用的位置信息提供源（比如WiFi和GPS）返回最准确的位置信息更新。
 
 你可以使用一个location client从 Location Services 那里请求周期性的位置更新。根据不同请求的形式，Location Services 要么调用一个回调函数并传入一个 [Location](http://developer.android.com/reference/android/location/Location.html) 对象，或者发送一个包含位置信息的 [Intent](http://developer.android.com/reference/android/content/Intent.html) 。位置更新的精度和频率与你的应用所申请的权限相关联。
 
 ## 确定应用的权限
+
 使用位置服务的应用必须用户位置权限。Android拥有两种位置权限：[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION) 和 [ACCESS_FINE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION)。选择不同的权限决定你的应用最后获取的位置信息的精度。如果你只请求了一个精度比较低的位置权限，位置服务会对返回的位置信息处理成一个相当于城市级别精确度的位置。
 
 请求[ACCESS_FINE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION)权限时也包含了[ACCESS_COARSE_LOCATION](http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION)权限。
@@ -17,11 +18,13 @@
 ```
 
 ## 检测Google Play Services
+
 位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用[GooglePlayServicesUtil.isGooglePlayServicesAvailable()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context)，这个方法将会返回一个结果代码。你可以通过查询[ConnectionResult](http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html)的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用[GooglePlayServicesUtil.getErrorDialog()](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int))获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个[DialogFragment](http://developer.android.com/reference/android/support/v4/app/DialogFragment.html)中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))即可。
 
-> **注意:** 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。
+> **Note:** 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。
 
 因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：
+
 ```java
 public class MainActivity extends FragmentActivity {
     ...
@@ -122,6 +125,7 @@ public class MainActivity extends FragmentActivity {
 下面的代码片段使用了这个方法来检查Google Play services是否可用。
 
 ## 定义位置服务回调函数
+
 在你创建location client之前, 你必须实现一些被 Location Services用来同你的应用通信的接口
 
 [ConnectionCallbacks](http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html)
@@ -191,6 +195,7 @@ public class MainActivity extends FragmentActivity implements
 现在你已经写好了回调函数，你可以设置位置更新的请求了。第一步就是确定可以控制位置更新的参数。
 
 ## 确定位置更新参数
+
 Location Services可以让你通过设置[LocationRequest](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html)里面的值来控制位置更新的频率和精度，然后把[LocationRequest](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html)这个对象作为更新请求的一部分发送出去，接着就可以开始更新位置信息了。
 
 首页，设置下面的周期参数：
@@ -199,11 +204,12 @@ Location Services可以让你通过设置[LocationRequest](https://developer.and
 * 更新频率通过 [LocationRequest.setInterval()](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setInterval(long))方法来设置。 这个方法设置的毫秒数表示你的应用在这个时间内尽可能的接受位置更新信息。如果当时没有其他应用从Location Services获取位置更新，那么你的应用就会已设置的频率接收位置更新。
 
 最快更新频率
-* 最快更新频率通过[LocationRequest.setFastestInterval()](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long)方法设置。这个方法设置你的应用能够接收位置更新最快的频率。你必须设置这个频率因为其他应用也会影响位置更新的频率。 Location Services 会以选择所有请求位置更新的应用中频率最快的发送位置更新。。如果这个频率比你的应用能处理的频率还要快，那么你的应用可能会出现UI闪烁或者数据溢出。为了防止这样的情况出现，调用LocationRequest.setFastestInterval()方法来设置位置更新频率的上限，同时还可以节约电量。当你通过 LocationRequest.setInterval()方法设置理想的更新频率，通过 LocationRequest.setFastestInterval()设置更新频率的上限，然后你的应用就会在系统中获得最快的位置更新频率。如果其他应用设置的更新频率更快，那么你的应用也跟着受益。如果其他应用的更新频率没有你的频率快，那么你的应用将会以你通过LocationRequest.setInterval()方法设置的频率更新位置信息。
+* 最快更新频率通过[LocationRequest.setFastestInterval()](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long)方法设置。这个方法设置你的应用能够接收位置更新最快的频率。你必须设置这个频率因为其他应用也会影响位置更新的频率。Location Services 会以选择所有请求位置更新的应用中频率最快的发送位置更新。如果这个频率比你的应用能处理的频率还要快，那么你的应用可能会出现UI闪烁或者数据溢出。为了防止这样的情况出现，调用`LocationRequest.setFastestInterval()`方法来设置位置更新频率的上限，同时还可以节约电量。当你通过 LocationRequest.setInterval()方法设置理想的更新频率，通过 LocationRequest.setFastestInterval()设置更新频率的上限，然后你的应用就会在系统中获得最快的位置更新频率。如果其他应用设置的更新频率更快，那么你的应用也跟着受益。如果其他应用的更新频率没有你的频率快，那么你的应用将会以你通过LocationRequest.setInterval()方法设置的频率更新位置信息。
 
 接着，设置精度参数。在一个前台应用（foreground app）中，你需要不断地获取高精度的位置更新，因此需要使用[LocationRequest.PRIORITY_HIGH_ACCURACY](https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_HIGH_ACCURACY)。
 
-下面的代码片段展示了如何在```onCreate()```方法里面设置更新频率和精度：
+下面的代码片段展示了如何在`onCreate()`方法里面设置更新频率和精度：
+
 ```java
 public class MainActivity extends FragmentActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -246,14 +252,16 @@ public class MainActivity extends FragmentActivity implements
 }
 ```
 
-> **注意：** 如果你的应用在获取位置更新后需要访问网络或者进行长时的操作，你可以将最快更新频率调整至更慢的值。这样可以让你的应用不会接受无法使用的位置更新。一旦这样的长时操作完成，将最快更新频率设回原值。
+> **Note:** 如果你的应用在获取位置更新后需要访问网络或者进行长时的操作，你可以将最快更新频率调整至更慢的值。这样可以让你的应用不会接受无法使用的位置更新。一旦这样的长时操作完成，将最快更新频率设回原值。
 
 ## 开始进行位置更新
+
 To send the request for location updates, create a location client in onCreate(), then connect it and make the request by calling requestLocationUpdates(). Since your client must be connected for your app to receive updates, you should connect the client in onStart(). This ensures that you always have a valid, connected client while your app is visible. Since you need a connection before you can request updates, make the update request in ConnectionCallbacks.onConnected()
 
 Remember that the user may want to turn off location updates for various reasons. You should provide a way for the user to do this, and you should ensure that you don't start updates in onStart() if updates were previously turned off. To track the user's preference, store it in your app's SharedPreferences in onPause() and retrieve it in onResume().
 
 The following snippet shows how to set up the client in onCreate(), and how to connect it and request updates in onStart():
+
 ```java
 public class MainActivity extends FragmentActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -335,7 +343,9 @@ public class MainActivity extends FragmentActivity implements
 For more information about saving preferences, read Saving Key-Value Sets.
 
 ## Stop Location Updates
+
 To stop location updates, save the state of the update flag in onPause(), and stop updates in onStop() by calling removeLocationUpdates(LocationListener). For example:
+
 ```java
 public class MainActivity extends FragmentActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,

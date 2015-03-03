@@ -1,10 +1,14 @@
 # 创建向后兼容的UI
 
-> 编写:[spencer198711](https://github.com/spencer198711) - 原文:
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/index.html>
 
 这一课展示了如何以向后兼容的方式使用在新版本的Android上可用的UI组件和API，确保你的应用在之前的版本上依然能够运行。
 
 贯穿整个课程，在Android 3.0被新引入的[Action Bar Tabs](http://developer.android.com/guide/topics/ui/actionbar.html#Tabs)功能在本课程中作为指导例子，但是你可以在其他UI组件和API功能上运用这种方式。
+
+## Sample
+
+<http://developer.android.com/shareables/training/TabCompat.zip>
 
 ## Lessons
 

@@ -1,6 +1,6 @@
 # 使用CursorLoader执行查询任务
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/load-data-background/setup-loader.html>
 
 CursorLoader依靠ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行的时候可以与用户继续其他的交互。
 
@@ -24,20 +24,21 @@ public class PhotoThumbnailFragment extends FragmentActivity implements
 为了初始化查询，需要执行[LoaderManager.initLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks<D>))。这个方法可以初始化后台任务。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在`onCreate()`或者`onCreateView()`。例如：
 
 ```java
-// Identifies a particular Loader being used in this component
+// 标识一个特定的Loader加载器来使用这个组件
     private static final int URL_LOADER = 0;
     ...
-    /* When the system is ready for the Fragment to appear, this displays
-     * the Fragment's View
-     */
+     /**
+       * 当系统已经准备好显示Fragment时，
+       * 这里显示Fragment的布局
+       */
     public View onCreateView(
             LayoutInflater inflater,
             ViewGroup viewGroup,
             Bundle bundle) {
         ...
         /*
-         * Initializes the CursorLoader. The URL_LOADER value is eventually passed
-         * to onCreateLoader().
+         *初始化一个CursorLoader.  URL_LOADER 值最终会被传递到
+         *  onCreateLoader().
          */
         getLoaderManager().initLoader(URL_LOADER, null, this);
         ...
@@ -50,32 +51,31 @@ public class PhotoThumbnailFragment extends FragmentActivity implements
 
 一旦后台任务被初始化好，它会执行你实现的回调方法[onCreateLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onCreateLoader(int, android.os.Bundle))。为了启动查询任务，会在这个方法里面返回CursorLoader。你可以初始化一个空的CursorLoader然后使用它的方法来定义你的查询条件，或者你可以在初始化CursorLoader对象的时候就同时定义好查询条件：
 
-```
-/*
-* Callback that's invoked when the system has initialized the Loader and
-* is ready to start the query. This usually happens when initLoader() is
-* called. The loaderID argument contains the ID value passed to the
-* initLoader() call.
-*/
+```java
+/**
+ * 系统在完成Loader的初始化并且准备好查询的时候会回调这个方法。
+ * 这个通常在initLoader()方法被调用发生。包含loaderID值的参数
+ * 通过initLoader()方法的传递得到。
+ */
 @Override
 public Loader<Cursor> onCreateLoader(int loaderID, Bundle bundle)
 {
-    /*
-     * Takes action based on the ID of the Loader that's being created
-     */
+     /*
+      * 通过加载器ID执行创建加载器动作
+      */
     switch (loaderID) {
         case URL_LOADER:
             // Returns a new CursorLoader
             return new CursorLoader(
-                        getActivity(),   // Parent activity context
-                        mDataUrl,        // Table to query
-                        mProjection,     // Projection to return
-                        null,            // No selection clause
-                        null,            // No selection arguments
-                        null             // Default sort order
+                        getActivity(),   // 父Activity上下文
+                        mDataUrl,        // 要查询的表
+                        mProjection,     // 要返回的Projection
+                        null,            // 没有条件从句
+                        null,            // 没有条件参数
+                        null             // 默认排序
         );
         default:
-            // An invalid id was passed in
+            // 一个非法的id传入
             return null;
     }
 }

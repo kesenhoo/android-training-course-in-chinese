@@ -1,6 +1,6 @@
 # 执行Sync Adpater
 
-> 编写:[jdneo](https://github.com/jdneo) - 原文:
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/sync-adapters/running-sync-adapter.html>
 
 在这系列课程中之前的一些课程中，你学习了如何创建一个封装数据传输代码的Sync Adapter组件，以及如何添加其它的组件，来允许你将Sync Adapter集成到系统当中。现在我们已经拥有了所有需要的东西，来安装包含有一个Sync Adapter的应用，但是这里是没有任何代码是去运行Sync Adapter的。
 

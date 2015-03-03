@@ -1,6 +1,6 @@
 # 处理按键动作
 
-> 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:
+> 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:<http://developer.android.com/training/keyboard-input/commands.html>
 
 当预估给予可编辑当文本域焦点时，如一个[EditText](http://developer.android.com/reference/android/widget/EditText.html)元素，而且用户拥有一个实体键盘连接，所有当输入由系统处理。然而如果你想接管或直接处理键盘输入键盘操作，通过实现接口[KeyEvent.Callback](http://developer.android.com/reference/android/view/KeyEvent.Callback.html)的回调方法，如 <a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>和<a href="http://developer.android.com/reference/android/view/KeyEvent.Callback.html#onKeyMultiple(int, int, android.view.KeyEvent)">onKeyMultiple()</a>.
 

@@ -10,7 +10,8 @@
 
 **注意:**为ActionBar添加分享功能的最好方法是使用[ShareActionProvider](https://developer.android.com/reference/android/widget/ShareActionProvider.html)，它能够在API level 14以上进行使用。ShareActionProvider会在第3课中进行详细介绍。
 
-## Send Text Content(分享文本内容)
+## 分享文本内容(Send Text Content)
+
 ACTION_SEND的最直接与最常用的是从一个Activity发送文本内容到另外一个Activity。例如，Android内置的浏览器可以把当前显示页面的URL作为文本内容分享到其他程序。这是非常有用的，通过邮件或者社交网络来分享文章或者网址给好友。下面是一段Sample Code:
 
 ```java
@@ -45,7 +46,8 @@ Optionally,你可以为intent设置一些标准的附加值，例如：EXTRA_EMA
 
 **注意:**一些e-mail程序，例如Gmail,对应接收的是EXTRA_EMAIL与EXTRA_CC，他们都是String类型的，可以使用putExtra(string,string[])方法来添加到intent里面。
 
-## Send Binary Content(分享二进制内容)
+## 分享二进制内容(Send Binary Content)
+
 分享二进制的数据需要结合设置特定的`MIME Type`，需要在`EXTRA_STREAM`里面放置数据的URI,下面有个分享图片的例子，这个例子也可以修改用来分享任何类型的二进制数据：
 
 ```java
@@ -58,7 +60,7 @@ startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.
 
 **请注意下面的内容：**
 
-* 你可以使用`*/*`这样的方式来制定MIME类型，但是这仅仅会match到那些能够处理一般数据类型的Activity(即一般的Activity无法详尽所有的MIME类型)
+* 你可以使用`*/*`这样的方式来指定MIME类型，但是这仅仅会match到那些能够处理一般数据类型的Activity(即一般的Activity无法详尽所有的MIME类型)
 * 接收的程序需要有访问URI资源的权限。下面有一些方法来处理这个问题：
 	* 把文件写到外部存储设备上，类似SDCard，这样所有的app都可以进行读取。使用Uri.fromFile()方法来创建可以用在分享时传递到intent里面的Uri.。然而，请记住，不是所有的程序都遵循`file://`这样格式的Uri。
 	* 在调用 getFileStreamPath()返回一个File之后，使用带有`MODE_WORLD_READABLE` 模式的openFileOutput() 方法把数据写入到你自己的程序目录下。像上面一样，使用Uri.fromFile()创建一个`file://`格式的Uri用来添加到intent里面进行分享。
@@ -66,7 +68,8 @@ startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.
 	* 图片可以使用 insertImage() 方法直接插入到MediaStore 系统里面。那个方法会返回一个`content://`格式的Uri.。
 	* 存储数据到你自己的ContentProvider里面，确保其他app可以有访问你的provider的权限。(或者使用 per-URI permissions)
 
-## Send Multiple Pieces of Content(发送多块内容)
+## 发送多块内容(Send Multiple Pieces of Content)
+
 为了同时分享多种不同类型的内容，需要使用`ACTION_SEND_MULTIPLE`与指定到那些数据的URIs列表。MIME类型会根据你分享的混合内容而不同。例如，如果你分享3张JPEG的图片，那么MIME类型仍然是`image/jpeg`。如果是不同图片格式的话，应该是用`image/*`来匹配那些可以接收任何图片类型的activity。如果你需要分享多种不同类型的数据，可以使用`*/*`来表示MIME。像前面描述的那样，这取决于那些接收的程序解析并处理你的数据。下面是一个例子：
 
 ```java
@@ -82,5 +85,3 @@ startActivity(Intent.createChooser(shareIntent, "Share images to.."));
 ```
 
 当然，请确保指定到数据的URIs能够被接收程序所访问(添加访问权限)。
-
-***

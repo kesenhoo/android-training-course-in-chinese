@@ -1,6 +1,6 @@
 # 创建单元测试
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-unit-testing.html>
 
 一个[Activity](http://developer.android.com/reference/android/app/Activity.html)测试单元是快速验证一个[Activity](http://developer.android.com/reference/android/app/Activity.html)的状态以及与其它独立组件(也就是和系统其它部分分离的部分)交互的最优方式。一个测试单元通常是测试代码中可能性最小的代码块(可以是一个方法,类,或者组件),而且也不依赖于系统或网络资源。比如说,你可以写一个测试单元去检查Activity是否有正确的布局或者它的触发器,以及Intent对象的正确性。
 

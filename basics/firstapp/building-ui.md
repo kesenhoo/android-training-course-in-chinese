@@ -1,4 +1,4 @@
-# 建立一个简单的用户界面
+# 建立简单的用户界面
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/building-ui.html>
 
@@ -20,7 +20,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 > **Note**：在eclipse中，当你打开布局文件的时候，首先看到的是图形化布局编辑器，这个编辑页是使用所见即所得的工具帮助你创建布局。对于本课来说，你是直接在XML里进行操作，因此点击屏幕下方的fragment_main.xml标签进入XML编辑页。
 
-你创建项目时选择的BlankActivity 模板生成的fragment_main.xml文件包含一个[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)的根View和一个[TextView](http://developer.android.com/reference/android/widget/TextView.html)的子View。
+你创建项目时选择的Blank Activity With Fragment 模板生成的fragment_main.xml文件包含一个[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)的根View和一个[TextView](http://developer.android.com/reference/android/widget/TextView.html)的子View。
 
 首先，删除[`<TextView>`](http://developer.android.com/reference/android/widget/TextView.html)标签并修改[`<RelativeLayout>`](http://developer.android.com/reference/android/widget/RelativeLayout.html)为 [`<LinearLayout>`](http://developer.android.com/reference/android/widget/LinearLayout.html),然后添加[android:orientation](http://developer.android.com/reference/android/widget/LinearLayout.html#attr_android:orientation) 属性并设置该属性为`horizontal`，修改后结果如下：
 
@@ -116,7 +116,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 你可以根据每一个部件所占的空间来指定权重值的大小，它的总数是有同级别的部件来决定的。就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，意思就是这个酒中伏特加酒占三分之二。例如，你设置一个View的权重是2，另一个View的权重是1，那么总数就是3，这时第一个View占据2/3的空间，第二个占据1/3的空间。如果你再加入第三个View，权重设为1，那么第一个View(权重为2的)会占据1/2的空间，剩余的另外两个View各占1/4。(请注意，使用权重的前提一般是给View的宽或者高的大小设置为0dp，然后系统根据上面的权重规则来计算View应该占据的空间。但是很多情况下，如果给View设置了match_parent的属性，那么上面计算权重时则不是通常的正比，而是反比，也就是权重值大的反而占据空间小)。
 
-对于所有的View默认的权重是0，如果你只设置了一个View的权重大于0，那么这个View将占据除去别的View本身占据的空间的的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。
+对于所有的View默认的权重是0，如果你只设置了一个View的权重大于0，那么这个View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。
 
 ```xml
 <EditText
@@ -124,7 +124,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
     ... />
 ```
 
-为了提示布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动回占据剩余空间，EditText的宽度最终成了不起作用的属性。
+为了提升布局的效率，在设置权重的时候，你应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设置为0dp。如果你设置为"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动会占据剩余空间，EditText的宽度最终成了不起作用的属性。
 
 ```xml
 <EditText

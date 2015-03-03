@@ -1,6 +1,6 @@
 # 使用include标签重用layouts
 
-> 编写:[allenlsy](https://github.com/allenlsy) - 原文:
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:<http://developer.android.com/training/improving-layouts/reusing-layouts.html>
 
 虽然 Android 提供很多小的可重用的交互组件，你仍然可能需要重用复杂一点的组件，这也许会用到 Layout。为了高效重用整个的 Layout，你可以使用 `<include/>` 和 `<merge/>` 标签把其他 Layout 嵌入当前 Layout。
 
@@ -8,7 +8,7 @@
 
 ## 创建可重用 Layout
 
-如果你已经知道你需要重用的 Layout，先创建以德新的 Layout XML 文件。比如，以下是一个来自 G-Kenya codelab 的 Layout，定义了一个需要添加到每个 Activity 中的标题栏（titlebar.xml)：
+如果你已经知道你需要重用的 Layout，先创建一个新的 Layout XML 文件。比如，以下是一个来自 G-Kenya codelab 的 Layout，定义了一个需要添加到每个 Activity 中的标题栏（titlebar.xml)：
 
 ```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,7 +24,7 @@
 
 根节点就是你想添加入的 Layout 类型。当需要显示这个标题栏时，就应该添加这个 Layout。
 
-## 使用 `<include>` 标签
+## 使用`<include>`标签
 
 使用 `<include>` 标签，可以在 Layout 中添加可重用的组件。比如，这里有一个来自 G-Kenya codelab 的 Layout 需要包含上面的那个标题栏：
 
@@ -59,9 +59,9 @@
 
 然而，如果你要在 `<include>` 中覆写某些属性，你必须先覆写 `android:layout_height` 和 `android:layout_width`。
 
-## 使用 `<merge>` 标签
+## 使用`<merge>`标签
 
-`<merge />` 标签在你嵌套 Layout 时取消了 UI 层级中冗余的 ViewGroup 。比如，如果你有一个 Layout 是一个竖直方向的 LinearLayout，其中包含两个连续的 View 可以在别的 Layout 中重用，那么你会做一个 LinearLayout 来包含这两个 View ，以便重用。不过，当使用另一个 LinearLayout 来嵌套这个可重用的 LinearLayout 时，这种嵌套 LinearLayout 的方式除了减慢你的 UI 性能外没有任何意义。
+`<merge/>` 标签在你嵌套 Layout 时取消了 UI 层级中冗余的 ViewGroup 。比如，如果你有一个 Layout 是一个竖直方向的 LinearLayout，其中包含两个连续的 View 可以在别的 Layout 中重用，那么你会做一个 LinearLayout 来包含这两个 View ，以便重用。不过，当使用另一个 LinearLayout 来嵌套这个可重用的 LinearLayout 时，这种嵌套 LinearLayout 的方式除了减慢你的 UI 性能外没有任何意义。
 
 为了避免这种情况，你可以用 `<merge>` 元素来替代可重用 Layout 的根节点。例如：
 

@@ -13,7 +13,7 @@
 
 ![navigation-bar](navigation-bar.png)
 
-## 在4.0及以上版本中隐藏导航栏
+## 1)在4.0及以上版本中隐藏导航栏
 
 你可以在Android 4.0以及以上版本，使用`SYSTEM_UI_FLAG_HIDE_NAVIGATION`标志来隐藏导航栏。代码如下：
 
@@ -37,7 +37,7 @@ decorView.setSystemUiVisibility(uiOptions);
 * 当从View导航到别的地方时，用setSystemUiVisibility()设置的标签会被清除。
 
 
-## 让内容显示在导航栏之后
+## 2)让内容显示在导航栏之后
 
 在Android 4.1与更高的版本中，你可以让应用的内容显示在导航栏的后面，这样当导航栏展示或隐藏的时候内容区域就不会发生布局大小的变化。可以使用`SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION`标志来做到这个效果。同时，你也有可能需要`SYSTEM_UI_FLAG_LAYOUT_STABLE`这个标志来帮助你的应用维持一个稳定的布局。
 

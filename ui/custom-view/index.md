@@ -16,9 +16,8 @@ Android 2.1 (API level 7) 或更高
 * [Hardware Acceleration](http://developer.android.com/guide/topics/graphics/hardware-accel.html)
 * [Accessibility](http://developer.android.com/guide/topics/ui/accessibility/index.html) developer guide
 
-**例子**
+## Sample
 
-Download the sample
 [CustomView.zip](http://developer.android.com/shareables/training/CustomView.zip)
 
 <!-- more -->

@@ -1,6 +1,6 @@
 # 使用能感知版本的组件
 
-> 编写:[spencer198711](https://github.com/spencer198711) - 原文:
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/using-component.html>
 
 既然对TabHelper和CompatTab你已经有了两种具体实现，一个为Android 3.0和其后版本，一个为Android 3.0之前的版本。现在，该使用这些实现做些事情了。这一课讨论了创建在这两种实现之前切换的逻辑，创建能够感知版本的界面布局，最终使用我们创建的后向兼容的UI组件。
 

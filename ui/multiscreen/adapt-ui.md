@@ -1,6 +1,6 @@
 # 实现可适应的UI流程
 
-> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/adaptui.html>
 
 在你应用已经可以显示UI的基础上，UI的流程可能会不一样。比如，当你的应用在有两个方框的模式中，点击左边方框的item时，内容显示在右边方框中。如果是在只有一个方框的模式中，当你点击某个item的时候，内容则显示在一个新的activity中。
 
@@ -23,7 +23,7 @@ public class NewsReaderActivity extends FragmentActivity {
 }
 ```
 
-注意：使用代码查询id为“article”的view是否可见比直接硬编码查询指定的布局更加的灵活。
+> 注意：使用代码查询id为“article”的view是否可见比直接硬编码查询指定的布局更加的灵活。
 
 另一个关于如何适配已经存在的不同组件的例子是在组件执行操作之前先检查它是否是可用的。比如，在News Reader示例中，有一个按钮点击后打开一个菜单，但是这个按钮仅仅只在Android3.0之后的版本中才能显示（因为这个函数是在API 11中ActionBar中才能有的）。所以，在给这个按钮添加事件之间，你可以这样做：
 ```java
@@ -140,7 +140,7 @@ public class HeadlinesFragment extends ListFragment {
     ...
 }
 ```
-这种技术在[支持平板与手持设备(Supporting Tablets and Handsets)](file:///F:/Android_training/android-docs/guide/practices/tablets-and-handsets.html)有更加详细的介绍。
+这种技术在[支持平板与手持设备(Supporting Tablets and Handsets)](http://developer.android.com/guide/practices/tablets-and-handsets.html)有更加详细的介绍。
 
 ## 处理屏幕配置变化
 

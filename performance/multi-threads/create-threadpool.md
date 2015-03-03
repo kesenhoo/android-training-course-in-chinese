@@ -3,22 +3,23 @@
 > 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
 在前面的课程中展示了如何在单独的一个线程中执行一个任务。如果你的线程只想执行一次，那么上一课的内容已经能满足你的需要了。
-如果你想在一个数据集中重复执行一个任务，而且你只需要一个执行运行一次。这时，使用一个<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>将能满足你的需求。
-为了在资源可用的的时候自动执行任务，或者允许不同的任务同时执行（或前后两者），你需要提供一个管理线程的集合。
-为了做这个管理线程的集合，使用一个<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>实例，当一个线程在它的线程池中变得不受约束时，它会运行队列中的一个任务。
-为了能执行这个任务，你所需要做的就是把它加入到这个队列。
+如果你想针对不同的数据内容，重复执行同一个任务，并且在某个时刻只能同时执行一个任务。那么，你可以使用[IntentService](http://developer.android.com/reference/android/app/IntentService.html)来满足你的需求。
+为了在资源可用的的时候自动执行任务，或者允许不同的任务能够同时执行，你需要提供一个管理线程的集合。
+为了做这个管理线程的集合，使用一个[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)实例，当线程池中的某个线程闲置的时候，它会马上执行队列中的等待任务。
+为了任务能够被执行，你所需要做的就是把这个任务加入到任务队列中即可。
 
-一个线程池能运行多个并行的任务实例，因此你要能保证你的代码是线程安全的，从而你需要给会被多个线程访问的变量附上同步代码块(synchronized block)。
-当一个线程在对一个变量进行写操作时，通过这个方法将能阻止另一个线程对该变量进行读取操作。
-典型的，这种情况会发生在静态变量上，但同样它也能突然发生在任意一个只实例化一次。
-为了学到更多的相关知识，你可以阅读<a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank">进程与线程(Processes and Threads)</a>这一API指南。
+一个线程池能运行多个并行的任务，因此你要能保证你的代码是线程安全的，从而你需要给可能会被多个线程访问的变量进行加锁(synchronized block)。
+通过这个方法能够实现变量的读写互斥。
+典型的情况是静态变量。关于更多的相关知识，你可以阅读API Guides中的<a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank">进程与线程(Processes and Threads)</a>。
 
-##定义线程池类
-在自己的类中实例化<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>类。在这个类里需要做以下事：
+## 定义线程池类
 
-**1.   为线程池使用静态变量**
+在自己的类中实例化ThreadPoolExecutor类。在这个类里需要做以下几件事：
 
-为了有一个单一控制点用来限制CPU或网络资<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>类型，你可能想有一个能管理每一个线程的线程池，且每个线程都会是单个实例。比如，你可以把这个作为一部分添加到你的全局变量的声明中去：
+**1.为线程池使用静态变量**
+
+为了有一个统一的入口来管理限制CPU与网络资源，也许在你的app中就只需要一个线程池单例。但是如果你有多种类型的runnable，你可以分别为他们定义各自的线程池单例。且每个线程都会是单个实例。比如，你可以把下面的代码作为一部分添加到你的全局变量的声明中去：
+
 ```java
 public class PhotoManager {
     ...
@@ -29,9 +30,11 @@ public class PhotoManager {
     }
     ...
 ```
-**2.   使用私有构造方法**
 
- 让构造方法私有从而保证这是一个单例，这意味着你不需要在同步代码块(synchronized block)中额外访问这个类：
+**2.使用私有构造方法**
+
+让构造方法私有从而保证这是一个单例，这意味着你不需要在同步代码块(synchronized block)中封装访问这个类：
+
 ```java
 public class PhotoManager {
     ...
@@ -45,9 +48,10 @@ public class PhotoManager {
     }
 ```
 
-**3.   通过调用线程池类里的方法开启你的任务**
+**3.通过调用线程池类里的方法开启你的任务**
 
- 在线程池类中定义一个能添加任务到线程池队列的方法。例如：
+在线程池类中定义一个能添加任务到线程池队列的方法。例如：
+
 ```java
 public class PhotoManager {
     ...
@@ -63,10 +67,11 @@ public class PhotoManager {
         ...
     }
 ```
-**4.   在构造方法中实例化一个<a href="http://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>，且将它附加到你APP的UI线程。**
 
-一个<a href="http://developer.android.com/reference/android/os/Handler.html" target="_blank">Handler</a>允许你的APP安全地调用UI对象（例如  <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>对象）的方法。
-     大多数UI对象只能从UI线程安全地被修改。这个方法将会在<a href="performance/multi-threads/communicate-ui.html" target="_blank">与UI线程进行通信(Communicate with the UI Thread)</a>这一课中进行详细的描述。例如：
+**4.在构造方法中实例化一个Handler，且将它附加到你APP的UI线程。**
+
+一个UI线程的Handler允许你的APP安全地调用UI对象（例如View对象）的方法。大多数UI对象只能从UI线程安全地被修改。这个方法将会在<a href="performance/multi-threads/communicate-ui.html" target="_blank">与UI线程进行通信(Communicate with the UI Thread)</a>这一课中进行详细的描述。例如：
+
 ```java
 private PhotoManager() {
     ...
@@ -84,14 +89,16 @@ private PhotoManager() {
         }
     }
 ```
-##确定线程池的参数
-一旦有了整体的类结构,你可以开始定义线程池了。为了初始化一个<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>对象，
+
+## 确定线程池的参数
+
+一旦有了整体的类结构,你可以开始定义线程池了。为了初始化一个ThreadPoolExecutor对象，
 你需要提供以下数值：
 
-**1.  线程池的初始化大小和最大的大小**
+**1.线程池的初始化大小和最大的大小**
 
-这个是指最初分配给线程池的线程数量，以及线程池中允许的最大线程数量。在线程池中拥有的线程数量主要取决于你的设备的CPU内核数。
-    这个数字可以从系统环境中获得：
+这个是指最初分配给线程池的线程数量，以及线程池中允许的最大线程数量。在线程池中拥有的线程数量主要取决于你的设备的CPU内核数。这个数字可以从系统环境中获得：
+
 ```java
 public class PhotoManager {
 ...
@@ -103,16 +110,17 @@ public class PhotoManager {
             Runtime.getRuntime().availableProcessors();
 }
 ```
-这个数字可能不反映设备的物理核心数量，因为一些设备根据系统负载关闭了一个或多个CPU内核，对于这样的设备，<a href="http://developer.android.com/reference/java/lang/Runtime.html#availableProcessors()" target="_blank">availableProcessors()</a>
-方法返回的是处于活动状态的内核数量，可能少于设备的实际内核总数。
 
-**2. 线程保持活动状态的持续时间和时间单位**
+这个数字可能并不反映设备的物理核心数量，因为一些设备根据系统负载关闭了一个或多个CPU内核，对于这样的设备，`availableProcessors()`方法返回的是处于活动状态的内核数量，可能少于设备的实际内核总数。
 
-   这个是指线程被关闭前保持空闲状态的持续时间。这个持续时间通过时间单位值进行解译，是<a href="http://developer.android.com/reference/java/util/concurrent/TimeUnit.html" target="_blank">TimeUnit()</a>中定义的常量之一。
+**2.线程保持活动状态的持续时间和时间单位**
 
-**3. 一个任务队列**
+这个是指线程被关闭前保持空闲状态的持续时间。这个持续时间通过时间单位值进行解译，是[TimeUnit()](http://developer.android.com/reference/java/util/concurrent/TimeUnit.html)中定义的常量之一。
 
-   这个传入的队列由<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>获取的<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>对象组成。为了执行一个线程中的代码，一个线程池管理者从先进先出的队列中取出一个<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>对象且把它附加到一个线程。当你创建线程池时需要提供一个队列对象，这个队列对象类必须实现<a href="http://developer.android.com/reference/java/util/concurrent/BlockingQueue.html" target="_blank">BlockingQueue</a>接口。为了满足你的APP的需求，你可以选择一个Android SDK中已经存在的队列实现类。为了学习更多相关的知识，你可以看一下<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>类的概述。下面是一个使用<a href="http://developer.android.com/reference/java/util/concurrent/LinkedBlockingQueue.html" target="_blank">LinkedBlockingQueue</a>实现的例子：
+**3.一个任务队列**
+
+这个传入的队列由ThreadPoolExecutor获取的Runnable对象组成。为了执行一个线程中的代码，一个线程池管理者从先进先出的队列中取出一个Runnable对象且把它附加到一个线程。当你创建线程池时需要提供一个队列对象，这个队列对象类必须实现[BlockingQueue](http://developer.android.com/reference/java/util/concurrent/BlockingQueue.html)接口。为了满足你的APP的需求，你可以选择一个Android SDK中已经存在的队列实现类。为了学习更多相关的知识，你可以看一下ThreadPoolExecutor类的概述。下面是一个使用[LinkedBlockingQueue](http://developer.android.com/reference/java/util/concurrent/LinkedBlockingQueue.html)实现的例子：
+
 ```java
 public class PhotoManager {
     ...
@@ -128,8 +136,10 @@ public class PhotoManager {
     ...
 }
 ```
-##创建一个线程池
-为了创建一个线程池，可以通过调用<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html#ThreadPoolExecutor(int, int, long, java.util.concurrent.TimeUnit, java.util.concurrent.BlockingQueue<java.lang.Runnable>)" target="_blank">ThreadPoolExecutor()</a>构造方法初始化一个线程池管理者对象，这样就能创建和管理一组可约束的线程了。如果线程池的初始化大小和最大大小相同，<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>在实例化的时候就会创建所有的线程对象。例如：
+
+## 创建一个线程池
+
+为了创建一个线程池，可以通过调用ThreadPoolExecutor()构造方法初始化一个线程池管理者对象，这样就能创建和管理一组可约束的线程了。如果线程池的初始化大小和最大大小相同，ThreadPoolExecutor在实例化的时候就会创建所有的线程对象。例如：
 ```java
 private PhotoManager() {
         ...

@@ -1,8 +1,8 @@
 # 抽象出新的APIs
 
-> 编写:[spencer198711](https://github.com/spencer198711) - 原文:
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/abstracting.html>
 
-假如你想使用[Action Bar Tabs](http://developer.android.com/guide/topics/ui/actionbar.html#Tabs)作为你的应用的顶层导航的主要形式。不幸的是，[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)APIs只在Android 3.0（API等级11）之后才能使用。因此，如果你想要在运行之前版本的Android平台的设备上分发你的应用，你需要提供一个支持新的API的实现，同时提供一个回退机制，使得能够使用旧的APIs。
+假如你想使用[Action Bar Tabs](http://developer.android.com/guide/topics/ui/actionbar.html#Tabs)作为你的应用的顶层导航的主要形式。不幸的是，[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html) APIs只在Android 3.0（API等级11）之后才能使用。因此，如果你想要在运行之前版本的Android平台的设备上分发你的应用，你需要提供一个支持新的API的实现，同时提供一个回退机制，使得能够使用旧的APIs。
 
 在本课程中，使用了具有面向特定版本实现的抽象类去构建一个tab页形式的用户界面，并以此提供向后兼容性。这一课描述了如何为新的tab API创建一个抽象层，并以此作为构建tab组件的第一步。
 

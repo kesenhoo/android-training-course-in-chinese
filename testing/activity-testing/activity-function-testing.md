@@ -1,6 +1,6 @@
 # 创建功能测试
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-functional-testing.html>
 
 功能测试包括验证单个应用组件是否与使用者期望的那样(与其它组件)协同工作。比如,你可以创建一个功能测试验证在用户执行UI交互时[Activity](http://developer.android.com/reference/android/app/Activity.html)是否正确启动目标[Activity](http://developer.android.com/reference/android/app/Activity.html)。
 
@@ -48,7 +48,7 @@ public void testSendMessageToReceiverActivity() {
 
 ##设立一个ActivityMonitor
 
-为了再你的应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html),你可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)是由系统在每当一个Activity与你的要求符合是开启的。如果发现匹配,监视器的撞击计数就会更新。
+为了在你的应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html),你可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)是由系统在每当一个Activity与你的要求符合是开启的。如果发现匹配,监视器的撞击计数就会更新。
 
 通常来说要使用[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html),你应该这样:
 

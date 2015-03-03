@@ -1,6 +1,6 @@
 # 创建Stub授权器
 
-> 编写:[jdneo](https://github.com/jdneo) - 原文:
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/sync-adapters/creating-authenticator.html>
 
 Sync Adapter框架假定你的Sync Adapter在同步数据时，设备存储会有一个账户，服务器存储端会有登录验证。因此，框架期望你提供一个叫做授权器的组件作为你的Sync Adapter的一部分。该组件会植入Android账户及认证框架，并提供一个标准的接口来处理用户凭据，比如登录信息。
 

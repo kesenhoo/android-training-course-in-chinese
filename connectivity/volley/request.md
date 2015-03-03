@@ -22,7 +22,7 @@ Volley为请求图片提供了如下的类。这些类依次有着依赖关系�
 
 ### 1.1)Use ImageRequest
 
-下面是一个使用ImageRequest的示例。它会获取指定URL的image病显示到app上。里面演示的RequestQueue是通过上一课提到的单例类实现的。
+下面是一个使用ImageRequest的示例。它会获取指定URL的image并显示到app上。里面演示的RequestQueue是通过上一课提到的单例类实现的。
 
 ```java
 ImageView mImageView;

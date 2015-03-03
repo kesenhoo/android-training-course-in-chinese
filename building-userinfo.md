@@ -1,6 +1,6 @@
 # Android联系人信息与位置信息
 
-> 编写：[spencer198711](https://github.com/spencer198711) - 原文：
+> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/building-userinfo.html>
 
 These classes teach you how to add user personalization to your app. Some of the ways you can do this is by identifying users, providing information that's relevant to them, and providing information about the world around them.
 

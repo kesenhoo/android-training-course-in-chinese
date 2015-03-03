@@ -1,6 +1,6 @@
 # 创建与执行测试用例
 
-> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-basic-testing.html>
 
 为了验证布局设计和功能行为在你的应用程序有没有发生变化(不符合预期)， 为应用的每个Activity建立测试是很重要。对于每一个测试，你需要在测试用例中创建一个个独立的部分,包括固定测试，前提测试方法和[Activity](http://developer.android.com/reference/android/app/Activity.html)的测试方法。然后你就可以运行测试并得到测试报告。如果任何测试方法失败，这表明在你的代码中有可能潜在的缺陷。
 

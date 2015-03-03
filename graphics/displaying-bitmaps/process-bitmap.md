@@ -6,7 +6,7 @@
 
 这一节课会介绍如何使用 AsyncTask 在后台线程中处理bitmap并且演示了如何处理并发(concurrency)的问题。
 
-## Use an AsyncTask(使用AsyncTask)
+## 使用AsyncTask(Use a AsyncTask)
 [AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html) 类提供了一个简单的方法来在后台线程执行一些操作，并且可以把后台的结果呈现到UI线程。下面是一个加载大图的示例：
 
 ```java
@@ -39,7 +39,7 @@ class BitmapWorkerTask extends AsyncTask {
 }
 ```
 
-为[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)使用[WeakReference](http://developer.android.com/reference/java/lang/ref/WeakReference.html) 确保了 AsyncTask 所引用的资源可以被GC(garbage collected)。因为当任务结束时不能确保 [ImageView](http://developer.android.com/reference/android/widget/ImageView.html) 仍然存在，因此你必须在 onPostExecute() 里面去检查引用.  这个ImageView 也许已经不存在了，例如，在任务结束时用户已经不在那个Activity或者是设备已经发生配置改变(旋转屏幕等)。
+为[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)使用[WeakReference](http://developer.android.com/reference/java/lang/ref/WeakReference.html) 确保了 AsyncTask 所引用的资源可以被GC(garbage collected)。因为当任务结束时不能确保 [ImageView](http://developer.android.com/reference/android/widget/ImageView.html) 仍然存在，因此你必须在 onPostExecute() 里面去检查引用。这个ImageView 也许已经不存在了，例如，在任务结束时用户已经不在那个Activity或者是设备已经发生配置改变(旋转屏幕等)。
 
 开始异步加载位图，只需要创建一个新的任务并执行它即可:
 
@@ -50,7 +50,7 @@ public void loadBitmap(int resId, ImageView imageView) {
 }
 ```
 
-## Handle Concurrency(处理并发问题)
+## 处理并发问题(Handle Concurrency)
 通常类似 ListView 与 GridView 等视图组件在使用上面演示的AsyncTask 方法时会同时带来另外一个问题。为了更有效的处理内存，那些视图的子组件会在用户滑动屏幕时被循环使用。如果每一个子视图都触发一个AsyncTask ，那么就无法确保当前视图在结束task时，分配的视图已经进入循环队列中给另外一个子视图进行重用。而且, 无法确保所有的异步任务能够按顺序执行完毕。
 
 [Multithreading for Performance](http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html) 这篇博文更进一步的讨论了如何处理并发并且提供了一种解决方法，当任务结束时ImageView 保存一个最近常使用的AsyncTask引用。使用类似的方法,  AsyncTask 可以扩展出一个类似的模型。创建一个专用的 Drawable 子类来保存一个可以回到当前工作任务的引用。在这种情况下，BitmapDrawable 被用来作为占位图片，它可以在任务结束时显示到ImageView中。

@@ -16,11 +16,9 @@
 
 向下和横向导航可用List（列表），Tab（标签）或者其他 UI 模式来实现。 *UI 模式*, 与软件设计模式很类似，是重复交互设计问题的一般化解决方案。下几章，我们将探究一些常用的横向导航模式。
 
-## Button（按钮）和简单的控件
+## Button和简单的控件
 
-> **Button设计**
-
-> 设计指南请阅读 Android 设计文档的[Button](http://developer.android.com/design/building-blocks/buttons.html)指导
+> **Button设计**：设计指南请阅读 Android 设计文档的[Button](http://developer.android.com/design/building-blocks/buttons.html)指导
 
 对于区块关联的界面，最直接和熟悉的导航界面就是提供可触或键盘可得焦点的控件。例如，Button，固定大小的 List View 或 文本链接，虽然后者不是一个触屏导航的理想 UI 原件。一旦点选了这些控件，子界面被打开，完全替代当前上下文环境。Button或其他简单地控件很少被用来呈现容器中的项目。
 
@@ -32,13 +30,11 @@ Dashboard（操作面板）模式时一种一般以Button为主来获取不同�
 
 还有更多高级 UI 模式套用了各种其他 UI 模式来提升内容即得性和独特的展示效果。但他们仍保持着直观的特点。
 
-## Lists（列表）, Grids（表格）, Carousels（内容循环）, and Stacks（栈）
+## Lists, Grids, Carousels, and Stacks
 
-> **List 和 Grid List 设计**
+> **List 和 Grid List 设计**：设计指南请阅读 Android 设计文档的[Lists](http://developer.android.com/design/building-blocks/lists.html)和[Grid Lists](http://developer.android.com/design/building-blocks/grid-lists.html)指导。
 
-> 设计指南请阅读 Android 设计文档的[Lists](http://developer.android.com/design/building-blocks/lists.html)和[Grid Lists](http://developer.android.com/design/building-blocks/grid-lists.html)指导。
-
-对于容器关联的界面，特别是文字信息，竖直滑动列表通常是最直接和熟悉的做法。对于视觉更丰富的内容（例如，图片，视屏），可用竖直滑动的 Grid，水平滚动的 List（有时被叫做 Carousel），或 Stack（有时叫做卡片（Card））来代替。这些 UI 元件通常用在呈现容器内的条目，或大量子界面最好，而不是零星的毫无关联的同级子界面。
+对于容器关联的界面，特别是文字信息，垂直滑动列表通常是最直接最熟悉的做法。对于视觉更丰富的内容（例如，图片，视频），可用垂直滑动的 Grid，水平滚动的 List（有时被叫做 Carousel），或 Stack（有时叫做卡片（Card））来代替。这些 UI 元件通常用在呈现容器内的条目，或大量子界面最好，而不是零星的毫无关联的同级子界面。
 
 ![app-navigation-descendant-lateral-lists](app-navigation-descendant-lateral-lists.png)
 
@@ -50,9 +46,7 @@ Dashboard（操作面板）模式时一种一般以Button为主来获取不同�
 
 ## Tabs（标签）
 
-> **Tab 设计**
-
-> 设计指南请阅读 Android 设计文档的[Tab](http://developer.android.com/design/building-blocks/tabs.html)指导
+> **Tab 设计**：设计指南请阅读 Android 设计文档的[Tab](http://developer.android.com/design/building-blocks/tabs.html)指导
 
 Tab是非常流行的横向导航。这个模式允许组合同级界面，就是说tab可嵌入原本可能成为另一个界面的子界面内容。Tab适合用在小量的区块关联界面。
 
@@ -74,9 +68,7 @@ tab导航相对于list和button导航，有很多即得的优点：
 
 ## 水平分页（Swipe View）
 
-> **Swipe View 设计**
-
-> 设计指南请阅读 Android 设计文档的[Swipe View](http://developer.android.com/design/patterns/swipe-views.html)指导
+> **Swipe View 设计**：设计指南请阅读 Android 设计文档的[Swipe View](http://developer.android.com/design/patterns/swipe-views.html)指导
 
 另一种横向导航的模式就是水平分页，也叫做 Swipe View。这个模式在容器关联的同级界面上最好用，例如类别列表（世界，金融，技术和健康新闻）。就像Tab，这个模式也允许组合界面，这样父界面就能在布局内嵌入子界面的内容了。
 

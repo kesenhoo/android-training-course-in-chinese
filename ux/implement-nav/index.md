@@ -6,9 +6,13 @@
 
 在阅读这节课程内容之后，你会对如何使用tabs, swipe views, 和navigation drawer实现导航模式有一个深刻的理解。也会明白如何提供合适的向前向后导航(Up and Back navigation)。
 
->**Note**:本节课中的几个元素需要使用[Support Library](http://developer.android.com/tools/support-library/index.html) API。如果你之前没有使用过Support Library，可以按照[Support Library Setup](http://developer.android.com/tools/support-library/setup.html)文档说明来使用。
+> **Note**:本节课中的几个元素需要使用[Support Library](http://developer.android.com/tools/support-library/index.html) API。如果你之前没有使用过Support Library，可以按照[Support Library Setup](http://developer.android.com/tools/support-library/setup.html)文档说明来使用。
 
-##Lessons
+## Sample Code
+
+[EffectiveNavigation.zip](http://developer.android.com/shareables/training/EffectiveNavigation.zip)
+
+## Lessons
 
 * [使用Tabs创建Swipe View](lateral.html)
 

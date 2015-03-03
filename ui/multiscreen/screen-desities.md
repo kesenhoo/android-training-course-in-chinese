@@ -1,6 +1,6 @@
 # 兼容不同的屏幕密度
 
-> 编写:[riverfeng](https://github.com/riverfeng) - 原文:
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/screendensities.html>
 
 这节课将教你如何通过提供不同的资源和使用独立分辨率（dp）来支持不同的屏幕密度。
 
@@ -51,4 +51,4 @@ MyProject/
 ```
 这样放置图片资源后，不过你什么时候使用@drawable/awesomeimage，系统都会给予屏幕的dp来选择合适的图片。
 
-如果你想知道更多关于如何为你的应用程序创建icon资源，你可以看看Icon设计指南[Icon Design Guidelines](file:///F:/Android_training/android-docs/guide/practices/ui_guidelines/icon_design.html).
+如果你想知道更多关于如何为你的应用程序创建icon资源，你可以看看Icon设计指南[Icon Design Guidelines](http://developer.android.com/guide/practices/ui_guidelines/icon_design.html).
