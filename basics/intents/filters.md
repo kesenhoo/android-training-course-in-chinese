@@ -14,16 +14,16 @@
 
 为了尽可能确切的定义你的activity能够handle哪些intent，每一个intent filter都应该尽可能详尽的定义好action与data。
 
-如果activity中的intent filt满足以下intent对象的标准，系统就能够把特定的intent发送给activity：
+如果activity中的intent filter满足以下intent对象的标准，系统就能够把特定的intent发送给activity：
 
 * **Action**:一个想要执行的动作的名称。通常是系统已经定义好的值，例如`ACTION_SEND`或者`ACTION_VIEW`。
 在intent filt中用[`<action>`](http://developer.android.com/guide/topics/manifest/action-element.html)指定它的值，值的类型必须为字符串，而不是API中的常量(看下面的例子)
 
-* **Data**:Intent附带数据的描述。在intent filt中用[`<data>`](http://developer.android.com/guide/topics/manifest/data-element.html)指定它的值，可以使用一个或者多个属性，你可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。
+* **Data**:Intent附带数据的描述。在intent filter中用[`<data>`](http://developer.android.com/guide/topics/manifest/data-element.html)指定它的值，可以使用一个或者多个属性，你可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。
 
 > **Note:** 如果你不想handle Uri 类型的数据，那么你应该指定 android:mimeType 属性。例如 text/plain or image/jpeg.
 
-* **Category**:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都不怎么用的到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filt中用[`<category>`](http://developer.android.com/guide/topics/manifest/category-element.html)指定它的值。
+* **Category**:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都不怎么用的到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filter中用[`<category>`](http://developer.android.com/guide/topics/manifest/category-element.html)指定它的值。
 
 在你的intent filter中，你可以在`<intent-filter>`元素中定义对应的XML元素来声明你的activity使用何种标准。
 
@@ -42,7 +42,7 @@
 
 每一个发送出来的intent只会包含一个action与type，但是handle这个intent的activity的 `<intent-filter>`是可以声明多个`<action>`, `<category>`与`<data>` 的。
 
-如果任何的两对action与data是互相矛盾的，你应该创建不同的intent fliter来指定特定的action与type。
+如果任何的两对action与data是互相矛盾的，你应该创建不同的intent filter来指定特定的action与type。
 
 例如，假设你的activity可以handle 文本与图片，无论是`ACTION_SEND`还是`ACTION_SENDTO` 的intent。在这种情况下，你必须为两个action定义两个不同的intent filter。因为`ACTION_SENDTO` intent 必须使用 Uri 类型来指定接收者使用 send 或 sendto 的地址。例如：
 
