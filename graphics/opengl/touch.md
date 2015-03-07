@@ -11,6 +11,10 @@
 为了让你的OpenGL ES应用响应触控事件，你必须实现[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)类中的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))方法。下面的例子展示了如何监听[MotionEvent.ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件，并将事件转换为形状旋转的角度：
 
 ```java
+private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
+private float mPreviousX;
+private float mPreviousY;
+
 @Override
 public boolean onTouchEvent(MotionEvent e) {
     // MotionEvent reports input details from the touch screen
@@ -38,7 +42,7 @@ public boolean onTouchEvent(MotionEvent e) {
 
             mRenderer.setAngle(
                     mRenderer.getAngle() +
-                    ((dx + dy) * TOUCH_SCALE_FACTOR);  // = 180.0f / 320
+                    ((dx + dy) * TOUCH_SCALE_FACTOR));
             requestRender();
     }
 

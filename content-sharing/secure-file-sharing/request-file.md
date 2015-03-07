@@ -49,6 +49,7 @@ public class MainActivity extends Activity {
 
 ```java
 /*
+    /*
      * When the Activity of the app that hosts files sets a result and calls
      * finish(), this method is invoked. The returned Intent contains the
      * content URI of a selected file. The result code indicates if the

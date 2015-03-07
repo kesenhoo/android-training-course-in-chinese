@@ -13,6 +13,11 @@
 投影变换的数据会在[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)类的[onSurfaceChanged()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged(javax.microedition.khronos.opengles.GL10, int, int))方法中被计算。下面的代码首先接收[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的高和宽，然后利用它并使用[Matrix.frustumM()](http://developer.android.com/reference/android/opengl/Matrix.html#frustumM(float[], int, float, float, float, float, float, float))方法来填充一个投影变换矩阵（Projection Transformation [Matrix](http://developer.android.com/reference/android/opengl/Matrix.html)）：
 
 ```java
+// mMVPMatrix is an abbreviation for "Model View Projection Matrix"
+private final float[] mMVPMatrix = new float[16];
+private final float[] mProjectionMatrix = new float[16];
+private final float[] mViewMatrix = new float[16];
+
 @Override
 public void onSurfaceChanged(GL10 unused, int width, int height) {
     GLES20.glViewport(0, 0, width, height);

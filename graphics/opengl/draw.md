@@ -11,13 +11,21 @@
 在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的[onSurfaceCreated()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig))方法中初始化它们，这样做是出于内存和执行效率的考量。
 
 ```java
-public void onSurfaceCreated(GL10 unused, EGLConfig config) {
-    ...
+public class MyGLRenderer implements GLSurfaceView.Renderer {
 
-    // initialize a triangle
-    mTriangle = new Triangle();
-    // initialize a square
-    mSquare = new Square();
+    ...
+    private Triangle mTriangle;
+    private Square   mSquare;
+
+    public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+        ...
+
+        // initialize a triangle
+        mTriangle = new Triangle();
+        // initialize a square
+        mSquare = new Square();
+    }
+    ...
 }
 ```
 
@@ -31,18 +39,23 @@ public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个OpenGL ES Program当中，并利用它来绘制形状。下面的代码在Triangle类中定义了基本的着色器，我们可以利用它们绘制出一个图形：
 
 ```java
-private final String vertexShaderCode =
-    "attribute vec4 vPosition;" +
-    "void main() {" +
-    "  gl_Position = vPosition;" +
-    "}";
+public class Triangle {
 
-private final String fragmentShaderCode =
-    "precision mediump float;" +
-    "uniform vec4 vColor;" +
-    "void main() {" +
-    "  gl_FragColor = vColor;" +
-    "}";
+    private final String vertexShaderCode =
+        "attribute vec4 vPosition;" +
+        "void main() {" +
+        "  gl_Position = vPosition;" +
+        "}";
+
+    private final String fragmentShaderCode =
+        "precision mediump float;" +
+        "uniform vec4 vColor;" +
+        "void main() {" +
+        "  gl_FragColor = vColor;" +
+        "}";
+
+    ...
+}
 ```
 
 着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：
@@ -70,13 +83,28 @@ public static int loadShader(int type, String shaderCode){
 public class Triangle() {
     ...
 
-    int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
-    int fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
+    private final int mProgram;
 
-    mProgram = GLES20.glCreateProgram();             // create empty OpenGL ES Program
-    GLES20.glAttachShader(mProgram, vertexShader);   // add the vertex shader to program
-    GLES20.glAttachShader(mProgram, fragmentShader); // add the fragment shader to program
-    GLES20.glLinkProgram(mProgram);                  // creates OpenGL ES program executables
+    public Triangle() {
+        ...
+
+        int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+                                        vertexShaderCode);
+        int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+                                        fragmentShaderCode);
+
+        // create empty OpenGL ES Program
+        mProgram = GLES20.glCreateProgram();
+
+        // add the vertex shader to program
+        GLES20.glAttachShader(mProgram, vertexShader);
+
+        // add the fragment shader to program
+        GLES20.glAttachShader(mProgram, fragmentShader);
+
+        // creates OpenGL ES program executables
+        GLES20.glLinkProgram(mProgram);
+    }
 }
 ```
 
@@ -85,6 +113,12 @@ public class Triangle() {
 创建一个`draw()`方法来绘制图形。下面的代码为形状的顶点着色器和形状着色器设置了位置和颜色值，然后执行绘制函数：
 
 ```java
+private int mPositionHandle;
+private int mColorHandle;
+
+private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
+private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+
 public void draw() {
     // Add program to OpenGL ES environment
     GLES20.glUseProgram(mProgram);
