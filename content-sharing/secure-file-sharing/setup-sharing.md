@@ -13,7 +13,7 @@
 下面的例子展示了如何在清单文件中添加[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签，来指定[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)类，Authority和XML文件名：
 
 ```xml
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapp">
     <application
         ...>

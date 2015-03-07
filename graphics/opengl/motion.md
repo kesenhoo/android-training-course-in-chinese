@@ -13,8 +13,9 @@
 ```java
 private float[] mRotationMatrix = new float[16];
 public void onDrawFrame(GL10 gl) {
-    ...
     float[] scratch = new float[16];
+
+    ...
 
     // Create a rotation transformation for the triangle
     long time = SystemClock.uptimeMillis() % 4000L;
