@@ -1,12 +1,12 @@
-# 传输资源
+﻿# 传输资源
 
 > 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/assets.html>
 
-将一个[Asset](Asset.html)附加到数据元上，并放入复制而来的数据库中，通过蓝牙来传送大量的二进制数据。
+为了通过蓝牙发送大量的二进制数据，比如图片，要将一个[Asset](Asset.html)附加到数据元上，并放入复制而来的数据库中。
 
 Assets 能够自动地处理数据缓存以避免重复发送，保护蓝牙带宽。一般的模式是：手持设备下载图像，并将它压缩到适合在可穿戴设备上显示的大小，并以Asset传给可穿戴设备。下面的例子演示此模式。
 
-> **Note:** 尽管数据元的大小限制在100KB,但资源可以任意大。然而，传输大量资源会多方面地影响用户体验，因此，要测试你的应用以保证当你传输大量资源时，它会表现良好。
+> **Note:** 尽管数据元的大小限制在100KB,但资源可以任意大。然而，传输大量资源会多方面地影响用户体验，因此，当你要传输大量资源时，要测试你的应用以保证它表现良好。
 
 ## 传输资源
 
@@ -42,7 +42,7 @@ PendingResult<DataApi.DataItemResult> pendingResult = Wearable.DataApi
 
 ## 接收资源
 
-创建资源后，如何在另一连接端读取。以下是如何实现回调以发现资源变化和提取Asset对象。
+创建资源后，你可能需要在另一连接端读取。以下是如何实现回调以发现资源变化和提取Asset对象。
 
 ```java
 @Override
@@ -50,7 +50,7 @@ public void onDataChanged(DataEventBuffer dataEvents) {
   for (DataEvent event : dataEvents) {
     if (event.getType() == DataEvent.TYPE_CHANGED &&
         event.getDataItem().getUri().getPath().equals("/image")) {
-      DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
+      DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
       Asset profileAsset = dataMapItem.getDataMap().getAsset("profileImage");
       Bitmap bitmap = loadBitmapFromAsset(profileAsset);
       // Do something with the bitmap

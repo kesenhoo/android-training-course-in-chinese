@@ -96,7 +96,7 @@ public static boolean cancelPotentialWork(int data, ImageView imageView) {
 
     if (bitmapWorkerTask != null) {
         final int bitmapData = bitmapWorkerTask.data;
-        if (bitmapData != data) {
+        if (bitmapData == 0 || bitmapData != data) {
             // Cancel previous task
             bitmapWorkerTask.cancel(true);
         } else {

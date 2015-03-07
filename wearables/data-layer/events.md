@@ -1,4 +1,4 @@
-# 处理数据层的事件
+﻿# 处理数据层的事件
 
 > 编写:[wly2014](https://github.com/wly2014) - 原文: <http://developer.android.com/training/wearables/data-layer/events.html>
 
@@ -42,17 +42,17 @@ if(result.getStatus().isSuccess()) {
 * 创建一个继承自WearableListenerService的service。
 * 创建一个实现[DataApi.DataListener](DataApi.DataListener.html)接口的activity。
 
-通过这两种选择，你覆盖任何你关心的数据事件回调方法来处理您的实现。
+通过这两种选择，你覆写任何你关心的数据事件回调方法来处理您的实现。
 
 ### 使用 WearableListenerService
 
-典型地，在你的手持设备和可穿戴设备上都创建service实例。如果你不关心其中一个应用中的数据事件，就不需要在相应的应用中实现此service。
+典型地，在你的手持设备和可穿戴设备上都创建该service实例。如果你不关心其中一个应用中的数据事件，就不需要在相应的应用中实现此service。
 
 例如,您可以在一个手持设备应用程序上操作数据元对象,可穿戴设备的应用监听这些更新并更新UI。而可穿戴不更新任何数据元,所以手持设备的应用不监听任何可穿戴式设备应用的数据事件。
 
 你可以用 WearableListenerService监听如下事件：
 
-* [onDataChanged()](WearableListenerService.html#onDataChanged(com.google.android.gms.wearable.DataEventBuffer)) - 当数据元对象创建，更改，删除时调用。一连接端的事件触发两端的回调方法。
+* [onDataChanged()](WearableListenerService.html#onDataChanged(com.google.android.gms.wearable.DataEventBuffer)) - 当数据元对象创建，更改，删除时调用。一连接端的事件将触发两端的回调方法。
 * [onMessageReceived()](WearableListenerService.html#onMessageReceived(com.google.android.gms.wearable.MessageEvent)) - 	消息从一连接端发出时在另一连接端触发此回调方法。
 * [onPeerConnected()](wearable/WearableListenerService.html#onMessageReceived(com.google.android.gms.wearable.MessageEvent)) 和 [onPeerDisconnected()](WearableListenerService.html#onPeerDisconnected(com.google.android.gms.wearable.Node)) - 	当与手持或可穿戴设备连接或断开时调用。一连接端连接状态的改变会在两端触发此回调方法。
 
@@ -91,13 +91,13 @@ public class DataLayerListenerService extends WearableListenerService {
         }
 
         // Loop through the events and send a message
-        / to the node that created the data item.
+        // to the node that created the data item.
         for (DataEvent event : events) {
             Uri uri = event.getDataItem().getUri();
 
             // Get the node id from the host value of the URI
             String nodeId = uri.getHost();
-            // Set the data of the message to be the bytes of the URI.
+            // Set the data of the message to be the bytes of the URI
             byte[] payload = uri.toString().getBytes();
 
             // Send the RPC
@@ -120,7 +120,7 @@ public class DataLayerListenerService extends WearableListenerService {
 
 ### 数据层回调权限
 
-为了在数据层事件上向你的程序提供回调方法，Google Play服务绑定到你的WearableListenerService，通过IPC调用回调方法。这样的结果是,你的回调方法继承了调用进程的权限。
+为了在数据层事件上向你的程序提供回调方法，Google Play services 绑定到你的WearableListenerService，通过IPC调用回调方法。这样的结果是,你的回调方法继承了调用进程的权限。
 
 如果你想在一个回调中执行权限操作,安全检查会失败,因为你的回调是以调用进程的身份运行,而不是应用程序进程的身份运行。
 
@@ -134,29 +134,31 @@ try {
 }
 ```
 
-### 使用监听 Activity
+### 使用监听者 Activity
 
 如果你的应用只关心当用户与应用交互时产生的数据层事件，并且不需要一个长时间运行的service来处理每一次数据的改变，那么你可以在一个activity中通过实现如下一个和多个接口监听事件：
 
 
-* DataApi.DataListener
-* MessageApi.MessageListener
-* NodeApi.NodeListener
+* [DataApi.DataListener](http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.DataListener.html)
+* [MessageApi.MessageListener](http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.MessageListener.html)
+* [NodeApi.NodeListener](http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.NodeListener.html)
 
-创建一个activity监听数据事件：
+如何创建一个activity监听数据事件：
 
 * 实现所需的接口。
 * 在onCreate(Bundle)中创建 GoogleApiClient实例。
-* 在onStart()中调用connect()  将客户端连接到 Google Play 服务。
-* 当连接到Google Play 服务时，系统调用 onConnected()。这里你调用以提醒Google Play 服务你的activity要监听数据层事件。
-* 在 onStop()中，用 DataApi.removeListener(), MessageApi.removeListener() 或NodeApi.removeListener() 注销监听。
-* 基于你实现的接口实现 onDataChanged(), onMessageReceived(), onPeerConnected()和 onPeerDisconnected()。
+* 在onStart()中调用connect()  将客户端连接到 Google Play services。
+* 当连接到Google Play services后，系统调用 onConnected()。这里你调用[DataApi.addListener()](http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi.DataListener)), [MessageApi.addListener()](http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.MessageApi.MessageListener)), 或 [NodeApi.addListener()](http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.NodeApi.NodeListener))以告知Google Play services，你的activity要监听数据层事件。
+* 在 onStop()中，用 [DataApi.removeListener()](http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi.DataListener)), [MessageApi.removeListener()](http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.MessageApi.MessageListener))或[NodeApi.removeListener()](http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.NodeApi.NodeListener)) 注销监听。
+* 基于你实现的接口继而实现 onDataChanged(), onMessageReceived(), onPeerConnected()和 onPeerDisconnected()。
 
 这是实现DataApi.DataListener的例子 ：
 
 ```java
 public class MainActivity extends Activity implements
         DataApi.DataListener, ConnectionCallbacks, OnConnectionFailedListener {
+
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -178,7 +180,7 @@ public class MainActivity extends Activity implements
         }
     }
 
-   @Override
+    @Override
     public void onConnected(Bundle connectionHint) {
         if (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, "Connected to Google Api Service");
@@ -201,8 +203,9 @@ public class MainActivity extends Activity implements
             if (event.getType() == DataEvent.TYPE_DELETED) {
                 Log.d(TAG, "DataItem deleted: " + event.getDataItem().getUri());
             } else if (event.getType() == DataEvent.TYPE_CHANGED) {
-                 Log.d(TAG, "DataItem changed: " + event.getDataItem().getUri());
+                Log.d(TAG, "DataItem changed: " + event.getDataItem().getUri());
             }
         }
     }
+}
 ```

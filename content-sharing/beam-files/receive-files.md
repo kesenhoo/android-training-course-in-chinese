@@ -6,7 +6,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 ## 响应请求并显示数据
 
-当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，该Intent拥有[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)这一Action，第一个被传输文件的MIME类型，和一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加一个[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
+当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，该Intent拥有：[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)这一Action，首个被传输文件的MIME类型，以及一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加一个[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
 
 [`<action android:name="android.intent.action.VIEW" />`](http://developer.android.com/guide/topics/manifest/action-element.html)
 
@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
 如果接收的[Intent](http://developer.android.com/reference/android/content/Intent.html)包含一个File URI，则该URI包含了一个文件的绝对文件名，它包括了完整的路径和文件名。对于Android Beam文件传输来说，目录路径指向了其它被传输文件的位置（如果有其它传输文件的话），要获得这个目录路径，需要取得URI的路径部分（URI中除去“file:”前缀的部分），根据路径创建一个[File](http://developer.android.com/reference/java/io/File.html)对象，然后获取这个[File](http://developer.android.com/reference/java/io/File.html)的父目录：
 
 ```java
-...
+    ...
     public String handleFileUri(Uri beamUri) {
         // Get the path part of the URI
         String fileName = beamUri.getPath();
@@ -113,7 +113,7 @@ public class MainActivity extends Activity {
         // Get a string containing the file's parent directory
         return copiedFile.getParent();
     }
-...
+    ...
 ```
 
 ### 从Content URI获取目录
@@ -141,7 +141,7 @@ public class MainActivity extends Activity {
 下面的代码展示了你要如何测试Content URI的Authority，并获取传输文件的路径和文件名：
 
 ```java
-...
+    ...
     public String handleContentUri(Uri beamUri) {
         // Position of the filename in the query Cursor
         int filenameIndex;
@@ -179,7 +179,7 @@ public class MainActivity extends Activity {
              }
         }
     }
-...
+    ...
 ```
 
 要学习更多关于从Content Provider获取数据的知识，可以阅读：[Retrieving Data from the Provider](http://developer.android.com/guide/topics/providers/content-provider-basics.html#SimpleQuery)。

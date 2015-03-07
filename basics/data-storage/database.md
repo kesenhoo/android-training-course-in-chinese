@@ -1,18 +1,18 @@
 # 保存到数据库
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/data-storage/database.html>
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/data-storage/databases.html>
 
 对于重复或者结构化的数据（如联系人信息）等保存到DB是个不错的主意。这节课假定你已经熟悉SQL数据库的操作。在Android上可能会使用到的APIs，可以从[android.database.sqlite](http://developer.android.com/reference/android/database/sqlite/package-summary.html)包中找到。
 
 ## 定义Schema与Contract
 
-SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类成为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。
+SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类称为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。
 
 Contract Clsss是一些常量的容器。它定义了例如URIs，表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。
 
 一个组织你的contract类的好方法是在你的类的根层级定义一些全局变量，然后为每一个table来创建内部类。
 
-> **Note：**通过实现 [BaseColumns](http://developer.android.com/reference/android/provider/BaseColumns.html) 的接口，你的内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这样能够使得你的DB与Android的framework能够很好的相容。
+> **Note：**通过实现 [BaseColumns](http://developer.android.com/reference/android/provider/BaseColumns.html) 的接口，你的内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这么做不是必须的，但这样能够使得你的DB与Android的framework能够很好的相容。
 
 例如，下面的例子定义了表名与这个表的列名：
 
@@ -35,7 +35,7 @@ public final class FeedReaderContract {
 
 ## 使用SQL Helper创建DB
 
-当你定义好了你的DB应该是什么样之后，你应该实现那些创建与维护db与table的方法。下面是一些典型的创建与删除table的语句。
+当你定义好了你的DB的结构之后，你应该实现那些创建与维护db与table的方法。下面是一些典型的创建与删除table的语句。
 
 ```java
 private static final String TEXT_TYPE = " TEXT";
@@ -146,7 +146,7 @@ Cursor c = db.query(
     sortOrder                                 // The sort order
     );
 ```
-要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说你应该先调用`moveToFirst()`确定结果的“读取点”(read position)。对每一行，你可以使用cursor的其中一个get方法比如`getString()`或`getLong()`。对于每一个get方法必须传递索引位置(index position)，索引位置可以通过调用`getColumnIndex()`或`getColumnIndexOrThrow()`取得。
+要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说你应该先调用`moveToFirst()`函数，将读取位置置于结果集最开始的位置。对每一行，你可以使用cursor的其中一个get方法比如`getString()`或`getLong()`获取列的值。对于每一个get方法必须传递你想要获取的列的索引位置(index position)，索引位置可以通过调用`getColumnIndex()`或`getColumnIndexOrThrow()`获得。
 
 下面是演示如何从course对象中读取数据信息：
 
@@ -159,11 +159,11 @@ long itemId = cursor.getLong(
 
 ## 删除DB中的信息
 
-和查询信息一样，删除数据，同样需要提供一些删除标准。DB的API提供了一个防止SQL注入的机制来创建查询与删除标准。
+和查询信息一样，删除数据同样需要提供一些删除标准。DB的API提供了一个防止SQL注入的机制来创建查询与删除标准。
 
 > **SQL Injection：**(*随着B/S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入*)
 
-这个机制把查询语句划分为选项条款与选项参数两部分。条款部分定义了查询的列是怎么样的，参数部分用来测试是否符合前面的条款。(*这里翻译的怪怪的，附上原文，The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause.*) 因为处理的结果与通常的SQL语句不同，这样可以避免SQL注入问题。
+这个机制把查询语句划分为选项条款与选项参数两部分。条款部分定义了查询的列的特征，参数部分用来测试是否符合前面的条款。(*这里翻译的怪怪的，附上原文，The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause.*) 因为处理的结果与通常的SQL语句不同，这样可以避免SQL注入问题。
 
 ```java
 // Define 'where' part of query.

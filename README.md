@@ -43,11 +43,11 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 你也可以选择加入QQ群和学习Training课程的小伙伴一起讨论交流：
 
-* Android Training基础群，适合刚接触Android Training课程的同学
-    * 基础群(1)：**363415744**
+* Android Training基础群，适合刚接触Android Training课程的同学。
+    * 基础群(1)：**363415744**，已满
     * 基础群(2)：**399077455**
-* Android Training进阶群：**414115939**，适合实际Android开发至少一年以上的同学
-* Android Training高级群：**399096506**
+* Android Training进阶群：**414115939**，适合实际Android开发经验1-3年的同学。
+* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，谢谢配合！
 
 
 ## 课程结构

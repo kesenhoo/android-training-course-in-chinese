@@ -31,7 +31,7 @@ public void sendMessage(View view) {
 请注意，为了让系统能够将这个方法（你刚在MyFirstActivity中添加的sendMessage方法）与在`android:onClick`属性中提供的方法名字匹配，它们的名字必须一致，特别是，这个方法必须满足以下条件：
 
 * 公共的
-* 没有返回值
+* 返回值类型为空(void)
 * 有唯一的视图（View）参数（这个视图就是将被点击的视图）
 
 接下来，你可以在这个方法中编写读取文本内容的代码，并将该内容传到另一个Activity。
