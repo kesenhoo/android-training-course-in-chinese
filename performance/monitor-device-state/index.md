@@ -9,14 +9,14 @@
 
 # Lessons
 
-#### Monitoring the Battery Level and Charging State
-Learn how to alter your app's update rate by determining, and monitoring, the current battery level and changes in charging state.
+#### 检测电量与充电状态
+如何通过判断与检测当前电池电量以及充电状态的变化，改变你的应用程序更新操作的频率。
 
-#### Determining and Monitoring the Docking State and Type
-Optimal refresh rates can vary based on how the host device is being used. Learn how to determine, and monitor, the docking state and type of dock being used to affect your app's behavior.
+#### 判断并监测设备的停驻状态与类型
+如何判断与监测停驻状态及其种类来改变你应用程序的行为。
 
-#### Determining and Monitoring the Connectivity Status
-Without Internet connectivity you can't update your app from an online source. Learn how to check the connectivity status to alter your background update rate. You'll also learn to check for Wi-Fi or mobile connectivity before beginning high-bandwidth operations.
+#### 判断并检测网络连接状态
+如何根据网络连接状态改变你的后台应用更新频率以及判断网络连接类型(Wi-Fi/数据连接)。
 
-#### Manipulating Broadcast Receivers On Demand
-Broadcast receivers that you've declared in the manifest can be toggled at runtime to disable those that aren't necessary due to the current device state. Learn to improve efficiency by toggling and cascading state change receivers and delay actions until the device is in a specific state.
+#### 按需操纵广播接收者
+如何切换是否开启这些状态接收者来提高效率。

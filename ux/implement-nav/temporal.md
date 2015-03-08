@@ -34,7 +34,7 @@
 
 例如:
 
-```java
+```xml
 <application ... >
     ...
     <!-- main/home activity (没有父activity) -->
@@ -115,7 +115,7 @@ getSupportFragmentManager().addOnBackStackChangedListener(
 
 ## 为WebView实现向后导航
 
-如果你的应用的某部分中包含有[WebView](http://developer.android.com/reference/android/webkit/WebView.html)，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
+如果你的应用的一部分包含在[WebView](http://developer.android.com/reference/android/webkit/WebView.html)中，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
 
 ```java
 @Override

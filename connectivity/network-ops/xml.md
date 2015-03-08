@@ -2,9 +2,9 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/network-ops/xml.html>
 
-Extensible Markup Language (XML) 是一组将文档编码成机器可读形式的规则，也是一种在网络上共享数据的流行格式。经常更新内容的网站比如新闻网站和博客上都提供XML feed来记录更新的信息，以便用户进行订阅读取。
+Extensible Markup Language (XML) 是一组将文档编码成机器可读形式的规则，也是一种在网络上共享数据的普遍格式。经常更新内容的网站比如新闻网站和博客上都提供XML feed来记录更新的信息，以便用户进行订阅读取。
 
-那么上传[?]与解析XML数据就成了app的一个常见的功能。 这一课会介绍如何解析XML文档并使用他们的数据。
+上传[?]与解析XML数据是app的一个常见的功能。 这一课会介绍如何解析XML文档并使用他们的数据。
 
 *([?]这里很奇怪，为什么是Upload，看文章最后一段代码示例的注释，应该是Download才对)*
 
@@ -21,9 +21,9 @@ Extensible Markup Language (XML) 是一组将文档编码成机器可读形式�
 <!-- more -->
 
 ## 2)分析Feed
-解析一个feed的第一步是决定需要获取哪些字段。这样解析器才去抽取出那些需要的字段而忽视剩下的。
+解析一个feed的第一步是决定你需要获取的字段。这样解析器便去抽取出那些需要的字段而忽视其他的字段。
 
-下面的XML片段是章节概览Sample app中解析的Feed的片段。[StackOverflow](http://stackoverflow.com/)上每一个帖子都在feed中以entry标签的形式出现，同时包含几个嵌套的子标签(tag)。
+下面的XML片段是章节概览Sample app中解析的Feed的片段。[StackOverflow](http://stackoverflow.com/)上每一个帖子都在feed中以时包含几个嵌套的子标签(tag)的entry标签的形式出现。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -85,7 +85,7 @@ public class StackOverflowXmlParser {
 
 ## 4)读取Feed
 
-readFeed() 方法实际上并没有处理feed的内容。它只是在寻找一个 "entry" 的标签作为递归（recursively）处理整个feed的起点。如果一个标签它不是"entry", readFeed()方法会跳过它. 当整个feed都被递归处理后，readFeed() 会返回一个包含了entry标签（包括里面的数据成员）的 [List](http://developer.android.com/reference/java/util/List.html)。然后这个[List](http://developer.android.com/reference/java/util/List.html)成为parser的返回值。
+readFeed() 方法实际上并没有处理feed的内容。它只是在寻找一个 "entry" 的标签作为递归（recursively）处理整个feed的起点。 readFeed()方法会跳过不是"entry"的标签。当整个feed都被递归处理后，readFeed() 会返回一个从feed中提取的包含了entry标签（包括里面的数据成员）的 [List](http://developer.android.com/reference/java/util/List.html)。然后这个[List](http://developer.android.com/reference/java/util/List.html)成为parser的返回值。
 
 ```java
 private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
@@ -235,7 +235,7 @@ private void skip(XmlPullParser parser) throws XmlPullParserException, IOExcepti
 
 因此如果目前的标签有子标签, 直到解析器已经处理了所有位于START_TAG与对应的END_TAG之间的事件之前，depth 的值不会为 0。例如，看解析器如何跳过 `<author>` 标签，它有2个子标签，`<name>` 与 `<uri>`：
 
-* 第一次循环, 在\<author\>之后parser遇到的第一个标签是 START_TAG `<name>`. depth值变为2.
+* 第一次循环, 在‘<author>’之后parser遇到的第一个标签是 START_TAG `<name>`. depth值变为2.
 * 第二次循环, parser遇到的下一个标签是 END_TAG `</name>`. depth值变为1.
 * 第三次循环, parser遇到的下一个标签是 START_TAG `<uri>`. depth值变为2.
 * 第四次循环, parser遇到的下一个标签是 END_TAG `</uri>`. depth值变为1.

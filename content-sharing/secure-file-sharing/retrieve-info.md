@@ -13,14 +13,14 @@
 下面的例子展示了当服务端应用程序将Content URI返回给客户端应用程序后，客户端应用程序应该如何获取文件的MIMIE类型：
 
 ```java
-...
+    ...
     /*
      * Get the file's content URI from the incoming Intent, then
      * get the file's MIME type
      */
     Uri returnUri = returnIntent.getData();
     String mimeType = getContentResolver().getType(returnUri);
-...
+    ...
 ```
 
 ## 获取文件名和文件大小
@@ -37,7 +37,7 @@
 客户端应用可以通过将[query()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))的除了Content URI之外的其他参数都设置为“null”，来同时获取文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)（DISPLAY_NAME）和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)（SIZE）。例如，下面的代码获取一个文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)，然后在两个[TextView](http://developer.android.com/reference/android/widget/TextView.html)中将他们显示出来：
 
 ```java
-...
+    ...
     /*
      * Get the file's content URI from the incoming Intent,
      * then query the server app to get the file's display name
@@ -58,5 +58,5 @@
     TextView sizeView = (TextView) findViewById(R.id.filesize_text);
     nameView.setText(returnCursor.getString(nameIndex));
     sizeView.setText(Long.toString(returnCursor.getLong(sizeIndex)));
-...
+    ...
 ```
