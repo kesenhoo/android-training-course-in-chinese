@@ -60,7 +60,7 @@ TV通常在3米外观看，并且它比大部分安卓设备大的多。TV屏幕
 
 TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是可用的和有效率的。遵循这些技巧去创建最优化的TV landscape布局。
 
-<!-- 
+<!--
 - Build layouts with a landscape orientation. TV screens always display in landscape mode.
 - Put on-screen navigation controls on the left or right side of the screen and save the vertical space for content.
 - Create UIs that are divided into sections, using Fragments, and use view groups like GridView instead of ListView to make better use of the horizontal screen space.
@@ -110,17 +110,17 @@ TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是
 
 在TV应用布局中的文本和控件应该在一定距离外是容易查看和导航的。接下来的技巧是确保你的用户界面元素在一定距离外更容易查看。
 
-<!-- 
+<!--
 - Break text into small chunks that users can quickly scan.
 - Use light text on a dark background. This style is easier to read on a TV.
 - Avoid lightweight fonts or fonts that have both very narrow and very broad strokes. Use simple sans-serif fonts and anti-aliasing to increase readability.
 - Use Android's standard font sizes:
 -->
 
-- 分解文本为小块，用户可以快速浏览。  
-- 在暗背景下用亮色文字。这种风格在TV中更容易阅读。  
-- 避免轻字体或者字体既窄且有非常宽阔的笔触效果。用简单的sans-serif字体并且去掉锯齿效果以增加可读性。  
-- 用安卓标准的字体大小。  
+- 分解文本为小块，用户可以快速浏览。
+- 在暗背景下用亮色文字。这种风格在TV中更容易阅读。
+- 避免轻字体或者字体既窄且有非常宽阔的笔触效果。用简单的sans-serif字体并且去掉锯齿效果以增加可读性。
+- 用安卓标准的字体大小。
 
     ```xml
     <TextView
@@ -132,13 +132,13 @@ TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是
           android:textAppearance="?android:attr/textAppearanceMedium"/>
     ```
 
-<!-- 
+<!--
 - Ensure that all your view widgets are large enough to be clearly visible to someone sitting 10 feet away from the screen (this distance is greater for very large screens). The best way to do this is to use layout-relative sizing rather than absolute sizing, and density-independent pixel (dip) units instead of absolute pixel units. For example, to set the width of a widget, use wrap_content instead of a pixel measurement, and to set the margin for a widget, use dip values instead of px values.
 For more information about density-independent pixels and building layouts to handle larger screen sizes, see Supporting Multiple Screens.
 -->
 
 - 确保所有的控件是足够大，使人们站在屏幕3米外（更大的屏幕这个距离会更大）可以看清楚。做这个最好的方式是用布局相对大小而不是绝对大小，并且用密度无关像素（dip）单位代替像素单位。例如，设置控件的宽度，用`wrap_content`代替特定像素值，并且设置控件的边际，用dip代替px值。
-更多关于密度无关像素和创建大尺寸屏幕的布局，查看[Support Mutiple Screens](http://developer.android.com/guide/practices/screens_support.html)。  
+更多关于密度无关像素和创建大尺寸屏幕的布局，查看[Support Mutiple Screens](http://developer.android.com/guide/practices/screens_support.html)。
 
 <!-- ## Manage Layout Resources for TV ## -->
 ## 管理TV布局资源
@@ -161,16 +161,16 @@ For more information about density-independent pixels and building layouts to ha
 
 有几种创建布局的方法你应该避免使用，因为它们不能在TV设备上很好的工作并且导致不好的用户体验。当开发TV布局时，以下一些用户界面是你应该明确不能使用的。
 
-<!-- 
+<!--
 - **Re-using phone or tablet layouts** - Do not reuse layouts from a phone or tablet app without modification. Layouts built for other Android device form factors are not well suited for TV devices and should be simplified for operation on a TV.
 - **ActionBar** - While this user interface convention is recommended for use on phones and tablets, it is not appropriate for a TV interface. In particular, using an action bar options menu (or any pull-down menu for that matter) is strongly discouraged, due to the difficulty in navigating such a menu with a remote control.
 - **ViewPager** - Sliding between screens can work great on a phone or tablet, but don't try this on a TV!
 For more information on designing layouts that are appropriate to TV, see the TV Design guide.
 -->
 
-- **重用手机和平板布局** - 不要重用没有修改的手机或者平板应用的布局。为其他安卓设备的布局不适合TV设备，并且TV上应该简化操作。  
-- **ActionBar** - 尽管这种用户界面习惯是推荐使用在手机和平板上，但是他不适合TV界面。通常，状态栏选项菜单（或者任何下拉菜单）坚决不要使用，因为用遥控器操作这样的菜单是困难的。  
-- **ViewPager** - 在屏幕之间滑动能很好在手机或平板上工作，但是不要在TV上尝试！  
+- **重用手机和平板布局** - 不要重用没有修改的手机或者平板应用的布局。为其他安卓设备的布局不适合TV设备，并且TV上应该简化操作。
+- **ActionBar** - 尽管这种用户界面习惯是推荐使用在手机和平板上，但是他不适合TV界面。通常，状态栏选项菜单（或者任何下拉菜单）坚决不要使用，因为用遥控器操作这样的菜单是困难的。
+- **ViewPager** - 在屏幕之间滑动能很好在手机或平板上工作，但是不要在TV上尝试！
 更多信息关于设计适合TV的布局，参考[TV Design](http://developer.android.com/design/tv/index.html)指导。
 
 
@@ -181,7 +181,7 @@ For more information on designing layouts that are appropriate to TV, see the TV
 
 TV设备，像任何其他安卓设备，内存有一定限制。如果你创建的应用的中用了很高分辨率的图片或者用了很多高分辨率图片，它可能快速达到内存限制，并且导致内存溢出错误。避免这些类型的问题，遵循以下方法：
 
-<!-- 
+<!--
 - Load images only when they are displayed on the screen. For example, when displaying multiple images in a GridView or Gallery, only load an image when getView() is called on the view's Adapter.
 - Call recycle() on Bitmap views that are no longer needed.
 - Use WeakReference for storing references to Bitmap objects in an in-memory Collection.
@@ -190,12 +190,12 @@ TV设备，像任何其他安卓设备，内存有一定限制。如果你创建
 For more information on getting the best performance when working with images, see Displaying Bitmaps Efficiently.
 -->
 
-- 仅当图片显示在屏幕时才加载。例如，当在[GridView](http://developer.android.com/reference/android/widget/GridView.html)或者[Gallery](http://developer.android.com/reference/android/widget/Gallery.html)中显示多个图片时，仅当[getView()](http://developer.android.com/reference/android/widget/Adapter.html#getView(int, android.view.View, android.view.ViewGroup))在视图的[Adapter](http://developer.android.com/reference/android/widget/Adapter.html)中被调用时才加载图片。  
-- 在[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)视图中调用[recycle()](http://developer.android.com/reference/android/graphics/Bitmap.html#recycle())不再需要。  
-- 对存储在内存中[集合](http://developer.android.com/reference/java/util/Collection.html)中的位图对象使用[弱引用](http://developer.android.com/reference/java/lang/ref/WeakReference.html)。  
+- 仅当图片显示在屏幕时才加载。例如，当在[GridView](http://developer.android.com/reference/android/widget/GridView.html)或者[Gallery](http://developer.android.com/reference/android/widget/Gallery.html)中显示多个图片时，仅当[getView()](http://developer.android.com/reference/android/widget/Adapter.html#getView(int, android.view.View, android.view.ViewGroup))在视图的[Adapter](http://developer.android.com/reference/android/widget/Adapter.html)中被调用时才加载图片。
+- 在[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)视图中调用[recycle()](http://developer.android.com/reference/android/graphics/Bitmap.html#recycle())不再需要。
+- 对存储在内存中[集合](http://developer.android.com/reference/java/util/Collection.html)中的位图对象使用[弱引用](http://developer.android.com/reference/java/lang/ref/WeakReference.html)。
 - 如果你从网络上获取图片，用[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)去操作并且存储它们在设备上以方便更快的存取。绝对不要在应用的主线程操作网络传输。
-- 当下载大图片时，降低图片到合适的尺寸，否则，下载图片本身可能导致内存溢出问题。  
-更多信息关于获得最好的图片操作性能，参考 [Displaying Bitmaps Efficiently](http://developer.android.com/training/displaying-bitmaps/index.html)。  
+- 当下载大图片时，降低图片到合适的尺寸，否则，下载图片本身可能导致内存溢出问题。
+更多信息关于获得最好的图片操作性能，参考 [Displaying Bitmaps Efficiently](http://developer.android.com/training/displaying-bitmaps/index.html)。
 
 <!-- ## Provide Effective Advertising ## -->
 ## 提供有效的广告

@@ -33,7 +33,7 @@ Android Studio 会把应用程序安装到你的设备中并启动应用程序�
 ### 从命令行安装运行你的应用程序
 
 命令行切换当前目录到Andriod项目的根目录，在debug模式下使用Gradle编译项目，使用gradle脚本执行assembleDebug编译项目，执行后会在build/目录下生成MyFirstApp-debug.apk。
- 
+
 Windows操作系统下，执行：
 
 ```
@@ -69,7 +69,7 @@ adb install bin/MyFirstApp-debug.apk
 ###创建一个 AVD:
 1. 启动 Android Virtual Device Manager（AVD Manager）的两种方式：
 <ul>
-  <li>用Android Studio, **Tools > Android > AVD Manager**,或者点击工具栏里面Android Virtual Device Manager![image](avd-manager-studio.png)  ；  
+  <li>用Android Studio, **Tools > Android > AVD Manager**,或者点击工具栏里面Android Virtual Device Manager![image](avd-manager-studio.png)  ；
   <li> 在命令行窗口中，把当前目录切换到`<sdk>/tools/` 后执行：
 </ul>
 ```

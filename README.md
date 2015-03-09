@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.8)
+# Google Android官方培训课程中文版(v0.9)
 
 ![Android Training](android_training.jpg)
 
@@ -24,6 +24,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
 
 ### 更新记录
+* v0.9 - 2015/03/09
 * v0.8 - 2015/02/12
 * v0.7 - 2014/11/30
 * v0.6 - 2014/11/02
@@ -91,11 +92,11 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
 * [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
    * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
-   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @2014/10/20 - 待认领
-   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @2014/10/20 - 待认领
-   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @2014/10/20 - 待认领
-   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @2014/10/20 - 待认领
-   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @2014/10/20 - 待认领
+   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @待认领
+   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @待认领
+   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @待认领
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
@@ -151,7 +152,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 | @[K0ST](https://github.com/K0ST) | @[Andrwyw](https://github.com/Andrwyw) | @[zhaochunqi](https://github.com/zhaochunqi) |
 | @[lltowq](https://github.com/lltowq) | @[allenlsy](https://github.com/allenlsy) | @[AllenZheng1991](https://github.com/AllenZheng1991) |
 | @[pedant](https://github.com/pedant) | @[craftsmanBai](https://github.com/craftsmanBai) | @[huanglizhuo](https://github.com/huanglizhuo) |
-| @[Roya](https://github.com/RoyaAoki) | @[awong1900](https://github.com/awong1900) | 2:9 |
+| @[Roya](https://github.com/RoyaAoki) | @[awong1900](https://github.com/awong1900) | @[dupengwei](https://github.com/dupengwei) |
 | 0:10 | 1:10 | 2:10 |
 
 
