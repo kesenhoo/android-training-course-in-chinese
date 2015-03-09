@@ -4,26 +4,26 @@
 
 最佳的定时更新频率是不确定的，通常由设备状态，网络连接状态，用户行为与用户定义明确的偏好而决定。
 
-[Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)这一章有讨论如何根据设备状态来修改更新频率。里面介绍了当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率。
+[Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)这一章有讨论如何根据设备状态来修改更新频率，从而达到编写一个低电量消耗的程序。可执行的操作包括当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率等。
 
 这一课会介绍更新频率是多少才会使得更新操作对无线电状态机的影响最小。(C2DM与指数退避算法的使用)
 
 ## 1)Use Google Cloud Messaging as an Alternative to Polling
 
-关于`Android Cloud to Device Messaging` (C2DM)详情 ,请参考:[http://code.google.com/intl/zh-CN/android/c2dm/](http://code.google.com/intl/zh-CN/android/c2dm/)
+关于`Google Cloud Messaging for Android` (GCM)详情 ,请参考:[http://developer.android.com/google/gcm/index.html](http://developer.android.com/google/gcm/index.html)
 
 <!-- More -->
 
 每次app去向server询问检查是否有更新操作的时候会激活无线电，这样造成了不必要的能量消耗(在3G情况下，会差不多消耗20秒的能量)。
 
-C2DM是一个用来从server到特定app传输数据的轻量级的机制。使用C2DM,server会在某个app有需要获取新数据的时候通知app有这个消息。
+GCM是一个用来从server到特定app传输数据的轻量级的机制。使用GCM,server会在某个app有需要获取新数据的时候通知app有这个消息。
 
-比起轮询方式(app为了即时拿到最新的数据需要定时向server请求数据)，C2DM这种有事件驱动的模式会在仅仅有数据更新的时候通知app去创建网络连接来获取数据(很显然这样减少了app的大量操作，当然也减少了很多电量)。
+比起轮询方式(app为了即时拿到最新的数据需要定时向server请求数据)，GCM这种有事件驱动的模式会在仅仅有数据更新的时候通知app去创建网络连接来获取数据(很显然这样减少了app的大量操作，当然也减少了很多电量消耗)。
 
-C2DM需要通过使用固定TCP/IP来实现操作。当在你的设备上可以实现固定IP的时候，最好使用C2DM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
-。很明显，使用C2DM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。
+GCM需要通过使用固定TCP/IP连接来实现操作。当在你的设备上可以实现固定IP的时候，最好使用GCM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
+。很明显，使用GCM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。
 
-**Ps:大陆的Google框架通常被移除掉，这导致C2DM实际上根本没有办法在大陆的App上使用**
+**Ps:大陆的Google框架通常被移除掉，这导致GCM实际上根本没有办法在大陆的App上使用**
 
 ## 2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs
 
@@ -47,7 +47,7 @@ alarmManager.setInexactRepeating(alarmType, start, interval, pi);
 
 我们还可以通过根据app被使用的频率来有选择性的减少更新的频率。
 
-另一个方法在app在上一次更新操作之后还未被使用的情况下，使用指数退避算法`exponential back-off algorithm`来减少更新频率。当然我们也可以使用一些类似指数退避的方法。
+另一个方法是在app在上一次更新操作之后还未被使用的情况下，使用指数退避算法`exponential back-off algorithm`来减少更新频率。当然我们也可以使用一些类似指数退避的方法。
 
 ```java
 SharedPreferences sp =
@@ -84,4 +84,4 @@ private void retryIn(long interval) {
 
 ***
 
-**笔者结语:这一课讲到C2DM与指数退避算法等，其实这些细节很值得我们注意，如果能在实际项目中加以应用，很明显程序的质量上升了一个档次！**
+**笔者结语:这一课讲到GCM与指数退避算法等，其实这些细节很值得我们注意，如果能在实际项目中加以应用，很明显程序的质量上升了一个档次！**
