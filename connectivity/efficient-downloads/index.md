@@ -8,7 +8,7 @@
 我们还会学习无线电波的power-use属性配置是如何影响我们对于在何时，用什么，以何种方式来传输数据的选择。
 当然这些选择是为了最小化对电池寿命的影响。
 
-**你同样可以需要阅读**
+**你同样需要阅读**
 [Optimizing Battery Life](performance/monitoring-device-state/index.html)
 
 ## 课程列表
@@ -32,4 +32,4 @@
 
 * [**Modifying your Download Patterns Based on the Connectivity Type - 根据网络连接类型来更改下载模式**](connectivity-patterns.html)
 
-  不同连接类型都对电池寿命的影响并不相同. 不仅仅是Wi-Fi比无线电波更省电, 不同的无线广播技术对电池也有不同的影响.
+  不同连接类型都对电池电量的影响并不相同. 不仅仅是Wi-Fi比无线电波更省电, 不同的无线广播技术对电池也有不同的影响.
