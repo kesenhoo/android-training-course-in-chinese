@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>避免下载多余的数据 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>避免下载多余的数据 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.3" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.3" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3685,7 +3685,7 @@
 </blockquote>
 <p>减少下载的最基本方法是仅仅下载那些你需要的。从数据的角度看，我们可以通过传递类似上次更新时间这样的参数来制定查询数据的条件。同样，在下载图片的时候，server那边最好能够减少图片的大小，而不是让我们下载完整大小的图片。</p>
 <h2 id="1-cache-files-locally">1)Cache Files Locally</h2>
-<p>避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请从缓存中获取最新的数据，当数据过期的时候，会提示进行刷新。</p>
+<p>避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请在缓存中获取数据的同时检测其是否过期，当数据过期的时候，会提示进行刷新。</p>
 <!-- More -->
 
 <pre><code class="lang-java"><span class="hljs-keyword">long</span> currentTime = System.currentTimeMillis();
@@ -3728,7 +3728,7 @@ setDataExpirationDate(expires);
 }
 </code></pre>
 <p>上面的sample code会在Android 4.0以上的设备上开启response cache，同时不会影响到之前的程序。在cache被开启之后，所有cache中的HTTP请求都可以直接在本地存储中进行响应，并不需要开启一个新的网络连接。
-被cache起来的response可以被server所确保没有过期，这样就减少了带宽。没有被cached的response会因方便下次请求而被存储在response cache中。</p>
+被cache起来的response可以被server所确保没有过期，这样就减少了下载所需的带宽。没有被cached的response会为了方便下次请求而被存储在response cache中。</p>
 
                     
                     </section>

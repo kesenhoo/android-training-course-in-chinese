@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>提供向上的导航 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>提供向上的导航 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.3" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.3" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,7 +3677,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_255">
+                    <section class="normal" id="section-gitbook_256">
                     
                         <h1 id="-">提供向上的导航</h1>
 <blockquote>
@@ -3725,7 +3725,7 @@
 </code></pre>
 <p>这样，在app旁添加了一个左向符号，并用作操作按钮。当用户点击它时，你的activity会接收一个对<a href="http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected%28android.view.MenuItem%29" target="_blank">onOptionsItemSelected()</a>的调用。操作的ID是<code>android.R.id.home</code>。</p>
 <h2 id="-activity">向上导航至父activity</h2>
-<p>要在用户点击app图标时向上导航，你可以使用<a href="http://developer.android.com/reference/android/support/v4/app/NavUtils.html" target="_blank">NavUtils</a>类中的静态方法<a href="http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29" target="_blank">navigateUpFromSameTask()</a>。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像<a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP" target="_blank">FLAG_ACTIVITY_CLEAR_TOP</a>定义的那样，提到栈顶。</p>
+<p>要在用户点击app图标时向上导航，你可以使用<a href="http://developer.android.com/reference/android/support/v4/app/NavUtils.html" target="_blank">NavUtils</a>类中的静态方法<a href="http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29" target="_blank">navigateUpFromSameTask()</a>。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像<a href="http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP" target="_blank">FLAG_ACTIVITY_CLEAR_TOP</a>定义的那样，提到栈顶。提到栈顶的方式取决于父activity是否处理了对<a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a>的调用。</p>
 <p>例如:</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onOptionsItemSelected</span>(MenuItem item) {

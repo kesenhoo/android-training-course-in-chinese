@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>最小化更新操作的影响 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>最小化更新操作的影响 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.2" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.3.2" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3684,18 +3684,18 @@
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/efficient-downloads/regular-update.html" target="_blank">http://developer.android.com/training/efficient-downloads/regular-update.html</a></p>
 </blockquote>
 <p>最佳的定时更新频率是不确定的，通常由设备状态，网络连接状态，用户行为与用户定义明确的偏好而决定。</p>
-<p><a href="http://developer.android.com/training/monitoring-device-state/index.html" target="_blank">Optimizing Battery Life</a>这一章有讨论如何根据设备状态来修改更新频率。里面介绍了当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率。</p>
+<p><a href="http://developer.android.com/training/monitoring-device-state/index.html" target="_blank">Optimizing Battery Life</a>这一章有讨论如何根据设备状态来修改更新频率，从而达到编写一个低电量消耗的程序。可执行的操作包括当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率等。</p>
 <p>这一课会介绍更新频率是多少才会使得更新操作对无线电状态机的影响最小。(C2DM与指数退避算法的使用)</p>
 <h2 id="1-use-google-cloud-messaging-as-an-alternative-to-polling">1)Use Google Cloud Messaging as an Alternative to Polling</h2>
-<p>关于<code>Android Cloud to Device Messaging</code> (C2DM)详情 ,请参考:<a href="http://code.google.com/intl/zh-CN/android/c2dm/" target="_blank">http://code.google.com/intl/zh-CN/android/c2dm/</a></p>
+<p>关于<code>Google Cloud Messaging for Android</code> (GCM)详情 ,请参考:<a href="http://developer.android.com/google/gcm/index.html" target="_blank">http://developer.android.com/google/gcm/index.html</a></p>
 <!-- More -->
 
 <p>每次app去向server询问检查是否有更新操作的时候会激活无线电，这样造成了不必要的能量消耗(在3G情况下，会差不多消耗20秒的能量)。</p>
-<p>C2DM是一个用来从server到特定app传输数据的轻量级的机制。使用C2DM,server会在某个app有需要获取新数据的时候通知app有这个消息。</p>
-<p>比起轮询方式(app为了即时拿到最新的数据需要定时向server请求数据)，C2DM这种有事件驱动的模式会在仅仅有数据更新的时候通知app去创建网络连接来获取数据(很显然这样减少了app的大量操作，当然也减少了很多电量)。</p>
-<p>C2DM需要通过使用固定TCP/IP来实现操作。当在你的设备上可以实现固定IP的时候，最好使用C2DM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
-。很明显，使用C2DM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。</p>
-<p><strong>Ps:大陆的Google框架通常被移除掉，这导致C2DM实际上根本没有办法在大陆的App上使用</strong></p>
+<p>GCM是一个用来从server到特定app传输数据的轻量级的机制。使用GCM,server会在某个app有需要获取新数据的时候通知app有这个消息。</p>
+<p>比起轮询方式(app为了即时拿到最新的数据需要定时向server请求数据)，GCM这种有事件驱动的模式会在仅仅有数据更新的时候通知app去创建网络连接来获取数据(很显然这样减少了app的大量操作，当然也减少了很多电量消耗)。</p>
+<p>GCM需要通过使用固定TCP/IP连接来实现操作。当在你的设备上可以实现固定IP的时候，最好使用GCM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
+。很明显，使用GCM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。</p>
+<p><strong>Ps:大陆的Google框架通常被移除掉，这导致GCM实际上根本没有办法在大陆的App上使用</strong></p>
 <h2 id="2-optimize-polling-with-inexact-repeating-alarms-and-exponential-backoffs">2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs</h2>
 <p>如果需要使用轮询机制，在不影响用户体验的前提下，当然设置默认更新频率是越低越好(减少电量的浪费)。</p>
 <p>一个简单的方法是给用户提供更新频率的选择，允许用户自己来处理如何平衡数据及时性与电量的消耗。</p>
@@ -3709,7 +3709,7 @@ alarmManager.setInexactRepeating(alarmType, start, interval, pi);
 <p>若是多个提醒都安排在某个点同时被触发，那么这样就可以使得多个操作在同一个无线电状态下操作完。</p>
 <p>如果可以，请设置提醒的类型为<code>ELAPSED_REALTIME</code> or <code>RTC</code>而不是<code>_WAKEUP</code>。这样能够更进一步的减少电量的消耗。</p>
 <p>我们还可以通过根据app被使用的频率来有选择性的减少更新的频率。</p>
-<p>另一个方法在app在上一次更新操作之后还未被使用的情况下，使用指数退避算法<code>exponential back-off algorithm</code>来减少更新频率。当然我们也可以使用一些类似指数退避的方法。</p>
+<p>另一个方法是在app在上一次更新操作之后还未被使用的情况下，使用指数退避算法<code>exponential back-off algorithm</code>来减少更新频率。当然我们也可以使用一些类似指数退避的方法。</p>
 <pre><code class="lang-java">SharedPreferences sp =
   context.getSharedPreferences(PREFS, Context.MODE_WORLD_READABLE);
 
@@ -3739,7 +3739,7 @@ executeUpdateOrPrefetch();
 }
 </code></pre>
 <hr>
-<p><strong>笔者结语:这一课讲到C2DM与指数退避算法等，其实这些细节很值得我们注意，如果能在实际项目中加以应用，很明显程序的质量上升了一个档次！</strong></p>
+<p><strong>笔者结语:这一课讲到GCM与指数退避算法等，其实这些细节很值得我们注意，如果能在实际项目中加以应用，很明显程序的质量上升了一个档次！</strong></p>
 
                     
                     </section>

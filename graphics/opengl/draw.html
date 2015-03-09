@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>绘制Shapes | Google Android官方培训课程中文版(v0.8)</title>
+        <title>绘制Shapes | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.3" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.3" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3679,45 +3679,58 @@
                 
                     <section class="normal" id="section-gitbook_123">
                     
-                        <h1 id="-shapes">绘制Shapes</h1>
+                        <h1 id="-">绘制形状</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/graphics/opengl/draw.html" target="_blank">http://developer.android.com/training/graphics/opengl/draw.html</a></p>
 </blockquote>
-<p>在你定义了需要OpenGL绘制的形状之后，你可能希望绘制它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中需要更多的代码，因为API中提供了大量对于图形处理流程的控制。</p>
-<p>这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的图形。</p>
+<p>在定义了使用OpenGL绘制的形状之后，你可能希望绘制出它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中更复杂一些，因为API中提供了大量对于图形渲染流程的控制。</p>
+<p>这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的形状。</p>
 <h2 id="-">初始化形状</h2>
-<p>在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated\(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig\" target="_blank">onSurfaceCreated()</a>)方法中初始化它们，这样做是处于内存和执行效率的考量。</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSurfaceCreated</span>(GL10 unused, EGLConfig config) {
-    ...
+<p>在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig" target="_blank">onSurfaceCreated()</a>)方法中初始化它们，这样做是出于内存和执行效率的考量。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyGLRenderer</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">GLSurfaceView</span>.<span class="hljs-title">Renderer</span> {</span>
 
-    <span class="hljs-comment">// initialize a triangle</span>
-    mTriangle = <span class="hljs-keyword">new</span> Triangle();
-    <span class="hljs-comment">// initialize a square</span>
-    mSquare = <span class="hljs-keyword">new</span> Square();
+    ...
+    <span class="hljs-keyword">private</span> Triangle mTriangle;
+    <span class="hljs-keyword">private</span> Square   mSquare;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSurfaceCreated</span>(GL10 unused, EGLConfig config) {
+        ...
+
+        <span class="hljs-comment">// initialize a triangle</span>
+        mTriangle = <span class="hljs-keyword">new</span> Triangle();
+        <span class="hljs-comment">// initialize a square</span>
+        mSquare = <span class="hljs-keyword">new</span> Square();
+    }
+    ...
 }
 </code></pre>
 <h3 id="-">画一个形状</h3>
-<p>使用OpenGL ES 2.0画一个定义的形状需要较多代码，因为你需要提供很多图形处理流程的细节。具体而言，你必须定义如下几项：</p>
+<p>使用OpenGL ES 2.0画一个定义好的形状需要较多代码，因为你需要提供很多图形渲染流程的细节。具体而言，你必须定义如下几项：</p>
 <ul>
-<li>顶点着色器（Vertex Shader）：OpenGL ES代码用来渲染形状的顶点。</li>
-<li>片段着色器（Fragment Shader）：OpenGL ES代码用来渲染形状的表面，使用颜色或纹理。</li>
-<li>程式（Program）：一个OpenGL ES对象，包含了你希望用来绘制一个活更多图形所要用到的着色器。</li>
+<li>顶点着色器（Vertex Shader）：用来渲染形状顶点的OpenGL ES代码。</li>
+<li>片段着色器（Fragment Shader）：使用颜色或纹理渲染形状表面的OpenGL ES代码。</li>
+<li>程式（Program）：一个OpenGL ES对象，包含了你希望用来绘制一个或更多图形所要用到的着色器。</li>
 </ul>
-<p>你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加至一个OpenGL ES程式当中，它用来绘制形状。下面的代码展示了你可以用来画一个图形的基本着色器：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String vertexShaderCode =
-    <span class="hljs-string">"attribute vec4 vPosition;"</span> +
-    <span class="hljs-string">"void main() {"</span> +
-    <span class="hljs-string">"  gl_Position = vPosition;"</span> +
-    <span class="hljs-string">"}"</span>;
+<p>你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个OpenGL ES Program当中，并利用它来绘制形状。下面的代码在Triangle类中定义了基本的着色器，我们可以利用它们绘制出一个图形：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> {</span>
 
-<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String fragmentShaderCode =
-    <span class="hljs-string">"precision mediump float;"</span> +
-    <span class="hljs-string">"uniform vec4 vColor;"</span> +
-    <span class="hljs-string">"void main() {"</span> +
-    <span class="hljs-string">"  gl_FragColor = vColor;"</span> +
-    <span class="hljs-string">"}"</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String vertexShaderCode =
+        <span class="hljs-string">"attribute vec4 vPosition;"</span> +
+        <span class="hljs-string">"void main() {"</span> +
+        <span class="hljs-string">"  gl_Position = vPosition;"</span> +
+        <span class="hljs-string">"}"</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> String fragmentShaderCode =
+        <span class="hljs-string">"precision mediump float;"</span> +
+        <span class="hljs-string">"uniform vec4 vColor;"</span> +
+        <span class="hljs-string">"void main() {"</span> +
+        <span class="hljs-string">"  gl_FragColor = vColor;"</span> +
+        <span class="hljs-string">"}"</span>;
+
+    ...
+}
 </code></pre>
-<p>着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这个代码，在你的渲染器类中创建一个辅助方法：</p>
+<p>着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">loadShader</span>(<span class="hljs-keyword">int</span> type, String shaderCode){
 
     <span class="hljs-comment">// create a vertex shader type (GLES20.GL_VERTEX_SHADER)</span>
@@ -3731,25 +3744,46 @@
     <span class="hljs-keyword">return</span> shader;
 }
 </code></pre>
-<p>为了绘制你的图形，你必须编译着色器代码，将它们添加至一个OpenGL ES程式对象中，然后执行连接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次。</p>
+<p>为了绘制你的图形，你必须编译着色器代码，将它们添加至一个OpenGL ES Program对象中，然后执行链接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次。</p>
 <blockquote>
-<p><strong>Note：</strong>编译OpenGL ES着色器及连接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果你在执行期间不知道你的着色器内容，那么你应该在构建你的应用时，确保它们值创建了一次，并且缓存以备后续使用。</p>
+<p><strong>Note：</strong>编译OpenGL ES着色器及链接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果在执行期间不知道着色器的内容，那么你应该在构建你的应用时，确保它们只被创建了一次，并且缓存以备后续使用。</p>
 </blockquote>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span>() {</span>
     ...
 
-    <span class="hljs-keyword">int</span> vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexShaderCode);
-    <span class="hljs-keyword">int</span> fragmentShader = loadShader(GLES20.GL_FRAGMENT_SHADER, fragmentShaderCode);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> mProgram;
 
-    mProgram = GLES20.glCreateProgram();             <span class="hljs-comment">// create empty OpenGL ES Program</span>
-    GLES20.glAttachShader(mProgram, vertexShader);   <span class="hljs-comment">// add the vertex shader to program</span>
-    GLES20.glAttachShader(mProgram, fragmentShader); <span class="hljs-comment">// add the fragment shader to program</span>
-    GLES20.glLinkProgram(mProgram);                  <span class="hljs-comment">// creates OpenGL ES program executables</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-title">Triangle</span>() {
+        ...
+
+        <span class="hljs-keyword">int</span> vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+                                        vertexShaderCode);
+        <span class="hljs-keyword">int</span> fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+                                        fragmentShaderCode);
+
+        <span class="hljs-comment">// create empty OpenGL ES Program</span>
+        mProgram = GLES20.glCreateProgram();
+
+        <span class="hljs-comment">// add the vertex shader to program</span>
+        GLES20.glAttachShader(mProgram, vertexShader);
+
+        <span class="hljs-comment">// add the fragment shader to program</span>
+        GLES20.glAttachShader(mProgram, fragmentShader);
+
+        <span class="hljs-comment">// creates OpenGL ES program executables</span>
+        GLES20.glLinkProgram(mProgram);
+    }
 }
 </code></pre>
-<p>至此，你已经完全准备好添加实际的调用来绘制你的图形了。使用OpenGL ES绘制图形需要你定义一些变量来告诉渲染流程你需要画什么以及如何去画。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。</p>
-<p>为图形创建一个“draw()”方法。这个代码为形状的顶点着色器和形状着色器设置了位置和颜色值，进而执行绘图功能：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">draw</span>() {
+<p>至此，你已经完全准备好添加实际的调用语句来绘制你的图形了。使用OpenGL ES绘制图形需要你定义一些变量来告诉渲染流程你需要绘制的内容以及如何绘制。既然绘制属性会根据形状的不同而发生变化，把绘制逻辑包含在形状类里面将是一个不错的主意。</p>
+<p>创建一个<code>draw()</code>方法来绘制图形。下面的代码为形状的顶点着色器和形状着色器设置了位置和颜色值，然后执行绘制函数：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mPositionHandle;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mColorHandle;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> vertexStride = COORDS_PER_VERTEX * <span class="hljs-number">4</span>; <span class="hljs-comment">// 4 bytes per vertex</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">draw</span>() {
     <span class="hljs-comment">// Add program to OpenGL ES environment</span>
     GLES20.glUseProgram(mProgram);
 
@@ -3777,10 +3811,17 @@
     GLES20.glDisableVertexAttribArray(mPositionHandle);
 }
 </code></pre>
-<p>一旦你完成了上述所有代码，画这个对象就仅需要在你渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame\(javax.microedition.khronos.opengles.GL10\" target="_blank">onDrawFrame()</a>)方法中调用draw()方法就可以了。当你运行这个应用时，它看上去会像是这样：</p>
+<p>一旦你完成了上述所有代码，仅需要在你渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10" target="_blank">onDrawFrame()</a>)方法中调用<code>draw()</code>方法就可以画出我们想要画的对象了：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span>(GL10 unused) {
+    ...
+
+    mTriangle.draw();
+}
+</code></pre>
+<p>当你运行这个应用时，它看上去会像是这样：</p>
 <p><img src="ogl-triangle.png" alt="ogl-triangle" title="不使用投影或者相机视图画出来的三角形"></p>
-<p>在这个代码样例中，还存在一些问题。首先，它无法给你的朋友带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。形状发生形变的原因是因为对象的顶点没有根据显示<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的屏幕区域的比例进行修正。你可以在下一节课中使用投影（projection）或者相机视图（camera view）来解决这个问题。</p>
-<p>最后，这个三角形是静止的，这看上去有些无聊。在<a href="motion.html">添加移动</a>课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程的更加新奇的用法。</p>
+<p>在这个代码样例中，还存在一些问题。首先，它无法给用户带来什么深刻的印象。其次，这个三角形看上去有一些扁，另外当你改变屏幕方向时，它的形状也会随之改变。发生形变的原因是因为对象的顶点没有根据显示<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的屏幕区域的长宽比进行修正。你可以在下一节课中使用投影（Projection）或者相机视角（Camera View）来解决这个问题。</p>
+<p>最后，这个三角形是静止的，这看上去有些无聊。在<a href="motion.html">添加移动</a>课程当中（后续课程），你会让这个形状发生旋转，并使用一些OpenGL ES图形处理流程中更加新奇的用法。</p>
 
                     
                     </section>

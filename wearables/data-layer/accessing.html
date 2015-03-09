@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>访问可穿戴数据层 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>访问可穿戴数据层 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.1" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.1" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,23 +3677,23 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_277">
+                    <section class="normal" id="section-gitbook_278">
                     
-                        <h1 id="-">访问可穿戴数据层</h1>
+                        <p>﻿# 访问可穿戴数据层</p>
 <blockquote>
 <p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/accessing.html" target="_blank">http://developer.android.com/training/wearables/data-layer/accessing.html</a></p>
 </blockquote>
-<p>调用数据层API，需创建一个<a href="GoogleApiClient.html">GoogleApiClient</a>实例，所有 Google Play services APIs的主要入口点。</p>
+<p>调用数据层API，需创建一个 <a href="GoogleApiClient.html">GoogleApiClient</a> 实例，所有 Google Play services APIs的主要入口点。</p>
 <p><a href="GoogleApiClient.html">GoogleApiClient</a> 提供了一个易于创建客户端实例的builder。最简单的<a href="GoogleApiClient.html">GoogleApiClient</a>如下：</p>
 <blockquote>
-<p><strong>Note:</strong> 目前，此client可以启动。但是，更多创建GoogleApiClient，实现回调方法和处理错误等内容，详见 <a href="api-client.html">Accessing Google Play services APIs</a>。</p>
+<p><strong>Note:</strong> 目前，此小client仅足以能启动。但是，更多创建GoogleApiClient，实现回调方法和处理错误等内容，详见 <a href="api-client.html">Accessing Google Play services APIs</a>。</p>
 </blockquote>
-<pre><code class="lang-java">GoogleApiClient mGoogleAppiClient = <span class="hljs-keyword">new</span> GoogleApiClient.Builder(<span class="hljs-keyword">this</span>)
+<pre><code class="lang-java">GoogleApiClient mGoogleApiClient = <span class="hljs-keyword">new</span> GoogleApiClient.Builder(<span class="hljs-keyword">this</span>)
         .addConnectionCallbacks(<span class="hljs-keyword">new</span> ConnectionCallbacks() {
                 <span class="hljs-annotation">@Override</span>
                 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span>(Bundle connectionHint) {
                     Log.d(TAG, <span class="hljs-string">"onConnected: "</span> + connectionHint);
-                    <span class="hljs-comment">// Now you can use the data layer API</span>
+                    <span class="hljs-comment">// 现在你可以使用Data Layer API 了</span>
                 }
                 <span class="hljs-annotation">@Override</span>
                 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnectionSuspended</span>(<span class="hljs-keyword">int</span> cause) {
@@ -3706,10 +3706,14 @@
                     Log.d(TAG, <span class="hljs-string">"onConnectionFailed: "</span> + result);
                 }
             })
+        <span class="hljs-comment">// 请求只访问 Wearable API</span>
         .addApi(Wearable.API)
         .build();
 </code></pre>
-<p>在你使用数据层API之前，通过调用<a href="GoogleApiClient.html#connect(">connect()</a>)方法进行连接，如 Accessing Google Play services APIs中所述。当系统为你的客户端调用了onConnected()方法，你就可以使用数据层API了。</p>
+<blockquote>
+<p><strong>Important:</strong>为了避免在并没有安装 <a href="https://play.google.com/store/apps/details?id=com.google.android.wearable.app&amp;hl=en" target="_blank">Android Wear app </a> 的设备上，客户端连接失败，请使用独立的<a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.html" target="_blank">GoogleApiClient</a> 实例来仅访问 <a href="http://developer.android.com/reference/com/google/android/gms/wearable/Wearable.html" target="_blank">Wearable</a> API。更多的信息，请参见 <a href="http://developer.android.com/google/auth/api-client.html#WearableApi" target="_blank">Access the Wearable API</a>.</p>
+</blockquote>
+<p>在你使用数据层API之前，通过调用<a href="GoogleApiClient.html#connect(">connect()</a>)方法进行连接，如 <a href="http://developer.android.com/google/auth/api-client.html#Starting" target="_blank">Start a Connection</a>中所述。当系统为你的客户端调用了<a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>) 方法，你就可以使用数据层API了。</p>
 
                     
                     </section>

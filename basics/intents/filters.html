@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Intent过滤 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>Intent过滤 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.3" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.3" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3690,19 +3690,19 @@
 
 <h2 id="-intent-filter">添加Intent Filter</h2>
 <p>为了尽可能确切的定义你的activity能够handle哪些intent，每一个intent filter都应该尽可能详尽的定义好action与data。</p>
-<p>如果activity中的intent filt满足以下intent对象的标准，系统就能够把特定的intent发送给activity：</p>
+<p>如果activity中的intent filter满足以下intent对象的标准，系统就能够把特定的intent发送给activity：</p>
 <ul>
 <li><p><strong>Action</strong>:一个想要执行的动作的名称。通常是系统已经定义好的值，例如<code>ACTION_SEND</code>或者<code>ACTION_VIEW</code>。
 在intent filt中用<a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action&gt;</code></a>指定它的值，值的类型必须为字符串，而不是API中的常量(看下面的例子)</p>
 </li>
-<li><p><strong>Data</strong>:Intent附带数据的描述。在intent filt中用<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>指定它的值，可以使用一个或者多个属性，你可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。</p>
+<li><p><strong>Data</strong>:Intent附带数据的描述。在intent filter中用<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>指定它的值，可以使用一个或者多个属性，你可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。</p>
 </li>
 </ul>
 <blockquote>
 <p><strong>Note:</strong> 如果你不想handle Uri 类型的数据，那么你应该指定 android:mimeType 属性。例如 text/plain or image/jpeg.</p>
 </blockquote>
 <ul>
-<li><strong>Category</strong>:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都不怎么用的到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filt中用<a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category&gt;</code></a>指定它的值。</li>
+<li><strong>Category</strong>:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都不怎么用的到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filter中用<a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category&gt;</code></a>指定它的值。</li>
 </ul>
 <p>在你的intent filter中，你可以在<code>&lt;intent-filter&gt;</code>元素中定义对应的XML元素来声明你的activity使用何种标准。</p>
 <p>例如，这个有intent filter的activity，当数据类型为文本或图像时会处理<code>ACTION_SEND</code>的intent。</p>
@@ -3716,7 +3716,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
 <p>每一个发送出来的intent只会包含一个action与type，但是handle这个intent的activity的 <code>&lt;intent-filter&gt;</code>是可以声明多个<code>&lt;action&gt;</code>, <code>&lt;category&gt;</code>与<code>&lt;data&gt;</code> 的。</p>
-<p>如果任何的两对action与data是互相矛盾的，你应该创建不同的intent fliter来指定特定的action与type。</p>
+<p>如果任何的两对action与data是互相矛盾的，你应该创建不同的intent filter来指定特定的action与type。</p>
 <p>例如，假设你的activity可以handle 文本与图片，无论是<code>ACTION_SEND</code>还是<code>ACTION_SENDTO</code> 的intent。在这种情况下，你必须为两个action定义两个不同的intent filter。因为<code>ACTION_SENDTO</code> intent 必须使用 Uri 类型来指定接收者使用 send 或 sendto 的地址。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"ShareActivity"</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- filter for sending text; accepts SENDTO action with sms URI schemes --&gt;</span>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建2D-Picker | Google Android官方培训课程中文版(v0.8)</title>
+        <title>创建2D-Picker | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.4" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.3.4" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,14 +3677,128 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_288">
+                    <section class="normal" id="section-gitbook_289">
                     
                         <h1 id="-2d-picker">创建2D-Picker</h1>
 <blockquote>
-<p>编写: - 原文:</p>
+<p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/2d-picker.html" target="_blank">https://developer.android.com/training/wearables/ui/2d-picker.html</a></p>
 </blockquote>
-<p>待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！</p>
+<!--The 2D Picker pattern in Android Wear allows users to navigate and choose from a set of items shown as pages. The Wearable UI Library lets you easily implement this pattern using a page grid, which is a layout manager that allows users to scroll vertically and horizontally through pages of data.-->
 
+<p>Android Wear中的<a href="https://developer.android.com/design/wear/structure.html#2DPicker" target="_blank">2D Picker</a>模式允许用户像换页一样从一组项目中导航和选择。</p>
+<p><!--To implement this pattern, you add a GridViewPager element to the layout of your activity and implement an adapter that provides a set of pages by extending the FragmentGridPagerAdapter class.-->
+要实现这个模式，你需要添加一个 <em>GridViewPager</em> 元素到你的activity的layout中然后实现一个继承 <em>FragmentGridPagerAdapter</em>类的adapter以提供一组页面。</p>
+<p><!--Note: The GridViewPager sample in the Android SDK demonstrates how to use the GridViewPager layout in your apps. This sample is located in the android-sdk/samples/android-20/wearable/GridViewPager directory.--></p>
+<blockquote>
+<p><strong>Note:</strong> Android SDK中的<em>GridViewPager</em>例子示范了如何在你的apps中使用 <em>GridViewPager</em> layout。这个例子的位置在 <em>android-sdk/samples/android-20/wearable/GridViewPager</em>目录中。</p>
+</blockquote>
+<h2 id="-page-grid">添加Page Grid</h2>
+<p><!--Add a GridViewPager element to your layout definition as follows:-->
+像下面一样添加一个 <em>GridViewPager</em> 元素到你的layout描述文件：</p>
+<pre><code>&lt;android.support.wearable.view.GridViewPager
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/pager&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; /&gt;
+</code></pre><p><!--You can use any of the techniques described in Defining Layouts to ensure that your 2D picker works on both round and square devices.-->
+你可以使用任何<a href="https://developer.android.com/training/wearables/ui/layouts.html" target="_blank">定义Layouts</a>技术以保证你的2D picker可以工作在圆形和方形两种设备上。</p>
+<h2 id="-page-adapter">实现Page Adapter</h2>
+<p><!--A page adapter provides a set of pages to populate a GridViewPager component. To implement this adapter, you extend the FragmentGridPageAdapter class from the Wearable UI Library-->
+Page Adapter提供一组页面以填充 <em>GridViewPager</em> 部件。要实现这个adapter，你需要继承Wearable UI Library中的 <em>FragmentGridPageAdapter</em> 类。</p>
+<p><!--For example, the GridViewPager sample in the Android SDK contains the following adapter implementation that provides a set of static cards with custom background images:-->
+举个栗子🌰，Android SDK内的<em>GridViewPager</em>例子🌰中包含了下面的adapter实现将提供一组静态cards和自定义背景图片：</p>
+<pre><code>public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
+
+    private final Context mContext;
+
+    public SampleGridPagerAdapter(Context ctx, FragmentManager fm) {
+        super(fm);
+        mContext = ctx;
+    }
+
+    static final int[] BG_IMAGES = new int[] {
+            R.drawable.debug_background_1, ...
+            R.drawable.debug_background_5
+    };
+
+    // A simple container for static data in each page
+    private static class Page {
+        // static resources
+        int titleRes;
+        int textRes;
+        int iconRes;
+        ...
+    }
+
+    // Create a static set of pages in a 2D array
+    private final Page[][] PAGES = { ... };
+
+    // Override methods in FragmentGridPagerAdapter
+    ...
+}
+</code></pre><p><!--The picker calls getFragment and getBackground to retrieve the content to display at each position of the grid:-->
+picker调用 <em>getFragment</em> 和 <em>getBackground</em>来取得内容以显示到每个grid的位置中。</p>
+<pre><code>// Obtain the UI fragment at the specified position
+@Override
+public Fragment getFragment(int row, int col) {
+    Page page = PAGES[row][col];
+    String title =
+        page.titleRes != 0 ? mContext.getString(page.titleRes) : null;
+    String text =
+        page.textRes != 0 ? mContext.getString(page.textRes) : null;
+    CardFragment fragment = CardFragment.create(title, text, page.iconRes);
+
+    // Advanced settings (card gravity, card expansion/scrolling)
+    fragment.setCardGravity(page.cardGravity);
+    fragment.setExpansionEnabled(page.expansionEnabled);
+    fragment.setExpansionDirection(page.expansionDirection);
+    fragment.setExpansionFactor(page.expansionFactor);
+    return fragment;
+}
+
+// Obtain the background image for the page at the specified position
+@Override
+public ImageReference getBackground(int row, int column) {
+    return ImageReference.forDrawable(BG_IMAGES[row % BG_IMAGES.length]);
+}
+</code></pre><p><!--The getRowCount method tells the picker how many rows of content are available, and the getColumnCount method tells the picker how many columns of content are available for each of the rows.-->
+<em>getRowCount</em>方法告诉picker有多少行内容是可获得的，然后 <em>getColumnCount</em>方法告诉picker每行中有多少列内容是可获得的。</p>
+<pre><code>// Obtain the number of pages (vertical)
+@Override
+public int getRowCount() {
+    return PAGES.length;
+}
+
+// Obtain the number of pages (horizontal)
+@Override
+public int getColumnCount(int rowNum) {
+    return PAGES[rowNum].length;
+}
+</code></pre><p><!--The adapter implementation details depend on your particular set of pages. Each page provided by the adapter is of type Fragment. In this example, each page is a CardFragment instance that uses one of the default card layouts. However, you can combine different types of pages in the same 2D picker, such as cards, action icons, and custom layouts depending on your use cases.-->
+adapter是实现细节依赖于你的特定的某组pages。由adapter提供每个页面类型的 <em>Fragment</em>。在这个例子中，每个page是一个使用默认card layouts的 <em>CardFragment</em> 实例。然而，你可以混合不同类型的pages在同一个2D picker，比如cards，action icons，和自定义layouts，由你的情况决定。</p>
+<p><!--Not all rows need to have the same number of pages. Notice that in this example the number of colums is different for each row. You can also use a GridViewPager component to implement a 1D picker with only one row or only one column.-->
+不是所有行都需要有同样数量的pages，注意这个例子中的每行有不同的列数。你也可以用一个 <em>GridViewPager</em> 组件实现只有一行或一列的1D picker。</p>
+<p><img src="https://developer.android.com/wear/images/07_uilib.png" alt=""></p>
+<p><strong>Figure 1:</strong>GridViewPager例子</p>
+<p><!--GridViewPager provides support for scrolling in cards whose content does not fit the device screen. This example configures each card to expand as required, so users can scroll through the card's content. When users reach the end of a scrollable card, a swipe in the same direction shows the next page on the grid, if one is available.-->
+<em>GridViewPager</em> 提供了滚动支持当cards内容超出设备屏幕。这种例子配置了每张card需要被扩展，所以用户可以滚动卡片的内容。当用户到大可滚动卡片的底部，向同样方向滑动将显示grid中的下个page（当下一page可用时）。</p>
+<p><!--You can specify a custom background for each page with the getBackground() method. When users swipe to navigate across pages, GridViewPager applies parallax and crossfade effects between different backgrounds automatically.-->
+你可以使用 <em>getBackground()</em> 方法自定义每页page的背景。当用户划过page，<em>GridViewPager</em> 自动使用视差滚动和淡出效果在不同的背景之间。</p>
+<h2 id="-adapter-page-grid">分配adapter实例给page grid</h2>
+<p><!--In your activity, assign an instance of your adapter implementation to the GridViewPager component:-->
+在你的activity中，分配一个你的adapter实现实例给 <em>GridViewPager</em> 组件：</p>
+<pre><code>public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ...
+        final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
+        pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+    }
+}
+</code></pre>
                     
                     </section>
                 

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>提供向后的导航 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>提供向后的导航 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.4" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="10.2.4" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,7 +3677,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_260">
+                    <section class="normal" id="section-gitbook_261">
                     
                         <h1 id="-">提供向后的导航</h1>
 <blockquote>
@@ -3706,24 +3706,24 @@
 <p>从Android 4.1 (API level 16)开始，你可以通过指定<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>元素中的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#parent" target="_blank">android:parentActivityName</a>属性来声明每一个activity的逻辑父activity。这样系统可以使导航模式变得更容易，因为系统可以根据这些信息判断逻辑Back Up navigation的路径。</p>
 <p>如果你的app需要支持Android 4.0以下版本，在你的app中包含<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">Support Library</a>并添加<a href="http://developer.android.com/guide/topics/manifest/meta-data-element.html" target="_blank"><code>&lt;meta-data&gt;</code></a>元素到<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>中。然后指定父activity的值为<code>android.support.PARENT_ACTIVITY</code>，并匹配<a href="http://developer.android.com/guide/topics/manifest/activity-element.html#parent" target="_blank">android:parentActivityName</a>的值。</p>
 <p>例如:</p>
-<pre><code class="lang-java">&lt;application ... &gt;
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">...</span> &gt;</span>
     ...
-    &lt;!-- main/home activity (没有父activity) --&gt;
-    &lt;activity
-        android:name="com.example.myfirstapp.MainActivity" ...&gt;
+    <span class="hljs-comment">&lt;!-- main/home activity (没有父activity) --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> <span class="hljs-attribute">...</span>&gt;</span>
         ...
-    &lt;/activity&gt;
-    &lt;!-- 主activity的一个子activity --&gt;
-    &lt;activity
-        android:name="com.example.myfirstapp.DisplayMessageActivity"
-        android:label="@string/title_activity_display_message"
-        android:parentActivityName="com.example.myfirstapp.MainActivity" &gt;
-        &lt;!-- 4.1 以下的版本需要使用meta-data元素 --&gt;
-        &lt;meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.myfirstapp.MainActivity" /&gt;
-    &lt;/activity&gt;
-&lt;/application&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 主activity的一个子activity --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">activity
+</span>        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.example.myfirstapp.DisplayMessageActivity"</span>
+        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/title_activity_display_message"</span>
+        <span class="hljs-attribute">android:parentActivityName</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> &gt;</span>
+        <span class="hljs-comment">&lt;!-- 4.1 以下的版本需要使用meta-data元素 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">meta-data
+</span>            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.support.PARENT_ACTIVITY"</span>
+            <span class="hljs-attribute">android:value</span>=<span class="hljs-value">"com.example.myfirstapp.MainActivity"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 </code></pre>
 <p>当父activity用这种方式声明，你就可以使用<a href="http://developer.android.com/reference/android/support/v4/app/NavUtils.html" target="_blank">NavUtils</a> API，通过确定每个activity相应的父activity来同步新的后退栈。</p>
 <h3 id="-activity-">在启动activity时创建后退栈</h3>
@@ -3771,7 +3771,7 @@ getSupportFragmentManager().beginTransaction()
         });
 </code></pre>
 <h2 id="-webview-">为WebView实现向后导航</h2>
-<p>如果你的应用的某部分中包含有<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>，可以通过浏览器历史使用Back。要这么做，如果<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>有历史记录，你可以重写onBackPressed()并代理给<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>:</p>
+<p>如果你的应用的一部分包含在<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>中，可以通过浏览器历史使用Back。要这么做，如果<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>有历史记录，你可以重写onBackPressed()并代理给<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>:</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBackPressed</span>() {
     <span class="hljs-keyword">if</span> (mWebView.canGoBack()) {

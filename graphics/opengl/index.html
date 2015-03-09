@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用OpenGL ES显示图像 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>使用OpenGL ES显示图像 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3683,43 +3683,43 @@
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/graphics/opengl/index.html" target="_blank">http://developer.android.com/training/graphics/opengl/index.html</a></p>
 </blockquote>
-<p>Android框架提供了大量的标准工具，用来创建吸引人的，功能化的用户接口。然而，如果你希望对你的应用在屏幕上的绘图行为进行更多的控制，或者你在尝试建立三维图像，那么你就需要一个不同的工具了。由Android框架提供的OpenGL ES接口提供了显示高级动画图形的工具，它的功能仅仅受限于你自身的想象力，并且在许多Android设备上搭载的图形处理单元（GPU）都能为其提供GPU加速等性能优化。</p>
-<p>这系列课程将教会你使用OpenGL搭建基本的应用，包括配置，绘制对象，移动图形单元及响应点击事件。</p>
-<p>这系列课程所使用的样例代码使用的是OpenGL ES 2.0接口，这是当前Android设备所推荐的接口版本。关于更多OpenGL ES的版本信息，可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version" target="_blank">OpenGL开发手册</a>。</p>
+<p>Android框架提供了大量的标准工具，用来创建吸引人的，功能丰富的图形界面。然而，如果你希望对你的应用在屏幕上所绘制的内容进行更多的控制，或者你正在尝试建立三维图像，那么你就需要一个不同的工具了。由Android框架提供的OpenGL ES接口给予我们一组可以显示高级动画和图形的工具集，它的功能仅仅受限于你自身的想象力。同时，在许多Android设备上搭载的图形处理单元（GPU）都能为其提供GPU加速等性能优化。</p>
+<p>这系列课程将教会你使用OpenGL构建应用的基础知识，包括配置，绘制对象，移动图形元素以及响应点击事件。</p>
+<p>这系列课程所涉及的样例代码使用的是OpenGL ES 2.0接口，这是当前Android设备所推荐的接口版本。关于更多OpenGL ES的版本信息，可以阅读：<a href="http://developer.android.com/guide/topics/graphics/opengl.html#choosing-version" target="_blank">OpenGL开发手册</a>。</p>
 <blockquote>
-<p><strong>Note：</strong>注意不要把OpenGL ES 1.x版本的接口和OpenGL ES 2.0的接口混合调用。这两种版本的接口不是通用的。如果尝试混用它们，其输出结果可能会让你感到无奈和沮丧。</p>
+<p><strong>Note：</strong>注意不要把OpenGL ES 1.x版本的接口和OpenGL ES 2.0的接口混合调用。这两种版本的接口不是通用的。如果尝试混用它们可能会让你感到无奈和沮丧。</p>
 </blockquote>
 <h2 id="sample-code">Sample Code</h2>
 <p><a href="http://developer.android.com/shareables/training/OpenGLES.zip" target="_blank">OpenGLES.zip</a></p>
 <h2 id="lessons">Lessons</h2>
 <ul>
-<li><p><a href="environment.html"><strong>建立OpenGL ES的环境</strong></a></p>
-<p>这节课将向你展示如何配置一个可以画OpenGL图形的应用。</p>
+<li><p><a href="environment.html"><strong>配置OpenGL ES的环境</strong></a></p>
+<p>学习如何配置一个可以绘制OpenGL图形的应用。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="shapes.html"><strong>定义Shapes</strong></a></p>
-<p>这节课将向你展示如何定义形状，以及你需要了解面和弯曲（faces and winding）这两个概念的原因。</p>
+<li><p><a href="shapes.html"><strong>定义形状</strong></a></p>
+<p>学习如何定义形状，以及为何需要了解面（faces）和卷绕（winding）这两个概念的原因。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="draw.html"><strong>绘制Shapes</strong></a></p>
-<p>学习如何在你的应用中绘制OpenGL图形。</p>
+<li><p><a href="draw.html"><strong>绘制形状</strong></a></p>
+<p>学习如何在你的应用中利用OpenGL绘制形状。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="projection.html"><strong>运用投影与相机视图</strong></a></p>
-<p>学习如何使用投影和相机视图，来获得你所绘制对象的一个新透视效果。</p>
+<li><p><a href="projection.html"><strong>运用投影与相机视角</strong></a></p>
+<p>学习如何通过投影和相机视角，获取图形对象的一个新的透视效果。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="motion.html"><strong>添加移动</strong></a></p>
-<p>学习如何对一个OpenGL对象添加基本的运动效果。</p>
+<p>学习如何对一个OpenGL图形对象添加基本的运动效果。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="touch.html"><strong>响应触摸事件</strong></a></p>
-<p>学习如何对OpenGL图形进行基本的交互。</p>
+<p>学习如何与OpenGL图形进行基本的交互。</p>
 </li>
 </ul>
 

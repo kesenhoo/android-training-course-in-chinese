@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>连接到网络 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>连接到网络 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.1" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="6.2.1" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,20 +3677,20 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_82">
+                    <section class="normal" id="section-gitbook_83">
                     
                         <h1 id="-">连接到网络</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/network-ops/connecting.html" target="_blank">http://developer.android.com/training/basics/network-ops/connecting.html</a></p>
 </blockquote>
-<p>这一课会演示如何实现一个简单的连接到网络的程序。它提供了一些你应该遵循的最佳示例，用来创建最简单的网络连接程序。请注意，想要执行网络操作首先需要在程序的manifest文件中添加下面的permissions:</p>
+<p>这一课会演示如何实现一个简单的连接到网络的程序。它提供了一些你在创建即使最简单的网络连接程序时也应该遵循的最佳示例。请注意，想要执行本课的网络操作首先需要在程序的manifest文件中添加以下permissions:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.INTERNET"</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_NETWORK_STATE"</span> /&gt;</span>
 </code></pre>
 <h2 id="1-http-client">1)选择一个HTTP Client</h2>
-<p>大多数连接网络的Android app会使用HTTP来发送与接受数据。Android提供了两种HTTP clients: <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 与Apache <a href="http://developer.android.com/reference/org/apache/http/client/HttpClient.html" target="_blank">HttpClient</a>。他们二者均支持HTTPS ，流媒体上传和下载，可配置的超时, IPv6 与连接池（connection pooling）. <strong>推荐从Android 2.3 Gingerbread版本开始使用 HttpURLConnection</strong> 。关于这部分的更多详情，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</p>
+<p>大多数连接网络的Android app会使用HTTP来发送与接受数据。Android提供了两种HTTP clients: <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 与Apache <a href="http://developer.android.com/reference/org/apache/http/client/HttpClient.html" target="_blank">HttpClient</a>。二者均支持HTTPS ，流媒体上传和下载，可配置的超时, IPv6 与连接池（connection pooling）. <strong>推荐从Android 2.3 Gingerbread版本开始使用 HttpURLConnection</strong> 。关于这部分的更多详情，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</p>
 <h2 id="2-">2)检查网络连接</h2>
-<p>在你的app尝试连接网络之前，需要检测当前网络是否可用。请注意，设备可能不在网络覆盖范围内，或者用户可能关闭Wi-Fi与移动网络连接。</p>
+<p>在你的app尝试连接网络之前，应通过函数<a href="http://developer.android.com/reference/android/net/ConnectivityManager.html#getActiveNetworkInfo(" target="_blank">getActiveNetworkInfo</a>)和<a href="http://developer.android.com/reference/android/net/NetworkInfo.html#isConnected(" target="_blank">isConnected</a>)检测当前网络是否可用。请注意，设备可能不在网络覆盖范围内，或者用户可能关闭Wi-Fi与移动网络连接。关于这部分的更多详情，请参考 <a href="managing.html">管理网络的使用情况</a></p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">myClickHandler</span>(View view) {
     ...
     ConnectivityManager connMgr = (ConnectivityManager)
@@ -3706,8 +3706,7 @@
 </code></pre>
 <h2 id="3-">3)在一个单独的线程中执行网络操作</h2>
 <p>网络操作会遇到不可预期的延迟。为了避免造成不好的用户体验，总是在UI线程之外执行网络操作。<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 类提供了一种简单的方式来处理这个问题。关于更多的详情，请参考:<a href="http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html" target="_blank">Multithreading For Performance</a>.</p>
-<p>在下面的代码示例中，myClickHandler() 方法会执行new DownloadWebpageTask().execute(stringUrl).
-DownloadWebpageTask是AsyncTask的子类，它实现了下面两个方法:</p>
+<p>在下面的代码示例中，myClickHandler() 方法会执行new DownloadWebpageTask().execute(stringUrl).DownloadWebpageTask是AsyncTask的子类，它实现了下面两个方法:</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">doInBackground()</a> 执行 downloadUrl()方法。它以Web页面的URL作为参数，方法downloadUrl() 获取并处理网页返回的数据，执行完毕后，返回一个结果字符串。</li>
 <li><a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">onPostExecute()</a> 接受结果字符串并把它显示到UI上。</li>
@@ -3771,11 +3770,11 @@ DownloadWebpageTask是AsyncTask的子类，它实现了下面两个方法:</p>
 3.downloadUrl()以一个URL字符串作为参数，并用它创建一个<a href="http://developer.android.com/reference/java/net/URL.html" target="_blank">URL</a>对象.
 4.这个<a href="http://developer.android.com/reference/java/net/URL.html" target="_blank">URL</a>对象被用来创建一个<a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>.
 5.一旦建立连接，<a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>对象将获取Web页面的内容并得到一个<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>.
-6.<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>被传给readIt()方法，它会将流转换成字符串.
+6.<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>被传给readIt()方法，该方法将流转换成字符串.
 7.最后，<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a>的<a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>)方法将字符串展示在main activity的UI上.</p>
 <h2 id="4-">4)连接并下载数据</h2>
 <p>在执行网络交互的线程里面，你可以使用 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 来执行一个 GET 类型的操作并下载数据。在你调用 connect()之后，你可以通过调用getInputStream()来得到一个包含数据的<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 对象。</p>
-<p>在下面的代码示例中， <a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>) 方法会调用downloadUrl(). 这个 downloadUrl() 方法使用给予的URL，通过 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 连接到网络。一旦建立连接，app使用 getInputStream() 来获取包含数据的<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>。</p>
+<p>在下面的代码示例中， <a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>) 方法会调用downloadUrl(). 这个 downloadUrl() 方法使用给予的URL，通过 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 连接到网络。一旦建立连接后，app就会使用 getInputStream() 来获取包含数据的<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Given a URL, establishes an HttpUrlConnection and retrieves</span>
 <span class="hljs-comment">// the web page content as a InputStream, which it returns as</span>
 <span class="hljs-comment">// a string.</span>

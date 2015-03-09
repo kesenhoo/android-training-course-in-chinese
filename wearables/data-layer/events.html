@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>处理数据层的事件 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>处理数据层的事件 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.5" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.5" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,9 +3677,9 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_280">
+                    <section class="normal" id="section-gitbook_281">
                     
-                        <h1 id="-">处理数据层的事件</h1>
+                        <p>﻿# 处理数据层的事件</p>
 <blockquote>
 <p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/events.html" target="_blank">http://developer.android.com/training/wearables/data-layer/events.html</a></p>
 </blockquote>
@@ -3711,13 +3711,13 @@
 <li>创建一个继承自WearableListenerService的service。</li>
 <li>创建一个实现<a href="DataApi.DataListener.html">DataApi.DataListener</a>接口的activity。</li>
 </ul>
-<p>通过这两种选择，你覆盖任何你关心的数据事件回调方法来处理您的实现。</p>
+<p>通过这两种选择，你覆写任何你关心的数据事件回调方法来处理您的实现。</p>
 <h3 id="-wearablelistenerservice">使用 WearableListenerService</h3>
-<p>典型地，在你的手持设备和可穿戴设备上都创建service实例。如果你不关心其中一个应用中的数据事件，就不需要在相应的应用中实现此service。</p>
+<p>典型地，在你的手持设备和可穿戴设备上都创建该service实例。如果你不关心其中一个应用中的数据事件，就不需要在相应的应用中实现此service。</p>
 <p>例如,您可以在一个手持设备应用程序上操作数据元对象,可穿戴设备的应用监听这些更新并更新UI。而可穿戴不更新任何数据元,所以手持设备的应用不监听任何可穿戴式设备应用的数据事件。</p>
 <p>你可以用 WearableListenerService监听如下事件：</p>
 <ul>
-<li><a href="WearableListenerService.html#onDataChanged(com.google.android.gms.wearable.DataEventBuffer">onDataChanged()</a>) - 当数据元对象创建，更改，删除时调用。一连接端的事件触发两端的回调方法。</li>
+<li><a href="WearableListenerService.html#onDataChanged(com.google.android.gms.wearable.DataEventBuffer">onDataChanged()</a>) - 当数据元对象创建，更改，删除时调用。一连接端的事件将触发两端的回调方法。</li>
 <li><a href="WearableListenerService.html#onMessageReceived(com.google.android.gms.wearable.MessageEvent">onMessageReceived()</a>) -     消息从一连接端发出时在另一连接端触发此回调方法。</li>
 <li><a href="wearable/WearableListenerService.html#onMessageReceived(com.google.android.gms.wearable.MessageEvent">onPeerConnected()</a>) 和 <a href="WearableListenerService.html#onPeerDisconnected(com.google.android.gms.wearable.Node">onPeerDisconnected()</a>) -     当与手持或可穿戴设备连接或断开时调用。一连接端连接状态的改变会在两端触发此回调方法。</li>
 </ul>
@@ -3755,13 +3755,13 @@
         }
 
         <span class="hljs-comment">// Loop through the events and send a message</span>
-        / to the node that created the data item.
+        <span class="hljs-comment">// to the node that created the data item.</span>
         <span class="hljs-keyword">for</span> (DataEvent event : events) {
             Uri uri = event.getDataItem().getUri();
 
             <span class="hljs-comment">// Get the node id from the host value of the URI</span>
             String nodeId = uri.getHost();
-            <span class="hljs-comment">// Set the data of the message to be the bytes of the URI.</span>
+            <span class="hljs-comment">// Set the data of the message to be the bytes of the URI</span>
             <span class="hljs-keyword">byte</span>[] payload = uri.toString().getBytes();
 
             <span class="hljs-comment">// Send the RPC</span>
@@ -3779,7 +3779,7 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">service</span>&gt;</span>
 </code></pre>
 <h3 id="-">数据层回调权限</h3>
-<p>为了在数据层事件上向你的程序提供回调方法，Google Play服务绑定到你的WearableListenerService，通过IPC调用回调方法。这样的结果是,你的回调方法继承了调用进程的权限。</p>
+<p>为了在数据层事件上向你的程序提供回调方法，Google Play services 绑定到你的WearableListenerService，通过IPC调用回调方法。这样的结果是,你的回调方法继承了调用进程的权限。</p>
 <p>如果你想在一个回调中执行权限操作,安全检查会失败,因为你的回调是以调用进程的身份运行,而不是应用程序进程的身份运行。</p>
 <p>为了解决这个问题,在进入IPC后使用<a href="Binder.html#clearCallingIdentity(">clearCallingIdentity()</a>)重置身份,当你完成权限操作后，使用<a href="Binder.html#restoreCallingIdentity(long">restoreCallingIdentity()</a>)恢复身份:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">long</span> token = Binder.clearCallingIdentity();
@@ -3789,25 +3789,27 @@
     Binder.restoreCallingIdentity(token);
 }
 </code></pre>
-<h3 id="-activity">使用监听 Activity</h3>
+<h3 id="-activity">使用监听者 Activity</h3>
 <p>如果你的应用只关心当用户与应用交互时产生的数据层事件，并且不需要一个长时间运行的service来处理每一次数据的改变，那么你可以在一个activity中通过实现如下一个和多个接口监听事件：</p>
 <ul>
-<li>DataApi.DataListener</li>
-<li>MessageApi.MessageListener</li>
-<li>NodeApi.NodeListener</li>
+<li><a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.DataListener.html" target="_blank">DataApi.DataListener</a></li>
+<li><a href="http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.MessageListener.html" target="_blank">MessageApi.MessageListener</a></li>
+<li><a href="http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.NodeListener.html" target="_blank">NodeApi.NodeListener</a></li>
 </ul>
-<p>创建一个activity监听数据事件：</p>
+<p>如何创建一个activity监听数据事件：</p>
 <ul>
 <li>实现所需的接口。</li>
 <li>在onCreate(Bundle)中创建 GoogleApiClient实例。</li>
-<li>在onStart()中调用connect()  将客户端连接到 Google Play 服务。</li>
-<li>当连接到Google Play 服务时，系统调用 onConnected()。这里你调用以提醒Google Play 服务你的activity要监听数据层事件。</li>
-<li>在 onStop()中，用 DataApi.removeListener(), MessageApi.removeListener() 或NodeApi.removeListener() 注销监听。</li>
-<li>基于你实现的接口实现 onDataChanged(), onMessageReceived(), onPeerConnected()和 onPeerDisconnected()。</li>
+<li>在onStart()中调用connect()  将客户端连接到 Google Play services。</li>
+<li>当连接到Google Play services后，系统调用 onConnected()。这里你调用<a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi.DataListener" target="_blank">DataApi.addListener()</a>), <a href="http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.MessageApi.MessageListener" target="_blank">MessageApi.addListener()</a>), 或 <a href="http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.NodeApi.NodeListener" target="_blank">NodeApi.addListener()</a>)以告知Google Play services，你的activity要监听数据层事件。</li>
+<li>在 onStop()中，用 <a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.DataApi.DataListener" target="_blank">DataApi.removeListener()</a>), <a href="http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.MessageApi.MessageListener" target="_blank">MessageApi.removeListener()</a>)或<a href="http://developer.android.com/reference/com/google/android/gms/wearable/NodeApi.html#removeListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.NodeApi.NodeListener" target="_blank">NodeApi.removeListener()</a>) 注销监听。</li>
+<li>基于你实现的接口继而实现 onDataChanged(), onMessageReceived(), onPeerConnected()和 onPeerDisconnected()。</li>
 </ul>
 <p>这是实现DataApi.DataListener的例子 ：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> <span class="hljs-keyword">implements</span>
         <span class="hljs-title">DataApi</span>.<span class="hljs-title">DataListener</span>, <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> {</span>
+
+    <span class="hljs-keyword">private</span> GoogleApiClient mGoogleApiClient;
 
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
@@ -3829,7 +3831,7 @@
         }
     }
 
-   <span class="hljs-annotation">@Override</span>
+    <span class="hljs-annotation">@Override</span>
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span>(Bundle connectionHint) {
         <span class="hljs-keyword">if</span> (Log.isLoggable(TAG, Log.DEBUG)) {
             Log.d(TAG, <span class="hljs-string">"Connected to Google Api Service"</span>);
@@ -3852,10 +3854,11 @@
             <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_DELETED) {
                 Log.d(TAG, <span class="hljs-string">"DataItem deleted: "</span> + event.getDataItem().getUri());
             } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_CHANGED) {
-                 Log.d(TAG, <span class="hljs-string">"DataItem changed: "</span> + event.getDataItem().getUri());
+                Log.d(TAG, <span class="hljs-string">"DataItem changed: "</span> + event.getDataItem().getUri());
             }
         }
     }
+}
 </code></pre>
 
                     

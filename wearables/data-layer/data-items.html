@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>同步数据单元 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>同步数据单元 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.2" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.2" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,23 +3677,23 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_279">
+                    <section class="normal" id="section-gitbook_280">
                     
-                        <h1 id="-">同步数据单元</h1>
+                        <p>﻿# 同步数据单元</p>
 <blockquote>
 <p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/data-items.html" target="_blank">http://developer.android.com/training/wearables/data-layer/data-items.html</a></p>
 </blockquote>
-<p><a href="DataItem.html">DataItem</a>是指系统用于同步手持设备与可穿戴设备间数据的接口。一个<a href="DataItem.html">DataItem</a>通常包括以下几点：</p>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataItem.html" target="_blank">DataItem</a>是指系统用于同步手持设备与可穿戴设备间数据的接口。一个<a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataItem.html" target="_blank">DataItem</a>通常包括以下几点：</p>
 <ul>
 <li><p><strong>Pyload</strong>- 一个字节数组，你可以用来设置任何数据，让你的object序列化和反序列化。Pyload的大小限制在100k之内。</p>
 </li>
-<li><p><strong>Path</strong>- 唯一的必须以斜线开头(如：&quot;/path/to/data&quot;)的string。</p>
+<li><p><strong>Path</strong>- 唯一且以前斜线开头的string (如：&quot;/path/to/data&quot;)。</p>
 </li>
 </ul>
 <p>通常不直接实现<a href="DataItem.html">DataItem</a>，而是：</p>
 <ol>
-<li>创建一个<a href="PutDataRequest.html">PutdataRequest</a>对象，指明一个string path。</li>
-<li>调用<a href="PutDataRequest.html#setData">setData</a>()方法。</li>
+<li>创建一个<a href="PutDataRequest.html">PutdataRequest</a>对象，指明一个string path 以唯一确定该 item。</li>
+<li>调用<a href="PutDataRequest.html#setData">setData</a>()方法设置Pyload。</li>
 <li>调用<a href="DataApi.html#putDataItem">DataApi.putDataItem</a>()方法，请求系统创建数据元。</li>
 <li>当请求的时候，系统会返回正确实现DataItem接口的对象。</li>
 </ol>
@@ -3703,7 +3703,7 @@
 <p>如何使用：</p>
 <ol>
 <li>创建一个 <a href="PutDataMapRequest.html">PutDataMapRequest</a>对象，设置数据元的path。<blockquote>
-<p><strong>Note:</strong> path 字符串对数据元是唯一确定的，这样能够使你从另一连接端访问。Path须以斜线开始。如果你想在应用中使用分层数据，就要创建一个适合数据结构的路径方案。</p>
+<p><strong>Note:</strong> path 字符串对数据元是唯一确定的，这样能够使你从另一连接端访问。Path须以前斜线开始。如果你想在应用中使用分层数据，就要创建一个适合数据结构的路径方案。</p>
 </blockquote>
 </li>
 <li>调用<a href="PutDataMapRequest.html#getDataMap(">PutDataMapRequest.getDataMap()</a>)获取一个你可以使用的data map 对象。</li>
@@ -3714,28 +3714,99 @@
 </blockquote>
 </li>
 </ol>
-<p>接下来的例子展示如何创建一个data map，并设置数据：</p>
-<pre><code class="lang-java">PutDataMapRequest dataMap = PutDataMapRequest.create(<span class="hljs-string">"/count"</span>);
-dataMap.getDataMap().putInt(COUNT_KEY, count++);
-PutDataRequest request = dataMap.asPutDataRequest();
-PendingResult&lt;DataApi.DataItemResult&gt; pendingResult = Wearable.DataApi
-        .putDataItem(mGoogleApiClient, request);
-</code></pre>
-<h2 id="-">监听数据元事件</h2>
-<p>如果一端的数据层的数据发生改变，想要在另一端被提醒此改变，你可以通过实现一个数据元事件的监听器来完成。</p>
-<p>例如，这是一个典型的用回调来实现特定的action,当数据发生改变时。</p>
-<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDataChanged</span>(DataEventBuffer dataEvents) {
-    <span class="hljs-keyword">for</span> (DataEvent event : dataEvents) {
-        <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_DELETED) {
-            Log.d(TAG, <span class="hljs-string">"DataItem deleted: "</span> + event.getDataItem().getUri());
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_CHANGED) {
-             Log.d(TAG, <span class="hljs-string">"DataItem changed: "</span> + event.getDataItem().getUri());
-        }
+<p>接下的例子中的increaseCounter()方法展示了如何创建一个data map，并设置数据：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">DataApi</span>.<span class="hljs-title">DataListener</span>,
+        <span class="hljs-title">GoogleApiClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
+        <span class="hljs-title">GoogleApiClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> {</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COUNT_KEY = <span class="hljs-string">"com.example.key.count"</span>;
+
+    <span class="hljs-keyword">private</span> GoogleApiClient mGoogleApiClient;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+
+    ...
+
+    <span class="hljs-comment">// 创建一个 data map 并设置数据</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">increaseCounter</span>() {
+        PutDataMapRequest putDataMapReq = PutDataMapRequest.create(<span class="hljs-string">"/count"</span>);
+        putDataMapReq.getDataMap().putInt(COUNT_KEY, count++);
+        PutDataRequest putDataReq = putDataMapReq.asPutDataRequest();
+        PendingResult&lt;DataApi.DataItemResult&gt; pendingResult =
+                Wearable.DataApi.putDataItem(mGoogleApiClient, putDataReq);
     }
+
+    ...
 }
 </code></pre>
-<p>这仅是一小片段，如何实现完整监听和activity 请见 <a href="events.html">Listening for Data Layer Events</a>。</p>
+<p>有关控制 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/PendingResult.html" target="_blank">PendingResult</a> 对象的更多信息，请参见 <a href="http://developer.android.com/training/wearables/data-layer/events.html#Wait" target="_blank">Wait for the Status of Data Layer Calls</a> 。</p>
+<h2 id="-">监听数据元事件</h2>
+<p>如果一端的数据层的数据发生改变，想要在另一端被告知此改变，你可以通过实现一个数据元事件的监听器来完成。</p>
+<p>下面例子的代码片段能够通知你的app，当定义在上一个例子中的counter的值发生改变时。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">DataApi</span>.<span class="hljs-title">DataListener</span>,
+        <span class="hljs-title">GoogleApiClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
+        <span class="hljs-title">GoogleApiClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> {</span>
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COUNT_KEY = <span class="hljs-string">"com.example.key.count"</span>;
+
+    <span class="hljs-keyword">private</span> GoogleApiClient mGoogleApiClient;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span>(Bundle savedInstanceState) {
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mGoogleApiClient = <span class="hljs-keyword">new</span> GoogleApiClient.Builder(<span class="hljs-keyword">this</span>)
+                .addApi(Wearable.API)
+                .addConnectionCallbacks(<span class="hljs-keyword">this</span>)
+                .addOnConnectionFailedListener(<span class="hljs-keyword">this</span>)
+                .build();
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span>() {
+        <span class="hljs-keyword">super</span>.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span>(Bundle bundle) {
+        Wearable.DataApi.addListener(mGoogleApiClient, <span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPause</span>() {
+        <span class="hljs-keyword">super</span>.onPause();
+        Wearable.DataApi.removeListener(mGoogleApiClient, <span class="hljs-keyword">this</span>);
+        mGoogleApiClient.disconnect();
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDataChanged</span>(DataEventBuffer dataEvents) {
+        <span class="hljs-keyword">for</span> (DataEvent event : dataEvents) {
+            <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_CHANGED) {
+                <span class="hljs-comment">// DataItem 改变了</span>
+                DataItem item = event.getDataItem();
+                <span class="hljs-keyword">if</span> (item.getUri().getPath().compareTo(<span class="hljs-string">"/count"</span>) == <span class="hljs-number">0</span>) {
+                    DataMap dataMap = DataMapItem.fromDataItem(item).getDataMap();
+                    updateCount(dataMap.getInt(COUNT_KEY));
+                }
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_DELETED) {
+                <span class="hljs-comment">// DataItem 删除了</span>
+            }
+        }
+    }
+
+    <span class="hljs-comment">// 我们的更新 count 的方法</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateCount</span>(<span class="hljs-keyword">int</span> c) { ... }
+
+    ...
+}
+</code></pre>
+<p>这个activity是实现了<a href="http://developer.android.com/reference/com/google/android/gms/wearable/DataApi.DataListener.html" target="_blank"> DataItem.DataListener </a>接口，并在onConnected()方法中增加自身成为数据元事件的监听者，和在onPause()方法中移除监听。</p>
+<p>你也可以用一个service实现监听，请见 <a href="events.html">Listening for Data Layer Events</a>。</p>
 
                     
                     </section>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>添加移动 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>添加移动 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.5" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="5.2.5" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,20 +3677,21 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_121">
+                    <section class="normal" id="section-gitbook_122">
                     
                         <h1 id="-">添加移动</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/graphics/opengl/motion.html" target="_blank">http://developer.android.com/training/graphics/opengl/motion.html</a></p>
 </blockquote>
-<p>在屏幕上绘制图形是OpenGL的一个基本特性，但你也可以通过其它的Android图形框架类做这些事情，包括<a href="http://developer.android.com/reference/android/graphics/Canvas.html" target="_blank">Canvas</a>和<a href="http://developer.android.com/reference/android/graphics/drawable/Drawable.html" target="_blank">Drawable</a>对象。OpenGL ES提供额外的功能，能够在三维空间对绘制图形进行移动和变换操作，或者还可以通过其它独有的方法创建出引人入胜的用户体验。</p>
-<p>在这节课中，一会更深入的学习OpenGL ES的知识：对一个形状添加旋转动画。</p>
+<p>在屏幕上绘制图形是OpenGL的一个基本特性，当然你也可以通过其它的Android图形框架类做这些事情，包括<a href="http://developer.android.com/reference/android/graphics/Canvas.html" target="_blank">Canvas</a>和<a href="http://developer.android.com/reference/android/graphics/drawable/Drawable.html" target="_blank">Drawable</a>对象。OpenGL ES的特别之处在于，它还提供了其它的一些功能，比如在三维空间中对绘制图形进行移动和变换操作，或者通过其它独有的方法创建出引人入胜的用户体验。</p>
+<p>在这节课中，你会更深入地学习OpenGL ES的知识：对一个图形添加旋转动画。</p>
 <h2 id="-">旋转一个形状</h2>
-<p>使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。首先创建一个变换矩阵（一个旋转矩阵）并且将它和你的投影变换矩阵和相机试图变换矩阵结合在一起：</p>
+<p>使用OpenGL ES 2.0 旋转一个绘制图形是比较简单的。在渲染器中，创建另一个变换矩阵（一个旋转矩阵），并且将它和你的投影变换矩阵以及相机视角变换矩阵结合在一起：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span>[] mRotationMatrix = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">16</span>];
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span>(GL10 gl) {
-    ...
     <span class="hljs-keyword">float</span>[] scratch = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">16</span>];
+
+    ...
 
     <span class="hljs-comment">// Create a rotation transformation for the triangle</span>
     <span class="hljs-keyword">long</span> time = SystemClock.uptimeMillis() % <span class="hljs-number">4000</span>L;
@@ -3706,9 +3707,9 @@
     mTriangle.draw(scratch);
 }
 </code></pre>
-<p>如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY" target="_blank">GLSurfaceView.RENDERMODE_WHEN_DIRTY</a>的配置注释掉了，有关该方面的知识会在下一节中展开。</p>
+<p>如果完成了这些变更以后，你的三角形还是没有旋转的话，确认一下你是否将启用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#RENDERMODE_WHEN_DIRTY" target="_blank">GLSurfaceView.RENDERMODE_WHEN_DIRTY</a>的这一配置所对应的代码注释掉了，有关该方面的知识会在下一节中展开。</p>
 <h2 id="-">启用连续渲染</h2>
-<p>如果你严格按照这节课的样例代码走到了现在这一步，那么请确定您将设置渲染模式为“RENDERMODE_WHEN_DIRTY”的这一行注释了，不然的话OpenGL只会对这个形状执行一个增量的旋转，然后就等待<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>容器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender\(\" target="_blank">requestRender()</a>)方法被调用。</p>
+<p>如果你严格按照这节课的样例代码走到了现在这一步，那么请确认一下你将设置渲染模式为<code>RENDERMODE_WHEN_DIRTY</code>的那行代码注释了，不然的话OpenGL只会对这个形状执行一次旋转，然后就等待<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>容器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender(" target="_blank">requestRender()</a>)方法被调用后才会继续执行渲染操作。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-title">MyGLSurfaceView</span>(Context context) {
     ...
     <span class="hljs-comment">// Render the view only when there is a change in the drawing data.</span>
@@ -3716,7 +3717,7 @@
     <span class="hljs-comment">//setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);</span>
 }
 </code></pre>
-<p>除非你的某个对象，它的变化和用户的交互无关，不然的话一般还是建议将这个配置打开。在下一节课将会将这个注释放开，并且再次调用。</p>
+<p>除非你的某个对象，它的变化和用户的交互无关，不然的话一般还是建议将这个配置打开。在下一节课中的内容将会把这个注释放开，再次设定这一配置选项。</p>
 
                     
                     </section>

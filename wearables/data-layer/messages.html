@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>发送与接收消息 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>发送与接收消息 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.4" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.4" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,37 +3677,45 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_281">
+                    <section class="normal" id="section-gitbook_282">
                     
-                        <h1 id="-">发送与接收消息</h1>
+                        <p>﻿# 发送与接收消息</p>
 <blockquote>
 <p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/messages.html" target="_blank">http://developer.android.com/training/wearables/data-layer/messages.html</a></p>
 </blockquote>
 <p>使用<a href="MessageApi.html">MessageApi</a>发送消息，要附加以下几项：</p>
 <ul>
 <li>任一payload(可选);</li>
-<li>唯一确定消息action的path。</li>
+<li>唯一确定的message&#39;s action 的 path。</li>
 </ul>
-<p>不像数据元，消息在手持设备和可穿戴应用之间没有同步Messages是单向交流机制，意味着 &quot;fire-and-forget&quot; tasks，比如：发送消息到可穿戴设备以开启activity。也可以用请求/回应的模式，一连接端发送消息，完成任务，传回响应消息。</p>
+<p>不像数据元，Messages(消息)在手持和可穿戴应用之间没有同步。Messages是单向交流机制，这有利于远程进程调用(RPC)，比如：发送消息到可穿戴设备以开启activity。</p>
 <h2 id="-">发送消息</h2>
 <p>下面的例子展示如何发送消息到另一连接端开启一个activity。调用是同步的，当收到消息或请求超时时发生阻塞。</p>
 <blockquote>
-<p><strong>Note:</strong> 阅读 <a href="api-client.html#Communicating">Communicate with Google Play Services</a> 了解更多关于异步和同步调用，以及何时使用哪个。</p>
+<p><strong>Note:</strong> 阅读 <a href="http://developer.android.com/google/auth/api-client.html#Communicating" target="_blank">Communicate with Google Play Services</a> 了解更多关于异步和同步调用，以及何时使用哪个。</p>
 </blockquote>
-<pre><code class="lang-java">Node node; <span class="hljs-comment">// the connected device to send the message to</span>
-GoogleApiClient mGoogleApiClient;
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> START_ACTIVITY_PATH = <span class="hljs-string">"/start/MainActivity"</span>;
+<pre><code class="lang-java">GoogleApiClient mGoogleApiClient;
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String START_ACTIVITY_PATH = <span class="hljs-string">"/start/MainActivity"</span>;
 ...
 
-    SendMessageResult result = Wearable.MessageApi.sendMessage(
-            mGoogleApiClient, node, START_ACTIVITY_PATH, <span class="hljs-keyword">null</span>).await();
-    <span class="hljs-keyword">if</span> (!result.getStatus().isSuccess()) {
-        Log.e(TAG, <span class="hljs-string">"ERROR: failed to send Message: "</span> + result.getStatus());
-    }
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sendStartActivityMessage</span>(String nodeId) {
+    Wearable.MessageApi.sendMessage(
+      mGoogleApiClient, nodeId, START_ACTIVITY_PATH, <span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[<span class="hljs-number">0</span>]).setResultCallback(
+          <span class="hljs-keyword">new</span> ResultCallback&lt;SendMessageResult&gt;() {
+              <span class="hljs-annotation">@Override</span>
+              <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResult</span>(SendMessageResult sendMessageResult) {
+                  <span class="hljs-keyword">if</span> (!sendMessageResult.getStatus().isSuccess()) {
+                      Log.e(TAG, <span class="hljs-string">"Failed to send message with status code: "</span>
+                              + sendMessageResult.getStatus().getStatusCode());
+                  }
+              }
+          }
+      );
+}
 </code></pre>
-<p>这是一个简单的方法获得一列你可能发送消息的节点：</p>
+<p>这是一个简单的方法，来获得一列你可能发送消息给它们的连接点：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> Collection&lt;String&gt; <span class="hljs-title">getNodes</span>() {
-    HashSet &lt;String&gt;results= <span class="hljs-keyword">new</span> HashSet&lt;String&gt;();
+    HashSet &lt;String&gt;results = <span class="hljs-keyword">new</span> HashSet&lt;String&gt;();
     NodeApi.GetConnectedNodesResult nodes =
             Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
     <span class="hljs-keyword">for</span> (Node node : nodes.getNodes()) {
@@ -3717,7 +3725,7 @@ GoogleApiClient mGoogleApiClient;
 }
 </code></pre>
 <h2 id="-">接收消息</h2>
-<p>如要在收到消息时被提醒，需要实现消息事件的监听。这个例子展示你可以通过检查 上例中发送消息时使用到的START_ACTIVITY_PATH的状态，若是true,特定的activity就会启动。</p>
+<p>为了在收到消息时被提醒，你可以实现 <a href="http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.MessageListener.html" target="_blank">MessageListener</a>接口来提供消息事件的监听，你需要在 <a href="http://developer.android.com/reference/com/google/android/gms/wearable/MessageApi.html#addListener(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.wearable.MessageApi.MessageListener" target="_blank">MessageApi.addListener()</a>)方法中注册监听。这个例子展示你可以通过检查 上例中发送消息时使用到的START_ACTIVITY_PATH的状态，若是true,特定的activity就会启动。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessageReceived</span>(MessageEvent messageEvent) {
     <span class="hljs-keyword">if</span> (messageEvent.getPath().equals(START_ACTIVITY_PATH)) {
@@ -3727,6 +3735,7 @@ GoogleApiClient mGoogleApiClient;
     }
 }
 </code></pre>
+<p>这仅是实现更多细节的一小段，如何在service 或 activity 实现完整的监听，请参见 <a href="http://developer.android.com/training/wearables/data-layer/events.html#Listen" target="_blank">Listening for Data Layer Events</a> 。</p>
 
                     
                     </section>

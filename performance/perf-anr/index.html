@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>避免出现程序无响应ANR | Google Android官方培训课程中文版(v0.8)</title>
+        <title>避免出现程序无响应ANR | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.6" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="14.6" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,13 +3677,13 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_189">
+                    <section class="normal" id="section-gitbook_190">
                     
                         <h1 id="-anr-keeping-your-app-responsive-">避免出现程序无响应ANR(Keeping Your App Responsive)</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/articles/perf-anr.html" target="_blank">http://developer.android.com/training/articles/perf-anr.html</a></p>
 </blockquote>
-<p>可能你写的代码在性能测试上表现良好，但是你的应用仍然有时候会反应迟缓(sluggish)，停顿(hang)或者长时间卡死(frezze)，或者应用处理输入的数据花费时间过长。对于你的应用来说最槽糕的事情是出现&quot;程序无响应(Application Not Responding)&quot; (ANR)的警示框。</p>
+<p>可能你写的代码在性能测试上表现良好，但是你的应用仍然有时候会反应迟缓(sluggish)，停顿(hang)或者长时间卡死(frezze)，或者是应用处理输入的数据花费时间过长。对于你的应用来说最槽糕的事情是出现&quot;程序无响应(Application Not Responding)&quot; (ANR)的警示框。</p>
 <p>在Android中，系统通过显示ANR警示框来保护程序的长时间无响应。对话框如下：</p>
 <p><img src="anr.png" alt="anr"></p>
 <p>此时，你的应用已经经历过一段时间的无法响应了，因此系统提供用户可以退出应用的选择。为你的程序提供良好的响应性是至关重要的，这样才能够避免系统为用户显示ANR的警示框。</p>
@@ -3699,7 +3699,7 @@
 <li>BroadReceiver不能够在10秒内结束接收到任务。</li>
 </ul>
 <h2 id="-anrs-how-to-avoid-anrs-">如何避免ANRs(How to Avoid ANRs)</h2>
-<p>Android程序通常是执行在默认的UI线程(也可以成为main线程)中的。这意味着在UI线程中执行的任何长时间的操作都可能触发ANR，因为程序没有给自己处理输入事件或者broadcast事件的机会。</p>
+<p>Android程序通常是执行在默认的UI线程(也就是main线程)中的。这意味着在UI线程中执行的任何长时间的操作都可能触发ANR，因为程序没有给自己处理输入事件或者broadcast事件的机会。</p>
 <p>因此，任何执行在UI线程的方法都应该尽可能的简短快速。特别是，在activity的生命周期的关键方法<code>onCreate()</code>与<code>onResume()</code>方法中应该尽可能的做比较少的事情。类似网络或者DB操作等可能长时间执行的操作，或者是类似调整bitmap大小等需要长时间计算的操作，都应该执行在工作线程中。(在DB操作中，可以通过异步的网络请求)。</p>
 <p>为了执行一个长时间的耗时操作而创建一个工作线程最方便高效的方式是使用<code>AsyncTask</code>。只需要继承AsyncTask并实现<code>doInBackground()</code>方法来执行任务即可。为了把任务执行的进度呈现给用户，你可以执行<code>publishProgress()</code>方法，这个方法会触发<code>onProgressUpdate()</code>的回调方法。在<code>onProgressUpdate()</code>的回调方法中(它执行在UI线程)，你可以执行通知用户进度的操作，例如：</p>
 <pre><code class="lang-java">private class DownloadFilesTask extends AsyncTask&lt;URL, Integer, Long&gt; {
@@ -3731,7 +3731,7 @@
 <pre><code class="lang-java"><span class="hljs-keyword">new</span> DownloadFilesTask().execute(url1, url2, url3);
 </code></pre>
 <p>相比起AsycnTask来说，创建自己的线程或者HandlerThread稍微复杂一点。如果你想这样做，<strong>你应该通过<code>Process.setThreadPriority()</code>并传递<code>THREAD_PRIORITY_BACKGROUND</code>来设置线程的优先级为&quot;background&quot;。</strong>如果你不通过这个方式来给线程设置一个低的优先级，那么这个线程仍然会使得你的应用显得卡顿，因为这个线程默认与UI线程有着同样的优先级。</p>
-<p>如果你实现了Thread或者HandlerThread，请确保你的UI线程不会因为等待工作线程的某个任务而去执行Thread.wait()或者Thread.sleep()。UI线程不应该去等待工作线程完成某个任务，你的UI现场应该提供一个Handler给其他工作线程，这样工作线程能够通过这个Handler在任务结束的时候通知UI线程。使用这样的方式来设计你的应用程序可以使得你的程序UI线程保持响应性，以此来避免ANR。</p>
+<p>如果你实现了Thread或者HandlerThread，请确保你的UI线程不会因为等待工作线程的某个任务而去执行Thread.wait()或者Thread.sleep()。UI线程不应该去等待工作线程完成某个任务，你的UI线程应该提供一个Handler给其他工作线程，这样工作线程能够通过这个Handler在任务结束的时候通知UI线程。使用这样的方式来设计你的应用程序可以使得你的程序UI线程保持响应性，以此来避免ANR。</p>
 <p>BroadcastReceiver有特定执行时间的限制说明了broadcast receivers应该做的是：简短快速的任务，避免执行费时的操作，例如保存数据或者注册一个Notification。正如在UI线程中执行的方法一样，程序应该避免在broadcast receiver中执行费时的长任务。但不是采用通过工作线程来执行复杂的任务的方式，你的程序应该启动一个IntentService来响应intent broadcast的长时间任务。</p>
 <blockquote>
 <p><strong>Tip:</strong> 你可以使用StrictMode来帮助寻找因为不小心加入到UI线程的潜在的长时间执行的操作，例如网络或者DB相关的任务。</p>

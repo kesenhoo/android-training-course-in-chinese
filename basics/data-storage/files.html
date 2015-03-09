@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保存到文件 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>保存到文件 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.6.2" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.6.2" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3683,11 +3683,11 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/data-storage/files.html" target="_blank">http://developer.android.com/training/basics/data-storage/files.html</a></p>
 </blockquote>
-<p>Android使用与其他平台类似的基于磁盘文件系统(disk-based file systems)。这节课会描述如何在Android文件系统上使用 <a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a> 的读写APIs。</p>
-<p>File 对象非常适合用来读写那种流式顺序的数据。例如，很适合用来读写图片文件或者是网络中交换的数据。</p>
+<p>Android使用与其他平台类似的基于磁盘的文件系统(disk-based file systems)。这节课会描述如何在Android文件系统上使用 <a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a> 的读写APIs。</p>
+<p>File 对象非常适合用于读写流式顺序的数据。如图片文件或是网络中交换的数据。</p>
 <p>这节课会演示在app中如何执行基本的文件操作任务。假定你已经对linux的文件系统与<a href="http://developer.android.com/reference/java/io/package-summary.html" target="_blank">java.io</a>中标准的I/O APIs有一定认识。</p>
 <h2 id="-">存储在内部还是外部</h2>
-<p>所有的Android设备都有两个文件存储区域：&quot;internal&quot; 与 &quot;external&quot; 存储。 那两个名称来自与早先的Android系统中，那个时候大多数的设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把&quot;internal&quot; 与 &quot;external&quot; 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为&quot;internal&quot;与&quot;external&quot;的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：</p>
+<p>所有的Android设备都有两个文件存储区域：&quot;internal&quot; 与 &quot;external&quot; 存储。 那两个名称来自于早先的Android系统中，当时的大多设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把&quot;internal&quot; 与 &quot;external&quot; 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为&quot;internal&quot;与&quot;external&quot;的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：</p>
 <ul>
 <li><p><strong>Internal storage:</strong></p>
 <ul>
@@ -3699,15 +3699,15 @@
 </li>
 <li><p><strong>External storage:</strong></p>
 <ul>
-<li>并不总是可用的，因为用户可以选择把这部分作为USB存储模式，这样就不可以访问了。</li>
-<li>是大家都可以访问的，因此保存到这里的文件是失去访问控制权限的。</li>
+<li>并不总是可用的，因为用户有时会通过USB存储模式挂载外部存储器，当取下挂载的这部分后，就无法对其进行访问了。</li>
+<li>是大家都可以访问的，因此你可能会失去保存在这里的文件的访问控制权。</li>
 <li>当用户卸载你的app时，系统仅仅会删除external根目录（<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>）下的相关文件。</li>
 <li>External是在你不需要严格的访问权限并且你希望这些文件能够被其他app所共享或者是允许用户通过电脑访问时的最佳存储区域。</li>
 </ul>
 </li>
 </ul>
 <blockquote>
-<p><strong>Tip:</strong> 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明<a href="http://developer.android.com/guide/topics/manifest/manifest-element.html#install" target="_blank">android:installLocation</a> 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大，用户会倾向这个程序能够提供安装到external storage的选项。更多安装信息，请参考<a href="http://developer.android.com/guide/topics/data/install-location.html" target="_blank">App Install Location</a>。</p>
+<p><strong>Tip:</strong> 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明<a href="http://developer.android.com/guide/topics/manifest/manifest-element.html#install" target="_blank">android:installLocation</a> 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大且用户的internal storage空间大于external storage时，他们会倾向与将该程序安装到external storage。更多安装信息，请参考<a href="http://developer.android.com/guide/topics/data/install-location.html" target="_blank">App Install Location</a>。</p>
 </blockquote>
 <h2 id="-external-">获取External存储的权限</h2>
 <p>为了写数据到external storage, 你必须在你的<a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">manifest文件</a>中请求<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限：</p>
@@ -3727,14 +3727,15 @@
 </blockquote>
 <p>对于internal storage，你不需要声明任何权限，因为你的程序默认就有读写程序目录下的文件的权限。</p>
 <h2 id="-internal-storage">保存到Internal Storage</h2>
-<p>当保存文件到internal storage时，你可以通过执行下面两个方法之一来获取合适的目录作为File的对象：</p>
+<p>当保存文件到internal storage时，你可以通过执行下面两个方法之一来获取合适的目录作为 <a href="http://developer.android.com/reference/java/io/File.html" target="_blank">FILE</a> 的对象：</p>
 <ul>
 <li><a href="http://developer.android.com/reference/android/content/Context.html#getFilesDir()">getFilesDir()</a> : 返回一个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>，代表了你的app的internal目录。</li>
-<li><a href="http://developer.android.com/reference/android/content/Context.html#getCacheDir()">getCacheDir()</a> : 返回一个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>，代表了你的app的internal缓存目录。请确保这个目录下的文件在一旦不再需要的时候能够马上被删除，还有请给予一个合理的大小，例如1MB 。如果系统的内部存储空间不够，会自行选择删除缓存文件。为了在那些目录下创建一个新的文件，你可以使用<a href="http://developer.android.com/reference/java/io/File.html#File(java.io.File, java.lang.String)">File()</a> 构造器，如下：</li>
+<li><a href="http://developer.android.com/reference/android/content/Context.html#getCacheDir()">getCacheDir()</a> : 返回一个<a href="http://developer.android.com/reference/java/io/File.html" target="_blank">File</a>，代表了你的app的internal缓存目录。请确保这个目录下的文件在一旦不再需要的时候能够马上被删除，并对其大小进行合理限制，例如1MB 。如果系统的内部存储空间不够，会自行选择删除缓存文件。</li>
 </ul>
+<p>为了在那些目录下创建一个新的文件，你可以使用<a href="http://developer.android.com/reference/java/io/File.html#File(java.io.File, java.lang.String)">File()</a> 构造器，如下：</p>
 <pre><code class="lang-java">File file = <span class="hljs-keyword">new</span> File(context.getFilesDir(), filename);
 </code></pre>
-<p>同样，你也可以执行<a href="http://developer.android.com/reference/android/content/Context.html#openFileOutput(java.lang.String, int)">openFileOutput()</a> 来获取一个 <a href="http://developer.android.com/reference/java/io/FileOutputStream.html" target="_blank">FileOutputStream</a> 用来写文件到internal目录。如下：</p>
+<p>同样，你也可以执行<a href="http://developer.android.com/reference/android/content/Context.html#openFileOutput(java.lang.String, int)">openFileOutput()</a> 来获取一个 <a href="http://developer.android.com/reference/java/io/FileOutputStream.html" target="_blank">FileOutputStream</a> 用于写文件到internal目录。如下：</p>
 <pre><code class="lang-java">String filename = <span class="hljs-string">"myfile"</span>;
 String string = <span class="hljs-string">"Hello world!"</span>;
 FileOutputStream outputStream;
@@ -3747,7 +3748,7 @@ FileOutputStream outputStream;
   e.printStackTrace();
 }
 </code></pre>
-<p>如果，你需要缓存一些文件，你可以使用<a href="http://developer.android.com/reference/java/io/File.html#createTempFile(java.lang.String, java.lang.String)">createTempFile()</a>。例如：下面的方法从<a href="http://developer.android.com/reference/java/net/URL.html" target="_blank">URL</a>中抽取了一个文件名，然后再创建了一个以这个文件名命名的文件。</p>
+<p>如果，你需要缓存一些文件，你可以使用<a href="http://developer.android.com/reference/java/io/File.html#createTempFile(java.lang.String, java.lang.String)">createTempFile()</a>。例如：下面的方法从<a href="http://developer.android.com/reference/java/net/URL.html" target="_blank">URL</a>中抽取了一个文件名，然后再在程序的internal缓存目录下创建了一个以这个文件名命名的文件。</p>
 <pre><code class="lang-java"> <span class="hljs-keyword">public</span> File <span class="hljs-title">getTempFile</span>(Context context, String url) {
     File file;
     <span class="hljs-keyword">try</span> {
@@ -3763,7 +3764,7 @@ FileOutputStream outputStream;
 <p><strong>Note:</strong> 你的app的internal storage 目录是以你的app的包名作为标识存放在Android文件系统的特定目录下[data/data/com.example.xx]。 从技术上讲，如果你设置文件为可读的，那么其他app就可以读取你的internal文件。然而，其他app需要知道你的包名与文件名。若是你没有设置为可读或者可写，其他app是没有办法读写的。因此只要你使用<a href="http://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE" target="_blank">MODE_PRIVATE</a> ，那么这些文件就不可能被其他app所访问。</p>
 </blockquote>
 <h2 id="-external-storage">保存文件到External Storage</h2>
-<p>因为external storage可能是不可用的比如SD卡被拔出，那么你应该在访问之前去检查是否可用。你可以通过执行 <a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStorageState()">getExternalStorageState()</a>来查询external storage的状态。如果返回的状态是<a href="http://developer.android.com/reference/android/os/Environment.html#MEDIA_MOUNTED" target="_blank">MEDIA_MOUNTED</a>, 那么你可以读写。示例如下：</p>
+<p>因为external storage可能是不可用的，比如遇到SD卡被拔出等情况时。因此你应该在访问之前去检查其是否可用。你可以通过执行 <a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStorageState()">getExternalStorageState()</a>来查询external storage的状态。如果返回的状态是<a href="http://developer.android.com/reference/android/os/Environment.html#MEDIA_MOUNTED" target="_blank">MEDIA_MOUNTED</a>, 那么你可以读写。示例如下：</p>
 <pre><code class="lang-java"> <span class="hljs-comment">/* Checks if external storage is available for read and write */</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isExternalStorageWritable</span>() {
     String state = Environment.getExternalStorageState();
@@ -3783,10 +3784,10 @@ FileOutputStream outputStream;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
 }
 </code></pre>
-<p>尽管external storage对与用户与其他app是可修改的，那么你可能会保存下面两种类型的文件。</p>
+<p>尽管external storage对于用户与其他app是可修改的，那么你可能会保存下面两种类型的文件。</p>
 <ul>
 <li><strong>Public files</strong> :这些文件对与用户与其他app来说是public的，当用户卸载你的app时，这些文件应该保留。例如，那些被你的app拍摄的图片或者下载的文件。</li>
-<li><strong>Private files</strong>: 这些文件应该是被你的app所拥有的，它们应该在你的app被卸载时删除掉。尽管那些文件从技术上可以被用户与其他app所访问，实际上那些文件对于其他app是没有意义的。所以，当用户卸载你的app时，系统会删除你的app的private目录。例如，那些被你的app下载的缓存文件。</li>
+<li><strong>Private files</strong>: 这些文件应该是被你的app所拥有的，它们应该在你的app被卸载时删除掉。尽管由于存储在external storage，那些文件从技术上而言可以被用户与其他app所访问，但实际上那些文件对于其他app是没有意义的。因此，当用户卸载你的app时，系统会删除你的app的private目录。例如，那些被你的app下载的缓存文件。</li>
 </ul>
 <p>如果你想要保存文件为public形式的，请使用<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">getExternalStoragePublicDirectory()</a>方法来获取一个 File 对象来表示存储在external storage的目录。这个方法会需要你带有一个特定的参数来指定这些public的文件类型，以便于与其他public文件进行分类。参数类型包括<a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_MUSIC" target="_blank">DIRECTORY_MUSIC</a> 或者 <a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES" target="_blank">DIRECTORY_PICTURES</a>. 如下:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> File <span class="hljs-title">getAlbumStorageDir</span>(String albumName) {
@@ -3827,12 +3828,12 @@ FileOutputStream outputStream;
 <pre><code class="lang-java">myContext.deleteFile(fileName);
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong> 当用户卸载你的app时，android系统会删除下面的文件：</p>
+<p><strong>Note:</strong> 当用户卸载你的app时，android系统会删除以下文件：</p>
 <ul>
 <li>所有保存到internal storage的文件。</li>
 <li>所有使用getExternalFilesDir()方式保存在external storage的文件。</li>
 </ul>
-<p>然而，通常来说，你应该手动删除所有通过 getCacheDir() 方式创建的缓存文件，还有那些不会再用到的文件。</p>
+<p>然而，通常来说，你应该手动删除所有通过 getCacheDir() 方式创建的缓存文件，以及那些不会再用到的文件。</p>
 </blockquote>
 
                     

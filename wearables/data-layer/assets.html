@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>传输资源 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>传输资源 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.3" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="8.4.3" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3677,16 +3677,16 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_278">
+                    <section class="normal" id="section-gitbook_279">
                     
-                        <h1 id="-">传输资源</h1>
+                        <p>﻿# 传输资源</p>
 <blockquote>
 <p>编写:<a href="https://github.com/wly2014" target="_blank">wly2014</a> - 原文: <a href="http://developer.android.com/training/wearables/data-layer/assets.html" target="_blank">http://developer.android.com/training/wearables/data-layer/assets.html</a></p>
 </blockquote>
-<p>将一个<a href="Asset.html">Asset</a>附加到数据元上，并放入复制而来的数据库中，通过蓝牙来传送大量的二进制数据。</p>
+<p>为了通过蓝牙发送大量的二进制数据，比如图片，要将一个<a href="Asset.html">Asset</a>附加到数据元上，并放入复制而来的数据库中。</p>
 <p>Assets 能够自动地处理数据缓存以避免重复发送，保护蓝牙带宽。一般的模式是：手持设备下载图像，并将它压缩到适合在可穿戴设备上显示的大小，并以Asset传给可穿戴设备。下面的例子演示此模式。</p>
 <blockquote>
-<p><strong>Note:</strong> 尽管数据元的大小限制在100KB,但资源可以任意大。然而，传输大量资源会多方面地影响用户体验，因此，要测试你的应用以保证当你传输大量资源时，它会表现良好。</p>
+<p><strong>Note:</strong> 尽管数据元的大小限制在100KB,但资源可以任意大。然而，传输大量资源会多方面地影响用户体验，因此，当你要传输大量资源时，要测试你的应用以保证它表现良好。</p>
 </blockquote>
 <h2 id="-">传输资源</h2>
 <p>在Asset类中使用creat..()方法创建资源。下面，我们将一个bitmap转化为字节流，然后调用<a href="Asset.html#createFromBytes(byte[]">creatFromBytes()</a>)方法创建资源。</p>
@@ -3714,13 +3714,13 @@ PendingResult&lt;DataApi.DataItemResult&gt; pendingResult = Wearable.DataApi
         .putDataItem(mGoogleApiClient, request);
 </code></pre>
 <h2 id="-">接收资源</h2>
-<p>创建资源后，如何在另一连接端读取。以下是如何实现回调以发现资源变化和提取Asset对象。</p>
+<p>创建资源后，你可能需要在另一连接端读取。以下是如何实现回调以发现资源变化和提取Asset对象。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDataChanged</span>(DataEventBuffer dataEvents) {
   <span class="hljs-keyword">for</span> (DataEvent event : dataEvents) {
     <span class="hljs-keyword">if</span> (event.getType() == DataEvent.TYPE_CHANGED &amp;&amp;
         event.getDataItem().getUri().getPath().equals(<span class="hljs-string">"/image"</span>)) {
-      DataMapItem dataMapItem = DataMapItem.fromDataItem(dataItem);
+      DataMapItem dataMapItem = DataMapItem.fromDataItem(event.getDataItem());
       Asset profileAsset = dataMapItem.getDataMap().getAsset(<span class="hljs-string">"profileImage"</span>);
       Bitmap bitmap = loadBitmapFromAsset(profileAsset);
       <span class="hljs-comment">// Do something with the bitmap</span>

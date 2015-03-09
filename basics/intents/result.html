@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>接收Activity返回的结果 | Google Android官方培训课程中文版(v0.8)</title>
+        <title>接收Activity返回的结果 | Google Android官方培训课程中文版(v0.9)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.2" data-basepath="../.." data-revision="1424010815521">
+    <div class="book" data-github="kesenhoo/android-training-course-in-chinese" data-level="2.7.2" data-basepath="../.." data-revision="1425914564746">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -89,7 +89,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../" >Google Android官方培训课程中文版(v0.8)</a>
+        <a href="../../" >Google Android官方培训课程中文版(v0.9)</a>
     </h1>
 </div>
 
@@ -3726,7 +3726,7 @@
 }
 </code></pre>
 <p>在这个例子中被返回的Intent中使用Uri的形式来表示返回的联系人。</p>
-<p>为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contack，Camera app 则是在<code>data</code>数据区返回一个 Bitmap （see the class about <a href="http://developer.android.com/training/camera/index.html" target="_blank">Capturing Photos</a>).</p>
+<p>为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在<code>data</code>数据区返回一个 Bitmap （see the class about <a href="http://developer.android.com/training/camera/index.html" target="_blank">Capturing Photos</a>).</p>
 <h3 id="-">读取联系人数据</h3>
 <p>上面的代码展示了如何获取联系人的返回结果，但没有说清楚如何从结果中读取数据，因为这需要更多关于<a href="http://developer.android.com/guide/topics/providers/content-providers.html" target="_blank">content providers</a>的知识。但如果你想知道的话，下面是一段代码，展示如何从被选的联系人中读出电话号码。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
