@@ -26,3 +26,52 @@
 ## 实现长按忽略元素
 
 <!--To use the DissmissOverlayView class in your activity, add this element to your layout definition such that it covers the whole screen and is placed above all other views. For example:-->
+要在你的activity中使用 *DissmissOverlayView* 类，添加这个元素到你的layout解释文件，让它全屏且覆盖在所有其他view上，例子：
+
+	<FrameLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_height="match_parent"
+	    android:layout_width="match_parent">
+
+	    <!-- other views go here -->
+
+	    <android.support.wearable.view.DismissOverlayView
+	        android:id="@+id/dismiss_overlay"
+	        android:layout_height="match_parent"
+	        android:layout_width="match_parent"/>
+	<FrameLayout>
+	
+<!--In your activity, obtain the DismissOverlayView element and set some introductory text. This text is shown to users the first time they run your app to inform them that they can exit the app using a long press gesture. Then use a GestureDetector to detect a long press:-->
+在你的activity中，取得 *DismissOverlayView* 元素然后设置一些提示文字。这些文字会在用户第一次运行你的app时提醒用户可以使用长按手势退出app。接着用一个 *GestureDetector* 探测长按动作：
+
+	public class WearActivity extends Activity {
+
+	    private DismissOverlayView mDismissOverlay;
+	    private GestureDetector mDetector;
+
+	    public void onCreate(Bundle savedState) {
+	        super.onCreate(savedState);
+	        setContentView(R.layout.wear_activity);
+
+	        // Obtain the DismissOverlayView element
+	        mDismissOverlay = (DismissOverlayView) findViewById(R.id.dismiss_overlay);
+	        mDismissOverlay.setIntroText(R.string.long_press_intro);
+	        mDismissOverlay.showIntroIfNecessary();
+
+	        // Configure a gesture detector
+	        mDetector = new GestureDetector(this, new SimpleOnGestureListener() {
+	            public void onLongPress(MotionEvent ev) {
+	                mDismissOverlay.show();
+	            }
+	        });
+	    }
+
+	    // Capture long presses
+	    @Override
+	    public boolean onTouchEvent(MotionEvent ev) {
+	        return mDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
+	    }
+	}
+	
+<!--When the system detects a long press gesture, DismissOverlayView shows an Exit button, which terminates your activity if the user presses it.-->
+当系统发现长按动作， *DismissOverlayView* 会显示一个**退出**按钮，当用户点击它，你的activity会被终止。
