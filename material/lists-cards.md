@@ -2,7 +2,7 @@
 
 > 编写: [allenlsy](https://github.com/allenlsy) - 原文: <https://developer.android.com/training/material/lists-cards.html>
 
-要在应用中创建复杂的列表和使用 Material Design 的卡片列表，你可以使用 `RecyclerView` 和 `CardView`。
+要在应用中创建复杂的列表和使用 Material Design 的卡片列表，你可以使用 [`RecyclerView`](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) 和 [`CardView`](http://developer.android.com/reference/android/support/v7/widget/CardView.html)。
 
 ## 创建列表
 
@@ -21,7 +21,7 @@
 
 ![](list_mail.png)
 
-Layout manager 给元素视图在 RecyclerView 中定位，并决定什么时候重用不在不可见的元素视图。要重用（或回收）视图，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 `findViewById()` 查找。
+Layout manager 把元素视图放在 RecyclerView，并决定什么时候重用不在不可见的元素视图。要重用（或回收）视图时，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 `findViewById()` 查找。
 
 `RecyclerView` 提供这些内建的 layout manager:
 
@@ -48,7 +48,7 @@ Layout manager 给元素视图在 RecyclerView 中定位，并决定什么时候
     android:layout_height="match_parent"/>
 ```
 
-添加 RecycclerView 组件到Layout之后，获得一个到RecyclerView的对象，连接它到Layout manager，再附上 adapter用于数据显示：
+添加 RecyclerView 组件到Layout之后，获得一个到RecyclerView的对象，连接它到Layout manager，再附上 adapter用于数据显示：
 
 ```java
 public class MyActivity extends Activity {
@@ -78,8 +78,7 @@ public class MyActivity extends Activity {
 }
 ```
 
-Adapter 支持获取数据集元素，创建元素的视图，并可以将新元素的内容去替代不可见元素视图中的内容。以下代码展示了一个简单的实现，其中的数据集包含了一个字符串数组，元素用 TextView 显示：
-
+Adapter 支持获取数据集元素，创建元素的视图，并可以将新元素的内容去替代不可见元素视图中的内容。以下代码展示了一个简单的实现，其中的数据集包含了一个字符串数组，数据元素用 TextView 显示：
 
 ```java
 
@@ -138,9 +137,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 ![](card_travel.png)
 
-CardView 继承于FrameLayout类，它可以在卡片中显示信息，并保持在不同平台上拥有统一的风格。CardView组件可以设定阴影和圆角。
+CardView 继承于 FrameLayout 类，它可以在卡片中显示信息，并保持在不同平台上拥有统一的风格。CardView组件可以设定阴影和圆角。
 
-创建一个带阴影的卡片，使用 `card_view:cardElevation` 属性。CardView 使用了Android 5.0 (API level 21)中的真是高度值以及动态阴影效果，在5.0一下的版本中有编程实现阴影想过的备选方案。更多内容，请参见保持兼容性章节。
+要创建一个带阴影的卡片，使用 `card_view:cardElevation` 属性。CardView 使用了Android 5.0 (API level 21)中的真是高度值以及动态阴影效果，在5.0一下的版本中有编程实现阴影想过的备选方案。更多内容，请参见保持兼容性章节。
 
 使用以下属性来自定义CardView：
 

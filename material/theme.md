@@ -16,16 +16,16 @@
 
 Material 主题被定义在：
 
-* @android:style/Theme.Material (dark version)
-* @android:style/Theme.Material.Light (light version)
-* @android:style/Theme.Material.Light.DarkActionBar
+* `@android:style/Theme.Material` (暗色版本)
+* `@android:style/Theme.Material.Light` (亮色版本)
+* `@android:style/Theme.Material.Light.DarkActionBar`
 
 <p>
 ![](MaterialDark.png)
 ![](MaterialDark.png)
 </p>
 
-想知道可用的 Material style 的列表，可以在 API 文档中参见 R.style.
+想知道可用的 Material style 的列表，可以在 API 文档中参见 [R.style](http://developer.android.com/reference/android/R.style.html).
 
 > 注意： Material 主题只支持 Android 5.0 (API level 21) 及以上版本。[v7 Support 库](https://developer.android.com/tools/support-library/features.html#v7)提供了一些组件的 Material Deisgn 样式，也支持自定义调色板。更多信息，请参见维护兼容性章节。
 

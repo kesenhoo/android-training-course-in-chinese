@@ -11,15 +11,15 @@
 5. 使用系统组件来创建列表和卡片
 6. 自定义动画
 
-## 维护兼容性
+#### 维护兼容性
 
 你可以添加 Material Design 特性，同时保持对 Android 5.0 之前版本的兼容。更多信息，请参见[维护兼容性章节](https://developer.android.com/training/material/compatibility.html)。
 
-## 使用 Material Design 更新现有应用
+#### 使用 Material Design 更新现有应用
 
 要更新现有应用，使其使用 Material Design，你需要翻新你的 layout 文件来遵从 Material Design 标准，并确保其包含了正确的深度，触摸反馈和动画。
 
-## 使用 Material Design 创建新的应用
+#### 使用 Material Design 创建新的应用
 
 如果你要创建使用 Material Design 的新的应用，Material Design 指南提供了一套跨平台统一的设计。请遵从指南，使用新功能来进行 Android 应用的设计和开发。
 
@@ -51,7 +51,7 @@ Material 主题提供了更新后的系统组件，使你可以设置调色板�
 
 ## 定义视图的 Elevation
 
-视图可以投射阴影， elevation 值决定了阴影的大小和顺序。要设定 elevation 值，请使用 `android:elevation` 属性：
+视图可以投射阴影， elevation 值决定了阴影的大小和绘制顺序。要设定 elevation 值，请使用 `android:elevation` 属性：
 
 ```xml
 <TextView
@@ -69,7 +69,7 @@ Material 主题提供了更新后的系统组件，使你可以设置调色板�
 
 ## 创建列表和卡片
 
-RecyclerView 是一个可插入性更强的 ListView，它支持不同的 layout 类型，并可以提升性能。CardView 使得你可以在卡片内显示一部分内容，并且和其他应用保持外观一致。以下是一段样例代码展示如何在 layout 中添加 CardView
+[RecyclerView](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) 是一个植入性更强的 ListView，它支持不同的 layout 类型，并可以提升性能。CardView 使得你可以在卡片内显示一部分内容，并且和其他应用保持外观一致。以下是一段样例代码展示如何在 layout 中添加 CardView
 
 ```xml
 <android.support.v7.widget.CardView
@@ -85,7 +85,7 @@ RecyclerView 是一个可插入性更强的 ListView，它支持不同的 layout
 
 ## 自定义动画
 
-Android 5.0 (API level 21) 包含了新的动画 API。比如，你可以在 activity 中定义进入和退出 activity 时的动画。
+Android 5.0 (API level 21) 包含了新的创建自定义动画 API。比如，你可以在 activity 中定义进入和退出 activity 时的动画。
 
 
 ```java

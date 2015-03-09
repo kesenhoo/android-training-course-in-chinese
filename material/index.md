@@ -2,7 +2,7 @@
 
 > 编写: [allenlsy](https://github.com/allenlsy) - 原文: <https://developer.android.com/training/material/index.html>
 
-Material Design 是一个全面的关于视觉，动作和交互的指南，实现跨平台的设计。要在你的 Android 应用中使用 Material Design， 你需要遵从 Material Design 规格文档，并学习在 Android 5.0 中新添加的组件和功能。
+Material Design 是一个全面的关于视觉，动作和交互的指南，实现跨平台的设计。要在你的 Android 应用中使用 Material Design， 你需要遵从 [Material Design](http://www.google.com/design/spec/material-design/introduction.html) 规格文档，并学习在 Android 5.0 中新添加的组件和功能。
 
 本课会通过以下方面教你如何创建 Material Design 设计的应用：
 
