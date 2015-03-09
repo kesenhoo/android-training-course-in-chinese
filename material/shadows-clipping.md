@@ -14,7 +14,10 @@ Elevation对于创建临时上升这种动画同样很有用。
 
 ## 給视图赋Elevation值
 
-视图的 Z 值有两个组成部分，elevation 和 translation。elevation 是一个必须部分，translation 是用于动画的：
+视图的 Z 值有两个组成部分：
+
+* elevation: 静态组成部分
+* translation: 动态部分，用于动画
 
 Z = elevation + translationZ
 
@@ -28,13 +31,13 @@ Z = elevation + translationZ
 
 你也可以使用 StateListAnimator 来声明动画。这非常适用于要通过状态改变来触发动画的情况，比如当用户按下按钮。更多信息，请查看[Animate View State Changes（当视图状态变化的动画，译者注）](https://developer.android.com/training/material/animations.html#ViewState)。
 
-Z值和X，Y值的测量单位是一样的。
+Z值的计算单位是dp。
 
 ## 自定义视图的阴影和轮廓
 
-视图背景的边界决定了阴影的形状。轮廓是一个图形对象的外围形状，决定了触摸反馈动画的ripple区域。
+视图背景的边界决定了阴影的形状。**轮廓**是一个图形对象的外围形状，决定了触摸反馈动画的ripple区域。
 
-考虑以下是个视图：
+假设以下是个视图：
 
 ```xml
 <TextView
@@ -55,7 +58,7 @@ Z值和X，Y值的测量单位是一样的。
 </shape>
 ```
 
-这个视图会投影出圆角，因为这是背景drawble的轮廓。如果提供一个自定义的轮廓，会覆盖这个默认的阴影形状。
+这个视图会投影出圆角，因为背景drawble可以决定视图轮廓。如果提供一个自定义的轮廓，会覆盖这个默认的阴影形状。
 
 以下方式可以自定义视图的轮廓：
 
@@ -65,9 +68,9 @@ Z值和X，Y值的测量单位是一样的。
 
 使用`Outline`类的函数，你可以创建椭圆和带圆角的矩形轮廓。视图的轮廓提供者会从视图的背景中获取轮廓。要避免视图投射阴影，你可以设置轮廓提供者为 null。
 
-## Clip 视图
+## Clipping 视图
 
-Clipping 视图使你轻松的改变视图的形状。附着视图可以是为了设计的一致性，也可以是为了当用户输入信息时，改变视图的形状。你可以通过`View.setClipToOutline()` 将视图附着给一个轮廓，或使用`android:clipToOutline`属性。只有矩形、原型和圆角矩形轮廓支持附着，你可以通过`Outlin.canClip()`方法来检查是否支持附着。
+Clipping 视图（附着视图，译者注）使你轻松的改变视图的形状。你可以为了一致性而附着视图，也可以是为了当用户输入信息时，改变视图的形状。你可以通过`View.setClipToOutline()` 将视图附着给一个轮廓，或使用`android:clipToOutline`属性。只有矩形、圆形和圆角矩形轮廓支持附着功能，你可以通过`Outlin.canClip()`方法来检查是否支持附着。
 
 把视图附着给drawable的形状，要将这个drawable设置为视图的背景，并调用`View.setClipToOutline()` 方法。
 

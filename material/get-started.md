@@ -6,7 +6,7 @@
 
 1. 学习 [Material Design 规格标准](http://www.google.com/design/spec/material-design/introduction.html)
 2. 应用 Material Design 主题
-3. 创建遵从 Material Design 的 Layout 文件
+3. 创建符合 Material Design 的 Layout 文件
 4. 定义视图的 elevation 值来修改阴影
 5. 使用系统组件来创建列表和卡片
 6. 自定义动画
@@ -17,7 +17,7 @@
 
 #### 使用 Material Design 更新现有应用
 
-要更新现有应用，使其使用 Material Design，你需要翻新你的 layout 文件来遵从 Material Design 标准，并确保其包含了正确的深度，触摸反馈和动画。
+要更新现有应用，使其使用 Material Design，你需要翻新你的 layout 文件来遵从 Material Design 标准，并确保其包含了正确的元素高度，触摸反馈和动画。
 
 #### 使用 Material Design 创建新的应用
 
@@ -37,7 +37,7 @@
 </resources>
 ```
 
-Material 主题提供了更新后的系统组件，使你可以设置调色板和在触摸和 Activity 切换时使用默认的动画。更多信息，请参见 Material 主题章节。
+Material 主题提供了更新后的系统组件，使你可以设置调色板和在触摸和 Activity 切换时使用默认的动画。更多信息，请参见 [Material 主题](http://developer.android.com/training/material/theme.html) 章节。
 
 ## 设计你的 Layouts
 
@@ -69,7 +69,7 @@ Material 主题提供了更新后的系统组件，使你可以设置调色板�
 
 ## 创建列表和卡片
 
-[RecyclerView](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) 是一个植入性更强的 ListView，它支持不同的 layout 类型，并可以提升性能。CardView 使得你可以在卡片内显示一部分内容，并且和其他应用保持外观一致。以下是一段样例代码展示如何在 layout 中添加 CardView
+[RecyclerView](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html) 是一个植入性更强的 ListView，它支持不同的 layout 类型，并可以提升性能。[CardView](http://developer.android.com/reference/android/support/v7/widget/CardView.html) 使得你可以在卡片内显示一部分内容，并且和其他应用保持外观一致。以下是一段样例代码展示如何在 layout 中添加 CardView
 
 ```xml
 <android.support.v7.widget.CardView

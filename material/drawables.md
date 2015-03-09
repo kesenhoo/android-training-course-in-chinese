@@ -4,7 +4,7 @@
 
 ## 使用Drawable
 
-以下这些drawable的特性，能帮助你在应用中实现Material Design：
+以下这些drawable的功能，能帮助你在应用中实现Material Design：
 
 * Drawable染色
 * 提取主色调
@@ -16,11 +16,11 @@
 
 使用 Android 5.0 (API level 21)以上版本，你可以使用alpha mask（透明度图层，译者注）给位图和nine patches图片染色。你可以用颜色Resource或者主题属性来获取颜色（比如，`?android:attr/colorPrimary`）。通常，你只需要创建一次这些颜色asset，便可以在主题中自动匹配这些颜色。
 
-你可以用`setTint()`方法将一种染色方式应用到BitmapDrawable或者NinePatchDrawable对象。你也在layout中使用`android:tint`和`android:initMode`属性设置tint color和模式。
+你可以用`setTint()`方法将一种染色方式应用到`BitmapDrawable`或者`NinePatchDrawable`对象。你也在layout中使用`android:tint`和`android:initMode`属性设置染色的颜色和模式。
 
 ## 从图片中提取主色调
 
-Android Support Library v21及更高版本带有Palatte类，可以让你从图片中提取主色调。这个类可以提取以下颜色：
+Android Support Library v21及更高版本带有`Palatte`类，可以让你从图片中提取主色调。这个类可以提取以下颜色：
 
 * Vibrant: 亮色
 * Vibrant dark: 深亮色
@@ -42,7 +42,7 @@ dependencies {
 }
 ```
 
-更多信息，请参见Palette类的API文档。
+更多信息，请参见[Palette](http://developer.android.com/reference/android/support/v7/graphics/Palette.html)类的API文档。
 
 
 ## 创建矢量drawable
@@ -73,4 +73,4 @@ dependencies {
 </vector>
 ```
 
-矢量图片在Android中用`VectorDrawable`对象来表示。更多关于`pathData`语法的信息，请看[SVG Path](http://www.w3.org/TR/SVG11/paths.html#PathData)的文档。更多关于矢量drawable动画的信息，请参见[矢量drawable动画](https://developer.android.com/training/material/animations.html#AnimVector)。
+矢量图片在Android中用[VectorDrawable](http://developer.android.com/reference/android/graphics/drawable/VectorDrawable.html)对象来表示。更多关于`pathData`语法的信息，请看[SVG Path](http://www.w3.org/TR/SVG11/paths.html#PathData)的文档。更多关于矢量drawable动画的信息，请参见[矢量drawable动画](https://developer.android.com/training/material/animations.html#AnimVector)。
