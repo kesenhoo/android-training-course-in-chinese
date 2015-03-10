@@ -60,14 +60,15 @@ application
 	android:isGame="true" ·
 	...  
 >```
+
 ### 声明游戏控制器支持
 游戏控制器对于TV设备的用户来说可能不是有效的。为了适当的通知用户，游戏需要（或只支持）一个控制器，你必须在app的manifest里包含这些条目。如果你需要一个游戏控制器，你必须在app的manifest中包含以下条目：
 
-·<uses-feature android:name="android.hardware.gamepad"/>·
+`<uses-feature android:name="android.hardware.gamepad"/>`
 
 如果你的游戏使用了一个游戏控制器，但是不需要，在app的manifest里包含以下的功能条目：
 
-·<uses-feature android:name="android.hardware.gamepad" android:required="false"/>·
+`<uses-feature android:name="android.hardware.gamepad" android:required="false"/>`
 
 更多关于manifest条目的信息，参见[App Manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)
 
