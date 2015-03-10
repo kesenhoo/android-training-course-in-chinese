@@ -2,7 +2,7 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/activity-lifecycle/pausing.html>
 
-* 在使用通常的app时，前端的activity有时候会被其他可见的组件而阻塞(obstructed)，这样会导致当前的activity进入Pause状态。例如，当打开一个半透明的activity时(例如以对话框的形式)，之前的activity会被暂停。 只要这个activity仍然被部分可见，之前的activity则一直处于Paused状态。
+* 在使用通常的app时，前端的activity有时候会被其他可见的组件阻塞(obstructed)，这样会导致当前的activity进入Pause状态。例如，当打开一个半透明的activity时(例如以对话框的形式)，之前的activity会被暂停。 只要这个activity仍然被部分可见，之前的activity则一直处于Paused状态。
 * 然而，一旦之前的activity被完全阻塞并不可见，它则会进入Stop状态(将在下一小节讨论)。
 * 当你的activity进入paused状态，系统会调用你的activity中的<a href="http://developer.android.com/reference/android/app/Activity.html#onPause()">onPause()</a>方法, 在这个方法里面可以允许你执行停止目前正在运行任务的操作，比如暂停视频播放或者是保存那些有可能需要长期保存的信息。如果用户从暂停状态回到你的activity，系统应该恢复那些数据并执行<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>方法。
 
