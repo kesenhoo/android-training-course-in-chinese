@@ -2,7 +2,7 @@
 
 > 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/scale.html>
 
-本节课程讲述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))来截获触摸事件。
+本节课程讲述，如何使用触摸手势拖拽、缩放屏幕上的对象，使用<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>来截获触摸事件。
 
 ## 拖拽一个对象
 
@@ -11,12 +11,12 @@
 使用触摸手势在屏幕上拖拽一个对象是很常见的操作。接下来的代码段让用户可以拖拽屏幕上的图片。需要注意以下几点：
 
 - 拖拽操作时，即使有额外的手指放置到屏幕上了，app也必须保持对最初的点（手指）的追踪。比如，想象在拖拽图片时，用户放置了第二根手指在屏幕上，并且抬起了第一根手指。如果你的app只是单独地追踪每个点，它会把第二个点当做默认的点，并且把图片移到该点的位置。
-- 为了防止这种情况发生，你的app需要区分初始点以及之后任意的触摸点。要做到这一点，它需要追踪[**处理多触摸手势**](multi.html)中提到过的[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件。每当第二根手指按下或拿起时，[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件就会传递给[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))回调函数。
+- 为了防止这种情况发生，你的app需要区分初始点以及之后任意的触摸点。要做到这一点，它需要追踪[**处理多触摸手势**](multi.html)中提到过的[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件。每当第二根手指按下或拿起时，[ACTION_POINTER_DOWN](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_DOWN)、 [ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件就会传递给`onTouchEvent()`回调函数。
 - 当[ACTION_POINTER_UP](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_POINTER_UP)事件发生时，示例程序会移除对该点的索引值的引用，确保操作中的点的ID(the active pointer ID)不会引用已经不在触摸屏上的触摸点。这种情况下，app会选择另一个触摸点来作为操作中(active)的点，并保存它当前的x、y值。由于在[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件时，这个保存的位置会被用来计算屏幕上的对象将要移动的距离，所以app会始终根据正确的触摸点来计算移动的距离。
 
 下面的代码段允许用户拖拽屏幕上的对象。它会记录操作中的点（active pointer）的初始位置，计算触摸点移动过的距离，再把对象移动到新的位置。如上所述，它也正确地处理了额外触摸点的可能。
 
-需要注意的是，代码段中使用了[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())函数。你应该始终使用这个函数（或者更好用[MotionEventCompat.getActionMasked()](http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html#getActionMasked(android.view.MotionEvent))这个兼容版本）来获得[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)对应的动作(action)。不像旧的[getAction()](http://developer.android.com/reference/android/view/MotionEvent.html#getAction())函数，[getActionMasked()](http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked())就是设计用来处理多点触摸的。它会返回执行过的动作的掩码值，不包括该点的索引位。
+需要注意的是，代码段中使用了<a href="http://developer.android.com/reference/android/view/MotionEvent.html#getActionMasked()">getActionMasked()</a>函数。你应该始终使用这个函数（或者更好用<a href="http://developer.android.com/reference/android/support/v4/view/MotionEventCompat.html#getActionMasked(android.view.MotionEvent)">MotionEventCompat.getActionMasked()</a>这个兼容版本）来获得[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)对应的动作(action)。不像旧的<a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAction()">getAction()</a>函数，`getActionMasked()`就是设计用来处理多点触摸的。它会返回执行过的动作的掩码值，不包括该点的索引位。
 
 ```java
 // The ‘active pointer’ is the one currently moving our object.
@@ -99,11 +99,11 @@ public boolean onTouchEvent(MotionEvent ev) {
 
 ## 通过拖拽平移
 
-前一部分展示了一个拖拽屏幕上对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动(scrolling)。上面的代码段直接截获了[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)动作来实现拖拽。这一部分的代码段，利用了平台对常用手势的内置支持。它重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数。
+前一部分展示了一个拖拽屏幕上对象的例子。另一个常见的场景是平移（panning），是指用户通过拖拽移动引起x、y轴方向发生滚动(scrolling)。上面的代码段直接截获了[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)动作来实现拖拽。这一部分的代码段，利用了平台对常用手势的内置支持。它重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的<a href="http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float)">onScroll()</a>函数。
 
-更详细地说，当用户拖拽手指来平移内容时，[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数就会被调用。[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数只会在手指按下的情况下被调用，一旦手指离开屏幕了，要么手势终止，要么快速滑动(fling)手势开始（如果手指在离开屏幕前快速移动了一段距离）。关于滚动与快速滑动的更多讨论，可以查看[Scroll手势动画](scroll.html)章节。
+更详细地说，当用户拖拽手指来平移内容时，`onScroll()`函数就会被调用。`onScroll()`函数只会在手指按下的情况下被调用，一旦手指离开屏幕了，要么手势终止，要么快速滑动(fling)手势开始（如果手指在离开屏幕前快速移动了一段距离）。关于滚动与快速滑动的更多讨论，可以查看[Scroll手势动画](scroll.html)章节。
 
-这里是[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))的相关代码段：
+这里是`onScroll()`的相关代码段：
 
 ```java
 // The current viewport. This rectangle represents the currently visible
@@ -140,7 +140,7 @@ public boolean onScroll(MotionEvent e1, MotionEvent e2,
 }
 ```
 
-[onScroll()](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float))函数中滑动视窗(viewport)来响应触摸手势的实现：
+`onScroll()`函数中滑动视窗(viewport)来响应触摸手势的实现：
 
 ```java
 /**
@@ -225,7 +225,7 @@ private class ScaleListener
 
 ### 更加复杂的缩放示例
 
-这是本章节提供的`InteractiveChart`样例中一个更复杂的示范。通过使用[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)中的"span"([getCurrentSpanX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getCurrentSpanX()))和"focus"([getFocusX/Y](http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getFocusX()))，`InteractiveChart`样例支持滚动（平移）以及多指缩放。
+这是本章节提供的`InteractiveChart`样例中一个更复杂的示范。通过使用[ScaleGestureDetector](http://developer.android.com/reference/android/view/ScaleGestureDetector.html)中的"span"(<a href="http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getCurrentSpanX()">getCurrentSpanX/Y</a>)和"focus"(<a href="http://developer.android.com/reference/android/view/ScaleGestureDetector.html#getFocusX()">getFocusX/Y</a>)，`InteractiveChart`样例支持滚动（平移）以及多指缩放。
 
 ```java
 @Override
