@@ -52,19 +52,14 @@ Android兼容的控制器样图，点击[Android TV Gamepad Template (ZIP)](http
 ## Manifest
 有一些特殊的东西应该包含在游戏的Android Manifest里。
 ### 在屏幕主界面显示游戏
-Android TV主界面采用单独一行来显示游戏，与常规应用分开显示。为了让游戏出现在游戏列表，设置游戏的manifest清单的<application>标签下的·android:isGame·属性为·"true"·。例如：
+Android TV主界面采用单独一行来显示游戏，与常规应用分开显示。为了让游戏出现在游戏列表，设置游戏的manifest清单的<application>标签下的`android:isGame`属性为`"true"`。例如：
 
-·<
-
+```xml<
 application
-
 	...   
-
 	android:isGame="true" ·
-
 	...  
-
->·
+>```
 ### 声明游戏控制器支持
 游戏控制器对于TV设备的用户来说可能不是有效的。为了适当的通知用户，游戏需要（或只支持）一个控制器，你必须在app的manifest里包含这些条目。如果你需要一个游戏控制器，你必须在app的manifest中包含以下条目：
 
