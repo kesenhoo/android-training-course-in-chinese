@@ -58,8 +58,8 @@ Android TV主界面采用单独一行来显示游戏，与常规应用分开显�
 application
 	...   
 	android:isGame="true" ·
-	...  
->`
+	...  `
+`>`
 
 ### 声明游戏控制器支持
 
@@ -71,7 +71,7 @@ application
 
 `<uses-feature android:name="android.hardware.gamepad" android:required="false"/>`
 
-更多关于manifest条目的信息，参见[App Manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)
+更多关于manifest条目的信息，参见[App Manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)。
 
 ## Google Play Game 服务
 如果你的游戏集成了Google Play Game 服务，你应该记住一些关于成果的注意事项，登录，保存游戏，和多人游戏。
