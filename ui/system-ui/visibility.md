@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/visibility.html>
-
 # 响应UI可见性的变化
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/visibility.html>
 
 本节课将教你如果注册监听器来监听系统UI可见性的变化。这个方法在将系统栏与你自己的UI控件进行同步操作时很有用。
 
@@ -32,4 +30,5 @@ decorView.setOnSystemUiVisibilityChangeListener
     }
 });
 ```
+
 保持系统栏和UI同步是一种很好的方式，比如当状态栏显示或隐藏的时候进行Action Bar的显示和隐藏。

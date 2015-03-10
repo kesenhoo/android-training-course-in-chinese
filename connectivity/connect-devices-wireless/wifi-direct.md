@@ -1,10 +1,8 @@
-> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
-
-> 原文:
-
 # 使用WiFi建立P2P连接
 
-Android提供的Wi-Fi端对端（P2P）技术允许应用程序无需连接到网络和热点的情况下连接到附近的设备。（Android Wi-Fi P2P框架遵循[Wi-Fi Direct™](http://www.wi-fi.org/discover-and-learn/wi-fi-direct) 证书程序）
+> 编写:[naizhengtan](https://github.com/naizhengtan) - 原文:<http://developer.android.com/training/connect-devices-wirelessly/wifi-direct.html>
+
+Android提供的Wi-Fi点对点（P2P）APIs允许应用程序无需连接到网络和热点的情况下连接到附近的设备。（Android Wi-Fi P2P框架遵循[Wi-Fi Direct™](http://www.wi-fi.org/discover-and-learn/wi-fi-direct) 验证程序）
 Wi-Fi P2P技术使得应用程序可以快速发现附近的设备并与之交互。
 相比于蓝牙技术，Wi-Fi P2P的优势是具有较大的连接范围。
 
@@ -51,7 +49,7 @@ Wi-Fi P2P技术虽然不需要访问互联网，但是它会使用Java中的标�
 
 
 - [WIFI_P2P_PEERS_CHANGED_ACTION](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#WIFI_P2P_PEERS_CHANGED_ACTION)
-<br> 代表可达的同伴（peer）列表发生了变化
+<br> 代表对等节点（peer）列表发生了变化
 
 
 - [WIFI_P2P_CONNECTION_CHANGED_ACTION](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#WIFI_P2P_CONNECTION_CHANGED_ACTION)
@@ -159,7 +157,7 @@ public void onCreate(Bundle savedInstanceState) {
     }
 ```
 
-## 初始化同伴发现（Peer Discovery）过程
+## 初始化对等节点发现（Peer Discovery）过程
 
 
 在Wi-Fi P2P中，应用通过调用[discoverPeers()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#discoverPeers(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ActionListener)搜寻附近的设备。
@@ -190,14 +188,14 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 
 需要注意的是，在此的成功仅仅表示对同伴发现（Peer Discovery）的过程完成初始化。
 方法discoverPeers()开启了发现过程并且立即返回。
-系统会通过调用WifiP2pManager.ActionListener中的方法通知应用同伴发现过程初始化是否正确。
-同时，同伴发现过程本身仍然继续运行，直到一条连接或者一个P2P小组建立。
+系统会通过调用WifiP2pManager.ActionListener中的方法通知应用对等节点发现过程初始化是否正确。
+同时，对等节点发现过程本身仍然继续运行，直到一条连接或者一个P2P小组建立。
 
-## 获取同伴列表
+## 获取对等节点列表
 
-在完成同伴发现过程的初始化后，我们需要进一步获取附近的同伴列表。
+在完成对等节点发现过程的初始化后，我们需要进一步获取附近的对等节点列表。
 第一步是实现[WifiP2pManager.PeerListListener](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.PeerListListener.html)接口。
-该接口提供了Wi-Fi P2P框架发现的同伴信息。
+该接口提供了Wi-Fi P2P框架发现的对等节点信息。
 下列代码实现了相应功能：
 
 ```java
@@ -227,23 +225,38 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 
 接下来，完善上文广播接收者（Broadcast Receiver）的onReceiver()方法。
 当收到[WIFI_P2P_PEERS_CHANGED_ACTION](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#WIFI_P2P_PEERS_CHANGED_ACTION)事件时，
-调用[requestPeer()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#requestPeers(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.PeerListListener))方法获取同伴列表。
+调用[requestPeer()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#requestPeers(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.PeerListListener))方法获取对等节点列表。
 在此，需要将WifiP2pManager.PeerListListener对象传递给该方法。
 一种方法是在广播接收者构造时，就将对象作为参数传入。
+
+```java
+public void onReceive(Context context, Intent intent) {
+    ...
+    else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+
+        // Request available peers from the wifi p2p manager. This is an
+        // asynchronous call and the calling activity is notified with a
+        // callback on PeerListListener.onPeersAvailable()
+        if (mManager != null) {
+            mManager.requestPeers(mChannel, peerListListener);
+        }
+        Log.d(WiFiDirectActivity.TAG, "P2P peers changed");
+    }...
+}
+```
 
 现在，一个[WIFI_P2P_PEERS_CHANGED_ACTION](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#WIFI_P2P_PEERS_CHANGED_ACTION)事件将触发应用对同伴列表的更新了。
 
 
-## 连接到同伴
+## 连接一个对等节点
 
 
-为了连接到一个同伴，你需要创一个新的对象[WifiP2pConfig](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pConfig.html)，
+为了连接到一个对等节点，你需要创一个新的[WifiP2pConfig](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pConfig.html)对象，
 并将设备信息从[WifiP2pDevice](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pDevice.html)拷贝到其中，
 最后调用[connect()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#connect(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pConfig, android.net.wifi.p2p.WifiP2pManager.ActionListener))方法。
 
 ```java
-
- @Override
+    @Override
     public void connect() {
         // Picking the first device found on the network.
         WifiP2pDevice device = peers.get(0);
@@ -266,7 +279,6 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
             }
         });
     }
-
 ```
 
 
@@ -277,7 +289,7 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 这一台设备将被指定为“群主”（group owner）。
 
 ```java
- @Override
+    @Override
     public void onConnectionInfoAvailable(final WifiP2pInfo info) {
 
         // InetAddress from WifiP2pInfo struct.
@@ -303,8 +315,7 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
 此方法为异步，所以结果将会被你提供的[WifiP2pManager.ConnectionInfoListener](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#requestConnectionInfo(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener))所获取。
 
 ```java
-
-  ...
+        ...
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
 
             if (mManager == null) {
@@ -322,7 +333,6 @@ mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
                 mManager.requestConnectionInfo(mChannel, connectionListener);
             }
             ...
-
 ```
 
 

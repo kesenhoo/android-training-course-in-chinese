@@ -1,10 +1,8 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/dim.html>
-
 # 淡化系统Bar
 
-本课程将向你讲解如何在Android 4.0(*API level 14*)与更高的的系统版本上淡化系统Bar(状态栏与导航栏)。早起版本的Android没有提供一个自带的方法来淡化系统Bar。
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/dim.html>
+
+本课程将向你讲解如何在Android 4.0(*API level 14*)与更高的的系统版本上淡化系统Bar(状态栏与导航栏)。早期版本的Android没有提供一个自带的方法来淡化系统Bar。
 
 当你使用这个方法的时候，内容区域并不会发生大小的变化，只是系统栏的图标会收起来。一旦用户触摸状态栏或者是导航栏的时候，这两个系统栏都会变得完全可见。这种方法的优势是系统栏仍然可见，但是它们的细节被隐藏掉了，因此可以在不牺牲快捷访问系统Bar的情况下创建一个沉浸式的体验。
 
@@ -15,11 +13,10 @@
 
 **同时您应该阅读**
 
-[Action Bar](http://developer.android.com/guide/topics/ui/actionbar.html) Api指南
+* [Action Bar API 指南](http://developer.android.com/guide/topics/ui/actionbar.html)
+* [Android Design Guide](http://developer.android.com/design/index.html)
 
-[Android 设计指南](http://developer.android.com/design/index.html)
-
-## 淡化状态栏和系统栏
+## 1)淡化状态栏和系统栏
 
 在版本为4.0以上的Android系统上，你可以像如下使用`SYSTEM_UI_FLAG_LOW_PROFILE`这个标签。
 
@@ -42,7 +39,7 @@ decorView.setSystemUiVisibility(uiOptions);
 ![low_profile_show2x](low_profile_show2x.png)
 **图2.**显示的系统栏
 
-## 显示状态栏与导航栏
+## 2)显示状态栏与导航栏
 
 如果你想动态的清除显示标签，你可以使用`setSystemUiVisibility()`方法：
 

@@ -1,8 +1,6 @@
-> 编写: [naizhengtan](https://github.com/naizhengtan) - 校对
-
-> 原文:
-
 # 使用WiFi P2P发现服务
+
+> 编写:[naizhengtan](https://github.com/naizhengtan) - 原文:<http://developer.android.com/training/connect-devices-wirelessly/nsd-wifi-direct.html>
 
 在本章第一节“[使得网络服务可发现](nsd.html)”中介绍了如何在局域网中发现并连接到其他设备的服务上。
 然而，即使在不接入网络的环境中，Wi-Fi P2P的发现服务也可以使你的应用直接连接到附近的设备。
@@ -119,9 +117,9 @@ private void discoverService() {
 
 接下来创建[WifiP2pManager.DnsSdServiceResponseListener](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html)对象，用以获取目标服务的信息。
 这个对象将接受服务的实际描述以及连接信息。
-上一段代码构建了一个包含设备地址和“buddyname”键值对的Map对象。
+上一段代码构建了一个包含设备地址和“buddyname”键值对的[Map](http://developer.android.com/reference/java/util/Map.html)对象。
 [WifiP2pManager.DnsSdServiceResponseListener](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html)对象使用这些配对信息将DNS记录和对应的服务信息对应起来。
-当上述两个侦听对象构建完成了，调用[setDnsSdResponseListeners()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#setDnsSdResponseListeners(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener, android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener)将他们加入[WifiP2pManager](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html)。
+当上述两个监听器构建完成了，调用[setDnsSdResponseListeners()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#setDnsSdResponseListeners(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener, android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener)将他们加入[WifiP2pManager](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html)。
 
 ```java
 private void discoverService() {
@@ -158,10 +156,10 @@ private void discoverService() {
 
 
 然后创建服务请求，并调用[addServiceRequest()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#addServiceRequest(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.nsd.WifiP2pServiceRequest, android.net.wifi.p2p.WifiP2pManager.ActionListener)方法。
-这个方法也需要一个侦听者（Listener）报告请求成功与失败。
+这个方法也需要一个监听器（Listener）报告请求成功与失败。
 
 ```java
-  serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
+        serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
         mManager.addServiceRequest(channel,
                 serviceRequest,
                 new ActionListener() {
@@ -180,7 +178,7 @@ private void discoverService() {
 最后调用[discoverServices()](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#discoverServices(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ActionListener)。
 
 ```java
-mManager.discoverServices(channel, new ActionListener() {
+        mManager.discoverServices(channel, new ActionListener() {
 
             @Override
             public void onSuccess() {
@@ -207,11 +205,11 @@ mManager.discoverServices(channel, new ActionListener() {
 下面是一些常见的错误：
 
 - [P2P_UNSUPPORTED](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#P2P_UNSUPPORTED)
-<br>Wi-Fi P2P 不被现在的设备支持。
+<br>Wi-Fi P2P 不被现在的设备支持
 
 
 - [BUSY](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#BUSY)
-<br>系统忙
+<br>系统忙于处理请求
 
 
 - [ERROR](http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#ERROR)

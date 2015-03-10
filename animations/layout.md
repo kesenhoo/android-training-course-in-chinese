@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/layout.html>
-
 # 布局变更动画
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/layout.html>
 
 布局动画是一种预加载动画，系统在你每次改变的布局配置时运行它。你需要做的仅是在布局文件里设置属性告诉Android系统为你这些布局的变更应用动画。系统动画时为你默认执行的。
 

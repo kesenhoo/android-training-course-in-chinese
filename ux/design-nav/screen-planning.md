@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/design-navigation/screen-planning.html>
-
 # 规划界面和他们之间的关系
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/design-navigation/screen-planning.html>
 
 多数 App 都有一种内在的信息模型，它能被表示成一个对象类型的树或图。更浅显的说，你可以画一个有不同类型信息的图，这些信息代表用户在你 App 里与之互动的各种东西。软件工程师和数据架构师经常使用实例-关系图（Entity-Relationship Diagram，ERD）描述一个应用的信息模型。
 
@@ -16,9 +14,9 @@
 
 在我们的例子中，我们想让用户**查看**，**保存**和**分享**分类好了的**新闻**和**图片**。下面是涵盖了这些用例的画面完备列表。
 
-* 用来接触新闻和图片的 Home 或者 Launchpad 画面
+* 用来访问新闻和图片的 Home 或者 "Launchpad" 画面
 * 类别列表
-* 某个分类下新新闻列表
+* 某个分类下的新闻列表
 * 新闻详细信息 View （在这里面我们可以保存和分享）
 * 图片列表，不分类
 * 图片详细信息 View （在这里面我们可以保存和分享）
@@ -38,7 +36,7 @@
 
 就此，我们有希望根据这张完备的界面图设计一个功能完备应用。一个简陋的 UI 可以由列表和导向子画面的按钮组成。
 
-* 导向不同部分的按钮（例如，事件，图片，保存的项目）
+* 导向不同页面的按钮（例如，事件，图片，保存的项目）
 * 纵向列表表示集合（例如，事件列表，图片列表，等等）
 * 详细信息（例如，事件 View ，图片 View ，等等）
 

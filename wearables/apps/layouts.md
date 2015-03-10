@@ -1,8 +1,6 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/wearables/apps/layouts.html>
-
 # 创建自定义的布局
+
+> 编写: [kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/wearables/apps/layouts.html>
 
 为可穿戴设备创建布局是和手持设备是一样的。但是 不要期望通过搬迁手持应用的功能与UI到可穿戴上会有一个好的用户体验。仅仅在有需要的时候，你才应该创建自定义的布局。请参考可穿戴设备的[design guidelines](http://developer.android.com/design/wear/index.html)学习如何设计一个优秀的可穿戴应用。
 

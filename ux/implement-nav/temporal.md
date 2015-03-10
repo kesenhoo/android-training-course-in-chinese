@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/implementing-navigation/temporal.html>
-
 # 提供向后的导航
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/temporal.html>
 
 向后导航(Back navigation)是用户根据屏幕历史记录返回之前所查看的界面。所有Android设备都可以为这种导航提供后退按钮，所以**你的app不需要在UI中添加后退按钮**。
 
@@ -36,7 +34,7 @@
 
 例如:
 
-```java
+```xml
 <application ... >
     ...
     <!-- main/home activity (没有父activity) -->
@@ -117,7 +115,7 @@ getSupportFragmentManager().addOnBackStackChangedListener(
 
 ## 为WebView实现向后导航
 
-如果你的应用的某部分中包含有[WebView](http://developer.android.com/reference/android/webkit/WebView.html)，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
+如果你的应用的一部分包含在[WebView](http://developer.android.com/reference/android/webkit/WebView.html)中，可以通过浏览器历史使用Back。要这么做，如果[WebView](http://developer.android.com/reference/android/webkit/WebView.html)有历史记录，你可以重写onBackPressed()并代理给[WebView](http://developer.android.com/reference/android/webkit/WebView.html):
 
 ```java
 @Override

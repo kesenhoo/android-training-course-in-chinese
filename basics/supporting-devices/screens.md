@@ -1,8 +1,6 @@
-> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/supporting-devices/screens.html>
-
 # 适配不同的屏幕
+
+> 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/screens.html>
 
 Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应该想到你的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，你的app就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化你的app外观。
 
@@ -17,7 +15,7 @@ Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应�
 
 为了针对不同的屏幕去优化用户体验，你需要对每一种将要支持的屏幕尺寸，创建唯一的XML文件。每一种layout需要保存在相应的资源目录中，目录以`-<screen_size>`为后缀命名。例如，对大尺寸屏幕(large screens)，一个唯一的layout文件应该保存在`res/layout-large/`中。
 
->**Note**:为了匹配合适的屏幕尺寸Android会自动地测量你的layout文件。所以你不需要因不同的屏幕尺寸去担心UI元素的大小，而应该专注于layout结构对用户体验的影响。(比如关键视图相对于同级视图的尺寸或位置)
+> **Note**:为了匹配合适的屏幕尺寸Android会自动地测量你的layout文件。所以你不需要因不同的屏幕尺寸去担心UI元素的大小，而应该专注于layout结构对用户体验的影响。(比如关键视图相对于同级视图的尺寸或位置)
 
 例如，这个工程包含一个默认layout和一个适配大屏幕的layout：
 
@@ -55,9 +53,9 @@ MyProject/
             main.xml
 ```
 
-默认的，`layout/main.xml`文件用作纵向屏幕layout。
+默认的，`layout/main.xml`文件用作竖屏的layout。
 
-如果你想给横向屏幕提供一个特殊的layout，也适配于大屏幕，那么你需要使用`large`和`land`修饰符。
+如果你想给横屏提供一个特殊的layout，也适配于大屏幕，那么你需要使用`large`和`land`修饰符。
 
 ```
  MyProject/
@@ -72,7 +70,7 @@ MyProject/
             main.xml
 ```
 
-> **Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](https://developer.android.com/training/multiscreen/index.html)。
+> **Note**:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见[Designing for Multiple Screens](../../ui/multiscreen/index.html)。
 
 ## 创建不同的bitmap
 
@@ -85,7 +83,7 @@ MyProject/
 - mdpi:  1.0 (基准)
 - ldpi:  0.75
 
-这意味着，如果你针对超高密度的设备生成了一张200x200的图像，同样的你应该对150x150 高密度,100x100中密度, 和75x75低密度的设备生成同样的资源。
+这意味着，如果你针对xhdpi的设备生成了一张200x200的图像，同样的你应该为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。
 
 然后，将这些文件放入相应的drawable资源目录中:
 
@@ -104,6 +102,6 @@ MyProject/
 
 任何时候，当你引用`@drawable/awesomeimage`时系统会根据屏幕的分辨率选择恰当的bitmap。
 
-> **Note**:低密度(ldpi)资源是非必要的，当你提供了高精度assets，系统会把高密度图像按比例缩小一半，去适配低密度屏幕。
+> **Note**:低密度(ldpi)资源是非必要的，当你提供了hdpi的图像，系统会把hdpi的图像按比例缩小一半，去适配ldpi的屏幕。
 
-更多关于为app创建图标assets的贴士和指导，详见[Iconography design](https://developer.android.com/design/style/iconography.html)。
+更多关于为app创建图标assets的信息和指导，详见[Iconography design](https://developer.android.com/design/style/iconography.html)。

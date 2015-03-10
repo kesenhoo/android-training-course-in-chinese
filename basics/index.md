@@ -1,6 +1,6 @@
-# 从这里开始
+# Android入门基础：从这里开始
 
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/index.html>
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/index.html>
 
 欢迎来到为Android开发者准备的培训项目。在这里你会找到一系列的课程，这些课程会演示你如何使用可重用的代码来完成特定的任务。所有的课程分为若干不同的小组。你可以通过左边的导航来查看。
 

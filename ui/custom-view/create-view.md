@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/custom-views/create-view.html>
-
 # 创建自定义的View类
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-views/create-view.html>
 
 设计良好的类总是相似的。它使用一个好用的接口来封装一个特定的功能，它有效的使用CPU与内存，等等。为了成为一个设计良好的类，自定义的view应该:
 
@@ -69,10 +67,18 @@ class PieChart extends View {
 请注意，如果你的view是一个inner class，你必须指定这个view的outer class。同样的，如果PieChart有一个inner class叫做PieView。为了使用这个类中自设的属性，你应该使用com.example.customviews.charting.PieChart$PieView.
 
 ## Apply Custom Attributes
-当view从XML layout被创建的时候，在xml标签下的属性值都是从resource下读取出来并传递到view的constructor作为一个AttributeSet参数。尽管可以从AttributeSet中直接读取数值，可是这样做有些弊端（*没有看懂下面的两个原因*）：
+当view从XML layout被创建的时候，在xml标签下的属性值都是从resource下读取出来并传递到view的constructor作为一个AttributeSet参数。尽管可以从AttributeSet中直接读取数值，可是这样做有些弊端：
 
-* 拥有属性的资源并没有经过分解
+* 拥有属性的资源并没有经过解析
 * Styles并没有运用上
+
+> 翻译注：通过 attrs 的方法是可以直接获取到属性值的，但是不能确定值类型，如:
+```java
+String title = attrs.getAttributeValue(null, "title");
+int resId = attrs.getAttributeResourceValue(null, "title", 0);
+title = context.getText(resId));
+```
+>都能获取到 "title" 属性，但你不知道值是字符串还是resId，处理起来就容易出问题，下面的方法则能在编译时就发现问题
 
 取而代之的是，通过obtainStyledAttributes()来获取属性值。这个方法会传递一个[TypedArray](http://developer.android.com/reference/android/content/res/TypedArray.html)对象，它是间接referenced并且styled的。
 
@@ -95,7 +101,7 @@ public PieChart(Context context, AttributeSet attrs) {
 }
 ```
 
-清注意TypedArray对象是一个shared资源，必须被在使用后进行回收。
+清注意TypedArray对象是一个共享资源，必须被在使用后进行回收。
 
 ## Add Properties and Events
 Attributes是一个强大的控制view的行为与外观的方法，但是他们仅仅能够在view被初始化的时候被读取到。为了提供一个动态的行为，需要暴露出一些合适的getter 与setter方法。下面的代码演示了如何使用这个技巧:

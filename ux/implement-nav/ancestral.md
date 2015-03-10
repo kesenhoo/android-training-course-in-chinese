@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/implementing-navigation/ancestral.html>
-
 # 提供向上的导航
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/ancestral.html>
 
 所有不是从主屏幕("home"屏幕)进入app的，都应该给用户提供一种方法，通过点击[action bar](http://developer.android.com/guide/topics/ui/actionbar.html)中的Up按钮。可以回到app的结构层次中逻辑父屏幕。本课程向你说明如何正确地实现这一操作。
 
@@ -63,7 +61,7 @@ public void onCreate(Bundle savedInstanceState) {
 
 ## 向上导航至父activity
 
-要在用户点击app图标时向上导航，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html)类中的静态方法[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像[FLAG_ACTIVITY_CLEAR_TOP](http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP)定义的那样，提到栈顶。
+要在用户点击app图标时向上导航，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html)类中的静态方法[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像[FLAG_ACTIVITY_CLEAR_TOP](http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP)定义的那样，提到栈顶。提到栈顶的方式取决于父activity是否处理了对<a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a>的调用。
 
 例如:
 

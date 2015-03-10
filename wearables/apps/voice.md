@@ -1,8 +1,6 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/wearables/apps/voice.html>
-
 # 添加语音能力
+
+> 编写: [kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/wearables/apps/voice.html>
 
 语音指令是可穿戴体验的一个重要的部分。这使得用户可以释放双手，快速发出指令。穿戴提供了2种类型的语音操作：
 

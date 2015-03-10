@@ -1,8 +1,6 @@
-> 编写: [kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文: <http://developer.android.com/training/wearables/apps/bt-debugging.html>
-
 # 通过蓝牙进行调试
+
+> 编写: [kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/wearables/apps/bt-debugging.html>
 
 你可以通过蓝牙来调试你的可穿戴应用，通过蓝牙把调试数据输出到手持设备上，手持设备是有连接到开发电脑上的。
 

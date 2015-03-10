@@ -1,8 +1,6 @@
-> 编写:[fastcome1985](https://github.com/fastcome1985)
-
-> 校对:
-
 # 更新Notification
+
+> 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/managing.html>
 
 * 当你需要对同一事件发布多次Notification时，你应该避免每次都生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。
 

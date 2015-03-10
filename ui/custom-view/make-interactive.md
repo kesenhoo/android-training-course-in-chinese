@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
-
-> 原文:<http://developer.android.com/training/custom-view/make-interactive.html>
-
 # 使得View可交互
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-view/make-interactive.html>
 
 绘制UI仅仅是创建自定义View的一部分。你还需要使得你的View能够以模拟现实世界的方式来进行反馈。Objects应该总是与现实情景能够保持一致。例如，图片不应该突然消失又从另外一个地方出现，因为在现实世界里面不会发生那样的事情。正确的应该是，图片从一个地方移动到另外一个地方。
 
@@ -22,7 +20,7 @@ public boolean onTouchEvent(MotionEvent event) {
 }
 ```
 
-Touch事件本身并不是特别有用。如今的touch UI定义了touch事件之间的相互作用，叫做gentures。例如tapping,pulling,flinging与zooming。为了把那些touch的源事件转换成gestures, Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)。
+Touch事件本身并不是特别有用。如今的touch UI定义了touch事件之间的相互作用，叫做gestures。例如tapping,pulling,flinging与zooming。为了把那些touch的源事件转换成gestures, Android提供了[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)。
 
 通过传入[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的一个实例构建一个GestureDetector。如果你只是想要处理几种gestures(手势操作)你可以继承[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)，而不用实现[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)接口。例如，下面的代码创建一个继承[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的类，并重写[onDown(MotionEvent)](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html#onDown(android.view.MotionEvent))。
 

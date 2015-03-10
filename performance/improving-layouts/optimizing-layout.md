@@ -1,12 +1,10 @@
-> 编写: [allenlsy](https://github.com/allenlsy)
-
-> 校对:
-
 # 优化layout的层级
+
+> 编写:[allenlsy](https://github.com/allenlsy) - 原文:<http://developer.android.com/training/improving-layouts/optimizing-layout.html>
 
 一个常见的误区是，用最基础的 Layout 结构可以使 Layout 性能提高。然而，你的程序的每个组件和 Layout 都需要初始化、布置位置和绘制。例如，嵌套的 LinearLayout 可能会使得 View 的层级结构很深。此外，嵌套使用了 layout_weight 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如使用 ListView 或 GridView 时。
 
-本课中，你将学习使用 [Hierarchy Viewer](http://developer.android.com/tools/help/hierarchy-viewer.html) （层级浏览器，译者注）和 [Layoutopt](http://developer.android.com/tools/help/layoutopt.html) （Layout优化工具，译者注）来检查和优化 Layout。
+本课中，你将学习使用 [Hierarchy Viewer](http://developer.android.com/tools/help/hierarchy-viewer.html)和[Layoutopt](http://developer.android.com/tools/help/layoutopt.html)来检查和优化 Layout。
 
 ## 检查 Layout
 
@@ -51,18 +49,21 @@ Hierarchy Viewer 会让你选择设备或者模拟器上正在运行的进程，
 
 ## 使用 Lint
 
-> 大部分叫做 lint 的编程工具，都是类似于代码规范的检测工具。比如JSLint，CSSLinkt, JSONLint 等等。译者注。
+> 大部分叫做 lint 的编程工具，都是类似于代码规范的检测工具。比如JSLint，CSSLinkt， JSONLint 等等。译者注。
 
 经常运行 [Lint](http://tools.android.com/tips/lint) 工具来检查 Layout 可能的优化方法，是个很好的实践。Lint 已经取代了 Layoutopt 工具，它拥有更强大的功能。Lint 中包含的一些检测[规则](http://tools.android.com/tips/lint-checks)有：
 
-* 使用复合 drawable —— 用一个 drawable 替代一个包含 `ImageView` 和 `TextView` 的 `LinearLayout` 时会更有效率。
+* 使用compound drawable —— 用一个 drawable 替代一个包含 `ImageView` 和 `TextView` 的 `LinearLayout` 时会更有效率。
 * 合并根 frame —— 如果 `FrameLayout` 是 Layout 的根节点，并且没有使用padding 或者背景等，那么用 merge 标签替代他们会稍微高效些。
 * 没用的子节点 —— 一个没有子节点或者背景的 Layout 应该被去掉，来提高性能
 * 没用的父节点 —— 一个节点如果只有一个子节点，并且它不是 `ScrollView` 或根节点，并且它没有背景，这样的节点应该直接被子节点取代。
 * 太深的 Layout —— Layout 的嵌套层数太深对性能有很大影响。尝试使用更扁平的 Layout ，比如 `RelativeLayout` 或 `GridLayout` 来提高性能。一般最多不超过10层。
 
-另一个使用 Lint 的好处就是，它内置于 ADT Eclipse (ADT16+）中。Lint 在你导出apk文件、编辑XML文件或使用 Layout 编辑器时会自动运行。手动强制运行 Lint，在 Eclipse 的工具栏中按这个：
+另一个使用 Lint 的好处就是，他内置于 Android Studio. 无论何时你编译你的程序的时候， Lint都会自动运行. 在使用 Android Studio 时，你也可以让 Lint 检查明确的编译级别，或者检查所有的编译级别.
 
-![](http://developer.android.com/images/training/lint_icon.png)
 
-当使用 Eclipse 的时候，Lint 有自动修复、提示建议和直接跳转到问题处的功能。如果你没有使用 Eclipse，你也可以通过命令行运行 Lint。更多信息，参见 [tools.android.com](http://tools.android.com/tips/lint)。
+在 Android Studio 中，在 File>Settings>Project 中，你也可以管理检查列表和自定义检查列表，检查配置页面会显示其支持的检查选项.
+
+![](http://developer.android.com/images/tools/studio-inspections-config.png)
+
+Lint 还能自动修复问题、提供建议或者直接跳转到不合适的代码处供你审查.

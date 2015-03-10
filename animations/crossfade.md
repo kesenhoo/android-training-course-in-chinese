@@ -1,8 +1,6 @@
-> 编写: [XizhiXu](https://github.com/XizhiXu)  - 校对:
-
-> 原文: <http://developer.android.com/training/animation/crossfade.html>
-
 # View间渐变
+
+> 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/crossfade.html>
 
 渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。当你不使用它们，不管怎么样转换经常感到生硬而仓促。
 
@@ -87,10 +85,10 @@ public class CrossfadeActivity extends Activity {
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_spinner);
 
-        // Initially hide the content view.
+        // 初始化隐藏这个View.
         mContentView.setVisibility(View.GONE);
 
-        // Retrieve and cache the system's default "short" animation time.
+        // 获取并缓存系统默认的“短”时长
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
     }
@@ -117,21 +115,20 @@ private int mShortAnimationDuration;
 
 private void crossfade() {
 
-    // Set the content view to 0% opacity but visible, so that it is visible
-    // (but fully transparent) during the animation.
+    // 设置内容View为0%的不透明度，但是状态为“可见”，
+    // 因此在动画过程中是一直可见的（但是为全透明）。
     mContentView.setAlpha(0f);
     mContentView.setVisibility(View.VISIBLE);
 
-    // Animate the content view to 100% opacity, and clear any animation
-    // listener set on the view.
+    // 开始动画内容View到100%的不透明度，然后清除所有设置在View上的动画监听器。
     mContentView.animate()
             .alpha(1f)
             .setDuration(mShortAnimationDuration)
             .setListener(null);
 
-    // Animate the loading view to 0% opacity. After the animation ends,
-    // set its visibility to GONE as an optimization step (it won't
-    // participate in layout passes, etc.)
+    // 加载View开始动画逐渐变为0%的不透明度，
+    // 动画结束后，设置可见性为GONE（消失）作为一个优化步骤
+    //（它将不再参与布局的传递等过程）
     mLoadingView.animate()
             .alpha(0f)
             .setDuration(mShortAnimationDuration)

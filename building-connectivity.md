@@ -1,36 +1,39 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
+# Android网络连接与云服务
 
-> 原文:<http://developer.android.com/training/training/building-connectivity.html>
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/building-connectivity.html>
 
-# 连接
-
-These classes teach you how to connect your app to the world beyond the user's device. You'll learn how to connect to other devices in the area, connect to the Internet, backup and sync your app's data, and more.
+这些课程教你如何让你的app连接到用户设备之外的世界.你将会学习如何连接到这个区域的其他设备,连接到互联网,以及备份和同步应用程序数据等等.
 
 #### [无线连接设备 - Connecting Devices Wirelessly](connectivity/connect-devices-wireless/index.html)
 
-  How to find and connect to local devices using Network Service Discovery and how to create peer-to-peer connections with Wi-Fi.
+  如何使用网络服务发现(Network Service Discovery)找到并连接当地设备,以及如何用Wi-Fi创建点对点连接.
 
 
-#### [网络连接操作 - Performing Network Operations](connectivity/network-ops/index.html)
+#### [执行网络操作 - Performing Network Operations](connectivity/network-ops/index.html)
 
-  How to create a network connection, monitor the connection for changes in connectivity, and perform transactions with XML data.
+  如何创建一个网络连接,监视连接的变化,以及使用XML数据执行事务.
 
 
 #### [高效下载 - Transferring Data Without Draining the Battery](connectivity/efficient-downloads/index.html)
 
-  How to minimize your app's impact on the battery when performing downloads and other network transactions.
+  如何在你的app执行下载和其他网络事务时最小化对电池的影响.
+
+
+#### [云同步 - Syncing to the Cloud](connectivity/cloudsync/index.html)
+
+  如何同步和备份应用程序和用户数据到云中的远程web服务以及如何恢复数据到多个设备.
+
+
+#### [解决云同步的保存冲突：Resolving Cloud Save Conflicts](connectivity/cloudsave/index.html)
+
+  如何为app设计一个健壮的存储数据到云的冲突解决策略.
 
 
 #### [使用Sycn Adapter传输数据 - Transferring Data Using Sync Adapters](connectivity/sync-adapters/index)
 
- How to transfer data between the cloud and the device using the Android sync adapter framework
+  如何使用Android sync adapter框架在云和设备间传输数据.
 
 
-#### [Volley](connectivity/volley/index.html)
+#### [使用Volley传输网络数据 - Transmitting Network Data Using Volley](connectivity/volley/index.html)
 
-
-#### [云同步：Syncing to the Cloud](cloud/cloudsync/index.html)
-
-
-#### [解决云同步的保存冲突：Resolving Cloud Save Conflicts](cloud/cloudsave/index.html)
-
+  如何使用Volley通过网络执行快速可扩展的UI操作.

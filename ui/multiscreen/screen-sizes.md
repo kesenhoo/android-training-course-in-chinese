@@ -1,10 +1,8 @@
-> 编写:[riverfeng](https://github.com/riverfeng)
-
-> 校对:
-
 # 兼容不同的屏幕大小
 
-## 这节课教你如何通过以下几种方式支持多屏幕：
+> 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/screensizes.html>
+
+这节课教你如何通过以下几种方式支持多屏幕：
 
 1：确保你的布局能自适应屏幕
 
@@ -57,13 +55,11 @@
 
 例如，下图演示的就是该布局在竖屏和横屏模式下的效果，注意组件的尺寸是自动适应宽和高的。
 
-![](file:///F:/Android_training/android-docs/images/training/layout-hvga.png)
+![](layout-hvga.png)
 
 图1：News Reader示例app（左边竖屏，右边横屏）。
 
-
-
-## 使用绝对布局（RelativeLayout）
+## 使用相对布局（RelativeLayout）
 
 你可以使用LinearLayout以及wrap_content和match_parent组合来构建复杂的布局，但是LinearLayout却不允许你精准的控制它子view的关系，子view在LinearLayout中只能简单一个接一个的排成行。如果你需要你的子view不只是简简单单的排成行的排列，更好的方法是使用RelativeLayout，它允许你指定你布局中控件与控件之间的关系，比如，你可以指定一个子view在左边，另一个则在屏幕的右边。
 ```xml
@@ -97,13 +93,13 @@
         android:text="Cancel" />
 </RelativeLayout>
 ```
-![](file:///F:/Android_training/android-docs/images/training/relativelayout1.png)
+![](relativelayout1.png)
 图2：QVGA（小尺寸屏幕）屏幕下截图
 
-![](file:///F:/Android_training/android-docs/images/training/relativelayout2.png)
+![](relativelayout2.png)
 图3：WSVGA（大尺寸屏幕）屏幕下截图
 
-注意：尽管组件的尺寸发生了变化，但是它的子view之间的关系还是通过RelativeLayout.LayoutParams已经指定好了。
+> 注意：尽管组件的尺寸发生了变化，但是它的子view之间的关系还是通过RelativeLayout.LayoutParams已经指定好了。
 
 ## 使用据尺寸限定词
 
@@ -114,6 +110,7 @@
  比如，很多应用都为大屏幕实现了“两个方框”模式（应用可能在一个方框中实现一个list，另外一个则实现list的content），平板和电视都是大到能在一个屏幕上适应两个方框，但是手机屏幕却只能单个显示。所以，如果你想实现这些布局，你就需要以下文件：
 
 res/layout/main.xml.单个方框（默认）布局：
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -126,7 +123,9 @@ res/layout/main.xml.单个方框（默认）布局：
               android:layout_width="match_parent" />
 </LinearLayout>
 ```
+
 res/layout-large/main.xml,两个方框布局：
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -143,11 +142,12 @@ res/layout-large/main.xml,两个方框布局：
               android:layout_width="fill_parent" />
 </LinearLayout>
 ```
+
 注意第二个布局文件的目录名字“large qualifier”，在大尺寸的设备屏幕时（比如7寸平板或者其他大屏幕的设备）就会选择该布局文件，而其他比较小的设备则会选择没有限定词的另一个布局（也就是第一个布局文件）。
 
 ## 使用最小宽度限定词
 
-在Android3.2之前，开发者还有一个困难，那就是Android设备的“large”屏幕尺寸，其中包括Dell Streak（设备名称），老版Galaxy Tab和一般的7寸平板，有很多的应用都想针对这些不同的设备（比如5和7寸的设备）定义不同的布局，但是这些设备都被定义为了large尺寸屏幕。也是因为这个，所以Android在3.2的时候开始使用最小宽度限定词。
+在Android 3.2之前，开发者还有一个困难，那就是Android设备的“large”屏幕尺寸，其中包括Dell Streak（设备名称），老版Galaxy Tab和一般的7寸平板，有很多的应用都想针对这些不同的设备（比如5和7寸的设备）定义不同的布局，但是这些设备都被定义为了large尺寸屏幕。也是因为这个，所以Android在3.2的时候开始使用最小宽度限定词。
 
 最小宽度限定词允许你根据设备的最小宽度（dp单位）来指定不同布局。比如，传统的7寸平板最小宽度为600dp，如果你希望你的UI能够在这样的屏幕上显示两个方框（一个方框的显示在小屏幕上），你可以使用上节中提到的同样的两个布局文件，不同的是，使用sw600来指定两个方框的布局使用在最小宽度为600dp的设备上。
 
@@ -355,21 +355,23 @@ res/values-large-port/layouts.xml:
 </resources>
 ```
 
-## 使用点9图片
+## 使用.9.png图片
 
 支持不同的屏幕尺寸同时也意味着你的图片资源也必须能兼容不同的屏幕尺寸。比如，一个button的背景图片就必须要适应该button的各种形状。
 
 如果你在使用组件时可以改变图像的大小，你很快就会发现这是一个不明确的选择，因为运行的时候，图片会被拉伸或者压缩（这样容易造成图像失真）。避免这种情况的解决方案就是使用点9图片，这是一种能够指定哪些区域能够或者不能够拉伸的特殊png文件。
 
 因此，在设计的图像需要与组件一起变大变小时，一定要使用点9.若要将位图转换为点9，你可以用一个普通的图像开始（下图，是在4倍变焦情况下的图像显示）。
-![](file:///F:/Android_training/android-docs/images/training/button.png)
+![](button.png)
 
 你可以通过sdk中的draw9patch程序（位于tools/directory目录下）来画点9图片。通过沿左侧和顶部边框绘制像素来标记应该被拉伸的区域。也可以通过沿右侧和底部边界绘制像素来标记。就像下图所示一样：
-![](file:///F:/Android_training/android-docs/images/training/button_with_marks.png)
+
+![](button_with_marks.png)
 
 请注意，上图沿边界的黑色像素。在顶部边框和左边框的那些表明图像的可拉伸区域，右边和底部边框则表示内容应该放置的地方。
 
 此外，注意.9.png这个格式，你也必须用这个格式，因为框架会检测这是一个点9图片而不是一个普通图片。
 
 当你将这个应用到组件的背景的时候（通过设置android:background="@drawable/button"），android框架会自动正确的拉伸图像以适应按钮的大小，下图就是各种尺寸中的显示效果：
-![](file:///F:/Android_training/android-docs/images/training/buttons_stretched.png)
+
+![](buttons_stretched.png)

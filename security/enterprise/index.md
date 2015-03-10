@@ -1,8 +1,8 @@
-> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 校正：
-
-> 原文:[http://developer.android.com/training/enterprise/index.html](http://developer.android.com/training/enterprise/index.html)
-
 # 为企业开发
+
+> 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文:[http://developer.android.com/training/enterprise/index.html](http://developer.android.com/training/enterprise/index.html)
+
+
 在这堂课中，你将会学到API和为企业开发时应用程序的技术。
 
 ## Lessons

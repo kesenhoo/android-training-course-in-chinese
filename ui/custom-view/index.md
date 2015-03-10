@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/custom-views/index.html>
-
 # 创建自定义View
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-views/index.html>
 
 Android的framework有大量的Views用来与用户进行交互并显示不同种类的数据。但是有时候你的程序有个特殊的需求，而Android内置的views组件并不能实现。这一章节会演示如何创建你自己的views，并使得它们是robust与reusable的。
 
@@ -18,9 +16,8 @@ Android 2.1 (API level 7) 或更高
 * [Hardware Acceleration](http://developer.android.com/guide/topics/graphics/hardware-accel.html)
 * [Accessibility](http://developer.android.com/guide/topics/ui/accessibility/index.html) developer guide
 
-**例子**
+## Sample
 
-Download the sample
 [CustomView.zip](http://developer.android.com/shareables/training/CustomView.zip)
 
 <!-- more -->
@@ -42,4 +39,4 @@ Download the sample
 * [**优化View**](optimize-view.html)
 
   不管你的UI如何的漂亮，如果不能流畅运行用户也不会喜欢。学习如何避免一般的性能问题，和如何使用硬件加速来使你的自定义图像运行更流畅。
-  
+

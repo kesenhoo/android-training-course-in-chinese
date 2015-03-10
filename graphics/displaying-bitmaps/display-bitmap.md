@@ -1,17 +1,15 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/displaying-bitmaps/display-bitmap.html>
-
 # 在UI上显示Bitmap
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/display-bitmap.html>
 
 这一课会演示如何运用前面几节课的内容，使用后台线程与Cache机制来加载图片到 ViewPager 与 GridView 组件，并且学习处理并发与配置改变问题。
 
 <!-- more -->
 
-## Load Bitmaps into a ViewPager Implementation(实现加载图片到ViewPager)
+## 实现加载图片到ViewPager(Load Bitmaps into a ViewPager Implementation)
 [swipe view pattern](http://developer.android.com/design/patterns/swipe-views.html)是一个用来切换显示不同详情界面的很好的方法。(关于这种效果请先参看[Android Design: Swipe Views](http://developer.android.com/design/patterns/swipe-views.html)).
 
-你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果. 然而，一个更加合适的Adapter是PagerAdapter 的子类 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html):它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
+你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果。 然而，一个更加合适的Adapter是PagerAdapter 的子类 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html):它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
 
 > **Note:** 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。
 
@@ -166,7 +164,7 @@ public class ImageDetailActivity extends FragmentActivity {
 
 
 
-## Load Bitmaps into a GridView Implementation(实现加载图片到GridView)
+## 实现加载图片到GridView(Load Bitmaps into a GridView Implementation)
 [Grid list building block](http://developer.android.com/design/building-blocks/grid-lists.html) 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。
 
 下面是一个在Fragment里面内置了ImageView作为GridView子视图的示例：

@@ -1,12 +1,10 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/volley/request-custom.html>
-
 # 实现自定义的网络请求Implementing a Custom Request
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/request-custom.html>
 
 这节课会介绍如何实现你自定义的请求类型，这些自定义的类型不属于Volley内置支持包里面。
 
-## 编写一个自定义的请求Write a Custom Request
+## Write a Custom Request
 
 大多数的请求类型都已经包含在Volley的工具箱里面。如果你的请求返回数值是一个string，image或者JSON，那么你是不需要自己去实现请求类的。
 

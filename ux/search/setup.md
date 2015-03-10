@@ -1,8 +1,6 @@
-> 编写: [Lin-H](https://github.com/Lin-H) - 校对: 
-
-> 原文: <http://developer.android.com/training/search/setup.html>
-
 # 建立搜索界面
+
+> 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/search/setup.html>
 
 从Android 3.0开始，在action bar中使用[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)作为item，是在你的app中提供搜索的一种更好方法。像其他所有在action bar中的item一样，你可以定义[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)在有足够空间的时候总是显示，或设置为一个折叠操作(collapsible action),一开始[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)作为一个图标显示，当用户点击图标时再显示搜索框占据整个action bar。
 

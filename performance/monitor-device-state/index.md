@@ -1,9 +1,22 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
-
-> 原文:<http://developer.android.com/training/monitoring-device-state/index.html>
-
 # 优化电池寿命
+
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/monitoring-device-state/index.html>
+
 
 显然，手持设备的电量需要引起很大的重视。通过这一系列的课程，可以学会如何根据设备电池状态来改变App的某些行为与功能。
 
 通过在断开连接时关闭后台服务，在电量减少时减少更新数据的频率等等操作可以在不影响用户体验的前提下，确保App对电池寿命的影响减到最小。
+
+# Lessons
+
+#### 检测电量与充电状态
+如何通过判断与检测当前电池电量以及充电状态的变化，改变你的应用程序更新操作的频率。
+
+#### 判断并监测设备的停驻状态与类型
+如何判断与监测停驻状态及其种类来改变你应用程序的行为。
+
+#### 判断并检测网络连接状态
+如何根据网络连接状态改变你的后台应用更新频率以及判断网络连接类型(Wi-Fi/数据连接)。
+
+#### 按需操纵广播接收者
+如何切换是否开启这些状态接收者来提高效率。

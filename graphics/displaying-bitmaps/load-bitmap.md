@@ -1,16 +1,14 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 校对:
+# 有效地加载大尺寸位图(Loading Large Bitmaps Efficiently)
 
-> 原文:<http://developer.android.com/training/displaying-bitmaps/load-bitmap.html>
-
-# Loading Large Bitmaps Efficiently(有效地加载大尺寸位图)
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/load-bitmap.html>
 
 图片有不同的形状与大小。在大多数情况下它们的实际大小都比需要呈现出来的要大很多。例如，系统的Gallery程序会显示那些你使用设备camera拍摄的图片，但是那些图片的分辨率通常都比你的设备屏幕分辨率要高很多。
 
-考虑到程序是在有限的内存下工作，理想情况是你只需要在内存中加载一个低分辨率的版本即可。这个低分辨率的版本应该是与你的UI大小所匹配的，这样才便于显示。一个高分辨率的图片不会提供任何可见的好处，却会占用宝贵的(precious)的内存资源，并且会在快速滑动图片时导致(incurs)附加的效率问。
+考虑到程序是在有限的内存下工作，理想情况是你只需要在内存中加载一个低分辨率的版本即可。这个低分辨率的版本应该是与你的UI大小所匹配的，这样才便于显示。一个高分辨率的图片不会提供任何可见的好处，却会占用宝贵的(precious)的内存资源，并且会在快速滑动图片时导致(incurs)附加的效率问题。
 
-这一课会介绍如何通过加载一个低版本的图片到内存中去decoding大的bitmaps，从而避免超出程序的内存限制。
+这一课会介绍如何通过加载一个缩小版本的图片到内存中去decoding大的bitmaps，从而避免超出程序的内存限制。
 
-## Read Bitmap Dimensions and Type(读取位图的尺寸与类型)
+## 读取位图的尺寸与类型(Read Bitmap Dimensions and Type)
 BitmapFactory 类提供了一些decode的方法 (<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options)">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options)">decodeResource()</a>, etc.) 用来从不同的资源中创建一个Bitmap. 根据你的图片数据源来选择合适的decode方法. 那些方法在构造位图的时候会尝试分配内存，因此会容易导致`OutOfMemory`的异常。每一种decode方法都提供了通过[BitmapFactory.Options](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html) 来设置一些附加的标记来指定decode的选项。设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 属性为`true`可以在decoding的时候避免内存的分配，它会返回一个`null`的bitmap，但是 outWidth, outHeight 与 outMimeType 还是可以获取。这个技术可以允许你在构造bitmap之前优先读图片的尺寸与类型。
 
 ```java
@@ -22,10 +20,10 @@ int imageWidth = options.outWidth;
 String imageType = options.outMimeType;
 ```
 
-为了避免`java.lang.OutOfMemory` 的异常，我们在真正decode图片之前检查它的尺寸，除非你确定这个数据源提供了准确无误的图片且不会导致占用过多的内存。
+为了避免`java.lang.OutOfMemory` 的异常，我们需要在真正decode图片之前检查它的尺寸，除非你确定这个数据源提供了准确无误的图片且不会导致占用过多的内存。
 
-## Load a Scaled Down Version into Memory(加载一个按比例缩小的版本到内存中)
-通过上面的步骤我们已经知道了图片的尺寸，那些数据可以用来决定是应该加载整个图片到内存中还是加一个缩小的版本。下面有一些因素需要考虑：
+## 加载一个按比例缩小的版本到内存中(Load a Scaled Down Version into Memory)
+通过上面的步骤我们已经知道了图片的尺寸，那些数据可以用来决定是应该加载整个图片到内存中还是加载一个缩小的版本。有下面一些因素需要考虑：
 
 * 评估加载完整图片所需要耗费的内存。
 * 程序在加载这张图片时会涉及到其他内存需求。
@@ -45,17 +43,23 @@ public static int calculateInSampleSize(
     int inSampleSize = 1;
 
     if (height > reqHeight || width > reqWidth) {
-        if (width > height) {
-            inSampleSize = Math.round((float)height / (float)reqHeight);
-        } else {
-            inSampleSize = Math.round((float)width / (float)reqWidth);
+
+        final int halfHeight = height / 2;
+        final int halfWidth = width / 2;
+
+        // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+        // height and width larger than the requested height and width.
+        while ((halfHeight / inSampleSize) > reqHeight
+                && (halfWidth / inSampleSize) > reqWidth) {
+            inSampleSize *= 2;
         }
     }
+
     return inSampleSize;
 }
 ```
 
-> **Note:** 设置[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)为2的幂对于decoder会更加的有效率，然而，如果你打算把调整过大小的图片Cache到磁盘上，设置为更加接近的合适大小则能够更加有效的节省缓存的空间.
+> **Note:** 设置[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)为2的幂是因为decoder最终还是会对非2的幂的数进行向下处理，获取到最靠近2的幂的数。详情参考[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)的文档。
 
 为了使用这个方法，首先需要设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 为 `true`, 把options的值传递过来，然后使用 [inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize) 的值并设置 inJustDecodeBounds 为 `false` 来重新Decode一遍。
 

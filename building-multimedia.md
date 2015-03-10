@@ -1,8 +1,6 @@
-> 编写:[kesenhoo](https://github.com/kesenhoo)，校对:
+# Android多媒体
 
-> 原文:<http://developer.android.com/training/building-multimedia.html>
-
-# 多媒体
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/building-multimedia.html>
 
 下面的这些课程会教你如何创建更加符合用户期待的富媒体的应用。
 

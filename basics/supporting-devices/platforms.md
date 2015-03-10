@@ -1,20 +1,16 @@
-> 编写: [Lin-H](http://github.com/Lin-H) - 校对:
-
-> 原文: <http://developer.android.com/training/basics/supporting-devices/platforms.html>
-
 # 适配不同的系统版本
+
+> 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/platforms.html>
 
 新的Android版本会为你的app提供更棒的APIs，但你的app仍应该支持旧版本的Android，直到更多的设备升级到新版本为止。这节课程向你展示如何在利用新的APIs的同时仍支持旧版本Android。
 
 [Platform Versions](http://developer.android.com/about/dashboards/index.html)的控制面板会定时更新，通过统计访问Google Play Store的设备数量，来显示运行每个版本的安卓设备的分布。一般情况下，在更新你的app至最新Android版本时，最好先保证你的新版app可以支持90%的设备使用。
 
->**Tip**:为了能在几个Android版本中都能提供最好的特性和功能，你应该在你的app中使用[Android Support Library](https://developer.android.com/tools/support-library/index.html)，它能使你的app能在旧平台上使用最近的几个平台的APIs。
+> **Tip**:为了能在几个Android版本中都能提供最好的特性和功能，你应该在你的app中使用[Android Support Library](https://developer.android.com/tools/support-library/index.html)，它能使你的app能在旧平台上使用最近的几个平台的APIs。
 
 ## 指定最小和目标API级别
 
-[AndroidManifest.xml](https://developer.android.com/guide/topics/manifest/manifest-intro.html)文件中描述了你的app的细节，并且标明app支持哪些Android版本。具体来说，[<uses-sdk](https://developer.android.com/guide/topics/manifest/uses-sdk-element.html)元素中的`minSdkVersion`和`argetSdkVersion` 属性，标明在设计和测试app时，最低兼容API的级别和最高适用的API级别。
-
-例如：
+[AndroidManifest.xml](https://developer.android.com/guide/topics/manifest/manifest-intro.html)文件中描述了你的app的细节，并且标明app支持哪些Android版本。具体来说，[`<uses-sdk>`](https://developer.android.com/guide/topics/manifest/uses-sdk-element.html)元素中的`minSdkVersion`和`targetSdkVersion` 属性，标明在设计和测试app时，最低兼容API的级别和最高适用的API级别(这个最高的级别是需要通过你的测试的)。例如：
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" ... >
@@ -31,7 +27,7 @@ Android在[Build](https://developer.android.com/reference/android/os/Build.html)
 
 ```java
 private void setUpActionBar() {
-    // 保证我们是运行在Honeycomb或者更高版本时，才使用ActionBar APIs
+    // Make sure we're running on Honeycomb or higher to use ActionBar APIs
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

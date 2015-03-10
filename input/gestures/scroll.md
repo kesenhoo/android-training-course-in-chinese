@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/scroll.html>
-
 # Scroll手势动画
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/scroll.html>
 
 Android中通常使用[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)类来实现滚动（scroll）。任何可能超过父类边界的布局都应该嵌套在一个[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)中，以提供一个由系统框架管理的可滚动的view。仅仅在某些特殊情形下，才需要实现一个自定义scroller。本节课程描述了这样一个情形：使用scrollers显示滚动效果来响应触摸手势。
 

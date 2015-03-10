@@ -1,8 +1,6 @@
-> 编写:[huanglizhuo](https://github.com/huanglizhuo)
-
-> 校对:
-
 # 测试UI组件
+
+> 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-ui-testing.html>
 
 通常情况下，你的[Activity](http://developer.android.com/reference/android/app/Activity.html)，包括用户界面组件（如按钮，复选框，可编辑的文本域，和选框）允许你的用户与Android应用程序交互。本节介绍如何用一个简单的按钮的界面交互测试。你可以使用相同的步骤来测试其他的，更复杂的UI组件。
 
@@ -13,7 +11,7 @@
 要参看一个完整的测试案例，可以在本节示例代码中的clickfunactivitytest.java查看。
 
 
-##建立你的测试夹具(Fixture) 
+##建立你的测试夹具(Fixture)
 
 (夹具是用来快速,安全的测试组件功能的工具)
 
@@ -32,10 +30,10 @@ public class ClickFunActivityTest
         setActivityInitialTouchMode(true);
 
         mClickFunActivity = getActivity();
-        mClickMeButton = (Button) 
+        mClickMeButton = (Button)
                 mClickFunActivity
                 .findViewById(R.id.launch_next_activity_button);
-        mInfoTextView = (TextView) 
+        mInfoTextView = (TextView)
                 mClickFunActivity.findViewById(R.id.info_text_view);
     }
 }
@@ -77,7 +75,7 @@ public void testClickMeButton_layout() {
 你也可以通过获取一个[ViewGroup.LayoutParams](http://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html)对象的引用验证[Button](http://developer.android.com/reference/android/widget/Button.html)布局是否正确,然后调用声明方法验证[Button](http://developer.android.com/reference/android/widget/Button.html)对象的宽高属性值是否与预期值一致。
 
  @MediumTest注释指定测试在于它刚生成时是如何归类的。要了解更多有关使用测试的注释，见本节示例。
- 
+
 ##验证TextView的布局参数
 
 你应该像这样添加一个测试方法来验证一个[TextView](http://developer.android.com/reference/android/widget/TextView.html)最初是隐藏在你的[Activity](http://developer.android.com/reference/android/app/Activity.html)的:
@@ -126,7 +124,7 @@ public void testClickMeButton_clickButtonAndExpectInfoText() {
 [@LargeTest](http://developer.android.com/reference/android/test/suitebuilder/annotation/LargeTest.html)
 
     标志着一个测试运行的大型测试的一部分。
-    
+
 通常情况下，只需要几毫秒的时间的应该被标记为[@SmallTest](http://developer.android.com/reference/android/test/suitebuilder/annotation/SmallTest.html),长时间运行的测试（100毫秒或更多）通常被标记为[@MediumTest](http://developer.android.com/reference/android/test/suitebuilder/annotation/MediumTest.html),[@LargeTest](http://developer.android.com/reference/android/test/suitebuilder/annotation/LargeTest.html),主要取决于测试访问资源在网络上或在本地系统。 可以参看[Android Tools Protip](https://plus.google.com/+AndroidDevelopers/posts/TPy1EeSaSg8)更好的指导你使用测试注释
 
 你可以创建其它的测试注释来控制测试的组织和运行。要了解更多关于其他注释的信息，见[Annotation](http://developer.android.com/reference/java/lang/annotation/Annotation.html)类参考。

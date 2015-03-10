@@ -1,8 +1,6 @@
-> 编写:[K0ST](https://github.com/K0ST) - 校对
-
-> 原文:<http://developer.android.com/training/system-ui/immersive.html>
-
 # 全屏沉浸式应用
+
+> 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/immersive.html>
 
 **这节课将教您**
 
@@ -23,14 +21,13 @@ Adnroid 4.4中引入为`setSystemUiVisibility()`引入了一个新标签`SYSTEM_
 
 1. **非沉浸模式** —— 展示了应用进入沉浸模式之前的状态。也展示了设置`IMMERSIVE`标签后用户滑动展示系统栏的状态。用户滑动后，`SYSTEM_UI_FLAG_HIDE_NAVIGATION`和`SYSTEM_UI_FLAG_FULLSCREEN`就会被清除，系统栏就会重新显示并保持可见。
 请注意，最好的方式就是让所有的UI控件与系统栏的显示隐藏保持同步，这样可以减少屏幕显示所处的状态，同时提供了更无缝平滑的用户体验。因此所有的UI控件跟随系统栏一同显示。一旦应用进入了沉浸模式，UI控件也跟随着系统栏一同隐藏。为了确保UI的可见性与系统栏保持一致，我们需要一个监听器`View.OnSystemUiVisibilityChangeListener`来监听系统栏的变化。这在下一节中将详细讲解。
-
 2. **提示气泡**——第一次进入沉浸模式时，系统将会显示一个提示气泡，提示用户如何再让系统栏显示出来。请注意，如果为了测试你想强制显示提示气泡，你可以先将应用设为沉浸模式，然后按下电源键进入锁屏模式，并在5秒中之后打开屏幕。
 3. **沉浸模式**—— 这张图展示了隐藏了系统栏和其他UI控件的状态。你可以设置`IMMERSIVE`和`IMMERSIVE_STICKY`来进入这个状态。
 4. **粘性标签**——这就是你设置了`IMMERSIVE_STICKY`标签时的UI状态，用户会向内滑动以展示系统栏。半透明的系统栏会临时的进行显示，一段时间后自动隐藏。滑动的操作并不会清空任何标签，也不会触发系统UI可见性的监听器，因为暂时显示的导航栏并不被认为是一种可见的状态。
 
-注意，`immersive`类的标签只有在与`SYSTEM_UI_FLAG_HIDE_NAVIGATION`,` SYSTEM_UI_FLAG_FULLSCREEN`中一个或两个一起使用的时候才会生效。你可以只使用其中的一个，但是一般情况下你需要同时隐藏状态栏和导航栏以达到沉浸的效果。
+> **Notes**：`immersive`类的标签只有在与`SYSTEM_UI_FLAG_HIDE_NAVIGATION`,` SYSTEM_UI_FLAG_FULLSCREEN`中一个或两个一起使用的时候才会生效。你可以只使用其中的一个，但是一般情况下你需要同时隐藏状态栏和导航栏以达到沉浸的效果。
 
-## 确定一种方式
+## 1)确定一种方式
 
 `SYSTEM_UI_FLAG_IMMERSIVE`与`SYSTEM_UI_FLAG_IMMERSIVE_STICKY `都提供了沉浸式的体验，但是在上面的描述中，他们是不一样的，下面讲解一下什么时候该用哪一种标签。
 
@@ -38,7 +35,7 @@ Adnroid 4.4中引入为`setSystemUiVisibility()`引入了一个新标签`SYSTEM_
 * 如果你在打造一款真正的沉浸式应用，而且你希望屏幕边缘的区域也可以与用户进行交互，并且他们也不会经常访问系统UI。这个时候就要将`IMMERSIVE_STICKY`和`SYSTEM_UI_FLAG_FULLSCREEN` `SYSTEM_UI_FLAG_HIDE_NAVIGATION`两个标签一起使用。比如做一款游戏或者绘图应用就很合适。
 * 如果你在打造一款视频播放器，并且需要少量的用户交互操作。你可能就需要之前版本的一些方法了（从Android 4.0开始）。对于这种应用，简单的使用`SYSTEM_UI_FLAG_FULLSCREEN`与`SYSTEM_UI_FLAG_HIDE_NAVIGATION`就足够了，不需要使用`immersive`标签。
 
-## 使用非粘性沉浸模式
+## 2)使用非粘性沉浸模式
 
 当你使用`SYSTEM_UI_FLAG_IMMERSIVE`标签的时候，它是基于其他设置过的标签(`SYSTEM_UI_FLAG_HIDE_NAVIGATION`和`SYSTEM_UI_FLAG_FULLSCREEN`)来隐藏系统栏的。当用户向内滑动，系统栏重新显示并保持可见。
 
@@ -76,7 +73,7 @@ private void showSystemUI() {
 更多关于此话题的讨论，可以观看这个视频 [DevBytes: Android 4.4 Immersive Mode](http://www.youtube.com/embed/cBi8fjv90E4)
 
 
-## 使用粘性沉浸模式
+## 3)使用粘性沉浸模式
 
 当使用了`SYSTEM_UI_FLAG_IMMERSIVE_STICKY`标签的时候，向内滑动的操作会让系统栏临时显示，并处于半透明的状态。此时没有标签会被清除，系统UI可见性监听器也不会被触发。如果用户没有进行操作，系统栏会在一段时间内自动隐藏。
 
@@ -101,4 +98,4 @@ public void onWindowFocusChanged(boolean hasFocus) {
 }
 ```
 
-注意，如果你想实现`IMMERSIVE_STICKY`的自动隐藏效果，同时也需要展示你自己的UI控件。你只需要使用`IMMERSIVE`与`Handler.postDelayed()`或其他类似的东西，让它几秒后重新进入沉浸模式即可。
+> **Notes**：如果你想实现`IMMERSIVE_STICKY`的自动隐藏效果，同时也需要展示你自己的UI控件。你只需要使用`IMMERSIVE`与`Handler.postDelayed()`或其他类似的东西，让它几秒后重新进入沉浸模式即可。

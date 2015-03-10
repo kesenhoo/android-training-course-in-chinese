@@ -1,8 +1,6 @@
-> 编写: [Andrwyw](https://github.com/Andrwyw) - 校对:
-
-> 原文：<http://developer.android.com/training/gestures/multi.html>
-
 # 处理多触摸手势
+
+> 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/multi.html>
 
 多点触摸触手势是指在同一时间有多点（手指）触碰屏幕。本节课程讲述如何检测多点触摸手势。
 
