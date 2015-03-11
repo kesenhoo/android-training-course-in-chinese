@@ -21,9 +21,9 @@
 </menu>
 ```
 
->**Note**:如果你的menu item已经有一个XML文件，你可以只把`<item>`元素添加入文件。
+>**Note**:如果你的menu items已经有一个XML文件，你可以只把`<item>`元素添加入文件。
 
-要在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)，把XML菜单资源(`res/menu/options_menu.xml`)填充到你的activity中的[onCreateOptionsMenu()](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu))方法:
+要在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)，在你的activity中[onCreateOptionsMenu()](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu))方法内填充XML菜单资源(`res/menu/options_menu.xml`):
 
 ```java
 @Override
@@ -49,7 +49,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         android:hint="@string/search_hint" />
 ```
 
-在你的应用的manifest文件中，声明一个指向`res/xml/searchable.xml`文件的[<meta-data>](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素，来告诉你的应用在哪里能找到检索配置。在你想要显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的`<activity>`中声明`<meta-data>`元素:
+在你的应用的manifest文件中，声明一个指向`res/xml/searchable.xml`文件的[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素，来告诉你的应用在哪里能找到检索配置。在你想要显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的`<activity>`中声明`<meta-data>`元素:
 
 ```xml
 <activity ... >
