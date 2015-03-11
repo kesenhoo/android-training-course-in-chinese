@@ -12,7 +12,7 @@ Elevation对于创建临时上升这种动画同样很有用。
 
 更多信息，请参见[3D空间中的对象](http://www.google.com/design/spec/what-is-material/objects-in-3d-space.html)。
 
-## 給视图赋Elevation值
+## 给视图赋Elevation值
 
 视图的 Z 值有两个组成部分：
 
@@ -23,7 +23,7 @@ Z = elevation + translationZ
 
 ![](shadows-depth.png)
 
-要在layout中设置视图的elevation，使用`android:elevation`属性。要在Activity代码中设置elevation，使用`View.setElevation()`方法。
+在layout中设置视图的elevation，要使用`android:elevation`属性。要在Activity代码中设置elevation，使用`View.setElevation()`方法。
 
 要设置视图的translation，使用`View.setTranslationZ()`方法。
 
@@ -66,7 +66,7 @@ Z值的计算单位是dp。
 2. 覆写 `getOutline()` 函数.
 3. 用 `View.setOutlineProvider()` 方法来设定视图的轮廓提供者.
 
-使用`Outline`类的函数，你可以创建椭圆和带圆角的矩形轮廓。视图的轮廓提供者会从视图的背景中获取轮廓。要避免视图投射阴影，你可以设置轮廓提供者为 null。
+使用`Outline`类的函数，你可以创建椭圆和带圆角的矩形轮廓。视图的轮廓提供者会从视图的背景中获取轮廓。如果不想让视图投射阴影，你可以设置轮廓提供者为 null。
 
 ## Clipping 视图
 
