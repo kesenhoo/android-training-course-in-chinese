@@ -44,13 +44,13 @@ TV应用使用与手机和平板同样的架构。 这种相似性意味着你�
 	In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher.
 -->
 
-- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)  
+- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
 	最新的SDK tools能确保编译和测试TV应用
 
-- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)  
+- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
 	最新的platform版本提供TV应用的新API
 
-- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)  
+- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)
 	为了支持TV新API, 你必须设置新项目或者修改原项目的目标平台为Android 5.0 (API level 21)或者更高。
 
 
@@ -170,10 +170,10 @@ TV应用使用与手机和平板同样的架构。 这种相似性意味着你�
 
 Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和用户界面控件。这些库位于`<sdk>/extras/android/support/`目录。以下是这些库的列表和它们的作用介绍：
 
-<!-- 
+<!--
 * [v17 leanback library](http://developer.android.com/tools/support-library/features.html#v17-leanback) - Provides user interface widgets for TV apps, particularly for apps that do media playback.
 * [v7 recyclerview library](http://developer.android.com/tools/support-library/features.html#v7-recyclerview) - Provides classes for managing display of long lists in a memory efficient manner. Several classes in the v17 leanback library depend on the classes in this library.
-* [v7 cardview library](http://developer.android.com/tools/support-library/features.html#v7-cardview) - Provides user interface widgets for displaying information cards, such as media item pictures and descriptions. 
+* [v7 cardview library](http://developer.android.com/tools/support-library/features.html#v7-cardview) - Provides user interface widgets for displaying information cards, such as media item pictures and descriptions.
 -->
 
 * [v17 leanback library](http://developer.android.com/tools/support-library/features.html#v17-leanback) - 提供TV应用的用户界面控件，特别是用于媒体播放应用的。
@@ -208,11 +208,11 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 在完成上面的步骤之后，到了给大屏幕创建应用的时候了！检查一下这些附加的专题可以帮助您创建TV应用：
 
-<!-- 
+<!--
 * [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TVs are built to entertain, so Android provides a set of user interface tools and widgets for building TV apps that play videos and music, and let users browse for the content they want.
 * [Helping Users Find Your Content on TV](http://developer.android.com/training/tv/discovery/index.html) - With all the content choices at users' fingertips, helping them find content they enjoy is almost as important as providing that content. This training discusses how to surface your content on TV devices.
-* [Games for TV](http://developer.android.com/training/tv/discovery/index.html) - TV devices are a great platform for games. See this topic for information on building great game experiences for TV. 
--->     
+* [Games for TV](http://developer.android.com/training/tv/discovery/index.html) - TV devices are a great platform for games. See this topic for information on building great game experiences for TV.
+-->
 
 * [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TV主要是用来娱乐，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
 * [Helping Users Find Your Content on TV](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择操作都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
@@ -225,14 +225,14 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 在开发过程中运行应用是一个重要的部分。在安卓SDK中的AVD管理器提供了创建虚拟TV设备的功能，可以让应用在虚拟设备中运行和测试。
 
-<!-- To create an virtual TV device: -->  
-创建一个虚拟TV设备  
+<!-- To create an virtual TV device: -->
+创建一个虚拟TV设备
 
-<!-- 
-1. Start the AVD Manager. For more information, see the AVD Manager help.  
-2. In the AVD Manager dialog, click the Device Definitions tab.  
-3. Select one of the Android TV device definitions and click Create AVD.  
-4. Select the emulator options and click OK to create the AVD. 
+<!--
+1. Start the AVD Manager. For more information, see the AVD Manager help.
+2. In the AVD Manager dialog, click the Device Definitions tab.
+3. Select one of the Android TV device definitions and click Create AVD.
+4. Select the emulator options and click OK to create the AVD.
 -->
 
 1. 打开AVD管理器。更多信息，参考[AVD管理器](http://developer.android.com/tools/help/avd-manager.html)帮助。
@@ -244,12 +244,12 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 >**Note**：获得TV模拟器设备的最佳性能，打开**Use Host GPU option**，支持虚拟设备加速。更多模拟器硬件加速信息，参考[Using the Emulator](http://developer.android.com/tools/devices/emulator.html#acceleration)。
 
-<!-- To test your application on the virtual TV device: -->  
+<!-- To test your application on the virtual TV device: -->
 在虚拟设备中测试应用
 
-<!-- 
+<!--
 1. Compile your TV application in your development environment.
-2. Run the application from your development environment and choose the TV virtual device as the target. 
+2. Run the application from your development environment and choose the TV virtual device as the target.
 -->
 
 1. 在开发环境中编译TV应用。

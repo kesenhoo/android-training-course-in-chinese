@@ -59,8 +59,11 @@ Hierarchy Viewer 会让你选择设备或者模拟器上正在运行的进程，
 * 没用的父节点 —— 一个节点如果只有一个子节点，并且它不是 `ScrollView` 或根节点，并且它没有背景，这样的节点应该直接被子节点取代。
 * 太深的 Layout —— Layout 的嵌套层数太深对性能有很大影响。尝试使用更扁平的 Layout ，比如 `RelativeLayout` 或 `GridLayout` 来提高性能。一般最多不超过10层。
 
-另一个使用 Lint 的好处就是，它内置于 ADT Eclipse (ADT16+）中。Lint 在你导出apk文件、编辑XML文件或使用 Layout 编辑器时会自动运行。手动强制运行 Lint，在 Eclipse 的工具栏中按这个：
+另一个使用 Lint 的好处就是，他内置于 Android Studio. 无论何时你编译你的程序的时候， Lint都会自动运行. 在使用 Android Studio 时，你也可以让 Lint 检查明确的编译级别，或者检查所有的编译级别.
 
-![](http://developer.android.com/images/training/lint_icon.png)
 
-当使用 Eclipse 的时候，Lint 有自动修复、提示建议和直接跳转到问题处的功能。如果你没有使用 Eclipse，你也可以通过命令行运行 Lint。更多信息，参见 [tools.android.com](http://tools.android.com/tips/lint)。
+在 Android Studio 中，在 File>Settings>Project 中，你也可以管理检查列表和自定义检查列表，检查配置页面会显示其支持的检查选项.
+
+![](http://developer.android.com/images/tools/studio-inspections-config.png)
+
+Lint 还能自动修复问题、提供建议或者直接跳转到不合适的代码处供你审查.
