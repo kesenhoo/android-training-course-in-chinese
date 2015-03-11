@@ -2,7 +2,7 @@
 
 > 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/search/backward-compat.html>
 
-[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)和action bar只在Android 3.0以及以上版本可用。为了支持旧版本平台，你可以回到搜素对话框。搜索框是系统提供的UI，在调用时会覆盖在你的应用的最顶端。
+[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)和action bar只在Android 3.0以及以上版本可用。为了支持旧版本平台，你可以回到搜索对话框。搜索框是系统提供的UI，在调用时会覆盖在你的应用的最顶端。
 
 ##设置最小和目标API级别
 
@@ -15,9 +15,9 @@
 ...
 ```
 
-##为旧版本设备提供搜素对话框
+##为旧版本设备提供搜索对话框
 
-要在旧版本设备中调用搜素对话框，可以在任何时候，当用户从选项目录中选择搜索项时，就会调用[onSearchRequested()](reference/android/app/Activity.html#onSearchRequested())。因为Android 3.0或以上会在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)(就像在第一节课中演示的那样)，所以当用户选择目录的搜索项时，只有Android 3.0以下版本的会调用[onOptionsItemSelected()](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem))。
+要在旧版本设备中调用搜索对话框，可以在任何时候，当用户从选项目录中选择搜索项时，调用[onSearchRequested()](reference/android/app/Activity.html#onSearchRequested())。因为Android 3.0或以上会在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)(就像在第一节课中演示的那样)，所以当用户选择目录的搜索项时，只有Android 3.0以下版本的会调用[onOptionsItemSelected()](http://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem))。
 
 ```java
 @Override
