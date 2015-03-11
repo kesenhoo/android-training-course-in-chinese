@@ -28,7 +28,7 @@
 
 本系列课程将向你展示如何创建一个Sync Adapter，如何创建一个绑定了Sync Adapter的服务（[Service](http://developer.android.com/reference/android/app/Service.html)），如何提供其它组件来帮助你将Sync Adapter集成到框架中，以及如何通过不同的方法来运行Sync Adapter。
 
-> ** Note：**Sync Adapter是异步执行的，它可以定期且有效地传输数据，但在实时性上一般难以满足要求。如果你想要实时地传输数据，那么你应该在[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)中完成这一任务。
+> ** Note： Sync Adapter是异步执行的，它可以定期且有效地传输数据，但在实时性上一般难以满足要求。如果你想要实时地传输数据，那么你应该在[AsyncTask](http://developer.android.com/reference/android/os/AsyncTask.html)或[IntentService](http://developer.android.com/reference/android/app/IntentService.html)中完成这一任务。
 
 ## Sample Code
 
