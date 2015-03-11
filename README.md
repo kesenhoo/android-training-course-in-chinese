@@ -91,7 +91,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
 * [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
    * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
-   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @2014/10/20 - 待认领
+   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @2014/10/20 - @[huanglizhuo](https://github.com/huanglizhuo)
    * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @2014/10/20 - 待认领
    * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @2014/10/20 - 待认领
    * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @2014/10/20 - 待认领
