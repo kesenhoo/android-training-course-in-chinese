@@ -14,7 +14,7 @@
 
 * 想要设置一个可以被更新的Notification，需要在发布它的时候调用[NotificationManager.notify(ID, notification)](developer.android.com/reference/android/app/NotificationManager.html#notify(int,%20android.app.Notification))方法为它指定一个notification ID。更新一个已经发布的Notification，需要更新或者创建一个[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)对象，并从这个对象创建一个[Notification](developer.android.com/reference/android/app/Notification.html)对象，然后用与先前一样的ID去发布这个[Notification](developer.android.com/reference/android/app/Notification.html)。
 
-* 下面的代码片段演示了更新一个notification来反映事件发生的次数，它把notification堆积起来，显示一个总数。
+* 下面的代码片段演示了更新一个notification来反映事件发生的次数，它把notification堆加起来，显示一个总数。
 
 
 ```java

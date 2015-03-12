@@ -7,7 +7,7 @@
 
 * 这节课向你说明如何创建与发布一个Notification。
 
-* 这节课的例子是基于[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)类的，[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)在[Support Library](developer.android.com)中。为了给许多各种不同的平台提供最好的notification支持，你应该使用[NotificationCompat](developer.android.com/reference/android/support/v4/app/NotificationCompat.html)以及它的子类，特别是[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)。
+* 这节课的例子是基于[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)类的，[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)在[Support Library](developer.android.com)中。为了给多种不同的平台提供最好的notification支持，你应该使用[NotificationCompat](developer.android.com/reference/android/support/v4/app/NotificationCompat.html)以及它的子类，特别是[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)。
 
 
 ## 创建Notification Buider
@@ -33,7 +33,7 @@ NotificationCompat.Builder mBuilder =
 
 ## 定义Notification的Action（行为）
 
-* 尽管在Notification中Actions是可选的，但是你应该至少添加一种Action。一种Action可以让用户从Notification直接进入你应用内的[Activity](developer.android.com/reference/android/app/Activity.html)，在这个activity中他们可以查看引起Notification的事件或者做下一步的处理。在Notification中，action本身是由[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)定义的，PendingIntent包含了一个启动你应用内[Activity](developer.android.com/reference/android/app/Activity.html)的[Intent](developer.android.com/reference/android/content/Intent.html)。
+* 尽管在Notification中Actions是可选的，但是你应该至少添加一种Action。一个Action可以让用户从Notification直接进入你应用内的[Activity](developer.android.com/reference/android/app/Activity.html)，在这个activity中他们可以查看触发Notification的事件或者做下一步的处理。在Notification中，action本身是由[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)定义的，PendingIntent包含了一个启动你应用内[Activity](developer.android.com/reference/android/app/Activity.html)的[Intent](developer.android.com/reference/android/content/Intent.html)。
 
 * 如何构建一个[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)取决于你要启动的[activity](developer.android.com/reference/android/app/Activity.html)的类型。当从Notification中启动一个[activity](developer.android.com/reference/android/app/Activity.html)时，你必须保存用户的导航体验。在下面的代码片段中，点击Notification启动一个新的activity，这个activity有效地扩展了Notification的行为。在这种情形下，就没必要人为地去创建一个返回栈（更多关于这方面的信息，请查看 [Preserving Navigation when Starting an Activity](developer.android.com/intl/zh-cn/training/notify-user/navigation.html)）
 
@@ -56,7 +56,7 @@ PendingIntent resultPendingIntent =
 
 ## 设置Notification的点击行为
 
-* 可以通过调用[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)中合适的方法，将上一步创建的[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)与一个手势产生关联。比方说，当点击Notification抽屉里的Notification文本时，启动一个activity，可以通过调用[setContentIntent()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent))方法把[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)添加进去。
+* 可以通过调用[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)中合适的方法，将上一步创建的[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)与一个手势产生关联。比方说，当点击Notification抽屉里的Notification文本时启动一个activity，可以通过调用[setContentIntent()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent))方法把[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)添加进去。
 
 比如：
 
