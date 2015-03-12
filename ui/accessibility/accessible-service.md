@@ -4,11 +4,11 @@
 
 本课程将教您：
 
-1. 创建Accessibility Service
+1. 创建可达性服务(Accessibility Service)
 
-2. 配置你的Accessibility Service
+2. 配置你的可达性服务(Accessibility Service)
 
-3. 响应AccessibilityEvents
+3. 响应可达性事件(AccessibilityEvents)
 
 4. 从View层级中提取更多信息
 
@@ -118,7 +118,7 @@ public void onServiceConnected() {
 
 ## 响应Accessibility Event
 
-现在你的Service已经配置好并可以监听Accessibility Event了，来写一些响应这些事件的代码吧！首先就是要重写*onAccessibilityEvent(AccessibilityEvent)*方法，在这个方法中，使用`getEventType()`来确定事件的类型，使用`getContentDescription()`来提产生这个事件的View相关的文本标签。
+现在你的Service已经配置好并可以监听Accessibility Event了，来写一些响应这些事件的代码吧！首先就是要重写*onAccessibilityEvent(AccessibilityEvent)*方法，在这个方法中，使用`getEventType()`来确定事件的类型，使用`getContentDescription()`来提取产生事件的View的相关的文本标签。
 
 ```java
 @Override
@@ -149,7 +149,7 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 
 1. 立即获取到产生这个事件的Parent
 2. 在这个Parent中寻找文本标签或勾选框
-3. 如果找到，创建一个字符串来反馈给用户，提示内容和是否已勾选。
+3. 如果找到，创建一个文本内容来反馈给用户，提示内容和是否已勾选。
 4. 如果当遍历View的时候某处返回了null值，那么就直接结束这个方法。
 
 ```java
