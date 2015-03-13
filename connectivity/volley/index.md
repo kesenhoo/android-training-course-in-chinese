@@ -43,7 +43,7 @@ Volley框架的核心代码是托管在AOSP仓库的`frameworks/volley`中，相
 
 * [**建立一个请求队列(Setting Up a RequestQueue)**](request-queue.html)
 
-学习如何建立一个请求队列，以及如何实现一个单例模式来创建一个请求队列。
+学习如何建立一个请求队列，以及如何实现一个单例模式来创建一个请求队列，使RequestQueue能够持续保持在你的app的生命周期中。
 
 * [**生成一个标准的请求(Making a Standard Request)**](request.html)
 

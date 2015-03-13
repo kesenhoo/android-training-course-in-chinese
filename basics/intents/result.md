@@ -16,7 +16,7 @@
 
 对于startActivityForResult() 方法中的intent与之前介绍的并没有什么差异，只不过是需要在这个方法里面多添加一个int类型的参数。
 
-这个integer的参数叫做"request code"，它标识了你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。
+这个integer的参数叫做"request code"，用于标识你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。
 
 例如，下面是一个启动activity来选择联系人的例子：
 

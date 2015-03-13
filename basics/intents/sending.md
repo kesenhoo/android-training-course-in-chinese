@@ -2,15 +2,15 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/intents/sending.html>
 
-Android中最重要的功能之一就是可以利用一个带有`action`的`intent`使得当前app能够跳转到其他的app。例如：如果你的app拥有一个地址想要显示在地图上，你并不需要在你的app里面创建一个activity用来显示地图。你只需要使用Intent来发出查看地址的请求。Android系统则会启动能够显示地图的程序来呈现那个地址。
+Android中最重要的特征之一就是可以利用一个带有`action`的`intent`使得当前app能够跳转到其他的app。例如：如果你的app拥有一个地址想要显示在地图上，你并不需要在你的app里面创建一个activity用来显示地图。你只需要使用Intent来发出查看地址的请求。Android系统则会启动能够显示地图的程序来呈现那个地址。
 
-正如在1.1章节:[建立你的第一个App(Building Your First App)](../firstapp/index.html)中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显示（explicit）的intent，它指定了需要启动组件的类名。然而，当你想要叫起不同的app来执行那个动作，则必须使用隐式（implicit）的intent。
+正如在1.1章节:[建立你的第一个App(Building Your First App)](../firstapp/index.html)中所说的，你必须使用intent来在同一个app的两个activity之间进行切换。在那种情况下通常是定义一个显式（explicit）的intent，它指定了需要启动组件的类名。然而，当你想要叫起不同的app来执行某个动作（比如查看地图），则必须使用隐式（implicit）的intent。
 
 这节课会介绍如何为特殊的动作创建一个implicit intent，并使用它来启动另外一个app去执行intent中的action。
 
 ## 建立隐式的Intent
 
-Implicit intents并不会声明需要启动的组件的类名，它使用的是声明一个需要执行的动作。这个action指定了你想做的事情，例如查看，编辑，发送或者是获取什么。Intents通常会在发送action的同时附带一些数据，例如你想要查看的地址或者是你想要发送的邮件信息。依赖于你想要创建的Intent，这些数据需要是[Uri](http://developer.android.com/reference/android/net/Uri.html)，或者是其他规定的数据类型。
+Implicit intents并不会声明需要启动的组件的类名，而是声明一个需要执行的动作。这个action指定了你想做的事情，例如查看，编辑，发送或者是获取什么。Intents通常会在发送action的同时附带一些数据，例如你想要查看的地址或者是你想要发送的邮件信息。数据的类型取决于你想要创建的Intent，这些数据可能是[Uri](http://developer.android.com/reference/android/net/Uri.html)，或者是其他规定的数据类型，或者根本不需要数据也是有可能的。
 
 如果你的数据是一个Uri，会有一个简单的<a href="http://developer.android.com/reference/android/content/Intent.html#Intent(java.lang.String, android.net.Uri)">Intent()</a> constructor 用来定义action与data。
 
@@ -43,7 +43,7 @@ Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
 ```
 
 另外一些需要`extra`数据的implicit intent。你可以使用 <a href="http://developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, java.lang.String)">putExtra()</a> 方法来添加那些数据。
-默认的，系统会根据Uri数据类型来决定需要哪些合适的`MIME type`。如果你没有在intent中包含一个Uri, 则通常需要使用 <a href="http://developer.android.com/reference/android/content/Intent.html#setType(java.lang.String)">setType()</a> 方法来指定intent附带的数据类型。设置MIME type 是为了指定哪些activity可以应该接受这个intent。例如：
+默认的，系统会根据Uri数据类型来决定需要哪些合适的`MIME type`。如果你没有在intent中包含一个Uri, 则通常需要使用 <a href="http://developer.android.com/reference/android/content/Intent.html#setType(java.lang.String)">setType()</a> 方法来指定intent附带的数据类型。设置MIME type 是为了指定哪些activity应该接受这个intent。例如：
 
 * 发送一个带附件的email:
 
@@ -120,7 +120,7 @@ if (isIntentSafe) {
 ```
 
 ## 显示分享App的选择界面
-请注意，当你发送一个intent，有多个app可以handle的情况，用户可以在弹出dialog的时候，选择默认启动的app（通过勾选dialog下面的选择框，如上图所示）。这个功能对于用户有特殊偏好的时候非常有用（例如用户总是喜欢启动某个app来查看网页，总是喜欢启动某个camera来拍照）。
+请注意，当你以startActivity()的形式传递一个intent，并且有多个app可以handle时，用户可以在弹出dialog的时候，选择默认启动的app（通过勾选dialog下面的选择框，如上图所示）。这个功能对于用户有特殊偏好的时候非常有用（例如用户总是喜欢启动某个app来查看网页，总是喜欢启动某个camera来拍照）。
 
 然而，如果用户希望每次都弹出选择界面，而且每次都不确定会选择哪个app启动，例如分享功能，用户选择分享到哪个app都是不确定的，这个时候，需要强制弹出选择的对话框。（这种情况下用户不能选择默认启动的app）。
 
