@@ -261,9 +261,9 @@ TV设备需要辅助硬件设备和应用交互，一个基本遥控器的形式
 
 TV的手柄通常是蓝牙设备，它为了省电而定期的休眠并且与TV设备断开连接。这意味着如果不处理这些重连事件，应用可能被中断或者重新开始。这些事件可以发生在下面任何情景中：
 
-<!-- 
+<!--
 - While watching a video which is several minutes long, a D-Pad or game controller goes into sleep mode, disconnects from the TV device and then reconnects later on.
-- During gameplay, a new player joins the game using a game controller that is not currently connected. 
+- During gameplay, a new player joins the game using a game controller that is not currently connected.
 - During gameplay, a player leaves the game and disconnects a game controller.
 -->
 

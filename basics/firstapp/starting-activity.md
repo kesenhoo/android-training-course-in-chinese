@@ -116,7 +116,7 @@ public class MyActivity extends ActionBarActivity {
 ```
 为让新启动的activity能查询，定义key为一个public型的常量，通常使用应用程序包名作为前缀来定义意图键是很好的做法。在应用程序与其他应用程序进行交互时仍可以确保意图键唯一。
 
-7 在sendMessage()函数里，调用startActivity()完成新activity的启动，现在完整的代码应该是下面这个样子： 
+7 在sendMessage()函数里，调用startActivity()完成新activity的启动，现在完整的代码应该是下面这个样子：
 
 java/com.mycompany.myfirstapp/MyActivity.java
 
@@ -271,7 +271,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 ```
   setContentView(R.layout.activity_display_message);
   ```
-  
+
 3 得到intent 并赋值给本地变量.
 
 ```

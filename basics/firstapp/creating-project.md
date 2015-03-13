@@ -16,7 +16,7 @@
    <li>如果已经用Android Studio打开过项目，点击File==>New Project新建项目</li>
    </ul>
 
-2. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**. 
+2. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**.
 
    按照要求使用如图所示的值会使学习变得更容易。
    <ul>
@@ -25,20 +25,20 @@
    <li>**Package Name**是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中      具有唯一性，你可以独立地编辑该包名.</li>
    <li>**Project location**操作系统存放项目的目录</li>
    </ul>
- 
+
 ![image](studio-setup-1.png)
-    <strong >图1 </strong>Configure your new project    
+    <strong >图1 </strong>Configure your new project
 3. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
 
 4
 . **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
-   
+
    Minimum Required SDK表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
 
-5 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.   
+5 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
 
-6 在Add an activity 模板窗口选择**Blank Activity**，点击 **Next**. 
+6 在Add an activity 模板窗口选择**Blank Activity**，点击 **Next**.
 
 7 在**Choose options for your new file**窗口修改** Activity Name **为<I>MyActivity</I>,修改**Layout Name **为activity_my，**Title **修改为MyActivity，**Menu Resource Name **修改为menu_my。
 
@@ -57,7 +57,7 @@ app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
 
 app/src/main/AndroidManifest.xml
 
-[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来额学习会更深入了解这个文件并添加更多组件到该文件中。 
+[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来额学习会更深入了解这个文件并添加更多组件到该文件中。
 
 app/build.gradle
 
@@ -73,7 +73,7 @@ Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以�
 + targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level)表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
 
 
-更多关于Gradle的知识请阅读[Building Your Project with Gradle](http://developer.android.com/sdk/installing/studio-build.html) 
+更多关于Gradle的知识请阅读[Building Your Project with Gradle](http://developer.android.com/sdk/installing/studio-build.html)
 
 注意/res目录下也包含了[resources](http://developer.android.com/guide/topics/resources/overview.html)资源：
 
