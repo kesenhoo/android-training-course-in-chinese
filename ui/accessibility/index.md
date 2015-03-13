@@ -2,9 +2,9 @@
 
 > 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/accessibility/index.html>
 
-当我们需要尽可能扩大我们用户的基数的时候，就要开始注意我们软件的可达性了(*Accessibility 易接近，可亲性*)。界面中的小提示对大多数用户而言是可行的，比如说当按钮被按下时视觉上的变化，但是对于那些视力上有些缺陷的用户而言效果就不是那么理想了。
+当我们需要尽可能扩大我们用户的基数的时候，就要开始注意我们软件的可达性了(*Accessibility 易接近，可亲性*)。在界面中展示提示对大多数用户而言是可行的，比如说当按钮被按下时视觉上的变化，但是对于那些视力上有些缺陷的用户而言效果就不是那么理想了。
 
-本章将给您演示如何最大化利用Android框架中的Accessibility特性。包括如何利用焦点导航(*focus navigation*)与内容描述(*content description*)对你的应用的可达性进行优化。也包括了了创建Accessibility Service， 使用户与应用（不仅仅是你自己的应用）之间的交互更加容易。
+本章将给您演示如何最大化利用Android框架中的Accessibility特性。包括如何利用焦点导航(*focus navigation*)与内容描述(*content description*)对你的应用的可达性进行优化。也包括了创建Accessibility Service， 使用户与应用（不仅仅是你自己的应用）之间的交互更加容易。
 
 ## Lessons
 
