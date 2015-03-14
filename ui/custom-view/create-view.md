@@ -1,4 +1,4 @@
-# 创建自定义的View类
+﻿# 创建自定义的View类
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-views/create-view.html>
 
@@ -11,12 +11,11 @@
 
 Android的framework提供了许多基类与XML标签用来帮助你创建一个符合上面要求的View。这节课会介绍如何使用Android framework来创建一个view的核心功能。
 
-<!-- more -->
 
 ## Subclass a View
 Android framework里面定义的view类都继承自View。你自定义的view也可以直接继承View，或者你可以通过继承既有的一个子类(例如Button)来节约一点时间。
 
-为了允许Android Developer Tools能够识别你的view，你必须至少提供一个constructor，它包含一个Contenx与一个AttributeSet对象作为参数。这个constructor允许layout editor创建并编辑你的view的实例。
+为了让Android Developer Tools能够识别你的view，你必须至少提供一个constructor，它包含一个Contenx与一个AttributeSet对象作为参数。这个constructor允许layout editor创建并编辑你的view的实例。
 
 ```java
 class PieChart extends View {
@@ -27,12 +26,14 @@ class PieChart extends View {
 ```
 
 ## Define Custom Attributes
-为了添加一个内置的View到你的UI上，你需要通过XML属性来指定它的样式与行为。为了实现自定义的view的行为，你应该:
+为了添加一个内置的View到你的UI上，你需要通过XML属性来指定它的样式与行为。良好的自定义views可以通过XML添加和改变样式，为了让你的自定义的view也有如此的行为，你应该:
 
 * 为你的view在<declare-styleable>资源标签下定义自设的属性
 * 在你的XML layout中指定属性值
 * 在运行时获取属性值
 * 把获取到的属性值应用在你的view上
+
+这一节讨论如何定义自定义属性以及指定属性值，下一节将会实现在运行时获取属性值并将它应用。
 
 为了定义自设的属性，添加 <declare-styleable> 资源到你的项目中。放置于res/values/attrs.xml文件中。下面是一个attrs.xml文件的示例:
 
@@ -50,7 +51,7 @@ class PieChart extends View {
 
 上面的代码声明了2个自设的属性，**showText**与**labelPosition**，它们都归属于PieChart的项目下的styleable实例。styleable实例的名字，通常与自定义的view名字一致。尽管这并没有严格规定要遵守这个convention，但是许多流行的代码编辑器都依靠这个命名规则来提供statement completion。
 
-一旦你定义了自设的属性，你可以在layout XML文件中使用它们。唯一不同的是你自设的属性是归属于不同的命名空间。不是属于`http://schemas.android.com/apk/res/android`的命名空间，它们归属于`http://schemas.android.com/apk/res/[your package name]`。例如，下面演示了如何为PieChart使用上面定义的属性：
+一旦你定义了自设的属性，你可以在layout XML文件中使用它们，就像内置属性一样。唯一不同的是你自设的属性是归属于不同的命名空间。不是属于`http://schemas.android.com/apk/res/android`的命名空间，它们归属于`http://schemas.android.com/apk/res/[your package name]`。例如，下面演示了如何为PieChart使用上面定义的属性：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -118,17 +119,11 @@ public void setShowText(boolean showText) {
 }
 ```
 
-请注意，在setShowText方法里面有调用[invalidate()](http://developer.android.com/reference/android/view/View.html#invalidate()) and [requestLayout()](http://developer.android.com/reference/android/view/View.html#requestLayout()). 当view的某些内容发生变化的时候，需要调用invalidate来通知系统对这个view进行redraw，当某些元素变化会引起组件大小变化时，需要调用requestLayout方法。
+请注意，在setShowText方法里面有调用[invalidate()](http://developer.android.com/reference/android/view/View.html#invalidate()) and [requestLayout()](http://developer.android.com/reference/android/view/View.html#requestLayout()). 这两个调用是确保稳定运行的关键。当view的某些内容发生变化的时候，需要调用invalidate来通知系统对这个view进行redraw，当某些元素变化会引起组件大小变化时，需要调用requestLayout方法。调用时若忘了这两个方法，将会导致hard-to-find bugs。
 
-自定义的view也需要能够支持响应事件的监听器。例如，`PieChart`暴露了一个自设的事件`OnCurrentItemChanged`来通知监听器，用户已经切换了焦点到一个新的组件上。
+自定义的view也需要能够支持响应事件的监听器。例如，`PieChart`暴露了一个自定义的事件`OnCurrentItemChanged`来通知监听器，用户已经切换了焦点到一个新的组件上。
 
 我们很容易忘记了暴露属性与事件，特别是当你是这个view的唯一用户时。请花费一些时间来仔细定义你的view的交互。一个好的规则是总是暴露任何属性与事件。
 
-## Design For Accessibility
-Your custom view should support the widest range of users. This includes users with disabilities that prevent them from seeing or using a touchscreen. To support users with disabilities, you should:
 
-* Label your input fields using the android:contentDescription attribute
-* Send accessibility events by calling sendAccessibilityEvent() when appropriate.
-* Support alternate controllers, such as D-pad and trackball
-
-For more information on creating accessible views, see [Making Applications Accessible](http://developer.android.com/guide/topics/ui/accessibility/apps.html#custom-views) in the Android Developers Guide.
+对于创建使用的 views的更多消息, 请参见Android Developers Guide中的 [Making Applications Accessible](http://developer.android.com/guide/topics/ui/accessibility/apps.html#custom-views) 。
