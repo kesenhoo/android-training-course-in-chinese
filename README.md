@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.9.1)
+# Android官方培训课程中文版(v0.9.1)
 
 ![Android Training](android_training.jpg)
 
