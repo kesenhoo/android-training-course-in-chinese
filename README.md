@@ -90,17 +90,17 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https:://github.com/kesenhoo)
    * [创建自定义的UI](http://hukai.me/android-training-course-in-chinese/wearables/ui/index.html) - @[Roya](https://github.com/RoyaAoki)
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
-* [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
-   * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
-   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @待认领
-   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @待认领
-   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
-   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
-   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
 * [Android企业级应用](http://hukai.me/android-training-course-in-chinese/enterprise/index.html)
    * [Ensuring Compatibility with Managed Profiles](http://hukai.me/android-training-course-in-chinese/enterprise/app-compatibility.html) - @2015/03/14 - 待认领
    * [Implementing App Restrictions](http://hukai.me/android-training-course-in-chinese/enterprise/app-restrictions.html) - @2015/03/14 - 待认领
    * [Building a Work Policy Controller](http://hukai.me/android-training-course-in-chinese/enterprise/work-policy-ctrl.html) - @2015/03/14 - 待认领
+* [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
+   * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
+   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @[awong1900](https://github.com/awong1900)
+   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @待认领
+   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
