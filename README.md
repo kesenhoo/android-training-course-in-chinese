@@ -97,6 +97,10 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
    * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
    * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
+* [Android企业级应用](http://hukai.me/android-training-course-in-chinese/enterprise/index.html)
+   * [Ensuring Compatibility with Managed Profiles](http://hukai.me/android-training-course-in-chinese/enterprise/app-compatibility.html) - @2015/03/14 - 待认领
+   * [Implementing App Restrictions](http://hukai.me/android-training-course-in-chinese/enterprise/app-restrictions.html) - @2015/03/14 - 待认领
+   * [Building a Work Policy Controller](http://hukai.me/android-training-course-in-chinese/enterprise/work-policy-ctrl.html) - @2015/03/14 - 待认领
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
@@ -130,7 +134,6 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android安全与隐私](http://hukai.me/android-training-course-in-chinese/best-security.html)
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai)
-   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise/index.html) - @[craftsmanBai](https://github.com/craftsmanBai)
 * [Android测试程序](http://hukai.me/android-training-course-in-chinese/best-testing.html)
    * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo)
 
