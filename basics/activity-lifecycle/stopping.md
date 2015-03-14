@@ -8,7 +8,7 @@
     * 用户在使用你的app时接受到一个来电通话.
 * [Activity](http://developer.android.com/reference/android/app/Activity.html)类提供了<a href="http://developer.android.com/reference/android/app/Activity.html#onStop()">onStop()</a>与<a href="http://developer.android.com/reference/android/app/Activity.html#onRestart()">onRestart()</a>方法来允许在activity停止与重启时进行调用。不像暂停状态是部分阻塞UI，停止状态是UI不再可见并且用户的焦点转移到另一个activity中.
 
-> **Note:**因为系统在activity停止时会在内存中保存了Activity实例。有些时候你不需要实现onStop(),onRestart()甚至是onStart()方法. 因为大多数的activity相对比较简单，activity会自己停止与重启，你只需要使用onPause()来停止正在运行的动作并断开系统资源链接。
+> **Note:**因为系统在activity停止时会在内存中保存Activity的实例。有些时候你不需要实现onStop(),onRestart()甚至是onStart()方法. 因为大多数的activity相对比较简单，activity会自己停止与重启，你只需要使用onPause()来停止正在运行的动作并断开系统资源链接。
 
 <!-- more -->
 
@@ -44,7 +44,7 @@ protected void onStop() {
 
 * 当你的activity已经停止，[Activity](http://developer.android.com/reference/android/app/Activity.html)对象会保存在内存中，并且在activity resume的时候重新被调用到。你不需要在恢复到Resumed state状态前重新初始化那些被保存在内存中的组件。系统同样保存了每一个在布局中的视图的当前状态，如果用户在EditText组件中输入了text，它会被保存，因此不需要保存与恢复它。
 
-> **Note:**即使系统会在activity stop的时候销毁这个activity，它仍然会保存[View](http://developer.android.com/reference/android/view/View.html)对象的状态(比如[EditText](http://developer.android.com/reference/android/widget/EditText.html)中的文字) 到一个[Bundle](http://developer.android.com/reference/android/os/Bundle.html)中，并且在用户返回这个activity时恢复他们(下一个会介绍在activity销毁与重新建立时如何使用[Bundle](http://developer.android.com/reference/android/os/Bundle.html)来保存其他数据的状态).
+> **Note:**即使系统会在activity stop的时候停止这个activity，它仍然会保存[View](http://developer.android.com/reference/android/view/View.html)对象的状态(比如[EditText](http://developer.android.com/reference/android/widget/EditText.html)中的文字) 到一个[Bundle](http://developer.android.com/reference/android/os/Bundle.html)中，并且在用户返回这个activity时恢复他们(下一个会介绍在activity销毁与重新建立时如何使用[Bundle](http://developer.android.com/reference/android/os/Bundle.html)来保存其他数据的状态).
 
 ## 启动与重启你的activity
 
