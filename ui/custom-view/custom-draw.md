@@ -1,8 +1,8 @@
-# 实现自定义View的绘制
+﻿# 实现自定义View的绘制
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-view/custom-draw.html>
 
-自定义view的最重要的一个部分是自定义它的外观。根据你的程序的需求，自定义绘制动作可能简单也可能很复杂。这节课会演示一些最常见的操作。
+自定义view的最重要的一个部分是自定义它的外观。根据你的程序的需求，自定义绘制可能简单也可能很复杂。这节课会演示一些最常见的操作。
 
 ## Override onDraw()
 重绘一个自定义的view的最重要的步骤是重写onDraw()方法。onDraw()的参数是一个Canvas对象。Canvas类定义了绘制文本，线条，图像与许多其他图形的方法。你可以在onDraw方法里面使用那些方法来创建你的UI。
@@ -17,7 +17,9 @@ android.graphics framework把绘制定义为下面两类:
 * 绘制什么，由Canvas控制
 * 如何绘制，由Paint控制
 
-例如Canvas提供绘制一条直线的方法，Paint提供直线颜色。所以在绘制之前，你需要创建一个或者多个Paint对象。
+例如Canvas提供绘制一条直线的方法，Paint提供直线颜色。Canvas提供绘制矩形的方法，Paint定义是否使用颜色填充。简单来说：Canvas定义你在屏幕上画的图形，而Paint定义颜色，样式，字体，
+
+所以在绘制之前，你需要创建一个或者多个Paint对象。在这个PieChart 的例子，是在init（）方法实现的，由constructor调用。
 
 ```java
 private void init() {
@@ -43,7 +45,7 @@ private void init() {
 刚开始就创建对象是一个重要的优化技巧。Views会被频繁的重新绘制，初始化许多绘制对象需要花费昂贵的代价。在onDraw方法里面创建绘制对象会严重影响到性能并使得你的UI显得卡顿。
 
 ## Handle Layout Events
-为了正确的绘制你的view，你需要知道view的大小。复杂的自定义view通常需要根据在屏幕上的大小与形状执行多次layout计算。你不应该去估算这个view在屏幕上的显示大小。即使只有一个程序会使用你的view，仍然是需要处理屏幕大小不同，密度不同，方向不同所带来的影响。
+为了正确的绘制你的view，你需要知道view的大小。复杂的自定义view通常需要根据在屏幕上的大小与形状执行多次layout计算。而不是假设这个view在屏幕上的显示大小。即使只有一个程序会使用你的view，仍然是需要处理屏幕大小不同，密度不同，方向不同所带来的影响。
 
 尽管view有许多方法是用来计算大小的，但是大多数是不需要重写的。如果你的view不需要特别的控制它的大小，唯一需要重写的方法是[onSizeChanged()](http://developer.android.com/reference/android/view/View.html#onSizeChanged(int, int, int, int)).
 
@@ -89,7 +91,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 上面的代码有三个重要的事情需要注意:
 
 * 计算的过程有把view的padding考虑进去。这个在后面会提到，这部分是view所控制的。
-* 帮助方法resolveSizeAndState()是用来创建最终的宽高值的。这个方法会通过比较view的需求大小与spec值返回一个合适的View.MeasureSpec值，并传递到onMeasure方法中。
+* 帮助方法resolveSizeAndState()是用来创建最终的宽高值的。这个方法会通过比较view的需求大小与spec值，返回一个合适的View.MeasureSpec值，并传递到onMeasure方法中。
 * onMeasure()没有返回值。它通过调用setMeasuredDimension()来获取结果。调用这个方法是强制执行的，如果你遗漏了这个方法，会出现运行时异常。
 
 ## Draw!
