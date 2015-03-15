@@ -2,7 +2,7 @@
 
 > 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/basics/fragments/creating.html>
 
-* 你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像"子activity"，你可以在不同的activities里面重复使用）。这一课教你继承[Support Library ](http://developer.android.com/tools/support-library/index.html)中的[Fragment](http://developer.android.com/reference/android/support/v4/app/Fragment.html)，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
+* 你可以把fragment想象成activity中一个模块化的部分，它拥有自己的生命周期，接收自己的输入事件，可以在acvitity运行过程中添加或者移除（有点像"子activity"，你可以在不同的activity里面重复使用）。这一课教你继承[Support Library ](http://developer.android.com/tools/support-library/index.html)中的[Fragment](http://developer.android.com/reference/android/support/v4/app/Fragment.html)，以使你的应用在Android1.6这样的低版本上仍能保持兼容。
 
 > **Note：** 如果的你的APP的最低API版本是11或以上，你不必使用Support Library，你可以直接使用API框架里面的[Fragment](http://developer.android.com/reference/android/app/Fragment.html)，这节课主要是讲基于Support Library的API，Support Library有一个特殊的包名，有时候与平台版本的API名字有些轻微的不一样。
 
