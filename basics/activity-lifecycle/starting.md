@@ -18,7 +18,7 @@ Figure 1. 下面这张图讲解了activity的生命周期：*(这个金字塔模
 
 ![basic-lifecycle](basic-lifecycle.png)
 
-* 根据你的activity的复杂度，你也许不需要实现所有的生命周期方法。然而，你需要知道每一个方法的功能并确保你的app的行为能够像用户期望的那样。如何实现一个符合用户期待的app，你需要注意下面几点：
+* 根据activity的复杂度，你也许不需要实现所有的生命周期方法。然而，你需要知道每一个方法的功能并确保你的app能够像用户期望的那样执行。如何实现一个符合用户期待的app，你需要注意下面几点：
   * 当使用你的app的时候，不会因为有来电通话或者切换到其他app而导致程序crash。
   * 当用户没有激活某个组件的时候不要消耗宝贵的系统资源。
   * 当离开你的app并且一段时间后返回，不要丢失用户的使用进度。
@@ -29,7 +29,7 @@ Figure 1. 下面这张图讲解了activity的生命周期：*(这个金字塔模
   * **Stopped**：在这个状态, activity完全被隐藏，不被用户可见。可以认为是在后台。当stopped, activity实例与它的所有状态信息都会被保留，但是activity不能执行任何代码。
 * 其它状态 (**Created**与**Started**)都是短暂的，系统快速的执行那些回调函数并通过执行下一阶段的回调函数移动到下一个状态。也就是说，在系统调用<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>, 之后会迅速调用<a href="http://developer.android.com/reference/android/app/Activity.html#onStart()">onStart()</a>, 之后再迅速执行<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>。上面就是基本的activity生命周期。
 
-## 指定你的程序首次启动的Activity
+## 指定程序首次启动的Activity
 
 * 当用户从主界面点击你的程序图标时，系统会调用你的app里面的被声明为"launcher" (or "main") activity中的onCreate()方法。这个Activity被用来当作你的程序的主要进入点。
 * 你可以在[AndroidManifest.xml](http://developer.android.com/guide/topics/manifest/manifest-intro.html)中定义哪个activity作为你的主activity。
