@@ -10,15 +10,15 @@
 
 **图1：**两个fragments，在同一个activity不同屏幕尺寸中用不同的配置来展示。在大屏幕上，两个fragment被并排放置，但是在手机上，一次只放置一个fragment，所以在用户导航中，两个fragment必须进行替换。
 
-* [FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html)类提供了方法，让你在activity运行时能够对fragment进行添加，移除，替换，来达到动态的用户体验。
+* [FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html)类提供了方法，让你在activity运行时能够对fragment进行添加，移除，替换，来实现动态的用户体验。
 
 ## 在activity运行时添加fragment
 
-* 比起用`<fragment>`标签在activity的布局文件中定义fragments,就像[上节课](creating.html)说的，你也可以在activity运行时动态添加fragment，如果你在打算在activity的生命周期内替换fragment，这是必须的。
+* 比起用`<fragment>`标签在activity的布局文件中定义fragment,就像[上节课](creating.html)说的，你也可以在activity运行时动态添加fragment，如果你在打算在activity的生命周期内替换fragment，这是必须的。
 
 * 为了执行fragment的增加或者移除操作，你必须用 [FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html) 创建一个[FragmentTransaction](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html)对象, FragmentTransaction提供了用来增加、移除、替换以及其它一些操作的APIs。
 
-* 如果你的activity允许fragments移除或者替换，你应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始化fragment(s).
+* 如果你的activity允许fragment移除或者替换，你应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始化fragment(s).
 
 * 运用fragment（特别是那些你在运行时添加的）的一个很重要的规则就是在布局中你必须有一个容器[view](http://developer.android.com/reference/android/view/View.html)，fragment的layout将会放在这个view里面。
 
