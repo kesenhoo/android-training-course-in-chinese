@@ -1,4 +1,4 @@
-# 创建自定义View
+﻿# 创建自定义View
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/custom-views/index.html>
 
@@ -38,5 +38,5 @@ Android 2.1 (API level 7) 或更高
 
 * [**优化View**](optimize-view.html)
 
-  不管你的UI如何的漂亮，如果不能流畅运行用户也不会喜欢。学习如何避免一般的性能问题，和如何使用硬件加速来使你的自定义图像运行更流畅。
+  不管你的UI如何的漂亮，如果不能以高帧率流畅运行，用户也不会喜欢。学习如何避免一般的性能问题，和如何使用硬件加速来使你的自定义图像运行更流畅。
 
