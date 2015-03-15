@@ -4,8 +4,6 @@
 
 Google的网页爬虫机器([Googlebot](https://support.google.com/webmasters/answer/182072?hl=en))会抓取页面，并为Google搜索引擎建立索引，也能为你的Android app内容建立索引。通过选择加入这一功能，你可以允许Googlebot通过抓取在Google Play Store中的APK内容，为你的app内容建立索引。要指出哪些app内容你想被Google索引，只需要添加链接元素到现有的[Sitemap](https://support.google.com/webmasters/answer/156184?hl=en)文件，或添加到你的网站中每个页面的`<head>`元素中，以相同的方式为你的页面添加。
 
->**Note**:现在，Google搜索app索引功能从以前只限于英文Android app，转变为开放给参与了早期开放计划(early adopter program)的所有开发者。你可以通过提交[App Indexing Expression of Interest](https://docs.google.com/a/google.com/forms/d/1itcqPAQqggJ6e4m8aejWLM8Dc5O8P6qybgGbKCNxGV0/viewform)表格来注册成为参与者。
-
 你所共享给Google搜索的深度链接必须按照下面的URI格式:
 
 ```

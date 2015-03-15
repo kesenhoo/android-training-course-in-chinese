@@ -181,7 +181,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-下一节会描述[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)的构造参数，和处理与action bar交互所需的其他步骤。
+下一节会描述[ActionBarDrawerToggle](http://developer.android.com/reference/android/support/v4/app/ActionBarDrawerToggle.html)的构造参数，和处理与action bar图标交互所需的其他步骤。
 
 ## 使用App图标来打开和关闭
 

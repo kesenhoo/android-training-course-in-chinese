@@ -13,7 +13,7 @@
 
 > **Note**:为了能使Android系统能够恢复Activity中的View的状态，**每个View都必须有一个唯一ID**，由[android:id](http://developer.android.com/reference/android/view/View.html#attr_android:id)定义。
 
-* 为了让你可以保存额外更多的数据到saved instance state。在Activity的声明周期里面存在一个添加的回调函数，你必须重写这个函数。这个回调函数并没有在前面课程的图片示例中显示。这个方法是<a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState()</a> ，当用户离开你的Activity时，系统会调用它。当系统调用这个函数时，系统会在你的Activity被异常Destory时传递 Bundle 对象，这样你可以增加额外的信息到Bundle中并保存与系统中。然后如果系统在Activity被Destory之后想重新创建这个Activity实例时，之前的那个Bundle对象会(系统)被传递到你的activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onRestoreInstanceState(android.os.Bundle)">onRestoreInstanceState()</a>方法与 onCreate() 方法中。
+* 为了让你可以保存额外更多的数据到saved instance state。在Activity的声明周期里面存在一个添加的回调函数，你必须重写这个函数。这个回调函数并没有在前面课程的图片示例中显示。这个方法是<a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState()</a> ，当用户离开你的Activity时，系统会调用它。当系统调用这个函数时，系统会在你的Activity被异常Destory时传递 Bundle 对象，这样你可以增加额外的信息到Bundle中并保存到系统中。然后如果系统在Activity被Destory之后想重新创建这个Activity实例时，之前的那个Bundle对象会(系统)被传递到你的activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onRestoreInstanceState(android.os.Bundle)">onRestoreInstanceState()</a>方法与 onCreate() 方法中。
 
 ![basic-lifecycle-savestate](basic-lifecycle-savestate.png)
 

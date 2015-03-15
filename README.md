@@ -1,4 +1,4 @@
-# Google Android官方培训课程中文版(v0.8)
+# Android官方培训课程中文版(v0.9.1)
 
 ![Android Training](android_training.jpg)
 
@@ -24,14 +24,16 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
 
 ### 更新记录
-* v0.8 - 2015/02/12
-* v0.7 - 2014/11/30
-* v0.6 - 2014/11/02
-* v0.5 - 2014/10/18
-* v0.4 - 2014/09/11
-* v0.3 - 2014/08/31
-* v0.2 - 2014/08/14
-* v0.1 - 2014/08/05
+* v0.9.1 - 2015/03/14
+* v0.9.0 - 2015/03/09
+* v0.8.0 - 2015/02/12
+* v0.7.0 - 2014/11/30
+* v0.6.0 - 2014/11/02
+* v0.5.0 - 2014/10/18
+* v0.4.0 - 2014/09/11
+* v0.3.0 - 2014/08/31
+* v0.2.0 - 2014/08/14
+* v0.1.0 - 2014/08/05
 
 ## 参与方式
 
@@ -43,12 +45,11 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 你也可以选择加入QQ群和学习Training课程的小伙伴一起讨论交流：
 
-* Android Training基础群，适合刚接触Android Training课程的同学
-    * 基础群(1)：**363415744**
+* Android Training基础群，适合刚接触Android Training课程的同学。
+    * 基础群(1)：**363415744**，已满
     * 基础群(2)：**399077455**
-* Android Training进阶群：**414115939**，适合实际Android开发至少一年以上的同学
-* Android Training高级群：**399096506**
-
+* Android Training进阶群：**414115939**，适合实际Android开发经验1-3年的同学。
+* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，谢谢配合！
 
 ## 课程结构
 
@@ -89,13 +90,17 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https:://github.com/kesenhoo)
    * [创建自定义的UI](http://hukai.me/android-training-course-in-chinese/wearables/ui/index.html) - @[Roya](https://github.com/RoyaAoki)
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
+* [Android企业级应用](http://hukai.me/android-training-course-in-chinese/enterprise/index.html)
+   * [Ensuring Compatibility with Managed Profiles](http://hukai.me/android-training-course-in-chinese/enterprise/app-compatibility.html) - @2015/03/14 - 待认领
+   * [Implementing App Restrictions](http://hukai.me/android-training-course-in-chinese/enterprise/app-restrictions.html) - @2015/03/14 - 待认领
+   * [Building a Work Policy Controller](http://hukai.me/android-training-course-in-chinese/enterprise/work-policy-ctrl.html) - @2015/03/14 - 待认领
 * [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
    * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
-   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @2014/10/20 - 待认领
-   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @2014/10/20 - 待认领
-   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @2014/10/20 - 待认领
-   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @2014/10/20 - 待认领
-   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @2014/10/20 - 待认领
+   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @[awong1900](https://github.com/awong1900)
+   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @待认领
+   * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
+   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
@@ -129,7 +134,6 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android安全与隐私](http://hukai.me/android-training-course-in-chinese/best-security.html)
    * [Security Tips](http://hukai.me/android-training-course-in-chinese/security/security-tips.html) - @[craftsmanBai](https://github.com/craftsmanBai)
    * [使用HTTPS与SSL](http://hukai.me/android-training-course-in-chinese/security/security-ssl.html) - @[craftsmanBai](https://github.com/craftsmanBai)
-   * [企业版App](http://hukai.me/android-training-course-in-chinese/security/enterprise/index.html) - @[craftsmanBai](https://github.com/craftsmanBai)
 * [Android测试程序](http://hukai.me/android-training-course-in-chinese/best-testing.html)
    * [测试你的Activity](http://hukai.me/android-training-course-in-chinese/testing/activity-testing/index.html) - @[huanglizhuo](https://github.com/huanglizhuo)
 
@@ -151,7 +155,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 | @[K0ST](https://github.com/K0ST) | @[Andrwyw](https://github.com/Andrwyw) | @[zhaochunqi](https://github.com/zhaochunqi) |
 | @[lltowq](https://github.com/lltowq) | @[allenlsy](https://github.com/allenlsy) | @[AllenZheng1991](https://github.com/AllenZheng1991) |
 | @[pedant](https://github.com/pedant) | @[craftsmanBai](https://github.com/craftsmanBai) | @[huanglizhuo](https://github.com/huanglizhuo) |
-| @[Roya](https://github.com/RoyaAoki) | @[awong1900](https://github.com/awong1900) | 2:9 |
+| @[Roya](https://github.com/RoyaAoki) | @[awong1900](https://github.com/awong1900) | @[dupengwei](https://github.com/dupengwei) |
 | 0:10 | 1:10 | 2:10 |
 
 

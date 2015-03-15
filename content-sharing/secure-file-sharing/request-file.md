@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 下面的例子展示了客户端应用程序应该如何处理发自服务端应用程序的[Intent](http://developer.android.com/reference/android/content/Intent.html)，以及客户端应用程序如何使用Content URI获取[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)：
 
 ```java
-/*
+    /*
      * When the Activity of the app that hosts files sets a result and calls
      * finish(), this method is invoked. The returned Intent contains the
      * content URI of a selected file. The result code indicates if the

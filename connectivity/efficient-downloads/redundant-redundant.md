@@ -6,7 +6,7 @@
 
 ## 1)Cache Files Locally
 
-避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请从缓存中获取最新的数据，当数据过期的时候，会提示进行刷新。
+避免下载重复的数据是很重要的。可以使用缓存机制来处理这个问题。缓存static的资源，例如完整的图片。这些缓存的资源需要分开存放。为了保证app不会因为缓存而导致显示的是旧数据，请在缓存中获取数据的同时检测其是否过期，当数据过期的时候，会提示进行刷新。
 
 <!-- More -->
 
@@ -66,4 +66,4 @@ private void enableHttpResponseCache() {
 ```
 
 上面的sample code会在Android 4.0以上的设备上开启response cache，同时不会影响到之前的程序。在cache被开启之后，所有cache中的HTTP请求都可以直接在本地存储中进行响应，并不需要开启一个新的网络连接。
-被cache起来的response可以被server所确保没有过期，这样就减少了带宽。没有被cached的response会因方便下次请求而被存储在response cache中。
+被cache起来的response可以被server所确保没有过期，这样就减少了下载所需的带宽。没有被cached的response会为了方便下次请求而被存储在response cache中。

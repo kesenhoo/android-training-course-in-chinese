@@ -61,7 +61,7 @@ public void onCreate(Bundle savedInstanceState) {
 
 ## 向上导航至父activity
 
-要在用户点击app图标时向上导航，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html)类中的静态方法[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像[FLAG_ACTIVITY_CLEAR_TOP](http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP)定义的那样，提到栈顶。
+要在用户点击app图标时向上导航，你可以使用[NavUtils](http://developer.android.com/reference/android/support/v4/app/NavUtils.html)类中的静态方法[navigateUpFromSameTask()](http://developer.android.com/reference/android/support/v4/app/NavUtils.html#navigateUpFromSameTask%28android.app.Activity%29)。当你调用这一方法时，系统会结束当前的activity并启动(或恢复)相应的父activity。如果目标activity在任务的后退栈中(back stack)，则目标activity会像[FLAG_ACTIVITY_CLEAR_TOP](http://developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TOP)定义的那样，提到栈顶。提到栈顶的方式取决于父activity是否处理了对<a href="http://developer.android.com/reference/android/app/Activity.html#onNewIntent(android.content.Intent)">onNewIntent()</a>的调用。
 
 例如:
 

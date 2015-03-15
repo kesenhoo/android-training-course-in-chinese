@@ -16,7 +16,7 @@
 
 对于startActivityForResult() 方法中的intent与之前介绍的并没有什么差异，只不过是需要在这个方法里面多添加一个int类型的参数。
 
-这个integer的参数叫做"request code"，它标识了你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。
+这个integer的参数叫做"request code"，用于标识你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。
 
 例如，下面是一个启动activity来选择联系人的例子：
 
@@ -58,7 +58,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 在这个例子中被返回的Intent中使用Uri的形式来表示返回的联系人。
 
-为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contack，Camera app 则是在`data`数据区返回一个 Bitmap （see the class about [Capturing Photos](http://developer.android.com/training/camera/index.html)).
+为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在`data`数据区返回一个 Bitmap （see the class about [Capturing Photos](http://developer.android.com/training/camera/index.html)).
 
 ### 读取联系人数据
 

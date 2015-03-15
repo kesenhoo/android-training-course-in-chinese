@@ -45,11 +45,13 @@
 
 当你把包含有指定activity内容的URI的intent filter添加到你的app manifest后，Android就可以在你的app运行时，为app与匹配URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)建立路径。
 
+> **Note:** 对一个URI pattern，intent filter可以只包含一个单一的`data`元素，创建不同的intent filter来匹配额外的URI pattern。
+
 学习更多关于定义intent filter，见[Allow Other Apps to Start Your Activity](http://developer.android.com/training/basics/intents/filters.html)
 
-##从传入的意图读取数据
+##从传入的intent读取数据
 
-一旦系统通过一个intent filter启动你的activity，你可以使用由[Intent](http://developer.android.com/reference/android/content/Intent.html)提供的数据来决定需要处理什么。调用[getData()](http://developer.android.com/reference/android/content/Intent.html#getData())和[getAction()](http://developer.android.com/reference/android/content/Intent.html#getAction())方法来取出传入[Intent](http://developer.android.com/reference/android/content/Intent.html)中的数据与操作。你可以在activity生命周期的任何时候调用这些方法，但一般情况下你应该在前期回调中调用如[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle))或[onStart()](http://developer.android.com/reference/android/app/Activity.html#onStart())。
+一旦系统通过一个intent filter启动你的activity，你可以使用由[Intent](http://developer.android.com/reference/android/content/Intent.html)提供的数据来决定需要处理什么。调用[getData()](http://developer.android.com/reference/android/content/Intent.html#getData())和[getAction()](http://developer.android.com/reference/android/content/Intent.html#getAction())方法来取出传入[Intent](http://developer.android.com/reference/android/content/Intent.html)中的数据与操作。你可以在activity生命周期的任何时候调用这些方法，但一般情况下你应该在前期回调如[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle))或[onStart()](http://developer.android.com/reference/android/app/Activity.html#onStart())中调用。
 
 这个是一段代码，展示如何从[Intent](http://developer.android.com/reference/android/content/Intent.html)中取出数据:
 
@@ -83,7 +85,7 @@ $ adb shell am start
         -d <URI> <PACKAGE>
 ```
 
-例如，下面的命令视图浏览与指定URI相关的目标app activity。
+例如，下面的命令试图浏览与指定URI相关的目标app activity。
 
 ```
 $ adb shell am start
