@@ -1,4 +1,4 @@
-# 接收从其他App返回的数据
+# 接收从其他App传送来的数据
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/sharing/receive.html>
 

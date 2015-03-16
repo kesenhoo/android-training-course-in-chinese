@@ -16,16 +16,19 @@
 
 Material 主题被定义在：
 
-* @android:style/Theme.Material (dark version)
-* @android:style/Theme.Material.Light (light version)
-* @android:style/Theme.Material.Light.DarkActionBar
+* `@android:style/Theme.Material` (暗色版本)
+* `@android:style/Theme.Material.Light` (亮色版本)
+* `@android:style/Theme.Material.Light.DarkActionBar`
 
 <p>
+
 ![](MaterialDark.png)
-![](MaterialDark.png)
+
+![](MaterialLight.png)
+
 </p>
 
-想知道可用的 Material style 的列表，可以在 API 文档中参见 R.style.
+想知道可用的 Material style 的列表，可以在 API 文档中参见 [R.style](http://developer.android.com/reference/android/R.style.html).
 
 > 注意： Material 主题只支持 Android 5.0 (API level 21) 及以上版本。[v7 Support 库](https://developer.android.com/tools/support-library/features.html#v7)提供了一些组件的 Material Deisgn 样式，也支持自定义调色板。更多信息，请参见维护兼容性章节。
 
@@ -54,7 +57,7 @@ Material 主题使得你很容易自定义状态栏，你可以设定适合自�
 
 你也可以在状态栏的背景上绘画。比如，你想让位于照片之上的状态栏透明，并保留一点深色渐变以确保白色图标可见。这样的话，设定 `android:statusBarColor` 属性为 `@android:color/transparent` 并调整窗口的 Flag 标记。你也可以用 `Window.setStatusBarColor()` 来实现动画或淡入淡出。
 
-> 注意：状态栏必须随时保持和 primary toolbar (即顶部Actionbar，译者注) 的清晰界线。除了一种情况，在状态栏后面显示图片或媒体内容时，你需要用渐变色来确保前台图标仍然可见。
+> 注意：状态栏必须随时保持和 primary toolbar (即顶部Actionbar，译者注) 的界线清晰。除了一种情况，即在状态栏后面显示图片或媒体内容时之外，你都要用渐变色来确保前台图标仍然可见。
 
 当你自定义导航栏和状态栏时，要么两者都透明，要么只修改状态栏。其他情况下，导航栏应该保持黑色。
 

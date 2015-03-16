@@ -8,9 +8,9 @@
 
 大多数的请求类型都已经包含在Volley的工具箱里面。如果你的请求返回数值是一个string，image或者JSON，那么你是不需要自己去实现请求类的。
 
-对于那些你需要自定义的请求类型，下面是你需要做得步骤：
+对于那些你需要自定义的请求类型，你需要执行以下操作：
 
-* 继承`Request<T>`类，`<T>`表示了请求返回的数据类型。因此如果你需要解析的响应类型是一个String，可以通过继承`Request<String>`来创建你自定义的请求。请参考Volley工具类中的StringRequest与 ImageRequest来学习如何继承Request<T>。
+* 继承`Request<T>`类，`<T>`表示请求返回的数据类型。因此如果你需要解析的响应类型是一个String，可以通过继承`Request<String>`来创建你自定义的请求。请参考Volley工具类中的StringRequest与 ImageRequest来学习如何继承Request<T>。
 * 实现抽象方法`parseNetworkResponse()`与` deliverResponse()`，下面会详细介绍。
 
 ### parseNetworkResponse
@@ -57,7 +57,7 @@ protected void deliverResponse(T response) {
 
 ### Example: GsonRequest
 
-[Gson](http://code.google.com/p/google-gson/)是一个使用映射支持JSON与Java对象之间相互转换的库文件。你可以定义和JSON keys想对应名称的Java对象。把对象传递给传递Gson，然后Gson会帮你为对象填充字段值。 下面是一个完整的示例：演示了使用Gson解析Volley数据：
+[Gson](http://code.google.com/p/google-gson/)是一个使用映射支持JSON与Java对象之间相互转换的库文件。你可以定义和JSON keys相对应名称的Java对象。把对象传递给传递Gson，然后Gson会帮你为对象填充字段值。 下面是一个完整的示例：演示了使用Gson解析Volley数据：
 
 ```java
 public class GsonRequest<T> extends Request<T> {
