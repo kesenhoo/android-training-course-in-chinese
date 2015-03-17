@@ -3,22 +3,23 @@
 > 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
 在前面的课程中展示了如何在单独的一个线程中执行一个任务。如果你的线程只想执行一次，那么上一课的内容已经能满足你的需要了。
-如果你想在一个数据集中重复执行一个任务，而且你只需要一个执行运行一次。这时，使用一个<a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>将能满足你的需求。
+如果你想在一个数据集中重复执行一个任务，而且你只需要一个执行运行一次。这时，使用一个[IntentService](http://developer.android.com/reference/android/app/IntentService.html)将能满足你的需求。
 为了在资源可用的的时候自动执行任务，或者允许不同的任务同时执行（或前后两者），你需要提供一个管理线程的集合。
-为了做这个管理线程的集合，使用一个<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>实例，当一个线程在它的线程池中变得不受约束时，它会运行队列中的一个任务。
+为了做这个管理线程的集合，使用一个[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)实例，当一个线程在它的线程池中变得不受约束时，它会运行队列中的一个任务。
 为了能执行这个任务，你所需要做的就是把它加入到这个队列。
 
 一个线程池能运行多个并行的任务实例，因此你要能保证你的代码是线程安全的，从而你需要给会被多个线程访问的变量附上同步代码块(synchronized block)。
 当一个线程在对一个变量进行写操作时，通过这个方法将能阻止另一个线程对该变量进行读取操作。
 典型的，这种情况会发生在静态变量上，但同样它也能突然发生在任意一个只实例化一次。
-为了学到更多的相关知识，你可以阅读<a href="http://developer.android.com/guide/components/processes-and-threads.html" target="_blank">进程与线程(Processes and Threads)</a>这一API指南。
+为了学到更多的相关知识，你可以阅读[进程与线程](http://developer.android.com/guide/components/processes-and-threads.html)这一API指南。
 
 ##定义线程池类
-在自己的类中实例化<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html" target="_blank">ThreadPoolExecutor</a>类。在这个类里需要做以下事：
 
-**1.   为线程池使用静态变量**
+在自己的类中实例化[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)类。在这个类里需要做以下事：
 
-为了有一个单一控制点用来限制CPU或网络资<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>类型，你可能想有一个能管理每一个线程的线程池，且每个线程都会是单个实例。比如，你可以把这个作为一部分添加到你的全局变量的声明中去：
+**为线程池使用静态变量**
+
+为了有一个单一控制点用来限制CPU或网络资源[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)类型，你可能想有一个能管理所有线程的线程池，且每个线程都会是单个实例。比如，你可以把这个作为一部分添加到你的全局变量的声明中去：
 ```java
 public class PhotoManager {
     ...
@@ -29,9 +30,10 @@ public class PhotoManager {
     }
     ...
 ```
-**2.   使用私有构造方法**
+**2. 使用私有构造方法**
 
- 让构造方法私有从而保证这是一个单例，这意味着你不需要在同步代码块(synchronized block)中额外访问这个类：
+让构造方法私有从而保证这是一个单例，这意味着你不需要在同步代码块(synchronized block)中额外访问这个类：
+
 ```java
 public class PhotoManager {
     ...
