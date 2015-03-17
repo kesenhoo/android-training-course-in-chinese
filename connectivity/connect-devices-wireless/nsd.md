@@ -80,7 +80,7 @@ public void initializeRegistrationListener() {
 }
 ```
 
-万事俱备只欠东风，调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo, int, android.net.nsd.NsdManager.RegistrationListener">registerService()</a方法，真正注册服务。
+万事俱备只欠东风，调用<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.html#registerService(android.net.nsd.NsdServiceInfo, int, android.net.nsd.NsdManager.RegistrationListener">registerService()</a>方法，真正注册服务。
 
 因为该方法是异步的，所以在服务注册之后的操作都需要在<a href="http://developer.android.com/reference/android/net/nsd/NsdManager.RegistrationListener.html#onServiceRegistered(android.net.nsd.NsdServiceInfo)">onServiceRegistered()</a>方法中进行。
 
