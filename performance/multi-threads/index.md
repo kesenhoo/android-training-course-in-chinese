@@ -6,16 +6,20 @@
 
 这一部分向你展示了如何在一个Android应用中创建和使用多线程，以及如何使用一个线程池对象（thread pool object）。你还将了解到如何通过代码运行一个线程,以及如何让你创建的一个线程和UI线程之间进行通信。
 
-## Lessons
+## 课程
 
 ###[在一个线程中执行一段特定的代码](define-runnable.html)
+
 学习如何通过实现[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)接口定义一个线程类，让你写的代码能在单独的一个线程中执行。
 
 ###[为多线程创建线程池](create-threadpool.html)
+
 学习如何创建一个能管理线程池和任务队列的对象，需要使用一个叫[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)的类。
 
 ###[在线程池中的一个线程里执行代码](run-code.html)
+
 学习如何让线程池里的一个线程执行一个任务。
 
 ###[与UI线程通信](communicate-ui.html)
+
 学习如何让线程池里的一个普通线程与UI线程进行通信。
