@@ -4,14 +4,14 @@
 
 本节课程讲述如何追踪手势移动。
 
-每当触摸位置、压力、大小发生变化时，[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))函数都会随着新的[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件参数被重新调用一次。正如[**检测常用的手势**](/detector.html)中描述的那样，触摸事件全部都记录在[onTouchEvent()函数](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))的[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)参数中。
+每当触摸位置、压力、大小发生变化时，<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>函数都会随着新的[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件参数被重新调用一次。正如[**检测常用的手势**](/detector.html)中描述的那样，触摸事件全部都记录在onTouchEvent()函数的[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)参数中。
 
 因为基于手指的触摸的交互方式并不总是非常精确，所以检测触摸事件更多的是基于手势移动而非简单地触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单地点击），Android引入了“touch slop”的概念。Touch slop是指用户触摸事件在可被识别为移动手势前，移动过的那一段像素距离。关于这一主题的更多讨论，可以在[管理ViewGroup中的触摸事件](viewgroup.html)中查看。
 
 根据你的app的需求，有多种追踪手势移动的方式可以选择。比如：
 * 追踪手指的起始和终止位置（比如，把屏幕上的对象从A点移动到B点）
 * 根据x、y轴坐标，追踪手指移动的方向。
-* 追踪历史状态。你可以通过调用[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)的[getHistorySize()](http://developer.android.com/reference/android/view/MotionEvent.html#getHistorySize())函数获得一个手势的历史尺寸大小。你可以通过移动事件的`getHistorical<Value>`系列函数获得事件之前的位置、尺寸、时间以及按压力(pressures)。当你需要绘制用户手指痕迹时，历史状态非常有用，比如触摸绘图。查看[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)来了解更多细节。
+* 追踪历史状态。你可以通过调用[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)的<a href="http://developer.android.com/reference/android/view/MotionEvent.html#getHistorySize()">getHistorySize()</a>函数获得一个手势的历史尺寸大小。你可以通过移动事件的`getHistorical<Value>`系列函数获得事件之前的位置、尺寸、时间以及按压力(pressures)。当你需要绘制用户手指痕迹时，历史状态非常有用，比如触摸绘图。查看[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)来了解更多细节。
 * 追踪手指在触摸屏上滑过的速度。
 
 ## 追踪速度
