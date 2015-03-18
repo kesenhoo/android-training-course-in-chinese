@@ -10,16 +10,20 @@
 
 点击下载：[**ThreadSample**](http://developer.android.com/shareables/training/ThreadSample.zip)
 
-## Lessons
+## 课程
 
-### [在一个线程中执行一段特定的代码](define-runnable.html)
-学习如何通过实现[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)接口来定义一个线程类，让你写的代码能在单独的一个线程中执行。
+###[在一个线程中执行一段特定的代码](define-runnable.html)
 
-### [为多线程创建线程池](create-threadpool.html)
+学习如何通过实现[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)接口定义一个线程类，让你写的代码能在单独的一个线程中执行。
+
+###[为多线程创建线程池](create-threadpool.html)
+
 学习如何创建一个能管理线程池和任务队列的对象，需要使用一个叫[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)的类。
 
-### [在线程池中的一个线程里执行代码](run-code.html)
+###[在线程池中的一个线程里执行代码](run-code.html)
+
 学习如何让线程池里的一个线程执行一个任务。
 
-### [与UI线程通信](communicate-ui.html)
+###[与UI线程通信](communicate-ui.html)
+
 学习如何让线程池里的一个普通线程与UI线程进行通信。
