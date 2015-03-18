@@ -2,14 +2,14 @@
 
 > 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/scroll.html>
 
-Android中通常使用[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)类来实现滚动（scroll）。任何可能超过父类边界的布局都应该嵌套在一个[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)中，以提供一个由系统框架管理的可滚动的view。仅仅在某些特殊情形下，才需要实现一个自定义scroller。本节课程描述了这样一个情形：使用scrollers显示滚动效果来响应触摸手势。
+Android中通常使用[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)类来实现滚动（scroll）。任何可能超过父类边界的布局都应该嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)中，以提供一个由系统框架管理的可滚动的view。仅仅在某些特殊情形下，才需要实现一个自定义scroller。本节课程描述了这样一个情形：使用scrollers显示滚动效果，以响应触摸手势。
 
-你可以使用scrollers([Scroller](http://developer.android.com/reference/android/widget/Scroller.html)或者[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)收集数据，这些数据可用来产生滚动动画以响应一个触摸事件。这两个类很相似，但是[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)有一些函数，在平移或惯性滑动手势后，能向用户指出他们已经达到内容尽头了。**InteractiveChart**例子使用了[EdgeEffect](http://developer.android.com/reference/android/widget/EdgeEffect.html)类（实际上是[EdgeEffectCompat](http://developer.android.com/reference/android/support/v4/widget/EdgeEffectCompat.html)类），用来在用户到达内容尽头时显示发光效果。
+为了收集数据来产生滚动动画以响应一个触摸事件，你可以使用scrollers([Scroller](http://developer.android.com/reference/android/widget/Scroller.html)或者[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html))。这两个类很相似，但[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)有一些函数，能在平移或快速滑动手势后，暗示用户已经达到内容尽头了。**InteractiveChart**例子使用了[EdgeEffect](http://developer.android.com/reference/android/widget/EdgeEffect.html)类（实际上是[EdgeEffectCompat](http://developer.android.com/reference/android/support/v4/widget/EdgeEffectCompat.html)类），来在用户到达内容尽头时显示发光效果。
 
 >**注意**：比起Scroller类，我们更推荐使用[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)类来产生滚动动画。[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)类为老设备提供了很好的向后兼容性。
->另外需要注意的是，当你自己实现滚动时，通常只需要使用scrollers。如果你把布局嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)和[HorizontalScrollView](http://developer.android.com/reference/android/widget/HorizontalScrollView.html)中，它们会帮你把这些做好。
+>另外需要注意的是，当你要自己实现滚动时，才需要使用scrollers。如果你把布局嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)和[HorizontalScrollView](http://developer.android.com/reference/android/widget/HorizontalScrollView.html)中，它们会帮你把这些做好。
 
-通过使用平台标准的滚动物理定律（摩擦、速度等），scroller可随着时间产生滚动动画。实际上，scroller本身不会绘制任何东西。Scrollers只是随着时间的推移帮你追踪滚动的偏移量，但它们不会自动地把这些位置应用到你的view上。你需要以某种让你的滚动动画更流畅的速度，来获取并使用新的坐标。
+通过使用平台标准的滚动物理因素（摩擦、速度等），scroller被用来随着时间产生滚动动画。实际上，scroller本身不会绘制任何东西。Scrollers只是随着时间的推移，帮你追踪滚动的偏移量，但它们不会自动地把这些位置应用到你的view上。你应该按一定频率，获取并应用这些新的坐标值，来让滚动动画更加顺滑。
 
 ## 理解术语Scrolling
 
