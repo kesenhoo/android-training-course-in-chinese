@@ -4,7 +4,7 @@
 
 当你构建一个intent，你必须指定这个intent需要触发的actions。Android定义了一些actions，包括ACTION_SEND，这个action表明着这个intent是用来从一个activity发送数据到另外一个activity的，甚至是跨进程之间的。
 
-为了发送数据到另外一个activity，你需要做的是指定数据与数据的类型，系统会识别出能够兼容接受的这些数据的activity并且把这些activity显示给用户进行选择(如果有多个选择)，或者是立即启动Activity(只有一个兼容的选择)。同样的，你可以在manifest文件的Activity描述中添加接受哪些数据类型。
+为了发送数据到另外一个activity，你需要做的是指定数据与数据的类型，系统会识别出能够兼容接受的这些数据的activity。如果这些选择有多个，则把这些activity显示给用户进行选择；如果只有一个兼容选择，则立即启动该Activity。同样的，你可以在manifest文件的Activity描述中添加接受的数据类型。
 
 在不同的程序之间使用intent来发送与接受数据是在社交分享内容的时候最常用的方法。Intent使得用户用最常用的程序进行快速简单的分享信息。
 
@@ -12,7 +12,7 @@
 
 ## 分享文本内容(Send Text Content)
 
-ACTION_SEND的最直接与最常用的是从一个Activity发送文本内容到另外一个Activity。例如，Android内置的浏览器可以把当前显示页面的URL作为文本内容分享到其他程序。这是非常有用的，通过邮件或者社交网络来分享文章或者网址给好友。下面是一段Sample Code:
+ACTION_SEND最直接与最常用的地方是从一个Activity发送文本内容到另外一个Activity。例如，Android内置的浏览器可以把当前显示页面的URL作为文本内容分享到其他程序。这是非常有用的，通过邮件或者社交网络来分享文章或者网址给好友。下面是一段Sample Code:
 
 ```java
 Intent sendIntent = new Intent();
@@ -42,13 +42,13 @@ startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.s
 
 ![share-text-screenshot.png](share-text-screenshot.png "Figure 1. Screenshot of ACTION_SEND intent chooser on a handset.")
 
-Optionally,你可以为intent设置一些标准的附加值，例如：EXTRA_EMAIL, EXTRA_CC, EXTRA_BCC, EXTRA_SUBJECT.然而，如果接收程序没有针对那些做特殊的处理，则不会有对应的反应。你也可以使用自定义的附加值，但是除非接收的程序能够识别出来，不然没有任何效果。典型的做法是，你使用被接受程序定义的附加值。
+Optionally,你可以为intent设置一些标准的附加值，例如：EXTRA_EMAIL, EXTRA_CC, EXTRA_BCC, EXTRA_SUBJECT.然而，如果接收程序没有针对那些做特殊的处理，则不会有对应的反应。
 
 **注意:**一些e-mail程序，例如Gmail,对应接收的是EXTRA_EMAIL与EXTRA_CC，他们都是String类型的，可以使用putExtra(string,string[])方法来添加到intent里面。
 
 ## 分享二进制内容(Send Binary Content)
 
-分享二进制的数据需要结合设置特定的`MIME Type`，需要在`EXTRA_STREAM`里面放置数据的URI,下面有个分享图片的例子，这个例子也可以修改用来分享任何类型的二进制数据：
+分享二进制的数据需要结合设置特定的MIME类型`，需要在`EXTRA_STREAM`里面放置数据的URI,下面有个分享图片的例子，这个例子也可以修改用来分享任何类型的二进制数据：
 
 ```java
 Intent shareIntent = new Intent();
@@ -62,11 +62,10 @@ startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.
 
 * 你可以使用`*/*`这样的方式来指定MIME类型，但是这仅仅会match到那些能够处理一般数据类型的Activity(即一般的Activity无法详尽所有的MIME类型)
 * 接收的程序需要有访问URI资源的权限。下面有一些方法来处理这个问题：
-	* 把文件写到外部存储设备上，类似SDCard，这样所有的app都可以进行读取。使用Uri.fromFile()方法来创建可以用在分享时传递到intent里面的Uri.。然而，请记住，不是所有的程序都遵循`file://`这样格式的Uri。
-	* 在调用 getFileStreamPath()返回一个File之后，使用带有`MODE_WORLD_READABLE` 模式的openFileOutput() 方法把数据写入到你自己的程序目录下。像上面一样，使用Uri.fromFile()创建一个`file://`格式的Uri用来添加到intent里面进行分享。
-	* 媒体文件，例如图片，视频与音频，可以使用scanFile()方法进行扫描并存储到MediaStore里面。onScanCompletted()回调函数会返回一个`content://`格式的Uri.，这样便于你进行分享的时候把这个uri放到intent里面。
-	* 图片可以使用 insertImage() 方法直接插入到MediaStore 系统里面。那个方法会返回一个`content://`格式的Uri.。
-	* 存储数据到你自己的ContentProvider里面，确保其他app可以有访问你的provider的权限。(或者使用 per-URI permissions)
+	* 
+	将数据存储在你的ContentProvider中，确保其他程序有访问你的provider的权限。较好的提供访问权限的方法是使用 per-URI permissions，其对接收程序而言是只是暂时拥有该许可权限。类似于这样创建ContentProvider的一种简单的方法是使用FileProvider helper类。
+	* 
+	使用MediaStore系统。MediaStore系统主要用于音视频及图片的MIME类型。但在Android3.0之后，其也可以用于存储非多媒体类型。
 
 ## 发送多块内容(Send Multiple Pieces of Content)
 
