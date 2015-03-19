@@ -6,7 +6,7 @@
 
 每当当前的触摸位置、压力、大小发生变化时，[ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件都会触发<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>函数。正如[**检测常用的手势**](/detector.html)中描述的那样，触摸事件全部都记录在onTouchEvent()函数的[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)参数中。
 
-因为基于手指的触摸的交互方式并不总是非常精确，所以检测触摸事件更多的是基于手势移动而非简单地触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单地点击），Android引入了“touch slop”的概念。Touch slop是指，在被识别为基于移动的手势前，用户触摸移动过的那一段像素距离。关于这一主题的更多讨论，可以在[管理ViewGroup中的触摸事件](viewgroup.html)中查看。
+因为基于手指的触摸的交互方式并不总是非常精确，所以检测触摸事件更多的是基于手势移动，而非简单地基于触摸。为了帮助app区分基于移动的手势（如滑动）和非移动手势（如简单地点击），Android引入了“touch slop”的概念。Touch slop是指，在被识别为基于移动的手势前，用户触摸可移动的那一段像素距离。关于这一主题的更多讨论，可以在[管理ViewGroup中的触摸事件](viewgroup.html)中查看。
 
 根据应用的需求，有多种追踪手势移动的方式可以选择。比如：
 * 追踪手指的起始和终止位置（比如，把屏幕上的对象从A点移动到B点）

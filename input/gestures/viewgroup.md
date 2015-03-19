@@ -2,15 +2,16 @@
 
 > 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/viewgroup.html>
 
-处理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件需要特别注意，因为通常情况下都是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的子view处理不同的触摸事件，而不是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)自己处理。为了确保每个view能正确地接受到它们想要的触摸事件，可以重载<a href="http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent)">onInterceptTouchEvent()</a>函数。
+因为很多时候event的目标是ViewGroup的孩子，并不是ViewGroup本身，所以处理[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)中的触摸事件需要特别注意。
+为了确保每个view能正确地接受到它们想要的触摸事件，可以重载<a href="http://developer.android.com/reference/android/view/ViewGroup.html#onInterceptTouchEvent(android.view.MotionEvent)">onInterceptTouchEvent()</a>函数。
 
 ## 在ViewGroup中截获触摸事件
 
-每当在[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)的表面上检测到一个触摸事件，包括它子view的表面，`onInterceptTouchEvent()`都会被调用。如果`onInterceptTouchEvent()`返回`true`，[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)就被截获了，表示它不再会被传递到子view了，而是传递给该父view的<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>方法。
+每当在[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)的表面上检测到一个触摸事件，包括它子view的表面，`onInterceptTouchEvent()`都会被调用。如果`onInterceptTouchEvent()`返回`true`，[MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html)就被截获了，这表示它不会被传递给孩子了，而是传递给该父view自身的<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>方法。
 
-`onInterceptTouchEvent()`方法让父view能够在它的子view之前处理触摸事件。如果你让`onInterceptTouchEvent()`返回`true`，则之前处理触摸事件的子view会收到[ACTION_CANCEL](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_CANCEL)消息，并且该点之后的事件会被发送给该父view的`onTouchEvent()`函数，进行通常地处理。`onInterceptTouchEvent()`也可以返回`false`，这样在事件沿view层级分发到可通过`onTouchEvent()`处理它的目标前，父view可以简单地观察该事件。
+`onInterceptTouchEvent()`方法让父view能够在它的子view之前处理触摸事件。如果你让`onInterceptTouchEvent()`返回`true`，则之前处理触摸事件的子view会收到[ACTION_CANCEL](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_CANCEL)事件，并且该点之后的事件会被发送给该父view自身的`onTouchEvent()`函数，进行常规处理。`onInterceptTouchEvent()`也可以返回`false`，这样事件沿view层级分发到目标前，父view可以简单地观察该事件。这里的目标是指，通过`onTouchEvent()`处理消息事件的view。
 
-接下来的代码段中，`MyViewGroup`继承自[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)。`MyViewGroup`有多个子view。如果你水平地拖动手指经过某个子view，该子view不会接收到触摸事件，而是`MyViewGroup`处理这些触摸事件来滚动它的内容。然而，如果你点击子view中的button，或垂直地滚动子view，则父view不会截获这些触摸事件，因为子view本就是预订目标。在这些情况下，`onInterceptTouchEvent()`应该返回`false`，`MyViewGroup`的`onTouchEvent()`也不会被调用。
+接下来的代码段中，`MyViewGroup`继承自[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)。`MyViewGroup`有多个子view。如果你水平地拖动手指经过某个子view，该子view不会接收到触摸事件，而是`MyViewGroup`处理这些触摸事件来滚动它的内容。然而，如果你点击子view中的button，或垂直地滚动子view，则父view不会截获这些触摸事件，因为子view本就是预定目标。在这些情况下，`onInterceptTouchEvent()`应该返回`false`，`MyViewGroup`的`onTouchEvent()`也不会被调用。
 
 ```java
 public class MyViewGroup extends ViewGroup {
@@ -84,13 +85,13 @@ public class MyViewGroup extends ViewGroup {
 }
 ```
 
-注意[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)也提供了<a href="http://developer.android.com/reference/android/view/ViewGroup.html#requestDisallowInterceptTouchEvent(boolean)">requestDisallowInterceptTouchEvent()</a>方法。当它的子view不想该父view和祖先view通过`onInterceptTouchEvent()`截获它的触摸事件时，[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)会调用改方法。
+注意[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)也提供了<a href="http://developer.android.com/reference/android/view/ViewGroup.html#requestDisallowInterceptTouchEvent(boolean)">requestDisallowInterceptTouchEvent()</a>方法。当子view不想该父view和祖先view通过`onInterceptTouchEvent()`截获它的触摸事件时，可调用[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)的该方法。
 
 ## 使用ViewConfiguration的常量
 
 上面的代码段中使用了当前的[ViewConfiguration](http://developer.android.com/reference/android/view/ViewConfiguration.html)来初始化`mTouchSlop`变量。你可以使用[ViewConfiguration](http://developer.android.com/reference/android/view/ViewConfiguration.html)类来获取Android系统常用的一些距离、速度、时间值。
 
-“Touch slop”是指在用户触摸事件可被识别为移动手势前,移动过的那一段像素距离。Touch slop通常用来预防用户在做一些其他操作时意外地滑动，例如触摸屏幕上的元素时。
+“Touch slop”是指在被识别为移动的手势前，用户触摸可移动的那一段像素距离。Touch slop通常用来预防用户在做一些其他触摸操作时，出现意外地滑动，例如触摸屏幕上的元素。
 
 另外两个常用的[ViewConfiguration](http://developer.android.com/reference/android/view/ViewConfiguration.html)函数是<a href="http://developer.android.com/reference/android/view/ViewConfiguration.html#getScaledMinimumFlingVelocity()">getScaledMinimumFlingVelocity()</a>和<a href="http://developer.android.com/reference/android/view/ViewConfiguration.html#getScaledMaximumFlingVelocity()">getScaledMaximumFlingVelocity()</a>。这两个函数会返回初始化一个快速滑动(fling)的最小、最大速度（分别地），以像素每秒为测量单位。如：
 
@@ -122,9 +123,9 @@ case MotionEvent.ACTION_UP: {
 
 ## 扩展view的可触摸区域
 
-Android提供了[TouchDelegate](http://developer.android.com/reference/android/view/TouchDelegate.html)类让父view扩展子view的可触摸区域，扩展后的区域可超过子view本身的边界。这在子view很小，但需要一个更大的触摸区域时非常有用。如果需要，你也可以使用这种方式来实现对子view的触摸区域的收缩。
+Android提供了[TouchDelegate](http://developer.android.com/reference/android/view/TouchDelegate.html)类，让父view扩展子view的可触摸区域，扩展后的区域可超过子view本身的边界。这在子view很小，但需要一个更大的触摸区域时非常有用。如果需要，你也可以使用这种方式来实现对子view的触摸区域的收缩。
 
-在下面的例子中，[ImageButton](http://developer.android.com/reference/android/widget/ImageButton.html)对象是这个"delegate view"（是指触摸区域将被父view扩展的那个子view）。这是布局文件：
+在下面的例子中，[ImageButton](http://developer.android.com/reference/android/widget/ImageButton.html)对象是所谓的"delegate view"（是指触摸区域将被父view扩展的那个子view）。这是布局文件：
 
 ```xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
