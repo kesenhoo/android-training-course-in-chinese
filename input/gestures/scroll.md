@@ -2,37 +2,38 @@
 
 > 编写:[Andrwyw](https://github.com/Andrwyw) - 原文:<http://developer.android.com/training/gestures/scroll.html>
 
-Android中通常使用[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)类来实现滚动（scroll）。任何可能超过父类边界的布局都应该嵌套在一个[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)中，以提供一个由系统框架管理的可滚动的view。仅仅在某些特殊情形下，才需要实现一个自定义scroller。本节课程描述了这样一个情形：使用scrollers显示滚动效果来响应触摸手势。
+在Android中，通常使用[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)类来实现滚动（scroll）。任何可能超过父类边界的布局，都应该嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)中，来提供一个由系统框架管理的可滚动的view。仅在某些特殊情形下，我们才要实现一个自定义scroller。本节课程就描述了这样一个情形：使用scrollers显示滚动效果，以响应触摸手势。
 
-你可以使用scrollers([Scroller](http://developer.android.com/reference/android/widget/Scroller.html)或者[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)收集数据，这些数据可用来产生滚动动画以响应一个触摸事件。这两个类很相似，但是[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)有一些函数，在平移或惯性滑动手势后，能向用户指出他们已经达到内容尽头了。**InteractiveChart**例子使用了[EdgeEffect](http://developer.android.com/reference/android/widget/EdgeEffect.html)类（实际上是[EdgeEffectCompat](http://developer.android.com/reference/android/support/v4/widget/EdgeEffectCompat.html)类），用来在用户到达内容尽头时显示发光效果。
+为了收集数据来产生滚动动画，以响应一个触摸事件，你可以使用scrollers([Scroller](http://developer.android.com/reference/android/widget/Scroller.html)或者[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html))。这两个类很相似，但[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)有一些函数，能在平移或快速滑动手势后，向用户指出已经达到内容尽头了。**InteractiveChart**例子使用了[EdgeEffect](http://developer.android.com/reference/android/widget/EdgeEffect.html)类（实际上是[EdgeEffectCompat](http://developer.android.com/reference/android/support/v4/widget/EdgeEffectCompat.html)类），在用户到达内容尽头时显示发光效果。
 
 >**注意**：比起Scroller类，我们更推荐使用[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)类来产生滚动动画。[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)类为老设备提供了很好的向后兼容性。
->另外需要注意的是，当你自己实现滚动时，通常只需要使用scrollers。如果你把布局嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)和[HorizontalScrollView](http://developer.android.com/reference/android/widget/HorizontalScrollView.html)中，它们会帮你把这些做好。
+>另外需要注意的是，仅当你要自己实现滚动时，才需要使用scrollers。如果你把布局嵌套在[ScrollView](http://developer.android.com/reference/android/widget/ScrollView.html)和[HorizontalScrollView](http://developer.android.com/reference/android/widget/HorizontalScrollView.html)中，它们会帮你把这些做好。
 
-通过使用平台标准的滚动物理定律（摩擦、速度等），scroller可随着时间产生滚动动画。实际上，scroller本身不会绘制任何东西。Scrollers只是随着时间的推移帮你追踪滚动的偏移量，但它们不会自动地把这些位置应用到你的view上。你需要以某种让你的滚动动画更流畅的速度，来获取并使用新的坐标。
+通过使用平台标准的滚动物理因素（摩擦、速度等），scroller被用来根据时间，产生滚动动画。实际上，scroller本身不会绘制任何东西。Scrollers只是随着时间的推移，帮你追踪滚动的偏移量，但它们不会自动地把这些位置应用到你的view上。你应该按一定频率，获取并应用这些新的坐标值，来让滚动动画更加顺滑。
 
 ## 理解术语Scrolling
 
 在Android中，“Scrolling”这个词根据不同情景有着不同的含义。
 
-**Scrolling**是指视窗（viewport）（指你正在看的内容所在的‘窗口’）移动的一般过程。当朝x轴和y轴方向滚动时，就叫做平移。示例程序提供的**InteractiveChart**类，展示了两种不同类型的scrolling，即拖拽与快速滑动。
+**Scrolling**是指移动视窗（viewport）（指你正在看的内容所在的‘窗口’）的一般过程。当在x轴和y轴方向同时滚动时，就叫做平移（panning）。示例程序提供的**InteractiveChart**类，展示了两种不同类型的scrolling，拖拽与快速滑动。
 
-- **拖拽**(dragging)是scrolling的一种类型，发生在用户在触摸屏上拖拽手指时。通常可以重写[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的<a href="http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)">onScroll()</a>函数来简单地处理拖拽。关于拖拽的更多讨论，可以查看[**拖拽与缩放**](scale.html)章节。
-- **快速滑动**(fling)这种类型的scrolling，发生在用户快速拖拽并抬高手指时。当用户抬高手指后，你通常想继续保持scrolling(移动视窗)，但是会保持减速直到视窗停止移动。可以重写[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的<a href="http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)">onFling()</a>函数来实现快速滑动的处理。这也是本节课程的做法。
+- **拖拽**(dragging)是scrolling的一种类型，当用户在触摸屏上滑动手指时发生。重写[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的<a href="http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onScroll(android.view.MotionEvent,android.view.MotionEvent,float,float)">onScroll()</a>函数，经常用来实现简单的拖拽。关于拖拽的更多讨论，可以查看[**拖拽与缩放**](scale.html)章节。
+- **快速滑动**(fling)这种类型的scrolling，在用户快速拖拽后，抬起手指时发生。当用户抬高手指后，你通常想继续保持scrolling(移动视窗)，但会一直减速直到视窗停止移动。通过重写[GestureDetector.OnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html)的<a href="http://developer.android.com/reference/android/view/GestureDetector.OnGestureListener.html#onFling(android.view.MotionEvent,android.view.MotionEvent,float,float)">onFling()</a>函数，使用scroller对象，可实现快速滑动。这种用法也就是本节课程的主题。
 
-虽然经常会把使用scroller对象与快速滑动手势结合起来，但在任何你想让UI展示scrolling动画来响应触摸事件的地方，他们都可以被拿来使用。比如，你可以重写<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>函数，来直接处理触摸事件，并且产生一个scrolling效果或“对齐到页”动画(snapping to page)来响应这些触摸事件。
+scroller对象通常会与快速滑动手势结合起来使用。但在任何你想让UI展示scrolling动画，以响应触摸事件的场景，都可以用它们来实现。比如，你可以重写<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>函数，直接处理触摸事件，并且产生一个scrolling效果或“对齐到页”动画(snapping to page)，来响应这些触摸事件。
 
 ## 实现基于触摸的Scrolling
 
-本节讲述如何使用一个scroller。下面的代码段来自InteractiveChart样例的类中。它使用了[GestureDetector][GestureDetector_url]，并且重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的`onFling()`函数。它使用[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)来追踪快速滑动手势。在快速滑动手势完成后，如果用户到达内容尽头，应用会显示发光的效果。
+本节讲述如何使用scroller。下面的代码段来自InteractiveChart示例。它使用[GestureDetector][GestureDetector_url]，并且重写了[GestureDetector.SimpleOnGestureListener](http://developer.android.com/reference/android/view/GestureDetector.SimpleOnGestureListener.html)的`onFling()`函数。它使用[OverScroller](http://developer.android.com/reference/android/widget/OverScroller.html)追踪快速滑动（fling）手势。快速滑动手势后，如果用户到达内容尽头了，应用会显示一种发光效果。
 
->注意：**InteractiveChart**样例程序展示了一个可缩放、平移、滑动的表格。在接下来的代码段中，**mContentRect**表示view中的一块方形坐标区域，该区域将被用来绘制表格。在任意给定的时间点，整个表格都有某一部分会被绘制在这个区域内。**mCurrentViewport**表示表格中当前在屏幕上可见的那一部分。因为像素偏移量通常当作整型处理，所以**mContentRect**是[Rect](http://developer.android.com/reference/android/graphics/Rect.html)类型的。因为图表的区域范围是数值型/浮点型值，所以**mCurrentViewport**是[RectF](http://developer.android.com/reference/android/graphics/RectF.html)类型的。
+>注意：**InteractiveChart**样例程序展示了一个可缩放、平移、滑动的表格。在接下来的代码段中，**mContentRect**表示view中的一块矩形坐标区域，该区域将被用来绘制表格。在任意给定的时间点，表格中某一部分会被绘制在这个区域内。**mCurrentViewport**表示当前在屏幕上可见的那一部分表格。因为像素偏移量通常当作整型处理，所以**mContentRect**是[Rect](http://developer.android.com/reference/android/graphics/Rect.html)类型的。因为图表的区域范围是数值型/浮点型值，所以**mCurrentViewport**是[RectF](http://developer.android.com/reference/android/graphics/RectF.html)类型。
 
 代码段的第一部分展示了`onFling()`函数的实现：
 
 ```java
-//当前视窗（viewport）。这个矩形表示图表当前的可视区域范围。
-//视窗是app中用户可通过触摸手势操作的那部分。
+// The current viewport. This rectangle represents the currently visible 
+// chart domain and range. The viewport is the part of the app that the
+// user manipulates via touch gestures.
 private RectF mCurrentViewport =
         new RectF(AXIS_X_MIN, AXIS_Y_MIN, AXIS_X_MAX, AXIS_Y_MAX);
 
@@ -103,9 +104,9 @@ private void fling(int velocityX, int velocityY) {
 }
 ```
 
-当`onFling()`函数调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewCompat.html#postInvalidateOnAnimation(android.view.View)">postInvalidateOnAnimation()</a>时，它会触发<a href="http://developer.android.com/reference/android/view/View.html#computeScroll()"></a>>computeScroll()</a>来更新x、y的值。通常一个子view用scroller对象来产生滚动动画时会这样做，就如上面的例子一样。
+当`onFling()`函数调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewCompat.html#postInvalidateOnAnimation(android.view.View)">postInvalidateOnAnimation()</a>时，它会触发<a href="http://developer.android.com/reference/android/view/View.html#computeScroll()"></a>>computeScroll()</a>来更新x、y的值。通常一个子view用scroller对象来产生滚动动画时会这样做，就像本例一样。
 
-大多数views直接通过<a href="http://developer.android.com/reference/android/view/View.html#scrollTo(int,int)">scrollTo()</a>函数传递scroller对象的x、y坐标值。接下来的`computeScroll()`函数的实现采用了一种不同的方式。它调用<a href="http://developer.android.com/reference/android/widget/OverScroller.html#computeScrollOffset()">computeScrollOffset()</a>函数来获得当前位置的x、y值。当满足边缘显示发光效果的条件时（图表已被放大显示，x或y值超过边界，并且app当前没有显示overscroll），这段代码会设置overscroll发光效果，并调用`postInvalidateOnAnimation()`函数来让view失效重绘：
+大多数views直接通过<a href="http://developer.android.com/reference/android/view/View.html#scrollTo(int,int)">scrollTo()</a>函数传递scroller对象的x、y坐标值。接下来的`computeScroll()`函数的实现中采用了一种不同的方式。它调用<a href="http://developer.android.com/reference/android/widget/OverScroller.html#computeScrollOffset()">computeScrollOffset()</a>函数来获得当前位置的x、y值。当满足边缘显示发光效果的条件时（图表已被放大显示，x或y值超过边界，并且app当前没有显示overscroll），这段代码会设置overscroll发光效果，并调用`postInvalidateOnAnimation()`函数来让view失效重绘：
 
 ```java
 // Edge effect / overscroll tracking objects.
@@ -217,7 +218,7 @@ if (needsInvalidate) {
 
 ```
 
-这是上面代码段中调用过的**computeScrollSurfaceSize()**函数。他会计算当前可滚动部分的尺寸，以像素为单位。举例来说，如果整个图表区域都是可见的，它的值就简单地等于**mContentRect**的大小。如果图表两个方向上都放大到200%，此函数返回的尺寸在水平、垂直方向上都会大两倍。
+这是上面代码段中调用过的**computeScrollSurfaceSize()**函数。他会计算当前可滚动的尺寸，以像素为单位。举例来说，如果整个图表区域都是可见的，它的值就简单地等于**mContentRect**的大小。如果图表在两个方向上都放大到200%，此函数返回的尺寸在水平、垂直方向上都会大两倍。
 
 ```java
 private Point computeScrollSurfaceSize() {
@@ -229,4 +230,4 @@ private Point computeScrollSurfaceSize() {
 }
 ```
 
-查看[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)类的[源代码](http://github.com/android/platform_frameworks_support/blob/master/v4/java/android/support/v4/view/ViewPager.java)，可以发现另一个关于scroller的用法示例。它用滚动来响应flings，使用scrolling来实现“对齐到页”(snapping to page)动画。
+关于scroller用法的另一个示例，可查看[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)类的[源代码](http://github.com/android/platform_frameworks_support/blob/master/v4/java/android/support/v4/view/ViewPager.java)。它用滚动来响应flings，并且使用滚动来实现“对齐到页”(snapping to page)动画。
