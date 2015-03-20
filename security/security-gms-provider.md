@@ -2,9 +2,9 @@
 
 > 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文: <http://developer.android.com/training/articles/security-gms-provider.html>
 
-安卓依靠security provider保障网络通信安全。然而有时默认的security provider存在安全漏洞。为了防止这些漏洞被利用，Google Play services 提供了一个自动更新设备的security provider的方法来对抗已知的漏洞。通过调用Google Play services方法，可以确保你的应用运行在已更新的设备上。
+安卓依靠security provider保障网络通信安全。然而有时默认的security provider存在安全漏洞。为了防止这些漏洞被利用，Google Play services 提供了一个自动更新设备的security provider的方法来对抗已知的漏洞。通过调用Google Play services方法，可以确保你的应用运行在可以抵抗已知漏洞的设备上。
 
-举个例子，OpenSSL的漏洞(CVE-2014-0224)会导致中间人攻击，在通信双方未知的情况下解密流量。Google Play services 5.0提供了一个补丁，但是必须确保应用安装了这个补丁。通过调用Google Play services方法，可以确保你的应用运行在可抵抗攻击的安全设备上。
+举个例子，OpenSSL的漏洞(CVE-2014-0224)会导致中间人攻击，在通信双方不知情的情况下解密流量。Google Play services 5.0提供了一个补丁，但是必须确保应用安装了这个补丁。通过调用Google Play services方法，可以确保你的应用运行在可抵抗攻击的安全设备上。
 
 **注意**：更新设备的security provider不是更新[android.net.SSLCertificateSocketFactory](http://developer.android.com/reference/android/net/SSLCertificateSocketFactory.html).比起使用这个类，我们更鼓励应用开发者使用融入密码学的高级方法。大多数应用可以使用类似[HttpsURLConnection](http://developer.android.com/reference/javax/net/ssl/HttpsURLConnection.html)，[HttpClient](http://developer.android.com/reference/org/apache/http/client/HttpClient.html)，[AndroidHttpClient](http://developer.android.com/reference/android/net/http/AndroidHttpClient.html)这样的API，而不必去设置[TrustManager](http://developer.android.com/reference/javax/net/ssl/TrustManager.html)或者创建一个[SSLCertificateSocketFactory](http://developer.android.com/reference/android/net/SSLCertificateSocketFactory.html)。
 
@@ -20,8 +20,8 @@
 *	如果设备的Google Play services 库已经过时了，这个方法抛出[googleplayservicesrepairableexception]()异常表明无法更新Provider。应用程序可以捕获这个异常并向用户弹出合适的对话框提示更新Google Play services。
 
 *	如果产生了不可恢复的错误，该方法抛出[googleplayservicesnotavailableexception]()表示它无法更新[Provider]()。应用程序可以捕获异常并选择合适的行动，如显示标准问题解决流程图。
-*
-[installifneededasync]()方法类似，但它不抛出异常，而是使用相应的回调方法，以提示成功或失败。
+
+[installifneededasync]()方法类似，但它不抛出异常，而是通过相应的回调方法，以提示成功或失败。
 
 如果[installifneeded]()需要安装一个新的[Provider]()，可能耗费30-50毫秒（较新的设备）到350毫秒（旧设备）。如果security provider已经是最新的，该方法需要的时间量可以忽略不计。为了避免影响用户体验：
 
@@ -37,7 +37,7 @@
 
 修补security provider最简单的方法就是调用同步方法[installIfNeeded()](http://developer.android.com/reference/com/google/android/gms/security/ProviderInstaller.html##installIfNeeded(android.content.Context).如果用户体验不会被线程阻塞影响的话，这种方法很合适。
 
-举个例子，这里有一个sync adapter会更新security provider。由于它运行在后台，在等待security provider更新的时候线程阻塞是可以的。sync adapter调用installifneeded()更新security provider。如果返回正常，sync adapter可以确保security provider是最新的。如果返回异常，sync adapter可以采取适当的行动（如提示用户更新Google Play services）。
+举个例子，这里有一个sync adapter会更新security provider。由于它运行在后台，因此在等待security provider更新的时候线程阻塞是可以的。sync adapter调用installifneeded()更新security provider。如果返回正常，sync adapter可以确保security provider是最新的。如果返回异常，sync adapter可以采取适当的行动（如提示用户更新Google Play services）。
 
 ```java
 
