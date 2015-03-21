@@ -1,4 +1,4 @@
-# 为多线程创建线程池
+# 为多线程创建管理器
 
 > 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
@@ -70,9 +70,9 @@ public class PhotoManager {
     }
 ```
 
-**4.在构造方法中实例化一个Handler，且将它附加到你APP的UI线程。**
+**4. 在构造方法中实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)，且将它附加到你APP的UI线程。**
 
-一个UI线程的Handler允许你的APP安全地调用UI对象（例如View对象）的方法。大多数UI对象只能从UI线程安全地被修改。这个方法将会在<a href="performance/multi-threads/communicate-ui.html" target="_blank">与UI线程进行通信(Communicate with the UI Thread)</a>这一课中进行详细的描述。例如：
+一个[Handler](http://developer.android.com/reference/android/os/Handler.html)允许你的APP安全地调用UI对象（例如 [View](http://developer.android.com/reference/android/view/View.html)对象）的方法。大多数UI对象只能从UI线程安全地被修改。这个方法将会在[与UI线程进行通信(Communicate with the UI Thread)](performance/multi-threads/communicate-ui.html)这一课中进行详细的描述。例如：
 
 ```java
 private PhotoManager() {
@@ -94,12 +94,13 @@ private PhotoManager() {
 
 ## 确定线程池的参数
 
-一旦有了整体的类结构,你可以开始定义线程池了。为了初始化一个ThreadPoolExecutor对象，
-你需要提供以下数值：
+一旦有了整体的类结构,你可以开始定义线程池了。为了初始化一个[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)对象，你需要提供以下数值：
 
-**1.线程池的初始化大小和最大的大小**
+**1. 线程池的初始化大小和最大的大小**
 
-这个是指最初分配给线程池的线程数量，以及线程池中允许的最大线程数量。在线程池中拥有的线程数量主要取决于你的设备的CPU内核数。这个数字可以从系统环境中获得：
+这个是指最初分配给线程池的线程数量，以及线程池中允许的最大线程数量。在线程池中拥有的线程数量主要取决于你的设备的CPU内核数。
+
+这个数字可以从系统环境中获得：
 
 ```java
 public class PhotoManager {
@@ -121,7 +122,7 @@ public class PhotoManager {
 
 **3.一个任务队列**
 
-这个传入的队列由ThreadPoolExecutor获取的Runnable对象组成。为了执行一个线程中的代码，一个线程池管理者从先进先出的队列中取出一个Runnable对象且把它附加到一个线程。当你创建线程池时需要提供一个队列对象，这个队列对象类必须实现[BlockingQueue](http://developer.android.com/reference/java/util/concurrent/BlockingQueue.html)接口。为了满足你的APP的需求，你可以选择一个Android SDK中已经存在的队列实现类。为了学习更多相关的知识，你可以看一下ThreadPoolExecutor类的概述。下面是一个使用[LinkedBlockingQueue](http://developer.android.com/reference/java/util/concurrent/LinkedBlockingQueue.html)实现的例子：
+这个传入的队列由[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)获取的[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)对象组成。为了执行一个线程中的代码，一个线程池管理者从先进先出的队列中取出一个[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)对象且把它附加到一个线程。当你创建线程池时需要提供一个队列对象，这个队列对象类必须实现[BlockingQueue](http://developer.android.com/reference/java/util/concurrent/BlockingQueue.html)接口。为了满足你的APP的需求，你可以选择一个Android SDK中已经存在的队列实现类。为了学习更多相关的知识，你可以看一下[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)类的概述。下面是一个使用[LinkedBlockingQueue](http://developer.android.com/reference/java/util/concurrent/LinkedBlockingQueue.html)实现的例子：
 
 ```java
 public class PhotoManager {
@@ -139,9 +140,10 @@ public class PhotoManager {
 }
 ```
 
-## 创建一个线程池
+##创建一个线程池
 
-为了创建一个线程池，可以通过调用ThreadPoolExecutor()构造方法初始化一个线程池管理者对象，这样就能创建和管理一组可约束的线程了。如果线程池的初始化大小和最大大小相同，ThreadPoolExecutor在实例化的时候就会创建所有的线程对象。例如：
+为了创建一个线程池，可以通过调用<a href="http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html#ThreadPoolExecutor(int, int, long, java.util.concurrent.TimeUnit, java.util.concurrent.BlockingQueue<java.lang.Runnable>)" target="_blank">ThreadPoolExecutor()</a>构造方法初始化一个线程池管理者对象，这样就能创建和管理一组可约束的线程了。如果线程池的初始化大小和最大大小相同，[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)在实例化的时候就会创建所有的线程对象。例如：
+
 ```java
 private PhotoManager() {
         ...
