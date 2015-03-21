@@ -88,7 +88,7 @@ public void sendMessage(View view) {
 
 4 在文件开始处导入EditText类.
 
-在Android Studio中，按Alt + Ente 可以导入缺失的类(在Mac中使用option + return)
+在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return)
 
 5 把EditText的文本内容关联到一个本地变量并使用putExtra()方法把值传给intent.
 
@@ -279,7 +279,7 @@ Intent intent = getIntent();
 ```
 4 为Intent导包.
 
-在Android Studio中，按Alt + Ente 可以导入缺失的类(在Mac中使用option + return).
+在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
 5 提取从 MyActivity 传递过来的文本使用 getStringExtra().
 
@@ -309,7 +309,7 @@ setContentView(textView);
 
 4 为TextView 导包.
 
-在Android Studio中，按Alt + Ente 可以导入缺失的类(在Mac中使用option + return).
+在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
 DisplayMessageActivity的完整onCreate()方法应该如下：
 
