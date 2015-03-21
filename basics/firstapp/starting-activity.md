@@ -73,7 +73,7 @@ java/com.mycompany.myfirstapp/MyActivity.java
 import android.content.Intent;
 ```
 
- **Tip:**在Android Studio中，按Alt + Ente 可以导入缺失的类(在Mac中使用option + return)
+ **Tip:**在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return)
 
 3 在`sendMessage()`方法里用<a href="http://developer.android.com/reference/android/app/Activity.html#findViewById(int)">findViewById()</a>方法得到[EditText](http://developer.android.com/reference/android/widget/EditText.html)元素.
 
