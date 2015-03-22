@@ -1,6 +1,6 @@
 # 创建详情页
 
-编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/tv/playback/card.html>
+编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/tv/playback/details.html>
 
 待认领进行编写，有意向的小伙伴，可以直接修改对应的markdown文件，进行提交！
 
