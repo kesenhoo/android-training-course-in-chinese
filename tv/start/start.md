@@ -261,5 +261,4 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 更多模拟器信息：[Using the Emulator](http://developer.android.com/tools/devices/emulator.html)。 用Android Studio部署应用到模拟器，查看[Debugging with Android Studio](http://developer.android.com/sdk/installing/studio-debug.html)。用带ADT插件的Eclipse部署应用到模拟器，查看[Building and Running from Eclipse with ADT ](http://developer.android.com/tools/building/building-eclipse.html)。
 
 -------------------------
-[NEXT: HANDLING TV HARDWARE](http://developer.android.com/training/tv/start/hardware.html)
-<!-- TODO, 改为正确的中文链接 -->
+[下一节: 处理TV硬件](hardware.html)
