@@ -216,7 +216,7 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 * [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TV主要是用来娱乐，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
 * [Helping Users Find Your Content on TV](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择操作都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
-* [Games for TV](http://developer.android.com/training/tv/discovery/index.html) - TV设备是非常好的游戏平台。参考这个主题去创建更好的TV游戏体验。
+* [Games for TV](http://developer.android.com/training/tv/games/index.html) - TV设备是非常好的游戏平台。参考这个主题去创建更好的TV游戏体验。
 
 <!-- ## Run TV Apps -->
 ## 运行TV应用
