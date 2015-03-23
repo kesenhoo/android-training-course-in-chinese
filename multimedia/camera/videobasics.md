@@ -42,7 +42,7 @@ private void dispatchTakeVideoIntent() {
 
 ## 查看视频
 
-Android的相机程序会把指向视频存储地址的[Uri](http://developer.android.com/reference/android/net/Uri.html)添加到[Intent](http://developer.android.com/reference/android/content/Intent.html)中，并传送给[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))方法。下面的代码获取该视频并显示到一个VideoView当中：
+Android的相机程序会把指向视频存储地址的[Uri](http://developer.android.com/reference/android/net/Uri.html)添加到[Intent](http://developer.android.com/reference/android/content/Intent.html)中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>方法。下面的代码获取该视频并显示到一个VideoView当中：
 
 ```java
 @Override

@@ -2,11 +2,11 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/load-data-background/setup-loader.html>
 
-CursorLoader依靠ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行的时候可以与用户继续其他的交互。
+CursorLoader通过ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行可以继续与用户进行其他的交互。
 
 ## 定义使用CursorLoader的Activity
 
-为了在Activity或者FragmentActivity中使用CursorLoader，需要实现[LoaderCallbacks<Cursor>](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html)接口。CursorLoader会触发这些回调方法；这节课与下节课会详细介绍每一个回调方法。
+为了在Activity或者FragmentActivity中使用CursorLoader，它们需要实现[LoaderCallbacks<Cursor>](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html)接口。CursorLoader会调用LoaderCallbacks<Cursor>定义的这些回调方法与这些类进行交互；这节课与下节课会详细介绍每一个回调方法。
 
 <!-- More -->
 
@@ -21,7 +21,7 @@ public class PhotoThumbnailFragment extends FragmentActivity implements
 
 ## 初始化查询
 
-为了初始化查询，需要执行[LoaderManager.initLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks<D>))。这个方法可以初始化后台任务。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在`onCreate()`或者`onCreateView()`。例如：
+为了初始化查询，需要执行[LoaderManager.initLoader()](file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks<D>))。这个方法可以初始化后台查询框架。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在`onCreate()`或者`onCreateView()`。例如：
 
 ```java
 // 标识一个特定的Loader加载器来使用这个组件

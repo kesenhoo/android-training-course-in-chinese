@@ -8,7 +8,7 @@
 
 ## 初始化形状
 
-在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的[onSurfaceCreated()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig))方法中初始化它们，这样做是出于内存和执行效率的考量。
+在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig)">onSurfaceCreated()</a>方法中初始化它们，这样做是出于内存和执行效率的考量。
 
 ```java
 public class MyGLRenderer implements GLSurfaceView.Renderer {
@@ -148,7 +148,7 @@ public void draw() {
 }
 ```
 
-一旦你完成了上述所有代码，仅需要在你渲染器的[onDrawFrame()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10))方法中调用`draw()`方法就可以画出我们想要画的对象了：
+一旦你完成了上述所有代码，仅需要在你渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>方法中调用`draw()`方法就可以画出我们想要画的对象了：
 
 ```java
 public void onDrawFrame(GL10 unused) {

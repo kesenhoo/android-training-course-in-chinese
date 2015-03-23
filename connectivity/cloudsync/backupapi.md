@@ -34,8 +34,8 @@ android:value="ABcDe1FGHij2KlmN3oPQRs4TUvW5xYZ" />
 
 ## 编写你的备份代理
 
-创建备份代理最简单的方法是继承[BackupAgentHelper](http://developer.android.com/reference/android/app/backup/BackupAgentHelper.html)。 创建这个帮助类实际上非常简便。首先创建一个类，其类名和你在上述Manifest清单文件中声明的类名一致（本例中，它叫做TheBackupAgent），然后继承BackupAgentHelper，之后重写[onCreate()](http://developer.android.com/reference/android/app/backup/BackupAgent.html#onCreate())方法。
-在[onCreate()](http://developer.android.com/reference/android/app/backup/BackupAgent.html#onCreate())中创建一个[BackupHelper](http://developer.android.com/reference/android/app/backup/BackupHelper.html)。这些帮助类是专门用来备份某些数据的，目前Android Framework包含了两种帮助类：[FileBackupHelper](http://developer.android.com/reference/android/app/backup/FileBackupHelper.html)与[SharedPreferencesBackupHelper](http://developer.android.com/reference/android/app/backup/SharedPreferencesBackupHelper.html)。在你创建一个帮助类并且指向需要备份的数据的时候，仅仅需要使用[addHelper()](http://developer.android.com/reference/android/app/backup/BackupAgentHelper.html#addHelper(java.lang.String, android.app.backup.BackupHelper))方法将它们添加到BackupAgentHelper当中， 之后再增加一个Key用来恢复数据。大多数情况下，完整的实现差不多只需要10行左右的代码。
+创建备份代理最简单的方法是继承[BackupAgentHelper](http://developer.android.com/reference/android/app/backup/BackupAgentHelper.html)。 创建这个帮助类实际上非常简便。首先创建一个类，其类名和你在上述Manifest清单文件中声明的类名一致（本例中，它叫做TheBackupAgent），然后继承BackupAgentHelper，之后重写<a href="http://developer.android.com/reference/android/app/backup/BackupAgent.html#onCreate()">onCreate()</a>方法。
+在<a href="http://developer.android.com/reference/android/app/backup/BackupAgent.html#onCreate()">onCreate()</a>中创建一个[BackupHelper](http://developer.android.com/reference/android/app/backup/BackupHelper.html)。这些帮助类是专门用来备份某些数据的，目前Android Framework包含了两种帮助类：[FileBackupHelper](http://developer.android.com/reference/android/app/backup/FileBackupHelper.html)与[SharedPreferencesBackupHelper](http://developer.android.com/reference/android/app/backup/SharedPreferencesBackupHelper.html)。在你创建一个帮助类并且指向需要备份的数据的时候，仅仅需要使用<a href="http://developer.android.com/reference/android/app/backup/BackupAgentHelper.html#addHelper(java.lang.String, android.app.backup.BackupHelper)">addHelper()</a>方法将它们添加到BackupAgentHelper当中， 之后再增加一个Key用来恢复数据。大多数情况下，完整的实现差不多只需要10行左右的代码。
 
 下面是一个对高分数据进行备份的例子：
 
@@ -99,7 +99,7 @@ import android.app.backup.BackupAgentHelper;
 
 ## 请求备份
 
-为了请求一个备份，仅仅需要创建一个[BackupManager](http://developer.android.com/reference/android/app/backup/BackupManager.html)的实例，然后调用它的[dataChanged()](http://developer.android.com/reference/android/app/backup/BackupManager.html#dataChanged())方法即可：
+为了请求一个备份，仅仅需要创建一个[BackupManager](http://developer.android.com/reference/android/app/backup/BackupManager.html)的实例，然后调用它的<a href="http://developer.android.com/reference/android/app/backup/BackupManager.html#dataChanged()">dataChanged()</a>方法即可：
 
 ```java
  import android.app.backup.BackupManager;
@@ -111,8 +111,8 @@ import android.app.backup.BackupAgentHelper;
  }
 ```
 
-该调用会告知备份管理器即将有数据会被备份到云端。在之后的某个时间点，备份管理器会执行备份代理的[onBackup()](http://developer.android.com/reference/android/app/backup/BackupAgent.html#onBackup(android.os.ParcelFileDescriptor, android.app.backup.BackupDataOutput, android.os.ParcelFileDescriptor))方法。无论任何时候，只要你的数据发生了改变，你都可以去调用它，并且你不用担心这样会增加网络的负荷。如果你在备份正式发生之前请求了两次备份，那么最终备份操作仅仅会出现一次。
+该调用会告知备份管理器即将有数据会被备份到云端。在之后的某个时间点，备份管理器会执行备份代理的<a href="http://developer.android.com/reference/android/app/backup/BackupAgent.html#onBackup(android.os.ParcelFileDescriptor, android.app.backup.BackupDataOutput, android.os.ParcelFileDescriptor)">onBackup()</a>方法。无论任何时候，只要你的数据发生了改变，你都可以去调用它，并且你不用担心这样会增加网络的负荷。如果你在备份正式发生之前请求了两次备份，那么最终备份操作仅仅会出现一次。
 
 ## 恢复备份数据
 
-一般而言，你不应该手动去请求恢复，而是应该让应用安装到设备上的时候自动进行恢复。然而，如果确实有必要手动去触发恢复，只需要调用[requestRestore()](http://developer.android.com/reference/android/app/backup/BackupManager.html#requestRestore(android.app.backup.RestoreObserver))方法就可以了。
+一般而言，你不应该手动去请求恢复，而是应该让应用安装到设备上的时候自动进行恢复。然而，如果确实有必要手动去触发恢复，只需要调用<a href="http://developer.android.com/reference/android/app/backup/BackupManager.html#requestRestore(android.app.backup.RestoreObserver)">requestRestore()</a>方法就可以了。

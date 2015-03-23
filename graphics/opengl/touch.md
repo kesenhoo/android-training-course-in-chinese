@@ -2,13 +2,13 @@
 
 > 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/touch.html>
 
-让对象根据预设的程序运动（如让一个三角形旋转），可以有效地引起用户的注意，但是如果你希望可以让OpenGL ES的图形对象与用户交互呢？让你的OpenGL ES应用可以支持触控交互的关键点在于，拓展[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的实现，重写[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))方法来监听触摸事件。
+让对象根据预设的程序运动（如让一个三角形旋转），可以有效地引起用户的注意，但是如果你希望可以让OpenGL ES的图形对象与用户交互呢？让你的OpenGL ES应用可以支持触控交互的关键点在于，拓展[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的实现，重写<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>方法来监听触摸事件。
 
 这节课将会向你展示如何监听触控事件，让用户旋转一个OpenGL ES对象。
 
 ## 配置触摸监听器
 
-为了让你的OpenGL ES应用响应触控事件，你必须实现[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)类中的[onTouchEvent()](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))方法。下面的例子展示了如何监听[MotionEvent.ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件，并将事件转换为形状旋转的角度：
+为了让你的OpenGL ES应用响应触控事件，你必须实现[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)类中的<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent)">onTouchEvent()</a>方法。下面的例子展示了如何监听[MotionEvent.ACTION_MOVE](http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE)事件，并将事件转换为形状旋转的角度：
 
 ```java
 private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
@@ -52,7 +52,7 @@ public boolean onTouchEvent(MotionEvent e) {
 }
 ```
 
-注意在计算旋转角度后，该方法会调用[requestRender()](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender())来告诉渲染器现在可以进行渲染了。这种办法对于这个例子来说是最有效的，因为图形并不需要重新绘制，除非有一个旋转角度的变化。当然，为了能够真正实现执行效率的提高，记得使用[setRenderMode()](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderMode(int))方法以保证渲染器仅在数据发生变化时才会重新绘制图形，所以请确保这一行代码没有被注释掉：
+注意在计算旋转角度后，该方法会调用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender()">requestRender()</a>来告诉渲染器现在可以进行渲染了。这种办法对于这个例子来说是最有效的，因为图形并不需要重新绘制，除非有一个旋转角度的变化。当然，为了能够真正实现执行效率的提高，记得使用<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#setRenderMode(int)">setRenderMode()</a>方法以保证渲染器仅在数据发生变化时才会重新绘制图形，所以请确保这一行代码没有被注释掉：
 
 ```java
 public MyGLSurfaceView(Context context) {
