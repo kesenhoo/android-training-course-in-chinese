@@ -10,7 +10,7 @@
 
 ## 请求获取音频焦点(Request the Audio Focus)
 
-在你的应用开始播放音频之前，它需要获取将要使用的音频流的音频焦点。通过使用 [requestAudioFocus()](http://developer.android.com/reference/android/media/AudioManager.html#requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, int, int)) 方法可以获取你希望得到的音频流焦点。如果请求成功，该方法会返回[AUDIOFOCUS_REQUEST_GRANTED](http://developer.android.com/reference/android/media/AudioManager.html#AUDIOFOCUS_REQUEST_GRANTED)。
+在你的应用开始播放音频之前，它需要获取将要使用的音频流的音频焦点。通过使用<a href="http://developer.android.com/reference/android/media/AudioManager.html#requestAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener, int, int)">requestAudioFocus()</a> 方法可以获取你希望得到的音频流焦点。如果请求成功，该方法会返回[AUDIOFOCUS_REQUEST_GRANTED](http://developer.android.com/reference/android/media/AudioManager.html#AUDIOFOCUS_REQUEST_GRANTED)。
 
 你必须指定正在使用的音频流，而且需要确定所请求的音频焦点是短暂的（Transient）还是永久的（Permanent）。
 
@@ -36,7 +36,7 @@ if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
 }
 ```
 
-一旦结束了播放，需要确保调用了[abandonAudioFocus()](http://developer.android.com/reference/android/media/AudioManager.html#abandonAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener))方法。这样相当于告知系统你不再需要获取焦点并且注销关联的[AudioManager.OnAudioFocusChangeListener](http://developer.android.com/reference/android/media/AudioManager.OnAudioFocusChangeListener.html)监听器。而在另一种释放短暂音频焦点的情况下，这会允许任何被你打断的应用可以继续播放。
+一旦结束了播放，需要确保调用了<a href="http://developer.android.com/reference/android/media/AudioManager.html#abandonAudioFocus(android.media.AudioManager.OnAudioFocusChangeListener)">abandonAudioFocus()</a>方法。这样相当于告知系统你不再需要获取焦点并且注销关联的[AudioManager.OnAudioFocusChangeListener](http://developer.android.com/reference/android/media/AudioManager.OnAudioFocusChangeListener.html)监听器。而在另一种释放短暂音频焦点的情况下，这会允许任何被你打断的应用可以继续播放。
 
 ```java
 // Abandon audio focus when playback complete    
@@ -66,7 +66,7 @@ Ducking对于那些间歇性使用音频焦点的应用来说特别合适，比�
 
 如果应用A请求获取了音频焦点，那么在应用B请求获取的时候，A获取到的焦点就会失去。如何响应失去焦点事件，取决于失去焦点的方式。
 
-在音频焦点的监听器里面，当接受到描述焦点改变的事件时会触发[onAudioFocusChange()](http://developer.android.com/reference/android/media/AudioManager.OnAudioFocusChangeListener.html#onAudioFocusChange(int))回调方法。如之前提到的，获取焦点有三种类型，我们同样会有三种失去焦点的类型：永久失去，短暂失去，允许Ducking的短暂失去。
+在音频焦点的监听器里面，当接受到描述焦点改变的事件时会触发<a href="http://developer.android.com/reference/android/media/AudioManager.OnAudioFocusChangeListener.html#onAudioFocusChange(int)">onAudioFocusChange()</a>回调方法。如之前提到的，获取焦点有三种类型，我们同样会有三种失去焦点的类型：永久失去，短暂失去，允许Ducking的短暂失去。
 
 * 失去短暂焦点：通常在失去这种焦点的情况下，我们会暂停当前音频的播放或者降低音量，同时需要准备在重新获取到焦点之后恢复播放。
 
