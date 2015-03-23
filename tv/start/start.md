@@ -110,7 +110,7 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 
 <!-- Declare that your app uses the Leanback user interface required by Android TV. If you are developing an app that runs on mobile (phones, wearables, tablets, etc.) as well as Android TV, set the required attribute value to `false`. If you set the `required` attribute value to `true`, your app will run only on devices that use the Leanback UI. -->
 
-安卓TV需要你的应用使用Leanback用户界面。如果你正在开发一个运行在移动设备（手机，可穿戴，平板等等）也包括安卓TV的应用，设置`required`属性为`false`。因为如果设置为`true`，你的应用将仅能运行在用Leanback UI的设备上。
+安卓TV需要你的应用使用Leanback用户界面。如果你正在开发一个运行在移动设备（手机，可穿戴，平板等等）同时也包含安卓TV的应用，设置`required`属性为`false`。因为如果设置为`true`，你的应用将仅能运行在用Leanback UI的设备上。
 
 ```java
 <manifest>
@@ -125,7 +125,7 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 
 <!-- Applications that are intended to run on TV devices do not rely on touch screens for input. In order to make this clear, the manifest of your TV app must declare that a the android.hardware.touchscreen feature is not required. This setting identifies your app as being able to work on a TV device, and is required for your app to be considered a TV app in Google Play. The following code example shows how to include this manifest declaration: -->
 
-运行在TV设备上的应用不依靠触屏去输入。为了清楚表明这一点，TV应用的manifest必须声明`android.hardware.touchscreen`不需要。这个设置表明应用能够工作在TV设备上，并且也是Google Play认定你的应用为TV应用的要求。接下来的示例代码展示这个manifest声明：
+运行在TV设备上的应用不依靠触屏去输入。为了清楚表明这一点，TV应用的manifest必须声明`android.hardware.touchscreen`为不需要。这个设置表明应用能够工作在TV设备上，并且也是Google Play认定你的应用为TV应用的要求。接下来的示例代码展示这个manifest声明：
 
 ```java
 <manifest>
@@ -144,7 +144,7 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 
 <!-- An application must provide a home screen banner for each localization if it includes a Leanback launcher intent filter. The banner is the app launch point that appears on the home screen in the apps and games rows. Desribe the banner in the manifest as follows: -->
 
-如果应用支持Leanback启动intent filter，它必须提供每个localization的主屏幕横幅。横幅是出现在应用和游戏栏的主屏的启动点。在manifest中这样描述横幅：
+如果应用包含一个Leanback的intent filter，它必须提供每个语言的主屏幕横幅。横幅是出现在应用和游戏栏的主屏的启动点。在manifest中这样描述横幅：
 
 ```java
 <application
@@ -155,7 +155,7 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 </application>
 ```
 
-<!-- Use the [android:banner](http://developer.android.com/guide/topics/manifest/application-element.html#banner) attribute with the [application](http://developer.android.com/guide/topics/manifest/application.html) tag to supply a default banner for all application activities, or with the [activity](http://developer.android.com/guide/topics/manifest/activity-element.html) tag to supply a banner for a specific activity. -->
+<!-- Use the [android:banner] attribute with the [application] tag to supply a default banner for all application activities, or with the [activity] tag to supply a banner for a specific activity. -->
 
 在[`application`](http://developer.android.com/guide/topics/manifest/application.html)中添加[`android:banner`](http://developer.android.com/guide/topics/manifest/application-element.html#banner)属性为所有的应用activity提供默认的横幅，或者在特定的activity的[`activity`](http://developer.android.com/guide/topics/manifest/activity-element.html)中添加横幅。
 
@@ -188,17 +188,16 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 
 <!-- If you decide to use the v17 leanback library for your app, you should note that it is dependent on the [v4 support library](http://developer.android.com/tools/support-library/features.html#v4). This means that apps that use the leanback support library should include all of these support libraries: -->
 
-如果你决定用v17 leanback库，你应该注意它依赖于[v4 support library](http://developer.android.com/tools/support-library/features.html#v4)。这意味着要用leanback支持库必须包含以下所有的支持库：
+如果你决定用`v17 leanback library`，你应该注意它依赖于[v4 support library](http://developer.android.com/tools/support-library/features.html#v4)。这意味着要用leanback支持库必须包含以下所有的支持库：
 
 * v4 support library
 * v7 recyclerview support library
 * v17 leanback support library
 
 
-<!-- The v17 leanback library contains resources, which require you to take specific steps to include it in app projects. For instructions on importing a support library with resources, see [Support Library Setup]((http://developer.android.com/tools/support-library/setup.html#libs-with-res)). -->
+<!-- The v17 leanback library contains resources, which require you to take specific steps to include it in app projects. For instructions on importing a support library with resources, see [Support Library Setup]. -->
 
-v17 leanback库包含resources。在应用中需要你采取特定的步骤去包含它。插入带resources的支持库的说明，查看[Support Library Setup]((http://developer.android.com/tools/support-library/setup.html#libs-with-res))。
-
+`v17 leanback library`包含资源文件，需要你在应用中采取特定的步骤去包含它。插入带资源文件的支持库的说明，查看[Support Library Setup](http://developer.android.com/tools/support-library/setup.html#libs-with-res)。
 
 
 <!-- ## Build TV Apps -->
@@ -206,7 +205,7 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 <!-- After you have completed the steps described above, it's time to start building apps for the big screen! Check out these additional topics to help you build your app for TV: -->
 
-在完成上面的步骤之后，到了给大屏幕创建应用的时候了！检查一下这些附加的专题可以帮助您创建TV应用：
+在完成上面的步骤之后，到了给大屏幕创建应用的时候了！检查一下这些额外的专题可以帮助您创建TV应用：
 
 <!--
 * [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TVs are built to entertain, so Android provides a set of user interface tools and widgets for building TV apps that play videos and music, and let users browse for the content they want.
@@ -214,9 +213,9 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 * [Games for TV](http://developer.android.com/training/tv/discovery/index.html) - TV devices are a great platform for games. See this topic for information on building great game experiences for TV.
 -->
 
-* [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TV主要是用来娱乐，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
-* [Helping Users Find Your Content on TV](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择操作都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
-* [Games for TV](http://developer.android.com/training/tv/games/index.html) - TV设备是非常好的游戏平台。参考这个主题去创建更好的TV游戏体验。
+* [创建TV播放应用](http://developer.android.com/training/tv/playback/index.html) - TV主要是用来娱乐，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
+* [帮助用户找到TV内容](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择操作都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
+* [TV游戏](http://developer.android.com/training/tv/games/index.html) - TV设备是非常好的游戏平台。参考这个主题去创造更好的TV游戏体验。
 
 <!-- ## Run TV Apps -->
 ## 运行TV应用
@@ -237,7 +236,7 @@ v17 leanback库包含resources。在应用中需要你采取特定的步骤去�
 
 1. 打开AVD管理器。更多信息，参考[AVD管理器](http://developer.android.com/tools/help/avd-manager.html)帮助。
 2. 在AVD管理器窗口，点击**Device Definitions**标签。
-3. 选择安卓TV设备定义的一个，并且点击**Create AVD**。
+3. 选择安卓一个TV设备定义，并且点击**Create AVD**。
 4. 选择模拟器选项并且点击**OK**创建AVD。
 
 <!-- >**Note**: For best performance of the TV emulator device, enable the Use Host GPU option and, where supported, use virtual device acceleration. For more information on hardware acceleration of the emulator, see [Using the Emulator](http://developer.android.com/tools/devices/emulator.html#acceleration). -->
