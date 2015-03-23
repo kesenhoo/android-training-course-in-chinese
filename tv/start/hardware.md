@@ -306,5 +306,4 @@ TV设备用户可能有超过一种类型的控制器来操纵TV。例如，一�
 你的应用应该要处理游戏控制器D-pad输入的变种，因此用户不需要通过物理开关控制器去操作你的应用。更多信息关于处理这些变种输入，参考[Handling Controller Actions](http://developer.android.com/training/tv/start/hardware.html)。
 
 -------------
-[NEXT: BUILDING TV LAYOUTS](http://developer.android.com/training/tv/start/layouts.html)
-<!-- TODO, 改为正确的中文链接 -->
+[下一节: 创建TV布局](layouts.html)
