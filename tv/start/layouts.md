@@ -152,7 +152,7 @@ For more information about density-independent pixels and building layouts to ha
 为了获得最好的图像缩放效果，尽可能提供[9-patch](http://developer.android.com/tools/help/draw9patch.html)图片元素。如果在你的布局中使用低质量或者小的图片，它们将出现马赛克，模糊或者颗粒，这不是一个好的用户体验。用高质量图片代替它。
 
 <!-- For more information on optimizing layouts and resources for large screens see Designing for multiple screens. -->
-更多关于优化布局和大屏幕的资源文件问题，参考[Designing for multiple screens](http://developer.android.com/training/multiscreen/index.html).
+更多关于优化布局和大屏幕的资源文件问题，参考[Designing for multiple screens](http://developer.android.com/training/multiscreen/index.html)。
 
 <!-- ## Avoid Layout Anti-Patterns ## -->
 ## 避免反模式布局
