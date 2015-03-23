@@ -1,4 +1,4 @@
-# Creating a Background Service
+# 创建后台服务
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/create-service.html>
 
@@ -12,7 +12,7 @@ IntentService有下面几个局限性：
 
 然而，在大多数情况下，IntentService都是简单后台任务操作的理想选择。
 
-这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调[onHandleIntent()](http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent))。最后，还会解释如何在manifest文件中定义这个IntentService。
+这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调[onHandleIntent()](http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent) )。最后，还会解释如何在manifest文件中定义这个IntentService。
 
 <!-- More -->
 
@@ -52,8 +52,8 @@ IntentService需要在manifest文件添加相应的条目，将此条目`<servic
 <application/>
 ```
 
-`android:name`属性指定了IntentService的名字。
+`android:name`属性指明了IntentService的名字。
 
-注意<service>标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。
+注意`<service>`标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。
 
 至此，你已经有了一个基本的IntentService类，你可以通过Intent对象向它发送操作请求。构造这些对象以及发送它们到你的IntentService的方式，将在接下来的课程中描述。
