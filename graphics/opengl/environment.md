@@ -82,14 +82,14 @@ class MyGLSurfaceView extends GLSurfaceView {
 setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 ```
 
-如果选用这一配置选项，那么除非你调用了[requestRender()](http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender())，否则[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)不会被重新绘制，这样做可以让应用的性能及效率得到提高。
+如果选用这一配置选项，那么除非你调用了<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html#requestRender()">requestRender()</a>，否则[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)不会被重新绘制，这样做可以让应用的性能及效率得到提高。
 
 ## 构建一个渲染类
 
 在一个使用OpenGL ES的应用中，一个[GLSurfaceView.Renderer](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html)类的实现（或者我们将其称之为渲染器），正是事情变得有趣的地方。该类会控制和其相关联的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)，具体而言，它会控制在[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)上绘制的内容。在渲染器中，一共有三个方法会被Android系统调用，以此来明确要在[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)上绘制的内容以及如何绘制：
-* [onSurfaceCreated()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig))：调用一次，用来配置View的OpenGL ES环境。
-* [onDrawFrame()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10))：每次重新绘制View时被调用。
-* [onSurfaceChanged()](http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10))：如果View的几何形态发生变化时会被调用，例如当设备的屏幕方向发生改变时。
+* <a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig)">onSurfaceCreated()</a>：调用一次，用来配置View的OpenGL ES环境。
+* <a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>：每次重新绘制View时被调用。
+* <a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onSurfaceChanged()</a>：如果View的几何形态发生变化时会被调用，例如当设备的屏幕方向发生改变时。
 
 下面是一个非常基本的OpenGL ES渲染器的实现，它仅仅在[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)中画一个黑色的背景：
 
