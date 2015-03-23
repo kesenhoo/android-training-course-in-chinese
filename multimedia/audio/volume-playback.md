@@ -13,7 +13,7 @@
 
 ## 使用硬件音量键来控制应用的音量(Use Hardware Volume Keys to Control Your App’s Audio Volume)
 
-默认情况下，按下音量控制键会调节当前被激活的音频流，如果你的应用当前没有播放任何声音，那么按下音量键会调节响铃的音量。对于游戏或者音乐播放器而言，用户按下音量键的操作通常都意味着他们希望调节游戏或者音乐的音量，即使是在歌曲之间无声音的状态，或是当前游戏处于无声的状态。你可能希望通过监听音量键被按下的事件，来调节音频流的音量。我们不必这样做。Android提供了[setVolumeControlStream()](http://developer.android.com/reference/android/app/Activity.html#setVolumeControlStream(int))方法来直接控制指定的音频流。在鉴别出应用会使用哪个音频流之后，你需要在应用生命周期的早期阶段调用该方法，因为该方法只需要在Activity整个生命周期中调用一次，通常，你可以在负责控制多媒体的[Activity](http://developer.android.com/reference/android/app/Activity.html)或者[Fragment](http://developer.android.com/reference/android/app/Fragment.html)的`onCreate()`方法中调用它。这样能确保不管应用当前是否可见，音频控制的功能都能符合用户的预期。
+默认情况下，按下音量控制键会调节当前被激活的音频流，如果你的应用当前没有播放任何声音，那么按下音量键会调节响铃的音量。对于游戏或者音乐播放器而言，用户按下音量键的操作通常都意味着他们希望调节游戏或者音乐的音量，即使是在歌曲之间无声音的状态，或是当前游戏处于无声的状态。你可能希望通过监听音量键被按下的事件，来调节音频流的音量。我们不必这样做。Android提供了<a href="http://developer.android.com/reference/android/app/Activity.html#setVolumeControlStream(int)">setVolumeControlStream()</a>方法来直接控制指定的音频流。在鉴别出应用会使用哪个音频流之后，你需要在应用生命周期的早期阶段调用该方法，因为该方法只需要在Activity整个生命周期中调用一次，通常，你可以在负责控制多媒体的[Activity](http://developer.android.com/reference/android/app/Activity.html)或者[Fragment](http://developer.android.com/reference/android/app/Fragment.html)的`onCreate()`方法中调用它。这样能确保不管应用当前是否可见，音频控制的功能都能符合用户的预期。
 
 ```java
 setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -63,4 +63,4 @@ am.registerMediaButtonEventReceiver(RemoteControlReceiver);
 am.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
 ```
 
-通常，应用需要在他们失去焦点或者不可见的时候（比如在[onStop()](http://developer.android.com/reference/android/app/Activity.html#onStop())方法里面）取消注册监听。但是对于媒体播放应用来说并没有那么简单，实际上，在你的应用不可见（不能通过可见的UI控件进行控制）的时候，仍然能够响应媒体播放按钮事件是极其重要的。为了实现这一点，有一个更好的方法，我们可以在程序获取与失去音频焦点的时候注册与取消对音频按钮事件的监听。这个内容会在后面的课程中详细讲解。
+通常，应用需要在他们失去焦点或者不可见的时候（比如在<a href="http://developer.android.com/reference/android/app/Activity.html#onStop()">onStop()</a>方法里面）取消注册监听。但是对于媒体播放应用来说并没有那么简单，实际上，在你的应用不可见（不能通过可见的UI控件进行控制）的时候，仍然能够响应媒体播放按钮事件是极其重要的。为了实现这一点，有一个更好的方法，我们可以在程序获取与失去音频焦点的时候注册与取消对音频按钮事件的监听。这个内容会在后面的课程中详细讲解。
