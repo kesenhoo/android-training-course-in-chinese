@@ -5,22 +5,22 @@
 
 <!-- TV apps use the same structure as those for phones and tablets. This similarity means you can modify your existing apps to also run on TV devices or create new apps based on what you already know about building apps for Android. -->
 
-TV应用使用与手机和平板同样的架构。 这种相似性意味着你可以修改现有的应用到TV设备或者用以前开发安卓应用的经验用于TV应用。
+TV应用使用与手机和平板同样的架构。这种相似性意味着你可以修改现有的应用到TV设备或者用以前安卓应用的经验开发TV应用。
 
 <!-- Important: There are specific requirements your app must meet to qualify as an Android TV app on Google Play. For more information, see the requirements listed in TV App Quality. -->
 
->**Important**: 在Google Play中的TV应用应满足这些特定要求。更多信息, 参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)中的要求列表。
+>**Important**: 在Google Play中的TV应用应满足一些特定要求。更多信息, 参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)中的要求列表。
 
 <!-- This lesson describes how to prepare your development environment for building TV apps, and the minimum required changes to enable an app to run on TV devices. -->
 
-本课程介绍如何准备您的电视应用开发环境,和最小的所必须的改变使应用能够运行在TV设备上。
+本课程介绍如何准备您的TV应用开发环境,和使应用能够运行在TV设备上所必须的最小改变。
 
 <!--Set up a TV Project -->
-## 创建一个TV项目
+## 创建TV项目
 
 <!--This section discusses how to modify an existing app to run on TV devices, or create a new one. These are the main components you must use to create an app that runs on TV devices: -->
 
-本节讨论如何修改已有的应用或者新建一个应用使之能够运行在电视设备上。在TV设备运行的应用必须使用这些主要的组件:
+本节讨论如何修改已有的应用或者新建一个应用使之能够运行在电视设备上。在TV设备运行的应用必须使用这些主要组件:
 
 <!--
 * Activity for TV (Required) - In your application manifest, declare an activity that is intended to run on TV devices.
@@ -44,13 +44,13 @@ TV应用使用与手机和平板同样的架构。 这种相似性意味着你�
 	In order to access new APIs for TV devices, you must create a project or modify an existing project that targets Android 5.0 (API level 21) or higher.
 -->
 
-- [Update your SDK tools to version 24.0.0 or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+- [更新SDK tools到版本24.0.0或更高](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
 	最新的SDK tools能确保编译和测试TV应用
 
-- [Update your SDK with Android 5.0 (API 21) or higher](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
+- [更新SDK为Android 5.0 (API 21)或更高](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
 	最新的platform版本提供TV应用的新API
 
-- [Create or update your app project](http://developer.android.com/sdk/installing/create-project.html)
+- [创建或更新应用项目](http://developer.android.com/sdk/installing/create-project.html)
 	为了支持TV新API, 你必须设置新项目或者修改原项目的目标平台为Android 5.0 (API level 21)或者更高。
 
 
