@@ -5,20 +5,20 @@
 
 <!-- Users enjoy the TV app experience when it is consistent, logical, and predictable. They should be able to navigate within your app and throughout Android TV without getting lost or having to "reset" the UI and start over. Users appreciate clear, colorful, and functional interfaces that make the experience magical. With these ideas in mind, you can create an app that fits nicely in Android TV and performs as users expect. -->
 
-用户喜欢的TV应用应是体验一致的，有逻辑的和可预测的。他们可以在应用内四处浏览，并且不会迷失在应用中，或者重设UI并重头开始。用户欣赏干净的，有色彩的和功能性的界面，这样使体验变得神奇。把这些想法放在脑中，你能创造适合安卓TV的应用并达到用户的期望。
+用户喜欢的TV应用应是体验一致的，有逻辑的和可预测的。他们可以在应用内四处浏览，并且不会迷失在应用中，或者重设UI导致重头开始。用户欣赏干净的，有色彩的和起作用的界面，这样的体验会很好。把这些想法放在脑子中，你能创造适合安卓TV的应用并达到用户的期望。
 
 <!-- This checklist covers the main aspects of development for both apps and games and provides guidelines to ensure that your app provides the best possible experience. Additional considerations for games only are covered in the Games section. -->
 
-这个清单覆盖了应用和游戏的主要开发方面去确保你的应用提供了最好的体验。额外的游戏注意事项仅包含在游戏小节。
+这个清单覆盖了应用和游戏的开发的主要方面去确保你的应用提供了最好的体验。额外的游戏注意事项仅被包含在游戏小节。
 
 <!-- For criteria that qualify an Android TV app on Google Play, see TV App Quality. -->
 关于Google Play中安卓TV应用的质量标准，参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)。
 
 <!-- ## TV Form Factor Support ## -->
-## 支持TV格式因素
+## TV形式的支持
 
 <!-- These checklist items apply to **Games** and **Apps**. -->
-这些清单项目应用在**游戏**和**应用**。
+这些清单项目使用在**游戏**和**应用**中。
 
 <!-- 
 1. Identify the main TV activity with the CATEGORY_LEANBACK_LAUNCHER filter in the manifest.  
@@ -34,23 +34,23 @@ See Declaring hardware requirements for TV.
 See Declaring permissions that imply hardware features.
 -->
 
-1. 确定manifest的主activity使用CATEGORY_LEANBACK_LAUNCHER。
-	查看[Declare a TV Activity](http://developer.android.com/training/tv/start/start.html#tv-activity).
+1. 确定manifest的主activity使用`CATEGORY_LEANBACK_LAUNCHER`。
+	查看[Declare a TV Activity](http://developer.android.com/training/tv/start/start.html#tv-activity)。
 2. 提供每种语言的主屏幕横幅支持。
-    - 应用启动横幅为320x180px 
+    - Launcher应用横幅大小为320x180 px 
     - 横幅资源放在`drawables/xhdpi`目录
-    - 横幅图像包含本地化的文本识别
-    查看[Provide a home screen banner](http://developer.android.com/training/tv/start/start.html#banner)
-3. 消除不支持的硬件要求
-    查看[Declaring hardware requirements for TV](http://developer.android.com/training/tv/publishing/training/tv/start/hardware.html#declare-hardware-requirements).
+    - 横幅图像包含本地化的文本去识别应用。
+    查看[Provide a home screen banner](http://developer.android.com/training/tv/start/start.html#banner)。
+3. 消除不支持的硬件要求。
+    查看[Declaring hardware requirements for TV](http://developer.android.com/training/tv/start/hardware.html#declare-hardware-requirements)。
 4. 确保没有隐式的权限需求。
-    查看[Declaring permissions that imply hardware features](http://developer.android.com/training/tv/publishing/training/tv/start/hardware.html#hardware-permissions)。
+    查看[Declaring permissions that imply hardware features](http://developer.android.com/training/tv/start/hardware.html#hardware-permissions)。
 
 <!-- ## User Interface Design ## -->
 ## 用户界面设计
 
 <!-- These checklist items apply to **Games** and **Apps**. -->
-这些清单项应用在**游戏**和**应用**。
+这些清单项使用在**游戏**和**应用**中。
 
 <!-- 
 1. Provide appropriate layout resources for landscape mode. 
@@ -81,7 +81,7 @@ See Provide Effective Advertising.
 	查看[Build Useable Text and Controls](http://developer.android.com/training/tv/start/layouts.html#visibility)。
 3. 为HDTV屏幕提供高分辨率的位图和图标。
 	查看 [Manage Layout Resources for TV](http://developer.android.com/design/tv/patterns.html#icons)。
-4. 确保你的图标和logo符合安卓TV的规范.
+4. 确保你的图标和logo符合安卓TV的规范。
 	查看[Manage Layout Resources for TV](http://developer.android.com/design/tv/patterns.html#icons)。
 5. 允许布局使用overscan。
 	查看[Overscan](http://developer.android.com/training/tv/start/layouts.html#overscan)。
@@ -97,10 +97,10 @@ See Provide Effective Advertising.
 	查看[Provide Effective Advertising](http://developer.android.com/training/tv/start/layouts.html#advertising)。
 
 <!-- ## Search and Content Discovery ## -->
-## 搜索和文本发现
+## 搜索和发现内容
 
 <!-- These checklist items apply to **Games** and **Apps**. -->
-这些清单项应用在**游戏**和**应用**。
+这些清单项使用在**游戏**和**应用**中。
 
 <!-- 
 1. Provide search results from your app in the Android TV global search box.  
@@ -113,20 +113,20 @@ See Display Your App in the Details Screen.
 See Recommending TV Content.
 -->
 
-1. 为安卓TV全局搜索框中提供搜索结果。
+1. 在安卓TV全局搜索框中提供搜索结果。
 	查看[Provide Data](http://developer.android.com/training/tv/discovery/searchable.html#provide)。
 2. 提供TV特定数据字段的搜索。
 	查看[Identify Columns](http://developer.android.com/training/tv/discovery/searchable.html#columns)。
-3. 确保应用的详细屏幕有可发现的内容以便用户立即开始观看。
+3. 确保应用的详情屏幕有可发现的内容以便用户立即开始观看。
 	查看[Display Your App in the Details Screen](http://developer.android.com/training/tv/discovery/searchable.html#details)。
-4. 放置相关的，可操作的内容和目录在主屏幕，使用户容易的发现文本。
+4. 放置相关的，可操作的内容和目录在主屏幕，使用户容易的发现内容。
 	查看[Recommending TV Content](http://developer.android.com/training/tv/discovery/recommendations.html)。
 
 <!-- ## Games ## -->
 ## 游戏
 
 <!-- These checklist items apply to **Games**. -->
-这些清单项目应用在**游戏**。
+这些清单项目使用在**游戏**。
 
 <!-- 
 1. Show your game on the home screen with the isGame flag in the manifest.  
@@ -143,7 +143,7 @@ See Exit. and Apps.
 
 1. 在manifest中用`isGame`标记让游戏显示在主屏幕上。
 	查看[Show your game on the home screen](http://developer.android.com/training/tv/games/index.html#Launcher)。
-2. 确保游戏控制器支持不依靠开始，选择，或者菜单键操作（不是所有控制器有这些按键）。
+2. 确保游戏控制器支持不依靠开始，选择，或者菜单键操作(不是所有控制器有这些按键)。
 	查看[Input Devices](http://developer.android.com/training/tv/games/index.html#control)。
 3. 使用通常的游戏手柄布局（不包括特殊的控制器品牌）去显示游戏按键示意图。
 	查看[Show controller instructions](http://developer.android.com/training/tv/games/index.html#ControllerHelp)。
