@@ -1,5 +1,5 @@
 <!-- # Building Layouts for TV # -->
-# 创建TV的布局文件
+# 创建TV布局
 
 > 编写:[awong1900](https://github.com/awong1900) - 原文:<http://developer.android.com/training/tv/start/layouts.html>
 
@@ -58,7 +58,7 @@ TV通常在3米外观看，并且它比大部分安卓设备大的多。TV屏幕
 
 <!-- Layouts for TV devices should follow some basic guidelines to ensure they are usable and effective on large screens. Follow these tips to build landscape layouts optimized for TV screens: -->
 
-TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是可用的和有效率的。遵循这些技巧去创建最优化的TV landscape布局。
+TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是可用的和有效率的。遵循这些技巧去创建最优化的TV横屏布局。
 
 <!--
 - Build layouts with a landscape orientation. TV screens always display in landscape mode.
@@ -145,7 +145,7 @@ For more information about density-independent pixels and building layouts to ha
 
 <!-- The common high-definition TV display resolutions are 720p, 1080i, and 1080p. Your TV layout should target a screen size of 1920 x 1080 pixels, and then allow the Android system to downscale your layout elements to 720p if necessary. In general, downscaling (removing pixels) does not degrade your layout presentation quality. However, upscaling can cause display artifacts that degrade the quality of your layout and have a negative impact on the user experience of your app. -->
 
-通常的高清晰度电视分辨率是720p，1080i，1080p。如果假定你的TV布局对象是一个1920 x 1080像素的尺寸屏幕，然后要允许安卓系统必要情况下缩减布局元素到720p。通常，降低分辨率（删除像素）不会降低布局的外观质量。但是增加分辨率会降低布局显示的质量，并且会对应用的用户体验造成负面影响。
+通常的高清晰度TV分辨率是720p，1080i，1080p。假定你的TV布局对象是一个1920 x 1080像素的屏幕，然后要允许安卓系统必要情况下缩减布局元素到720p。通常，降低分辨率（删除像素）不会降低布局的外观质量。但是增加分辨率会降低布局显示的质量，并且会对用户体验造成负面影响。
 
 <!-- To get the best scaling results for images, provide them as 9-patch image elements if possible. If you provide low quality or small images in your layouts, they will appear pixelated, fuzzy, or grainy, which is not a good experience for the user. Use high-quality images instead. -->
 
@@ -155,7 +155,7 @@ For more information about density-independent pixels and building layouts to ha
 更多关于优化布局和大屏幕的资源文件问题，参考[Designing for multiple screens](http://developer.android.com/training/multiscreen/index.html).
 
 <!-- ## Avoid Layout Anti-Patterns ## -->
-## 避免布局反模式
+## 避免反模式布局
 
 <!--  There are a few approaches to building layouts that you should avoid because they do not work well on TV devices and lead to bad user experiences. Here are some user interface approaches you should specifically not use when developing a layout for TV. -->
 
@@ -179,7 +179,7 @@ For more information on designing layouts that are appropriate to TV, see the TV
 
 <!-- TV devices, like any other Android device, have a limited amount of memory. If you build your app layout with very high-resolution images or use many high-resolution images in the operation of your app, it can quickly run into memory limits and cause out of memory errors. To avoid these types of problems, follow these tips: -->
 
-TV设备，像任何其他安卓设备，内存有一定限制。如果你创建的应用的中用了很高分辨率的图片或者用了很多高分辨率图片，它可能快速达到内存限制，并且导致内存溢出错误。避免这些类型的问题，遵循以下方法：
+TV设备，像任何其他安卓设备，内存有一定限制。如果你创建的应用中用了很高分辨率的图片或者用了很多高分辨率图片，它可能很快达到内存限制，并且导致内存溢出错误。避免这些类型的问题，遵循以下方法：
 
 <!--
 - Load images only when they are displayed on the screen. For example, when displaying multiple images in a GridView or Gallery, only load an image when getView() is called on the view's Adapter.
@@ -202,7 +202,7 @@ For more information on getting the best performance when working with images, s
 
 <!-- Advertising on Android TV must always be full-screen. Ads must not appear alongside or over content. The user must be able to dismiss an advertisement with the D-pad controller. Video ads must be dismissible within 30 seconds of their start time. -->
 
-安卓TV的广告必须总是全屏。广告不可以出现在内容的旁边或者覆盖内容。用户应当能用D-pad控制器关闭广告。视频广告应当能在开始时间后的30秒内被关闭。
+安卓TV的广告必须总是全屏。广告不可以出现在内容的旁边或者覆盖内容。用户应当能用D-pad控制器关闭广告。视频广告在开始时间后的30秒内应当能被关闭。
 
 <!-- Android TV does not provide a web browser. Your ads must not attempt to launch a web browser or redirect to the Google Play Store. -->
 
