@@ -8,11 +8,11 @@
 
 ## 打印一幅图片
 
-Android Support Library中的[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类提供了一种打印图片的简单方法。该类有一个单一的布局选项：[setScaleMode()](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#setScaleMode(int))，它能允许你使用下面的两个选项之一：
+Android Support Library中的[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类提供了一种打印图片的简单方法。该类有一个单一的布局选项：<a href="http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#setScaleMode(int)">setScaleMode()</a>，它能允许你使用下面的两个选项之一：
 * [SCALE_MODE_FIT](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#SCALE_MODE_FIT)：这个选项会调整图像的大小，这样整个图像就会在打印有效区域内全部显示出来（等比例缩放至长和宽都包含在纸张页面内）。
 * [SCALE_MODE_FILL](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#SCALE_MODE_FILL)：这个选项同样会等比例地调整图像的大小使图像充满整个打印有效区域，即让图像充满整个纸张页面。这就意味着如果选择这个选项，那么图片的一部分（顶部和底部，或者左侧和右侧）将无法打印出来。如果你不设置图像的打印布局选项，该模式将是默认的图像拉伸方式。
 
-这两个[setScaleMode()](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#setScaleMode\(int\))的图像布局选项都会保持图像原有的长宽比。下面的代码展示了如何创建一个[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类的实例，设置布局选项，并开始打印进程：
+这两个<a href="http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#setScaleMode(int)">setScaleMode()</a>的图像布局选项都会保持图像原有的长宽比。下面的代码展示了如何创建一个[PrintHelper](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html)类的实例，设置布局选项，并开始打印进程：
 
 ```java
 private void doPhotoPrint() {
@@ -26,6 +26,6 @@ private void doPhotoPrint() {
 
 这个方法可以作为一个菜单项的Action来被调用。注意对于那些不一定被支持的菜单项（比如打印），应该放置在“更多菜单（overflow menu）”中。要获取有关这方面的更多知识，可以阅读：[Action Bar](http://developer.android.com/design/patterns/actionbar.html)。
 
-在[printBitmap()](http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#printBitmap(java.lang.String, android.graphics.Bitmap))被调用之后，你的应用就不再需要进行其他的操作了。之后Android打印界面就会出现，允许用户选择一个打印机和它的打印选项。用户可以打印图像或者取消这一次操作。如果用户选择了打印图像，那么一个打印任务将会被创建，同时在系统的通知栏中会显示一个打印提醒通知。
+在<a href="http://developer.android.com/reference/android/support/v4/print/PrintHelper.html#printBitmap(java.lang.String, android.graphics.Bitmap)">printBitmap()</a>被调用之后，你的应用就不再需要进行其他的操作了。之后Android打印界面就会出现，允许用户选择一个打印机和它的打印选项。用户可以打印图像或者取消这一次操作。如果用户选择了打印图像，那么一个打印任务将会被创建，同时在系统的通知栏中会显示一个打印提醒通知。
 
 如果你希望在你的打印输出中包含更多的内容，而不仅仅是一张图片，那么就必须构造一个打印文档。这方面知识将会在后面的两节课程中展开。
