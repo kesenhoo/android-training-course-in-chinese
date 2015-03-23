@@ -93,7 +93,7 @@ Sync Adapter框架会通过查看应用的清单文件中是否含有[`<provider
 
 **android:syncable="true"**
 
-该标识指明Provider是可同步的。如果将这个值设置为`true`，你将不需要在代码中调用[setIsSyncable()](http://developer.android.com/reference/android/content/ContentResolver.html#setIsSyncable(android.accounts.Account, java.lang.String, int))。这一标识将会允许Sync Adapter框架和Content Provider进行数据传输，但是仅仅在你显式地执行相关调用时，这一传输时才会进行。
+该标识指明Provider是可同步的。如果将这个值设置为`true`，你将不需要在代码中调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setIsSyncable(android.accounts.Account, java.lang.String, int)">setIsSyncable()</a>。这一标识将会允许Sync Adapter框架和Content Provider进行数据传输，但是仅仅在你显式地执行相关调用时，这一传输时才会进行。
 
 下面的代码片段展示了你应该如何将[`<provider>`](http://developer.android.com/guide/topics/manifest/provider-element.html)标签添加到应用的清单文件中：
 
