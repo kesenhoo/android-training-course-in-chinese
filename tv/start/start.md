@@ -59,10 +59,10 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 
 <!-- An application intended to run on TV devices must declare a launcher activity for TV in its manifest using a [CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER) intent filter. This filter identifies your app as being enabled for TV, and is required for your app to be considered a TV app in Google Play. Declaring this intent also identifies which activity in your app to launch when a user selects its icon on the TV home screen. -->
 
-一个应用activity想要运行在TV设备中，必须在它的manifest中定义一个启动activity，用intent filter包含[CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER)。这个filter表明你的应用是在TV上可用，并且Google Play上发布TV应用所必须。定义这个intent也意味着在点击app在TV主屏幕的图标时，打开的就是这个activity。
+一个应用想要运行在TV设备中，必须在它的manifest中定义一个启动activity，用intent filter包含[CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER)。这个filter表明你的应用是在TV上可用，并且为Google Play上发布TV应用所必须。定义这个intent也意味着在点击app在TV主屏幕的图标时，打开的就是这个activity。
 
 <!-- The following code snippet shows how to include this intent filter in your manifest: -->
-接下来的代码片段显示如何在manifest中包含intent filter：
+接下来的代码片段显示如何在manifest中包含这个intent filter：
 
 ```java
 <application
@@ -93,7 +93,7 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 ```
 
 <!-- The second activity manifest entry in this example specifies that activity as the one to launch on a TV device. -->
-例子中第二个activity manifest是TV设备中另一个启动入口。
+例子中第二个activity的manifest是TV设备中的一个启动入口。
 
 <!-- > **Caution**: If you do not include the [CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER) intent filter in your app, it is not visible to users running the Google Play store on TV devices. Also, if your app does not have this filter when you load it onto a TV device using developer tools, the app does not appear in the TV user interface. -->
 
