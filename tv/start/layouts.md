@@ -71,7 +71,7 @@ TV设备的布局应该遵循一些基本的指引确保它们在大屏幕下是
 - 创建横屏布局。TV屏幕总是显示在横屏模式。
 - 把导航控件放置在屏幕的左边或者右边，并且保持内容在垂直区间。
 - 创建分离的UI，用[Fragment](http://developer.android.com/guide/components/fragments.html)，并且用框架如[GridView](http://developer.android.com/reference/android/widget/GridView.html)代替[ListView](http://developer.android.com/reference/android/widget/ListView.html)获得屏幕水平方向更好的使用。
-- 用框架如[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)或者[LinearLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)来排列视图。基于对齐方式，纵横比，和电视屏幕的像素密度，这个方法允许系统调整视图大小的位置。
+- 用框架如[RelativeLayout](http://developer.android.com/reference/android/widget/RelativeLayout.html)或者[LinearLayout](http://developer.android.com/reference/android/widget/LinearLayout.html)来排列视图。基于对齐方式，纵横比，和电视屏幕的像素密度，这个方法允许系统调整视图大小的位置。
 - 在布局控件之间添加足够的边际，以避免成为一个杂乱的UI。
 
 <!-- ### Overscan ### -->
