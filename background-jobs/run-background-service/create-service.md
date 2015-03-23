@@ -1,8 +1,8 @@
-# Creating a Background Service
+# 创建后台服务
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/run-background-service/create-service.html>
 
-IntentService为在单个后台线程执行一个操作提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。
+IntentService为在单个后台线程执行一个操作提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。所以继续运行的情况下将关闭一个AsyncTask。
 
 IntentService有下面几个局限性：
 
@@ -12,12 +12,12 @@ IntentService有下面几个局限性：
 
 然而，在大多数情况下，IntentService都是简单后台任务操作的理想选择。
 
-这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调[onHandleIntent()](http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent))。最后，还会解释如何在manifest文件中定义这个IntentService。
+这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调[onHandleIntent()](http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent) )。最后，还会解释如何在manifest文件中定义这个IntentService。
 
 <!-- More -->
 
 ## 1)创建IntentService
-为了给你的app创建一个IntentService，定义一个类，extends IntentService，在里面override onHandleIntent()方法，如下所示：
+为你的app创建一个IntentService组件，需要定义一个类，并继承IntentService类，在里面重写onHandleIntent()方法，如下所示：
 
 ```java
 public class RSSPullService extends IntentService {
@@ -32,10 +32,10 @@ public class RSSPullService extends IntentService {
 }
 ```
 
-注意一个普通Service组件的其他回调，例如`onStartCommand()`会被IntentService自动触发。在IntentService中，要避免override那些回调。
+注意一个普通Service组件的其他回调，例如`onStartCommand()`会被IntentService自动调用。在IntentService中，要避免重写那些回调。
 
 ## 2)在Manifest文件中定义IntentService
-IntentService需要在manifest文件的<application>标签下进行定义，如下所示：
+IntentService需要在manifest文件添加相应的条目，将此条目`<service>`作为<application>元素的子元素下进行定义，如下所示：
 
 ```xml
 <application
@@ -54,6 +54,6 @@ IntentService需要在manifest文件的<application>标签下进行定义，如�
 
 `android:name`属性指明了IntentService的名字。
 
-注意<service>标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。
+注意`<service>`标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。
 
 至此，你已经有了一个基本的IntentService类，你可以通过Intent对象向它发送操作请求。构造这些对象以及发送它们到你的IntentService的方式，将在接下来的课程中描述。
