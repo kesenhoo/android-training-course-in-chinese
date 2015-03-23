@@ -43,7 +43,7 @@ private void dispatchTakePictureIntent() {
 
 如果拍一张照片并不不是你的应用的最终目的，那么你可能想要从相机应用那里取回你的照片，并用它做些什么。
 
-Android的相机应用会把拍好的照片编码为缩小的[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)，使用extra value的方式添加到返回的[Intent](http://developer.android.com/reference/android/content/Intent.html)当中，并传送给[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))，并且对应的Key为`"data"`。下面的代码展示的是如何获取这一图片并显示在[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)上。
+Android的相机应用会把拍好的照片编码为缩小的[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)，使用extra value的方式添加到返回的[Intent](http://developer.android.com/reference/android/content/Intent.html)当中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>，并且对应的Key为`"data"`。下面的代码展示的是如何获取这一图片并显示在[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)上。
 
 ```java
 @Override
@@ -62,7 +62,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 如果你提供一个File对象给Android的相机程序，它会保存这张全尺寸照片到给定的路径下。你必须提供存储图片所需要的含有后缀名形式的文件名。
 
-一般而言，用户使用设备相机所拍摄的任何照片都应该被存放在设备的公共外部存储中，这样它们就能被所有的图片访问。将[DIRECTORY_PICTURES](http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES)作为参数，传递给[getExternalStoragePublicDirectory()](http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String))方法，可以返回适用于存储公共图片的目录。由于该方法提供的目录被所有应用共享，因此对该目录进行读写操作分别需要[READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE)和[WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)权限。另外，因为写权限隐含了读权限，所以如果你需要外部存储的写权限，那么你仅仅需要请求一项权限就可以了：
+一般而言，用户使用设备相机所拍摄的任何照片都应该被存放在设备的公共外部存储中，这样它们就能被所有的图片访问。将[DIRECTORY_PICTURES](http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES)作为参数，传递给<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">getExternalStoragePublicDirectory()</a>方法，可以返回适用于存储公共图片的目录。由于该方法提供的目录被所有应用共享，因此对该目录进行读写操作分别需要[READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE)和[WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)权限。另外，因为写权限隐含了读权限，所以如果你需要外部存储的写权限，那么你仅仅需要请求一项权限就可以了：
 
 ```xml
 <manifest ...>
@@ -71,7 +71,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 </manifest>
 ```
 
-然而，如果你希望照片对你的应用而言是私有的，你可以使用[getExternalFilesDir()](http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String))提供的目录。在Android 4.3及以下版本的系统中，写这个目录需要[WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)权限。从Android 4.4开始，该目录将无法被其他应用访问，所以该权限就不再需要了，你可以通过添加[maxSdkVersion](http://developer.android.com/guide/topics/manifest/uses-permission-element.html#maxSdk)属性，声明只在低版本的Android设备上请求这个权限。
+然而，如果你希望照片对你的应用而言是私有的，你可以使用<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录。在Android 4.3及以下版本的系统中，写这个目录需要[WRITE_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE)权限。从Android 4.4开始，该目录将无法被其他应用访问，所以该权限就不再需要了，你可以通过添加[maxSdkVersion](http://developer.android.com/guide/topics/manifest/uses-permission-element.html#maxSdk)属性，声明只在低版本的Android设备上请求这个权限。
 
 ```xml
 <manifest ...>
@@ -81,7 +81,7 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 </manifest>
 ```
 
-> **Note:** 所有存储在[getExternalFilesDir()](http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String))提供的目录中的文件会在用户卸载你的app后被删除。
+> **Note:** 所有存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录中的文件会在用户卸载你的app后被删除。
 
 一旦你选定了存储文件的目录，你需要设计一个保证文件名不会冲突的命名规则。也许你还希望将路径存储在一个成员变量里以备在将来使用。下面的例子使用日期时间戳为新照片生成唯一的文件名：
 
@@ -137,7 +137,7 @@ private void dispatchTakePictureIntent() {
 
 当你通过Intent创建了一张照片，你应该知道你的图片在哪，因为是你决定将它存储在哪里的。对其他人来说，也许查看你的照片最简单的方式是通过系统的Media Provider。
 
-> **Note:** 如果你将你的图片存储在[getExternalFilesDir()](http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String))提供的目录中，媒体扫描器不能访问到你的文件，因为它们属于你的应用的私有数据。
+> **Note:** 如果你将你的图片存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录中，媒体扫描器不能访问到你的文件，因为它们属于你的应用的私有数据。
 
 下面的例子演示了如何触发系统的Media Scanner将你的照片添加到Media Provider的数据库中，这样就可以使得Android相册程序与其他程序能够读取到这些照片。
 

@@ -8,7 +8,7 @@
 
 ## 获取文件的MIME类型
 
-客户端应用程序可以通过文件的数据类型判断自己应该如何处理这个文件的内容。为了得到Content URI所对应的文件数据类型，客户端应用程序可以调用[ContentResolver.getType()](http://developer.android.com/reference/android/content/ContentResolver.html#getType(android.net.Uri))方法。这个方法返回了文件的MIME类型。默认情况下，一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)通过文件的后缀名来确定其MIME类型。
+客户端应用程序可以通过文件的数据类型判断自己应该如何处理这个文件的内容。为了得到Content URI所对应的文件数据类型，客户端应用程序可以调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#getType(android.net.Uri)">ContentResolver.getType()</a>方法。这个方法返回了文件的MIME类型。默认情况下，一个[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)通过文件的后缀名来确定其MIME类型。
 
 下面的例子展示了当服务端应用程序将Content URI返回给客户端应用程序后，客户端应用程序应该如何获取文件的MIMIE类型：
 
@@ -24,17 +24,17 @@
 ```
 
 ## 获取文件名和文件大小
-[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)类有一个[query()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))方法的默认实现，它返回一个[Cursor](http://developer.android.com/reference/android/database/Cursor.html)对象，该Cursor对象包含了Content URI所关联的文件的名称和大小。默认的实现返回下面两列信息：
+[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)类有一个<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)">query()</a>方法的默认实现，它返回一个[Cursor](http://developer.android.com/reference/android/database/Cursor.html)对象，该Cursor对象包含了Content URI所关联的文件的名称和大小。默认的实现返回下面两列信息：
 
 [**DISPLAY_NAME**](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)
 
-文件的文件名，它是一个[String](http://developer.android.com/reference/java/lang/String.html)类型。这个值和[File.getName()](http://developer.android.com/reference/java/io/File.html#getName\(\))所返回的值是一样的。
+文件的文件名，它是一个[String](http://developer.android.com/reference/java/lang/String.html)类型。这个值和<a href="http://developer.android.com/reference/java/io/File.html#getName()">File.getName()</a>所返回的值是一样的。
 
 [**SIZE**](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)
 
-文件的大小，以字节为单位，它是一个long类型。这个值和[File.length()](http://developer.android.com/reference/java/io/File.html#length\(\))所返回的值是一样的。
+文件的大小，以字节为单位，它是一个long类型。这个值和<a href="http://developer.android.com/reference/java/io/File.html#length()">File.length()</a>所返回的值是一样的。
 
-客户端应用可以通过将[query()](http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))的除了Content URI之外的其他参数都设置为“null”，来同时获取文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)（DISPLAY_NAME）和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)（SIZE）。例如，下面的代码获取一个文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)，然后在两个[TextView](http://developer.android.com/reference/android/widget/TextView.html)中将他们显示出来：
+客户端应用可以通过将<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String)">query()</a>的除了Content URI之外的其他参数都设置为“null”，来同时获取文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)（DISPLAY_NAME）和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)（SIZE）。例如，下面的代码获取一个文件的[名称](http://developer.android.com/reference/android/provider/OpenableColumns.html#DISPLAY_NAME)和[大小](http://developer.android.com/reference/android/provider/OpenableColumns.html#SIZE)，然后在两个[TextView](http://developer.android.com/reference/android/widget/TextView.html)中将他们显示出来：
 
 ```java
     ...
