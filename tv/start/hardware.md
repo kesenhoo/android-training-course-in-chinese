@@ -109,7 +109,7 @@ GPS						|	`android.hardware.location.gps`
 
 <!-- >Note: Some features have subfeatures like `android.hardware.camera.front`, as described in the Feature Reference. Be sure to mark as `required="false"` any subfeatures also used in your app. -->
 
->**Note**：一些特性有子特性，如`android.hardware.camera.front`，参考：[Feature Reference](http://developer.android.com/training/tv/start/guide/topics/manifest/uses-feature-element.html#features-reference)。确保应用中任何子特性也标记为`required="false"`。
+>**Note**：一些特性有子特性，如`android.hardware.camera.front`，参考：[Feature Reference](http://developer.android.com/guide/topics/manifest/uses-feature-element.html#features-reference)。确保应用中任何子特性也标记为`required="false"`。
 
 
 <!-- All apps intended for use on TV devices must declare that the touch screen feature is not required as described in Get Started with TV Apps. If your app normally uses one or more of the features listed above, change the android:required attribute setting to false for those features in your manifest. -->
@@ -157,7 +157,7 @@ GPS						|	`android.hardware.location.gps`
 
 <!-- The Android framework can tell you if hardware features are not available on the device where your app is running. Use the hasSystemFeature(String) method to check for specific features at runtime. This method takes a single string argument that specifies the feature you want to check. -->
 
-在应用运行时，Android framework能告诉你硬件特性是否可用。用[hasSystemFeature(String)]()方法在运行时检查特定的特性。这个方法只需要一个字符串参数，即想检查的特性名字。
+在应用运行时，Android framework能告诉你硬件特性是否可用。用[hasSystemFeature(String)](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String))方法在运行时检查特定的特性。这个方法只需要一个字符串参数，即想检查的特性名字。
 
 
 <!-- The following code example demonstrates how to detect the availability of hardware features at runtime: -->
