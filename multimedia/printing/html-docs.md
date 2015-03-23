@@ -50,18 +50,18 @@ private void doWebViewPrint() {
 ```
 
 > **Note：**
-请确保在[WebViewClient](http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String))中的[onPageFinished()](http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String))方法内调用创建打印任务的方法。如果你没有等到页面加载完毕就进行打印，打印的输出可能会不完整或空白，甚至可能会失败。
+请确保在[WebViewClient](http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String))中的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String)">onPageFinished()</a>方法内调用创建打印任务的方法。如果你没有等到页面加载完毕就进行打印，打印的输出可能会不完整或空白，甚至可能会失败。
 
 > **Note：**在上面的样例代码中，保留了一个[WebView](http://developer.android.com/reference/android/webkit/WebView.html)对象实例的引用，这样能够确保它不会在打印任务创建之前就被垃圾回收器所回收。务必在你自己的实现中也这样做，否则打印的进程可能会无法继续执行。
 
-如果你希望页面中包含图像，将这个图像文件放置在你的工程的“assets/”目录中，并指定一个基URL（Base URL），并将它作为[loadDataWithBaseURL()](http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String))方法的第一个参数，就像下面所显示的一样：
+如果你希望页面中包含图像，将这个图像文件放置在你的工程的“assets/”目录中，并指定一个基URL（Base URL），并将它作为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法的第一个参数，就像下面所显示的一样：
 
 ```java
 webView.loadDataWithBaseURL("file:///android_asset/images/", htmlBody,
         "text/HTML", "UTF-8", null);
 ```
 
-你也可以加载一个需要打印的网页，具体做法是将[loadDataWithBaseURL()](http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String))方法替换为[loadUrl()](http://developer.android.com/reference/android/webkit/WebView.html#loadUrl(java.lang.String))，如下所示：
+你也可以加载一个需要打印的网页，具体做法是将<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法替换为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadUrl(java.lang.String)">loadUrl()</a>，如下所示：
 
 ```java
 // Print an existing web page (remember to request INTERNET permission!):
