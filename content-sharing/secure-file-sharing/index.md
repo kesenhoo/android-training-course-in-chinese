@@ -4,7 +4,7 @@
 
 一个应用程序经常需要向其他应用程序提供一个甚至多个文件。例如，当我们用图片编辑器编辑图片时，被编辑的图片往往由图库应用程序所提供；再比如，文件管理器会允许用户在外部存储的不同区域之间复制粘贴文件。这里，我们提出一种让应用程序可以分享文件的方法：即令发送文件的应用程序对索取文件的应用程序所发出的文件请求进行响应。
 
-在所有情况下，将文件从你的应用程序发送至其它应用程序的唯一的安全方法是向接收文件的应用程序发送这个文件的content URI，并对该URI授予临时的访问权限。具有URI临时访问权限的content URI是安全的，因为他们仅应用于接收这个URI的应用程序，并且它们会自动过期。Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件提供了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile(android.content.Context, java.lang.String, java.io.File)"getUriForFile()</a>方法来创建一个文件的content URI。
+在所有情况下，将文件从你的应用程序发送至其它应用程序的唯一的安全方法是向接收文件的应用程序发送这个文件的content URI，并对该URI授予临时的访问权限。具有URI临时访问权限的content URI是安全的，因为他们仅应用于接收这个URI的应用程序，并且它们会自动过期。Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件提供了<a href="http://developer.android.com/reference/android/support/v4/content/FileProvider.html#getUriForFile(android.content.Context, java.lang.String, java.io.File)">getUriForFile()</a>方法来创建一个文件的content URI。
 
 如果你希望在应用之间仅共享少量的文本或者数字之类的数据，你应该发送一个包含该数据的Intent。要学习如何通过Intent发送简单数据，可以阅读：[Sharing Simple Data](../sharing/index.html)。
 
