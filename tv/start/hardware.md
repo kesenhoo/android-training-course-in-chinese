@@ -5,12 +5,12 @@
 
 <!-- TV hardware is substantially different from other Android devices. TVs do not include some of the hardware features found on other Android devices, such as touch screens, cameras, and GPS receivers. TVs are also completely dependent on secondary hardware devices. In order for users to interact with TV apps, they must use a remote control or game pad. When you build an app for TV, you must carefully consider the hardware limitations and requirements of operating on TV hardware. -->
 
-TV硬件和其他安卓设备有实质性的不同。TV不包含一些其他安卓具备的硬件特性，如触摸屏，摄像头，和GPS。TV也完全依赖于其他辅助硬件设备。为了让用户与TV应用交互，他们必须使用遥控器或者游戏手柄。当您创建TV应用时，必须小心的考虑到TV硬件的限制和操作要求。
+TV硬件和其他安卓设备有实质性的不同。TV不包含一些其他安卓设备具备的硬件特性，如触摸屏，摄像头，和GPS。TV也完全依赖于其他辅助硬件设备。为了让用户与TV应用交互，他们必须使用遥控器或者游戏手柄。当您创建TV应用时，必须小心的考虑到TV硬件的限制和操作要求。
 
 
 <!-- This lesson discusses how to check if your app is running on a TV, how to handle unsupported hardware features, and discusses the requirements for handling controllers for TV devices. -->
 
-本节课程讨论如何检查应用是不是运行在TV上，怎样去处理不支持的硬件特性，和讨论处理TV硬件控制器的要求。
+本节课程讨论如何检查应用是不是运行在TV上，怎样去处理不支持的硬件特性，和讨论处理TV设备控制器的要求。
 
 
 
@@ -19,7 +19,7 @@ TV硬件和其他安卓设备有实质性的不同。TV不包含一些其他安�
 
 <!-- If you are building an app that operates both on TV devices and other devices, you may need to check what kind of device your app is running on and adjust the operation of your app. For instance, if you have an app that can be started through an Intent, your application should check the device properties to determine if it should start a TV-oriented activity or a phone activity. -->
 
-如果你创建的应用同时支持TV设备和其他设备，你可能需要检测当前应用运行在哪种设备上，并调整应用的执行。例如，如果你有一个应用通过[Intent](http://developer.android.com/reference/android/content/Intent.html)启动，你的应用应该检查设备特性然后决定是应该启动TV导向的activity还是手机activity。
+如果你创建的应用同时支持TV设备和其他设备，你可能需要检测应用当前运行在哪种设备上，并调整应用的执行。例如，如果你有一个应用通过[Intent](http://developer.android.com/reference/android/content/Intent.html)启动，你的应用应该检查设备特性然后决定是应该启动TV导向的activity还是手机的activity。
 
 
 <!-- The recommended way to determine if your app is running on a TV device is to use the UiModeManager.getCurrentModeType() method to check if the device is running in television mode. The following example code shows you how to check if your app is running on a TV device: -->
@@ -47,7 +47,7 @@ if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION)
 
 
 <!-- ### Unsupported TV hardware features ### -->
-不支持的TV硬件特性
+### 不支持的TV硬件特性
 
 <!-- TVs have a different purpose from other devices, and so they do not have hardware features that other Android-powered devices often have. For this reason, the Android system does not support the following features for a TV device: -->
 
@@ -109,17 +109,17 @@ GPS						|	`android.hardware.location.gps`
 
 <!-- >Note: Some features have subfeatures like `android.hardware.camera.front`, as described in the Feature Reference. Be sure to mark as `required="false"` any subfeatures also used in your app. -->
 
->**Note**：一些特性有子特性，如`android.hardware.camera.front`，参考：[Feature Reference](http://developer.android.com/training/tv/start/guide/topics/manifest/uses-feature-element.html#features-reference)。确保应用中任何子特性也标记为`required="false"`。
+>**Note**：一些特性有子特性，如`android.hardware.camera.front`，参考：[Feature Reference](http://developer.android.com/guide/topics/manifest/uses-feature-element.html#features-reference)。确保应用中任何子特性也标记为`required="false"`。
 
 
 <!-- All apps intended for use on TV devices must declare that the touch screen feature is not required as described in Get Started with TV Apps. If your app normally uses one or more of the features listed above, change the android:required attribute setting to false for those features in your manifest. -->
 
-所有想用在TV设备上应用必须声明触屏特性不被需要，在[创建TV应用的第一步](http://developer.android.com/training/tv/start/start.html#no-touchscreen)有描述。如果你的应用使用了一个或更多的上面列表上的特性，改变manifest特性的`android:required`属性为`false`。
+所有想用在TV设备上的应用必须声明触屏特性不被需要，在[创建TV应用的第一步](http://developer.android.com/training/tv/start/start.html#no-touchscreen)有描述。如果你的应用使用了一个或更多的上面列表上的特性，改变manifest特性的`android:required`属性为`false`。
 
 
 <!-- >**Caution**: Declaring a hardware feature as required by setting its value to `true` prevents your app from being installed on TV devices or appearing in the Android TV home screen launcher. -->
 
->**Caution**：表明一个硬件特性是必须的，设置它的值为`true`可以阻止应用在TV设备上安装或者出现在安卓TV的主屏幕上。
+>**Caution**：表明一个硬件特性是必须的，设置它的值为`true`可以阻止应用在TV设备上安装或者出现在安卓TV的主屏幕launcher上。
 
 
 <!-- Once you decide to make hardware features optional for your app, you must check for the availability of those features at runtime and then adjust your app's behavior. The next section discusses how to check for hardware features and suggests some approaches for changing the behavior of your app. -->
@@ -157,12 +157,12 @@ GPS						|	`android.hardware.location.gps`
 
 <!-- The Android framework can tell you if hardware features are not available on the device where your app is running. Use the hasSystemFeature(String) method to check for specific features at runtime. This method takes a single string argument that specifies the feature you want to check. -->
 
-在应用运行时，Android framework能告诉你硬件特性是否可用。用[hasSystemFeature(String)]()方法在运行时检查特定的特性。这个方法只需要一个字符串参数，即想检查的特性名字。
+在应用运行时，Android framework能告诉你硬件特性是否可用。用[hasSystemFeature(String)](http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String))方法在运行时检查特定的特性。这个方法只需要一个字符串参数，即想检查的特性名字。
 
 
 <!-- The following code example demonstrates how to detect the availability of hardware features at runtime: -->
 
-接下来的示例代码展示了运行时如何检测硬件特性的可用性：
+接下来的示例代码展示了如何在陨石检测硬件特性的可用性：
 
 ```java
 // Check if the telephony hardware feature is available.
@@ -181,11 +181,11 @@ if (getPackageManager().hasSystemFeature("android.hardware.touchscreen")) {
 
 <!-- Since most TVs do not have touch screens, Android does not support touch screen interaction for TV devices. Furthermore, using a touch screen is not consistent with a viewing environment where the user is seated 10 feet away from the display. Make sure that your UI elements and text do not require or imply the use of a touchscreen. -->
 
-因为大部分的TV没有触摸屏，在TV设备上，安卓不支持触屏交互。此外，用触屏交互和坐在离显示器在3米外观看是相互矛盾的。
+因为大部分的TV没有触摸屏，在TV设备上，安卓不支持触屏交互。此外，用触屏交互和坐在离显示器3米外观看是相互矛盾的。
 
 <!-- On TV devices, you should design your app to work with this interaction model by supporting navigation using a directional pad (D-pad) on a TV remote control. For more information on properly supporting navigation using TV-friendly controls, see Creating TV Navigation. -->
 
-在TV设备中，你应该设计应用交互模式支持用遥控器上的方向键（D-pad）操作。更多关于正确地支持TV友好控制器操作的信息，参考[Creating TV Navigation](http://developer.android.com/training/tv/start/navigation.html)。
+在TV设备中，你应该设计应用交互模式支持遥控器上的方向键（D-pad）操作。更多关于正确地支持TV友好的控制器操作的信息，参考[Creating TV Navigation](http://developer.android.com/training/tv/start/navigation.html)。
 
 
 <!-- ### Camera ### -->
@@ -217,7 +217,7 @@ if (getPackageManager().hasSystemFeature("android.hardware.camera")) {
 
 <!-- TVs are stationary, indoor devices, and do not have built-in global positioning system (GPS) receivers. If your app uses location information, you can still allow users to search for a location, or use a static location provider such as a zip code configured during the TV device setup. -->
 
-TV是国定的室内的设备，并且没有内置的全球定位系统（GPS）需求。如果你的应用使用定位信息，你仍可以允许用户搜索位置，或者用固定位置提供商代替，如在TV设置中配置邮政编码。
+TV是固定的室内设备，并且没有内置的全球定位系统（GPS）接收器。如果你的应用使用定位信息，你仍可以允许用户搜索位置，或者用固定位置提供商代替，如在TV设置中设置邮政编码。
 
 ```java
 // Request a static location from the location manager
@@ -243,11 +243,11 @@ try {
 
 <!-- TV devices require a secondary hardware device for interacting with apps, in the form of a basic remote controller or game controller. This means that your app must support D-pad input. It also means that your app may need to handle controllers going offline and input from more than one type of controller. -->
 
-TV设备需要辅助硬件设备和应用交互，一个基本遥控器的形式或者游戏手柄。这意味着你的应用必须支持D-pad（十字方向键）输入。它也意味着你的应用可能需要处理手柄掉线和超过一种类型的手柄的输入。
+TV设备需要辅助硬件设备与应用交互，如一个基本形式的遥控器或者游戏手柄。这意味着你的应用必须支持D-pad（十字方向键）输入。它也意味着你的应用可能需要处理手柄掉线和更多类型的手柄输入。
 
 
 <!-- ### D-pad minimum controls ### -->
-### D-pad最低控制
+### D-pad必须的按键
 
 <!-- The default controller for a TV device is a D-pad. In general, your app should be operable from a remote controller that only has up, down, left, right, select, Back, and Home buttons. If your app is a game that typically requires a game controller with additional controls, your app should attempt to allow gameplay with these D-pad controls. In this case, your app should also warn the user that a controller is required and allow them to exit your game gracefully using the D-pad controller. For more information about handling navigation with D-pad controller for TV devices, see Creating TV Navigation. -->
 
@@ -295,7 +295,7 @@ TV的手柄通常是蓝牙设备，它为了省电而定期的休眠并且与TV�
 这个配置改变允许应用通过重连事件继续运行，比较而言Android framework强制重启应用会导致一个不好的用户体验。
 
 <!-- ### Handle D-pad input variations ### -->
-### 处理D-pad输入变种
+### 处理D-pad变种输入
 
 <!-- TV device users may have more than one type of controller that they use with their TV. For example, a user might have both a basic D-pad controller and a game controller. The key codes provided by a game controller when it is being used for D-pad functions may vary from the key codes sent by a physical D-pad. -->
 
@@ -303,8 +303,7 @@ TV设备用户可能有超过一种类型的控制器来操纵TV。例如，一�
 
 <!-- Your app should handle the variations of D-pad input from a game controller, so the user does not have to physically switch controllers to operate your app. For more information on handling these input variations, see Handling Controller Actions. -->
 
-你的应用应该要处理游戏控制器D-pad输入的变种，因此用户不需要通过物理开关控制器去操作你的应用。更多信息关于处理这些变种输入，参考[Handling Controller Actions](http://developer.android.com/training/tv/start/hardware.html)。
+你的应用应该要处理游戏控制器D-pad的变种输入，因此用户不需要通过物理开关控制器去操作你的应用。更多信息关于处理这些变种输入，参考[Handling Controller Actions](http://developer.android.com/training/tv/start/hardware.html)。
 
 -------------
-[NEXT: BUILDING TV LAYOUTS](http://developer.android.com/training/tv/start/layouts.html)
-<!-- TODO, 改为正确的中文链接 -->
+[下一节: 创建TV布局](layouts.html)
