@@ -8,9 +8,9 @@
 
 ## 打开相机对象
 
-获取一个 [Camera](http://developer.android.com/reference/android/hardware/Camera.html) 对象是直接控制相机的第一步。正如Android自带的相机程序一样，访问相机推荐的方式是在[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle))方法里面另起一个线程来打开相机。这种办法可以避免因为启动时间较长导致UI线程被阻塞。还有一种更好的方法，可以把打开相机的操作延迟到[onResume()](http://developer.android.com/reference/android/app/Activity.html#onResume())方法里面去执行，这样使得代码更容易重用，并且保持控制流程简单。
+获取一个 [Camera](http://developer.android.com/reference/android/hardware/Camera.html) 对象是直接控制相机的第一步。正如Android自带的相机程序一样，访问相机推荐的方式是在<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法里面另起一个线程来打开相机。这种办法可以避免因为启动时间较长导致UI线程被阻塞。还有一种更好的方法，可以把打开相机的操作延迟到<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>方法里面去执行，这样使得代码更容易重用，并且保持控制流程简单。
 
-当相机正在被另外一个程序使用的时候去执行[Camera.open()](http://developer.android.com/reference/android/hardware/Camera.html#open())会抛出一个Exception，利用`try`语句块进行捕获：
+当相机正在被另外一个程序使用的时候去执行<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">Camera.open()</a>会抛出一个Exception，利用`try`语句块进行捕获：
 
 ```java
 private boolean safeCameraOpen(int id) {
@@ -37,7 +37,7 @@ private void releaseCameraAndPreview() {
 }
 ```
 
-自从API Level 9开始，相机框架可以支持多个相机。如果你使用旧的API，在调用[open()](http://developer.android.com/reference/android/hardware/Camera.html#open())时不传入参数 ，那么你会获取后置摄像头。
+自从API Level 9开始，相机框架可以支持多个相机。如果你使用旧的API，在调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">open()</a>时不传入参数 ，那么你会获取后置摄像头。
 
 ## 创建相机预览界面
 
@@ -73,7 +73,7 @@ class Preview extends ViewGroup implements SurfaceHolder.Callback {
 
 ### 设置和启动Preview
 
-一个Camera实例与它相关的Preview必须以特定的顺序来创建，其中Camera对象首先被创建。在下面的示例中，初始化Camera的动作被封装了起来，这样，无论用户想对Camera做出任何改变，[Camera.startPreview()](http://developer.android.com/reference/android/hardware/Camera.html#startPreview())都会被`setCamera()`调用。另外，Preview对象必须在`surfaceChanged()`这一回调方法里面重新启用（restart）。
+一个Camera实例与它相关的Preview必须以特定的顺序来创建，其中Camera对象首先被创建。在下面的示例中，初始化Camera的动作被封装了起来，这样，无论用户想对Camera做出任何改变，<a href="http://developer.android.com/reference/android/hardware/Camera.html#startPreview()">Camera.startPreview()</a>都会被`setCamera()`调用。另外，Preview对象必须在`surfaceChanged()`这一回调方法里面重新启用（restart）。
 
 ```java
 public void setCamera(Camera camera) {
@@ -122,13 +122,13 @@ public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
 
 ## 设置预览方向
 
-大多数相机程序会锁定预览为横屏状态，因为该方向是相机传感器的自然方向。当然这一设定并不会阻止你去拍竖屏的照片，因为设备的方向信息会被记录在EXIF头中。[setCameraDisplayOrientation()](http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int))方法可以让你在不影响照片拍摄过程的情况下，改变预览的方向。然而，对于Android API Level 14及以下版本的系统，在改变方向之前，你必须先停止你的预览，然后再去重启它。
+大多数相机程序会锁定预览为横屏状态，因为该方向是相机传感器的自然方向。当然这一设定并不会阻止你去拍竖屏的照片，因为设备的方向信息会被记录在EXIF头中。<a href="http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int)">setCameraDisplayOrientation()</a>方法可以让你在不影响照片拍摄过程的情况下，改变预览的方向。然而，对于Android API Level 14及以下版本的系统，在改变方向之前，你必须先停止你的预览，然后再去重启它。
 
 ## 拍摄照片
 
-只要预览开始之后，可以使用[Camera.takePicture()](http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback))方法拍摄照片。你可以创建[Camera.PictureCallback](http://developer.android.com/reference/android/hardware/Camera.PictureCallback.html)与[Camera.ShutterCallback](http://developer.android.com/reference/android/hardware/Camera.ShutterCallback.html)对象并将他们传递到[Camera.takePicture()](http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback))中。
+只要预览开始之后，可以使用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>方法拍摄照片。你可以创建<a href="http://developer.android.com/reference/android/hardware/Camera.PictureCallback.html">Camera.PictureCallback</a>与<a href="http://developer.android.com/reference/android/hardware/Camera.ShutterCallback.html">Camera.ShutterCallback</a>对象并将他们传递到<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>中。
 
-如果你想要进行连拍，你可以创建一个[Camera.PreviewCallback](http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html)并实现[onPreviewFrame()](http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html#onPreviewFrame(byte[], android.hardware.Camera))方法。你可以拍摄选中的预览帧，或是为调用[takePicture()](http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback))建立一个延迟。
+如果你想要进行连拍，你可以创建一个[Camera.PreviewCallback](http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html)并实现<a href="http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html#onPreviewFrame(byte[], android.hardware.Camera)">onPreviewFrame()</a>方法。你可以拍摄选中的预览帧，或是为调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">takePicture()</a>建立一个延迟。
 
 ## 重启Preview
 
