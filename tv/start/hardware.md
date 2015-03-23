@@ -47,7 +47,7 @@ if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION)
 
 
 <!-- ### Unsupported TV hardware features ### -->
-不支持的TV硬件特性
+### 不支持的TV硬件特性
 
 <!-- TVs have a different purpose from other devices, and so they do not have hardware features that other Android-powered devices often have. For this reason, the Android system does not support the following features for a TV device: -->
 
