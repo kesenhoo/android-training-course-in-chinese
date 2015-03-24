@@ -109,5 +109,5 @@ public void onCreate(Bundle savedInstanceState) {
 ![backward-compatible-ui-gb](backward-compatible-ui-gb.png)
 ![backward-compatible-ui-ics](backward-compatible-ui-ics.png)
 
-* Figure 1.向后兼容的tabs运行在Android 2.3设备上（使用TabHelperEclair）和运行在Android 4.0设备上的截图
+* 图1.向后兼容的tabs运行在Android 2.3设备上（使用TabHelperEclair）和运行在Android 4.0设备上的截图
 
