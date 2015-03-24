@@ -1,26 +1,26 @@
 <!--# Searching within TV Apps #-->
-# TV应用内进行搜索
+# TV应用内搜索
 
 > 编写:[awong1900](https://github.com/awong1900) - 原文:http://developer.android.com/training/tv/discovery/in-app-search.html
 
 <!--Users frequently have specific content in mind when using a media app on TV. If your app contains a large catalog of content, browsing for a specific title may not be the most efficient way for users to find what they are looking for. A search interface can help your users get to the content they want faster than browsing.-->
 
-用户经常有特殊的内容在脑子里当在TV上用媒体应用时。如果你的应用包含一个大的内容目录，浏览为特定的标题可能不是最有效的方式为用户去发现他们在找什么。一个搜索界面能帮助你的用户获得内容他们想更快的浏览。
+当用TV用媒体应用时，用户脑中通常有特定的内容。如果你的应用包含一个大的内容目录，为用户找到他们想找到的内容时，用特定的标题浏览可能不是最有效的方式为。一个搜索界面能帮助你的用户获得他们想快速浏览的内容。
 
 <!--The Leanback support library provides a set of classes to enable a standard search interface within your app that is consistent with other search functions on TV and provides features such as voice input.-->
 
-[Leanback support library](http://developer.android.com/tools/support-library/features.html#v17-leanback)提供一套类去使用标准的搜索界面在你的应用内一致的和其他搜索功能在TV和提供细节如声音输入。
+[Leanback support library](http://developer.android.com/tools/support-library/features.html#v17-leanback)提供一套类库去使用标准的搜索界面。在你的应用内使用类库，可以和TV其他搜索功能，如声音输入，获得一致性。
 
 <!--This lesson discusses how to provide a search interface in your app using Leanback support library classes.-->
 
-这节课讨论如何去提供搜索界面在你的应用中去用Leanback支持库类。
+这节课讨论如何在你的应用中用Leanback支持类库提供搜索界面。
 
 <!--## Add a Search Action ##-->
 ## 添加搜索操作
 
 <!--When you use the BrowseFragment class for a media browsing interface, you can enable a search interface as a standard part of the user interface. The search interface is an icon that appears in the layout when you set View.OnClickListener on the BrowseFragment object. The following sample code demonstrates this technique.-->
 
-当你用[BroweseFragment](http://developer.android.com/reference/android/support/v17/leanback/app/BrowseFragment.html)类为一个媒体浏览界面，你能使用一个搜索界面作为用户界面的标准部分。搜索界面是一个图标出现在布局当你设置[View.OnClickListener](http://developer.android.com/reference/android/view/View.OnClickListener.html)在[BrowseFragment](http://developer.android.com/reference/android/support/v17/leanback/app/BrowseFragment.html)对象。接下来的示例代码展示了这个细节。
+当你用[BroweseFragment](http://developer.android.com/reference/android/support/v17/leanback/app/BrowseFragment.html)类做一个媒体浏览界面时，你能使用搜索界面作为用户界面的一个标准部分。当你设置[View.OnClickListener](http://developer.android.com/reference/android/view/View.OnClickListener.html)在[BrowseFragment](http://developer.android.com/reference/android/support/v17/leanback/app/BrowseFragment.html)对象时，搜索界面作为一个图标出现在布局中。接下来的示例代码展示了这个技术。
 
 ```java
 @Override
@@ -51,11 +51,11 @@ public void onCreate(Bundle savedInstanceState) {
 
 
 <!--## Add a Search Input and Results-->
-## 添加一个搜索输入和结果
+## 添加搜索输入和结果展示
 
 <!--When a user selects the search icon, the system invokes a search activity via the defined intent. Your search activity should use a linear layout containing a SearchFragment. This fragment must also implement the SearchFragment.SearchResultProvider interface in order to display the results of a search.-->
 
-当用户选择搜索图标，系统关联一个搜索activity通过定义的intent。你的搜索activity应该用啊线性布局包括[SearchFragment](http://developer.android.com/reference/android/support/v17/leanback/app/SearchFragment.html)。这个fragment必须实现[SearchFragment.SearchResultProvider](http://developer.android.com/reference/android/support/v17/leanback/app/SearchFragment.SearchResultProvider.html)界面为了去显示搜索结果。
+当用户选择搜索图标，系统通过定义的intent关联一个搜索activity。你的搜索activity应该用包括[SearchFragment](http://developer.android.com/reference/android/support/v17/leanback/app/SearchFragment.html)的线性布局。这个fragment必须实现[SearchFragment.SearchResultProvider](http://developer.android.com/reference/android/support/v17/leanback/app/SearchFragment.SearchResultProvider.html)界面去显示搜索结果。
 
 <!--The following code sample shows how to extend the SearchFragment class to provide a search interface and results:-->
 
@@ -111,7 +111,7 @@ public class MySearchFragment extends SearchFragment
 
 <!--The example code shown above is meant to be used with a separate SearchRunnable class that runs the search query on a separate thread. This technique keeps potentially slow-running queries from blocking the main user interface thread.-->
 
-示例代码展示上面是意味着啊分开的`SearchRunnable`类去运行搜索请求在分开的线程。这个技巧保持潜在的慢运行请求从阻塞主用线程。
+上面的示例代码展示了在分开的线程用独立的`SearchRunnable`类去运行搜索请求。这个技巧是从阻塞的主线程保持了潜在的慢运行请求。
 
 ----------------
 [下一节: 创建TV游戏](../games/index.html)
