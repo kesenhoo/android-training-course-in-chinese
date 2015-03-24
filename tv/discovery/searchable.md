@@ -1,11 +1,11 @@
 <!--# Making TV Apps Searchable #-->
-# 使得TV App能够被搜索
+# 使TV应用是可被搜索的
 
 > 编写:[awong1900](https://github.com/awong1900) - 原文:http://developer.android.com/training/tv/discovery/searchable.html
 
 <!--Android TV uses the Android search interface to retrieve content data from installed apps and deliver search results to the user. Your app's content data can be included with these results, to give the user instant access to the content in your app.-->
 
-安卓TV使用安卓搜索接口去检索内容数据从安装的应用并且释放搜索结果给用户。你的应用内容数据能被包含在这些结果中，去给用户即时访问应用程序中的内容。
+安卓TV使用安卓[搜索接口](http://developer.android.com/guide/topics/search/index.html)去检索内容数据从安装的应用并且释放搜索结果给用户。你的应用内容数据能被包含在这些结果中，去给用户即时访问应用程序中的内容。
 
 <!--Your app must provide Android TV with the data fields from which it generates suggested search results as the user enters characters in the search dialog. To do that, your app must implement a Content Provider that serves up the suggestions along with a searchable.xml configuration file that describes the content provider and other vital information for Android TV. You also need an activity that handles the intent that fires when the user selects a suggested search result. All of this is described in more detail in Adding Custom Suggestions. Here are described the main points for Android TV apps.-->
 
