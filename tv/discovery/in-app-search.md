@@ -111,7 +111,7 @@ public class MySearchFragment extends SearchFragment
 
 <!--The example code shown above is meant to be used with a separate SearchRunnable class that runs the search query on a separate thread. This technique keeps potentially slow-running queries from blocking the main user interface thread.-->
 
-示例代码展示上面是意味着啊分开的SearchRunnable类去运行搜索请求在分开的线程。这个技巧保持潜在的慢运行请求从阻塞主用线程。
+示例代码展示上面是意味着啊分开的`SearchRunnable`类去运行搜索请求在分开的线程。这个技巧保持潜在的慢运行请求从阻塞主用线程。
 
 ----------------
 [下一节: 创建TV游戏](../games/index.html)
