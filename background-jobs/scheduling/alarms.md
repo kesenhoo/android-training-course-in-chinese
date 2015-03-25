@@ -1,17 +1,17 @@
 # 调度重复的闹钟
 
-> 编写:[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/alarms.html>
+> 编写:[jdneo](https://github.com/jdneo),[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/alarms.html>
 
-闹钟([基本类AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html))给你一种方式执行基本时间操作你app生命周期外。例如你可以使用闹钟初始化一个长时间操作，例如开启一个服务一天为了下载天气预报。
+闹钟（基于[AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html)类）给予你一种在应用生命周期之外执行与时间相关的操作的方法。你可以使用闹钟初始化一个长时间的操作，例如每天开启一次后台服务，下载当日的天气预报。
 
-闹钟的特性
+闹钟具有如下特性：
 
-* 它们让设置次数或间距点燃你意图
-* 你可以使用它结合广播接收器开启服务和执行其他操作
-* 它们执行在你的应用之外，所以你可以使用它触发事件或动作即使你的app没有运行或设备处于睡眠状态。
-*	它们可以帮助你app最小化资源请求。你可以调度无需依赖的或者连续运行在后台的服务。
+* 允许你通过预设时间或者设定某个时间间隔，来触发Intent；
+* 你可以将它与BroadcastReceiver相结合，来启动服务并执行其他操作；
+* 可在应用范围之外执行，所以你可以在你的应用没有运行或设备处于睡眠状态的情况下，使用它来触发事件或行为；
+* 帮助你的应用最小化资源需求，你可以不用计时器或者长时间运行后台服务，而是使用闹钟调度你的任务。
 
-> Note:对于定时操作保证结果在你app生命周期之内，替代可虑使用[Handler](https://developer.android.com/reference/android/os/Handler.html)类结合[定时器](https://developer.android.com/reference/java/util/Timer.html)与[线程](https://developer.android.com/reference/java/lang/Thread.html)。这个方法给你Android更好的控制系统资源。
+> **Note**：对于那些需要确保在应用生命周期之内发生的定时操作，可以使用闹钟替代使用[Handler](https://developer.android.com/reference/android/os/Handler.html)结合[Timer](https://developer.android.com/reference/java/util/Timer.html)与[Thread](https://developer.android.com/reference/java/lang/Thread.html)的方法。因为它可以让Android系统更好地统筹系统资源。
 
 ## 理解交替使用
 
