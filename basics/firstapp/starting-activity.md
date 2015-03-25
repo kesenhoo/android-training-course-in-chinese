@@ -131,7 +131,7 @@ public void sendMessage(View view) {
 }
 ```
 
-运行这个方法，系统接收到你的请求后会实例化在`Intent`中指定的`Activity`，在你需要去创建一个`DisplayMessageActivity`类使程序能够执行起来。
+运行这个方法，系统接收到你的请求后会实例化在`Intent`中指定的`Activity`，现在你需要去创建一个`DisplayMessageActivity`类使程序能够执行起来。
 
 
 ## 创建第二个Activity
