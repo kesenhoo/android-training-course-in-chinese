@@ -2,14 +2,13 @@
 
 > 编写:[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/wakelock.html>
 
-为了避免电源消耗，一个Android设备闲置时会迅速进入睡眠状态。然而这里有些时间当一个应用需要唤醒屏幕或者CPU并且保持唤醒完成一些任务。
+为了避免电量过度消耗，Android设备在被闲置之后会迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者CPU并且保持它们的唤醒状态，直至一些任务被完成。
 
-你采取的方法依赖于你的应用的需要。但是，一般规则是你应该使用最轻量级的方法对的应用，减小你的应用对系统资源的影响。接下来的部分描述怎样处理当设备默认睡眠的行为与你请求不相容的情况。
+所采取的方法依赖于应用的具体需求。但是，通常来说，你应该使用最轻量级的方法，减小应用对系统资源的影响。接下来的部分描述在设备默认的睡眠行为与应用的需求不相符合的情况下，你应该如何进行对应的处理。
 
 ## 保持屏幕亮着
 
-确定你的应用需要保持屏幕变亮，比如游戏与电影的应用。最好的方式是使用[FLAG_KEEP_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)在你的Activity（仅在Activity不在Service或其他组件里）
-例如：
+某些应用需要保持屏幕常亮，比如游戏与视频的应用。最好的方式是在你的Activity中（且仅在Activity中，而不在Service或其他应用组件里）使用[FLAG_KEEP_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)，例如：
 
 ```java
 public class MainActivity extends Activity {
@@ -21,10 +20,11 @@ public class MainActivity extends Activity {
   }
 ```
 
-这个方法有点像醒锁([在 Keep the CPU On讨论]())，它不需要特殊的权限，平台正确
-管理你的用户在应用之间移动，不需要你的应用担心释放未使用资源。
+该方法的优点与唤醒锁（Wake Locks）不同（见[保持CPU运作](http://developer.android.com/training/scheduling/wakelock.html#cpu)），它不需要任何特殊的权限，系统会正确地
+管理应用之间的切换，且不必关心释放资源的问题。
 
-另外一种实现在你的应用布局xml文件里，通过使用[android:keepScreenOn](https://developer.android.com/reference/android/R.attr.html#keepScreenOn)属性:
+另外一种方法是在应用的XML布局文件里，使用[android:keepScreenOn](https://developer.android.com/reference/android/R.attr.html#keepScreenOn)属性:
+
 ```java
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -34,35 +34,42 @@ public class MainActivity extends Activity {
 </RelativeLayout>
 ```
 
-使用`android:keepScreenOn="true"`与使用[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)等效。你可以选择对你的应用最合适的方法。在你的Activity里面通过编码的方式来设置flag的优点是可以动态清除清除这个flag，从而使屏幕可以关闭。
+使用`android:keepScreenOn="true"`与使用[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)等效。你可以选择最合适你的应用的方法。在你的Activity里面通过代码设置常亮标识的优点，是可以通过代码动态清除清除这个标示，从而使屏幕可以关闭。
 
-> Notes:除非你不想在你的正在运行的程序里面长时间的点亮屏幕，否则你是不需要清除[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON) flag的。（例如：如果你想要屏幕在一定时间之后关闭，这样才需要清除FLAG_KEEP_SCRRE_ON）。WindowManager会当你的应用进入后台或者返回前台的时候屏幕有正常的点亮与关闭的行为。但是如果想你通过显式清除flag从而使得屏幕能够关闭，可以使用-[clearFlags()](https://developer.android.com/reference/android/view/Window.html#clearFlags(int));
+> **Notes**：除非你不再希望正在运行的应用长时间点亮屏幕（例如：在一定时间无操作发生后，你想要将屏幕关闭），否则你是不需要清除[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON) 标识的。WindowManager会在应用进入后台或者返回前台时，正确管理屏幕点亮与关闭的行为。但是如果你想要显式地清除这一标识，从而使得屏幕能够关闭，可以使用<a href="https://developer.android.com/reference/android/view/Window.html#clearFlags(int)">clearFlags()</a>：
+```java
 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON).
+```
 
 ## 保持CPU运行
 
-如果你需要保持CPU运行为了完成一些工作在设备睡眠，你可以使用[PowerManager](https://developer.android.com/reference/android/os/PowerManager.html)系统服务特性回调唤醒锁。唤醒锁允许你应用控制本地设备电源状态。
+如果你需要在设备睡眠之前，保持CPU运行来完成一些工作，你可以使用[PowerManager](https://developer.android.com/reference/android/os/PowerManager.html)系统服务中的唤醒锁功能。唤醒锁允许应用控制设备的电源状态。
 
-创建和支持唤醒锁能有个引人注目的影响对本地设备电源周期。因此你使用唤醒锁仅仅当你确实需要，并保持他们尽可能短的时间尽可能。例如，你不应该需要使用唤醒锁在一个Activity中。以上描述，如果你想保持屏幕亮着在你的Activity，使用[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)。
+创建和保持唤醒锁会对设备的电源寿命产生巨大影响。因此你应该仅在你确实需要时使用唤醒锁，且保持时间应该越短越好。例如，Activity中使用唤醒锁就显得没有必要了。如上所述，可以在Activity中使用[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)让屏幕保持常亮。
 
-一种合理情况对于使用唤醒锁可能在后台服务需要抢占一个唤醒锁保持CPU运行当屏幕关闭时。
-再一次，可是，这个实践应该最小因为它影响电池周期。
+使用唤醒锁的一种合理情况可能是：一个后台服务需要在屏幕关闭时利用唤醒锁保持CPU运行。
+再次强调，应该尽可能规避使用该方法，因为它会影响到电池寿命。
 
-为了使用唤醒锁，首先你增加[WAKE_LOCK](https://developer.android.com/reference/android/Manifest.permission.html#WAKE_LOCK)权限在应用主要清单文件：
+> **选择使用唤醒锁的情况**：
+> 1. 如果你的应用正在执行一个HTTP长连接的下载任务，可以考虑使用[DownloadManager](http://developer.android.com/reference/android/app/DownloadManager.html)。
+> 2. 如果你的应用正在冲一个外部服务器同步数据，可以考虑创建一个[SyncAdapter](http://developer.android.com/training/sync-adapters/index.html)
+> 3. 如果你的应用需要依赖于某些后台服务，可以考虑使用[RepeatingAlarm](http://developer.android.com/training/scheduling/alarms.html)或者[Google Cloud Messaging](http://developer.android.com/google/gcm/index.html)，以此每隔特定的时间，将这些服务激活。
+
+为了使用唤醒锁，首先需要在应用的Manifest清单文件中增加[WAKE_LOCK](https://developer.android.com/reference/android/Manifest.permission.html#WAKE_LOCK)权限：
 
 ```xml
-<uses-permission andriod:name="andriod.permission.WAKE_LOCK"/>
+<uses-permission android:name="android.permission.WAKE_LOCK" />
 ```
 
-如果你的应用包括一个广播接收器使用这个服务做一些工作，你能管理你唤醒锁通过一个[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html),作为描述[Using a WakefulBroadcastReceiver](https://developer.android.com/training/scheduling/wakelock.html#wakeful).这是优先的方法。如果你的应用不允许这个模式，这里告诉你之间设置唤醒锁：
+如果你的应用包含一个广播接收器并使用服务来完成一些工作，你可以通过[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)管理你唤醒锁。下一章节中将会提到，这是一种推荐的方法。如果你的应用不满足上述情况，可以使用下面的方法直接设置唤醒锁：
 
 ```java
 PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-Wakelock wakelock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE)LOCK),
-	"MyWakelockTag");
-wakelock.acquire();
+Wakelock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+        "MyWakelockTag");
+wakeLock.acquire();
 ```
-为了释放唤醒锁，使用[wakelock.release()](https://developer.android.com/reference/android/os/PowerManager.WakeLock.html#release())。当你的应用使用完毕时释放CPU，这对避免消耗电量是重要的。
+可以调用<a href="https://developer.android.com/reference/android/os/PowerManager.WakeLock.html#release()">wakelock.release()</a>来释放唤醒锁。当应用使用完毕时，应该释放该唤醒锁，以避免电量过度消耗。
 
 ### 使用WakefulBroadcastReceiver
 
