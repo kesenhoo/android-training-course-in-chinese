@@ -2,6 +2,10 @@
 
 > 编写:[jdneo](https://github.com/jdneo),[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/alarms.html>
 
+### 教学视频（需翻墙）：
+* [The App Clinic:Cricket](http://www.youtube.com/watch?v=yxW29JVXCqc)
+* [DevBytes:Efficient Data Transfers](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-VJS9WQlj9xM_ygPopZ-Qd)
+
 闹钟（基于[AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html)类）给予你一种在应用生命周期之外执行与时间相关的操作的方法。你可以使用闹钟初始化一个长时间的操作，例如每天开启一次后台服务，下载当日的天气预报。
 
 闹钟具有如下特性：
@@ -13,28 +17,24 @@
 
 > **Note**：对于那些需要确保在应用生命周期之内发生的定时操作，可以使用闹钟替代使用[Handler](https://developer.android.com/reference/android/os/Handler.html)结合[Timer](https://developer.android.com/reference/java/util/Timer.html)与[Thread](https://developer.android.com/reference/java/lang/Thread.html)的方法。因为它可以让Android系统更好地统筹系统资源。
 
-## 理解交替使用
+## 权衡利弊
 
-一个重复闹钟是相对简单的机制和有限的灵活性。它或许不是最好的选择对于你的app，特别是如果你的app需要触发网络操作。一个坏的闹钟设计能造成电池漏电和让一个有意义的服务负载。
+重复闹钟的机制比较简单，没有太多的灵活性。它对于你的应用来说或许不是一种最好的选择，特别是当你想要触发网络操作的时候。设计不佳的闹钟会导致电量快速耗尽，而且会对服务端产生巨大的负荷。
 
-一个普通的情景对于触发一个你的app同步数据和一个服务器的生命周期外的操作。这个案例你可能冒险使用一个重复的闹钟。但是你自己服务器是本地你的app数据，使用[Google Cloud Messaging](https://developer.android.com/google/gcm/index.html)(GCM)在结合你的[sync adapter](https://developer.android.com/training/sync-adapters/index.html)是更好解决方案比[AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html)。一个同步适配器给你所有相同的调度选项作为[AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html)，但是它提供你更灵活性。比如：
-一个同步可能基本在“新数据”消息从服务器或设备（细节见[Running a Sync Adapter](https://developer.android.com/training/sync-adapters/running-sync-adapter.html)）。用户活动或静止，一天的时间或更久。看下面两个链接对于什么时候怎样使用GCM和同步适配器细节的讨论。
-1.[The App Clinic:Cricket](http://www.youtube.com/watch?v=yxW29JVXCqc)(需出墙)
+当我们从服务端同步数据时，往往需要在应用不被使用时触发某些操作。此时你可能希望使用重复闹钟。但是如果存储数据的服务端是由你控制的，使用[Google Cloud Messaging](https://developer.android.com/google/gcm/index.html)（GCM）结合[sync adapter](https://developer.android.com/training/sync-adapters/index.html)是一种更好解决方案。SyncAdapter提供的任务调度选项和[AlarmManager](https://developer.android.com/reference/android/app/AlarmManager.html)基本相同，但是它能提供更多的灵活性。比如：同步的触发可能基于一条“新数据”提示消息，而消息的产生可以基于服务器或设备（祥见[执行Sync Adpater](../../../connectivity/sync-adapters/running-sync-adapter.html)），用户的操作（或者没有操作），每天的某一时刻等等。你可以观看本节课作开始提供的两端视频了解一下有关如何以及何时使用GCM和SyncAdapter的讨论。
 
-2.[DevBytes:Efficient Data Transfers](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-VJS9WQlj9xM_ygPopZ-Qd)（需出墙）
+### 最佳实践方法
+在设计重复闹钟过程中，你所做出的每一个决定都有可能影响到你的应用将会如何使用系统资源。例如，我们假象一个会从服务器同步数据的应用。同步操作基于的是时钟时间，具体来说，每一个应用的实例会在11:00p.m.时刻进行同步，巨大的服务器负荷会导致服务器响应时间变长，甚至拒绝服务。因此在我们使用闹钟时，请牢记下面的最佳实践建议：
 
-### 最好的练习
-每个选择让你设计你的重复闹钟可以用序列在你的app使用或滥用系统资源。例如，想象一个流行的app和一个服务器同步。如果你同步操作在计时器的操作上，每一个app的实例同步在11：00P.M，服务器负载造成高延时或者甚至“服务器拒绝”。下面是使用闹钟的建议：
-
-*  增加随意（颤动）对任何网络请求触发作为一个重复闹钟的结果;
-	* 做本地任务当一个闹钟触发。“本地任务”意味任何事情不需要敲击服务器或请求一个数据从服务器
-	* 在相同的时间，调度闹钟包含网络请求点燃相同定时周期
-* 保持你的闹钟频率最小；
-* 不是必要的情况不要唤醒设备(这个行为被闹钟决定，细节在[Choose an alarm type](https://developer.android.com/training/scheduling/alarms.html#type))；
-* 不要使用你的闹钟触发时间比它精确；
-使用[setInexactRepeating](https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent))替代[setRepeating](https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)).当你使用[setInexactRepeating](https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent))，Android同步重复闹钟从多个app和在相同的时间点燃它。这减少系统必须唤醒设备的数目，以此减少电源能耗。Android4.4（API Level19），所有的重复闹钟是不精确的。注意当[setInexactRepeating](https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent))是一个改进[setRepeating](https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)),它能覆盖一个服务如果每个app的实例撞击服务器在相同的时间。因此对于网络请求，增加相同随意的闹钟、作为以上描述。
-* 避免在你的闹钟基础上计时如果可能
-重复的闹钟在预测触发器的没有扫描好的基础上。使用[ELAPSED_REALTIME](https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME)如果你能。不同的闹钟类型描述的细节在下面选项。
+*  对任何由重复闹钟触发的网络请求添加一定的随机性（抖动）：
+	* 在闹钟触发时做一些本地任务。“本地任务”意味指的是任何不需要访问服务器或者从服务器获取数据的任务；
+	* 同时对于那些包含有网络请求的闹钟，在调度时机上增加一些随机性。
+* 尽量让你的闹钟频率最小；
+* 如果不是必要的情况，不要唤醒设备（这一点与闹钟的类型有关，本节课后续章节中会提到）；
+* 触发闹钟的时间不必过度精确；
+尽量使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>方法替代<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>方法。当你使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>方法时，Android系统会集中多个应用的重复闹钟同步请求，并一起触发它们。这将减少系统将设备唤醒的总次数，以此减少电量消耗。从Android 4.4（API Level19）开始，所有的重复闹钟都将是非精确型的。注意虽然<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>是<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>的改进版本，它依然可能会导致每一个应用的实例在某一时间段内同时访问服务器，造成服务器负荷过重。因此对于网络请求，我们需要为闹钟的触发时机增加随机性，如上所述。
+* 尽量避免让闹钟基于时钟时间。
+想要在某一个精确时刻触发重复闹钟是比较困难的。我们应该尽可能使用[ELAPSED_REALTIME](https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME)。不同的闹钟类型会在本节课后半部分展开。
 
 ## 设置重复闹钟
 下面的描述，重制闹钟作为一个好的选择有规律调度时间或数据备份。一个重复闹钟好如下特性：
