@@ -108,7 +108,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         android:name="com.example.myfirstapp.DisplayMessageActivity"
         android:label="@string/title_activity_display_message"
         android:parentActivityName="com.example.myfirstapp.MainActivity" >
-        <!--  meta-data 用于支持 support 4.0 以及一下来指明上级活动 -->
+        <!--  meta-data 用于支持 support 4.0 以及以下来指明上级活动 -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.myfirstapp.MainActivity" />
