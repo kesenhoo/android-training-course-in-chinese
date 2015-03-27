@@ -1,6 +1,6 @@
 # 保持设备唤醒
 
-> 编写:[jdneo](https://github.com/jdneo),[lttowq](https://github.com/lttowq) - 原文:<http://developer.android.com/training/scheduling/wakelock.html>
+> 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/scheduling/wakelock.html>
 
 为了避免电量过度消耗，Android设备会在被闲置之后迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者CPU并且保持它们的唤醒状态，直至一些任务被完成。
 
