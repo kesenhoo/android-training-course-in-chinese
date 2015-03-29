@@ -121,7 +121,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android后台任务](http://hukai.me/android-training-course-in-chinese/best-background.html)
    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - @[lltowq](https://github.com/lltowq)
+   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - @[jdneo](https://github.com/jdneo),@[lltowq](https://github.com/lltowq)
 * [Android性能优化](http://hukai.me/android-training-course-in-chinese/best-performance.html)
    * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - @[kesenhoo](https://github.com/kesenhoo)
