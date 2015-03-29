@@ -1,4 +1,4 @@
-# 管理Bitmap的内存占用
+# 管理Bitmap的内存
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/manage-memory.html>
 
