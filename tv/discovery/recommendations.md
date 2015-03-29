@@ -127,7 +127,7 @@ public class UpdateRecommendationsService extends IntentService {
 
 <!--Once your recommendation service starts running, it must create recommendations and pass them to the Android framework. The framework receives the recommendations as Notification objects that use a specific template and are marked with a specific category.-->
 
-一旦你的推荐服务开始运行，它必须创建推荐和送他们到安卓framework。Framework收到推荐作为[通知](http://developer.android.com/reference/android/app/Notification.html)对象(http://developer.android.com/reference/android/app/Notification.html)，对象用用户特定的模板并且标记为特定的目录。
+一旦你的推荐服务开始运行，它必须创建推荐和送他们到安卓framework。Framework收到推荐作为[通知](http://developer.android.com/reference/android/app/Notification.html)对象。它用特定的模板并且标记为特定的目录。
 
 <!--### Setting the Values ###-->
 ### 设置值
