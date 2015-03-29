@@ -24,7 +24,7 @@ File 对象非常适合用于读写流式顺序的数据。如图片文件或是
 	* 当用户卸载你的app时，系统仅仅会删除external根目录（<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>）下的相关文件。
 	* External是在你不需要严格的访问权限并且你希望这些文件能够被其他app所共享或者是允许用户通过电脑访问时的最佳存储区域。
 
-> **Tip:** 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明[android:installLocation](http://developer.android.com/guide/topics/manifest/manifest-element.html#install) 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大且用户的internal storage空间大于external storage时，他们会倾向与将该程序安装到external storage。更多安装信息，请参考[App Install Location](http://developer.android.com/guide/topics/data/install-location.html)。
+> **Tip:** 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明[android:installLocation](http://developer.android.com/guide/topics/manifest/manifest-element.html#install) 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大且用户的external storage空间大于internal storage时，他们会倾向与将该程序安装到external storage。更多安装信息，请参考[App Install Location](http://developer.android.com/guide/topics/data/install-location.html)。
 
 ## 获取External存储的权限
 
