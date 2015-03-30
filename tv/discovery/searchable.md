@@ -191,15 +191,15 @@ public class VideoDatabase {
 
 <!--Along with the intent action, your app must provide the intent data, which you specify with the android:searchSuggestIntentData attribute. This is the first part of the URI that points to the content. It describes the portion of the URI common to all rows in the mapping table for that content. The portion of the URI that is unique to each row is established with the SUGGEST_COLUMN_INTENT_DATA_ID field, as described above in Identify Columns. See also, Declaring the intent data for other ways to declare the intent data for suggestions.-->
 
-同intent action一起，你的应用必须提供你定义的[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性的intent数据。这是指向内容的URI的第一部分。它描述那个URI列的部分到所有的列在mapping表格为内容。URI的部分是独一无二的每一列是被建立用[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段，作为描述在[Identify Columns](http://developer.android.com/training/tv/discovery/searchable.html#columns)之上。也可查看[Declaring the intent data](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#IntentData) for other ways to declare the intent data for suggestions.
+同intent action一起，你的应用必须提供你定义的[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性的intent数据。这是指向内容的URI的第一部分。它描述在填充的内容表格中URI所有共同列的部分。URI的独一无二的部分用[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段建立每一列，以上被描述在[识别列](http://developer.android.com/training/tv/discovery/searchable.html#columns)。查看[Declaring the intent data](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#IntentData)用另一种方式去定义建议的intent数据。
 
 <!--Also, note the android:searchSuggestSelection=" ?" attribute which specifies the value passed as the selection parameter of the query() method where the question mark (?) value is replaced with the query text.-->
 
-并且，注意`android:searchSuggestSelection="?"`属性定义了那个值作为`selection`的属性[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))方法问题标记(?)值被需要在请求文本。
+并且，注意`android:searchSuggestSelection="?"`属性为特定的值。这个值作为[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))方法`selection`参数。方法的问题标记(?)值被代替为请求文本。
 
 <!--Finally, you must also include the android:includeInGlobalSearch attribute with the value "true". Here is an example searchable.xml file:-->
 
-最终，你也必须包含[android:includeInGlobalSearch](http://developer.android.com/guide/topics/search/searchable-config.html#includeInGlobalSearch)属性用值"true"。这是一个例子[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件。
+最后，你也必须包含[android:includeInGlobalSearch](http://developer.android.com/guide/topics/search/searchable-config.html#includeInGlobalSearch)属性值为"true"。这是一个[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件的例子：
 ```
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
     android:label="@string/search_label"
