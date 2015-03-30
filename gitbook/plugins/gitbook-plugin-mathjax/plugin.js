@@ -1,7 +1,6 @@
 require(["gitbook"], function(gitbook) {
     MathJax.Hub.Config({
         tex2jax: {
-            inlineMath: [['$','$'], ['\\(','\\)']],
             processEscapes: true
         }
     });
@@ -11,3 +10,4 @@ require(["gitbook"], function(gitbook) {
         MathJax.Hub.Typeset()
     });
 });
+
