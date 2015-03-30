@@ -101,7 +101,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @[awong1900](https://github.com/awong1900)
    * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
    * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
-   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
+   * [TV应用清单](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
