@@ -9,11 +9,11 @@
 
 <!--Your app must provide Android TV with the data fields from which it generates suggested search results as the user enters characters in the search dialog. To do that, your app must implement a Content Provider that serves up the suggestions along with a searchable.xml configuration file that describes the content provider and other vital information for Android TV. You also need an activity that handles the intent that fires when the user selects a suggested search result. All of this is described in more detail in Adding Custom Suggestions. Here are described the main points for Android TV apps.-->
 
-你的应用必须提供安卓TV数据字段，它是用户在搜索框中输入字符生成的建议搜索结果。去做这个，你的应用必须实现[Content Provider](http://developer.android.com/guide/topics/providers/content-providers.html)，在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)配置文件描述content provider和其他必要的安卓TV信息。你也需要一个activity在用户选择一个建议的搜索结果时处理intent的触发。所有的这些被描述在[Adding Custom Suggestions](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html)。这里是为安卓TV应用描述主要的点。
+你的应用必须提供安卓TV数据字段，它是用户在搜索框中输入字符生成的建议搜索结果。去做这个，你的应用必须实现[Content Provider](http://developer.android.com/guide/topics/providers/content-providers.html)，在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)配置文件描述content provider和其他必要的安卓TV信息。你也需要一个activity在用户选择一个建议的搜索结果时处理intent的触发。所有的这些被描述在[Adding Custom Suggestions](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html)。本文描述安卓TV应用搜索的关键点。
 
 <!--This lesson builds on your knowledge of using search in Android to show you how to make your app searchable in Android TV. Be sure you are familiar with the concepts explained in the Search API guide before following this lesson. See also the training Adding Search Functionality.-->
 
-这节课展示安卓中搜索的知识，展示如何使你的应用在安卓TV里是可被搜索的。确信你熟悉[搜索API指导](http://developer.android.com/guide/topics/search/index.html)的解释。在下面的这节课程之前，查看训练[Adding Search Functionality](http://developer.android.com/training/search/index.html)。
+这节课展示安卓中搜索的知识，展示如何使你的应用在安卓TV里是可被搜索的。确信你熟悉[Search API guide](http://developer.android.com/guide/topics/search/index.html)的解释。在下面的这节课程之前，查看[Adding Search Functionality](http://developer.android.com/training/search/index.html)训练。
 
 <!--This discussion describes some code from the Android Leanback sample app, available on GitHub.-->
 这个讨论描述了一些代码，从[安卓Leanback示例代码](https://github.com/googlesamples/androidtv-Leanback)摘出。代码可以在Github上找到。
@@ -23,7 +23,7 @@
 
 <!--The SearchManager describes the data fields it expects by representing them as columns of an SQLite database. Regardless of your data's format, you must map your data fields to these columns, usually in the class that accessess your content data. For information about building a class that maps your existing data to the required fields, see Building a suggestion table.-->
 
-[SearchManager](http://developer.android.com/reference/android/app/SearchManager.html)描述了数据字段，它预计为SOLite数据库的列。不管你的数据格式，你必须把你的数据字段填到那些列，通常用存取你的内容数据的类。更多信息，查看[Building a suggestion table()](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#SuggestionTable)。
+[SearchManager](http://developer.android.com/reference/android/app/SearchManager.html)描述了数据字段，它被代表为SOLite数据库的列。不管你的数据格式，你必须把你的数据字段填到那些列，通常用存取你的内容数据的类。更多信息，查看[Building a suggestion table()](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#SuggestionTable)。
 
 <!--The SearchManager class includes several columns for Android TV. Some of the more important columns are described below.-->
 SearchManager类为安卓TV包含了几个列。下面是重要的一些列：
@@ -75,7 +75,7 @@ public class VideoDatabase {
 ```
 
 <!--When you build the map from the SearchManager columns to your data fields, you must also specify the _ID to give each row a unique ID.-->
-当你的创建从[SearchManager](http://developer.android.com/reference/android/app/SearchManager.html)列填充到你的数据字段时，你也必须定义[_ID](http://developer.android.com/reference/android/provider/BaseColumns.html#_ID)去获得每行的独一无二的ID。
+当你创建从[SearchManager](http://developer.android.com/reference/android/app/SearchManager.html)列填充到你的数据字段时，你也必须定义[_ID](http://developer.android.com/reference/android/provider/BaseColumns.html#_ID)去获得每行的独一无二的ID。
 
 
 ```java
@@ -110,7 +110,7 @@ public class VideoDatabase {
 
 <!--In the example above, notice the mapping to the SUGGEST_COLUMN_INTENT_DATA_ID field. This is the portion of the URI that points to the content unique to the data in this row — that is, the last part of the URI describing where the content is stored. The first part of the URI, when it is common to all of the rows in the table, is set in the searchable.xml file as the android:searchSuggestIntentData attribute, as described in Handle Search Suggestions, below.-->
 
-在上面的例子中，注意填充到[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段。这是URI的一部分，指向独一无二的内容到这一列的数据，那是URI描述的内容被存储的最后部分。在URI的第一部分，与所有表格的列同样，是设置[在searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件，用[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性。属性被描述在[Handle Search Suggestions](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)。
+在上面的例子中，注意填充[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段。这是URI的一部分，指向独一无二的内容到这一列的数据，那是URI描述的内容被存储的最后部分。在URI的第一部分，与所有表格的列同样，是设置[在searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件，用[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性。属性被描述在[Handle Search Suggestions](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)。
 
 <!--If the first part of the URI is different for each row in the table, you map that value with the SUGGEST_COLUMN_INTENT_DATA field. When the user selects this content, the intent that fires provides the intent data from the combination of the SUGGEST_COLUMN_INTENT_DATA_ID and either the android:searchSuggestIntentData attribute or the SUGGEST_COLUMN_INTENT_DATA field value.-->
 
@@ -190,7 +190,7 @@ public class VideoDatabase {
 
 <!--Along with the intent action, your app must provide the intent data, which you specify with the android:searchSuggestIntentData attribute. This is the first part of the URI that points to the content. It describes the portion of the URI common to all rows in the mapping table for that content. The portion of the URI that is unique to each row is established with the SUGGEST_COLUMN_INTENT_DATA_ID field, as described above in Identify Columns. See also, Declaring the intent data for other ways to declare the intent data for suggestions.-->
 
-同intent action一起，你的应用必须提供你定义的[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性的intent数据。这是指向内容的URI的第一部分。它描述在填充的内容表格中URI所有共同列的部分。URI的独一无二的部分用[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段建立每一列，以上被描述在[识别列](http://developer.android.com/training/tv/discovery/searchable.html#columns)。查看[Declaring the intent data](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#IntentData)用另一种方式去定义建议的intent数据。
+同intent action一起，你的应用必须提供你定义的[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性的intent数据。这是指向内容的URI的第一部分。它描述在填充的内容表格中URI所有共同列的部分。URI的独一无二的部分用 [SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段建立每一列，以上被描述在[识别列](http://developer.android.com/training/tv/discovery/searchable.html#columns)。查看[Declaring the intent data](http://developer.android.com/guide/topics/search/adding-custom-suggestions.html#IntentData)用另一种方式去定义建议的intent数据。
 
 <!--Also, note the android:searchSuggestSelection=" ?" attribute which specifies the value passed as the selection parameter of the query() method where the question mark (?) value is replaced with the query text.-->
 
@@ -198,7 +198,7 @@ public class VideoDatabase {
 
 <!--Finally, you must also include the android:includeInGlobalSearch attribute with the value "true". Here is an example searchable.xml file:-->
 
-最后，你也必须包含[android:includeInGlobalSearch](http://developer.android.com/guide/topics/search/searchable-config.html#includeInGlobalSearch)属性值为"true"。这是一个[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件的例子：
+最后，你也必须包含[android:includeInGlobalSearch](http://developer.android.com/guide/topics/search/searchable-config.html#includeInGlobalSearch)属性值为`"true"`。这是一个[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件的例子：
 ```
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
     android:label="@string/search_label"
@@ -262,13 +262,11 @@ activity必须参考[searchable.xml](http://developer.android.com/guide/topics/s
 
 <!--When the user selects the link for your app, identified by the "Available On" button in the details screen, the system launches the activity which handles the ACTION_VIEW (set as android:searchSuggestIntentAction with the value "android.intent.action.VIEW" in the searchable.xml file).-->
 
-当用户选择你的应用链接，“Available On”按钮被标识在详情页，系统启动activity处理[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)（在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)文件设置[android:searchSuggestIntentAction](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)值为`"android.intent.action.VIEW"`）。
+当用户选择你的应用链接，`“Available On”`按钮被标识在详情页，系统启动activity处理[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)（在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)文件设置[android:searchSuggestIntentAction](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)值为`"android.intent.action.VIEW"`）。
 
 <!--You can also set up a custom intent to launch your activity, and this is demonstrated in the Android Leanback sample app. Note that the sample app launches its own LeanbackDetailsFragment to show the details for the selected media, but you should launch the activity that plays the media immediately to save the user another click or two.-->
 
-你也能设置用户intent去启动你的activity，并且这个在[在安卓Leanback示例代码应用](https://github.com/googlesamples/androidtv-Leanback)中演示。注意示例应用启动它自己的`LeanbackDetailsFragment`去显示被选择媒体的详情，但是你应该启动activity去播放媒体。立即去保存用户的另一次或两次点击。
+你也能设置用户intent去启动你的activity，这个在[在安卓Leanback示例代码应用](https://github.com/googlesamples/androidtv-Leanback)中演示。注意示例应用启动它自己的`LeanbackDetailsFragment`去显示被选择媒体的详情，但是你应该启动activity去播放媒体。立即去保存用户的另一次或两次点击。
 
 ----------------
 [下一节: 使TV应用是可被搜索的](../in-app-search.html)
-
-
