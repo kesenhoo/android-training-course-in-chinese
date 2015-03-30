@@ -183,7 +183,7 @@ public class VideoDatabase {
 
 <!--Your app must include a res/xml/searchable.xml file to configure the search suggestions settings. It inlcudes the android:searchSuggestAuthority attribute to tell the system the namespace of your content provider. This must match the string value you specify in the android:authorities attribute of the <provider> element in your AndroidManifest.xml file.-->
 
-你的应用包括[res/xml/searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件去设置搜索建议设置。它包括[android:searchSuggestAuthority](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestAuthority)属性去告诉系统你的内容提供器的名字空间。这必须匹配那字符串值你定义的在[android:authorities](http://developer.android.com/guide/topics/manifest/provider-element.html#auth) attribute在<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>元素中在你的`AndroidManifest.xml`文件中。
+你的应用必须包括[res/xml/searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件去设置搜索建议设置。它包括[android:searchSuggestAuthority](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestAuthority)属性去告诉系统你的内容提供器的名字空间。这必须匹配那字符串值你定义的在[android:authorities](http://developer.android.com/guide/topics/manifest/provider-element.html#auth) attribute在<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>元素中在你的`AndroidManifest.xml`文件中。
 
 <!--The searchable.xml file must also include the android:searchSuggestIntentAction with the value "android.intent.action.VIEW" to define the intent action for providing a custom suggestion. This is different from the intent action for providing a search term, explained below. See also, Declaring the intent action for other ways to declare the intent action for suggestions.-->
 
@@ -220,7 +220,7 @@ public class VideoDatabase {
 
 <!--As soon as the search dialog has a word which matches the value in one of your app's columns (described in Identifying Columns, above), the system fires the ACTION_SEARCH intent. The activity in your app which handles that intent searches the repository for columns with the given word in their values, and returns a list of content items with those columns. In your AndroidManifest.xml file, you designate the activity which handles the ACTION_SEARCH intent like this:-->
 
-一旦搜索框有一个字匹配应用类的一个（被[Identifying Columns](http://developer.android.com/training/tv/discovery/searchable.html#identifying)描述，上面），系统启动[ACTION_SEARCH](http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH) intent。你的应用的activity处理intent搜索列的资源给定的字段在他们的值，并且返回一个文本项目的列表那些列。在你的`AndroidManifest.xml`文件中，你指定的activity处理[ACTION_SEARCH](http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH) intent像这样：
+一旦搜索框有一个字匹配到了应用列中的一个（被描述在上文的[识别列](http://developer.android.com/training/tv/discovery/searchable.html#identifying)），系统启动[ACTION_SEARCH](http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH) intent。你应用的activity处理intent搜索列的给定的字段资源，并且返回一个那些内容项的列表。在你的`AndroidManifest.xml`文件中，你指定的activity处理[ACTION_SEARCH](http://developer.android.com/reference/android/content/Intent.html#ACTION_SEARCH) intent，像这样：
 
 ```xml
 ...
@@ -248,26 +248,26 @@ public class VideoDatabase {
 
 <!--The activity must also describe the searchable configuration with a reference to the searchable.xml file. To use the global search dialog, the manifest must describe which activity should receive search queries. The manifest must also describe the <provider> element, exactly as it is described in the searchable.xml file.-->
 
-activity必须描述可搜索的设置参考[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件。去用[全局搜索框](http://developer.android.com/guide/topics/search/search-dialog.html)，manifest必须描述activity应该受到搜索请求。manifest必须描述<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>元素，精确的作为被描述在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件。
+activity必须参考[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件描述可搜索的设置。用[全局搜索框](http://developer.android.com/guide/topics/search/search-dialog.html)，manifest必须描述activity应该收到的搜索请求。manifest必须描述<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>元素，详细被描述在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件。
 
 <!--## Deep Link to Your App in the Details Screen ##-->
-## 深链接对应用在细节屏幕
+## 深链接到应用的详情页
 
 <!--If you have set up the search configuration as described in Handle Search Suggestions and mapped the SUGGEST_COLUMN_TEXT_1, SUGGEST_COLUMN_CONTENT_TYPE, and SUGGEST_COLUMN_PRODUCTION_YEAR fields as described in Identify Columns, a deep link to a watch action for your content appears in the details screen that launches when the user selects a search result, as shown in figure 1.-->
 
-如果你有设置搜索配置描述[处理搜索建议](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)mapped [SUGGEST_COLUMN_TEXT_1](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_TEXT_1)，[SUGGEST_COLUMN_CONTENT_TYPE](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_CONTENT_TYPE)和[SUGGEST_COLUMN_PRODUCTION_YEAR](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_PRODUCTION_YEAR)字段作为描述在[Identify Columns](http://developer.android.com/training/tv/discovery/searchable.html#columns)，一个[深度链接](http://developer.android.com/training/app-indexing/deep-linking.html)去查看action为你的内容出现在细节屏幕启动当用户选择一个搜索结果显示在图1。
+如果你有设置[处理搜索建议](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)描述的搜索配置和填充 [SUGGEST_COLUMN_TEXT_1](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_TEXT_1)，[SUGGEST_COLUMN_CONTENT_TYPE](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_CONTENT_TYPE)和[SUGGEST_COLUMN_PRODUCTION_YEAR](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_PRODUCTION_YEAR)字段到[识别列](http://developer.android.com/training/tv/discovery/searchable.html#columns)，一个[深链接](http://developer.android.com/training/app-indexing/deep-linking.html)去查看详情页的内容。当用户选择一个搜索结果时，详情页将打开。如图1。
 
 ![deep-link](deep-link.png)  
 <!--**Figure 1.** The details screen displays a deep link for the Videos by Google (Leanback) sample app. Sintel: © copyright Blender Foundation, www.sintel.org.-->
-**图1** 细节屏幕显示一个深度链接为视频被Google(Leanback)示例代码。Sintel: © copyright Blender Foundation, www.sintel.org.
+**图1** 详情页显示一个深链接为Google(Leanback)的视频代码。Sintel: © copyright Blender Foundation, www.sintel.org.
 
 <!--When the user selects the link for your app, identified by the "Available On" button in the details screen, the system launches the activity which handles the ACTION_VIEW (set as android:searchSuggestIntentAction with the value "android.intent.action.VIEW" in the searchable.xml file).-->
 
-当用户选择你的应用链接，标识被“Available On”按钮在细节屏幕，系统启动activity处理[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)（设置为[android:searchSuggestIntentAction](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)为`"android.intent.action.VIEW"`值在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)文件）。
+当用户选择你的应用链接，“Available On”按钮被标识在详情页，系统启动activity处理[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)（在[searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)文件设置[android:searchSuggestIntentAction](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentAction)值为`"android.intent.action.VIEW"`）。
 
 <!--You can also set up a custom intent to launch your activity, and this is demonstrated in the Android Leanback sample app. Note that the sample app launches its own LeanbackDetailsFragment to show the details for the selected media, but you should launch the activity that plays the media immediately to save the user another click or two.-->
 
-你也能设置用户intent去启动你的activity，并且那是被指派[在安卓Leanback示例代码应用](https://github.com/googlesamples/androidtv-Leanback)。注意示例应用启动它自己的`LeanbackDetailsFragment`去显示细节为选择的媒体，但是你应该启动activity去播放媒体立即去保存用户的另一次选择或两个。
+你也能设置用户intent去启动你的activity，并且这个在[在安卓Leanback示例代码应用](https://github.com/googlesamples/androidtv-Leanback)中演示。注意示例应用启动它自己的`LeanbackDetailsFragment`去显示被选择媒体的详情，但是你应该启动activity去播放媒体。立即去保存用户的另一次或两次点击。
 
 ----------------
 [下一节: 使TV应用是可被搜索的](../in-app-search.html)
