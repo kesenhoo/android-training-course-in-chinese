@@ -30,14 +30,13 @@ SearchManager类为安卓TV包含了几个列。下面是重要的一些列：
 
 值								    |	描述
 :-----------------------------------|:--------------------------------
-`SUGGEST_COLUMN_TEXT_1`				|The name of your content **(required)**
-`SUGGEST_COLUMN_TEXT_2`				|A text description of your content
-`SUGGEST_COLUMN_RESULT_CARD_IMAGE`	|An image/poster/cover for your content
-`SUGGEST_COLUMN_CONTENT_TYPE`		|The MIME type of your media **(required)**
-`SUGGEST_COLUMN_VIDEO_WIDTH`		|The resolution width of your media
-`SUGGEST_COLUMN_VIDEO_HEIGHT`		|The resolution height of your media
-`SUGGEST_COLUMN_PRODUCTION_YEAR`	|The production year of your content **(required)**
-`SUGGEST_COLUMN_DURATION`			|The duration in milliseconds of your media
+`SUGGEST_COLUMN_TEXT_1`				|内容名字 **(required)**
+`SUGGEST_COLUMN_TEXT_2`				|内容的文本描述
+`SUGGEST_COLUMN_RESULT_CARD_IMAGE`	|图片/封面
+`SUGGEST_COLUMN_CONTENT_TYPE`		|媒体的MIME类型 **(required)**
+`SUGGEST_COLUMN_VIDEO_WIDTH`		|媒体的分辨率宽度`SUGGEST_COLUMN_VIDEO_HEIGHT`		|媒体的分辨率高度
+`SUGGEST_COLUMN_PRODUCTION_YEAR`	|内容的产品年份 **(required)**
+`SUGGEST_COLUMN_DURATION`			|媒体的时间长度
 
 <!--The search framework requires the following columns:-->
 搜索framework需要以下的列：
@@ -48,7 +47,7 @@ SearchManager类为安卓TV包含了几个列。下面是重要的一些列：
 
 <!--When the values of these columns for your content match the values for the same content from other providers found by Google servers, the system provides a deep link to your app in the details view for the content, along with links to the apps of other providers. This is discussed more in Display Content in the Details Screen, below.-->
 
-当这些内容的列的值匹配Google服务的providers提供的的值时，系统提供一个[深度链接](http://developer.android.com/training/app-indexing/deep-linking.html)到你的应用，用于详情查看，以及指向应用的其他Providers的链接。更多讨论在[在详情页显示内容](http://developer.android.com/training/tv/discovery/searchable.html#details)。
+当这些内容的列的值匹配Google服务的providers提供的的值时，系统提供一个[深链接](http://developer.android.com/training/app-indexing/deep-linking.html)到你的应用，用于详情查看，以及指向应用的其他Providers的链接。更多讨论在[在详情页显示内容](http://developer.android.com/training/tv/discovery/searchable.html#details)。
 
 <!--Your application's database class might define the columns as follows:-->
 你的应用的数据库类可能定义以下的列：
@@ -111,7 +110,7 @@ public class VideoDatabase {
 
 <!--In the example above, notice the mapping to the SUGGEST_COLUMN_INTENT_DATA_ID field. This is the portion of the URI that points to the content unique to the data in this row — that is, the last part of the URI describing where the content is stored. The first part of the URI, when it is common to all of the rows in the table, is set in the searchable.xml file as the android:searchSuggestIntentData attribute, as described in Handle Search Suggestions, below.-->
 
-在上面的例子中，注意mapping到[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段。这是URI的一部分，指向独一无二的内容到这一列的数据，那是URI描述的内容被存储的最后部分。在URI的第一部分，与所有表格的列同样，是设置[在searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件，用[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性。属性被描述在[Handle Search Suggestions](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)。
+在上面的例子中，注意填充到[SUGGEST_COLUMN_INTENT_DATA_ID](http://developer.android.com/reference/android/app/SearchManager.html#SUGGEST_COLUMN_INTENT_DATA_ID)字段。这是URI的一部分，指向独一无二的内容到这一列的数据，那是URI描述的内容被存储的最后部分。在URI的第一部分，与所有表格的列同样，是设置[在searchable.xml](http://developer.android.com/guide/topics/search/searchable-config.html)文件，用[android:searchSuggestIntentData](http://developer.android.com/guide/topics/search/searchable-config.html#searchSuggestIntentData)属性。属性被描述在[Handle Search Suggestions](http://developer.android.com/training/tv/discovery/searchable.html#suggestions)。
 
 <!--If the first part of the URI is different for each row in the table, you map that value with the SUGGEST_COLUMN_INTENT_DATA field. When the user selects this content, the intent that fires provides the intent data from the combination of the SUGGEST_COLUMN_INTENT_DATA_ID and either the android:searchSuggestIntentData attribute or the SUGGEST_COLUMN_INTENT_DATA field value.-->
 
@@ -122,7 +121,7 @@ public class VideoDatabase {
 
 <!--Implement a Content Provider to return search term suggestions to the Android TV search dialog. The system queries your content provider for suggestions by calling the query() method each time a letter is typed. In your implementation of query(), your content provider searches your suggestion data and returns a Cursor that points to the rows you have designated for suggestions.-->
 
-实现一个[Content Provider](http://developer.android.com/guide/topics/providers/content-providers.html)去获得搜索术语建议从安卓TV搜索框。系统需要你content provider建议调用[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))方法每次一个字母是类型的。在你实现[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))，你的文本提供器搜索你的建议数据去返回一个光标指出列你有描述建议的。
+实现一个[Content Provider](http://developer.android.com/guide/topics/providers/content-providers.html)去返回搜索术语建议到安卓TV搜索框。系统需要你的内容容器提供建议，通过调用每次一个字母类型[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))方法。在[query()](http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String))的实现中，你的内容容器搜索你的建议数据并且返回一个光标指向你已经指定的建议列。
 
 ```java
 @Override
@@ -170,7 +169,7 @@ public class VideoDatabase {
 
 <!--In your manifest file, the content provider receives special treatment. Rather than getting tagged as an activity, it is described as a <provider>. The provider includes the android:searchSuggestAuthority attribute to tell the system the namespace of your content provider. Also, you must set its android:exported attribute to "true" so that the Android global search can use the results returned from it.-->
 
-在你的manifest文件中，内容提供器收到特殊的处理。而不是被标记为一个activity，它是被描述为<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>。那个provider包括`android:searchSuggestAuthority`属性去告诉系统文本提供器的名字空间。并且，你必须设置它的`android:exported`属性为`"true"`这样安卓全局搜索能用搜索结果从它返回的。
+在你的manifest文件中，内容容器接受特殊处理。相比被标记为一个activity，它是被描述为<[provider](http://developer.android.com/guide/topics/manifest/provider-element.html)>。provider包括`android:searchSuggestAuthority`属性去告诉系统你的内容容器的名字空间。并且，你必须设置它的`android:exported`属性为`"true"`，这样安卓全局搜索能用它返回的搜索结果。
 
 ```xml
 <provider android:name="com.example.android.tvleanback.VideoContentProvider"
