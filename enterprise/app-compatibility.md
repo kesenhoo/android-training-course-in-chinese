@@ -1,4 +1,4 @@
-# 使用TV应用进行搜索
+# Ensuring Compatibility with Managed Profiles
 
 > 编写: - 原文:
 

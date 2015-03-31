@@ -4,9 +4,9 @@
 
 从Android 3.0开始，在action bar中使用[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)作为item，是在你的app中提供搜索的一种更好方法。像其他所有在action bar中的item一样，你可以定义[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)在有足够空间的时候总是显示，或设置为一个折叠操作(collapsible action),一开始[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)作为一个图标显示，当用户点击图标时再显示搜索框占据整个action bar。
 
->**Note**:在本课程的后面，你会学习对那些不支持[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的设备，如何使你的app向下兼容至Android 2.1版本。
+>**Note**:在本课程的后面，你会学习对那些不支持[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的设备，如何使你的app向下兼容至Android 2.1(API level 7)版本。
 
-##添加SearchView到中action bar中添加
+##添加Search View到action bar中
 
 为了在action bar中添加[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)，在你的工程目录`res/menu/`中创建一个名为`options_menu.xml`的文件，再把下列代码添加到文件中。这段代码定义了如何创建search item，比如使用的图标和item的标题。`collapseActionView`属性允许你的[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)占据整个action bar，在不使用的时候折叠成普通的action bar item。由于在手持设备中action bar的空间有限，建议使用`collapsibleActionView`属性来提供更好的用户体验。
 
@@ -21,9 +21,9 @@
 </menu>
 ```
 
->**Note**:如果你的menu item已经有一个XML文件，你可以只把`<item>`元素添加入文件。
+>**Note**:如果你的menu items已经有一个XML文件，你可以只把`<item>`元素添加入文件。
 
-要在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)，把XML菜单资源(`res/menu/options_menu.xml`)填充到你的activity中的[onCreateOptionsMenu()](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu))方法:
+要在action bar中显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)，在你的activity中[onCreateOptionsMenu()](http://developer.android.com/reference/android/app/Activity.html#onCreateOptionsMenu(android.view.Menu))方法内填充XML菜单资源(`res/menu/options_menu.xml`):
 
 ```java
 @Override
@@ -49,7 +49,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         android:hint="@string/search_hint" />
 ```
 
-在你的应用的manifest文件中，声明一个指向`res/xml/searchable.xml`文件的[<meta-data>](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素，来告诉你的应用在哪里能找到检索配置。在你想要显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的`<activity>`中声明`<meta-data>`元素:
+在你的应用的manifest文件中，声明一个指向`res/xml/searchable.xml`文件的[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素，来告诉你的应用在哪里能找到检索配置。在你想要显示[SearchView](http://developer.android.com/reference/android/widget/SearchView.html)的`<activity>`中声明`<meta-data>`元素:
 
 ```xml
 <activity ... >

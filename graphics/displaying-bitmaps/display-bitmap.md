@@ -4,12 +4,11 @@
 
 这一课会演示如何运用前面几节课的内容，使用后台线程与Cache机制来加载图片到 ViewPager 与 GridView 组件，并且学习处理并发与配置改变问题。
 
+## 实现加载图片到ViewPager
+
+[swipe view pattern](http://developer.android.com/design/patterns/swipe-views.html)是一个使用滑动来切换显示不同详情页面的设计模型。(关于这种效果请先参看[Android Design: Swipe Views](http://developer.android.com/design/patterns/swipe-views.html))。你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果。 然而，一个更加合适的Adapter是PagerAdapter的一个子类，叫做 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html)：它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
+
 <!-- more -->
-
-## 实现加载图片到ViewPager(Load Bitmaps into a ViewPager Implementation)
-[swipe view pattern](http://developer.android.com/design/patterns/swipe-views.html)是一个用来切换显示不同详情界面的很好的方法。(关于这种效果请先参看[Android Design: Swipe Views](http://developer.android.com/design/patterns/swipe-views.html)).
-
-你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果。 然而，一个更加合适的Adapter是PagerAdapter 的子类 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html):它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
 
 > **Note:** 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。
 
@@ -102,7 +101,7 @@ public class ImageDetailFragment extends Fragment {
 }
 ```
 
-希望你有发现上面示例存在的问题：在UI Thread中读取图片可能会导致程序ANR。使用在Lesson 2中学习的 AsyncTask 会比较好。
+希望你有发现上面示例存在的问题：在UI Thread中读取图片可能会导致程序ANR。使用在第二课中学习的 AsyncTask 会比较好。
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -132,7 +131,7 @@ public class ImageDetailFragment extends Fragment {
 }
 ```
 
-在 BitmapWorkerTask 中做一些例如resizing or fetching images from the network，不会卡到UI Thread。如果后台线程不仅仅是做个简单的直接加载动作，增加一个内存Cache或者磁盘Cache会比较好[参考Lesson 3] ,下面是一些为了内存Cache而附加的内容:
+在 BitmapWorkerTask 中做一些例如重设图片大小，从网络拉取图片的任务，这样确保不会卡到UI线程。如果后台线程不仅仅是做个简单的直接加载动作，增加一个内存Cache或者磁盘Cache会比较好[请参考第三课：缓存Bitmap]，下面是一些为了内存Cache而附加的内容:
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -162,12 +161,13 @@ public class ImageDetailActivity extends FragmentActivity {
 }
 ```
 
+把前面学习到的所有技巧合并起来，我们将得到一个响应性高Putting all these pieces together gives you a responsive ViewPager implementation with minimal image loading latency and the ability to do as much or as little background processing on your images as needed.
 
+## 实现加载图片到GridView
 
-## 实现加载图片到GridView(Load Bitmaps into a GridView Implementation)
 [Grid list building block](http://developer.android.com/design/building-blocks/grid-lists.html) 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。
 
-下面是一个在Fragment里面内置了ImageView作为GridView子视图的示例：
+下面是一个典型的使用场景，在Fragment里面内置GridView，其中GridView的子视图是ImageView：
 
 ```java
 public class ImageGridFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -246,9 +246,9 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 }
 ```
 
-又一次，这一个实现的问题是图片是在UI线程中被设置。当处理小的图片时可以，但其他需要额外操作的处理，都会使你的UI慢下来。
+这里同样有一个问题，上面的代码实现中犯了把图片加载放在UI线程进行处理的错误。如果只是加载一些很小的图片，或者是经过Android系统缩放并缓存过的图片，上面的代码是可以运行的通的，但是如果加载的图片稍微复杂耗时一点，这都会导致你的UI卡顿甚至ANR。
 
-与前面加载到图片到ViewPager一样，如果setImageResource的操作会比较耗时，有可能会卡到UI Thread。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新的解决方案：
+与前面加载图片到ViewPager一样，如果setImageResource的操作会比较耗时，也有可能会卡到UI线程。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新过后的解决方案：
 
 ```java
 public class ImageGridFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -322,4 +322,4 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 ```
 > **Note:**对于 ListView 同样可以套用上面的方法。
 
-上面的方法提供了足够的弹性，使得你可以做从网络加载与Resize大的数码照片等操作而不至于卡到UI Thread。
+上面的方法提供了足够的弹性，使得你可以做从网络下载图片，并对大尺寸大的数码照片做缩放等操作而不至于卡到UI线程。

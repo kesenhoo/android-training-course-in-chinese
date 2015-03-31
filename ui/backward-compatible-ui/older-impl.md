@@ -21,7 +21,7 @@
 
 ![backward-compatible-ui-classes-eclair](backward-compatible-ui-classes-eclair.png)
 
-* Figure 1. Eclair版本上实现tabs的类图
+* 图1. Eclair版本上实现tabs的类图
 
 CompatTabEclair在实例变量中保存了诸如tab文本和tab图标等tab属性，因为在老的版本中没有ActionBar.Tab对象去处理这些数据存储。
 

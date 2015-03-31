@@ -93,7 +93,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
 
-如何在 mainfest 中声明一个 activity 的父辈，例如：
+如何在 manifest 中声明一个 activity 的父辈，例如：
 
 ```xml
 <application ... >
@@ -108,7 +108,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
         android:name="com.example.myfirstapp.DisplayMessageActivity"
         android:label="@string/title_activity_display_message"
         android:parentActivityName="com.example.myfirstapp.MainActivity" >
-        <!--  meta-data 用于支持 support 4.0 以及一下来指明上级活动 -->
+        <!--  meta-data 用于支持 support 4.0 以及以下来指明上级活动 -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.example.myfirstapp.MainActivity" />

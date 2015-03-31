@@ -28,7 +28,7 @@ Tabs的关键APIs是[ActionBar](http://developer.android.com/reference/android/a
 
 ![backward-compatible-ui-classes](backward-compatible-ui-classes.png)
 
-* Figure 1.抽象基类和版本相关的子类实现类结构图
+* 图1.抽象基类和版本相关的子类实现类结构图
 
 ## Abstract ActionBar.Tab
 

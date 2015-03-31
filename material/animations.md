@@ -17,7 +17,7 @@ Material Design中的触摸反馈，是在用户与UI元素交互时，提供视
 大多数情况下，你需要在你的 XML 文件中设定视图的背景来实现这个功能：
 
 * `?android:attr/selectableItemBackground` 用于有界Ripple动画
-* `?android:attr/selectableItemBackgroundBorderless` 用于越出视图边界的动画
+* `?android:attr/selectableItemBackgroundBorderless` 用于越出视图边界的动画。它会被绘制在最近的切不是全屏的父视图上。
 
 > 注意：`selectableItemBackgroundBorderless` 是 API level 21 新加入的属性
 
@@ -25,7 +25,7 @@ Material Design中的触摸反馈，是在用户与UI元素交互时，提供视
 
 你可以给`RippleDrawable`赋予一个颜色。要改变默认的触摸反馈颜色，使用主题的`android:colorControlHighlight` 属性。
 
-更多星系，参见`RippleDrawable`类的API文档。
+更多信息，参见`RippleDrawable`类的API文档。
 
 ## 使用填充效果（Reveal Effect）
 
@@ -51,7 +51,7 @@ Animator anim =
 anim.start();
 ```
 
-要用此效果隐藏一个原本可见的视图
+要用此效果隐藏一个原本可见的视图：
 
 ```java
 // previously visible view
@@ -85,12 +85,11 @@ anim.start();
 
 ![Figure 1 - A transition with shared elements.](ContactsAnim.gif)
 
-
 Material Design中的Activity切换，当不同Activity之间拥有共有元素，则可以通过不同状态之间的动画和形变提供视觉上的连续性。你可以为共有元素设定进入和退出Activity时的自定义动画。
 
-* 入场变换决定视图如何入场。比如，在*爆炸式入场*变换中，视图从场外飞到屏幕中央。
-* 出场变换决定视图如何退出。比如，在*爆炸式出场*变换中，视图从屏幕中央飞出场外。
-* 共有元素的变换决定一个共有视图在两个Activity之间如何变换。比如，如果两个activity有同一张图片，但是放在不同位置，以及拥有不同大小，*变更图片* 变换会流畅的把图片移到相应位置，同时缩放图片大小。
+* **入场变换**决定视图如何入场。比如，在*爆炸式入场*变换中，视图从场外飞到屏幕中央。
+* **出场变换**决定视图如何退出。比如，在*爆炸式出场*变换中，视图从屏幕中央飞出场外。
+* **共有元素的变换**决定一个共有视图在两个Activity之间如何变换。比如，如果两个activity有同一张图片，但是放在不同位置，以及拥有不同大小，*变更图片* 变换会流畅的把图片移到相应位置，同时缩放图片大小。
 
 Android 5.0 (API level 21) 支持这些入场和退出变换：
 
@@ -98,7 +97,7 @@ Android 5.0 (API level 21) 支持这些入场和退出变换：
 * 滑动 - 把视图从场景边缘移入或移出
 * 淡入淡出 - 通过改变透明度添加或移除元素
 
-任何继承于 Visibility 类的变换，都支持被用于入场或退出变换。更多信息，请参见 `Transition` 类的API文档。
+任何继承于 [`Visibility`](http://developer.android.com/reference/android/transition/Visibility.html) 类的变换，都支持被用于入场或退出变换。更多信息，请参见 [`Transition`](http://developer.android.com/reference/android/transition/Transition.html) 类的API文档。
 
 Android 5.0 (API level 21) 还支持这些共有元素变换效果：
 
@@ -111,7 +110,7 @@ Android 5.0 (API level 21) 还支持这些共有元素变换效果：
 
 ![](SceneTransition.png)
 
-## 自定义变换
+### 自定义变换
 
 首先，当你继承Material主题的style时，要通过`android:windowContentTransitions`属性来开启窗口内容变换功能。你也可以在style定义中声明进入、退出和共有元素变换：
 
@@ -167,7 +166,7 @@ getWindow().setExitTransition(new Explode());
 
 要尽早开始入场变换，可以在被调用的Activity上使用`Window.setAllowEnterTransitionOverlap()` 。它可以使你拥有更戏剧性的入场变换。
 
-## 使用变换开始一个Activity
+### 使用变换开始一个Activity
 
 如果你开启Activity入场和退出效果，那么当你在用如下方法开始Activity时，变换效果会被应用：
 
@@ -178,7 +177,7 @@ startActivity(intent,
 
 如果你为第二个Activity设定了入场变换，变换也会在activity开始时被启用。要在开始另一个acitivity时禁用变换，可以给bundle的选项提供一个`null`对象：
 
-## 开始一个拥有共用元素的Activity
+### 开始一个拥有共用元素的Activity
 
 要在两个拥有共用元素的activity间进行变换动画：
 
@@ -212,7 +211,9 @@ imgContainerView.setOnClickListener(new View.OnClickListener() {
 
 对于用代码编写的共有动态视图，使用`View.setTransitionName()`方法来在两个activity中定义共有元素。
 
-## 开始一个拥有多个共有元素的Activity
+要在第二个activity结束时进行逆向的场景变换动画，调用`Activity.finishAfterTransition()`方法，而不是`Activity.finish()`。
+
+### 开始一个拥有多个共有元素的Activity
 
 要在拥有多个共有元素的activity之间使用变换动画，就要用`android:transitionName`属性在两个layout中定义这个共有元素（或在两个Activity中使用`View.setTransitionName()`方法），再创建`ActivityOptions`对象：
 
@@ -314,7 +315,6 @@ mAnimator.start();
 </animated-selector>
 ```
 
-
 ## 动画矢量 Drawables
 
 矢量Drawable是可以无损缩放的。`AnimatedVectorDrawable`类是你可以操作矢量Drawable。
@@ -364,7 +364,7 @@ mAnimator.start();
 </animated-vector>
 ```
 
-动画的定义代表ObjectAnimator或者AnimatorSet对象。例子中第一个animator将目标组旋转了360度。
+动画的定义代表`ObjectAnimator`或者`AnimatorSet`对象。例子中第一个animator将目标组旋转了360度。
 
 ```xml
 <!-- res/anim/rotation.xml -->
@@ -389,4 +389,4 @@ mAnimator.start();
 </set>
 ```
 
-更多信息，请参考AnimatedVectorDrawable的API指南。
+更多信息，请参考`AnimatedVectorDrawable`的API指南。

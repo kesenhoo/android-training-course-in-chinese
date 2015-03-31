@@ -1,14 +1,14 @@
-# 简单的录像
+# 轻松录制视频
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/camera/videobasics.html>
 
-这节课会介绍如何使用现有的Camera程序来录制一个视频。
+这节课会介绍如何使用现有的相机应用来录制视频。
 
-你的应用有自己的任务，整合视频只是其中的一小部分，你想要以最简单的方法录制视频，而不是重新发明一个摄像机。幸运的是，大多数Android设备已经有了一个能录制视频的camera应用。在这一节里，你让它为你做这件事。
+假设在你的应用的所有功能当中，整合视频只是其中的一小部分，你想要以最简单的方法录制视频，而不是重新实现一个摄像机组件。幸运的是，大多数Android设备已经安装了一个能录制视频的相机应用。在本节课当中，我们让它为我们完成这一任务。
 
-## 请求相机权限(Request Camera Permission)
+## 请求相机权限
 
-为了让别人知道你的应用依赖照相机，在你的manifest文件中添加`<uses-feature>`标签:
+为了让别人知道你的应用依赖照相机，在你的Manifest清单文件中添加`<uses-feature>`标签:
 
 ```xml
 <manifest ... >
@@ -18,15 +18,13 @@
 </manifest>
 ```
 
-如果你的程序并不需要一定有Camera，可以添加`android:required="false"` 的tag属性。这样的话，Google Play 会允许没有camera的设备下载这个程序。当然你有必要在使用Camera之前通过<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有Camera。如果没有，你应该关闭你的Camera相关的功能！
+如果你的程序使用相机，但相机并不是应用的正常运行所必不可少的组件，可以将`android:required`设置为`"false"`。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然你有必要在使用相机之前通过调用<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有相机。如果没有，你应该禁用和相机相关的功能！
 
-<!-- more -->
+## 使用相机程序来录制视频
 
-## 使用相机程序来录制视频(Record a Video with a Camera App)
+利用一个描述了你想要做什么的Intent对象，Android可以将某些执行任务委托给其他应用。整个过程包含三部分： Intent 本身，一个函数调用来启动外部的 Activity，当焦点返回到你的Activity时，处理返回图像数据的代码。
 
-Android中将动作委托给其他应用的方法是：启动一个Intent来完成你想要的动作。这个步骤包含三部分： Intent 本身，启动的外部 Activity, 与一些处理返回视频的代码。
-
-这里是一个能广播录制视频intent的函数
+下面的函数将会发送一个Intent来录制视频
 
 ```java
 static final int REQUEST_VIDEO_CAPTURE = 1;
@@ -39,11 +37,12 @@ private void dispatchTakeVideoIntent() {
 }
 ```
 
-注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理对应intent的活动组件(activity component)中的第一个activity(译注:就是检查有没有能处理这个intent的Activity)。执行这个检查非常必要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有app能处理你的intent，你的app就会crash。所以只要返回值不为null，触发intent就是安全的。
+注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有应用能处理你的Intent，你的应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。
 
-## 查看视频(View the Video)
 
-Android的Camera程序会把指向视频存储地址[Uri](http://developer.android.com/reference/android/net/Uri.html)添加到[Intent](http://developer.android.com/reference/android/content/Intent.html)中，并传送给[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))。下面的代码演示了取出这个视频并显示到VideoView。
+## 查看视频
+
+Android的相机程序会把指向视频存储地址的[Uri](http://developer.android.com/reference/android/net/Uri.html)添加到[Intent](http://developer.android.com/reference/android/content/Intent.html)中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>方法。下面的代码获取该视频并显示到一个VideoView当中：
 
 ```java
 @Override

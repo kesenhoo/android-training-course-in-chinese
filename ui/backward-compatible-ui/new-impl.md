@@ -14,7 +14,7 @@ CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使�
 
 ![backward-compatible-ui-classes-honeycomb](backward-compatible-ui-classes-honeycomb.png)
 
-* Figure 1. Class diagram for the Honeycomb implementation of tabs.
+* 图1. Honeycomb上tabs实现的类关系图.
 
 ## 实现CompatTabHoneycomb
 

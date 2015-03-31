@@ -8,7 +8,7 @@
 
 ## 创建区域设置目录和字符串文件
 
-为了支持多国语言，在`res/`中创建一个额外的`values`目录以连字符和ISO国家代码结尾命名，比如`values-es/` 是为语言代码为"es"的区域放置简单的资源文件的目录。Android会在运行时根据设备的区域设置，加载相应的资源。详见[Providing Alternative Resources](http://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources)。
+为了支持多国语言，在`res/`中创建一个额外的`values`目录以连字符和ISO国家代码结尾命名，比如`values-es/` 是为语言代码为"es"的区域设置的简单的资源文件的目录。Android会在运行时根据设备的区域设置，加载相应的资源。详见[Providing Alternative Resources](http://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources)。
 
 若你决定支持某种语言，则需要创建资源子目录和字符串资源文件，例如:
 
