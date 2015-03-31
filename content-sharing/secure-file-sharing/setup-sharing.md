@@ -2,7 +2,7 @@
 
 > 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/secure-file-sharing/setup-sharing.html>
 
-为了将文件安全地从你的应用程序发送给其它应用程序，你需要对你的应用进行配置来提供安全的文件句柄（Content URI的形式）。Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件会基于你在XML文件中的具体配置，为文件创建Content URI。这节课会向你展示如何在你的应用程序中添加[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)的默认现，以及如何指定你要共享的文件。
+为了将文件安全地从你的应用程序发送给其它应用程序，你需要对你的应用进行配置来提供安全的文件句柄（Content URI的形式）。Android的[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)组件会基于你在XML文件中的具体配置，为文件创建Content URI。这节课会向你展示如何在你的应用程序中添加[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)的默认实现，以及如何指定你要共享的文件。
 
 > **Note:**[FileProvider](http://developer.android.com/reference/android/support/v4/content/FileProvider.html)类隶属于[v4 Support Library](http://developer.android.com/tools/support-library/features.html#v4)库。关于如何在你的应用程序中包含该库，可以阅读：[Support Library Setup](http://developer.android.com/tools/support-library/setup.html)。
 
