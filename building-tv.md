@@ -12,7 +12,7 @@
 #### [**创建TV播放应用**](tv/playback/index.html)
 如何开发提供媒体目录和播放内容的应用。
 
-#### [**帮助用户在TV上探索内容**](tv/discovery/index.html)
+#### [**帮助用户在TV上找到内容**](tv/discovery/index.html)
 如何帮助用户从你的应用发现所需内容。
 
 #### [**创建TV游戏应用**](tv/games/index.html)
@@ -20,3 +20,6 @@
 
 #### [**创建TV直播应用**](tv/tif/index.html)
 如何开发TV直播应用。
+
+### [**TV应用清单**](tv/publishing/checklist.html)
+TV应用的需求清单
