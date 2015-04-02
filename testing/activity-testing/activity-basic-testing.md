@@ -28,14 +28,14 @@ d. 设置文件名称`<你的Activity名称>Test`(比如, `MyFirstTestActivityTe
 
 在你的Eclipse中建立测试数据集:
 
-1. 在 Package Explorer中双击测试打开之前编写的测试用例,然后修改你的测试用例使它继承[ActivityTestCase](http://developer.android.com/reference/android/test/ActivityTestCase.html)的子类。比如这样:
+1 . 在 Package Explorer中双击测试打开之前编写的测试用例,然后修改你的测试用例使它继承[ActivityTestCase](http://developer.android.com/reference/android/test/ActivityTestCase.html)的子类。比如这样:
 
 ```java
 public class MyFirstTestActivityTest
         extends ActivityInstrumentationTestCase2<MyFirstTestActivity> {
 ```
 
-2. 下一步，给你的测试用例添加构造函数和setUp()方法，并你想测试的Activity添加变量声明。比如:
+2 . 下一步，给你的测试用例添加构造函数和setUp()方法，并你想测试的Activity添加变量声明。比如:
 
 ```java
 public class MyFirstTestActivityTest
@@ -68,8 +68,6 @@ public class MyFirstTestActivityTest
     * 定义保存测试数据及状态的实例变量
     * 创建并保存正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用实例。
     * 获得你想测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)中获得任何UI组件的引用。
-
-```
 
 你可以使用[getActivity()](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity())方法得到正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用。
 
