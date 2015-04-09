@@ -30,7 +30,7 @@ Android Wear中的[2D Picker](https://developer.android.com/design/wear/structur
 Page Adapter提供一组页面以填充 *GridViewPager* 部件。要实现这个adapter，你需要继承Wearable UI Library中的 *FragmentGridPageAdapter* 类。
 
 <!--For example, the GridViewPager sample in the Android SDK contains the following adapter implementation that provides a set of static cards with custom background images:-->
-举个栗子🌰，Android SDK内的*GridViewPager*例子🌰中包含了下面的adapter实现将提供一组静态cards和自定义背景图片：
+举个例子🌰，Android SDK内的*GridViewPager*例子中包含了下面的adapter实现将提供一组静态cards和自定义背景图片：
 
 	public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
 
@@ -110,12 +110,12 @@ adapter是实现细节依赖于你的特定的某组pages。由adapter提供每�
 <!--Not all rows need to have the same number of pages. Notice that in this example the number of colums is different for each row. You can also use a GridViewPager component to implement a 1D picker with only one row or only one column.-->
 不是所有行都需要有同样数量的pages，注意这个例子中的每行有不同的列数。你也可以用一个 *GridViewPager* 组件实现只有一行或一列的1D picker。
 
-![](https://developer.android.com/wear/images/07_uilib.png)
+![](07_uilib.png)
 
 **Figure 1:**GridViewPager例子
 
 <!--GridViewPager provides support for scrolling in cards whose content does not fit the device screen. This example configures each card to expand as required, so users can scroll through the card's content. When users reach the end of a scrollable card, a swipe in the same direction shows the next page on the grid, if one is available.-->
-*GridViewPager* 提供了滚动支持当cards内容超出设备屏幕。这种例子配置了每张card需要被扩展，所以用户可以滚动卡片的内容。当用户到大可滚动卡片的底部，向同样方向滑动将显示grid中的下个page（当下一page可用时）。
+*GridViewPager* 提供了滚动支持当cards内容超出设备屏幕。这种例子配置了每张card需要被扩展，所以用户可以滚动卡片的内容。当用户到达到滚动卡片的底部，向同样方向滑动将显示grid中的下个page（当下一page可用时）。
 
 <!--You can specify a custom background for each page with the getBackground() method. When users swipe to navigate across pages, GridViewPager applies parallax and crossfade effects between different backgrounds automatically.-->
 你可以使用 *getBackground()* 方法自定义每页page的背景。当用户划过page，*GridViewPager* 自动使用视差滚动和淡出效果在不同的背景之间。

@@ -11,7 +11,7 @@
 <!--For example, figure 1 shows how the following layout looks on square and round screens:-->
 举个例子，figure 1展示了下面的layout在圆形和方形屏幕上看起来是怎样的：
 
-![](https://developer.android.com/wear/images/01_uilib.png)
+![](01_uilib.png)
 
 <!--Figure 1. Demonstration of how a layout designed for square screens does not work well on round screens.-->
 **Figure 1.** *为方形屏幕设计的layouts不能在圆形设备上很好工作的示范*
@@ -67,7 +67,7 @@ Android Studio会在你使用工程向导时includes你在**wear** module中的W
 ## 为方形和圆形屏幕指定不同的Layouts
 
 <!--The WatchViewStub class included in the Wearable UI Library lets you specify different layout definitions for square and round screens. This class detects the screen shape at runtime and inflates the corresponding layout.-->
-在Wearable UI库中的**WatchViewStub**类允许你为方形和圆形屏幕指定不同的layouts。这个类会在运行时姜茶屏幕形状后inflates符合的layout。
+在Wearable UI库中的**WatchViewStub**类允许你为方形和圆形屏幕指定不同的layouts。这个类会在运行时检查屏幕形状后inflates符合的layout。
 
 <!--To use this class for handling different screen shapes in your app:-->
 在你的app中使用这个类以应对不用和的屏幕形状：
@@ -142,7 +142,7 @@ The all value positions all the child's content inside the gray square in figure
 * 一个*top*, *bottom*, *left*, *right*的复合属性。比如 *"left|top"* 说明子view的左和上边缘如figure 2。
 * *all* 说明子view的内容在灰色方形内如figure 2。
 
-![](https://developer.android.com/wear/images/02_uilib.png)
+![](02_uilib.png)
 
 <!--Figure 2. Window insets on a round screen.-->
 **Figure 2.** *在圆形屏幕上的窗口间隔*
@@ -150,7 +150,7 @@ The all value positions all the child's content inside the gray square in figure
 <!--On square screens, the window insets are zero and the layout_box attribute is ignored.-->
 在方形屏幕上，窗口间隔为0、 *layout_box* 属性会被忽略。
 
-![](https://developer.android.com/wear/images/03_uilib.png)
+![](03_uilib.png)
 
 <!--Figure 3. A layout definition that works on both square and round screens.-->
 **Figure 3.** *同一个layout定义工作在方形和圆形屏幕上*
