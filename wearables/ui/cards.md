@@ -8,7 +8,7 @@
 
 <!--The Wearable UI Library provides implementations of cards specifically designed for wearable devices. This library contains the CardFrame class, which wraps views inside a card-styled frame with a white background, rounded corners, and a light-drop shadow. CardFrame can only contain one direct child, usually a layout manager, to which you can add other views to customize the content inside the card.-->
 
-Wearable UI Library提供了为穿戴设备特别设计的卡片实现。这个库包含了 *CardFrame* 类，它在卡片风格的框架中包裹views，且提供一个白色的背景，圆角，和光透射阴影。*CardFrame* 只能包裹一个直接的子view，这通常是一个layout manager，你可以向它添加其他views以定制卡片内容。
+Wearable UI Library提供了为穿戴设备特别设计的卡片实现。这个库包含了 *CardFrame* 类，它在卡片风格的框架中包裹views，且提供一个白色的背景，圆角，和光投射阴影。*CardFrame* 只能包裹一个直接的子view，这通常是一个layout manager，你可以向它添加其他views以定制卡片内容。
 
 <!--You can add cards to your app in two ways:
 Use or extend the CardFragment class.
@@ -29,7 +29,7 @@ Add a card inside a CardScrollView in your layout.-->
 
 *CardFragment* 类提供一个默认card layout含有一个title一个description和一个icon，如果你需要的card  layout看起来和默认figure 1一样，使用这个方法向你的app添加cards。
 
-![Figure 1](https://developer.android.com/wear/images/05_uilib.png)
+![Figure 1](05_uilib.png)
 
 **Figure 1.** 默认的 *CardFragment* layout.
 
@@ -72,10 +72,10 @@ Use the fragment manager to add the CardFragment instance to its container-->
 	    setContentView(R.layout.activity_wear_activity2);
 
 	    FragmentManager fragmentManager = getFragmentManager();
-	    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-	    CardFragment cardFragment = CardFragment.create(getString(R.string.cftitle),
-	                                                    getString(R.string.cfdesc),
-	                                                    R.drawable.p);
+	    FragmentTransaction fragmentTransaction 
+	    		= fragmentManager.beginTransaction();
+	    CardFragment cardFragment 
+	    		= CardFragment.create(getString(R.string.cftitle),getString(R.string.cfdesc),R.drawable.p);
 	    fragmentTransaction.add(R.id.frame_layout, cardFragment);
 	    fragmentTransaction.commit();
 	}
@@ -88,7 +88,7 @@ Use the fragment manager to add the CardFragment instance to its container-->
 <!--You can also add a card directly to your layout definition, as shown in figure 2. Use this approach when you want to define a custom layout for the card inside a layout definition file.-->
 你也可以直接添加一个card到你的layout描述，类似于figure 2。当你希望为layout描述文件中的card自定义一个layout时使用这个方法。
 
-![](https://developer.android.com/wear/images/04_uilib.png)
+![](04_uilib.png)
 
 **Figure 2.** 添加一个 *CardFrame* 到你的layout.
 
