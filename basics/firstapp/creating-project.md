@@ -49,7 +49,7 @@
 
 app/src/main/res/layout/activity_my.xml
 
-这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studi会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。
+这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studio会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。
 
 app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
 
@@ -57,7 +57,7 @@ app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
 
 app/src/main/AndroidManifest.xml
 
-[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来额学习会更深入了解这个文件并添加更多组件到该文件中。
+[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来的学习会更深入了解这个文件并添加更多组件到该文件中。
 
 app/build.gradle
 
@@ -70,7 +70,7 @@ Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以�
 
 + minSdkVersion 创建项目时指定的最低SDK版本，是新建应用支持的最低SDK版本。
 
-+ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level)表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
++ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
 
 
 更多关于Gradle的知识请阅读[Building Your Project with Gradle](http://developer.android.com/sdk/installing/studio-build.html)
