@@ -6,7 +6,7 @@
 
 本小节介绍如何使用Android Studio或SDK Tools命令行来创建一个新的项目。
 
-> **Note**：在此之前，你应该以及安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
+> **Note**：在此之前，你应该已经安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
 
 ## 使用Android Studio创建项目
 
@@ -27,7 +27,9 @@
    </ul>
 
 ![image](studio-setup-1.png)
+
     <strong >图1 </strong>Configure your new project
+
 3. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
 
