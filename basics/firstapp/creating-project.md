@@ -6,17 +6,17 @@
 
 本小节介绍如何使用Android Studio或SDK Tools命令行来创建一个新的项目。
 
-> **Note**：在此之前，你应该以及安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
+> **Note**：在此之前，你应该已经安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
 
 ## 使用Android Studio创建项目
 
-1. 使用Android Studio创建Android项目，启动Android Studio
+1\. 使用Android Studio创建Android项目，启动Android Studio
    <ul>
    <li>如果你还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
    <li>如果已经用Android Studio打开过项目，点击File==>New Project新建项目</li>
    </ul>
 
-2. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**.
+2\. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**.
 
    按照要求使用如图所示的值会使学习变得更容易。
    <ul>
@@ -26,30 +26,23 @@
    <li>**Project location**操作系统存放项目的目录</li>
    </ul>
 
-<<<<<<< HEAD
-![image](studio-setup-1.png)</br>
-    <strong >图1 </strong>Configure your new project</br>
-=======
 ![image](studio-setup-1.png)
-
-    <strong >图1 </strong>Configure your new project
-
->>>>>>> parent of 80839bb... Revert "Update creating-project.md"
-3. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
+    **图1** Configure your new project
+	
+3\. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
 
-4
-. **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
+4\. **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
 
    Minimum Required SDK表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
 
-5 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
+5\. 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
 
-6 在Add an activity 模板窗口选择**Blank Activity**，点击 **Next**.
+6\. 在Add an activity 模板窗口选择**Blank Activity**，点击 **Next**.
 
-7 在**Choose options for your new file**窗口修改** Activity Name **为<I>MyActivity</I>,修改**Layout Name **为activity_my，**Title **修改为MyActivity，**Menu Resource Name **修改为menu_my。
+7\. 在**Choose options for your new file**窗口修改** Activity Name **为<I>MyActivity</I>,修改**Layout Name **为activity_my，**Title **修改为MyActivity，**Menu Resource Name **修改为menu_my。
 
-8 点击**Finish**完成创建。
+8\. 点击**Finish**完成创建。
 
   刚创建的Android项目是一个基础的Hello World项目，包含一些默认文件，我们花一点时间看看最重要的部分：
 
@@ -106,9 +99,9 @@ values/
 
 如果你没有使用Android Studio开发Android项目，你可以在命令行使用SDK提供的tools来创建一个Android项目。
 
-1 打开命令行切换到SDK根目录下；
+1\. 打开命令行切换到SDK根目录下；
 
-2 执行:
+2\. 执行:
 
 ```java
     tools/android list targets
@@ -117,7 +110,7 @@ values/
 会在屏幕上打印出所有你的Android SDK中下载好的可用Android  platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform。你仍可以使你的应用支持较老版本的platform，但设置为最新版本允许你为最新的Android设备优化你的应用。
 如果你没有看到任何可用的platform，你需要使用Android SDK Manager完成下载安装，参见 [Adding Platforms and Packages](http://developer.android.com/sdk/installing/adding-packages.html)。
 
-3 执行：
+3\. 执行：
 
 ```java
 android create project --target <target-id> --name MyFirstApp \
