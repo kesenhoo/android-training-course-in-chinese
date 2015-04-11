@@ -26,8 +26,8 @@
    <li>**Project location**操作系统存放项目的目录</li>
    </ul>
 
-![image](studio-setup-1.png)
-    <strong >图1 </strong>Configure your new project
+![image](studio-setup-1.png)</br>
+    <strong >图1 </strong>Configure your new project</br>
 3. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
 
