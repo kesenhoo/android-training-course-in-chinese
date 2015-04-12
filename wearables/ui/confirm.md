@@ -31,7 +31,8 @@ Confirmation animations give users visual feedback when they complete an action.
 <!--Automatic confirmation timers let users cancel an action they just performed. When the user performs the action, your app shows a button to cancel the action with a timer animation and starts the timer. The user has the option to cancel the action until the timer finishes. Your app gets notified if the user cancels the action and when the timer expires.-->
 自动 Confirmation 定时器让用户只需要取消操作。当用户做一个操作，你的app显示带有定时动画的一个cancel按钮，用户可以在定时结束前选择取消操作。如果用户选择取消操作货定时结束你的app会得到一个通知。
 
-![](https://developer.android.com/wear/images/09_uilib.png)
+![](09_uilib.png)
+
 **Figure 1:** A confirmation timer.
 
 <!--To show a confirmation timer when users complete an action in your app:-->
@@ -111,7 +112,7 @@ public class WearActivity extends Activity implements
 <!--You can also add a message that appears under the confirmation icon.-->
 你也可以添加一条消息出现在 confirmation icon下面。
 
-![](https://developer.android.com/wear/images/08_uilib.png)
+![](08_uilib.png)
 
 **Figure 2:** A confirmation animation.
 
