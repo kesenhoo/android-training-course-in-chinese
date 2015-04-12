@@ -8,15 +8,15 @@
 
 这个课程就将教你如何针对不同屏幕配置来优化你的UI。
 
-本课程提供了一个简单的示例[NewsReader](http://developer.android.com/shareables/training/NewsReader.zip)。这个示例中提供的代码对多屏幕适配是非常好的一个练习，并且你也可以将这个示例中的代码运用到你自己的项目中。
+本课程提供了一个简单的示例[NewsReader](http://developer.android.com/shareables/training/NewsReader.zip)。这个示例中每节课的代码展示了如何更好的优化多屏幕适配，你也可以将这个示例中的代码运用到你自己的项目中。
 
-> Notes：这节课中相关的例子为了兼容android 3.0以下的版本使用了support library中的fragment，如果你需要使用该示例，请先下载support library并添加到例子中。
+> Note：这节课中相关的例子为了兼容android 3.0以下的版本使用了support library中的Fragment相关APIs。在使用该示例前，请先确定support library已经添加到你的应用中。
 
 ## Lessons
 
 * [支持不同屏幕尺寸](screen-sizes.html)
 
-  这节课程主要告诉你如何设计能适配多种不同尺寸的屏幕（通过使用灵活的规格（dimensions），RelativeLayout，屏幕尺寸和方向限定词（qualifier），别名过滤器（alias filter）和点9（9-patch）图片）。
+  这节课程将引导你如何设计适配多种不同尺寸的布局（通过使用灵活的尺寸规格guige（dimensions），相对布局（RelativeLayout），屏幕尺寸和方向限定（qualifiers），别名过滤器（alias filter）和点9图片）。
 
 * [支持不同的屏幕密度](screen-desities.html)
 
@@ -25,4 +25,4 @@
 
 * [实现自适应UI流（Flows）](adapt-ui.html)
 
-  这节课将说的是如何通过实现UI流（flow）的方式来适配不同屏幕尺寸和密度的组合（运行时检测活动布局，根据当前布局正确的响应，处理屏幕配置的变化）。
+  这节课将演示如何以UI流（flow）的方式来适配一些屏幕大小/密度组合（动态布局运行时检测，响应当前布局，处理屏幕配置变化）。
