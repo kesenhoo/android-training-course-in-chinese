@@ -229,4 +229,4 @@ adb install bin/MyFirstApp-debug.apk
 
 继续下一小节学习有关怎么对按钮做出相应，同时读取文本里的内容，启动另外一个Activity，以及更多信息。
 
-[下一节：启动另外的Activity](starting-activity.html)
+[下一节：启动另一个Activity](starting-activity.html)

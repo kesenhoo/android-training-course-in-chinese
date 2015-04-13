@@ -1,4 +1,4 @@
-# 启动其他的Activity
+# 启动另一个Activity
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
