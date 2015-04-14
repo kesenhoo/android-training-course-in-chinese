@@ -283,7 +283,7 @@ Intent intent = getIntent();
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
-5 调用用 getStringExtra()提取从 MyActivity 传递过来的消息.
+5 调用 getStringExtra()提取从 MyActivity 传递过来的消息.
 
 ```
 String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
