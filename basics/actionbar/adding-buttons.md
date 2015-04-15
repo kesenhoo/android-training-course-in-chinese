@@ -10,7 +10,7 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 
 ## 在 XML 中指定操作
 
-所有的操作按钮和 action overflow 中其他可用的条目都被定义在 [菜单资源](https://developer.android.com/guide/topics/resources/menu-resource.html) 的 XML 文件中。通过在项目的 `res/menu` 目录中新增一个 XML 文件来为 action bar 添加操作。
+所有的操作按钮和 action overflow 中其他可用的条目都被定义在 [menu资源](https://developer.android.com/guide/topics/resources/menu-resource.html) 的 XML 文件中。通过在项目的 `res/menu` 目录中新增一个 XML 文件来为 action bar 添加操作。
 
 为你想添加到 action bar 中的每个条目添加一个 `<item>` 元素。例如：
 
@@ -32,7 +32,7 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 
 上述代码声明，当 action bar 有可用空间时，搜索操作将作为一个操作按钮来显示，但设置操作将一直只在 action overflow 中显示。（默认情况下，所有的操作都显示在 action overflow 中，但为每一个操作指明设计意图是很好的做法。）
 
-icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的文件名。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string resource`，详情请参见 [创建一个简单的 UI](../firstapp/building-ui.html) 。
+icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的文件名。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string 资源`，详情请参见 [创建一个简单的 UI](../firstapp/building-ui.html) 。
 
 > **注意**：当创建 icon 和其他 bitmap 图片时，你得为不同屏幕密度下的显示效果提供多个优化的版本，这一点很重要。在 [支持不同屏幕](../supporting-devices/screens.html) 课程中将会更详细地讨论。
 
