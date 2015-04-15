@@ -11,7 +11,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 ![viewgroup](viewgroup.png)
 
-**图一**:关于viewgroup对象如何组织布局分支和包含其他view对象。
+**Figure 1.** 关于viewgroup对象如何组织布局分支和包含其他view对象。
 
 
 > 可选的布局文件：在XML中定义界面布局而不是在运行时去动态生成布局是有多个原因的，其中最重要的一个原因是这样可以使得你为不同大小的屏幕创建不同的布局文件。例如，你可以创建创建2个版本的布局文件，告诉系统在小的屏幕上使用其中一个布局文件，在大的屏幕上使用另外一个布局文件。更多信息，请参考[兼容不同的设备](../supporting-devices/index.html)
@@ -35,7 +35,7 @@ Android提供了一个对应于[View](http://developer.android.com/reference/and
 
 res/layout/activity_my.xml
 
-```
+```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -64,7 +64,7 @@ res/layout/activity_my.xml
 
 res/layout/activity_my.xml
 
-```
+```xml
 <EditText android:id="@+id/edit_message"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -106,7 +106,7 @@ res/layout/activity_my.xml
 
 下边就是修改好的`res/values/strings.xml`：
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">My First App</string>
@@ -137,7 +137,7 @@ res/layout/activity_my.xml
 
 res/layout/activity_my.xml
 
-```
+```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -178,9 +178,7 @@ res/layout/activity_my.xml
 
 res/layout/activity_my.xml
 
-
-
-```
+```xml
 <EditText
     android:layout_weight="1"
     android:layout_width="0dp"
@@ -198,7 +196,7 @@ res/layout/activity_my.xml
 
 res/layout/activity_my.xml
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
