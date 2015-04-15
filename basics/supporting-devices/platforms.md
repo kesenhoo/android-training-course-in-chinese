@@ -59,7 +59,7 @@ Android提供了用户体验主题，为app提供基础操作系统的外观和�
 <activity android:theme="@style/CustomTheme">
 ```
 
-使整个app应用一个主题(全部activities)在[<application>](https://developer.android.com/guide/topics/manifest/application-element.html)元素中添加`android:theme`属性:
+使整个app应用一个主题(全部activities)在[<application\\>](https://developer.android.com/guide/topics/manifest/application-element.html)元素中添加`android:theme`属性:
 
 ```xml
 <application android:theme="@style/CustomTheme">
