@@ -14,9 +14,9 @@
 
 * 当用户退出这个activity时，为了回收这个activity，系统会调用其它方法来向下一阶移动activity状态。在某些情况下，activity会隐藏在金字塔下等待(例如当用户切换到其他app),这个时候activity可以重新回到顶端(如果用户回到这个activity)并且恢复用户离开时的状态。
 
-Figure 1. 下面这张图讲解了activity的生命周期：*(这个金字塔模型要比之前Dev Guide里面的生命周期图更加容易理解，更加形象)*
-
 ![basic-lifecycle](basic-lifecycle.png)
+
+**Figure 1.** 下面这张图讲解了activity的生命周期：*(这个金字塔模型要比之前Dev Guide里面的生命周期图更加容易理解，更加形象)*
 
 * 根据activity的复杂度，你也许不需要实现所有的生命周期方法。然而，你需要知道每一个方法的功能并确保你的app能够像用户期望的那样执行。如何实现一个符合用户期待的app，你需要注意下面几点：
   * 当使用你的app的时候，不会因为有来电通话或者切换到其他app而导致程序crash。
@@ -62,8 +62,7 @@ public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     // Set the user interface layout for this Activity
-    // The layout file is defined in the project res/layout/main_activity.xml
-file
+    // The layout file is defined in the project res/layout/main_activity.xml file
     setContentView(R.layout.main_activity);
 
     // Initialize member TextView so we can manipulate it later
@@ -79,16 +78,16 @@ file
 }
 ```
 
-> **Caution**: Using the [SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT) to prevent older systems from executing new APIs works in this way on Android 2.0 (API level 5) and higher only. Older versions will encounter a runtime exception.
+> **警告**：用[SDK_INT](http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT)来避免旧的系统调用了只在Android 2.0（API level 5）或者更新的系统可用的方法（上述if条件中的代码）。旧的系统调用了这些方法会抛出一个运行时异常。
 
-* 一旦结束onCreate 操作，系统会迅速调用onStart() 与onResume()方法。你的activity不会在Created或者Started状态停留。技术上来说, activity在onStart()被调用后会开始被用户可见，但是 onResume()会迅速被执行使得activity停留在Resumed状态，直到一些因素发生变化才会改变这个状态。例如接受到一个来电，用户切换到另外一个activity，或者是设备屏幕关闭。
+* 一旦结束onCreate 操作，系统会迅速调用onStart() 与onResume()方法。你的activity不会在Created或者Started状态停留。技术上来说, activity在onStart()被调用后会开始被用户可见，但是 onResume()会迅速被执行使得activity停留在Resumed状态，直到一些因素发生变化才会改变这个状态。例如接收到一个来电，用户切换到另外一个activity，或者是设备屏幕关闭。
 * 在后面的课程中，你将看到其他方法是如何使用的，onStart() 与 onResume()在用户从Paused或 Stopped状态中恢复的时候非常有用。
 
 > **Note:** onCreate() 方法包含了一个参数叫做savedInstanceState，这将会在后面的课程 - [重新创建activity](../../activity-lifecycle/recreating.html)的时候涉及到。
 
 ![basic_lifecycle-create](basic-lifecycle-create.png)
 
-* Figure 2. 上图显示了onCreate(), onStart(), and onResume()是如何执行的。当这三个顺序执行的回调函数完成后，activity会到达Resumed状态。
+**Figure 2.** 上图显示了onCreate(), onStart() 和 onResume()是如何执行的。当这三个顺序执行的回调函数完成后，activity会到达Resumed状态。
 
 ## 销毁Activity
 
