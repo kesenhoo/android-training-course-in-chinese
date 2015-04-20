@@ -10,7 +10,7 @@
 
 ## 读取位图的尺寸与类型(Read Bitmap Dimensions and Type)
 
-[BitmapFactory](http://developer.android.com/reference/android/graphics/BitmapFactory.html)提供了一些decode的方法（<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options)">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options)">decodeResource()</a>等），用来从不同的资源中创建一个Bitmap。 我们应该根据图片的数据源来选择合适的decode方法。 这些方法在构造位图的时候会尝试分配内存，因此会容易导致`OutOfMemory`的异常。每一种decode方法都可以通过[BitmapFactory.Options](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html)设置一些附加的标记，以此来指定decode选项。设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 属性为`true`可以在decode的时候避免内存的分配，它会返回一个`null`的bitmap，但是可以获取到 outWidth, outHeight 与 outMimeType。该技术可以允许你在构造bitmap之前优先读图片的尺寸与类型。
+[BitmapFactory](http://developer.android.com/reference/android/graphics/BitmapFactory.html)提供了一些解码（decode）的方法（<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options)">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options)">decodeResource()</a>等），用来从不同的资源中创建一个Bitmap。 我们应该根据图片的数据源来选择合适的解码方法。 这些方法在构造位图的时候会尝试分配内存，因此会容易导致`OutOfMemory`的异常。每一种解码方法都可以通过[BitmapFactory.Options](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html)设置一些附加的标记，以此来指定解码选项。设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 属性为`true`可以在解码的时候避免内存的分配，它会返回一个`null`的Bitmap，但是可以获取到 outWidth, outHeight 与 outMimeType。该技术可以允许你在构造Bitmap之前优先读图片的尺寸与类型。
 
 ```java
 BitmapFactory.Options options = new BitmapFactory.Options();
@@ -21,7 +21,7 @@ int imageWidth = options.outWidth;
 String imageType = options.outMimeType;
 ```
 
-为了避免`java.lang.OutOfMemory` 的异常，我们需要在真正decode图片之前检查它的尺寸（除非你能确定这个数据源提供了准确无误的图片且不会导致占用过多的内存）。
+为了避免`java.lang.OutOfMemory` 的异常，我们需要在真正解析图片之前检查它的尺寸（除非你能确定这个数据源提供了准确无误的图片且不会导致占用过多的内存）。
 
 ## 加载一个按比例缩小的版本到内存中(Load a Scaled Down Version into Memory)
 
@@ -34,7 +34,7 @@ String imageType = options.outMimeType;
 
 例如，如果把一个大小为1024x768像素的图片显示到大小为128x96像素的ImageView上吗，就没有必要把整张原图都加载到内存中。
 
-为了告诉decoder去加载一个缩小版本的图片到内存中，需要在[BitmapFactory.Options](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html) 中设置 inSampleSize 的值。例如, 一个分辨率为2048x1536的图片，如果设置 inSampleSize 为4，那么会产出一个大约512x384大小的bitmap。加载这张缩小的图片仅仅使用大概0.75MB的内存，如果是加载完整尺寸的图片，那么大概需要花费12MB（前提都是bitmap的配置是 ARGB_8888）。下面有一段根据目标图片大小来计算Sample图片大小的代码示例：
+为了告诉解码器去加载一个缩小版本的图片到内存中，需要在[BitmapFactory.Options](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html) 中设置 inSampleSize 的值。例如, 一个分辨率为2048x1536的图片，如果设置 inSampleSize 为4，那么会产出一个大约512x384大小的Bitmap。加载这张缩小的图片仅仅使用大概0.75MB的内存，如果是加载完整尺寸的图片，那么大概需要花费12MB（前提都是Bitmap的配置是 ARGB_8888）。下面有一段根据目标图片大小来计算Sample图片大小的代码示例：
 
 ```java
 public static int calculateInSampleSize(
@@ -61,9 +61,9 @@ public static int calculateInSampleSize(
 }
 ```
 
-> **Note:** 设置[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)为2的幂是因为decoder最终还是会对非2的幂的数进行向下处理，获取到最靠近2的幂的数。详情参考[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)的文档。
+> **Note:** 设置[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)为2的幂是因为解码器最终还是会对非2的幂的数进行向下处理，获取到最靠近2的幂的数。详情参考[inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize)的文档。
 
-为了使用该方法，首先需要设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 为 `true`, 把options的值传递过来，然后设置 [inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize) 的值并设置 inJustDecodeBounds 为 `false`，之后重新调用相关的decode方法。
+为了使用该方法，首先需要设置 [inJustDecodeBounds](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds) 为 `true`, 把options的值传递过来，然后设置 [inSampleSize](http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize) 的值并设置 inJustDecodeBounds 为 `false`，之后重新调用相关的解码方法。
 
 ```java
 public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
@@ -90,4 +90,4 @@ mImageView.setImageBitmap(
     decodeSampledBitmapFromResource(getResources(), R.id.myimage, 100, 100));
 ```
 
-我们可以通过替换合适的<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">BitmapFactory.decode*</a> 方法来实现一个类似的方法，从其他的数据源decode bitmap。
+我们可以通过替换合适的<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">BitmapFactory.decode*</a> 方法来实现一个类似的方法，从其他的数据源解析Bitmap。
