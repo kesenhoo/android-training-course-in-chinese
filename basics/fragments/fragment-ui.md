@@ -18,13 +18,13 @@
 
 为了执行fragment的增加或者移除操作，你必须用 [FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html) 创建一个[FragmentTransaction](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html)对象, FragmentTransaction提供了用来增加、移除、替换以及其它一些操作的APIs。
 
-如果你的activity允许fragment移除或者替换，你应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始化fragment(s).
+如果你的activity允许移除或者替换fragment，那么你应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始的fragment(s).
 
-运用fragment（特别是那些你在运行时添加的）的一个很重要的规则就是在布局中你必须有一个容器[view](http://developer.android.com/reference/android/view/View.html)，fragment的layout将会放在这个view里面。
+运用fragment（特别是那些你在运行时添加的）的一个很重要的规则就是在布局中你必须有一个容器[View](http://developer.android.com/reference/android/view/View.html)，fragment的layout将会放在这个view里面。
 
-下面的这个布局是[上节课](creating.html)的一次只显示一个fragment的布局的替代布局。为了从一个布局替换为另外一个布局，activity的布局包含了一个空的 [FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)作为fragment的容器。
+下面的这个布局是[上节课](creating.html)介绍的布局的另一个版本，只不过这次的布局一次只显示一个fragment。为了从一个布局替换为另外一个布局，activity的布局包含了一个空的 [FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)作为fragment的容器。
 
-注意文件名与上节课的布局一样，但是文件目录没有`large`标识， 所以你的布局将会在比large小的屏幕上被使用，因为这个屏幕无法满足同时放置两个fragments
+注意文件名与上节课的布局一样，但是文件目录没有`large`标识， 所以下面这个布局将被用在比large小的屏幕上，因为较小的屏幕无法同时放置两个fragments。
 
 res/layout/news_articles.xml:
 ```xml
@@ -34,7 +34,7 @@ res/layout/news_articles.xml:
     android:layout_height="match_parent" />
 ```
 
-在你的activity里面，用Support Library APIs调用 [getSupportFragmentManager()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29)方法获取[FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html) 对象，然后调用 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()">beginTransaction()</a> 方法创建一个[FragmentTransaction](http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)对象，然后调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法添加一个fragment.
+在你的activity里面，用Support Library APIs调用 [getSupportFragmentManager()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29)方法获取[FragmentManager](http://developer.android.com/reference/android/support/v4/app/FragmentManager.html) 对象。然后调用 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()">beginTransaction()</a> 方法创建一个[FragmentTransaction](http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)对象，并调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法添加一个fragment。
 
 你可以使用同一个 [FragmentTransaction](http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html)进行多次fragment事务。当你完成这些变化操作的时候，必须调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a>方法。
 
@@ -76,7 +76,7 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-因为fragment是在activity运行时被添加进来时（不是在XML布局中用`<fragment>`定义的），activity 可以移除这个fragment或者用另外一个来替换它。
+因为fragment是在activity运行时被添加进来的（不是在XML布局中用`<fragment>`定义的），activity 可以移除这个fragment或者用另外一个来替换它。
 
 ## Fragment替换
 
@@ -86,7 +86,7 @@ public class MainActivity extends FragmentActivity {
 
 > **Note：**当你移除或者替换一个fragment并把它放入返回栈中时，被移除的fragment的生命周期是stopped(不是destoryed).当用户返回重新恢复这个fragment,它的生命周期是restarts。如果你没把fragment放入返回栈中，那么当他被移除或者替换时，它的生命周期是destoryed。
 
-下面是一个fragment替换的例子
+下面是替换一个fragment的例子
 
 ```java
 // Create fragment and give it an argument specifying the article it should show
