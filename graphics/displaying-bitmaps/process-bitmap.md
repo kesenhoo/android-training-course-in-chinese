@@ -53,7 +53,7 @@ public void loadBitmap(int resId, ImageView imageView) {
 
 ## 处理并发问题(Handle Concurrency)
 
-通常类似ListView与GridView等视图组件在使用上面演示的AsyncTask 方法时，会同时带来并发的问题。首先为了更高的效率，ListView与GridView的子Item视图会在用户滑动屏幕时被循环使用。如果每一个子视图都触发一个AsyncTask，那么就无法确保当前任务结束时，任务所关联的子视图是否会被回收（因为它涉及到的资源可能正在被另一个子View使用）。而且， 无法确保所有的异步任务的完成顺序和他们本身的启动顺序保持一致。
+通常类似ListView与GridView等视图组件在使用上面演示的AsyncTask 方法时，会同时带来并发的问题。首先为了更高的效率，ListView与GridView的子Item视图会在用户滑动屏幕时被循环使用。如果每一个子视图都触发一个AsyncTask，那么就无法确保关联的视图在结束任务时，分配的视图已经进入循环队列中，给另外一个子视图进行重用。而且， 无法确保所有的异步任务的完成顺序和他们本身的启动顺序保持一致。
 
 [Multithreading for Performance](http://android-developers.blogspot.com/2010/07/multithreading-for-performance.html) 这篇博文更进一步的讨论了如何处理并发问题，并且提供了一种解决方法：ImageView保存最近使用的AsyncTask的引用，这个引用可以在任务完成的时候再次读取检查。使用这种方式, 就可以对前面提到的AsyncTask进行扩展。
 
