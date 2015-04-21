@@ -4,15 +4,15 @@
 
 将单个Bitmap加载到UI是简单直接的，但是如果我们需要一次性加载大量的图片，事情则会变得复杂起来。在大多数情况下（例如在使用ListView，GridView或ViewPager时），屏幕上的图片和因滑动将要显示的图片的数量通常是没有限制的。
 
-通过循环利用子视图可以缓解内存的使用，垃圾回收器也会释放那些不再需要使用的Bitmap。这些机制都非常好，但是为了保证一个流畅的用户体验，我们希望在屏幕滑动回来时，避免每次都要重复处理那些图片。内存与磁盘缓存通常可以起到辅助作用，允许组件可以快速地重新加载那些处理过的图片。
+通过循环利用子视图可以缓解内存的使用，垃圾回收器也会释放那些不再需要使用的Bitmap。这些机制都非常好，但是为了保证一个流畅的用户体验，我们希望避免在每次屏幕滑动回来时，都要重复处理那些图片。内存与磁盘缓存通常可以起到辅助作用，允许组件可以快速地重新加载那些处理过的图片。
 
 这一课会介绍在加载多张Bitmap时使用内存缓存与磁盘缓存来提高响应速度与UI流畅度。
 
 ## 使用内存缓存(Use a Memory Cache)
 
-内存缓存以花费宝贵的程序内存为前提来快速访问位图。[LruCache](http://developer.android.com/reference/android/util/LruCache.html)类（在API Level 4的Support Library中也可以找到）特别合适用来缓存 bitmaps，它使用一个强引用（strong referenced）的[LinkedHashMap](http://developer.android.com/reference/java/util/LinkedHashMap.html)保存最近引用的对象，并且在缓存超出设置大小的时候剔除（evict）最近最少使用到的对象。
+内存缓存以花费宝贵的程序内存为前提来快速访问位图。[LruCache](http://developer.android.com/reference/android/util/LruCache.html)类（在API Level 4的Support Library中也可以找到）特别适合用来缓存Bitmaps，它使用一个强引用（strong referenced）的[LinkedHashMap](http://developer.android.com/reference/java/util/LinkedHashMap.html)保存最近引用的对象，并且在缓存超出设置大小的时候剔除（evict）最近最少使用到的对象。
 
-> **Note:** 在过去，一种比较流行的内存缓存实现方法是使用软引用（SoftReference）或弱引用（WeakReference）对Bitmap进行缓存，然而我们并不推荐这样的做法。从Android 2.3 (API Level 9)开始，垃圾回收机制变得更加频繁，这使得释放软（弱）引用的频率也随之增高，导致使用引用的效率降低很多。而且在Android 3.0 (API Level 11)之前，备份的Bitmap会存放在Native Memory 中，它不是以可预知的方式被释放的，这样可能导致程序超出它的内存限制而崩溃。
+> **Note:** 在过去，一种比较流行的内存缓存实现方法是使用软引用（SoftReference）或弱引用（WeakReference）对Bitmap进行缓存，然而我们并不推荐这样的做法。从Android 2.3 (API Level 9)开始，垃圾回收机制变得更加频繁，这使得释放软（弱）引用的频率也随之增高，导致使用引用的效率降低很多。而且在Android 3.0 (API Level 11)之前，备份的Bitmap会存放在Native Memory中，它不是以可预知的方式被释放的，这样可能导致程序超出它的内存限制而崩溃。
 
 为了给LruCache选择一个合适的大小，需要考虑到下面一些因素：
 
@@ -23,7 +23,7 @@
 * 图片被访问的频率如何？是其中一些比另外的访问更加频繁吗？如果是，那么我们可能希望在内存中保存那些最常访问的图片，或者根据访问频率给Bitmap分组，为不同的Bitmap组设置多个LruCache对象。
 * 是否可以在缓存图片的质量与数量之间寻找平衡点？某些时候保存大量低质量的Bitmap会非常有用，加载更高质量图片的任务可以交给另外一个后台线程。
 
-通常没有指定的大小或者公式能够适用于所有的应用，我们需要分析实际的使用情况后，提出一个合适的解决方案。缓存太小会导致额外的花销却没有明显的好处，缓存太大同样会导致java.lang.OutOfMemory的异常，并且使得你的程序只留下小部分的内存用来工作（缓存占用太多内存，导致其他操作会因为内存不够而抛出异常）。
+通常没有指定的大小或者公式能够适用于所有的情形，我们需要分析实际的使用情况后，提出一个合适的解决方案。缓存太小会导致额外的花销却没有明显的好处，缓存太大同样会导致java.lang.OutOfMemory的异常，并且使得你的程序只留下小部分的内存用来工作（缓存占用太多内存，导致其他操作会因为内存不够而抛出异常）。
 
 下面是一个为Bitmap建立LruCache的示例：
 
@@ -101,13 +101,13 @@ class BitmapWorkerTask extends AsyncTask<Integer, Void, Bitmap> {
 
 ## 使用磁盘缓存(Use a Disk Cache)
 
-内存缓存能够提高访问最近用过的Bitmap的速度，但是我们无法保证最近访问过的Bitmap都能够保存在缓存中。像类似GridView等需要大量数据填充的组件很容易就会用尽整个内存缓存。另外，我们的应用可能会被类似打电话等行为而暂停退到后台，因为后台程序可能会被杀死，那么内存缓存就会被销毁，里面的Bitmap也就不存在了。一旦用户恢复程序的状态，那么程序就需要重新处理那些图片。
+内存缓存能够提高访问最近用过的Bitmap的速度，但是我们无法保证最近访问过的Bitmap都能够保存在缓存中。像类似GridView等需要大量数据填充的组件很容易就会用尽整个内存缓存。另外，我们的应用可能会被类似打电话等行为而暂停并退到后台，因为后台应用可能会被杀死，那么内存缓存就会被销毁，里面的Bitmap也就不存在了。一旦用户恢复应用的状态，那么应用就需要重新处理那些图片。
 
 磁盘缓存可以用来保存那些已经处理过的Bitmap，它还可以减少那些不再内存缓存中的Bitmap的加载次数。当然从磁盘读取图片会比从内存要慢，而且由于磁盘读取操作时间是不可预期的，读取操作需要在后台线程中处理。
 
 > **Note:**如果图片会被更频繁的访问，使用[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)或许会更加合适，比如在图库应用中。
 
-这一节的范例代码中使用了一个从[Android源码](https://android.googlesource.com/platform/libcore/+/jb-mr2-release/luni/src/main/java/libcore/io/DiskLruCache.java)中剥离出来的 `DiskLruCache` 。改进过的范例代码实现了在已有内存缓存的基础上增加磁盘缓存的功能。
+这一节的范例代码中使用了一个从[Android源码](https://android.googlesource.com/platform/libcore/+/jb-mr2-release/luni/src/main/java/libcore/io/DiskLruCache.java)中剥离出来的`DiskLruCache`。改进过的范例代码在已有内存缓存的基础上增加磁盘缓存的功能。
 
 ```java
 private DiskLruCache mDiskLruCache;
