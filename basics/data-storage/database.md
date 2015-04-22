@@ -8,7 +8,7 @@
 
 SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类称为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。
 
-Contract Clsss是一些常量的容器。它定义了例如URIs，表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。
+Contract Class是一些常量的容器。它定义了例如URIs，表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。
 
 一个组织你的contract类的好方法是在你的类的根层级定义一些全局变量，然后为每一个table来创建内部类。
 
@@ -41,15 +41,15 @@ public final class FeedReaderContract {
 private static final String TEXT_TYPE = " TEXT";
 private static final String COMMA_SEP = ",";
 private static final String SQL_CREATE_ENTRIES =
-    "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
-    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
-    FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
+    "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
+    FeedEntry._ID + " INTEGER PRIMARY KEY," +
+    FeedEntry.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
+    FeedEntry.COLUMN_NAME_TITLE + TEXT_TYPE + COMMA_SEP +
     ... // Any other options for the CREATE command
     " )";
 
 private static final String SQL_DELETE_ENTRIES =
-    "DROP TABLE IF EXISTS " + TABLE_NAME_ENTRIES;
+    "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
 ```
 
 就像保存文件到设备的[internal storage](http://developer.android.com/guide/topics/data/data-storage.html#filesInternal) 一样，Android会保存db到你的程序的private的空间上。你的数据是受保护的，因为那些区域默认是私有的，不可被其他程序所访问。
