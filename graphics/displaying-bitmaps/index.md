@@ -34,7 +34,7 @@
   这节课会带领你学习如何使用内存与磁盘缓存来提升加载多张Bitmaps时的响应速度与流畅度。
 
 
-* [**管理Bitmap占用的内存(Managing Bitmap Memory)**](manage-memory.html)
+* [**管理Bitmap的内存使用(Managing Bitmap Memory)**](manage-memory.html)
 
   这节课会介绍如何管理Bitmap的内存占用，以此来提升程序的性能。
 
