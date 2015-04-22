@@ -8,8 +8,6 @@ Random Access Memory(RAM)在任何软件开发环境中都是一个很宝贵的�
 
 这篇文章会解释Android是如何管理app的进程与内存分配，以及在开发Android应用的时候如何主动的减少内存的使用。关于Java的资源管理机制，请参考其它书籍或者线上材料。如果你正在寻找如何分析你的内存使用情况的文章，请参考这里[Investigating Your RAM Usage](http://developer.android.com/tools/debugging/debugging-memory.html)。
 
-<!-- More -->
-
 ## 第1部分:Android是如何管理内存的
 
 Android并没有提供内存的交换区(Swap space)，但是它有使用[paging](http://en.wikipedia.org/wiki/Paging)与[memory-mapping(mmapping)](http://en.wikipedia.org/wiki/Memory-mapped_files)的机制来管理内存。这意味着任何你修改的内存(无论是通过分配新的对象还是访问到mmaped pages的内容)都会贮存在RAM中，而且不能被paged out。因此唯一完整释放内存的方法是释放那些你可能hold住的对象的引用，这样使得它能够被GC回收。只有一种例外是：如果系统想要在其他地方reuse这个对象。

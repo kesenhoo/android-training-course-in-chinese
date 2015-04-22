@@ -4,12 +4,11 @@
 
 Layout 是 Android 应用中直接影响用户体验的关键部分。如果实现的不好，你的 Layout 会导致程序非常占用内存并且 UI 缓慢。Android SDK 带有帮助你找到 Layout 性能问题的工具。结合本课内容使用它，你会用最小的内存空间实现流畅的 UI。
 
-# Lessons
+# 课程
 
 #### [优化Layout的层级](optimizing-layout.html)
 
 就像一个复杂的网页会减慢载入速度，你的Layout结构如果太复杂，也会造成性能问题。本节教你如何使用SDK自带工具来检查Layout并找到瓶颈。
-
 
 #### [使用`<include/>`标签重用Layout](reuse-layouts.html)
 
