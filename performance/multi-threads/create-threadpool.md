@@ -1,4 +1,4 @@
-# 为多线程创建管理器
+## # # ### ## # 为多线程创建管理器
 
 > 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
@@ -14,13 +14,13 @@
 典型的，这种情况会发生在静态变量上，但同样它也能突然发生在任意一个只实例化一次。
 为了学到更多的相关知识，你可以阅读[进程与线程](http://developer.android.com/guide/components/processes-and-threads.html)这一API指南。
 
-##定义线程池类
+## 定义线程池类
 
 在自己的类中实例化[ThreadPoolExecutor](http://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor.html)类。在这个类里需要做以下事：
 
-**为线程池使用静态变量**
+**1. 为线程池使用静态变量**
 
-为了有一个单一控制点用来限制CPU或网络资源[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)类型，你可能想有一个能管理所有线程的线程池，且每个线程都会是单个实例。比如，你可以把这个作为一部分添加到你的全局变量的声明中去：
+为了有一个单一控制点用来限制CPU或涉及网络资源的[Runnable](http://developer.android.com/reference/java/lang/Runnable.html)类型，你可能需要有一个能管理所有线程的线程池，且每个线程都会是单个实例。比如，你可以把这个作为一部分添加到你的全局变量的声明中去：
 
 ```java
 public class PhotoManager {
@@ -72,7 +72,7 @@ public class PhotoManager {
 
 **4. 在构造方法中实例化一个[Handler](http://developer.android.com/reference/android/os/Handler.html)，且将它附加到你APP的UI线程。**
 
-一个[Handler](http://developer.android.com/reference/android/os/Handler.html)允许你的APP安全地调用UI对象（例如 [View](http://developer.android.com/reference/android/view/View.html)对象）的方法。大多数UI对象只能从UI线程安全地被修改。这个方法将会在[与UI线程进行通信(Communicate with the UI Thread)](performance/multi-threads/communicate-ui.html)这一课中进行详细的描述。例如：
+一个[Handler](http://developer.android.com/reference/android/os/Handler.html)允许你的APP安全地调用UI对象（例如 [View](http://developer.android.com/reference/android/view/View.html)对象）的方法。大多数UI对象只能从UI线程安全的代码中被修改。这个方法将会在[与UI线程进行通信(Communicate with the UI Thread)](performance/multi-threads/communicate-ui.html)这一课中进行详细的描述。例如：
 
 ```java
 private PhotoManager() {
