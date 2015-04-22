@@ -12,17 +12,21 @@ File 对象非常适合用于读写流式顺序的数据。如图片文件或是
 
 所有的Android设备都有两个文件存储区域："internal" 与 "external" 存储。 那两个名称来自于早先的Android系统中，当时的大多设备都内置了不可变的内存（internal storage)，然后再加上一个类似SD card（external storage）这样可以卸载的存储部件。后来有一些设备把"internal" 与 "external" 的部分都做成不可卸载的内置存储了，虽然如此，但是这一整块还是从逻辑上有被划分为"internal"与"external"的。只是现在不再以是否可以卸载来区分了。 下面列出了两者的区别：
 
-* **Internal storage:**
-	* 总是可用的
-	* 这里的文件默认是只能被你的app所访问的。
-	* 当用户卸载你的app的时候，系统会把internal里面的相关文件都清除干净。
-	* Internal是在你想确保不被用户与其他app所访问的最佳存储区域。
+**Internal storage:**
 
-* **External storage:**
-	* 并不总是可用的，因为用户有时会通过USB存储模式挂载外部存储器，当取下挂载的这部分后，就无法对其进行访问了。
-	* 是大家都可以访问的，因此你可能会失去保存在这里的文件的访问控制权。
-	* 当用户卸载你的app时，系统仅仅会删除external根目录（<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>）下的相关文件。
-	* External是在你不需要严格的访问权限并且你希望这些文件能够被其他app所共享或者是允许用户通过电脑访问时的最佳存储区域。
+* 总是可用的
+* 这里的文件默认是只能被你的app所访问的。
+* 当用户卸载你的app的时候，系统会把internal里面的相关文件都清除干净。
+
+Internal是在你想确保不被用户与其他app所访问的最佳存储区域。
+
+**External storage:**
+
+* 并不总是可用的，因为用户有时会通过USB存储模式挂载外部存储器，当取下挂载的这部分后，就无法对其进行访问了。
+* 是大家都可以访问的，因此你可能会失去保存在这里的文件的访问控制权。
+* 当用户卸载你的app时，系统仅仅会删除保存在用 <a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a> 创建的目录下的文件。
+
+External是在你不需要严格的访问权限并且你希望这些文件能够被其他app所共享或者是允许用户通过电脑访问时的最佳存储区域。
 
 > **Tip:** 尽管app是默认被安装到internal storage的，你还是可以通过在程序的manifest文件中声明[android:installLocation](http://developer.android.com/guide/topics/manifest/manifest-element.html#install) 属性来指定程序也可以被安装到external storage。当某个程序的安装文件很大且用户的external storage空间大于internal storage时，他们会倾向与将该程序安装到external storage。更多安装信息，请参考[App Install Location](http://developer.android.com/guide/topics/data/install-location.html)。
 
@@ -37,7 +41,7 @@ File 对象非常适合用于读写流式顺序的数据。如图片文件或是
 </manifest>
 ```
 
-> **Caution:**目前，所有的apps都可以在不指定某个专门的权限下做**读**external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要**读**的权限(不是写), 那么你将需要声明 [READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE) 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。
+> **Caution:** 目前，所有的apps都可以在不指定某个专门的权限下做**读**external storage的动作。但是，这在以后的版本中会有所改变。如果你的app只需要**读**的权限(不是写), 那么你将需要声明 [READ_EXTERNAL_STORAGE](http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE) 权限。为了确保你的app能持续地正常工作，你需要现在就声明读权限。
 ```xml
 <manifest ...>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
