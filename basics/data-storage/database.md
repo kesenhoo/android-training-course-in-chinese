@@ -56,11 +56,11 @@ private static final String SQL_DELETE_ENTRIES =
 
 在[SQLiteOpenHelper](http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html)类中有一些很有用的APIs。当你使用这个类来做一些与你的db有关的操作时，系统会对那些有可能比较耗时的操作（例如创建与更新等）在真正需要的时候才去执行，而不是在app刚启动的时候就去做那些动作。你所需要做的仅仅是执行<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getWritableDatabase()">getWritableDatabase()</a>或者<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getReadableDatabase()">getReadableDatabase()</a>.
 
-> **Note：**因为那些操作可能是很耗时的，请确保你在background thread（AsyncTask or IntentService）里面去执行 getWritableDatabase() 或者 getReadableDatabase() 。
+> **Note：**因为那些操作可能是很耗时的，请确保你在background thread（AsyncTask or IntentService）里面去执行 <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getWritableDatabase()">getWritableDatabase()</a> 或者 <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getReadableDatabase()">getReadableDatabase()</a> 。
 
 为了使用 SQLiteOpenHelper, 你需要创建一个子类并重写<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase)">onCreate()</a>, <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)">onUpgrade()</a>与<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onOpen(android.database.sqlite.SQLiteDatabase)">onOpen()</a>等callback方法。你也许还需要实现<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onDowngrade(android.database.sqlite.SQLiteDatabase, int, int)">onDowngrade()</a>, 但是这并不是必需的。
 
-例如，下面是一个实现了SQLiteOpenHelper 类的例子：
+例如，下面是一个实现了[SQLiteOpenHelper](http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html) 类的例子：
 
 ```java
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
@@ -86,7 +86,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 }
 ```
 
-为了访问你的db，需要实例化你的 SQLiteOpenHelper的子类：
+为了访问你的db，需要实例化你的 [SQLiteOpenHelper](http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html)的子类：
 
 ```java
 FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext());
@@ -94,7 +94,7 @@ FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext());
 
 ## 添加信息到DB
 
-通过传递一个 [ContentValues](http://developer.android.com/reference/android/content/ContentValues.html) 对象到<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#insert(java.lang.String, java.lang.String, android.content.ContentValues)">insert()</a>方法：
+通过传递一个 [ContentValues](http://developer.android.com/reference/android/content/ContentValues.html) 对象到<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#insert(java.lang.String, java.lang.String, android.content.ContentValues)">insert()</a>方法将数据插入到DB：
 
 ```java
 // Gets the data repository in write mode
@@ -102,15 +102,15 @@ SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 // Create a new map of values, where column names are the keys
 ContentValues values = new ContentValues();
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID, id);
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CONTENT, content);
+values.put(FeedEntry.COLUMN_NAME_ENTRY_ID, id);
+values.put(FeedEntry.COLUMN_NAME_TITLE, title);
+values.put(FeedEntry.COLUMN_NAME_CONTENT, content);
 
 // Insert the new row, returning the primary key value of the new row
 long newRowId;
 newRowId = db.insert(
-         FeedReaderContract.FeedEntry.TABLE_NAME,
-         FeedReaderContract.FeedEntry.COLUMN_NAME_NULLABLE,
+         FeedEntry.TABLE_NAME,
+         FeedEntry.COLUMN_NAME_NULLABLE,
          values);
 ```
 
@@ -126,18 +126,18 @@ SQLiteDatabase db = mDbHelper.getReadableDatabase();
 // Define a projection that specifies which columns from the database
 // you will actually use after this query.
 String[] projection = {
-    FeedReaderContract.FeedEntry._ID,
-    FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE,
-    FeedReaderContract.FeedEntry.COLUMN_NAME_UPDATED,
+    FeedEntry._ID,
+    FeedEntry.COLUMN_NAME_TITLE,
+    FeedEntry.COLUMN_NAME_UPDATED,
     ...
     };
 
 // How you want the results sorted in the resulting Cursor
 String sortOrder =
-    FeedReaderContract.FeedEntry.COLUMN_NAME_UPDATED + " DESC";
+    FeedEntry.COLUMN_NAME_UPDATED + " DESC";
 
 Cursor c = db.query(
-    FeedReaderContract.FeedEntry.TABLE_NAME,  // The table to query
+    FeedEntry.TABLE_NAME,  // The table to query
     projection,                               // The columns to return
     selection,                                // The columns for the WHERE clause
     selectionArgs,                            // The values for the WHERE clause
@@ -146,6 +146,7 @@ Cursor c = db.query(
     sortOrder                                 // The sort order
     );
 ```
+
 要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说你应该先调用`moveToFirst()`函数，将读取位置置于结果集最开始的位置。对每一行，你可以使用cursor的其中一个get方法比如`getString()`或`getLong()`获取列的值。对于每一个get方法必须传递你想要获取的列的索引位置(index position)，索引位置可以通过调用`getColumnIndex()`或`getColumnIndexOrThrow()`获得。
 
 下面是演示如何从course对象中读取数据信息：
@@ -153,7 +154,7 @@ Cursor c = db.query(
 ```java
 cursor.moveToFirst();
 long itemId = cursor.getLong(
-    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID)
+    cursor.getColumnIndexOrThrow(FeedEntry._ID)
 );
 ```
 
@@ -167,11 +168,11 @@ long itemId = cursor.getLong(
 
 ```java
 // Define 'where' part of query.
-String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
+String selection = FeedEntry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
 // Specify arguments in placeholder order.
-String[] selelectionArgs = { String.valueOf(rowId) };
+String[] selectionArgs = { String.valueOf(rowId) };
 // Issue SQL statement.
-db.delete(table_name, mySelection, selectionArgs);
+db.delete(table_name, selection, selectionArgs);
 ```
 
 ## 更新数据
@@ -185,10 +186,10 @@ SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 // New value for one column
 ContentValues values = new ContentValues();
-values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_TITLE, title);
+values.put(FeedEntry.COLUMN_NAME_TITLE, title);
 
 // Which row to update, based on the ID
-String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
+String selection = FeedEntry.COLUMN_NAME_ENTRY_ID + " LIKE ?";
 String[] selectionArgs = { String.valueOf(rowId) };
 
 int count = db.update(
