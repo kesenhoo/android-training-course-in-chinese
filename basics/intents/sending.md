@@ -70,7 +70,22 @@ calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeIn
 calendarIntent.putExtra(Events.TITLE, "Ninja class");
 calendarIntent.putExtra(Events.EVENT_LOCATION, "Secret dojo");
 ```
+
 > **Note:** 这个intent for Calendar的例子只使用于>=API Level 14。
+
+**创建一个日历事件**的代码实际用的时候报错。下面贴一段译者对这部分测试编译通过的代码：
+
+```java
+Intent calendarIntent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
+Calendar beginTime = Calendar.getInstance();
+beginTime.set(2015, 4, 23, 12, 0);
+Calendar endTime = Calendar.getInstance();
+endTime.set(2015, 4, 23, 14, 30);
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis());
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
+calendarIntent.putExtra(CalendarContract.Events.TITLE, "Ninja class");
+calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Secret dojo");
+```
 
 > **Note:** 请尽可能具体地定义你的intent。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为`image/*`.这样能够阻止其他能够 "查看" 其他数据类型的app（比如一个地图app) 被这个intent叫起。
 
