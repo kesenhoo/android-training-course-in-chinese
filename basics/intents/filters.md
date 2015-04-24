@@ -67,7 +67,7 @@
 
 > **Note:**为了接受implicit intents, 你必须在你的intent filter中包含 CATEGORY_DEFAULT 的category。startActivity()和startActivityForResult()方法将所有intent视为声明了CATEGORY_DEFAULT category。如果你没有在你的intent filter中声明CATEGORY_DEFAULT，你的activity将无法对implicit intent做出响应。
 
-关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看[Receiving Simple Data from Other Apps](http://developer.android.com/training/sharing/receive.html)
+关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看[接收从其他App传送来的数据](http://hukai.me/android-training-course-in-chinese/content-sharing/sharing/receive.html)。
 
 ## 在你的Activity中Handle发送过来的Intent
 
