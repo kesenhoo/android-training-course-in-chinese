@@ -2,7 +2,7 @@
 
 > 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/screens.html>
 
-Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应该想到你的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，你的app就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化你的app外观。
+Android用尺寸和分辨率这两种常规属性对不同的设备屏幕加以分类。你应该想到你的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，你的app就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化你的app外观。
 
 - 有4种普遍尺寸：小(small)，普通(normal)，大(large)，超大(xlarge)
 - 4种普遍分辨率：低精度(ldpi), 中精度(mdpi), 高精度(hdpi), 超高精度(xhdpi)
@@ -83,7 +83,7 @@ MyProject/
 - mdpi:  1.0 (基准)
 - ldpi:  0.75
 
-这意味着，如果你针对xhdpi的设备生成了一张200x200的图像，同样的你应该为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。
+这意味着，如果你针对xhdpi的设备生成了一张200x200的图像，那么你应该为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。
 
 然后，将这些文件放入相应的drawable资源目录中:
 

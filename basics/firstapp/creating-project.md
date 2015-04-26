@@ -6,17 +6,17 @@
 
 本小节介绍如何使用Android Studio或SDK Tools命令行来创建一个新的项目。
 
-> **Note**：在此之前，你应该以及安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
+> **Note**：在此之前，你应该已经安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
 
 ## 使用Android Studio创建项目
 
-1. 使用Android Studio创建Android项目，启动Android Studio
+1\. 使用Android Studio创建Android项目，启动Android Studio
    <ul>
    <li>如果你还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
    <li>如果已经用Android Studio打开过项目，点击File==>New Project新建项目</li>
    </ul>
 
-2. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**.
+2\. 参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**.
 
    按照要求使用如图所示的值会使学习变得更容易。
    <ul>
@@ -27,29 +27,29 @@
    </ul>
 
 ![image](studio-setup-1.png)
-    <strong >图1 </strong>Configure your new project
-3. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
+    **图1** Configure your new project
+	
+3\. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
 
-4
-. **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
+4\. **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
 
    Minimum Required SDK表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
 
-5 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
+5\. 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
 
-6 在Add an activity 模板窗口选择**Blank Activity**，点击 **Next**.
+6\. 在**Add an activity to *<template\>*** 窗口选择**Blank Activity**，点击 **Next**.
 
-7 在**Choose options for your new file**窗口修改** Activity Name **为<I>MyActivity</I>,修改**Layout Name **为activity_my，**Title **修改为MyActivity，**Menu Resource Name **修改为menu_my。
+7\. 在**Choose options for your new file** 窗口修改**Activity Name** 为*MyActivity*，修改 **Layout Name** 为*activity\_my*，**Title** 修改为*MyActivity*，**Menu Resource Name** 修改为*menu_my*。
 
-8 点击**Finish**完成创建。
+8\. 点击**Finish**完成创建。
 
   刚创建的Android项目是一个基础的Hello World项目，包含一些默认文件，我们花一点时间看看最重要的部分：
 
 
 app/src/main/res/layout/activity_my.xml
 
-这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studi会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。
+这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studio会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。
 
 app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
 
@@ -57,7 +57,7 @@ app/src/main/java/com.mycompany.myfirstapp/MyActivity.java
 
 app/src/main/AndroidManifest.xml
 
-[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来额学习会更深入了解这个文件并添加更多组件到该文件中。
+[manifest](http://developer.android.com/guide/topics/manifest/manifest-intro.html)文件描述了项目的基本特征并列出了组成应用的各个组件，接下来的学习会更深入了解这个文件并添加更多组件到该文件中。
 
 app/build.gradle
 
@@ -70,7 +70,7 @@ Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以�
 
 + minSdkVersion 创建项目时指定的最低SDK版本，是新建应用支持的最低SDK版本。
 
-+ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level)表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
++ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
 
 
 更多关于Gradle的知识请阅读[Building Your Project with Gradle](http://developer.android.com/sdk/installing/studio-build.html)
@@ -99,9 +99,9 @@ values/
 
 如果你没有使用Android Studio开发Android项目，你可以在命令行使用SDK提供的tools来创建一个Android项目。
 
-1 打开命令行切换到SDK根目录下；
+1\. 打开命令行切换到SDK根目录下；
 
-2 执行:
+2\. 执行:
 
 ```java
     tools/android list targets
@@ -110,7 +110,7 @@ values/
 会在屏幕上打印出所有你的Android SDK中下载好的可用Android  platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform。你仍可以使你的应用支持较老版本的platform，但设置为最新版本允许你为最新的Android设备优化你的应用。
 如果你没有看到任何可用的platform，你需要使用Android SDK Manager完成下载安装，参见 [Adding Platforms and Packages](http://developer.android.com/sdk/installing/adding-packages.html)。
 
-3 执行：
+3\. 执行：
 
 ```java
 android create project --target <target-id> --name MyFirstApp \
