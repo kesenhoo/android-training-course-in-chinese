@@ -67,3 +67,60 @@ public ArrayList getGameControllerIds() {
 
 * 在Android 4.4(API level 19)或者更高的系统中，调用[hasKeys(int)](http://developer.android.com/reference/android/view/InputDevice.html#hasKeys(int...))来确定游戏控制器是否支持一个按键码。
 * 在Android 3.1(API level 12)或者更高的系统中，首先调用[getMotionRanges()](http://developer.android.com/reference/android/view/InputDevice.html#getMotionRanges())，然后在每个返回的[InputDevice.MotionRange](http://developer.android.com/reference/android/view/InputDevice.MotionRange.html)对象中调用[getAxis()](http://developer.android.com/reference/android/view/InputDevice.MotionRange.html#getAxis())来获得坐标ID。这样就可以得到游戏控制器支持的所有可用坐标轴。
+
+##处理游戏手柄按键
+
+Figure 1介绍了Android如何将按键码和坐标值映射到实际的游戏手柄上。
+
+![game-controller-profiles](game-controller-profiles.png "Figure 1. Profile for a generic game controller.")
+
+**Figure 1.** 一个常用的游戏手柄的外形
+
+上图的标注对应下面的内容：
+
+1. <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_X">AXIS\_HAT\_X</a>, <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_Y">AXIS\_HAT\_Y</a>, [DPAD_UP](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_UP), [DPAD_DOWN](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_DOWN), [DPAD_LEFT](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_LEFT), [DPAD_RIGHT](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_RIGHT)
+2. [AXIS_X](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X), [AXIS_Y](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Y), [BUTTON_THUMBL](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_THUMBL)
+3. [AXIS_Z](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Z), [AXIS_RZ](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RZ), [BUTTON_THUMBR](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_THUMBR)
+4. [BUTTON_X](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_X)
+5. [BUTTON_A](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A)
+6. [BUTTON_Y](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_Y)
+7. [BUTTON_B](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_B)
+8. [BUTTON_R1](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_R1)
+9. [AXIS_RTRIGGER](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER), [AXIS_THROTTLE](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_THROTTLE)
+10. [AXIS_LTRIGGER](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_LTRIGGER), [AXIS_BRAKE](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_BRAKE)
+11. [BUTTON_L1](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_L1)
+
+游戏手柄产生的通用的按键码包括[BUTTON_A](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A)、[BUTTON_B](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_B)、[BUTTON_SELECT](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT)和[BUTTON_START](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START)。当按下十字方向键的中间交叉按键时，一些游戏控制器会触发[DPAD_CENTER](http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_CENTER)按键码。我们的游戏可以通过调用[getKeyCode()](http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode())或者从按键事件回调(如<a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>)得到按键码。如果一个事件与我们的游戏相关，那么将其处理成一个游戏动作。Table 1列出供大多数通用游戏手柄的按钮使用的推荐的游戏动作。
+
+**Table 1.** 供游戏手柄使用的推荐的游戏动作
+
+<table>
+   <tr>
+      <td>游戏动作</td>
+      <td>按键码</td>
+   </tr>
+   <tr>
+      <td>在主菜单中启动游戏，或者在游戏过程中暂停/取消暂停</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START">BUTTON_START</a>*</td>
+   </tr>
+   <tr>
+      <td>显示菜单</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT">BUTTON_SELECT</a>* 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MENU">KEYCODE_MENU</a>*</td>
+   </tr>
+   <tr>
+      <td>跟Android导航设计指导中的Back导航行为一样</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BACK">KEYCODE_BACK</a></td>
+   </tr>
+   <tr>
+      <td>返回到菜单中上一项</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_B">BUTTON_B</a></td>
+   </tr>
+   <tr>
+      <td>确认选择，或者执行主要的游戏动作</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A">BUTTON_A</a> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_CENTER">DPAD_CENTER</a></td>
+   </tr>
+</table>
+
+\* *我们的游戏不应该依赖于Start、Select或者Menu按键的存在。*
+
+> **Tip:** 
