@@ -1,6 +1,6 @@
 # Android联系人信息与位置信息
 
-> 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/building-userinfo.html>
+> 编写:[spencer198711](https://github.com/spencer198711),[Muyangmin](https://github.com/Muyangmin) - 原文:<http://developer.android.com/training/building-userinfo.html>
 
 这几节课为大家介绍如何在我们的app中添加用户个人信息。我们可以通过识别用户，提供用户相关信息和提供用户周围的位置信息等方法来添加个人信息。
 

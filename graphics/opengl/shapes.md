@@ -8,7 +8,7 @@
 
 ## 定义一个三角形
 
-OpenGL ES允许你使用三维空间的坐标来定义绘画对象。所以在你能画三角形之前，你必须先定义它的坐标。在OpenGL 中，典型的办法是为坐标定义一个浮点型的顶点数组。为了高效起见，你可以将坐标写入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)，它将会传入OpenGl ES的图形处理流程中：
+OpenGL ES允许我们使用三维空间的坐标来定义绘画对象。所以在我们能画三角形之前，必须先定义它的坐标。在OpenGL 中，典型的办法是为坐标定义一个浮点型的顶点数组。为了高效起见，我们可以将坐标写入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)，它将会传入OpenGl ES的图形处理流程中：
 
 ```java
 public class Triangle {
@@ -46,7 +46,7 @@ public class Triangle {
 
 默认情况下，OpenGL ES会假定一个坐标系，在这个坐标系中，[0, 0, 0]（分别对应X轴坐标, Y轴坐标, Z轴坐标）对应的是GLSurfaceView的中心。[1, 1, 0]对应的是右上角，[-1, -1, 0]对应的则是左下角。如果想要看此坐标系的插图说明，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
 
-注意到这个形状的坐标是以逆时针顺序定义的。绘制的顺序非常关键，因为它定义了哪一面是形状的正面（你希望绘制的一面），以及背面（使用OpenGL ES的Cull Face功能可以让背面不要绘制）。更多关于该方面的信息，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
+注意到这个形状的坐标是以逆时针顺序定义的。绘制的顺序非常关键，因为它定义了哪一面是形状的正面（希望绘制的一面），以及背面（使用OpenGL ES的Cull Face功能可以让背面不要绘制）。更多关于该方面的信息，可以阅读[OpenGL ES](http://developer.android.com/guide/topics/graphics/opengl.html#faces-winding)开发手册。
 
 ## 定义一个矩形
 
@@ -54,7 +54,7 @@ public class Triangle {
 
 ![ccw-square](ccw-square.png "使用两个三角形画一个矩形")
 
-再一次地，你需要逆时针地为三角形顶点定义坐标来表现这个图形，并将值放入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)中。为了避免由两个三角形重合的那条边的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：
+再一次地，我们需要逆时针地为三角形顶点定义坐标来表现这个图形，并将值放入一个[ByteBuffer](http://developer.android.com/reference/java/nio/ByteBuffer.html)中。为了避免由两个三角形重合的那条边的顶点被重复定义，可以使用一个绘制列表来告诉OpenGL ES图形处理流程应该如何画这些顶点。下面是代码样例：
 
 ```java
 public class Square {
@@ -94,4 +94,4 @@ public class Square {
 }
 ```
 
-该样例可以看作是一个如何使用OpenGL创建复杂图形的启发，通常来说，你需要使用三角形的集合来绘制对象。在下一节课中，你将学习如何在屏幕上画这些形状。
+该样例可以看作是一个如何使用OpenGL创建复杂图形的启发，通常来说，我们需要使用三角形的集合来绘制对象。在下一节课中，我们将学习如何在屏幕上画这些形状。

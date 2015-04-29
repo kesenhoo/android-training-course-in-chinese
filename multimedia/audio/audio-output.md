@@ -26,7 +26,7 @@ if (isBluetoothA2dpOn()) {
 
 当有线耳机被拔出或者蓝牙设备断开连接的时候，音频流会自动输出到内置的扬声器上。假设播放声音很大，这个时候突然转到扬声器播放会显得非常嘈杂。
 
-幸运的是，系统会在这种情况下广播带有[ACTION_AUDIO_BECOMING_NOISY](http://developer.android.com/reference/android/media/AudioManager.html#ACTION_AUDIO_BECOMING_NOISY)的Intent。无论何时播放音频，都注册一个[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)来监听这个Intent会是比较好的做法。在使用音乐播放器时，用户通常会希望此时能够暂停当前歌曲的播放。而在游戏当中，用户通常会希望可以减低音量。
+幸运的是，系统会在这种情况下广播带有[ACTION_AUDIO_BECOMING_NOISY](http://developer.android.com/reference/android/media/AudioManager.html#ACTION_AUDIO_BECOMING_NOISY)的Intent。无论何时播放音频，我们都应该注册一个[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)来监听这个Intent。在使用音乐播放器时，用户通常会希望此时能够暂停当前歌曲的播放。而在游戏当中，用户通常会希望可以减低音量。
 
 ```java
 private class NoisyAudioStreamReceiver extends BroadcastReceiver {

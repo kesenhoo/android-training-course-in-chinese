@@ -2,17 +2,15 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/displaying-bitmaps/display-bitmap.html>
 
-这一课会演示如何运用前面几节课的内容，使用后台线程与Cache机制来加载图片到 ViewPager 与 GridView 组件，并且学习处理并发与配置改变问题。
+这一课会演示如何运用前面几节课的内容，使用后台线程与缓存机制将图片加载到ViewPager与GridView控件，并且学习处理并发与配置改变问题。
 
 ## 实现加载图片到ViewPager
 
-[swipe view pattern](http://developer.android.com/design/patterns/swipe-views.html)是一个使用滑动来切换显示不同详情页面的设计模型。(关于这种效果请先参看[Android Design: Swipe Views](http://developer.android.com/design/patterns/swipe-views.html))。你可以通过 [PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 与 [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 组件来实现这个效果。 然而，一个更加合适的Adapter是PagerAdapter的一个子类，叫做 [FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html)：它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。
+[Swipe View Pattern](http://developer.android.com/design/patterns/swipe-views.html)是一个使用滑动来切换显示不同详情页面的设计模型。（关于这种效果请先参看[Android Design: Swipe Views](http://developer.android.com/design/patterns/swipe-views.html)）。我们可以通过[PagerAdapter](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html)与[ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)控件来实现这个效果。 不过，一个更加合适的Adapter是PagerAdapter的一个子类，叫做[FragmentStatePagerAdapter](http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html)：它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存Fragments的状态。这样能够保持更少的内存消耗。
 
-<!-- more -->
+> **Note:** 如果只有为数不多的图片并且确保不会超出程序内存限制，那么使用PagerAdapter或 FragmentPagerAdapter会更加合适。
 
-> **Note:** 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。
-
-下面是一个使用ViewPager与ImageView作为子视图的示例。主Activity包含有ViewPager 和adapter。
+下面是一个使用ViewPager与ImageView作为子视图的示例。主Activity包含有ViewPager和Adapter。
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -58,7 +56,7 @@ public class ImageDetailActivity extends FragmentActivity {
 }
 ```
 
-Fragment 里面包含了ImageView 的子组件:
+Fragment里面包含了ImageView控件:
 
 ```java
 public class ImageDetailFragment extends Fragment {
@@ -101,7 +99,7 @@ public class ImageDetailFragment extends Fragment {
 }
 ```
 
-希望你有发现上面示例存在的问题：在UI Thread中读取图片可能会导致程序ANR。使用在第二课中学习的 AsyncTask 会比较好。
+希望你有发现上面示例存在的问题：在UI线程中读取图片可能会导致应用无响应。因此使用在第二课中学习的AsyncTask会更好。
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -131,7 +129,7 @@ public class ImageDetailFragment extends Fragment {
 }
 ```
 
-在 BitmapWorkerTask 中做一些例如重设图片大小，从网络拉取图片的任务，这样确保不会卡到UI线程。如果后台线程不仅仅是做个简单的直接加载动作，增加一个内存Cache或者磁盘Cache会比较好[请参考第三课：缓存Bitmap]，下面是一些为了内存Cache而附加的内容:
+在BitmapWorkerTask中做一些例如重设图片大小，从网络拉取图片的任务，可以确保不会阻塞UI线程。如果后台线程不仅仅是一个简单的加载操作，增加一个内存缓存或者磁盘缓存会比较好（请参考第三课：缓存Bitmap），下面是一些为了内存缓存而附加的内容：
 
 ```java
 public class ImageDetailActivity extends FragmentActivity {
@@ -161,11 +159,11 @@ public class ImageDetailActivity extends FragmentActivity {
 }
 ```
 
-把前面学习到的所有技巧合并起来，我们将得到一个响应性高Putting all these pieces together gives you a responsive ViewPager implementation with minimal image loading latency and the ability to do as much or as little background processing on your images as needed.
+把前面学习到的所有技巧合并起来，我们将得到一个响应性良好的ViewPager实现：它拥有最小的加载延迟，同时可以根据实际需求执行不同的后台处理任务。
 
 ## 实现加载图片到GridView
 
-[Grid list building block](http://developer.android.com/design/building-blocks/grid-lists.html) 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。
+[Grid List Building Block](http://developer.android.com/design/building-blocks/grid-lists.html)是一种有效显示大量图片的方式。它能够一次显示许多图片，同时即将被显示的图片会处于准备显示的状态。如果我们想要实现这种效果，必须确保UI是流畅的，能够控制内存使用，并且正确处理并发问题（因为GridView会循环使用子视图)。
 
 下面是一个典型的使用场景，在Fragment里面内置GridView，其中GridView的子视图是ImageView：
 
@@ -246,9 +244,9 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 }
 ```
 
-这里同样有一个问题，上面的代码实现中犯了把图片加载放在UI线程进行处理的错误。如果只是加载一些很小的图片，或者是经过Android系统缩放并缓存过的图片，上面的代码是可以运行的通的，但是如果加载的图片稍微复杂耗时一点，这都会导致你的UI卡顿甚至ANR。
+这里同样有一个问题，上面的代码实现中，犯了把图片加载放在UI线程进行处理的错误。如果只是加载一些很小的图片，或者是经过Android系统缩放并缓存过的图片，上面的代码在运行时不会有太大问题，但是如果加载的图片稍微复杂耗时一点，这都会导致你的UI卡顿甚至应用无响应。
 
-与前面加载图片到ViewPager一样，如果setImageResource的操作会比较耗时，也有可能会卡到UI线程。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新过后的解决方案：
+与前面加载图片到ViewPager一样，如果`setImageResource`的操作会比较耗时，也有可能会阻塞UI线程。不过我们可以使用类似前面异步处理图片与增加缓存的方法来解决这个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，可以参考前面的课程 。下面是一个更新过后的解决方案：
 
 ```java
 public class ImageGridFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -320,6 +318,6 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 
     ... // include updated BitmapWorkerTask class
 ```
-> **Note:**对于 ListView 同样可以套用上面的方法。
+> **Note:**对于ListView同样可以套用上面的方法。
 
-上面的方法提供了足够的弹性，使得你可以做从网络下载图片，并对大尺寸大的数码照片做缩放等操作而不至于卡到UI线程。
+上面的方法提供了足够的弹性，使得我们可以做从网络下载图片，并对大尺寸大的数码照片做缩放等操作而不至于阻塞UI线程。
