@@ -64,7 +64,7 @@ public void testNextActivityWasLaunchedWithIntent() {
 }
 ```
 
-因为LaunchActivity是独立运行的，所以不可以使用[TouchUtils](http://developer.android.com/reference/android/test/TouchUtils.html)库来操作UI。如果要直接进行[Button](http://developer.android.com/reference/android/widget/Button.html)点击，我们可以调用[perfoemClick()](http://developer.android.com/reference/android/view/View.html#performClick())方法。
+因为LaunchActivity是独立运行的，所以不可以使用[TouchUtils](http://developer.android.com/reference/android/test/TouchUtils.html)库来操作UI。如果要直接进行[Button](http://developer.android.com/reference/android/widget/Button.html)点击，我们可以调用<a href="http://developer.android.com/reference/android/view/View.html#performClick()">perfoemClick()</a>方法。
 
 本节示例代码[AndroidTestingFun.zip](http://developer.android.com/shareables/training/AndroidTestingFun.zip)
 
