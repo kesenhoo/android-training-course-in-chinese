@@ -2,14 +2,13 @@
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
-在完成上一课(建立简单的用户界面)后，你已经拥有了显示一个activity（一个界面）的app（应用），并且这个activity包含了一个文本字段和一个按钮。
-在这节课中，你将会添加一些新的代码到`MyActivity`中，当用户点击发送(Send)按钮时启动一个新的activity。
+在完成上一课(建立简单的用户界面)后，我们已经拥有了显示一个activity（一个界面）的app（应用），该activity包含了一个文本字段和一个按钮。在这节课中，我们将添加一些新的代码到`MyActivity`中，当用户点击发送(Send)按钮时启动一个新的activity。
 
 ## 响应Send(发送)按钮
 
-1 在Android Studio, 打开res/layout目录下的activity_my.xml 文件.
+1 在Android Studio中打开res/layout目录下的activity_my.xml 文件.
 
-2 给 Button 标签添加[android:onclick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性.
+2 为 Button 标签添加[android:onclick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性.
 
 res/layout/activity_my.xml
 
@@ -22,11 +21,11 @@ res/layout/activity_my.xml
     android:onClick="sendMessage" />
 ```
 
-`android:onclick`属性的值`"sendMessage"`就是当用户点击你屏幕按钮时触发方法的名字。
+`android:onclick`属性的值`"sendMessage"`即为用户点击屏幕按钮时触发方法的名字。
 
 3 打开java/com.mycompany.myfirstapp目录下MyActivity.java 文件.
 
-4 为MyActivity.java 添加sendMessage() 函数，如下：
+4 在MyActivity.java 中添加sendMessage() 函数：
 
 java/com.mycompany.myfirstapp/MyActivity.java
 
@@ -38,13 +37,13 @@ public void sendMessage(View view) {
 
 ```
 
-为了让系统能够将这个方法（你刚在MyActivity.java中添加的sendMessage方法）与在`android:onClick`属性中提供的方法名字匹配，它们的名字必须一致，特别是，这个方法必须满足以下条件：
+为使系统能够将该方法（你刚在MyActivity.java中添加的sendMessage方法）与在`android:onClick`属性中提供的方法名字匹配，它们的名字必须一致，特别需要注意的是，这个方法必须满足以下条件：
 
-* 是Public函数
-* 没有返回值
-* 有唯一的参数(View类型,代表被点击的视图）
+* 是public函数
+* 无返回值
+* 参数唯一(为View类型,代表被点击的视图）
 
-接下来，你可以在这个方法中编写读取文本内容的代码，并将该内容传到另一个Activity。
+接下来，你可以在这个方法中编写读取文本内容，并将该内容传到另一个Activity的代码。
 
 ## 构建一个Intent
 
@@ -57,7 +56,7 @@ java/com.mycompany.myfirstapp/MyActivity.java
 ```
 Intent intent = new Intent(this, DisplayMessageActivity.class);
 ```
->**Note**：如果你正在使用的是类似Android Studio的IDE，这里对`DisplayMessageActivity`的引用会报错，因为这个类还不存在；暂时先忽略这个错误，你很快就要去创建这个类了。
+>**Note**：如果使用的是类似Android Studio的IDE，这里对`DisplayMessageActivity`的引用会报错，因为这个类还不存在；暂时先忽略这个错误，我们很快就要去创建这个类了。
 
 在这个Intent构造函数中有两个参数：
 
@@ -65,7 +64,7 @@ Intent intent = new Intent(this, DisplayMessageActivity.class);
 
 * 接受系统发送[Intent](http://developer.android.com/reference/android/content/Intent.html)的应用组件的[Class](http://developer.android.com/reference/java/lang/Class.html)（在这个案例中，指将要被启动的activity）。
 
-Android Studio会提示你导入[Intent](http://developer.android.com/reference/android/content/Intent.html)类。
+Android Studio会提示导入[Intent](http://developer.android.com/reference/android/content/Intent.html)类。
 
 2 在文件开始处导入[Intent](http://developer.android.com/reference/android/content/Intent.html)类:
 
@@ -92,7 +91,7 @@ public void sendMessage(View view) {
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return)
 
-5 把EditText的文本内容关联到一个本地 message 变量并使用putExtra()方法把值传给intent.
+5 把EditText的文本内容关联到一个本地 message 变量，并使用putExtra()方法把值传给intent.
 
 java/com.mycompany.myfirstapp/MyActivity.java
 
@@ -116,7 +115,7 @@ public class MyActivity extends ActionBarActivity {
     ...
 }
 ```
-为让新启动的activity能查询extra数据。定义key为一个public型的常量，通常使用应用程序包名作为前缀来定义键是很好的做法。在应用程序与其他应用程序进行交互时仍可以确保键是唯一的。
+为让新启动的activity能查询extra数据。定义key为一个public型的常量，通常使用应用程序包名作为前缀来定义键是很好的做法，这样在应用程序与其他应用程序进行交互时仍可以确保键是唯一的。
 
 7 在sendMessage()函数里，调用startActivity()完成新activity的启动，现在完整的代码应该是下面这个样子：
 
@@ -133,7 +132,7 @@ public void sendMessage(View view) {
 }
 ```
 
-运行这个方法，系统接收到你的请求后会实例化在`Intent`中指定的`Activity`，现在你需要去创建一个`DisplayMessageActivity`类使程序能够执行起来。
+运行这个方法，系统收到我们的请求后会实例化在`Intent`中指定的`Activity`，现在需要创建一个`DisplayMessageActivity`类使程序能够执行起来。
 
 
 ## 创建第二个Activity
@@ -229,7 +228,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 ```
 
 
-> **Note**:如果你使用的IDE不是 Android Studio，你的工程中可能不会包含由`setContentView()`请求的`activity_display_message` layout，但这没关系，因为等下会修改这个方法。
+> **Note**:如果使用的IDE不是 Android Studio，工程中可能不会包含由`setContentView()`请求的`activity_display_message` layout，但这没关系，因为等下会修改这个方法。
 
 3 把新Activity的标题添加到strings.xml文件:
 
@@ -258,13 +257,13 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
 `android:parentActivityName`属性声明了在应用程序中该Activity逻辑层面的父类Activity的名称。 系统使用此值来实现默认导航操作，比如在Android 4.1（API level 16）或者更高版本中的[Up navigation](http://developer.android.com/design/patterns/navigation.html)。 使用[Support Library](http://developer.android.com/tools/support-library/index.html)，如上所示的[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素可以为安卓旧版本提供相同功能。
 
- >**Note**:你的Android SDK应该已经包含了最新的Android Support Library，它包含在ADT插件中。但如果你用的是别的IDE你就需要在[ Adding Platforms and Packages ](http://developer.android.com/sdk/installing/adding-packages.html)中安装。当在Eclipse中使用模板时，Support Library会自动加入你的工程中(在Android Dependencies中你可以看到相应的JAR文件)。如果不使用Eclipse，你就需要手动将Support Library添加到你的工程中，参考[setting up the Support Library](http://developer.android.com/tools/support-library/setup.html)。
+ >**Note**:我们的Android SDK应该已经包含了最新的Android Support Library，它包含在ADT插件中。但如果用的是别的IDE，则需要在[ Adding Platforms and Packages ](http://developer.android.com/sdk/installing/adding-packages.html)中安装。当Android Studio中使用模板时，Support Library会自动加入我们的工程中(在Android Dependencies中你以看到相应的JAR文件)。如果不使用Android Studio，就需要手动将Support Library添加到我们的工程中，参考[setting up the Support Library](http://developer.android.com/tools/support-library/setup.html)。
 
 
 
 ## 接收Intent
 
-不管用户导航到哪，每个[Activity](http://developer.android.com/reference/android/app/Activity.html)都是通过[Intent](http://developer.android.com/reference/android/content/Intent.html)被调用的。你可以通过调用<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>来获取启动你的activity的[Intent](http://developer.android.com/reference/android/content/Intent.html)及其包含的数据。
+不管用户导航到哪，每个[Activity](http://developer.android.com/reference/android/app/Activity.html)都是通过[Intent](http://developer.android.com/reference/android/content/Intent.html)被调用的。我们可以通过调用<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>来获取启动activity的[Intent](http://developer.android.com/reference/android/content/Intent.html)及其包含的数据。
 
 1 编辑java/com.mycompany.myfirstapp目录下的DisplayMessageActivity.java文件.
 
@@ -279,7 +278,7 @@ public class DisplayMessageActivity extends ActionBarActivity {
 ```
 Intent intent = getIntent();
 ```
-4 为Intent导包.
+4 为Intent导入包.
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
@@ -309,7 +308,7 @@ textView.setText(message);
 setContentView(textView);
 ```
 
-4 为TextView 导包.
+4 为TextView 导入包.
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
@@ -339,4 +338,4 @@ public void onCreate(Bundle savedInstanceState) {
 
 ![firstapp](firstapp.png)
 
-到此为止，你已经创建好你的第一个Android应用了！
+到此为止，已经创建好我们的第一个Android应用了！
