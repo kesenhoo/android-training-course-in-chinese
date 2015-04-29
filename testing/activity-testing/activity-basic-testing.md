@@ -24,7 +24,7 @@ d. 设置文件名称`<你的Activity名称>Test`（比如, `MyFirstTestActivity
 
 ## 建立测试数据集(Fixture)
 
-测试数据集包含运行测试前必须生成的一些对象。要建立测试数据集，可以在我们的测试中覆写[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())和[tearDown()](http://developer.android.com/reference/junit/framework/TestCase.html#tearDown())方法。测试会在运行任何其它测试方法之前自动执行[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())方法。我们可以用这些方法使得被测试代码与测试初始化和清理是分开的。
+测试数据集包含运行测试前必须生成的一些对象。要建立测试数据集，可以在我们的测试中覆写<a href="http://developer.android.com/reference/junit/framework/TestCase.html#setUp()">setUp()</a>和<a href="http://developer.android.com/reference/junit/framework/TestCase.html#tearDown()">tearDown()</a>方法。测试会在运行任何其它测试方法之前自动执行<a href="http://developer.android.com/reference/junit/framework/TestCase.html#setUp()">setUp()</a>方法。我们可以用这些方法使得被测试代码与测试初始化和清理是分开的。
 
 在你的Eclipse中建立测试数据集:
 
@@ -59,7 +59,7 @@ public class MyFirstTestActivityTest
 }
 ```
 
-构造函数是由测试用的Runner调用，用于初始化测试类的，而[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())方法是由测试Runner在其他测试方法开始前运行的。
+构造函数是由测试用的Runner调用，用于初始化测试类的，而<a href="http://developer.android.com/reference/junit/framework/TestCase.html#setUp()">setUp()</a>方法是由测试Runner在其他测试方法开始前运行的。
 
 通常在`setUp()`方法中，我们应该:
 
@@ -69,7 +69,7 @@ public class MyFirstTestActivityTest
     * 创建并保存正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用实例。
     * 获得想要测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)中任何UI组件的引用。
 
-我们可以使用[getActivity()](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity())方法得到正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用。
+我们可以使用<a href="http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity()">getActivity()</a>方法得到正在测试的[Activity](http://developer.android.com/reference/android/app/Activity.html)的引用。
 
 ## 增加一个测试前提
 
@@ -112,15 +112,15 @@ public void testMyFirstTestTextView_labelText() {
 
 做这种类型的字符串比较时，推荐从资源文件中读取预期字符串，而不是在代码中硬性编写字符串做比较。这可以防止当资源文件中的字符串定义被修改时，会影响到测试的效果。
 
-为了进行比较，预期的和实际的字符串都要做为[assertEquals()](http://developer.android.com/reference/junit/framework/Assert.html#assertEquals(java.lang.String, java.lang.String))方法的参数。如果值是不一样的，断言将抛出一个[AssertionFailedError](http://developer.android.com/reference/junit/framework/AssertionFailedError.html)异常。
+为了进行比较，预期的和实际的字符串都要做为<a href="http://developer.android.com/reference/junit/framework/Assert.html#assertEquals(java.lang.String, java.lang.String)">assertEquals()</a>方法的参数。如果值是不一样的，断言将抛出一个[AssertionFailedError](http://developer.android.com/reference/junit/framework/AssertionFailedError.html)异常。
 
-如果添加了一个testPreconditions()方法，我们可以把测试方法放在testPreconditions之后。
+如果添加了一个`testPreconditions()`方法，我们可以把测试方法放在testPreconditions之后。
 
 要参看一个完整的测试案例，可以参考本节示例中的MyFirstTestActivityTest.java。
 
 ##构建和运行测试
 
-我们可以在Eclipse中的包浏览器(Package Explorer)中运行我们的测试。
+我们可以在Eclipse中的包浏览器（Package Explorer）中运行我们的测试。
 
 利用如下步骤构建和运行测试:
 
