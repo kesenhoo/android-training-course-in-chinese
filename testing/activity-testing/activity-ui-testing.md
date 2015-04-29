@@ -16,7 +16,7 @@
 
 ### 建立测试数据集（Fixture）
 
-当为UI测试建立测试数据集时，我们应该在[setUp()](http://developer.android.com/reference/junit/framework/TestCase.html#setUp())方法中指定[touch mode](http://developer.android.com/guide/topics/ui/ui-events.html#TouchMode)。把touch mode设置为真可以防止在执行编写的测试方法时，人为的UI操作获取到控件的焦点（比如,一个按钮会触发它的点击监听器）。确保在调用[getActivity()](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity())方法前调用了[setActivityInitialTouchMode](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#setActivityInitialTouchMode(boolean))。
+当为UI测试建立测试数据集时，我们应该在<a href="http://developer.android.com/reference/junit/framework/TestCase.html#setUp()">setUp()</a>方法中指定[touch mode](http://developer.android.com/guide/topics/ui/ui-events.html#TouchMode)。把touch mode设置为真可以防止在执行编写的测试方法时，人为的UI操作获取到控件的焦点（比如,一个按钮会触发它的点击监听器）。确保在调用<a href="http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#getActivity()">getActivity()</a>方法前调用了[setActivityInitialTouchMode](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html#setActivityInitialTouchMode(boolean))。
 
 比如:
 
@@ -69,7 +69,7 @@ public void testClickMeButton_layout() {
 }
 ```
 
-在调用[assertOnScreen()](http://developer.android.com/reference/android/test/ViewAsserts.html#assertOnScreen(android.view.View, android.view.View))方法时，传递根视图以及期望呈现在屏幕上的视图作为参数。如果想呈现的视图没有在根视图中,该方法会抛出一个[AssertionFailedError](http://developer.android.com/reference/junit/framework/AssertionFailedError.html)异常，否则测试通过。
+在调用<a href="http://developer.android.com/reference/android/test/ViewAsserts.html#assertOnScreen(android.view.View, android.view.View)">assertOnScreen()</a>方法时，传递根视图以及期望呈现在屏幕上的视图作为参数。如果想呈现的视图没有在根视图中,该方法会抛出一个[AssertionFailedError](http://developer.android.com/reference/junit/framework/AssertionFailedError.html)异常，否则测试通过。
 
 我们也可以通过获取一个[ViewGroup.LayoutParams](http://developer.android.com/reference/android/view/ViewGroup.LayoutParams.html)对象的引用验证[Button](http://developer.android.com/reference/android/widget/Button.html)布局是否正确，然后调用`assert`方法验证[Button](http://developer.android.com/reference/android/widget/Button.html)对象的宽高属性值是否与预期值一致。
 
@@ -104,7 +104,7 @@ public void testClickMeButton_clickButtonAndExpectInfoText() {
 }
 ```
 
-在测试中调用[clickView()](http://developer.android.com/reference/android/test/TouchUtils.html#clickView(android.test.InstrumentationTestCase, android.view.View))可以让我们用编程方式点击一个按钮。我们必须传递正在运行的测试用例的一个引用和要操作按钮的引用。
+在测试中调用<a href="http://developer.android.com/reference/android/test/TouchUtils.html#clickView(android.test.InstrumentationTestCase, android.view.View)">clickView()</a>可以让我们用编程方式点击一个按钮。我们必须传递正在运行的测试用例的一个引用和要操作按钮的引用。
 
 > **注意**:[TouchUtils](http://developer.android.com/reference/android/test/TouchUtils.html)辅助类提供与应用程序交互的方法可以方便进行模拟触摸操作。我们可以使用这些方法来模拟点击，轻敲，或应用程序屏幕拖动View。
 
