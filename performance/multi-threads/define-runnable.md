@@ -33,12 +33,12 @@ public class PhotoDecodeRunnable implements Runnable {
 对象。为了与UI对象进行通信，你必须使用另一项技术，在[与UI线程进行通信](performance/multi-threads/communicate-ui.html)
 这一课中我们会对其进行描述。
 
-在(http://developer.android.com/reference/java/lang/Runnable.html#run())方法的开始的地方通过调用参数为<a href="http://developer.android.com/reference/android/os/Process.html#THREAD_PRIORITY_BACKGROUND" target="_blank">THREAD_PRIORITY_BACKGROUND</a>
+在[Runnable.run()](http://developer.android.com/reference/java/lang/Runnable.html#run())方法的开始的地方通过调用参数为[THREAD_PRIORITY_BACKGROUND](http://developer.android.com/reference/android/os/Process.html#THREAD_PRIORITY_BACKGROUND")
 的<a href="http://developer.android.com/reference/android/os/Process.html#setThreadPriority(int)" target="_blank">Process.setThreadPriority()</a>方法来设置线程使用的是后台运行优先级。
 这个方法减少了通过<a href="http://developer.android.com/reference/java/lang/Runnable.html" target="_blank">Runnable</a>创建的线程和和UI线程之间的资源竞争。
 
 **你还应该通过在Runnable</a>
-自身中调用[Thread.currentThread()](http://developer.android.com/reference/java/lang/Thread.html#currentThread()来存储一个引用到Runnable对象的线程。**
+自身中调用<a href="http://developer.android.com/reference/java/lang/Thread.html#currentThread()">Thread.currentThread()</a>来存储一个引用到Runnable对象的线程。**
 
 下面这段代码展示了如何创建run()方法：
 

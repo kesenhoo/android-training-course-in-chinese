@@ -26,7 +26,7 @@ JNIEnv和JavaVM的在C声明是不同于在C++的声明。头文件“jni.h”�
 
 连接过的（attached）线程在它们退出之前**必须通过JNI调用DetachCurrentThread**。如果你觉得直接这样编写不太优雅，在安卓2.0（Eclair）及以上， 你可以使用pthread_key_create来定义一个析构函数，它将会在线程退出时被调用，你可以在那儿调用DetachCurrentThread （使用生成的key与pthread_setspecific将JNIEnv存储到线程局部空间内；这样JNIEnv能够作为参数传入到析构函数当中去）。
 
-#jclass,jmethodID,jfieldID
+#jclass, jmethodID, jfieldID
 
 如果你想在本地代码中访问一个对象的字段（field）,你可以像下面这样做：
 
