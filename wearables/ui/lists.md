@@ -30,7 +30,7 @@ These steps are described in detail in the following sections.-->
 
 这些步骤的详细描述在下面的章节中。
 
-![](https://developer.android.com/wear/images/06_uilib.png)
+![](06_uilib.png)
 
 **Figure 3:** A list view on Android Wear.
 

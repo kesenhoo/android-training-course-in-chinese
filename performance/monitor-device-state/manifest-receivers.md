@@ -1,18 +1,16 @@
-# 按需操控广播接收者
+# 按需操控BroadcastReceiver
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/monitoring-device-state/manifest-receivers.html>
 
-简单的方法是为我们监测的状态创建一个BroadcastReceiver，并在manifest中为每一个状态进行注册监听。然后，每一个Receiver根据当前设备的状态来简单重新安排下一步执行的任务。[这句话感觉理解有点问题]
+监测设备状态变化最简单的方法，是为你所要监听的每一个状态创建一个[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)，并在Manifest文件中注册它们。之后就可以在每一个BroadcastReceiver中，根据当前设备的状态调整一些计划任务。
 
-上面那个方法的副作用是，设备会在每次收到广播都被唤醒，这有点超出期望，因为有些广播是不希望唤醒设备的。
+上述方法的副作用是：一旦你的接收器收到了广播，应用就会唤醒设备。唤醒的频率可能会远高于需要的频率
 
-更好的方法是根据程序运行情况开启或者关闭广播接收者。这样的话，那些在manifest中注册的receivers仅仅会在需要的时候才被激活。
+更好的方法是在程序运行时开启或者关闭BroadcastReceiver。这样的话，你就可以让这些接收器仅在需要的时候被激活。
 
-<!-- More -->
+## 切换是否开启接收器以提高效率
 
-## 切换是否开启这些状态Receivers来提高效率
-我们可以使用PackageManager来切换任何一个在mainfest里面定义好的组件的开启状态。
-可以使用下面的方法来开启或者关闭任何一个broadcast receiver:
+我们可以使用[PackageManager](http://developer.android.com/reference/android/content/pm/PackageManager.html)来切换任何一个在Mainfest里面定义好的组件的开启状态。通过下面的方法可以开启或者关闭任何一个BroadcastReceiver：
 
 ```java
 ComponentName receiver = new ComponentName(context, myReceiver.class);
@@ -24,8 +22,8 @@ pm.setComponentEnabledSetting(receiver,
         PackageManager.DONT_KILL_APP)
 ```
 
-使用这种技术，如果我们判断到网络链接已经断开，那么可以在这个时候关闭除了connectivity-change的之外的所有Receivers。
+使用这种技术，如果我们确定网络连接已经断开，那么可以在这个时候关闭除了监听网络状态变化的接收器之外的其它所有接收器。
 
-相反的，一旦重新建立网络连接，我们可以停止监听网络链接的改变。而仅仅在执行需要联网的操作之前判断当前网络是否可以用即可。
+相反的，一旦重新建立网络连接，我们可以停止监听网络连接的改变，而仅仅在执行需要联网的操作之前判断当前网络是否可以用。
 
-你可以使用上面同样的技术来暂缓一个需要带宽的下载操作。可以开启receiver来监听是否连接上Wi-Fi来重新开启下载的操作。
+同样地，你可以使用上面的技术来暂缓一个需要更高带宽的下载任务。这仅需要启用一个监听网络连接变化的BroadcastReceiver，并在连接到Wi-Fi时，初始化下载任务。

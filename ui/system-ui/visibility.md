@@ -31,4 +31,4 @@ decorView.setOnSystemUiVisibilityChangeListener
 });
 ```
 
-保持系统栏和UI同步是一种很好的方式，比如当状态栏显示或隐藏的时候进行Action Bar的显示和隐藏。
+保持系统栏和UI同步是一种很好的实践方式，比如当状态栏显示或隐藏的时候进行ActionBar的显示和隐藏等等。

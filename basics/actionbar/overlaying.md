@@ -9,6 +9,7 @@
 > **Note**：如果你希望 action bar 下面的布局部分可见，可以创建一个背景部分透明的自定义式样的 action bar，如图 1 所示。如何定义 action bar 的背景，请查看 [自定义ActionBar的风格](styling.html)。
 
 ![actionbar-overlay@2x](actionbar-overlay@2x.png)
+
 图 1. 叠加模式下的 gallery action bar
 
 ## 启用叠加模式(Overlay Mode)

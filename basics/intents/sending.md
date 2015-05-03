@@ -43,6 +43,7 @@ Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
 ```
 
 另外一些需要`extra`数据的implicit intent。你可以使用 <a href="http://developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, java.lang.String)">putExtra()</a> 方法来添加那些数据。
+
 默认的，系统会根据Uri数据类型来决定需要哪些合适的`MIME type`。如果你没有在intent中包含一个Uri, 则通常需要使用 <a href="http://developer.android.com/reference/android/content/Intent.html#setType(java.lang.String)">setType()</a> 方法来指定intent附带的数据类型。设置MIME type 是为了指定哪些activity应该接受这个intent。例如：
 
 * 发送一个带附件的email:
@@ -69,13 +70,28 @@ calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeIn
 calendarIntent.putExtra(Events.TITLE, "Ninja class");
 calendarIntent.putExtra(Events.EVENT_LOCATION, "Secret dojo");
 ```
+
 > **Note:** 这个intent for Calendar的例子只使用于>=API Level 14。
 
-> **Note:** 请尽可能的定义你的intent更加确切。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为`image/*`.这样能够阻止其他能够 "查看" 其他数据类型的app（比如一个地图app) 被这个intent叫起。
+**创建一个日历事件**的代码实际用的时候报错。下面贴一段译者对这部分测试编译通过的代码：
+
+```java
+Intent calendarIntent = new Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI);
+Calendar beginTime = Calendar.getInstance();
+beginTime.set(2015, 4, 23, 12, 0);
+Calendar endTime = Calendar.getInstance();
+endTime.set(2015, 4, 23, 14, 30);
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis());
+calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
+calendarIntent.putExtra(CalendarContract.Events.TITLE, "Ninja class");
+calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "Secret dojo");
+```
+
+> **Note:** 请尽可能具体地定义你的intent。例如，如果你想要使用ACTION_VIEW 的intent来显示一张图片，你还应该指定 MIME type 为`image/*`.这样能够阻止其他能够 "查看" 其他数据类型的app（比如一个地图app) 被这个intent叫起。
 
 ## 验证是否有App去接收这个Intent
 
-尽管Android系统会确保每一个确定的intent会被系统内置的app(such as the Phone, Email, or Calendar app)之一接收，但是你还是应该在触发一个intent之前做验证是否有App接受这个intent的步骤。
+尽管Android系统会确保每一个确定的intent会被系统内置的app(例如 Phone, Email, 或者 Calendar app)之一接收，但是你还是应该在触发一个intent之前验证是否有App接受这个intent。
 
 > **Caution: 如果你触发了一个intent，而且没有任何一个app会去接收这个intent，那么你的app会crash。**
 
@@ -83,13 +99,14 @@ calendarIntent.putExtra(Events.EVENT_LOCATION, "Secret dojo");
 
 ```java
 PackageManager packageManager = getPackageManager();
-List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+List activities = packageManager.queryIntentActivities(intent,
+        PackageManager.MATCH_DEFAULT_ONLY);
 boolean isIntentSafe = activities.size() > 0;
 ```
 
 如果`isIntentSafe`是`true`, 那么至少有一个app可以响应这个intent。如果是`false`则说明没有app可以handle这个intent。
 
-> **Note:**你必须在第一次使用之前做这个检查，若是不可行，则应该关闭这个功能。如果你知道某个确切的app能够handle这个intent，你也应该提供给用户去下载这个app的链接。([see how to link to your product on Google Play](http://developer.android.com/distribute/googleplay/promote/linking.html)).
+> **Note:** 你必须在第一次使用之前做这个检查，若是不可行，则应该关闭这个功能。如果你知道某个确切的app能够handle这个intent，你也应该提供给用户去下载这个app的链接。(详细请看[link to your product on Google Play](http://developer.android.com/distribute/googleplay/promote/linking.html)).
 
 ## 使用Intent来启动Activity
 
@@ -132,11 +149,16 @@ if (isIntentSafe) {
 Intent intent = new Intent(Intent.ACTION_SEND);
 ...
 
-// Always use string resources for UI text. This says something like "Share this photo with"
-String title = getResources().getText(R.string.chooser_title);
-// Create and start the chooser
+// Always use string resources for UI text.
+// This says something like "Share this photo with"
+String title = getResources().getString(R.string.chooser_title);
+// Create intent to show chooser
 Intent chooser = Intent.createChooser(intent, title);
-startActivity(chooser);
+
+// Verify the intent will resolve to at least one activity
+if (intent.resolveActivity(getPackageManager()) != null) {
+    startActivity(chooser);
+}
 ```
 
 这样就列出了可以响应`createChooser()`中Intent的app，并且指定了标题。

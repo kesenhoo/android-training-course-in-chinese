@@ -1,4 +1,4 @@
-# Android官方培训课程中文版(v0.9.1)
+# Android官方培训课程中文版(v0.9.2)
 
 ![Android Training](android_training.jpg)
 
@@ -24,6 +24,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
 
 ### 更新记录
+* v0.9.2 - 2015/03/30
 * v0.9.1 - 2015/03/14
 * v0.9.0 - 2015/03/09
 * v0.8.0 - 2015/02/12
@@ -96,11 +97,11 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [Building a Work Policy Controller](http://hukai.me/android-training-course-in-chinese/enterprise/work-policy-ctrl.html) - @2015/03/14 - 待认领
 * [Android TV应用](http://hukai.me/android-training-course-in-chinese/building-tv.html)
    * [创建TV应用](http://hukai.me/android-training-course-in-chinese/tv/start/index.html) - @[awong1900](https://github.com/awong1900)
-   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @[awong1900](https://github.com/awong1900)
-   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @待认领
+   * [创建TV播放应用](http://hukai.me/android-training-course-in-chinese/tv/playback/start.html) - @[huanglizhuo](https://github.com/huanglizhuo)
+   * [帮助用户在TV上探索内容](http://hukai.me/android-training-course-in-chinese/tv/discovery/index.html) - @[awong1900](https://github.com/awong1900)
    * [创建TV游戏应用](http://hukai.me/android-training-course-in-chinese/tv/games/index.html) - @[dupengwei](https://github.com/dupengwei)
    * [创建TV直播应用](http://hukai.me/android-training-course-in-chinese/tv/tif/index.html) - @[dupengwei](https://github.com/dupengwei)
-   * [TV Apps Checklist](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
+   * [TV应用清单](http://hukai.me/android-training-course-in-chinese/tv/publishing/checklist.html) - @[awong1900](https://github.com/awong1900)
 * [Android交互设计](http://hukai.me/android-training-course-in-chinese/best-ux.html)
    * [设计高效的导航](http://hukai.me/android-training-course-in-chinese/ux/design-nav/index.html) - @[XizhiXu](https://github.com/XizhiXu)
    * [实现高效的导航](http://hukai.me/android-training-course-in-chinese/ux/implement-nav/index.html) - @[Lin-H](https://github.com/Lin-H)
@@ -121,7 +122,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android后台任务](http://hukai.me/android-training-course-in-chinese/best-background.html)
    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - @[lltowq](https://github.com/lltowq)
+   * [管理设备的唤醒状态](http://hukai.me/android-training-course-in-chinese/background-jobs/scheduling/index.html) - @[jdneo](https://github.com/jdneo),@[lltowq](https://github.com/lltowq)
 * [Android性能优化](http://hukai.me/android-training-course-in-chinese/best-performance.html)
    * [管理应用的内存](http://hukai.me/android-training-course-in-chinese/performance/memory.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [性能优化Tips](http://hukai.me/android-training-course-in-chinese/performance/performance-tips.html) - @[kesenhoo](https://github.com/kesenhoo)

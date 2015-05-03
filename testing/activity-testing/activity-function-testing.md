@@ -2,23 +2,22 @@
 
 > 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/activity-testing/activity-functional-testing.html>
 
-功能测试包括验证单个应用组件是否与使用者期望的那样(与其它组件)协同工作。比如,你可以创建一个功能测试验证在用户执行UI交互时[Activity](http://developer.android.com/reference/android/app/Activity.html)是否正确启动目标[Activity](http://developer.android.com/reference/android/app/Activity.html)。
+功能测试包括验证单个应用中的各个组件是否与使用者期望的那样（与其它组件）协同工作。比如，我们可以创建一个功能测试验证在用户执行UI交互时[Activity](http://developer.android.com/reference/android/app/Activity.html)是否正确启动目标[Activity](http://developer.android.com/reference/android/app/Activity.html)。
 
-要为你的[Activity](http://developer.android.com/reference/android/app/Activity.html)创建功能测试,你的测试类应该扩展[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)。与[ActivityUnitTestCase](http://developer.android.com/reference/android/test/ActivityUnitTestCase.html)不同的是在[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)中可以与Android系统通信以及发送键盘输入和点击事件到UI。
+要为[Activity](http://developer.android.com/reference/android/app/Activity.html)创建功能测，我们的测试类应该对[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)进行扩展。与[ActivityUnitTestCase](http://developer.android.com/reference/android/test/ActivityUnitTestCase.html)不同，[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)中的测试可以与Android系统通信，发送键盘输入及点击事件到UI中。
 
-要了解一个完整的测试例子,看一下示例应用中的SenderActivityTest.java。
+要了解一个完整的测试例子可以参考示例应用中的`SenderActivityTest.java`。
 
-##添加测试方法验证函数的行为
+## 添加测试方法验证函数的行为
 
-你的函数测试目标应该包括:
+我们的函数测试目标应该包括:
 
 * 验证UI控制是否正确启动了目标Activity。
-
 * 验证目标Activity的表现是否按照发送Activity提供的数据呈现。
 
-你应该这样实现你的方法:
+我们可以这样实现测试方法:
 
-```xml
+```java
 @MediumTest
 public void testSendMessageToReceiverActivity() {
     final Button sendToReceiverButton = (Button)
@@ -44,27 +43,23 @@ public void testSendMessageToReceiverActivity() {
 }
 ```
 
-测试等待与屏幕匹配的Activity,否则返回会在超时后返回null。如果ReceiverActivity启动了,那么你先前设立的[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)就会收到一次撞击。你可以使用断言方法验证ReceiverActivity是否的确启动了,并且[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)记录撞击次数会按照预想的那样增加。
+测试会等待匹配的Activity启动，如果超时则会返回null。如果ReceiverActivity启动了，那么先前配置的[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)就会收到一次碰撞（Hit）。我们可以使用断言方法验证ReceiverActivity是否的确启动了，以及[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)记录的碰撞次数是否按照预想地那样增加。
 
-##设立一个ActivityMonitor
+## 设立一个ActivityMonitor
 
-为了在你的应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html),你可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)是由系统在每当一个Activity与你的要求符合是开启的。如果发现匹配,监视器的撞击计数就会更新。
+为了在应用中监视单个[Activity](http://developer.android.com/reference/android/app/Activity.html)我们可以注册一个[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)。每当一个符合要求的Activity启动时，系统会通知[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)，进而更新碰撞数目。
 
-通常来说要使用[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html),你应该这样:
+通常来说要使用[ActivityMoniter](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)，我们可以这样：
 
-1. 使用[getInstrumentation()](http://developer.android.com/reference/android/test/InstrumentationTestCase.html#getInstrumentation())方法为你的测试用例实现[Instrumentation](http://developer.android.com/reference/android/app/Instrumentation.html)。
-
-2. 为当前使用[Instrumentation](http://developer.android.com/reference/android/app/Instrumentation.html)addMonitor()方法的instrumentation添加一个[Instrumentation.ActivityMonitor](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)实例。匹配规则可以是通过[IntentFilter](http://developer.android.com/reference/android/content/IntentFilter.html)或者一个类名。
-
+1. 使用<a href="http://developer.android.com/reference/android/test/InstrumentationTestCase.html#getInstrumentation()">getInstrumentation()</a>方法为测试用例实现[Instrumentation](http://developer.android.com/reference/android/app/Instrumentation.html)。
+2. 使用[Instrumentation](http://developer.android.com/reference/android/app/Instrumentation.html)的一种addMonitor()方法为当前instrumentation添加一个[Instrumentation.ActivityMonitor](http://developer.android.com/reference/android/app/Instrumentation.ActivityMonitor.html)实例。匹配规则可以通过[IntentFilter](http://developer.android.com/reference/android/content/IntentFilter.html)或者类名字符串。
 3. 等待开启一个Activity。
-
 4. 验证监视器撞击次数的增加。
-
 5. 移除监视器。
 
 下面是一个例子:
 
-```xml
+```java
 // Set up an ActivityMonitor
 ActivityMonitor receiverActivityMonitor =
         getInstrumentation().addMonitor(ReceiverActivity.class.getName(),
@@ -84,21 +79,19 @@ assertEquals("Activity is of wrong type",
 getInstrumentation().removeMonitor(receiverActivityMonitor);
 ```
 
-##使用Instrumentation发送一个键盘输入
+## 使用Instrumentation发送一个键盘输入
 
-如果你的[Activity](http://developer.android.com/reference/android/app/Activity.html)有一个[EditText](http://developer.android.com/reference/android/widget/EditText.html),你想要测试用户是否可以给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象输入数值。
+如果[Activity](http://developer.android.com/reference/android/app/Activity.html)有一个[EditText](http://developer.android.com/reference/android/widget/EditText.html)，我们可以测试用户是否可以给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象输入数值。
 
-通常在[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)中给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象发送串字符,你应该这样作:
+通常在[ActivityInstrumentationTestCase2](http://developer.android.com/reference/android/test/ActivityInstrumentationTestCase2.html)中给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象发送串字符，我们可以这样做：
 
-1. 使用[runOnMainSync()](http://developer.android.com/reference/android/app/Instrumentation.html#runOnMainSync(java.lang.Runnable))方法在一个循环中同步调用[requestFocus()](http://developer.android.com/reference/android/view/View.html#requestFocus())。这样,你的UI线程就会在获得焦点前一直被阻塞。
+1. 使用<a href="http://developer.android.com/reference/android/app/Instrumentation.html#runOnMainSync(java.lang.Runnable)">runOnMainSync()</a>方法在一个循环中同步地调用<a href="http://developer.android.com/reference/android/view/View.html#requestFocus()">requestFocus()</a>。这样，我们的UI线程就会在获得焦点前一直被阻塞。
+2. 调用<a href="http://developer.android.com/reference/android/app/Instrumentation.html#waitForIdleSync()">waitForIdleSync()</a>方法等待主线程空闲（也就是说,没有更多事件需要处理）。
+3. 调用<a href="http://developer.android.com/reference/android/app/Instrumentation.html#sendStringSync(java.lang.String)">sendStringSync()</a>方法给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象发送一个我们输入的字符串。
 
-2. 调用[waitForIdleSync()](http://developer.android.com/reference/android/app/Instrumentation.html#waitForIdleSync())方法等待主线程空闲(也就是说,没有更多的运行事件)。
+比如:
 
-3. 调用[sendStringSync()](http://developer.android.com/reference/android/app/Instrumentation.html#sendStringSync(java.lang.String))方法给[EditText](http://developer.android.com/reference/android/widget/EditText.html)对象发送一个你输入的字符串。
-
-想这样:
-
-```xml
+```java
 // Send string input value
 getInstrumentation().runOnMainSync(new Runnable() {
     @Override

@@ -6,7 +6,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 ## 响应请求并显示数据
 
-当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，该Intent拥有：[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)这一Action，首个被传输文件的MIME类型，以及一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的[Activity](http://developer.android.com/reference/android/app/Activity.html)所对应的[`<activity>`](http://developer.android.com/guide/topics/manifest/activity-element.html)标签添加一个[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
+当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个[Intent](http://developer.android.com/reference/android/content/Intent.html)，该Intent拥有：[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)这一Action，首个被传输文件的MIME类型，以及一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的<a href="http://developer.android.com/reference/android/app/Activity.html">Activity</a>所对应的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity&gt;</a>标签添加一个[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签，在[`<intent-filter>`](http://developer.android.com/guide/topics/manifest/intent-filter-element.html)标签中，添加下面的子标签：
 
 [`<action android:name="android.intent.action.VIEW" />`](http://developer.android.com/guide/topics/manifest/action-element.html)
 
@@ -54,7 +54,7 @@ Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录�
 
 Android Beam文件传输一次性将所有文件拷贝到目标设备的一个目录中，Android Beam文件传输通知所发出的[Intent](http://developer.android.com/reference/android/content/Intent.html)中包含有URI，该URI指向了第一个被传输的文件。然而，你的应用程序也有可能接收到除了Android Beam文件传输之外的某个来源所发出的含有[ACTION_VIEW](http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW)这一Action的Intent。为了明确你应该如何处理接收的Intent，你需要检查它的Scheme和Authority。
 
-可以调用[Uri.getScheme()](http://developer.android.com/reference/android/net/Uri.html#getScheme())获得URI的Scheme，下面的代码展示了如何确定Scheme并对URI进行相应的处理：
+可以调用<a href="http://developer.android.com/reference/android/net/Uri.html#getScheme()">Uri.getScheme()</a>获得URI的Scheme，下面的代码展示了如何确定Scheme并对URI进行相应的处理：
 
 ```java
 public class MainActivity extends Activity {
@@ -126,7 +126,7 @@ public class MainActivity extends Activity {
 
 ### 确定Content Provider
 
-为了明确你能从Content URI中获取文件目录，你可以通过调用[Uri.getAuthority()](http://developer.android.com/reference/android/net/Uri.html#getAuthority())获取URI的Authority，以此确定与该URI相关联的Content Provider。其结果有两个可能的值：
+为了明确你能从Content URI中获取文件目录，你可以通过调用<a href="http://developer.android.com/reference/android/net/Uri.html#getAuthority()">Uri.getAuthority()</a>获取URI的Authority，以此确定与该URI相关联的Content Provider。其结果有两个可能的值：
 
 **[MediaStore.AUTHORITY](http://developer.android.com/reference/android/provider/MediaStore.html#AUTHORITY)**
 

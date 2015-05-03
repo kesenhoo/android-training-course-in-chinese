@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 
 ## 访问请求的文件
 
-当服务端应用程序向客户端应用程序发回包含Content URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)时，这个[Intent](http://developer.android.com/reference/android/content/Intent.html)会传递给客户端应用程序重写的[onActivityResult()](http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent))方法当中。一旦客户端应用程序有了文件的Content URI，它就可以通过获取其[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)来访问文件了。
+当服务端应用程序向客户端应用程序发回包含Content URI的[Intent](http://developer.android.com/reference/android/content/Intent.html)时，这个[Intent](http://developer.android.com/reference/android/content/Intent.html)会传递给客户端应用程序重写的<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>方法当中。一旦客户端应用程序有了文件的Content URI，它就可以通过获取其[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)来访问文件了。
 
 文件的安全问题在这一过程中不用过多担心，因为客户端应用程序所收到的所有数据只有文件的Content URI而已。由于URI不包含目录路径信息，客户端应用程序无法查询出或者打开任何服务端应用程序的其他文件。客户端应用程序仅仅获取了这个文件的访问渠道以及由服务端应用程序授予的访问权限。同时访问权限是临时的，一旦这个客户端应用的任务栈结束了，这个文件将不再被除服务端应用程序之外的其他应用程序访问。
 
@@ -87,4 +87,4 @@ public class MainActivity extends Activity {
     }
 ```
 
-[openFileDescriptor()](http://developer.android.com/reference/android/content/ContentResolver.html#openFileDescriptor(android.net.Uri, java.lang.String))方法会返回一个文件的[ParcelFileDescriptor](http://developer.android.com/reference/android/os/ParcelFileDescriptor.html)对象。从这个对象中，客户端应用程序可以获取[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)对象，然后用户就可以利用这个对象读取这个文件了。
+<a href="http://developer.android.com/reference/android/content/ContentResolver.html#openFileDescriptor(android.net.Uri, java.lang.String)">openFileDescriptor()</a>方法会返回一个文件的[ParcelFileDescriptor](http://developer.android.com/reference/android/os/ParcelFileDescriptor.html)对象。从这个对象中，客户端应用程序可以获取[FileDescriptor](http://developer.android.com/reference/java/io/FileDescriptor.html)对象，然后用户就可以利用这个对象读取这个文件了。

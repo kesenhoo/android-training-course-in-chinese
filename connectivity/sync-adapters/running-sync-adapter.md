@@ -32,13 +32,13 @@
 
 ## 当服务器数据变化时，运行Sync Adapter
 
-如果你的应用从服务器传输数据，且服务器的数据会频繁地发生变化，你可以使用一个Sync Adapter通过下载数据来响应服务端数据的改变。要运行Sync Adapter，我们需要让服务端向应用的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)发送一条特殊的消息。为了响应这条消息，可以调用[ContentResolver.requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))方法，向Sync Adapter框架发出信号，让它运行你的Sync Adapter。
+如果你的应用从服务器传输数据，且服务器的数据会频繁地发生变化，你可以使用一个Sync Adapter通过下载数据来响应服务端数据的改变。要运行Sync Adapter，我们需要让服务端向应用的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)发送一条特殊的消息。为了响应这条消息，可以调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">ContentResolver.requestSync()</a>方法，向Sync Adapter框架发出信号，让它运行你的Sync Adapter。
 
 谷歌云消息（[Google Cloud Messaging](http://developer.android.com/google/gcm/index.html)，GCM）提供了你需要的服务端组件和设备端组件，来让上述消息系统能够运行。使用GCM触发数据传输比通过向服务器轮询的方式要更加可靠，也更加有效。因为轮询需要一个一直处于活跃状态的[Service](http://developer.android.com/reference/android/app/Service.html)，而GCM使用的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)仅在消息到达时会被激活。另外，即使没有更新的内容，定期的轮询也会消耗大量的电池电量，而GCM仅在需要时才会发出消息。
 
 > **Note：**如果你使用GCM，将广播消息发送到所有安装了你的应用的设备，来激活你的Sync Adapter，要记住他们会在同一时间（粗略地）收到你的消息。这会导致在同一时段内有多个Sync Adapter的实例在运行，进而导致服务器和网络的负载过重。要避免这一情况，你应该考虑为不同的设备设定不同的Sync Adapter延迟启动时间。
 
-下面的代码展示了如何通过[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))响应一个接收到的GCM消息：
+下面的代码展示了如何通过<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>响应一个接收到的GCM消息：
 
 ```java
 public class GcmBroadcastReceiver extends BroadcastReceiver {
@@ -87,15 +87,15 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
 
 ## 当Content Provider的数据变化时，运行Sync Adapter
 
-如果你的应用在一个Content Provider中收集数据，并且你希望当你更新了Content Provider的时候，同时更新服务器的数据，你可以配置你的Sync Adapter来让它自动运行。要做到这一点，你首先应该为Content Provider注册一个Observer。当Content Provider的数据发生了变化之后，Content Provider框架会调用Observer。在Observer中，调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))来告诉框架现在应该运行你的Sync Adapter了。
+如果你的应用在一个Content Provider中收集数据，并且你希望当你更新了Content Provider的时候，同时更新服务器的数据，你可以配置你的Sync Adapter来让它自动运行。要做到这一点，你首先应该为Content Provider注册一个Observer。当Content Provider的数据发生了变化之后，Content Provider框架会调用Observer。在Observer中，调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>来告诉框架现在应该运行你的Sync Adapter了。
 
-> **Note：**如果你使用的是一个Stub Content Provider，那么你不会在Content Provider中有任何数据，并且[onChange()](http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean))方法也从来不会被调用。在这种情况下，你不得不提供自己的某种机制来检测设备数据的变化。这一机制还要负责在数据发生变化时调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))。
+> **Note：**如果你使用的是一个Stub Content Provider，那么你不会在Content Provider中有任何数据，并且<a href="http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean)">onChange()</a>方法也从来不会被调用。在这种情况下，你不得不提供自己的某种机制来检测设备数据的变化。这一机制还要负责在数据发生变化时调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>。
 
-为了给你的Content Provider创建一个Observer，继承[ContentObserver](http://developer.android.com/reference/android/database/ContentObserver.html)类，并且实现[onChange()](http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean))方法的两种形式。在[onChange()](http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean))中，调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))来启动Sync Adapter。
+为了给你的Content Provider创建一个Observer，继承[ContentObserver](http://developer.android.com/reference/android/database/ContentObserver.html)类，并且实现<a href="http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean)">onChange()</a>方法的两种形式。在<a href="http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean)">onChange()</a>中，调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>来启动Sync Adapter。
 
-要注册Observer，需要将它作为参数传递给[registerContentObserver()](http://developer.android.com/reference/android/content/ContentResolver.html#registerContentObserver(android.net.Uri, boolean, android.database.ContentObserver))。在该方法中，你还要传递一个你想要监视的Content URI。Content Provider框架会将这个需要监视的URI与其它一些Content URIs进行比较，这些其它的Content URIs来自于[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)中那些可以修改Provider的方法（如[ContentResolver.insert()](http://developer.android.com/reference/android/content/ContentResolver.html#insert(android.net.Uri, android.content.ContentValues))）所传入的参数，如果出现了变化，那么你所实现的[ContentObserver.onChange()](http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean))将会被调用。
+要注册Observer，需要将它作为参数传递给<a href="http://developer.android.com/reference/android/content/ContentResolver.html#registerContentObserver(android.net.Uri, boolean, android.database.ContentObserver)">registerContentObserver()</a>。在该方法中，你还要传递一个你想要监视的Content URI。Content Provider框架会将这个需要监视的URI与其它一些Content URIs进行比较，这些其它的Content URIs来自于[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)中那些可以修改Provider的方法（如<a href="http://developer.android.com/reference/android/content/ContentResolver.html#insert(android.net.Uri, android.content.ContentValues)">ContentResolver.insert()</a>）所传入的参数，如果出现了变化，那么你所实现的<a href="http://developer.android.com/reference/android/database/ContentObserver.html#onChange(boolean)">ContentObserver.onChange()</a>将会被调用。
 
-下面的代码片段展示了如何定义一个[ContentObserver](http://developer.android.com/reference/android/database/ContentObserver.html)，它在表数据发生变化后调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))：
+下面的代码片段展示了如何定义一个[ContentObserver](http://developer.android.com/reference/android/database/ContentObserver.html)，它在表数据发生变化后调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>：
 
 ```java
 public class MainActivity extends FragmentActivity {
@@ -176,11 +176,11 @@ public class MainActivity extends FragmentActivity {
 
 ## 在一个网络消息之后，运行Sync Adapter
 
-当可以获得一个网络连接时，Android系统会每隔几秒发送一条消息来保持TCP/IP连接处于开启状态。这一消息也会传递到每个应用的[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)中。通过调用[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean))，你可以在[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)收到消息后，运行Sync Adapter。
+当可以获得一个网络连接时，Android系统会每隔几秒发送一条消息来保持TCP/IP连接处于开启状态。这一消息也会传递到每个应用的[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)中。通过调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean)">setSyncAutomatically()</a>，你可以在[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)收到消息后，运行Sync Adapter。
 
 每当网络消息被发送后运行你的Sync Adapter，通过这样的调度方式可以保证每次运行Sync Adapter时都可以访问网络。如果不是每次数据变化时就要以数据传输来响应，但是又希望自己的数据会被定期地更新，那么你可以用这一选项。类似地，如果你不想要定期执行你的Sync Adapter，但你希望经常运行它，你也可以使用这一选项。
 
-由于[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean))方法不会禁用[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long))，所以你的Sync Adapter可能会在一小段时间内重复地被触发激活。如果你想要定期地运行你的Sync Adapter，应该禁用[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean))。
+由于<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean)">setSyncAutomatically()</a>方法不会禁用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long)">addPeriodicSync()</a>，所以你的Sync Adapter可能会在一小段时间内重复地被触发激活。如果你想要定期地运行你的Sync Adapter，应该禁用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean)">setSyncAutomatically()</a>。
 
 下面的代码片段向你展示如何配置你的[ContentResolver](http://developer.android.com/reference/android/content/ContentResolver.html)，利用它来响应网络消息，从而运行你的Sync Adapter，：
 
@@ -218,11 +218,11 @@ public class MainActivity extends FragmentActivity {
 
 一般来说，当你的用户不需要实时更新，而希望定期更新时，使用定期运行的策咯会很有用。如果你希望在数据的实时性和Sync Adapter的资源消耗之间进行一个平衡，那么定期执行是一个不错的选择。
 
-要定期运行你的Sync Adapter，调用[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long))。这样每隔一段时间，Sync Adapter就会运行。由于Sync Adapter框架会考虑其他Sync Adapter的执行，并尝试最大化电池效率，所以间隔时间会动态地进行细微调整。同时，如果当前无法获得网络连接，框架不会运行你的Sync Adapter。
+要定期运行你的Sync Adapter，调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long)">addPeriodicSync()</a>。这样每隔一段时间，Sync Adapter就会运行。由于Sync Adapter框架会考虑其他Sync Adapter的执行，并尝试最大化电池效率，所以间隔时间会动态地进行细微调整。同时，如果当前无法获得网络连接，框架不会运行你的Sync Adapter。
 
-注意，[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long))方法不会让Sync Adapter每天在某个时间自动运行。要让你的Sync Adapter在每天的某个时刻左右自动执行，可以使用一个重复计时器作为触发器。重复计时器的更多细节可以阅读：[AlarmManager](http://developer.android.com/reference/android/app/AlarmManager.html)。如果你使用[setInexactRepeating()](http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent))方法设置了一个每天的触发时刻会有粗略变化的触发器，你仍然应该将不同设备的Sync Adapter的运行时间随机化，使得它们的执行交错开来。
+注意，<a href="http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long)">addPeriodicSync()</a>方法不会让Sync Adapter每天在某个时间自动运行。要让你的Sync Adapter在每天的某个时刻左右自动执行，可以使用一个重复计时器作为触发器。重复计时器的更多细节可以阅读：[AlarmManager](http://developer.android.com/reference/android/app/AlarmManager.html)。如果你使用<a href="http://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>方法设置了一个每天的触发时刻会有粗略变化的触发器，你仍然应该将不同设备的Sync Adapter的运行时间随机化，使得它们的执行交错开来。
 
-[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long))方法不会禁用[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean))，所以你可能会在一小段时间内产生多个Sync Adapter的运行实例。另外，仅有一部分Sync Adapter的控制标识可以在调用[addPeriodicSync()](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long))时使用。不被允许的标识在该方法的[文档](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account,%20java.lang.String,%20android.os.Bundle,%20long))中可以查看。
+<a href="http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long)">addPeriodicSync()</a>方法不会禁用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean)">setSyncAutomatically()</a>，所以你可能会在一小段时间内产生多个Sync Adapter的运行实例。另外，仅有一部分Sync Adapter的控制标识可以在调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account, java.lang.String, android.os.Bundle, long)">addPeriodicSync()</a>时使用。不被允许的标识在该方法的[文档](http://developer.android.com/reference/android/content/ContentResolver.html#addPeriodicSync(android.accounts.Account,%20java.lang.String,%20android.os.Bundle,%20long))中可以查看。
 
 下面的代码样例展示了如何定期执行Sync Adapter：
 
@@ -270,19 +270,19 @@ public class MainActivity extends FragmentActivity {
 
 相比之下，允许用户按照自己的需求运行Sync Adapter意味着Sync Adapter会自己运行，这将无法有效地使用电量和网络资源。如果根据需求执行同步，会诱导用户即便没有证据表明数据发生了变化也请求一个更新，这些无用的更新会导致对电量的低效率使用。一般来说，你的应用应该使用其它信号来触发一个同步更新或者让它们定期地去执行，而不是依赖于用户的输入。
 
-不过，如果你仍然想要按照需求运行Sync Adapter，可以将Sync Adapter的配置标识设置为手动执行，之后调用[ContentResolver.requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))来触发一次更新。
+不过，如果你仍然想要按照需求运行Sync Adapter，可以将Sync Adapter的配置标识设置为手动执行，之后调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">ContentResolver.requestSync()</a>来触发一次更新。
 
 通过下列标识来执行按需求的数据传输：
 
 [**SYNC_EXTRAS_MANUAL**](http://developer.android.com/reference/android/content/ContentResolver.html#SYNC_EXTRAS_MANUAL)
 
-强制执行手动的同步更新。Sync Adapter框架会忽略当前的设置，比如通过[setSyncAutomatically()](http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean))方法设置的标识。
+强制执行手动的同步更新。Sync Adapter框架会忽略当前的设置，比如通过<a href="http://developer.android.com/reference/android/content/ContentResolver.html#setSyncAutomatically(android.accounts.Account, java.lang.String, boolean)">setSyncAutomatically()</a>方法设置的标识。
 
 [**SYNC_EXTRAS_EXPEDITED**](http://developer.android.com/reference/android/content/ContentResolver.html#SYNC_EXTRAS_EXPEDITED)
 
 强制同步立即执行。如果你不设置此项，系统可能会在运行同步请求之前等待一小段时间，因为它会尝试将一小段时间内的多个请求集中在一起调度，目的是为了优化电量的使用。
 
-下面的代码片段将向你展示如何调用[requestSync()](http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle))来响应一个按钮点击事件：
+下面的代码片段将向你展示如何调用<a href="http://developer.android.com/reference/android/content/ContentResolver.html#requestSync(android.accounts.Account, java.lang.String, android.os.Bundle)">requestSync()</a>来响应一个按钮点击事件：
 
 ```java
 public class MainActivity extends FragmentActivity {

@@ -2,13 +2,13 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/intents/result.html>
 
-启动另外一个activity并不一定是单向的。你也可以启动另外一个activity然后接受一个result回来。为了接受这个result，你需要使用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> ，而不是<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>。
+启动另外一个activity并不一定是单向的。你也可以启动另外一个activity然后接收一个result回来。为了接收这个result，你需要使用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> ，而不是<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>。
 
-例如，你的app可以启动一个camera程序并接受拍的照片作为result。或者你可以启动People程序并获取其中联系的人的详情作为result。
+例如，你的app可以启动一个camera程序并接收拍到的照片作为result。或者你可以启动People程序并获取其中联系人的详情作为result。
 
 当然，被启动的activity需要指定返回的result。它需要把这个result作为另外一个intent对象返回，你的activity需要在<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>的回调方法里面去接收result。
 
-> **Note:**在执行`startActivityForResult()`时，你可以使用explicit 或者 implicit 的intent。当你启动另外一个位于你的程序中的activity时，你应该使用explicit intent来确保你可以接收到期待的结果。
+> **Note:** 在执行`startActivityForResult()`时，你可以使用explicit 或者 implicit 的intent。当你启动另外一个位于你的程序中的activity时，你应该使用explicit intent来确保你可以接收到期待的结果。
 
 <!-- more -->
 
@@ -24,7 +24,7 @@
 static final int PICK_CONTACT_REQUEST = 1;  // The request code
 ...
 private void pickContact() {
-    Intent pickContactIntent = new Intent(Intent.ACTION_PICK, new Uri("content://contacts"));
+    Intent pickContactIntent = new Intent(Intent.ACTION_PICK, Uri.parse("content://contacts"));
     pickContactIntent.setType(Phone.CONTENT_TYPE); // Show user only contacts w/ phone numbers
     startActivityForResult(pickContactIntent, PICK_CONTACT_REQUEST);
 }
@@ -58,11 +58,11 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 在这个例子中被返回的Intent中使用Uri的形式来表示返回的联系人。
 
-为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在`data`数据区返回一个 Bitmap （see the class about [Capturing Photos](http://developer.android.com/training/camera/index.html)).
+为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在`data`数据区返回一个 Bitmap （详细介绍请见 [Capturing Photos](http://developer.android.com/training/camera/index.html)).
 
 ### 读取联系人数据
 
-上面的代码展示了如何获取联系人的返回结果，但没有说清楚如何从结果中读取数据，因为这需要更多关于[content providers](http://developer.android.com/guide/topics/providers/content-providers.html)的知识。但如果你想知道的话，下面是一段代码，展示如何从被选的联系人中读出电话号码。
+上面的代码展示了如何获取联系人的返回结果，但没有说清楚如何从结果中读取数据。因为这需要更多关于[content providers](http://developer.android.com/guide/topics/providers/content-providers.html)的知识。但如果你想知道的话，下面是一段代码，展示如何从被选的联系人中读出电话号码。
 
 ```java
 @Override
@@ -95,4 +95,4 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
-> **Note**:在Android 2.3 (API level 9)之前对`Contacts Provider`的请求(比如上面的代码)，需要你声明`READ_CONTACTS`权限(更多详见[Security and Permissions](http://developer.android.com/guide/topics/security/security.html))。但如果是Android 2.3以上的系统，你就不需要这么做。但这种临时权限也仅限于特定的请求，所以你仍无法获取除返回的Intent以外的联系人信息，除非声明了`READ_CONTACTS`权限。
+> **Note:** 在Android 2.3 (API level 9)之前对`Contacts Provider`的请求(比如上面的代码)，需要你声明`READ_CONTACTS`权限(更多详见[Security and Permissions](http://developer.android.com/guide/topics/security/security.html))。但如果是Android 2.3以上的系统，通信录或者联系人App返回一个result的时候，这些App会给予你的App读取Contacts Provider的临时权限。但这种临时权限也仅限于特定的请求，所以你仍无法获取除返回的Intent以外的联系人信息，除非声明了`READ_CONTACTS`权限。
