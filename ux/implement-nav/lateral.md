@@ -4,7 +4,7 @@
 
 Swipe View提供在同级屏幕中的横向导航，例如通过横向划屏手势切换的tab(一种称作横向分页的模式)。这节课会教你如何使用swipe view创建一个tab layout实现在tab之间切换，或显示一个标题条替代tab。
 
->**Swipe View Design**
+>**Swipe View 设计**
 
 > 在实现这些功能之前，你要先明白在[Designing Effective Navigation](http://developer.android.com/training/design-navigation/descendant-lateral.html), [Swipe Views](http://developer.android.com/design/patterns/swipe-views.html) design guide中的概念和建议
 
@@ -186,7 +186,7 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-## 使用标题条替代Tab
+## 使用标题栏替代Tab
 
 如果你不想使用action bar tab，而想使用[scrollable tabs](http://developer.android.com/design/building-blocks/tabs.html#scrollable)来提供一个更简短的可视化配置，你可以在swipe view中使用[PagerTitleStrip](http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html)。
 

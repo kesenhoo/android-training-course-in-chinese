@@ -6,7 +6,7 @@
 
 在几乎所有情况下，当用户在应用中进行导航时，系统会保存activity的后退栈。这样当用户点击后退按钮时，系统可以正确地向后导航。但是，有少数几种情况需要手动指定app的后退操作，来提供更好的用户体验。
 
->**Back Navigation Design**
+>**Back Navigation 设计**
 
 >在继续阅读篇文章之前，你应该先在[Navigation](http://developer.android.com/design/patterns/navigation.html) design guide中对后退导航的概念和设计准则有个了解。
 
