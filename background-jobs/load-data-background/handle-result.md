@@ -12,7 +12,7 @@
 
 为了显示CursorLoader返回的Cursor数据，需要使用实现AdapterView的类，并为这个类绑定一个实现了CursorAdapter的Adapter。系统会自动把Cursor中的数据显示到View上。
 
-你可以在显示数据之前建立View与Adapter的关联。然后在[onLoadFinished()](2)的时候把Cursor与Adapter进行绑定。一旦你把Cursor鱼Adapter进行绑定之后，系统会自动更新View。当Cursor上的内容发生改变的时候，也会触发这些操作。
+你可以在显示数据之前建立View与Adapter的关联。然后在[onLoadFinished()](2)的时候把Cursor与Adapter进行绑定。一旦你把Cursor与Adapter进行绑定之后，系统会自动更新View。当Cursor上的内容发生改变的时候，也会触发这些操作。
 
 例如:
 
