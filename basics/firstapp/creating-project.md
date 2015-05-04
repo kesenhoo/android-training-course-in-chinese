@@ -6,13 +6,13 @@
 
 本小节介绍如何使用Android Studio或SDK Tools命令行来创建一个新的项目。
 
-> **Note**：在此之前，你应该已经安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
+> **Note**：在此之前，我们应该已经安装了Android SDK，如果使用Android Studio开发，应该确保已经安装了[Android Studio](http://developer.android.com/sdk/installing/studio.html)。否则，请先阅读 [Installing the Android SDK](http://developer.android.com/sdk/installing/index.html)按照向导完成步骤安装。
 
 ## 使用Android Studio创建项目
 
 1\. 使用Android Studio创建Android项目，启动Android Studio
    <ul>
-   <li>如果你还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
+   <li>如果我们还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
    <li>如果已经用Android Studio打开过项目，点击File==>New Project新建项目</li>
    </ul>
 
@@ -22,7 +22,7 @@
    <ul>
    <li>**Application Name** 此处填写想呈现给用户的应用名称，此处我们使用“My First App".</li>
    <li>**Company domain** 包名限定符，Android Studio会将这个限定符应用于每个新建的Android项目</li>
-   <li>**Package Name**是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中      具有唯一性，你可以独立地编辑该包名.</li>
+   <li>**Package Name**是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，我们可以独立地编辑该包名.</li>
    <li>**Project location**操作系统存放项目的目录</li>
    </ul>
 
@@ -34,7 +34,7 @@
 
 4\. **Minimum SDK**, 选择 **API 8: Android 2.2 (Froyo)**.
 
-   Minimum Required SDK表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
+   Minimum Required SDK表示我们的应用支持的最低Android版本，为了支持尽可能多的设备，我们应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考[兼容不同的系统版本](../supporting-devices/platforms.html)),此处采用默认值即可。
 
 5\. 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
 
@@ -64,13 +64,13 @@ app/build.gradle
 Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以及整个工程都有一个build.gradle文件。通常你只需要关注模块的build.gradle文件，该文件存放编译依赖设置，包括defaultConfig设置：
 
 + compiledSdkVersion
-是你的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用[SDK Manager](http://developer.android.com/sdk/installing/adding-packages.html)来完成安装)，你仍然可以使用较老的版本编译项目，但把该值设为最新版本，使你可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。
+是我们的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用[SDK Manager](http://developer.android.com/sdk/installing/adding-packages.html)来完成安装)，我们仍然可以使用较老的版本编译项目，但把该值设为最新版本，可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。
 
 + applicationId 创建新项目时指定的包名。
 
 + minSdkVersion 创建项目时指定的最低SDK版本，是新建应用支持的最低SDK版本。
 
-+ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
++ targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，我们应该在最新版本的Android测试自己的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读[Supporting Different Platform Versions](http://developer.android.com/training/basics/supporting-devices/platforms.html)。
 
 
 更多关于Gradle的知识请阅读[Building Your Project with Gradle](http://developer.android.com/sdk/installing/studio-build.html)
@@ -79,7 +79,7 @@ Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以�
 
 drawable<density>/
 
-存放各种densities图像的文件夹，mdpi，hdpi等，在这里你能找到应用运行时的图标文件ic_launcher.png
+存放各种densities图像的文件夹，mdpi，hdpi等，这里能够找到应用运行时的图标文件ic_launcher.png
 
 layout/
 
@@ -93,11 +93,11 @@ values/
 
 存放其他xml资源文件，如string，color定义。string.xml定义了运行应用时显示的文本"Hello world!"
 
-要运行它，继续[下个小节](running-app.html)的学习。
+要运行这个APP，继续[下个小节](running-app.html)的学习。
 
 ## 使用命令行创建项目
 
-如果你没有使用Android Studio开发Android项目，你可以在命令行使用SDK提供的tools来创建一个Android项目。
+如果没有使用Android Studio开发Android项目，我们可以在命令行使用SDK提供的tools来创建一个Android项目。
 
 1\. 打开命令行切换到SDK根目录下；
 
@@ -107,8 +107,8 @@ values/
     tools/android list targets
 ```
 
-会在屏幕上打印出所有你的Android SDK中下载好的可用Android  platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform。你仍可以使你的应用支持较老版本的platform，但设置为最新版本允许你为最新的Android设备优化你的应用。
-如果你没有看到任何可用的platform，你需要使用Android SDK Manager完成下载安装，参见 [Adding Platforms and Packages](http://developer.android.com/sdk/installing/adding-packages.html)。
+会在屏幕上打印出我们所有的Android SDK中下载好的可用Android  platforms，找想要创建项目的目标platform，记录该platform对应的Id，推荐使用最新的platform。我们仍可以使自己的应用支持较老版本的platform，但设置为最新版本允许我们为最新的Android设备优化我们的应用。
+如果没有看到任何可用的platform，我们需要使用Android SDK Manager完成下载安装，参见 [Adding Platforms and Packages](http://developer.android.com/sdk/installing/adding-packages.html)。
 
 3\. 执行：
 
@@ -118,8 +118,8 @@ android create project --target <target-id> --name MyFirstApp \
 --package com.example.myfirstapp
 ```
 
-替换`<target-id>`为上一步记录好的Id，替换`<path-to-workspace>`为你想要保存项目的路径。
-
-到此为止，你的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续[下个小节](running-app.html)的学习。
+替换`<target-id>`为上一步记录好的Id，替换`<path-to-workspace>`为我们想要保存项目的路径。
 
 > **Tip**:把`platform-tools/`和 `tools/`添加到环境变量`PATH`，开发更方便。
+
+到此为止，我们的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续[下个小节](running-app.html)的学习。

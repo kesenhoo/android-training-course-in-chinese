@@ -49,7 +49,6 @@ Hierarchy Viewer 会让你选择设备或者模拟器上正在运行的进程，
 ## 使用 Lint
 
 > 大部分叫做 lint 的编程工具，都是类似于代码规范的检测工具。比如JSLint，CSSLinkt， JSONLint 等等。译者注。
-> 大部分叫做 lint 的编程工具，都是代码规范的检测工具。比如JSLint，CSSLinkt, JSONLint 等等。译者注。
 
 运行 [Lint](http://tools.android.com/tips/lint) 工具来检查 Layout 可能的优化方法，是个很好的实践。Lint 已经取代了 Layoutopt 工具，它拥有更强大的功能。Lint 中包含的一些检测[规则](http://tools.android.com/tips/lint-checks)有：
 

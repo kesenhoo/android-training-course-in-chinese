@@ -6,8 +6,6 @@ Android设备可以放置在许多不同的底座中，包括车载底座，家�
 
 你的应用类型决定了底座类型会对更新频率产生怎样的影响。对于一个体育类应用，可以让设备在笔记本底座状态下增加更新的频率，或者当设备在车载底座状态下停止更新。相反的，如果你的后台服务用来更新交通数据，你也可以选择在车载底座模式下最大化更新的频率。
 
-<!-- More -->
-
 底座状态也是以Sticky Intent方式来广播的，这样可以通过查询Intent里面的数据来判断目前设备是否放置在底座中，以及底座的类型。
 
 ## 判断当前底座状态
@@ -39,7 +37,7 @@ boolean isDocked = dockState != Intent.EXTRA_DOCK_STATE_UNDOCKED;
 
 ```java
 boolean isCar = dockState == EXTRA_DOCK_STATE_CAR;
-boolean isDesk = dockState == EXTRA_DOCK_STATE_DESK || 
+boolean isDesk = dockState == EXTRA_DOCK_STATE_DESK ||
                  dockState == EXTRA_DOCK_STATE_LE_DESK ||
                  dockState == EXTRA_DOCK_STATE_HE_DESK;
 ```
