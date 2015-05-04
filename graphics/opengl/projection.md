@@ -2,7 +2,7 @@
 
 > 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/projection.html>
 
-在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于你用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：
+在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于我们用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：
 * **投影（Projection）：**这个变换会基于显示它们的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于其长宽比例和View窗口比例的不一致而发生形变。一个投影变换一般仅当OpenGL View的比例在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged(javax.microedition.khronos.opengles.GL10, int, int)">onSurfaceChanged()</a>方法中建立或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读[Mapping Coordinates for Drawn Objects](http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping)。
 * **相机视角（Camera View）：**这个变换会基于一个虚拟相机位置改变绘图对象的坐标。注意到OpenGL ES并没有定义一个实际的相机对象，取而代之的，它提供了一些辅助方法，通过对绘图对象的变换来模拟相机视角。一个相机视角变换可能仅在建立你的[GLSurfaceView](http://developer.android.com/reference/android/opengl/GLSurfaceView.html)时计算一次，也可能根据用户的行为或者你的应用的功能进行动态调整。
 
@@ -30,13 +30,13 @@ public void onSurfaceChanged(GL10 unused, int width, int height) {
 }
 ```
 
-该代码填充了一个投影矩阵：mProjectionMatrix，在下一节中，你可以在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>方法中将它和一个相机视角变换结合起来。
+该代码填充了一个投影矩阵：mProjectionMatrix，在下一节中，我们可以在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>方法中将它和一个相机视角变换结合起来。
 
-> **Note：**在你的绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，你还要实现一个相机视角，使得所有对象出现在屏幕上。
+> **Note：**在绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，我们还要实现一个相机视角，使得所有对象出现在屏幕上。
 
 ## 定义一个相机视角
 
-在你的渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成你的绘图对象所需变换的所有步骤。在下面的代码中，使用<a href="http://developer.android.com/reference/android/opengl/Matrix.html#setLookAtM(float[], int, float, float, float, float, float, float, float, float, float)">Matrix.setLookAtM()</a>方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：
+在渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成我们的绘图对象所需变换的所有步骤。在下面的代码中，使用<a href="http://developer.android.com/reference/android/opengl/Matrix.html#setLookAtM(float[], int, float, float, float, float, float, float, float, float, float)">Matrix.setLookAtM()</a>方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：
 
 ```java
 @Override
@@ -99,8 +99,8 @@ public void draw(float[] mvpMatrix) { // pass in the calculated transformation m
 }
 ```
 
-一旦你正确地计算并应用了投影变换和相机视角变换，你的图形就会以正确的比例绘制出来，它看上去会像是这样:
+一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:
 
 ![ogl-triangle-projected](ogl-triangle-projected.png "应用了投影变换和相机视图变换的三角形")
 
-现在你的应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！
+现在，应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！

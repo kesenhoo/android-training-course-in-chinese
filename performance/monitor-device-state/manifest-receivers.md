@@ -8,9 +8,8 @@
 
 更好的方法是在程序运行时开启或者关闭BroadcastReceiver。这样的话，你就可以让这些接收器仅在需要的时候被激活。
 
-<!-- More -->
-
 ## 切换是否开启接收器以提高效率
+
 我们可以使用[PackageManager](http://developer.android.com/reference/android/content/pm/PackageManager.html)来切换任何一个在Mainfest里面定义好的组件的开启状态。通过下面的方法可以开启或者关闭任何一个BroadcastReceiver：
 
 ```java

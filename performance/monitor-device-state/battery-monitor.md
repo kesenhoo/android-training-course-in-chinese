@@ -2,19 +2,17 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/monitoring-device-state/battery-monitoring.html>
 
-
 当你想通过改变后台更新操作的频率来减少对电池寿命的影响时，那么首先需要检查当前电量与充电状态。
 
 执行应用更新对电池寿命的影响是与电量和充电状态密切相关的。当使用交流电对设备充电时，更新操作的影响可以忽略不计，所以在大多数情况下，如果使用壁式充电器对设备进行充电，我们可以将刷新频率设置到最大。相反的，如果设备没有在充电状态，那么我们就需要尽量减少设备的更新操作来延长电池的续航能力。
 
 同样的，如果我们监测到电量即将耗尽时，那么应该尽可能降低甚至停止更新操作。
 
-<!-- More -->
-
 ## 判断当前充电状态
 
 首先来看一下应该如何确定当前的充电状态。[BatteryManager](http://developer.android.com/reference/android/os/BatteryManager.html)会广播一个带有电池与充电详情的[Sticky Intent](http://developer.android.com/guide/topics/fundamentals/services.html)
-因为广播的是一个sticky Intent，所以不需要注册[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)。仅仅只需要调用一个以`null`作为Receiver参数的`regiserReceiver()`方法就可以了。如下面的代码片段中展示的那样，它返回了保存当前电池信息的Intent。你也可以在这里传入一个实际的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)对象，但这并不是必须的。
+
+因为广播的是一个sticky Intent，所以不需要注册[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)。仅仅只需要调用一个以`null`作为Receiver参数的`registerReceiver()`方法就可以了。如下面的代码片段中展示的那样，它返回了保存当前电池信息的Intent。你也可以在这里传入一个实际的[BroadcastReceiver](http://developer.android.com/reference/android/content/BroadcastReceiver.html)对象，但这并不是必须的。
 
 ```java
 IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
@@ -57,11 +55,11 @@ boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
 ```java
 public class PowerConnectionReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) { 
+    public void onReceive(Context context, Intent intent) {
         int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                             status == BatteryManager.BATTERY_STATUS_FULL;
-    
+
         int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
         boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
@@ -97,4 +95,5 @@ float batteryPct = level / (float)scale;
 ```
 
 通常我们都需要在进入低电量的情况下，关闭所有后台更新来维持设备的续航，因为这个时候做任何更新等操作都极有可能是无用的，因为也许在你还没来得及处理更新的数据时，设备就因电量耗尽而自动关机了。
+
 在很多时候，用户往往会将设备放入某种底座中充电（译注：比如车载的底座式充电器），在下一节课程当中，我们将会学习如何确定当前的底座状态，以及如何监听设备底座的变化。

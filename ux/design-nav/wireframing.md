@@ -6,6 +6,8 @@
 
 ![app-navigation-screen-planning-exhaustive-map](app-navigation-screen-planning-exhaustive-map.png)
 
+**Figure 1.** 新闻应用例子的界面完备集
+
 我们下一步得去我们前几节讨论的导航模式选择，然后应用到这个界面图中。这样就能最大化导航速度并且最少化获取内容的点击次数，但又能参考 Android 做法来保证界面的直观性和一致性。此外，我们也需要根据我们不同目标设备的参数做出不同的决定。为方便，我们集中讨论平板和手持设备。
 
 ## 选择模式
@@ -18,13 +20,19 @@
 
 ![app-navigation-wireframing-map-example-phone](app-navigation-wireframing-map-example-phone.png)
 
+**Figure 2.** 手持设备上新闻应用例子的最终界面集
+
 ![app-navigation-wireframing-map-example-tablet](app-navigation-wireframing-map-example-tablet.png)
+
+**Figure 3.** 平板上新闻应用例子的最终界面集，横屏
 
 至此，得好好考虑下界面图的衍化了，以免我们选择的模式实际上用不了（比如当你画应用界面布局的草图时）。下面有个为平板衍化的界面图样例，它并排展示不同类别的 *新闻列表*，但是 *新闻详情View* 保持独立。
 
 ![app-navigation-wireframing-map-example-tablet-alt](app-navigation-wireframing-map-example-tablet-alt.png)
 
-## 打草稿
+**Figure 4.** 平板上新闻应用例子的最终界面集，竖屏
+
+## 画草稿
 
 [Wireframing](http://en.wikipedia.org/wiki/Website_wireframe)就是设计过程中你开始排布界面的那步。发挥你的创造性，想想怎么排列这些 UI 元件来帮助你的用户在你的 App 中导航。这时你要记住细枝末节是不重要的（别去想着做个实物）。
 
@@ -46,11 +54,11 @@
 
 ![app-navigation-wireframing-wires-phone](app-navigation-wireframing-wires-phone.png)
 
-** 图 5.** 新闻客户端手机竖屏Wireframe样例（下载 [SVG](http://developer.android.com/training/design-navigation/example-wireframe-phone.svg) 图）
+**Figure 5.** 新闻客户端手机竖屏Wireframe样例（下载 [SVG](http://developer.android.com/training/design-navigation/example-wireframe-phone.svg) 图）
 
 ![app-navigation-wireframing-wires-tablet](app-navigation-wireframing-wires-tablet.png)
 
-** 图 6.** 新闻客户端平板横屏Wireframe样例（下载 [SVG](http://developer.android.com/training/design-navigation/example-wireframe-tablet.svg) 图）
+**Figure 6.** 新闻客户端平板横屏Wireframe样例（下载 [SVG](http://developer.android.com/training/design-navigation/example-wireframe-tablet.svg) 图）
 
 （[下载表示设备的 Wireframe 的 SVG 图](http://developer.android.com/training/design-navigation/example-wireframe-device-template.svg)）
 
