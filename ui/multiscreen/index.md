@@ -14,15 +14,15 @@
 
 ## Lessons
 
-* [支持不同屏幕尺寸](screen-sizes.html)
+* [支持不同屏幕尺寸](screen-sizes.md)
 
   这节课程将引导你如何设计适配多种不同尺寸的布局（通过使用灵活的尺寸规格guige（dimensions），相对布局（RelativeLayout），屏幕尺寸和方向限定（qualifiers），别名过滤器（alias filter）和点9图片）。
 
-* [支持不同的屏幕密度](screen-desities.html)
+* [支持不同的屏幕密度](screen-desities.md)
 
   这节课程将演示如何支持不同像素密度的屏幕（使用密度独立像素（dip）以及为不同的密度提供合适的位图（bitmap））。
 
 
-* [实现自适应UI流（Flows）](adapt-ui.html)
+* [实现自适应UI流（Flows）](adapt-ui.md)
 
   这节课将演示如何以UI流（flow）的方式来适配一些屏幕大小/密度组合（动态布局运行时检测，响应当前布局，处理屏幕配置变化）。

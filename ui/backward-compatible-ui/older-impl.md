@@ -23,7 +23,7 @@
 
 * 图1. Eclair版本上实现tabs的类图
 
-CompatTabEclair在实例变量中保存了诸如tab文本和tab图标等tab属性，因为在老的版本中没有ActionBar.Tab对象去处理这些数据存储。
+`CompatTabEclair`在实例变量中保存了诸如tab文本和tab图标等tab属性，因为在老的版本中没有[ActionBar.Tab](http://developer.android.com/reference/android/app/ActionBar.Tab.html)对象去处理这些数据存储。
 
 ```java
 public class CompatTabEclair extends CompatTab {
@@ -44,7 +44,7 @@ public class CompatTabEclair extends CompatTab {
 }
 ```
 
-TabHelperEclair利用了TabHost控件的方法去创建[TabHost.TabSpec](http://developer.android.com/reference/android/widget/TabHost.TabSpec.html)对象和tab的页面指示效果：
+`TabHelperEclair`利用了[TabHost](http://developer.android.com/reference/android/widget/TabHost.html)控件的方法去创建[TabHost.TabSpec](http://developer.android.com/reference/android/widget/TabHost.TabSpec.html)对象和tab的页面指示效果：
 
 ```java
 public class TabHelperEclair extends TabHelper {
@@ -75,4 +75,4 @@ public class TabHelperEclair extends TabHelper {
 }
 ```
 
-现在你已经有了两种CompatTab和TabHelper的实现，一种是使用了新的APIs为了能够在Android 3.0或其后版本设备上能够运行，另一种则是使用了旧的APIs为了在Android 2.0或之前的设备上能够运行。下一课讨论在应用中使用这两种实现。
+现在你已经有了两种`CompatTab`和`TabHelper`的实现，一种是使用了新的APIs为了能够在Android 3.0或其后版本设备上能够运行，另一种则是使用了旧的APIs为了在Android 2.0或之前的设备上能够运行。下一课讨论在应用中使用这两种实现。

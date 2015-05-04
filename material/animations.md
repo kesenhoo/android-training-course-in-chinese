@@ -19,7 +19,7 @@ Material Design中的触摸反馈，是在用户与UI元素交互时，提供视
 * `?android:attr/selectableItemBackground` 用于有界Ripple动画
 * `?android:attr/selectableItemBackgroundBorderless` 用于越出视图边界的动画。它会被绘制在最近的切不是全屏的父视图上。
 
-> 注意：`selectableItemBackgroundBorderless` 是 API level 21 新加入的属性
+> **Note：**`selectableItemBackgroundBorderless` 是 API level 21 新加入的属性
 
 另外，你可以使用`ripple`元素在XML资源文件中定义一个 `RippleDrawable`。
 
@@ -110,9 +110,9 @@ Android 5.0 (API level 21) 还支持这些共有元素变换效果：
 
 ![](SceneTransition.png)
 
-### 自定义变换
+### 自定义切换
 
-首先，当你继承Material主题的style时，要通过`android:windowContentTransitions`属性来开启窗口内容变换功能。你也可以在style定义中声明进入、退出和共有元素变换：
+首先，当你继承Material主题的style时，要通过`android:windowContentTransitions`属性来开启窗口内容变换功能。你也可以在style定义中声明进入、退出和共有元素切换：
 
 ```xml
 <style name="BaseAppTheme" parent="android:Theme.Material">
@@ -131,7 +131,7 @@ Android 5.0 (API level 21) 还支持这些共有元素变换效果：
 </style>
 ```
 
-例子中的`change_image_transform` 变换定义如下：
+例子中的`change_image_transform` 切换定义如下：
 
 ```xml
 <!-- res/transition/change_image_transform.xml -->
@@ -143,7 +143,7 @@ Android 5.0 (API level 21) 还支持这些共有元素变换效果：
 
 `changeImageTransform` 元素对应 `ChangeImageTransform` 类。更多信息，请参见 `Transition`类的API文档。
 
-要在Java代码中启用窗口内容变换，调用`Window.requestFeature()`函数：
+要在代码中启用窗口内容切换，调用`Window.requestFeature()`函数：
 
 ```java
 // inside your activity (if you did not enable transitions in your theme)
@@ -162,13 +162,13 @@ getWindow().setExitTransition(new Explode());
 
 `setExitTransition()` 和 `setSharedElementExitTransition()` 函数为activity定义了退出变换效果。`setEnterTransition()` 和 `setSharedElementEnterTransition()` 函数定义了进入activity的变换效果。
 
-要获得变换的全部效果，你必须在出入的两个activity中都开启窗口内容变换。否则，调用的activity会使用退出效果，但是接着你会看到一个传统的窗口变换（比如缩放或淡入淡出）。
+要获得切换的全部效果，你必须在出入的两个activity中都开启窗口内容切换。否则，调用的activity会使用退出效果，但是接着你会看到一个传统的窗口切换（比如缩放或淡入淡出）。
 
-要尽早开始入场变换，可以在被调用的Activity上使用`Window.setAllowEnterTransitionOverlap()` 。它可以使你拥有更戏剧性的入场变换。
+要尽早开始入场切换，可以在被调用的Activity上使用`Window.setAllowEnterTransitionOverlap()` 。它可以使你拥有更戏剧性的入场切换。
 
-### 使用变换开始一个Activity
+### 使用切换启动一个Activity
 
-如果你开启Activity入场和退出效果，那么当你在用如下方法开始Activity时，变换效果会被应用：
+如果你开启Activity入场和退出效果，那么当你在用如下方法开始Activity时，切换效果会被应用：
 
 ```java
 startActivity(intent,
@@ -177,13 +177,13 @@ startActivity(intent,
 
 如果你为第二个Activity设定了入场变换，变换也会在activity开始时被启用。要在开始另一个acitivity时禁用变换，可以给bundle的选项提供一个`null`对象：
 
-### 开始一个拥有共用元素的Activity
+### 启动一个拥有共用元素的Activity
 
-要在两个拥有共用元素的activity间进行变换动画：
+要在两个拥有共用元素的activity间进行切换动画：
 
-1. 在主题中开启窗口内容变换
-2. 在style中定义共有元素变换
-3. 将变换定义为一个XML 资源文件
+1. 在主题中开启窗口内容切换
+2. 在style中定义共有元素切换
+3. 将切换定义为一个XML 资源文件
 4. 使用`android:transitionName`属性在两个layout文件中给共有元素赋予同一个名字
 5. 使用`ActivityOptions.makeSceneTransitionAnimation()`方法
 
@@ -211,7 +211,7 @@ imgContainerView.setOnClickListener(new View.OnClickListener() {
 
 对于用代码编写的共有动态视图，使用`View.setTransitionName()`方法来在两个activity中定义共有元素。
 
-要在第二个activity结束时进行逆向的场景变换动画，调用`Activity.finishAfterTransition()`方法，而不是`Activity.finish()`。
+要在第二个activity结束时进行逆向的场景切换动画，调用`Activity.finishAfterTransition()`方法，而不是`Activity.finish()`。
 
 ### 开始一个拥有多个共有元素的Activity
 
@@ -389,4 +389,4 @@ mAnimator.start();
 </set>
 ```
 
-更多信息，请参考`AnimatedVectorDrawable`的API指南。
+更多信息，请参考[`AnimatedVectorDrawable`](http://developer.android.com/reference/android/view/View.html#setSystemUiVisibility(int))的API指南。

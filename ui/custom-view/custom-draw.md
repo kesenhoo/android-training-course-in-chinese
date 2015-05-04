@@ -11,15 +11,15 @@
 
 <!-- more -->
 
-## Create Drawing Objects
+## 创建绘图对象
 android.graphics framework把绘制定义为下面两类:
 
-* 绘制什么，由Canvas控制
-* 如何绘制，由Paint控制
+* 绘制什么，由Canvas处理
+* 如何绘制，由Paint处理
 
 例如Canvas提供绘制一条直线的方法，Paint提供直线颜色。Canvas提供绘制矩形的方法，Paint定义是否使用颜色填充。简单来说：Canvas定义你在屏幕上画的图形，而Paint定义颜色，样式，字体，
 
-所以在绘制之前，你需要创建一个或者多个Paint对象。在这个PieChart 的例子，是在init（）方法实现的，由constructor调用。
+所以在绘制之前，你需要创建一个或者多个Paint对象。在这个PieChart 的例子，是在`init()`方法实现的，由constructor调用。
 
 ```java
 private void init() {
@@ -44,7 +44,7 @@ private void init() {
 
 刚开始就创建对象是一个重要的优化技巧。Views会被频繁的重新绘制，初始化许多绘制对象需要花费昂贵的代价。在onDraw方法里面创建绘制对象会严重影响到性能并使得你的UI显得卡顿。
 
-## Handle Layout Events
+## 处理布局事件
 为了正确的绘制你的view，你需要知道view的大小。复杂的自定义view通常需要根据在屏幕上的大小与形状执行多次layout计算。而不是假设这个view在屏幕上的显示大小。即使只有一个程序会使用你的view，仍然是需要处理屏幕大小不同，密度不同，方向不同所带来的影响。
 
 尽管view有许多方法是用来计算大小的，但是大多数是不需要重写的。如果你的view不需要特别的控制它的大小，唯一需要重写的方法是[onSizeChanged()](http://developer.android.com/reference/android/view/View.html#onSizeChanged(int, int, int, int)).
@@ -94,7 +94,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 * 帮助方法resolveSizeAndState()是用来创建最终的宽高值的。这个方法会通过比较view的需求大小与spec值，返回一个合适的View.MeasureSpec值，并传递到onMeasure方法中。
 * onMeasure()没有返回值。它通过调用setMeasuredDimension()来获取结果。调用这个方法是强制执行的，如果你遗漏了这个方法，会出现运行时异常。
 
-## Draw!
+## 绘图!
 每个view的onDraw都是不同的，但是有下面一些常见的操作：
 
 * 绘制文字使用drawText()。指定字体通过调用setTypeface(), 通过setColor()来设置文字颜色.

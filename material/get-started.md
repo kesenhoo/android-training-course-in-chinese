@@ -11,7 +11,7 @@
 5. 使用系统组件来创建列表和卡片
 6. 自定义动画
 
-#### 维护兼容性
+#### 维护向下兼容性
 
 你可以添加 Material Design 特性，同时保持对 Android 5.0 之前版本的兼容。更多信息，请参见[维护兼容性章节](https://developer.android.com/training/material/compatibility.html)。
 
@@ -111,4 +111,4 @@ public class MyActivity extends Activity {
 
 当你从当前 activity 进入另一个 activity 时，退出切换动画会被调用。
 
-想学习更多新的动画 API，参见自定义动画章节。
+想学习更多新的动画 API，参见[自定义动画章节](http://developer.android.com/reference/android/view/View.html#setSystemUiVisibility(int))。

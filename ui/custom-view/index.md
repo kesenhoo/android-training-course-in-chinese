@@ -24,19 +24,19 @@ Android 2.1 (API level 7) 或更高
 
 ##Lesson
 
-* [**创建一个View类**](create-view.html)
+* [**创建一个View类**](create-view.md)
 
   创建一个像内置的view，有自定义属性并支持[ADT](http://developer.android.com/sdk/eclipse-adt.html) layout编辑器。
 
-* [**自定义Drawing**](custom-draw.html)
+* [**自定义Drawing**](custom-draw.md)
 
   使用Android graphics系统使你的view拥有独特的视觉效果。
 
-* [**使得View是可交互的**](make-interactive.html)
+* [**使得View是可交互的**](make-interactive.md)
 
   用户期望view对操作反应流畅自然。这节课会讨论如何使用gesture detection, physics, 和 animation使你的用户界面有专业的水准。
 
-* [**优化View**](optimize-view.html)
+* [**优化View**](optimize-view.md)
 
   不管你的UI如何的漂亮，如果不能以高帧率流畅运行，用户也不会喜欢。学习如何避免一般的性能问题，和如何使用硬件加速来使你的自定义图像运行更流畅。
 
