@@ -96,6 +96,6 @@ tab导航相对于list和button导航，有很多即得的优点：
 
 下节课，我们讨论在内容层级中允许用户往上和回退到之前访问界面的导航的机制。
 
-[下节课：提供向上和时间导航](ancestral-temporal.html)
+[下节课：提供向上和时间导航](ancestral-temporal.md)
 
 

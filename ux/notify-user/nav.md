@@ -2,7 +2,7 @@
 
 > 编写:[fastcome1985](https://github.com/fastcome1985) - 原文:<http://developer.android.com/training/notify-user/navigation.html>
 
-* 部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 [Notifications](developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse) API引导，分为下列两种主要情况：
+部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 [Notifications](developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse) API引导，分为下列两种主要情况：
 
     * 常规的activity
     你启动的是你application工作流中的一部分[Activity](developer.android.com/reference/android/app/Activity.html)。
@@ -12,7 +12,7 @@
 
 ## 设置一个常规的Activity PendingIntent
 
-* 设置一个直接启动的入口Activity的PendingIntent，遵循以下步骤：
+设置一个直接启动的入口Activity的PendingIntent，遵循以下步骤：
 
 
 
@@ -64,9 +64,9 @@ mNotificationManager.notify(id, builder.build());
 
 ## 设置一个特定的Activity PendingIntent
 
-* 一个特定的[Activity](developer.android.com/reference/android/app/Activity.html)不需要一个返回栈，所以你不需要在manifest中定义[Activity](developer.android.com/reference/android/app/Activity.html)的层次，以及你不需要调用 [addParentStack()](developer.android.com/reference/android/support/v4/app/TaskStackBuilder.html#addParentStack(android.app.Activity))方法去构建一个返回栈。作为代替，你需要用manifest设置[Activity](developer.android.com/reference/android/app/Activity.html)任务选项，以及调用 [getActivity()](developer.android.com/reference/android/app/PendingIntent.html#getActivity(android.content.Context,%20int,%20android.content.Intent,%20int))创建[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)
+一个特定的[Activity](developer.android.com/reference/android/app/Activity.html)不需要一个返回栈，所以你不需要在manifest中定义[Activity](developer.android.com/reference/android/app/Activity.html)的层次，以及你不需要调用 [addParentStack()](developer.android.com/reference/android/support/v4/app/TaskStackBuilder.html#addParentStack(android.app.Activity))方法去构建一个返回栈。作为代替，你需要用manifest设置[Activity](developer.android.com/reference/android/app/Activity.html)任务选项，以及调用 [getActivity()](developer.android.com/reference/android/app/PendingIntent.html#getActivity(android.content.Context,%20int,%20android.content.Intent,%20int))创建[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)
 
-1 manifest中，在[Activity](developer.android.com/reference/android/app/Activity.html)的 [<activity>](developer.android.com/guide/topics/manifest/activity-element.html) 标签中增加下列属性：
+1. manifest中，在[Activity](developer.android.com/reference/android/app/Activity.html)的 [<activity>](developer.android.com/guide/topics/manifest/activity-element.html) 标签中增加下列属性：
   [android:name="activityclass"](developer.android.com/guide/topics/manifest/activity-element.html#nm)
     activity的完整的类名。
   [android:taskAffinity=""](developer.android.com/guide/topics/manifest/activity-element.html#aff)
@@ -74,12 +74,12 @@ mNotificationManager.notify(id, builder.build());
   [android:excludeFromRecents="true"](developer.android.com/guide/topics/manifest/activity-element.html#exclude)
   将新任务从最近列表中排除，目的是为了防止用户不小心返回到它。
 
-2 建立以及发布notification：
+2. 建立以及发布notification：
   a.创建一个启动[Activity](developer.android.com/reference/android/app/Activity.html)的[Intent](developer.android.com/reference/android/content/Intent.html).
   b.通过调用[setFlags()](developer.android.com/reference/android/content/Intent.html#setFlags(int))方法并设置标识[FLAG_ACTIVITY_NEW_TASK](developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK) 与 [FLAG_ACTIVITY_CLEAR_TASK](developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TASK)，来设置[Activity](developer.android.com/reference/android/app/Activity.html)在一个新的，空的任务中启动。
   c.在[Intent](developer.android.com/reference/android/content/Intent.html)中设置其他你需要的选项。
   d.通过调用 [getActivity()](http://developer.android.com/intl/zh-cn/reference/android/app/PendingIntent.html#getActivity%28android.content.Context,%20int,%20android.content.Intent,%20int%29)方法从[Intent](developer.android.com/reference/android/content/Intent.html)中创建一个 [PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)，你可以把这个[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html) 当做 [setContentIntent()](http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent%28android.app.PendingIntent%29)的参数来使用。
-* 下面的代码片段演示了这个过程：
+下面的代码片段演示了这个过程：
 
 ```java
 // Instantiate a Builder object.

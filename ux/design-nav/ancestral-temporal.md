@@ -40,4 +40,4 @@ Android 3.0 引入了 *Up* 记号，它被展示在了 Action Bar 上代替了�
 
 最后一节课中，我们应用现在为止所有课程中讨论的概念来为我们新闻应用例子创建交互设计 Wireframe（线框图）。
 
-[下节课：综合：设计我们的样例 App](wireframing.html)
+[下节课：综合：设计我们的样例 App](wireframing.md)

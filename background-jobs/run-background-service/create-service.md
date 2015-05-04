@@ -35,7 +35,7 @@ public class RSSPullService extends IntentService {
 注意一个普通Service组件的其他回调，例如`onStartCommand()`会被IntentService自动调用。在IntentService中，要避免重写那些回调。
 
 ## 2)在Manifest文件中定义IntentService
-IntentService需要在manifest文件添加相应的条目，将此条目`<service>`作为<application>元素的子元素下进行定义，如下所示：
+IntentService需要在manifest文件添加相应的条目，将此条目`<service>`作为`<application>`元素的子元素下进行定义，如下所示：
 
 ```xml
 <application
