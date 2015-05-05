@@ -118,7 +118,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android用户输入](http://hukai.me/android-training-course-in-chinese/best-user-input.html)
    * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - @[Andrwyw](https://github.com/Andrwyw)
    * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi)
-   * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html) - @2014/07/10 - 待认领
+   * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html) - @[heray1990](https://github.com/heray1990) - 30%
 * [Android后台任务](http://hukai.me/android-training-course-in-chinese/best-background.html)
    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - @[kesenhoo](https://github.com/kesenhoo)
