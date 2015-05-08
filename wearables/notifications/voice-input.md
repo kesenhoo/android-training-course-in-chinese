@@ -1,4 +1,4 @@
-# 在Notifcation中接收语音输入
+# 在 Notifcation 中接收语音输入
 
 > 编写:[wangyachen](https://github.com/wangyacheng) - 原文:<http://developer.android.com/training/wearables/notifications/voice-input.html>
 

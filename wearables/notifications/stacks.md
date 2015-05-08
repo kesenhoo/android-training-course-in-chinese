@@ -1,4 +1,4 @@
-# 以Stack的方式显示Notifications
+# 将Notification放成一叠
 
 > 编写:[wangyachen](https://github.com/wangyacheng) - 原文: <http://developer.android.com/training/wearables/notifications/stacks.html>
 
