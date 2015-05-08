@@ -12,21 +12,21 @@
 
 ## Lessons
 
-* [**抽象出新的APIs**](abstract.html)
+* [**抽象出新的APIs**](abstract.md)
 
 	决定你的应用需要的功能和接口。学习如何为你的应用定义面向特定应用的、作为中间媒介并抽象出UI组件具体实现的java接口。
 
 
-* [**代理至新的APIs**](new-impl.html)
+* [**代理至新的APIs**](new-impl.md)
 
 	学习如何创建使用新的APIs的接口的具体实现
 
 
-* [**使用旧的APIs实现新API的效果**](old-impl.html)
+* [**使用旧的APIs实现新API的效果**](old-impl.md)
 
 	学习如何创建使用老的APIs的自定义的接口实现
 
 
-* [**使用能感知版本的组件**](using-component.html)
+* [**使用能感知版本的组件**](using-component.md)
 
 	学习如何在运行的时候去选择一个具体的实现，并且开始在你的应用中使用接口。

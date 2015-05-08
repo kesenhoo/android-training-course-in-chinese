@@ -44,7 +44,7 @@ dependencies {
 
 更多信息，请参见[Palette](http://developer.android.com/reference/android/support/v7/graphics/Palette.html)类的API文档。
 
-## 创建矢量drawable
+## 创建矢量Drawable
 
 在Android 5.0 (API level 21)以上版本中，你可以定义矢量drawable，用于无损的拉伸图片。相对于一张普通图片需要为每个不同屏幕密度的设备提供一个图片来说，一个矢量图片只需要一个asset文件。要创建矢量图片，你可以在`<vector>` XML元素中定义形状。
 

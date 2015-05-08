@@ -1,4 +1,4 @@
-# 实现可适应的UI流程
+# 实现自适应UI流（Flows）
 
 > 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/adaptui.html>
 

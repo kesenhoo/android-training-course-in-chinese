@@ -12,9 +12,9 @@
 2. 在`res/values-v21/styles.xml`中定义一个同名的主题，继承自Material 主题
 3. 在`AndroidManifest.xml`中，将这个主题设置为应用的主题
 
-> 注意：如果你的应用设置了一个主题，但是没有提供备选Style，你可能无法在低于Android 5.0版本的系统中运行应用。
+> **Note:** 如果你的应用设置了一个主题，但是没有提供备选Style，你可能无法在低于Android 5.0版本的系统中运行应用。
 
-## 提供layout
+## 提供备选layout
 
 如果你根据Material Design设计的应用的Layout中没有使用任何Android 5.0 (API level 21)中新的XML属性，他们在旧版本Android中就能正常工作。否则，你要提供备选Layout。你可以在备选Layout中定义你的应用在旧版本系统中的界面。
 
@@ -98,4 +98,4 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 }
 ```
 
-> 注意：要声明应用支持哪些Android 版本，在manifest文件中使用`android:minSdkVersion`和`android:targetSdkVersion`属性。要在Android 5.0中使用Material Design特性，设置`android:targetSdkVersion`属性为21。更多信息，参见[`<uses-sdk>` API指南](https://developer.android.com/guide/topics/manifest/uses-sdk-element.html)。
+> **Note:**要声明应用支持哪些Android 版本，在manifest文件中使用`android:minSdkVersion`和`android:targetSdkVersion`属性。要在Android 5.0中使用Material Design特性，设置`android:targetSdkVersion`属性为21。更多信息，参见[`<uses-sdk>` API指南](https://developer.android.com/guide/topics/manifest/uses-sdk-element.html)。

@@ -14,27 +14,27 @@
 
 ## Lessons
 
-* [使用Tabs创建Swipe View](lateral.html)
+* [使用Tabs创建Swipe View](lateral.md)
 
   学习如何在action bar中实现tab，并提供横向分页(swipe views)在tab之间导航切换。
 
 
-* [创建抽屉导航(Navigation Drawer)](nav-drawer.html)
+* [创建抽屉导航(Navigation Drawer)](nav-drawer.md)
 
   学习如何建立隐藏于屏幕边上的界面，通过划屏(swipe)或点击action bar中的app图标来显示这个界面。
 
 
-* [提供向上导航](ancestral.html)
+* [提供向上导航](ancestral.md)
 
   学习如何使用action bar中的app图标实现向上导航
 
 
-* [提供适当的向后导航](temporal.html)
+* [提供适当的向后导航](temporal.md)
 
   学习如何正确处理特殊情况下的向后按钮(Back button)，包括在通知或app widget中的深度链接，如何将activity插入后退栈(back stack)中。
 
 
-* [实现Descendant Navigation](descendant.html)
+* [实现Descendant Navigation](descendant.md)
 
   学习更精细地导航进入你的应用信息层。
 

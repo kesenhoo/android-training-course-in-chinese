@@ -17,11 +17,13 @@
 
 ![](RecyclerView.png)
 
+**图1**. The `RecyclerView` widget.
+
 要使用 RecyclerView 组件，你需要定义一个 adapter 和 layout manager。创建 adapter，要继承 `RecyclerView.Adapter` 类。实现类的细节取决于你的数据集和视图类型。更多信息，请看以下样例。
 
 ![](list_mail.png)
 
-Layout manager 把元素视图放在 RecyclerView，并决定什么时候重用不可见的元素视图。要重用（或回收）视图时，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 `findViewById()` 查找。
+**Layout manager**把元素视图放在 `RecyclerView`，并决定什么时候重用不可见的元素视图。要重用（或回收）视图时，layout manager 会让 adapter 用另外的元素内容替换视图内的内容。回收 View 这个方法能提高性能，因为它避免了创建不必要的view对象，或执行昂贵的 `findViewById()` 查找。
 
 `RecyclerView` 提供以下内建的 layout manager:
 

@@ -2,10 +2,10 @@
 
 > 编写:[spencer198711](https://github.com/spencer198711) - 原文:<http://developer.android.com/training/backward-compatible-ui/using-component.html>
 
-既然对TabHelper和CompatTab你已经有了两种具体实现，一个为Android 3.0和其后版本，一个为Android 3.0之前的版本。现在，该使用这些实现做些事情了。这一课讨论了创建在这两种实现之前切换的逻辑，创建能够感知版本的界面布局，最终使用我们创建的后向兼容的UI组件。
+既然对`TabHelper`和`CompatTab`你已经有了两种具体实现，一个为Android 3.0和其后版本，一个为Android 3.0之前的版本。现在，该使用这些实现做些事情了。这一课讨论了创建在这两种实现之前切换的逻辑，创建能够感知版本的界面布局，最终使用我们创建的后向兼容的UI组件。
 
 ## 添加切换逻辑
-TabHelper抽象类基于当前设备的平台版本，是用来创建适当版本的TabHelper和CompatTab实例的工厂类：
+`TabHelper`抽象类基于当前设备的平台版本，是用来创建适当版本的`TabHelper`和`CompatTab`实例的工厂类：
 
 ```java
 public abstract class TabHelper {
@@ -65,7 +65,7 @@ res/layout/main.xml:
 </TabHost>
 ```
 
-对于TabHelperHoneycomb的实现，你唯一要做的就是一个包含tab内容的FrameLayout，这是由于ActionBar已经提供了tab相关的页面。
+对于`TabHelperHoneycomb`的实现，你唯一要做的就是一个包含tab内容的[FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)，这是由于[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)已经提供了tab相关的页面。
 
 res/layout-v11/main.xml:
 
@@ -76,11 +76,11 @@ res/layout-v11/main.xml:
     android:layout_height="match_parent" />
 ```
 
-在运行的时候，Android将会根据平台版本去决定使用哪个版本的main.xml布局文件。这根上一节中选择哪一个版本的TabHelper所展示的逻辑是相同的。
+在运行的时候，Android将会根据平台版本去决定使用哪个版本的`main.xml`布局文件。这根上一节中选择哪一个版本的`TabHelper`所展示的逻辑是相同的。
 
 ## 在Activity中使用TabHelper
 
-在Activity的onCreate()方法中，你可以获得一个TabHelper对象，并且使用以下代码添加tabs：
+在Activity的[onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle))方法中，你可以获得一个`TabHelper`对象，并且使用以下代码添加tabs：
 
 ```java
 @Override
@@ -102,7 +102,7 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-当运行这个应用的时候，代码会自动显示对应的界面布局和实例化对应的TabHelperHoneycomb或TabHelperEclair对象，而实际使用的类对于Actvity来说是不透明的，因为它们拥有共同的TabHelper接口。
+当运行这个应用的时候，代码会自动显示对应的界面布局和实例化对应的`TabHelperHoneycomb`或`TabHelperEclair`对象，而实际使用的类对于Actvity来说是不透明的，因为它们拥有共同的`TabHelper`接口。
 
 以下是这种实现运行在Android 2.3和Android 4.0上的界面截图：
 

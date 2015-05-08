@@ -1,4 +1,4 @@
-# 兼容不同的屏幕大小
+# 支持不同的屏幕大小
 
 > 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/screensizes.html>
 
@@ -94,9 +94,11 @@
 </RelativeLayout>
 ```
 ![](relativelayout1.png)
+
 图2：QVGA（小尺寸屏幕）屏幕下截图
 
 ![](relativelayout2.png)
+
 图3：WSVGA（大尺寸屏幕）屏幕下截图
 
 > 注意：尽管组件的尺寸发生了变化，但是它的子view之间的空间关系还是通过RelativeLayout.LayoutParams已经指定好了。
@@ -189,24 +191,28 @@ res/layout-sw600dp/main.xml,两个方框布局：
 
 最小宽度限定词只能在android3.2或者更高的版本上使用。因此，你还是需要使用抽象尺寸（small，normal，large，xlarge）来兼容以前的版本。比如，你想要将你的UI设计为在手机上只显示一个方框的布局，而在7寸平板或电视，或者其他大屏幕设备上显示多个方框的布局，你可能得提供这些文件：
 
-res/layout/main.xml：单个窗格布局
+* res/layout/main.xml：单个窗格布局
 
-res/layout-large：多个窗格布局
+* res/layout-large：多个窗格布局
 
-res/layout-sw600dp：多个窗格布局
+* res/layout-sw600dp：多个窗格布局
 
 最后两个文件都是一样的，因为其中一个将会适配Android3.2的设备，而另外一个则会适配其他Android低版本的平板或者电视。
 为了避免这些重复的文件（维护让人感觉头痛就是因为这个），你可以使用别名文件。比如，你可以定义如下布局：
-res/layout/main.xml，单个方框布局
-res/layout/main_twopans.xml，两个方框布局
+
+* res/layout/main.xml，单个方框布局
+* res/layout/main_twopans.xml，两个方框布局
+
 然后添加这两个文件：
-res/values-large/layout.xml：
+
+* res/values-large/layout.xml：
+
 ```xml
 <resources>
     <item name="main" type="layout">@layout/main_twopanes</item>
 </resources>
 ```
-res/values-sw600dp/layout.xml：
+* res/values-sw600dp/layout.xml：
 ```xml
 <resources>
     <item name="main" type="layout">@layout/main_twopanes</item>
@@ -218,17 +224,18 @@ res/values-sw600dp/layout.xml：
 
 有一些布局不管是在横向还是纵向的屏幕配置中都能显示的非常好，但是更多的时候，适当的调整一下会更好。在News Reader应用例子中，以下是布局在不同屏幕尺寸和方向的行为：
 
-小屏幕，纵向：一个窗格加logo
-小屏幕，横向：一个窗格加logo
-7寸平板，纵向：一个窗格加action bar
-7寸平板，横向：两个宽窗格加action bar
-10寸平板，纵向：两个窄窗格加action bar
-10寸平板，横向：两个宽窗格加action bar
-电视，横向：两个宽窗格加action bar
+* 小屏幕，纵向：一个窗格加logo
+* 小屏幕，横向：一个窗格加logo
+* 7寸平板，纵向：一个窗格加action bar
+* 7寸平板，横向：两个宽窗格加action bar
+* 10寸平板，纵向：两个窄窗格加action bar
+* 10寸平板，横向：两个宽窗格加action bar
+* 电视，横向：两个宽窗格加action bar
 
 这些每个布局都会在res/layout目录下定义一个xml文件，如此，应用就能根据屏幕配置的变化根据别名匹配到对应的布局来适应屏幕。
 
 res/layout/onepane.xml：
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -243,6 +250,7 @@ res/layout/onepane.xml：
 ```
 
 res/layout/onepane_with_bar.xml:
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"

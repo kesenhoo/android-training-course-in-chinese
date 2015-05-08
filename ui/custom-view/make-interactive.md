@@ -10,7 +10,7 @@
 
 <!-- more -->
 
-## Handle Input Gestures
+## 处理输入的手势
 像许多其他UI框架一样，Android提供一个输入事件模型。用户的动作会转换成触发一些回调函数的事件，你可以重写这些回调方法来定制你的程序应该如何响应用户的输入事件。在Android中最常用的输入事件是touch，它会触发[onTouchEvent(android.view.MotionEvent)](http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent))的回调。重写这个方法来处理touch事件：
 
 ```java
@@ -52,11 +52,13 @@ public boolean onTouchEvent(MotionEvent event) {
 
 当你传递一个touch事件到onTouchEvent()时，若这个事件没有被辨认出是何种gesture，它会返回false。你可以执行自定义的gesture-decection代码。
 
-## Create Physically Plausible(貌似可信的) Motion
+## 创建基本合理的物理运动
 Gestures是控制触摸设备的一种强有力的方式，但是除非你能够产出一个合理的触摸反馈，否则将是违反用户直觉的。一个很好的例子是fling手势，用户迅速的在屏幕上移动手指然后抬手离开屏幕。这个手势应该使得UI迅速的按照fling的方向进行滑动，然后慢慢停下来，就像是用户旋转一个飞轮一样。
 
 但是模拟这个飞轮的感觉并不简单，要想得到正确的飞轮模型，需要大量的物理，数学知识。幸运的是，Android有提供帮助类来模拟这些物理行为。[Scroller](http://developer.android.com/reference/android/widget/Scroller.html)是控制飞轮式的fling的基类。
 
+
+要启动一个fling，需调用`fling()`，并传入启动速率、x、y的最小值和最大值，对于启动速度值，可以使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)计算得出。
 ```java
 @Override
 public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -67,6 +69,10 @@ public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float ve
 
 > **Note:** 尽管速率是通过GestureDetector来计算的，许多开发者感觉使用这个值使得fling动画太快。通常把x与y设置为4到8倍的关系。
 
+
+调用[fling()](http://developer.android.com/reference/android/widget/Scroller.html#fling(int, int, int, int, int, int, int, int))时会为fling手势设置物理模型。然后，通过调用定期调用 [Scroller.computeScrollOffset()](http://developer.android.com/reference/android/widget/Scroller.html#computeScrollOffset())来更新Scroller。[computeScrollOffset()](http://developer.android.com/reference/android/widget/Scroller.html#computeScrollOffset())通过读取当前时间和使用物理模型来计算x和y的位置更新Scroller对象的内部状态。调用[getCurrX()](http://developer.android.com/reference/android/widget/Scroller.html#getCurrX())和[getCurrY()](http://developer.android.com/reference/android/widget/Scroller.html#getCurrY())来获取这些值。
+
+大多数view通过Scroller对象的x,y的位置直接到[scrollTo()](http://developer.android.com/reference/android/view/View.html#scrollTo(int, int))，PieChart例子稍有不同，它使用当前滚动y的位置设置图表的旋转角度。
 ```java
 if (!mScroller.isFinished()) {
     mScroller.computeScrollOffset();
@@ -100,7 +106,7 @@ if (!mScroller.isFinished()) {
  });
 ```
 
-## Make Your Transitions Smooth
+## 使过渡平滑
 用户期待一个UI之间的切换是能够平滑过渡的。UI元素需要做到渐入淡出来取代突然出现与消失。Android从3.0开始有提供[property animation framework](http://developer.android.com/guide/topics/graphics/prop-animation.html),用来使得平滑过渡变得更加容易。
 
 使用这套动画系统时，任何时候属性的改变都会影响到你的视图，所以不要直接改变属性的值。而是使用ValueAnimator来实现改变。在下面的例子中，在PieChart 中更改选择的部分将导致整个图表的旋转，以至选择的进入选择区内。ValueAnimator在数百毫秒内改变旋转量，而不是突然地设置新的旋转值。

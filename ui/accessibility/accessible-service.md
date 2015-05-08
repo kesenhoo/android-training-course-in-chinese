@@ -6,7 +6,7 @@
 
 1. 创建可达性服务(Accessibility Service)
 
-2. 配置你的可达性服务(Accessibility Service)
+2. 配置可达性服务(Accessibility Service)
 
 3. 响应可达性事件(AccessibilityEvents)
 
@@ -54,7 +54,7 @@ public class MyAccessibilityService extends AccessibilityService {
 
 如果你为这个Service创建了一个新项目，且仅仅是一个Service而不准备做成一个应用，那么你就可以移除启动的Activity(一般为MainActivity.java)，同样也记得在manifest中将这个Activity声明移除。
 
-## 配置你的Accessibility Service
+## 配置Accessibility Service
 
 设置Accessibility Service的配置变量会告诉系统如何让Service运行与何时运行。你希望响应哪种类型的事件？Service是否对所有的应用有效还是对部分指定包名的应用有效？使用哪些不同类型的反馈？
 
@@ -146,6 +146,13 @@ public void onAccessibilityEvent(AccessibilityEvent event) {
 ## 从View层级中提取更多信息
 
 这一步并不是必要步骤，但是却非常有用。Android 4.0版本中增加了一个新特性，就是能够用AccessibilityService来遍历View层级，并从产生Accessibility 事件的组件与它的父子组件中提取必要的信息。为了实现这个目的，你需要在XML文件中进行如下的配置：
+
+```xml
+android:canRetrieveWindowContent="true"
+```
+
+一旦完成，使用[getSource()](http://developer.android.com/reference/android/view/accessibility/AccessibilityRecord.html#getSource())获取一个[AccessibilityNodeInfo](http://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html)对象，如果触发事件的窗口是活动窗口，该调用只返回一个对象，如果不是,它将返回null，做出相应的反响。下面的示例是一个代码片段,当它接收到一个事件时,执行以下步骤:
+
 
 1. 立即获取到产生这个事件的Parent
 2. 在这个Parent中寻找文本标签或勾选框

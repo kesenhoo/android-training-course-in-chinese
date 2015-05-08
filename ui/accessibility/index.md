@@ -8,11 +8,11 @@
 
 ## Lessons
 
-* [**开发Accessibility应用**](accessible-app.html)
+* [**开发Accessibility应用**](accessible-app.md)
 
   学习如何让你的程序更易用，具有可达性。 允许使用键盘或者十字键(*directional pad*)来进行导航，利用Accessibility Service特性设置标签或执行事件来打造更舒适的用户体验。
 
 
-* [**编写 Accessibility Services**](accessible-service.html)
+* [**编写 Accessibility Services**](accessible-service.md)
 
   编写一个Accessibility Service来监听可达性事件，利用这些不同类型的事件和内容描述来帮助用户与应用的交互。本例将会实现利用一个TTS引擎来向用户发出语音提示的功能。

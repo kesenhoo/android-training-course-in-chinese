@@ -16,7 +16,7 @@
 
 如果你有一个复杂的UI，你应该考虑写一个自定义的ViewGroup来执行他的layout操作。与内置的view不同，自定义的view可以使得程序仅仅测量这一部分，这避免了遍历整个view的层级结构来计算大小。这个PieChart 例子展示了如何继承ViewGroup作为自定义view的一部分。PieChart 有子views，但是它从来不测量它们。而是根据他自身的layout法则，直接设置它们的大小。
 
-## Use Hardware Acceleration
+## 使用硬件加速
 
 从Android 3.0开始，Android的2D图像系统可以通过GPU (Graphics Processing Unit))来加速。GPU硬件加速可以提高许多程序的性能。但是这并不是说它适合所有的程序。Android framework让你能过随意控制你的程序的各个部分是否启用硬件加速。
 
