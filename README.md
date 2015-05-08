@@ -88,7 +88,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [Android位置信息](http://hukai.me/android-training-course-in-chinese/location/index.html) - @[penkzhou](https://github.com/penkzhou)
 * [Android可穿戴应用](http://hukai.me/android-training-course-in-chinese/building-wearables.html)
    * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.html) - @[wangyachen](https://github.com/wangyachen)
-   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https:://github.com/kesenhoo)
+   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [创建自定义的UI](http://hukai.me/android-training-course-in-chinese/wearables/ui/index.html) - @[Roya](https://github.com/RoyaAoki)
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
 * [Android企业级应用](http://hukai.me/android-training-course-in-chinese/enterprise/index.html)
