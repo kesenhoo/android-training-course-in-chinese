@@ -2,9 +2,9 @@
 
 > 编写:[Lin-H](http://github.com/Lin-H) - 原文:<http://developer.android.com/training/basics/supporting-devices/index.html>
 
-全世界的Android设备有着各种各样的大小和尺寸。而通过各种各样的设备类型，能使你通过你的app接触到广大的用户群体。为了能在各种Android平台上使用，你的app需要兼容各种不同的设备类型。某些例如语言，屏幕尺寸，Android的系统版本等重要的变量因素需要重点考虑。
+全世界的Android设备有着各种各样的大小和尺寸。通过各种各样的设备类型，能使我们通过自己的app接触到广大的用户群体。为了能在各种Android平台上使用，我们的app需要兼容各种不同的设备类型。某些例如语言，屏幕尺寸，Android的系统版本等重要的变量因素需要重点考虑。
 
-本课程会教你如何使用基础的平台功能，利用替代资源和其他功能，使你的app仅用一个app程序包(APK)，就能向用Android兼容设备的用户提供最优的用户体验。
+本课程会教我们如何使用基础的平台功能，利用替代资源和其他功能，使app仅用一个app程序包(APK)，就能向用Android兼容设备的用户提供最优的用户体验。
 
 ## Lessons
 
