@@ -41,6 +41,7 @@ PendingIntent notificationPendingIntent = PendingIntent.getActivity(this, 0, not
 
 > **Note:** 当notification呈现在主页时，系统会根据notification的语义，使用一个标准的模板来呈现它。这个模板可以在所有的表盘上进行显示。当用户往上滑动notification时，将会看到为这个notification准备的自定义的activity。
 
+<a name="UiLibrary"></a>
 ## 使用Wearable UI库创建布局
 
 当你使用Android Studio的引导功能创建一个Wearable应用的时候，会自动包含一个非官方的UI库文件。你也可以通过给build.gradle文件添加下面的依赖声明把库文件添加到项目：

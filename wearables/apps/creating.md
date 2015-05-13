@@ -85,7 +85,7 @@ Android Studio上的**Android** Tool窗口可以显示可穿戴设备的日志�
 
 当安装向导完成后，Andorid Studio创建了一个包含**mobile**与**wear**两个模块的工程。现在，我们有一个工程可以在手持设备和可穿戴设备应用中创建activity，service，layout等。在手持应用里面，需要承担大部分繁重的任务，例如网络请求，密集计算任务或者是需要大量用户交互的任务。待这些任务完成之后，通常会把任务结果通过notification发送给可穿戴设备上，或者是通过同步机制发送数据给可穿戴设备。
 
-> **Note:** 可穿戴模块包含了一个"Hello World"的activity，它是使用`WatchViewStub`类。该类根据设备屏幕是圆的还是方的来填充一个布局。`WatchViewStub`类是[wearable support library](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.html)中的一个UI组件。
+> **Note:** 可穿戴模块包含了一个"Hello World"的activity，它是使用`WatchViewStub`类。该类根据设备屏幕是圆的还是方的来填充一个布局。`WatchViewStub`类是[wearable support library](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.html#UiLibrary)中的一个UI组件。
 
 ## 安装可穿戴应用
 
@@ -113,6 +113,6 @@ Android Studio上的**Android** Tool窗口可以显示可穿戴设备的日志�
 
 **Wearable UI support library**
 
-这是一个非官方正式的library，它包含了[为可穿戴设备设计的UI组件](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.html)。我们鼓励你在你的应用中使用他们，因为这些组件是最佳实践的例证。但是他们可能随时发生变化。然而，如果library有更新，你的应用并不会发送崩溃，因为那些代码已经编译到你的应用中了。为了获取更新包中新的功能，你只需要更新链接到新的版本并相应的更新你的应用就好了。这个library只是在你需要创建可穿戴应用时才会使用到。
+这是一个非官方正式的library，它包含了[为可穿戴设备设计的UI组件](http://hukai.me/android-training-course-in-chinese/wearables/apps/layouts.html#UiLibrary)。我们鼓励你在你的应用中使用他们，因为这些组件是最佳实践的例证。但是他们可能随时发生变化。然而，如果library有更新，你的应用并不会发送崩溃，因为那些代码已经编译到你的应用中了。为了获取更新包中新的功能，你只需要更新链接到新的版本并相应的更新你的应用就好了。这个library只是在你需要创建可穿戴应用时才会使用到。
 
 在下一节课，我们将会学习如何创建为可穿戴设备设计的布局，同时学习如何使用各种语音action。
