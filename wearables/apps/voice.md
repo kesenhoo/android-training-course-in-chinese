@@ -1,4 +1,4 @@
-# 添加语音能力
+# 添加语音功能
 
 > 编写: [kesenhoo](https://github.com/kesenhoo) - 原文: <http://developer.android.com/training/wearables/apps/voice.html>
 
