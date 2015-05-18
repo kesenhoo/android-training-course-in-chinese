@@ -4,13 +4,13 @@
 
 Random Access Memory(RAM)在任何软件开发环境中都是一个很宝贵的资源。这一点在物理内存通常很有限的移动操作系统上，显得尤为突出。尽管Android的Dalvik虚拟机扮演了常规的垃圾回收的角色，但这并不意味着你可以忽视app的内存分配与释放的时机与地点。
 
-为了GC能够从你的app中及时回收内存，你需要避免内存泄露(通常由于在全局成员变量中持有对象引用而导致)并且在适当的时机(下面会讲到的lifecycle callbacks)来释放引用对象。对于大多数apps来说，Dalvik的GC会自动把离开活动线程的对象进行回收。
+为了GC能够从app中及时回收内存，我们需要注意避免内存泄露(通常由于在全局成员变量中持有对象引用而导致)并且在适当的时机(下面会讲到的lifecycle callbacks)来释放引用对象。对于大多数app来说，Dalvik的GC会自动把离开活动线程的对象进行回收。
 
 这篇文章会解释Android是如何管理app的进程与内存分配，以及在开发Android应用的时候如何主动的减少内存的使用。关于Java的资源管理机制，请参考其它书籍或者线上材料。如果你正在寻找如何分析你的内存使用情况的文章，请参考这里[Investigating Your RAM Usage](http://developer.android.com/tools/debugging/debugging-memory.html)。
 
 ## 第1部分: Android是如何管理内存的
 
-Android并没有提供内存的交换区(Swap space)，但是它有使用[paging](http://en.wikipedia.org/wiki/Paging)与[memory-mapping(mmapping)](http://en.wikipedia.org/wiki/Memory-mapped_files)的机制来管理内存。这意味着任何你修改的内存(无论是通过分配新的对象还是访问到mmaped pages的内容)都会贮存在RAM中，而且不能被paged out。因此唯一完整释放内存的方法是释放那些你可能hold住的对象的引用，这样使得它能够被GC回收。只有一种例外是：如果系统想要在其他地方reuse这个对象。
+Android并没有为内存提供交换区(Swap space)，但是它有使用[paging](http://en.wikipedia.org/wiki/Paging)与[memory-mapping(mmapping)](http://en.wikipedia.org/wiki/Memory-mapped_files)的机制来管理内存。这意味着任何你修改的内存(无论是通过分配新的对象还是去访问mmaped pages中的内容)都会贮存在RAM中，而且不能被paged out。因此唯一完整释放内存的方法是释放那些你可能hold住的对象的引用，当这个对象没有被任何其他对象所引用的时候，它就能够被GC回收了。只有一种例外是：如果系统想要在其他地方reuse这个对象。
 
 ### 1) 共享内存
 
