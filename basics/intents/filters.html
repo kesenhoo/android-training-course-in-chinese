@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Intent过滤 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>Intent过滤 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.7.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.7.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,27 +5097,27 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/intents/filters.html" target="_blank">http://developer.android.com/training/basics/intents/filters.html</a></p>
 </blockquote>
-<p>前两节课主要讲了从你的app启动另外一个app。但如果你的app的功能对别的app也有用，那么你的app应该做好响应的准备。例如，如果你创建了一个social app，它可以分享messages 或者 photos 给好友，那么最好你的app能够接收<code>ACTION_SEND</code> 的intent,这样当用户在其他app触发分享功能的时候，你的app能够出现在待选对话框。</p>
-<p>为了使得其他的app能够启动你的activity，你需要在你的manifest文件的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>标签下添加<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>的属性。</p>
-<p>当你的app被安装到设备上时，系统可以识别你的intent filter并把这些信息记录下来。当其他app使用implicit intent执行 startActivity() 或者 startActivityForResult()时，系统会自动查找出那些可以响应这个intent的activity。</p>
+<p>前两节课主要讲了从一个app启动另外一个app。但如果我们的app的功能对别的app也有用，那么其应该做好响应的准备。例如，如果创建了一个social app，它可以分享messages 或者 photos 给好友，那么最好我们的app能够接收<code>ACTION_SEND</code> 的intent,这样当用户在其他app触发分享功能的时候，我们的app能够出现在待选对话框。</p>
+<p>通过在manifest文件中的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>标签下添加<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>的属性，使其他的app能够启动我们的activity。</p>
+<p>当app被安装到设备上时，系统可以识别intent filter并把这些信息记录下来。当其他app使用implicit intent执行 startActivity() 或者 startActivityForResult()时，系统会自动查找出那些可以响应该intent的activity。</p>
 <!-- more -->
 <h2 id="intent-filter">添加Intent Filter</h2>
-<p>为了尽可能确切的定义你的activity能够handle哪些intent，每一个intent filter都应该尽可能详尽的定义好action与data。</p>
-<p>如果activity中的intent filter满足以下intent对象的标准，系统就能够把特定的intent发送给activity：</p>
+<p>为了尽可能确切的定义activity能够handle的intent，每一个intent filter都应该尽可能详尽的定义好action与data。</p>
+<p>若activity中的intent filter满足以下intent对象的标准，系统就能够把特定的intent发送给activity：</p>
 <ul>
-<li><p><strong>Action</strong>:一个想要执行的动作的名称。通常是系统已经定义好的值，例如<code>ACTION_SEND</code>或者<code>ACTION_VIEW</code>。
-在intent filt中用<a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action&gt;</code></a>指定它的值，值的类型必须为字符串，而不是API中的常量(看下面的例子)</p>
+<li><p><strong>Action</strong>:一个想要执行的动作的名称。通常是系统已经定义好的值，如<code>ACTION_SEND</code>或<code>ACTION_VIEW</code>。
+在intent filter中通过<a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action&gt;</code></a>指定它的值，值的类型必须为字符串，而不是API中的常量(看下面的例子)</p>
 </li>
-<li><p><strong>Data</strong>:Intent附带数据的描述。在intent filter中用<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>指定它的值，可以使用一个或者多个属性，你可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。</p>
+<li><p><strong>Data</strong>:Intent附带数据的描述。在intent filter中通过<a href="http://developer.android.com/guide/topics/manifest/data-element.html" target="_blank"><code>&lt;data&gt;</code></a>指定它的值，可以使用一个或者多个属性，我们可以只定义MIME type或者是只指定URI prefix，也可以只定义一个URI scheme，或者是他们综合使用。</p>
 </li>
 </ul>
 <blockquote>
-<p><strong>Note:</strong> 如果你不想handle Uri 类型的数据，那么你应该指定 android:mimeType 属性。例如 text/plain or image/jpeg.</p>
+<p><strong>Note:</strong> 如果不想handle Uri 类型的数据，那么应该指定 android:mimeType 属性。例如 text/plain or image/jpeg.</p>
 </blockquote>
 <ul>
-<li><strong>Category</strong>:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都不怎么用的到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filter中用<a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category&gt;</code></a>指定它的值。</li>
+<li><strong>Category</strong>:提供一个附加的方法来标识这个activity能够handle的intent。通常与用户的手势或者是启动位置有关。系统有支持几种不同的categories,但是大多数都很少用到。而且，所有的implicit intents都默认是 CATEGORY_DEFAULT 类型的。在intent filter中用<a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category&gt;</code></a>指定它的值。</li>
 </ul>
-<p>在你的intent filter中，你可以在<code>&lt;intent-filter&gt;</code>元素中定义对应的XML元素来声明你的activity使用何种标准。</p>
+<p>在我们的intent filter中，可以在<code>&lt;intent-filter&gt;</code>元素中定义对应的XML元素来声明我们的activity使用何种标准。</p>
 <p>例如，这个有intent filter的activity，当数据类型为文本或图像时会处理<code>ACTION_SEND</code>的intent。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"ShareActivity"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
@@ -5160,9 +5128,9 @@
     <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
-<p>每一个发送出来的intent只会包含一个action与data类型，但是handle这个intent的activity的 <code>&lt;intent-filter&gt;</code>是可以声明多个<code>&lt;action&gt;</code>, <code>&lt;category&gt;</code>与<code>&lt;data&gt;</code> 的。</p>
-<p>如果任何的两对action与data是互相矛盾的，你应该创建不同的intent filter来指定特定的action与type。</p>
-<p>例如，假设你的activity可以handle 文本与图片，无论是<code>ACTION_SEND</code>还是<code>ACTION_SENDTO</code> 的intent。在这种情况下，你必须为两个action定义两个不同的intent filter。因为<code>ACTION_SENDTO</code> intent 必须使用 Uri 类型来指定接收者使用 send 或 sendto 的地址。例如：</p>
+<p>每一个发送出来的intent只会包含一个action与data类型，但handle这个intent的activity的 <code>&lt;intent-filter&gt;</code>可以声明多个<code>&lt;action&gt;</code>, <code>&lt;category&gt;</code>与<code>&lt;data&gt;</code> 。</p>
+<p>如果任何的两对action与data是互相矛盾的，就应该创建不同的intent filter来指定特定的action与type。</p>
+<p>例如，假设我们的activity可以handle 文本与图片，无论是<code>ACTION_SEND</code>还是<code>ACTION_SENDTO</code> 的intent。在这种情况下，就必须为两个action定义两个不同的intent filter。因为<code>ACTION_SENDTO</code> intent 必须使用 Uri 类型来指定接收者使用 send 或 sendto 的地址。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"ShareActivity"</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- filter for sending text; accepts SENDTO action with sms URI schemes --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
@@ -5181,12 +5149,12 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong>为了接受implicit intents, 你必须在你的intent filter中包含 CATEGORY_DEFAULT 的category。startActivity()和startActivityForResult()方法将所有intent视为声明了CATEGORY_DEFAULT category。如果你没有在你的intent filter中声明CATEGORY_DEFAULT，你的activity将无法对implicit intent做出响应。</p>
+<p><strong>Note:</strong>为了接受implicit intents, 必须在我们的intent filter中包含 CATEGORY_DEFAULT 的category。startActivity()和startActivityForResult()方法将所有intent视为声明了CATEGORY_DEFAULT category。如果没有在的intent filter中声明CATEGORY_DEFAULT，activity将无法对implicit intent做出响应。</p>
 </blockquote>
-<p>关于更多sending 与 receiving ACTION_SEND intents来执行social sharing行为的，请查看上一课：<a href="result.html">接收Activity返回的结果(Getting a Result from an Activity)</a></p>
-<h2 id="activityhandleintent">在你的Activity中Handle发送过来的Intent</h2>
-<p>为了决定采用哪个action，你可以读取Intent的内容。</p>
-<p>你可以执行<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a> 来获取启动你的activity的那个intent。你可以在activity生命周期的任何时候去执行这个方法，但最好是在<code>onCreate()</code>或者<code>onStart()</code>里面去执行。</p>
+<p>更多sending 与 receiving ACTION_SEND intents执行social sharing行为的，请查看上一课：<a href="result.html">接收Activity返回的结果(Getting a Result from an Activity)</a></p>
+<h2 id="activityhandleintent">在Activity中Handle发送过来的Intent</h2>
+<p>为了决定采用哪个action，我们可以读取Intent的内容。</p>
+<p>可以执行<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a> 来获取启动我们activity的那个intent。我们可以在activity生命周期的任何时候去执行这个方法，但最好是在<code>onCreate()</code>或者<code>onStart()</code>里面去执行。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
     <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
@@ -5206,22 +5174,22 @@
 }
 </code></pre>
 <h2 id="result">返回Result</h2>
-<p>如果你想返回一个result给启动你的那个activity，仅仅需要执行<a href="http://developer.android.com/reference/android/app/Activity.html#setResult(int, android.content.Intent)">setResult()</a>，通过指定一个result code与result intent。当你的操作完成之后，用户需要返回到原来的activity，通过执行finish() 来关闭被叫起的activity。</p>
+<p>如果想返回一个result给启动的那个activity，仅仅需要执行<a href="http://developer.android.com/reference/android/app/Activity.html#setResult(int, android.content.Intent)">setResult()</a>，通过指定一个result code与result intent。操作完成之后，用户需要返回到原来的activity，通过执行finish() 关闭被唤起的activity。</p>
 <pre><code class="lang-java"> <span class="hljs-comment">// Create intent to deliver some kind of result data</span>
 Intent result = <span class="hljs-keyword">new</span> Intent(<span class="hljs-string">"com.example.RESULT_ACTION"</span>, Uri.parse(<span class="hljs-string">"content://result_uri"</span>);
 setResult(Activity.RESULT_OK, result);
 finish();
 </code></pre>
-<p>你必须总是指定一个result code。通常不是<code>RESULT_OK</code>就是<code>RESULT_CANCELED</code>。你可以通过Intent 来添加需要返回的数据。</p>
+<p>我们必须总是指定一个result code。通常不是<code>RESULT_OK</code>就是<code>RESULT_CANCELED</code>。我们可以通过Intent 来添加需要返回的数据。</p>
 <blockquote>
 <p><strong>Note:</strong>默认的result code是<code>RESULT_CANCELED</code>.因此，如果用户在没有完成操作之前点击了back key，那么之前的activity接受到的result code就是&quot;canceled&quot;。</p>
 </blockquote>
-<p>如果你只是纯粹想要返回一个int来表示某些返回的result数据之一，你可以设置result code为任何大于0的数值。如果你返回的result只是一个int，那么连intent都可以不需要返回了，你可以调用<code>setResult()</code>然后只传递result code如下：</p>
+<p>如果只是纯粹想要返回一个int来表示某些返回的result数据之一，则可以设置result code为任何大于0的数值。如果我们返回的result只是一个int，那么连intent都可以不需要返回了，可以调用<code>setResult()</code>然后只传递result code如下：</p>
 <pre><code class="lang-java">setResult(RESULT_COLOR_RED);
 finish();
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong>我们没有必要在意你的activity是被用startActivity() 还是 startActivityForResult()方法所叫起的。系统会自动去判断该如何传递result。在不需要的result的case下，result会被自动忽略。</p>
+<p><strong>Note:</strong>我们没有必要在意自己的activity是被用startActivity() 还是 startActivityForResult()方法所叫起的。系统会自动去判断该如何传递result。在不需要的result的case下，result会被自动忽略。</p>
 </blockquote>
 
                     

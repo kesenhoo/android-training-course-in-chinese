@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>高效加载大图 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>高效加载大图 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="4.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,11 +5097,11 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/displaying-bitmaps/load-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/load-bitmap.html</a></p>
 </blockquote>
-<p>图片有不同的形状与大小。在大多数情况下它们的实际大小都比需要呈现出来的要大很多。例如，系统Gallery程序会显示那些你使用Camera拍摄好的照片，但是那些图片的分辨率通常都比你的设备屏幕分辨率要高很多。</p>
-<p>考虑到程序是在有限的内存下工作，理想情况是你只需要在内存中加载一个低分辨率的照片即可。这个低分辨率的照片应该是与你的UI大小所匹配的，这样更便于显示。加载一个超过屏幕分辨率的高分辨率照片不仅没有任何显著的可见好处，还会占用宝贵的内存资源，另外在快速滑动图片时容易导致额外的效率问题。</p>
+<p>图片有不同的形状与大小。在大多数情况下它们的实际大小都比需要呈现的尺寸大很多。例如，系统的图库应用会显示那些我们使用相机拍摄的照片，但是那些图片的分辨率通常都比设备屏幕的分辨率要高很多。</p>
+<p>考虑到应用是在有限的内存下工作的，理想情况是我们只需要在内存中加载一个低分辨率的照片即可。为了更便于显示，这个低分辨率的照片应该是与其对应的UI控件大小相匹配的。加载一个超过屏幕分辨率的高分辨率照片不仅没有任何显而易见的好处，还会占用宝贵的内存资源，另外在快速滑动图片时容易产生额外的效率问题。</p>
 <p>这一课会介绍如何通过加载一个缩小版本的图片，从而避免超出程序的内存限制。</p>
 <h2 id="read-bitmap-dimensions-and-type">读取位图的尺寸与类型(Read Bitmap Dimensions and Type)</h2>
-<p><a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html" target="_blank">BitmapFactory</a>提供了一些decode的方法 (<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options)">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options)">decodeResource()</a>, etc.) 用来从不同的资源中创建一个Bitmap。 根据你的图片数据源来选择合适的decode方法。 那些方法在构造位图的时候会尝试分配内存，因此会容易导致<code>OutOfMemory</code>的异常。每一种decode方法都提供了通过<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html" target="_blank">BitmapFactory.Options</a> 来设置一些附加的标记来指定decode的选项。设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds" target="_blank">inJustDecodeBounds</a> 属性为<code>true</code>可以在decoding的时候避免内存的分配，它会返回一个<code>null</code>的bitmap，但是可以获取到 outWidth, outHeight 与 outMimeType。这个技术可以允许你在构造bitmap之前优先读图片的尺寸与类型。</p>
+<p><a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html" target="_blank">BitmapFactory</a>提供了一些解码（decode）的方法（<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">decodeByteArray()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeFile(java.lang.String, android.graphics.BitmapFactory.Options)">decodeFile()</a>, <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeResource(android.content.res.Resources, int, android.graphics.BitmapFactory.Options)">decodeResource()</a>等），用来从不同的资源中创建一个Bitmap。 我们应该根据图片的数据源来选择合适的解码方法。 这些方法在构造位图的时候会尝试分配内存，因此会容易导致<code>OutOfMemory</code>的异常。每一种解码方法都可以通过<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html" target="_blank">BitmapFactory.Options</a>设置一些附加的标记，以此来指定解码选项。设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds" target="_blank">inJustDecodeBounds</a> 属性为<code>true</code>可以在解码的时候避免内存的分配，它会返回一个<code>null</code>的Bitmap，但是可以获取到 outWidth, outHeight 与 outMimeType。该技术可以允许你在构造Bitmap之前优先读图片的尺寸与类型。</p>
 <pre><code class="lang-java">BitmapFactory.Options options = <span class="hljs-keyword">new</span> BitmapFactory.Options();
 options.inJustDecodeBounds = <span class="hljs-keyword">true</span>;
 BitmapFactory.decodeResource(getResources(), R.id.myimage, options);
@@ -5141,17 +5109,17 @@ BitmapFactory.decodeResource(getResources(), R.id.myimage, options);
 <span class="hljs-keyword">int</span> imageWidth = options.outWidth;
 String imageType = options.outMimeType;
 </code></pre>
-<p>为了避免<code>java.lang.OutOfMemory</code> 的异常，我们需要在真正decode图片之前检查它的尺寸，除非你确定这个数据源提供了准确无误的图片且不会导致占用过多的内存。</p>
+<p>为了避免<code>java.lang.OutOfMemory</code> 的异常，我们需要在真正解析图片之前检查它的尺寸（除非你能确定这个数据源提供了准确无误的图片且不会导致占用过多的内存）。</p>
 <h2 id="load-a-scaled-down-version-into-memory">加载一个按比例缩小的版本到内存中(Load a Scaled Down Version into Memory)</h2>
-<p>通过上面的步骤我们已经知道了图片的尺寸，那些数据可以用来决定是应该加载整个图片到内存中还是加载一个缩小的版本。有下面一些因素需要考虑：</p>
+<p>通过上面的步骤我们已经获取到了图片的尺寸，这些数据可以用来帮助我们决定应该加载整个图片到内存中还是加载一个缩小的版本。有下面一些因素需要考虑：</p>
 <ul>
 <li>评估加载完整图片所需要耗费的内存。</li>
-<li>程序在加载这张图片时会涉及到其他内存需求。</li>
-<li>呈现这张图片的组件的尺寸大小。</li>
+<li>程序在加载这张图片时可能涉及到的其他内存需求。</li>
+<li>呈现这张图片的控件的尺寸大小。</li>
 <li>屏幕大小与当前设备的屏幕密度。</li>
 </ul>
-<p>例如，如果把一个原图是<code>1024*768</code> pixel的图片显示到ImageView为<code>128*96</code> pixel的缩略图上就没有必要把整张图片都加载到内存中。</p>
-<p>为了告诉decoder去加载一个低版本的图片到内存，需要在你的<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html" target="_blank">BitmapFactory.Options</a> 中设置 inSampleSize 的值。例如, 一个分辨率为2048x1536的图片，如果设置 inSampleSize 为4，那么会产出一个大概为512x384的bitmap。加载这张小的图片仅仅使用大概0.75MB的内存，如果是加载完整尺寸的图片，那么大概需要花费12MB(前提都是bitmap的配置是 ARGB_8888). 下面有一段根据目标图片大小来计算Sample图片大小的代码示例：</p>
+<p>例如，如果把一个大小为1024x768像素的图片显示到大小为128x96像素的ImageView上吗，就没有必要把整张原图都加载到内存中。</p>
+<p>为了告诉解码器去加载一个缩小版本的图片到内存中，需要在<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html" target="_blank">BitmapFactory.Options</a> 中设置 inSampleSize 的值。例如, 一个分辨率为2048x1536的图片，如果设置 inSampleSize 为4，那么会产出一个大约512x384大小的Bitmap。加载这张缩小的图片仅仅使用大概0.75MB的内存，如果是加载完整尺寸的图片，那么大概需要花费12MB（前提都是Bitmap的配置是 ARGB_8888）。下面有一段根据目标图片大小来计算Sample图片大小的代码示例：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">calculateInSampleSize</span><span class="hljs-params">(
             BitmapFactory.Options options, <span class="hljs-keyword">int</span> reqWidth, <span class="hljs-keyword">int</span> reqHeight)</span> </span>{
     <span class="hljs-comment">// Raw height and width of image</span>
@@ -5176,9 +5144,9 @@ String imageType = options.outMimeType;
 }
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong> 设置<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a>为2的幂是因为decoder最终还是会对非2的幂的数进行向下处理，获取到最靠近2的幂的数。详情参考<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a>的文档。</p>
+<p><strong>Note:</strong> 设置<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a>为2的幂是因为解码器最终还是会对非2的幂的数进行向下处理，获取到最靠近2的幂的数。详情参考<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a>的文档。</p>
 </blockquote>
-<p>为了使用这个方法，首先需要设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds" target="_blank">inJustDecodeBounds</a> 为 <code>true</code>, 把options的值传递过来，然后设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a> 的值并设置 inJustDecodeBounds 为 <code>false</code> 来重新Decode一遍。</p>
+<p>为了使用该方法，首先需要设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inJustDecodeBounds" target="_blank">inJustDecodeBounds</a> 为 <code>true</code>, 把options的值传递过来，然后设置 <a href="http://developer.android.com/reference/android/graphics/BitmapFactory.Options.html#inSampleSize" target="_blank">inSampleSize</a> 的值并设置 inJustDecodeBounds 为 <code>false</code>，之后重新调用相关的解码方法。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Bitmap <span class="hljs-title">decodeSampledBitmapFromResource</span><span class="hljs-params">(Resources res, <span class="hljs-keyword">int</span> resId,
         <span class="hljs-keyword">int</span> reqWidth, <span class="hljs-keyword">int</span> reqHeight)</span> </span>{
 
@@ -5195,11 +5163,11 @@ String imageType = options.outMimeType;
     <span class="hljs-keyword">return</span> BitmapFactory.decodeResource(res, resId, options);
 }
 </code></pre>
-<p>使用上面这个方法可以简单的加载一张任意大小的图片并最终显示为一个<strong>接近</strong>100*100 pixel样式的缩略图。像下面演示的一样:</p>
+<p>使用上面这个方法可以简单地加载一张任意大小的图片。如下面的代码样例显示了一个<strong>接近</strong> 100x100像素的缩略图：</p>
 <pre><code class="lang-java">mImageView.setImageBitmap(
     decodeSampledBitmapFromResource(getResources(), R.id.myimage, <span class="hljs-number">100</span>, <span class="hljs-number">100</span>));
 </code></pre>
-<p>你可以通过替换合适的<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">BitmapFactory.decode*</a> 方法来写一个类似的方法从其他的数据源进行decode bitmap。</p>
+<p>我们可以通过替换合适的<a href="http://developer.android.com/reference/android/graphics/BitmapFactory.html#decodeByteArray(byte[], int, int, android.graphics.BitmapFactory.Options)">BitmapFactory.decode*</a> 方法来实现一个类似的方法，从其他的数据源解析Bitmap。</p>
 
                     
                     </section>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>淡化系统Bar | Android官方培训课程中文版(v0.9.2)</title>
+        <title>淡化系统Bar | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.5.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.5.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,14 +5091,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_251">
+                    <section class="normal" id="section-gitbook_249">
                     
                         <h1 id="bar">淡化系统Bar</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 原文:<a href="http://developer.android.com/training/system-ui/dim.html" target="_blank">http://developer.android.com/training/system-ui/dim.html</a></p>
 </blockquote>
-<p>本课程将向你讲解如何在Android 4.0(<em>API level 14</em>)与更高的的系统版本上淡化系统Bar(状态栏与导航栏)。早期版本的Android没有提供一个自带的方法来淡化系统Bar。</p>
-<p>当你使用这个方法的时候，内容区域并不会发生大小的变化，只是系统栏的图标会收起来。一旦用户触摸状态栏或者是导航栏的时候，这两个系统栏都会变得完全可见。这种方法的优势是系统栏仍然可见，但是它们的细节被隐藏掉了，因此可以在不牺牲快捷访问系统Bar的情况下创建一个沉浸式的体验。</p>
+<p>本课程将向你讲解如何在Android 4.0(<em>API level 14</em>)与更高的的系统版本上淡化系统栏(System bar,状态栏与导航栏)。早期版本的Android没有提供一个自带的方法来淡化系统栏。</p>
+<p>当你使用这个方法的时候，内容区域并不会发生大小的变化，只是系统栏的图标会收起来。一旦用户触摸状态栏或者是导航栏的时候，这两个系统栏就又都会完全显示（无透明度）。这种方法的优势是系统栏仍然可见，但是它们的细节被隐藏掉了，因此可以在不牺牲快捷访问系统栏的情况下创建一个沉浸式的体验。</p>
 <p><strong>这节课将教您</strong></p>
 <ol>
 <li>淡化状态栏和导航栏</li>
@@ -5141,21 +5109,21 @@
 <li><a href="http://developer.android.com/guide/topics/ui/actionbar.html" target="_blank">Action Bar API 指南</a></li>
 <li><a href="http://developer.android.com/design/index.html" target="_blank">Android Design Guide</a></li>
 </ul>
-<h2 id="1">1)淡化状态栏和系统栏</h2>
-<p>在版本为4.0以上的Android系统上，你可以像如下使用<code>SYSTEM_UI_FLAG_LOW_PROFILE</code>这个标签。</p>
+<h2 id="">淡化状态栏和系统栏</h2>
+<p>如果要淡化状态和通知栏，在版本为4.0以上的Android系统上，你可以像如下使用<code>SYSTEM_UI_FLAG_LOW_PROFILE</code>这个标签。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// This example uses decor view, but you can use any visible view.</span>
 View decorView = getActivity().getWindow().getDecorView();
 <span class="hljs-keyword">int</span> uiOptions = View.SYSTEM_UI_FLAG_LOW_PROFILE;
 decorView.setSystemUiVisibility(uiOptions);
 </code></pre>
-<p>一旦用户触摸到了状态栏或者是系统栏，这个标签就会被清除，使系统栏重新显示出来。在标签被清除的情况下，如果你想重新淡化系统栏就必须重新设定它。</p>
-<p>图片1展示了一个图库中的图片，界面的系统栏都已被淡化（需要注意的是图库应用完全隐藏状态栏，而不是淡化它）；注意导航栏（图片的右侧）上变暗的白色的小点，他们代表了被隐藏的导航操作。</p>
-<p><img src="low_profile_hide2x.png" alt="low_profile_hide2x">
-<strong>图1.</strong>淡化的系统栏</p>
+<p>一旦用户触摸到了状态栏或者是系统栏，这个标签就会被清除，使系统栏重新显现（无透明度）。在标签被清除的情况下，如果你想重新淡化系统栏就必须重新设定这个标签。</p>
+<p>图1展示了一个图库中的图片，界面的系统栏都已被淡化（需要注意的是图库应用完全隐藏状态栏，而不是淡化它）；注意导航栏（图片的右侧）上变暗的白色的小点，他们代表了被隐藏的导航操作。</p>
+<p><img src="low_profile_hide2x.png" alt="low_profile_hide2x"></p>
+<p><strong>图1.</strong>淡化的系统栏</p>
 <p>图2展示的是同一张图片，系统栏处于显示的状态。</p>
-<p><img src="low_profile_show2x.png" alt="low_profile_show2x">
-<strong>图2.</strong>显示的系统栏</p>
-<h2 id="2">2)显示状态栏与导航栏</h2>
+<p><img src="low_profile_show2x.png" alt="low_profile_show2x"></p>
+<p><strong>图2.</strong>显示的系统栏</p>
+<h2 id="">显示状态栏与导航栏</h2>
 <p>如果你想动态的清除显示标签，你可以使用<code>setSystemUiVisibility()</code>方法：</p>
 <pre><code class="lang-java">View decorView = getActivity().getWindow().getDecorView();
 <span class="hljs-comment">// Calling setSystemUiVisibility() with a value of 0 clears</span>

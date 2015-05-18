@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>更新Notification | Android官方培训课程中文版(v0.9.2)</title>
+        <title>更新Notification | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.3.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.3.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,25 +5091,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_277">
+                    <section class="normal" id="section-gitbook_276">
                     
                         <h1 id="notification">更新Notification</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/notify-user/managing.html" target="_blank">http://developer.android.com/training/notify-user/managing.html</a></p>
 </blockquote>
-<ul>
-<li><p>当你需要对同一事件发布多次Notification时，你应该避免每次都生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。</p>
-</li>
-<li><p>下面的章节描述了如何更新Notifications，以及如何移除它们。</p>
-</li>
-</ul>
+<p>当你需要对同一事件发布多次Notification时，你应该避免每次都生成一个全新的Notification。相反，你应该考虑去更新先前的Notification，或者改变它的值，或者增加一些值，或者两者同时进行。</p>
+<p>下面的章节描述了如何更新Notifications，以及如何移除它们。</p>
 <h2 id="notification">改变一个Notification</h2>
-<ul>
-<li><p>想要设置一个可以被更新的Notification，需要在发布它的时候调用<a href="developer.android.com/reference/android/app/NotificationManager.html#notify(int,%20android.app.Notification">NotificationManager.notify(ID, notification)</a>)方法为它指定一个notification ID。更新一个已经发布的Notification，需要更新或者创建一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>对象，并从这个对象创建一个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>对象，然后用与先前一样的ID去发布这个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>。</p>
-</li>
-<li><p>下面的代码片段演示了更新一个notification来反映事件发生的次数，它把notification堆积起来，显示一个总数。</p>
-</li>
-</ul>
+<p>想要设置一个可以被更新的Notification，需要在发布它的时候调用<a href="developer.android.com/reference/android/app/NotificationManager.html#notify(int,%20android.app.Notification">NotificationManager.notify(ID, notification)</a>)方法为它指定一个notification ID。更新一个已经发布的Notification，需要更新或者创建一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">NotificationCompat.Builder</a>对象，并从这个对象创建一个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>对象，然后用与先前一样的ID去发布这个<a href="developer.android.com/reference/android/app/Notification.html">Notification</a>。</p>
+<p>下面的代码片段演示了更新一个notification来反映事件发生的次数，它把notification堆积起来，显示一个总数。</p>
 <pre><code class="lang-java">
 mNotificationManager =
         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -5164,9 +5124,7 @@ numMessages = <span class="hljs-number">0</span>;
 ...
 </code></pre>
 <h2 id="notification">移除Notification</h2>
-<ul>
-<li>Notifications 将持续可见，除非下面任何一种情况发生。</li>
-</ul>
+<p>Notifications 将持续可见，除非下面任何一种情况发生。</p>
 <pre><code>* 用户清除Notification单独地或者使用“清除所有”（如果Notification能被清除）。
 * 你在创建notification时调用了 setAutoCancel(developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setAutoCancel(boolean))方法，以及用户点击了这个notification，
 * 你为一个指定的 notification ID调用了[cancel()](developer.android.com/reference/android/app/NotificationManager.html#cancel(int))方法。这个方法也会删除正在进行的notifications。

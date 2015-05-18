@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>通过蓝牙进行调试 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>通过蓝牙进行调试 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.2.5" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.2.5" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,55 +5091,56 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_282">
+                    <section class="normal" id="section-gitbook_280">
                     
                         <h1 id="">通过蓝牙进行调试</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文: <a href="http://developer.android.com/training/wearables/apps/bt-debugging.html" target="_blank">http://developer.android.com/training/wearables/apps/bt-debugging.html</a></p>
 </blockquote>
-<p>你可以通过蓝牙来调试你的可穿戴应用，通过蓝牙把调试数据输出到手持设备上，手持设备是有连接到开发电脑上的。</p>
+<p>我们可以通过蓝牙来调试我们的可穿戴应用。即通过蓝牙把调试数据输出到已经连接了开发电脑的手持设备上。</p>
 <h2 id="">搭建好设备用来调试</h2>
-<ul>
+<ol>
 <li>开启手持设备的USB调试：<ul>
 <li>打开设置应用并滑动到底部。</li>
-<li>如果在设置里面没有开发者选项，点击关于手机，滑动到底部，点击build number 7次。</li>
-<li>返回并点击开发者选项。</li>
-<li>开启USB调试。</li>
+<li>如果在设置里面没有开发者选项，点击<strong>关于手机</strong>（或者<strong>关于平板</strong>），滑动到底部，点击build number 7次。</li>
+<li>返回并点击<strong>开发者选项</strong>。</li>
+<li>开启<strong>USB调试</strong>。</li>
 </ul>
 </li>
 <li>开启可穿戴设备的蓝牙调试：<ul>
 <li>点击主界面2次，来到Wear菜单界面。</li>
-<li>滑动到底部，点击设置。</li>
-<li>滑动到底部，如果没有开发者选项，点击Build Number 7次。</li>
-<li>点击开发者选项。</li>
-<li>开启蓝牙调试。</li>
+<li>滑动到底部，点击<strong>设置</strong>。</li>
+<li>滑动到底部，如果没有<strong>开发者选项</strong>，点击<strong>关于</strong>，然后点击Build Number 7次。</li>
+<li>点击<strong>开发者选项</strong>。</li>
+<li>开启<strong>蓝牙调试</strong>。</li>
 </ul>
 </li>
-</ul>
+</ol>
 <h2 id="">建立调试会话</h2>
 <ol>
-<li>在手持设备上，打开<code>Android Wear</code>这个伴侣应用。</li>
-<li>点击右上角的菜单，选择设置。</li>
-<li>开启蓝牙调试。你将会在选项下面看到一个小的状态信息：<pre><code class="lang-xml">Host: disconnected
+<li>在手持设备上，打开<code>Android Wear</code>配套应用。</li>
+<li>点击右上角的菜单，选择<strong>设置</strong>。</li>
+<li>开启<strong>蓝牙调试</strong>。我们将会在选项下面看到一个小的状态信息：<pre><code class="lang-xml">Host: disconnected
 Target: connected
 </code></pre>
 </li>
-<li>通过USB连接手持设备到你的电脑上，并执行下面的命令：<pre><code class="lang-xml">adb forward tcp:4444 localabstract:/adb-hub; adb connect localhost:4444
+<li>通过USB连接手持设备到电脑上，并执行下面的命令：<pre><code class="lang-xml">adb forward tcp:4444 localabstract:/adb-hub
+adb connect localhost:4444
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong> 你可以使用任何可用的端口。</p>
+<p><strong>Note:</strong> 我们可以使用任何可用的端口。</p>
 </blockquote>
 </li>
 </ol>
-<p>在<code>Android Wear</code>伴侣应用上，你将会看到状态变为：</p>
+<p>在<code>Android Wear</code>配套应用上，我们将会看到状态变为：</p>
 <pre><code class="lang-xml">Host: connected
 Target: connected
 </code></pre>
-<h2 id="">调试你的应用</h2>
-<p>当运行abd devices的命令时，你的可穿戴设备是作为localhost:4444的。执行任何的adb命令，需要使用下面的格式：</p>
+<h2 id="">调试应用</h2>
+<p>当运行<code>abd devices</code>的命令时，我们的可穿戴设备应该表示为localhost:4444。执行任何的<code>adb</code>命令，需要使用下面的格式：</p>
 <pre><code class="lang-xml">adb -s localhost:4444 <span class="hljs-tag">&lt;<span class="hljs-title">command</span>&gt;</span>
 </code></pre>
-<p>如果没有任何其他的设备通过TCP/IP连接到手持设备，你可以使用下面的简短命令：</p>
+<p>如果没有任何其他的设备通过TCP/IP连接到手持设备（即模拟器），我们可以使用下面的简短命令：</p>
 <pre><code class="lang-xml">adb -e <span class="hljs-tag">&lt;<span class="hljs-title">command</span>&gt;</span>
 </code></pre>
 <p>例如：</p>

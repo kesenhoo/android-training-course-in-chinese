@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>代理至新的APIs | Android官方培训课程中文版(v0.9.2)</title>
+        <title>代理至新的APIs | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.3.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.3.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_239">
+                    <section class="normal" id="section-gitbook_237">
                     
                         <h1 id="apis">代理至新的APIs</h1>
 <blockquote>
@@ -5133,13 +5101,13 @@
 <h2 id="apistabs">使用较新的APIs实现Tabs</h2>
 <p>CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使用了使用较新的APIs。由于抽象类在之前的课程中定义并且是对新APIs接口（类结构、方法签名等等）的镜像，使用新APIs的具体子类只是简单的代理方法调用和方法调用的结果。</p>
 <p>你可以在这些具体子类中直接使用较新的APIs，由于使用延迟类加载的方式，在早期版本的设备上并不会发生崩溃现象。这些类在首次次被访问（实例化类对象或者访问类的静态属性或静态方法）的时候才会去加载并初始化。因此，只要你不在Honeycomb之前的设备上实例化Honeycomb相关的实现，dalvik虚拟机都不会抛出<a href="http://developer.android.com/reference/java/lang/VerifyError.html" target="_blank">VerifyError</a>异常。</p>
-<p>对于本实现，一个比较好的命名约定是把具体子类需要的API等级或者版本名字附加在APIs接口的后边。例如，本地tab实现可以由CompatTabHoneycomb和abHelperHoneycomb这两个类提供，名字后面附加Honeycomb是由于它们都依赖于Android 3.0（API等级11）之后版本的APIs。</p>
+<p>对于本实现，一个比较好的命名约定是把具体子类需要的API等级或者版本名字附加在APIs接口的后边。例如，本地tab实现可以由<code>CompatTabHoneycomb</code>和<code>abHelperHoneycomb</code>这两个类提供，名字后面附加Honeycomb是由于它们都依赖于Android 3.0（API等级11）之后版本的APIs。</p>
 <p><img src="backward-compatible-ui-classes-honeycomb.png" alt="backward-compatible-ui-classes-honeycomb"></p>
 <ul>
 <li>图1. Honeycomb上tabs实现的类关系图.</li>
 </ul>
 <h2 id="compattabhoneycomb">实现CompatTabHoneycomb</h2>
-<p>CompatTabHoneycomb是CompatTab抽象类的具体实现并用来引用单独的tabs。CompatTabHoneycomb只是简单的代理<a href="http://developer.android.com/reference/android/app/ActionBar.Tab.html" target="_blank">ActionBar.Tab</a>对象的方法调用。
+<p><code>CompatTabHoneycomb</code>是<code>CompatTab</code>抽象类的具体实现并用来引用单独的tabs。<code>CompatTabHoneycomb</code>只是简单的代理<a href="http://developer.android.com/reference/android/app/ActionBar.Tab.html" target="_blank">ActionBar.Tab</a>对象的方法调用。
 开始使用ActionBar.Tab的APIs实现CompatTabHoneycomb：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CompatTabHoneycomb</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CompatTab</span> </span>{
     <span class="hljs-comment">// The native tab object that this CompatTab acts as a proxy for.</span>
@@ -5160,8 +5128,8 @@
 }
 </code></pre>
 <h2 id="tabhelperhoneycomb">实现TabHelperHoneycomb</h2>
-<p>TabHelperHoneycomb是TabHelper抽象类的具体实现，TabHelperHoneycomb代理方法调用到<a href="http://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>对象，而这个ActionBar对象是从包含他的Activity中获取的。</p>
-<p>实现TabHelperHoneycomb，代理其方法调用到ActionBar的API：</p>
+<p><code>TabHelperHoneycomb</code>是<code>TabHelper</code>抽象类的具体实现，<code>TabHelperHoneycomb</code>代理方法调用到<a href="http://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>对象，而这个ActionBar对象是从包含他的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>中获取的。</p>
+<p>实现<code>TabHelperHoneycomb</code>，代理其方法调用到<a href="http://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>的API：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TabHelperHoneycomb</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">TabHelper</span> </span>{
     ActionBar mActionBar;
     ...

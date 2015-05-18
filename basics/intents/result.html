@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>接收Activity返回的结果 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>接收Activity返回的结果 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.7.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.7.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,16 +5097,16 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/intents/result.html" target="_blank">http://developer.android.com/training/basics/intents/result.html</a></p>
 </blockquote>
-<p>启动另外一个activity并不一定是单向的。你也可以启动另外一个activity然后接受一个result回来。为了接受这个result，你需要使用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> ，而不是<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>。</p>
-<p>例如，你的app可以启动一个camera程序并接受拍的照片作为result。或者你可以启动People程序并获取其中联系的人的详情作为result。</p>
-<p>当然，被启动的activity需要指定返回的result。它需要把这个result作为另外一个intent对象返回，你的activity需要在<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>的回调方法里面去接收result。</p>
+<p>启动另外一个activity并不一定是单向的。我们也可以启动另外一个activity然后接受一个返回的result。为接受result，我们需要使用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a> ，而不是<a href="http://developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)">startActivity()</a>。</p>
+<p>例如，我们的app可以启动一个camera程序并接受拍的照片作为result。或者可以启动联系人程序并获取其中联系的人的详情作为result。</p>
+<p>当然，被启动的activity需要指定返回的result。它需要把这个result作为另外一个intent对象返回，我们的activity需要在<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>的回调方法里面去接收result。</p>
 <blockquote>
-<p><strong>Note:</strong>在执行<code>startActivityForResult()</code>时，你可以使用explicit 或者 implicit 的intent。当你启动另外一个位于你的程序中的activity时，你应该使用explicit intent来确保你可以接收到期待的结果。</p>
+<p><strong>Note:</strong>在执行<code>startActivityForResult()</code>时，可以使用explicit 或者 implicit 的intent。当启动另外一个位于的程序中的activity时，我们应该使用explicit intent来确保可以接收到期待的结果。</p>
 </blockquote>
 <!-- more -->
 <h2 id="activity">启动Activity</h2>
-<p>对于startActivityForResult() 方法中的intent与之前介绍的并没有什么差异，只不过是需要在这个方法里面多添加一个int类型的参数。</p>
-<p>这个integer的参数叫做&quot;request code&quot;，用于标识你的请求。当你接收到result Intent时，可以从回调方法里面的参数去判断这个result是否是你想要的。</p>
+<p>对于startActivityForResult() 方法中的intent与之前介绍的并无太大差异，不过是需要在这个方法里面多添加一个int类型的参数。</p>
+<p>该integer参数称为&quot;request code&quot;，用于标识请求。当我们接收到result Intent时，可从回调方法里面的参数去判断这个result是否是我们想要的。</p>
 <p>例如，下面是一个启动activity来选择联系人的例子：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> PICK_CONTACT_REQUEST = <span class="hljs-number">1</span>;  <span class="hljs-comment">// The request code</span>
 ...
@@ -5149,13 +5117,13 @@
 }
 </code></pre>
 <h2 id="result">接收Result</h2>
-<p>当用户完成了启动之后activity操作之后，系统会调用你的activity的onActivityResult() 回调方法。这个方法有三个参数：</p>
+<p>当用户完成了启动之后activity操作之后，系统会调用我们activity中的onActivityResult() 回调方法。该方法有三个参数：</p>
 <ul>
-<li>你通过startActivityForResult()传递的request code。</li>
+<li>通过startActivityForResult()传递的request code。</li>
 <li>第二个activity指定的result code。如果操作成功则是<code>RESULT_OK</code> ，如果用户没有操作成功，而是直接点击回退或者其他什么原因，那么则是<code>RESULT_CANCELED</code></li>
-<li>第三个参数则是intent,它包含了返回的result数据部分。</li>
+<li>第它包含了返回的result数据的intent。</li>
 </ul>
-<p>例如，下面是如何处理pick a contact的result的例子：对应上面的例子</p>
+<p>例如，下面显示了如何处理pick a contact的result：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
     <span class="hljs-comment">// Check which request we're responding to</span>
@@ -5170,10 +5138,10 @@
     }
 }
 </code></pre>
-<p>在这个例子中被返回的Intent中使用Uri的形式来表示返回的联系人。</p>
-<p>为了正确的handle这些result，你必须了解那些result intent的格式。对于你自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在<code>data</code>数据区返回一个 Bitmap （see the class about <a href="http://developer.android.com/training/camera/index.html" target="_blank">Capturing Photos</a>).</p>
+<p>本例中被返回的Intent使用Uri的形式来表示返回的联系人。</p>
+<p>为正确处理这些result，我们必须了解那些result intent的格式。对于自己程序里面的返回result是比较简单的。Apps都会有一些自己的api来指定特定的数据。例如，People app (Contacts app on some older versions) 总是返回一个URI来指定选择的contact，Camera app 则是在<code>data</code>数据区返回一个 Bitmap （see the class about <a href="http://developer.android.com/training/camera/index.html" target="_blank">Capturing Photos</a>).</p>
 <h3 id="">读取联系人数据</h3>
-<p>上面的代码展示了如何获取联系人的返回结果，但没有说清楚如何从结果中读取数据，因为这需要更多关于<a href="http://developer.android.com/guide/topics/providers/content-providers.html" target="_blank">content providers</a>的知识。但如果你想知道的话，下面是一段代码，展示如何从被选的联系人中读出电话号码。</p>
+<p>上面的代码展示了如何获取联系人的返回结果，但没有说清楚如何从结果中读取数据，因为这需要更多关于<a href="http://developer.android.com/guide/topics/providers/content-providers.html" target="_blank">content providers</a>的知识。但如果想知道的话，下面是一段代码，展示如何从被选的联系人中读出电话号码。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
     <span class="hljs-comment">// Check which request it is that we're responding to</span>
@@ -5204,7 +5172,7 @@
 }
 </code></pre>
 <blockquote>
-<p><strong>Note</strong>:在Android 2.3 (API level 9)之前对<code>Contacts Provider</code>的请求(比如上面的代码)，需要你声明<code>READ_CONTACTS</code>权限(更多详见<a href="http://developer.android.com/guide/topics/security/security.html" target="_blank">Security and Permissions</a>)。但如果是Android 2.3以上的系统，你就不需要这么做。但这种临时权限也仅限于特定的请求，所以你仍无法获取除返回的Intent以外的联系人信息，除非声明了<code>READ_CONTACTS</code>权限。</p>
+<p><strong>Note</strong>:在Android 2.3 (API level 9)之前对<code>Contacts Provider</code>的请求(比如上面的代码)，需要声明<code>READ_CONTACTS</code>权限(更多详见<a href="http://developer.android.com/guide/topics/security/security.html" target="_blank">Security and Permissions</a>)。但如果是Android 2.3以上的系统就不需要这么做。但这种临时权限也仅限于特定的请求，所以仍无法获取除返回的Intent以外的联系人信息，除非声明了<code>READ_CONTACTS</code>权限。</p>
 </blockquote>
 
                     

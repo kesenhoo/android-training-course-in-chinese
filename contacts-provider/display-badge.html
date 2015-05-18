@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>显示联系人头像 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>显示联系人头像 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.1.4" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.1.4" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5125,54 +5093,54 @@
                 
                     <section class="normal" id="section-gitbook_97">
                     
-                        <h1 id="">显示快速联系人徽章(头像)</h1>
+                        <h1 id="">显示联系人头像</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 原文:<a href="http://developer.android.com/training/contacts-provider/display-contact-badge.html" target="_blank">http://developer.android.com/training/contacts-provider/display-contact-badge.html</a></p>
 </blockquote>
-<p>这一课展示了如何在你的应用界面上添加一个<a href="">QuickContactBadge</a>，以及如何为它绑定数据。
-QuickContactBadge是一个在初始情况下显示联系人缩略图头像的widget。尽管你可以使用任何<a href="">Bitmap</a>作为缩略图头像，但是通常你会使用从联系人照片缩略图中解码出来的Bitmap。</p>
-<p>这个小的图片作为一个控件，当用户点击它时，QuickContactBadge会伸展成一个包含以下内容的对话框：</p>
+<p>这一课展示了如何在我们的应用界面上添加一个<a href="">QuickContactBadge</a>，以及如何为它绑定数据。
+QuickContactBadge是一个在初始情况下显示联系人缩略图头像的widget。尽管我们可以使用任何<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>作为缩略图头像，但是我们通常会使用从联系人照片缩略图中解码出来的Bitmap。</p>
+<p>这个小的图片是一个控件，当用户点击它时，QuickContactBadge会展开一个包含以下内容的对话框：</p>
 <ul>
 <li><p>一个大的联系人头像</p>
-<p>  与这个联系人关联的大的头像，如果此人没有设置头像，则显示默认的头像。</p>
+<p>  与这个联系人关联的大的头像，如果此人没有设置头像，则显示预留的图案。</p>
 </li>
 <li><p>应用程序图标</p>
-<p>  根据联系人详情数据，显示每一个能够被手机中的应用所处理的数据的图标。例如，如果联系人的数据包含一个或多个email地址，就会显示email应用的图标。当用户点击这个图标的时候，这个联系人所有的email地址都会显示出来。当用户点击其中一个email地址时，email应用将会显示一个界面，让用户为这个选择的地址去编辑邮件。</p>
+<p>  根据联系人详情数据，显示每一个能够被手机中的应用所处理的数据的图标。例如，如果联系人的数据包含一个或多个email地址，就会显示email应用的图标。当用户点击这个图标的时候，这个联系人所有的email地址都会显示出来。当用户点击其中一个email地址时，email应用将会显示一个界面，让用户为选中的地址撰写邮件。</p>
 </li>
 </ul>
-<p>QuickContactBadge视图提供了对联系人数据的即时访问，是作为一种与联系人沟通的快捷方式。用户不用查询一个联系人，查找并复制信息，然后把信息粘贴到合适的应用中。他们可以点击QuickContactBadge，选择他们想要的沟通方式，然后直接把信息发送到对应的合适的应用中。</p>
-<h2 id="1quickcontactbadge">1)添加一个QuickContactBadge视图</h2>
-<p>为了添加一个QuickContactBadge视图，需要在你的布局文件中插入一个QuickContactBadge。例如：</p>
-<pre><code class="lang-java">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"&gt;
+<p>QuickContactBadge视图提供了对联系人数据的即时访问，是一种与联系人沟通的快捷方式。用户不用查询一个联系人，查找并复制信息，然后把信息粘贴到合适的应用中。他们可以点击QuickContactBadge，选择他们想要的沟通方式，然后直接把信息发送给合适的应用中。</p>
+<h2 id="quickcontactbadge">添加一个QuickContactBadge视图</h2>
+<p>为了添加一个QuickContactBadge视图，需要在布局文件中插入一个QuickContactBadge。例如：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">RelativeLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+                <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+                <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>
 ...
-    &lt;QuickContactBadge
-               android:id=@+id/quickbadge
-               android:layout_height="wrap_content"
-               android:layout_width="wrap_content"
-               android:scaleType="centerCrop"/&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">QuickContactBadge</span>
+               <span class="hljs-attribute">android:id</span>=<span class="hljs-value">@+id</span>/<span class="hljs-attribute">quickbadge</span>
+               <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+               <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+               <span class="hljs-attribute">android:scaleType</span>=<span class="hljs-value">"centerCrop"</span>/&gt;</span>
     ...
-&lt;/RelativeLayout&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-title">RelativeLayout</span>&gt;</span>
 </code></pre>
-<h2 id="2">2)获取数据库数据</h2>
-<p>为了能在QuickContactBadge中显示联系人，你需要这个联系人的内容URI和显示头像的Bitmap。你可以从Contacts Provider中获取到的相关数据列中生成这两个数据。需要指定这些列作为查询映射去把数据加载到Cursor中。</p>
+<h2 id="contacts-provider">获取Contacts Provider的数据</h2>
+<p>为了能在QuickContactBadge中显示联系人，我们需要这个联系人的内容URI和显示头像的Bitmap。我们可以从在Contacts Provider中获取到的数据列中生成这两个数据。需要指定这些列作为查询映射去把数据加载到Cursor中。</p>
 <p>对于Android 3.0（API版本为11）以及以后的版本，需要在查询映射中添加以下列：</p>
 <ul>
-<li><a href="">Contacts._ID</a></li>
-<li><a href="">Contacts.LOOKUP_KEY</a></li>
-<li><a href="">Contacts.PHOTO_THUMBNAIL_URI</a></li>
+<li><a href="http://developer.android.com/reference/android/provider/BaseColumns.html#_ID" target="_blank">Contacts._ID</a></li>
+<li><a href="http://developer.android.com/reference/android/provider/ContactsContract.ContactsColumns.html#LOOKUP_KEY" target="_blank">Contacts.LOOKUP_KEY</a></li>
+<li><a href="http://developer.android.com/reference/android/provider/ContactsContract.ContactsColumns.html#PHOTO_THUMBNAIL_URI" target="_blank">Contacts.PHOTO_THUMBNAIL_URI</a></li>
 </ul>
 <p>对于Android 2.3.3（API版本为10）以及之前的版本，则使用以下列：</p>
 <ul>
-<li><a href="">Contacts._ID</a></li>
-<li><a href="">Contacts.LOOKUP_KEY</a></li>
+<li><a href="http://developer.android.com/reference/android/provider/BaseColumns.html#_ID" target="_blank">Contacts._ID</a></li>
+<li><a href="http://developer.android.com/reference/android/provider/ContactsContract.ContactsColumns.html#LOOKUP_KEY" target="_blank">Contacts.LOOKUP_KEY</a></li>
 </ul>
-<p>这一课的剩余部分假设你已经获取到了包含这些以及其他你可能选择的数据列的Cursor对象。想要学习如何获取这些列对象的Cursor，请参阅课程<a href="">获取联系人列表</a>。</p>
-<h2 id="3uri">3)设置联系人URI和缩略图象</h2>
-<p>一旦你已经拥有了所需的数据列，你就可以为QuickContactBadge视图绑定数据了。</p>
-<h3 id="31uri">3.1)设置联系人URI</h3>
-<p>为了设置联系人URI，需要调用<a href="">getLookupUri(id,lookupKey)</a>去获取<a href="">CONTENT_LOOKUP_URI</a>，然后调用<a href="">assignContactUri()</a>去为QuickContactBadge设置对应的联系人。例如：</p>
+<p>这一课的剩余部分假设你已经获取到了包含这些以及其他你可能选择的数据列的Cursor对象。想要学习如何获取这些列对象的Cursor，请参阅课程<a href="retrieve-names.html">获取联系人列表</a>。</p>
+<h2 id="uri">设置联系人URI和缩略图</h2>
+<p>一旦我们已经拥有了所需的数据列，那么我们就可以为QuickContactBadge视图绑定数据了。</p>
+<h3 id="uri">设置联系人URI</h3>
+<p>为了设置联系人URI，需要调用<a href="">getLookupUri(id, lookupKey)</a>去获取<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html#CONTENT_LOOKUP_URI" target="_blank">CONTENT_LOOKUP_URI</a>，然后调用<a href="http://developer.android.com/reference/android/widget/QuickContactBadge.html#assignContactUri(android.net.Uri" target="_blank">assignContactUri()</a>)去为QuickContactBadge设置对应的联系人。例如：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// The Cursor that contains contact rows</span>
 Cursor mCursor;
 <span class="hljs-comment">// The index of the _ID column in the Cursor</span>
@@ -5201,10 +5169,10 @@ mContactUri =
 mBadge.assignContactUri(mContactUri);
 </code></pre>
 <p>当用户点击QuickContactBadge图标的时候，这个联系人的详细信息将会自动展现在对话框中。</p>
-<h3 id="32">3.2)设置联系人照片的缩略图</h3>
-<p>为QuickContactBadge设置联系人URI并不会自动加载联系人的缩略图照片。为了加载联系人照片，需要从联系人的Cursor对象的一行数据中获取照片的URI，使用这个URI去打开包含压缩的缩略图照片的文件，并把这个文件读到Bitmap对象中。</p>
+<h3 id="">设置联系人照片的缩略图</h3>
+<p>为QuickContactBadge设置联系人URI并不会自动加载联系人的缩略图照片。为了加载联系人照片，需要从联系人的Cursor对象的一行数据中获取照片的URI，使用这个URI去打开包含压缩的缩略图文件，并把这个文件读到Bitmap对象中。</p>
 <blockquote>
-<p>[PHOTO_THUMBNAIL_URI]这一列在Android 3.0之前的版本是不存在的，对于这些版本，你必须从[Contacts.Photo]表中获取照片的URI。</p>
+<p><strong>Note：</strong><a href="http://developer.android.com/reference/android/provider/ContactsContract.ContactsColumns.html#PHOTO_THUMBNAIL_URI">PHOTO_THUMBNAIL_URI</a>这一列在Android 3.0之前的版本是不存在的。对于这些版本，我们必须从<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.Photo.html" target="_blank">Contacts.Photo</a>表中获取照片的URI。</p>
 </blockquote>
 <p>首先，为包含Contacts._ID和Contacts.LOOKUP_KEY的Cursor数据列设置对应的变量，这在之前已经有描述：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// The column in which to find the thumbnail ID</span>
@@ -5233,7 +5201,7 @@ String mThumbnailUri;
 mThumbnailUri = mCursor.getString(mThumbnailColumn);
 ...
 </code></pre>
-<p>首先定义一个方法，使用这个联系人的照片有关的数据和目标视图的大小作为参数，返回一个大小合适的Bitmap对象的缩略图。先构建一个指向这个缩略图的URI：</p>
+<p>定义一个方法，使用与这个联系人的照片有关的数据和目标视图的尺寸作为参数，返回一个尺寸合适的缩略图Bitmap对象。下面先构建一个指向这个缩略图的URI：</p>
 <pre><code class="lang-java"> <span class="hljs-javadoc">/**
  * Load a contact photo thumbnail and return it as a Bitmap,
  * resizing the image to the provided image dimensions as needed.
@@ -5308,7 +5276,7 @@ mThumbnailUri = mCursor.getString(mThumbnailColumn);
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
 }
 </code></pre>
-<p>然后在你的代码中调用loadContactPhotoThumbnail()去获取缩略图Bitmap对象，使用获取的Bitmap对象去设置QuickContactBadge头像缩略图。</p>
+<p>在代码中调用loadContactPhotoThumbnail()去获取缩略图Bitmap对象，使用获取的Bitmap对象去设置QuickContactBadge头像缩略图。</p>
 <pre><code class="lang-java">...
 <span class="hljs-comment">/*
  * Decodes the thumbnail file to a Bitmap.
@@ -5321,42 +5289,42 @@ Bitmap mThumbnail =
  */</span>
 mBadge.setImageBitmap(mThumbnail);
 </code></pre>
-<h2 id="4quickcontactbadgelistview">4)把QuickContactBadge添加到ListView</h2>
+<h2 id="quickcontactbadgelistview">把QuickContactBadge添加到ListView</h2>
 <p>QuickContactBadge对于一个展示联系人列表的ListView来说是一个非常有用的添加功能。使用QuickContactBadge去为每一个联系人显示一个缩略图，当用户点击这个缩略图时，QuickContactBadge对话框将会显示。</p>
-<h3 id="41listviewquickcontactbadge">4.1)为ListView添加QuickContactBadge</h3>
-<p>首先，在你的列表项布局文件中添加QuickContactBadge视图元素。例如，如果你想为获取到的每一个联系人显示QuickContactBadge和名字，把以下的XML内容放到对应的布局文件中：</p>
-<pre><code class="lang-java">&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"&gt;
-    &lt;QuickContactBadge
-        android:id="@+id/quickcontact"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:scaleType="centerCrop"/&gt;
-    &lt;TextView android:id="@+id/displayname"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_toRightOf="@+id/quickcontact"
-              android:gravity="center_vertical"
-              android:layout_alignParentRight="true"
-              android:layout_alignParentTop="true"/&gt;
-&lt;/RelativeLayout&gt;
+<h3 id="listviewquickcontactbadge">为ListView添加QuickContactBadge</h3>
+<p>首先，在列表项布局文件中添加QuickContactBadge视图元素。例如，如果我们想为获取到的每一个联系人显示QuickContactBadge和名字，把以下的XML内容放到对应的布局文件中：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">RelativeLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+                <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+                <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">QuickContactBadge</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/quickcontact"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:scaleType</span>=<span class="hljs-value">"centerCrop"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/displayname"</span>
+              <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+              <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+              <span class="hljs-attribute">android:layout_toRightOf</span>=<span class="hljs-value">"@+id/quickcontact"</span>
+              <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center_vertical"</span>
+              <span class="hljs-attribute">android:layout_alignParentRight</span>=<span class="hljs-value">"true"</span>
+              <span class="hljs-attribute">android:layout_alignParentTop</span>=<span class="hljs-value">"true"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">RelativeLayout</span>&gt;</span>
 </code></pre>
-<p>在以下的章节中，这个文件被称为contact_item_layout.xml</p>
-<h3 id="42cursoradapter">4.2)设置自定义的CursorAdapter</h3>
-<p>为了能够绑定CursorAdapter到一个包含QuickContactBadge的ListView中，需要一个继承自CursorAdapter的自定义adapter。这种方式允许你在绑定数据到QuickContactBadge之前对Cursor中的数据进行处理，同时也能绑定多个Cursor中得列到QuickContactBadge。而这些操作使用普通的CursorAdapter是不能完成的。</p>
-<p>你定义的CursorAdapter的子类必须重写以下方法：</p>
+<p>在以下的章节中，这个文件被称为<code>contact_item_layout.xml</code>。</p>
+<h3 id="cursoradapter">设置自定义的CursorAdapter</h3>
+<p>定义一个继承自CursorAdapter的adapter来将CursorAdapter绑定到一个包含QuickContactBadge的ListView中。这种方式允许我们在绑定数据到QuickContactBadge之前对Cursor中的数据进行处理。同时也能将多个Cursor中的列绑定到QuickContactBadge。而使用普通的CursorAdapter是不能完成这些操作的。</p>
+<p>我们定义的CursorAdapter的子类必须重写以下方法：</p>
 <ul>
-<li><p>CursorAdapter.newView()
-  填充一个View对象去持有列表项布局。在重写这个方法的过程中，需要保存这个布局的子View的引用，包括QuickContactBadge的引用。通过采用这种方法，避免了每次在填充新的布局的时候都去获取子View的引用。
-  你必须重写这个方法以便能够获取每个子View的引用，这种方法允许你控制这些控件在CursorAdapter.bindView()方法中的数据绑定过程。</p>
+<li><p><a href="">CursorAdapter.newView()</a></p>
+<p>  填充一个View对象去持有列表项布局。在重写这个方法的过程中，需要保存这个布局的子View的handles，包括QuickContactBadge的handles。通过采用这种方法，避免了每次在填充新的布局时都去获取子View的handles。</p>
+<p>  我们必须重写这个方法以便能够获取每个子View对象的handles。这种方法允许我们控制这些子View对象在CursorAdapter.bindView()方法中的绑定。</p>
 </li>
-<li><p>CursorAdapter.bindView()
-  将数据从当前Cursor行绑定到列表项布局的子View对象中。必须重写这个方法以便能够将联系人的URI和缩略图信息绑定到QuickContactBadge。这个方法的默认实现仅仅允许在数据行和View之间的一对一的映射。</p>
+<li><p><a href="">CursorAdapter.bindView()</a></p>
+<p>  将数据从当前Cursor行绑定到列表项布局的子View对象中。必须重写这个方法以便能够将联系人的URI和缩略图信息绑定到QuickContactBadge。这个方法的默认实现仅仅允许在数据列和View之间的一对一映射。</p>
 </li>
 </ul>
-<p>以下的代码片段包含了自定义CursorAdapter子类的一个例子。</p>
-<h3 id="43adapter">4.3)定义自定义的列表Adapter</h3>
+<p>以下的代码片段是一个包含了自定义CursorAdapter子类的例子。</p>
+<h3 id="adapter">定义自定义的列表Adapter</h3>
 <p>定义CursorAdapter的子类包括编写这个类的构造方法，以及重写newView()和bindView():</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactsAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CursorAdapter</span> </span>{
     <span class="hljs-keyword">private</span> LayoutInflater mInflater;
@@ -5443,10 +5411,10 @@ mBadge.setImageBitmap(mThumbnail);
         holder.quickcontact.setImageBitmap(thumbnailBitmap);
 }
 </code></pre>
-<h3 id="44">4.4)设置查询变量</h3>
-<p>在你的代码中设置相关变量，包括必须要查询的数据列的Cursor投影。</p>
+<h3 id="">设置变量</h3>
+<p>在代码中，设置相关变量，添加一个包括必须数据列的Cursor。</p>
 <blockquote>
-<p>以下的代码片段使用了方法loadContactPhotoThumbnail()，这个方法是在<a href="">设置联系人URI和缩略图象</a>那一节中定义的。</p>
+<p><strong>Note：</strong>以下的代码片段使用了方法<code>loadContactPhotoThumbnail()</code>，这个方法是在<a href="">设置联系人URI和缩略图</a>那一节中定义的。</p>
 </blockquote>
 <p>例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactsFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> <span class="hljs-keyword">implements</span>
@@ -5505,8 +5473,8 @@ mBadge.setImageBitmap(mThumbnail);
         <span class="hljs-number">0</span>;
 ...
 </code></pre>
-<h3 id="45listview">4.5)设置ListView的参数</h3>
-<p>在<a href="">Fragment.onCreate()</a>方法中，实例化自定义的adapter对象，获得一个对ListView的引用。</p>
+<h3 id="listview">设置ListView</h3>
+<p>在<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html#onCreate(android.os.Bundle" target="_blank">Fragment.onCreate()</a>)方法中，实例化自定义的adapter对象，获得一个ListView的handle。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
     ...
@@ -5525,7 +5493,7 @@ mBadge.setImageBitmap(mThumbnail);
 }
 ...
 </code></pre>
-<p>在onActivityCreated()方法中，将ContactsAdapter绑定到ListView。</p>
+<p>在<a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html#onActivityCreated(android.os.Bundle" target="_blank">onActivityCreated()</a>)方法中，将ContactsAdapter绑定到ListView。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityCreated</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
     ...
@@ -5535,13 +5503,13 @@ mBadge.setImageBitmap(mThumbnail);
 }
 ...
 </code></pre>
-<p>你通常会在onLoadFinished()方法中获取一个包含联系人数据的Cursor对象，这个时候你需要调用swapCursor()，这个方法会把Cursor中的数据绑定到ListView。这将会为联系人列表中的每一项都显示一个QuickContactBadge。</p>
+<p>当获取到一个包含联系人数据的Cursor时（通常在onLoadFinished()的时候），调用swapCursor()把Cursor中的数据绑定到ListView。这将会为联系人列表中的每一项都显示一个QuickContactBadge。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoadFinished</span><span class="hljs-params">(Loader&lt;Cursor&gt; loader, Cursor cursor)</span> </span>{
     <span class="hljs-comment">// When the loader has completed, swap the cursor into the adapter.</span>
     mContactsAdapter.swapCursor(cursor);
 }
 </code></pre>
-<p>当你使用CursorAdapter或其子类中将Cursor中的数据绑定到ListView，并且使用了CursorLoader去加载Cursor数据，记得要在onLoaderReset()方法的实现中清理对Cursor对象的引用。例如：</p>
+<p>当我们使用CursorAdapter或其子类中将Cursor中的数据绑定到ListView，并且使用了CursorLoader去加载Cursor数据时，记得要在onLoaderReset()方法的实现中清理对Cursor对象的引用。例如：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoaderReset</span><span class="hljs-params">(Loader&lt;Cursor&gt; loader)</span> </span>{
     <span class="hljs-comment">// Removes remaining reference to the previous Cursor</span>
@@ -5558,7 +5526,7 @@ mBadge.setImageBitmap(mThumbnail);
         </div>
 
         
-        <a href="../contacts-provider/modify-data.html" class="navigation navigation-prev " aria-label="Previous page: 修改联系人信息"><i class="fa fa-angle-left"></i></a>
+        <a href="../contacts-provider/modify-data.html" class="navigation navigation-prev " aria-label="Previous page: 使用Intents修改联系人信息"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../location/index.html" class="navigation navigation-next " aria-label="Next page: Android位置信息"><i class="fa fa-angle-right"></i></a>

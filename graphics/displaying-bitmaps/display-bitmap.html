@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>在UI上显示Bitmap | Android官方培训课程中文版(v0.9.2)</title>
+        <title>在UI上显示Bitmap | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.1.5" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="4.1.5" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,14 +5097,13 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/displaying-bitmaps/display-bitmap.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/display-bitmap.html</a></p>
 </blockquote>
-<p>这一课会演示如何运用前面几节课的内容，使用后台线程与Cache机制来加载图片到 ViewPager 与 GridView 组件，并且学习处理并发与配置改变问题。</p>
+<p>这一课会演示如何运用前面几节课的内容，使用后台线程与缓存机制将图片加载到ViewPager与GridView控件，并且学习处理并发与配置改变问题。</p>
 <h2 id="viewpager">实现加载图片到ViewPager</h2>
-<p><a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">swipe view pattern</a>是一个使用滑动来切换显示不同详情页面的设计模型。(关于这种效果请先参看<a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Android Design: Swipe Views</a>)。你可以通过 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a> 与 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 组件来实现这个效果。 然而，一个更加合适的Adapter是PagerAdapter的一个子类，叫做 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a>：它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存 Fragments 的状态。这样能够保持消耗更少的内存。</p>
-<!-- more -->
+<p><a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Swipe View Pattern</a>是一个使用滑动来切换显示不同详情页面的设计模型。（关于这种效果请先参看<a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Android Design: Swipe Views</a>）。我们可以通过<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a>与<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>控件来实现这个效果。 不过，一个更加合适的Adapter是PagerAdapter的一个子类，叫做<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter</a>：它可以在某个ViewPager中的子视图切换出屏幕时自动销毁与保存Fragments的状态。这样能够保持更少的内存消耗。</p>
 <blockquote>
-<p><strong>Note:</strong> 如果你只有为数不多的图片并且确保不会超出程序内存限制，那么使用 PagerAdapter 或 FragmentPagerAdapter 会更加合适。</p>
+<p><strong>Note:</strong> 如果只有为数不多的图片并且确保不会超出程序内存限制，那么使用PagerAdapter或 FragmentPagerAdapter会更加合适。</p>
 </blockquote>
-<p>下面是一个使用ViewPager与ImageView作为子视图的示例。主Activity包含有ViewPager 和adapter。</p>
+<p>下面是一个使用ViewPager与ImageView作为子视图的示例。主Activity包含有ViewPager和Adapter。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String EXTRA_IMAGE = <span class="hljs-string">"extra_image"</span>;
 
@@ -5179,7 +5146,7 @@
     }
 }
 </code></pre>
-<p>Fragment 里面包含了ImageView 的子组件:</p>
+<p>Fragment里面包含了ImageView控件:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String IMAGE_DATA_EXTRA = <span class="hljs-string">"resId"</span>;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mImageNum;
@@ -5219,7 +5186,7 @@
     }
 }
 </code></pre>
-<p>希望你有发现上面示例存在的问题：在UI Thread中读取图片可能会导致程序ANR。使用在第二课中学习的 AsyncTask 会比较好。</p>
+<p>希望你有发现上面示例存在的问题：在UI线程中读取图片可能会导致应用无响应。因此使用在第二课中学习的AsyncTask会更好。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
     ...
 
@@ -5246,7 +5213,7 @@
     }
 }
 </code></pre>
-<p>在 BitmapWorkerTask 中做一些例如重设图片大小，从网络拉取图片的任务，这样确保不会卡到UI线程。如果后台线程不仅仅是做个简单的直接加载动作，增加一个内存Cache或者磁盘Cache会比较好[请参考第三课：缓存Bitmap]，下面是一些为了内存Cache而附加的内容:</p>
+<p>在BitmapWorkerTask中做一些例如重设图片大小，从网络拉取图片的任务，可以确保不会阻塞UI线程。如果后台线程不仅仅是一个简单的加载操作，增加一个内存缓存或者磁盘缓存会比较好（请参考第三课：缓存Bitmap），下面是一些为了内存缓存而附加的内容：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageDetailActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
     ...
     <span class="hljs-keyword">private</span> LruCache mMemoryCache;
@@ -5273,9 +5240,9 @@
     ... <span class="hljs-comment">// include updated BitmapWorkerTask from Use a Memory Cache section</span>
 }
 </code></pre>
-<p>把前面学习到的所有技巧合并起来，我们将得到一个响应性高Putting all these pieces together gives you a responsive ViewPager implementation with minimal image loading latency and the ability to do as much or as little background processing on your images as needed.</p>
+<p>把前面学习到的所有技巧合并起来，我们将得到一个响应性良好的ViewPager实现：它拥有最小的加载延迟，同时可以根据实际需求执行不同的后台处理任务。</p>
 <h2 id="gridview">实现加载图片到GridView</h2>
-<p><a href="http://developer.android.com/design/building-blocks/grid-lists.html" target="_blank">Grid list building block</a> 是一种有效显示大量图片的方式。这样能够一次显示许多图片，而且那些即将被显示的图片也处于准备显示状态。如果你想要实现这种效果，你必须确保UI是流畅的，能够控制内存使用，并且正确的处理并发问题（因为 GridView 会循环使用子视图)。</p>
+<p><a href="http://developer.android.com/design/building-blocks/grid-lists.html" target="_blank">Grid List Building Block</a>是一种有效显示大量图片的方式。它能够一次显示许多图片，同时即将被显示的图片会处于准备显示的状态。如果我们想要实现这种效果，必须确保UI是流畅的，能够控制内存使用，并且正确处理并发问题（因为GridView会循环使用子视图)。</p>
 <p>下面是一个典型的使用场景，在Fragment里面内置GridView，其中GridView的子视图是ImageView：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageGridFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AdapterView</span>.<span class="hljs-title">OnItemClickListener</span> </span>{
     <span class="hljs-keyword">private</span> ImageAdapter mAdapter;
@@ -5352,8 +5319,8 @@
     }
 }
 </code></pre>
-<p>这里同样有一个问题，上面的代码实现中犯了把图片加载放在UI线程进行处理的错误。如果只是加载一些很小的图片，或者是经过Android系统缩放并缓存过的图片，上面的代码是可以运行的通的，但是如果加载的图片稍微复杂耗时一点，这都会导致你的UI卡顿甚至ANR。</p>
-<p>与前面加载图片到ViewPager一样，如果setImageResource的操作会比较耗时，也有可能会卡到UI线程。可以使用类似前面异步处理图片与增加缓存的方法来解决那个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，请参考前面的课程 。下面是一个更新过后的解决方案：</p>
+<p>这里同样有一个问题，上面的代码实现中，犯了把图片加载放在UI线程进行处理的错误。如果只是加载一些很小的图片，或者是经过Android系统缩放并缓存过的图片，上面的代码在运行时不会有太大问题，但是如果加载的图片稍微复杂耗时一点，这都会导致你的UI卡顿甚至应用无响应。</p>
+<p>与前面加载图片到ViewPager一样，如果<code>setImageResource</code>的操作会比较耗时，也有可能会阻塞UI线程。不过我们可以使用类似前面异步处理图片与增加缓存的方法来解决这个问题。然而，我们还需要考虑GridView的循环机制所带来的并发问题。为了处理这个问题，可以参考前面的课程 。下面是一个更新过后的解决方案：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ImageGridFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">AdapterView</span>.<span class="hljs-title">OnItemClickListener</span> </span>{
     ...
 
@@ -5424,9 +5391,9 @@
     ... <span class="hljs-comment">// include updated BitmapWorkerTask class</span>
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong>对于 ListView 同样可以套用上面的方法。</p>
+<p><strong>Note:</strong>对于ListView同样可以套用上面的方法。</p>
 </blockquote>
-<p>上面的方法提供了足够的弹性，使得你可以做从网络下载图片，并对大尺寸大的数码照片做缩放等操作而不至于卡到UI线程。</p>
+<p>上面的方法提供了足够的弹性，使得我们可以做从网络下载图片，并对大尺寸大的数码照片做缩放等操作而不至于阻塞UI线程。</p>
 
                     
                     </section>

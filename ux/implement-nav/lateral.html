@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用Tabs创建Swipe视图 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>使用Tabs创建Swipe视图 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.2.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.2.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_269">
+                    <section class="normal" id="section-gitbook_267">
                     
                         <h1 id="tabsswipe">使用Tabs创建Swipe视图</h1>
 <blockquote>
@@ -5131,7 +5099,7 @@
 </blockquote>
 <p>Swipe View提供在同级屏幕中的横向导航，例如通过横向划屏手势切换的tab(一种称作横向分页的模式)。这节课会教你如何使用swipe view创建一个tab layout实现在tab之间切换，或显示一个标题条替代tab。</p>
 <blockquote>
-<p><strong>Swipe View Design</strong></p>
+<p><strong>Swipe View 设计</strong></p>
 <p>在实现这些功能之前，你要先明白在<a href="http://developer.android.com/training/design-navigation/descendant-lateral.html" target="_blank">Designing Effective Navigation</a>, <a href="http://developer.android.com/design/patterns/swipe-views.html" target="_blank">Swipe Views</a> design guide中的概念和建议</p>
 </blockquote>
 <h2 id="swipe-view">实现Swipe View</h2>
@@ -5285,7 +5253,7 @@
     ...
 }
 </code></pre>
-<h2 id="tab">使用标题条替代Tab</h2>
+<h2 id="tab">使用标题栏替代Tab</h2>
 <p>如果你不想使用action bar tab，而想使用<a href="http://developer.android.com/design/building-blocks/tabs.html#scrollable" target="_blank">scrollable tabs</a>来提供一个更简短的可视化配置，你可以在swipe view中使用<a href="http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html" target="_blank">PagerTitleStrip</a>。</p>
 <p>下面是一个内容为<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>，有一个<a href="http://developer.android.com/reference/android/support/v4/view/PagerTitleStrip.html" target="_blank">PagerTitleStrip</a>顶端对齐的activity的layout XML文件示例。单个页面(adapter提供)占据<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>中的剩余空间。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.v4.view.ViewPager</span>

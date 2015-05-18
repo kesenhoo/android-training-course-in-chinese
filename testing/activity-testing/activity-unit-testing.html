@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建单元测试 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>创建单元测试 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="16.1.4" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="16.1.4" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,63 +5091,63 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_204">
+                    <section class="normal" id="section-gitbook_202">
                     
                         <h1 id="">创建单元测试</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:<a href="http://developer.android.com/training/activity-testing/activity-unit-testing.html" target="_blank">http://developer.android.com/training/activity-testing/activity-unit-testing.html</a></p>
 </blockquote>
-<p>一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>测试单元是快速验证一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的状态以及与其它独立组件(也就是和系统其它部分分离的部分)交互的最优方式。一个测试单元通常是测试代码中可能性最小的代码块(可以是一个方法,类,或者组件),而且也不依赖于系统或网络资源。比如说,你可以写一个测试单元去检查Activity是否有正确的布局或者它的触发器,以及Intent对象的正确性。</p>
-<p>测试单元一般不适合测试与系统有复杂交互事件的UI。相反,你应该使用像ActivityInstrumentationTestCase2的类作为测试UI组建的描述。</p>
-<p>这节内容将会教你编写一个测试单元来验证一个Intent是否正确触发了另一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。由于测试是与环境独立的,所以<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>被发送给Android系统的,但你可以检查Intent对象的有效数据的正确性。对于一个完备的测试案例, 可以参考一下示例代码中的LaunchActivityTest.java。</p>
-<p><strong>注意</strong>要测试对系统或外部的依赖,你可以使用来自Mocking Framework的Mock类并把它插入你的测试单元。要了解更多关于Android提供的Mocking Framework内容请参看<a href="http://developer.android.com/tools/testing/testing_android.html#MockObjectClasses" target="_blank">Mock Object Classes</a>。</p>
+<p><a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>单元测试可以快速且独立地（和系统其它部分分离）验证一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>的状态以及其与其它组件交互的正确性。一个单元测试通常用来测试代码中最小单位的代码块（可以是一个方法，类，或者组件），而且也不依赖于系统或网络资源。比如说，你可以写一个单元测试去检查Activity是否正确地布局或者是否可以正确地触发一个Intent对象。</p>
+<p>单元测试一般不适合测试与系统有复杂交互的UI。我们应该使用如同<a href="activity-ui-testing.html">测试UI组件</a>所描述的<code>ActivityInstrumentationTestCase2</code>来对这类UI交互进行测试。</p>
+<p>这节内容将会讲解如何编写一个单元测试来验证一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>是否正确地触发了另一个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。由于测试是与环境独立的，所以<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>实际上并没有发送给Android系统，但我们可以检查Intent对象的载荷数据是否正确。读者可以参考一下示例代码中的<code>LaunchActivityTest.java</code>，将它作为一个例子，了解完备的测试用例是怎么样的。</p>
+<blockquote>
+<p><strong>注意</strong>: 如果要针对系统或者外部依赖进行测试，我们可以使用Mocking Framework的Mock类，并把它集成到我们的你的单元测试中。要了解更多关于Android提供的Mocking Framework内容请参考<a href="http://developer.android.com/tools/testing/testing_android.html#MockObjectClasses" target="_blank">Mock Object Classes</a>。</p>
+</blockquote>
 <h2 id="android">编写一个Android单元测试例子</h2>
-<p>ActiviUnitTestCase类提供了单个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>测试的支持。要创建测试单元,你的测试类应该继承自ActiviUnitTestCase。继承ActiviUnitTestCase的Activity不会被Android自动启动的。要单独启动Activity,你需要显式的调用startActivity()方法,并传递一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>来启动你的目标<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。</p>
-<p>For example:</p>
-<pre><code class="lang-xml">public class LaunchActivityTest
-        extends ActivityUnitTestCase<span class="hljs-tag">&lt;<span class="hljs-title">LaunchActivity</span>&gt;</span> {
+<p>ActiviUnitTestCase类提供对于单个<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>进行分离测试的支持。要创建单元测试，我们的测试类应该继承自<code>ActiviUnitTestCase</code>。继承<code>ActiviUnitTestCase</code>的Activity不会被Android自动启动。要单独启动Activity，我们需要显式的调用startActivity()方法，并传递一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>来启动我们的目标<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。</p>
+<p>例如：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LaunchActivityTest</span>
+        <span class="hljs-keyword">extends</span> <span class="hljs-title">ActivityUnitTestCase</span>&lt;<span class="hljs-title">LaunchActivity</span>&gt; </span>{
     ...
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        mLaunchIntent = new Intent(getInstrumentation()
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+        <span class="hljs-keyword">super</span>.setUp();
+        mLaunchIntent = <span class="hljs-keyword">new</span> Intent(getInstrumentation()
                 .getTargetContext(), LaunchActivity.class);
-        startActivity(mLaunchIntent, null, null);
-        final Button launchNextButton =
+        startActivity(mLaunchIntent, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+        <span class="hljs-keyword">final</span> Button launchNextButton =
                 (Button) getActivity()
                 .findViewById(R.id.launch_next_activity_button);
     }
 }
 </code></pre>
 <h2 id="activity">验证另一个Activity的启动</h2>
-<p>你的单元测试目标可能包括:</p>
+<p>我们的单元测试目标可能包括:</p>
 <ul>
-<li><p>验证当Button被按下是启动的LaunchActivity是否正确。</p>
-</li>
-<li><p>验证启动的Intent是否包含有效的数据。</p>
-</li>
+<li>验证当Button被按下时，启动的LaunchActivity是否正确。</li>
+<li>验证启动的Intent是否包含有效的数据。</li>
 </ul>
-<p>为验证一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>Button触发的事件,你可以使用<a href="http://developer.android.com/reference/android/test/ActivityUnitTestCase.html#getStartedActivityIntent(" target="_blank">getStartedActivityIntent</a>)()方法。通过使用断言方法,你可以验证返回的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>是否为空,以及是否包含了预期的数据来启动下一个Activity。如果你俩个断言值都是真,那你就成功的验证了你Activity发送的Intent的正确性了。</p>
-<p>你应该这样实现你的方法:</p>
-<pre><code class="lang-xml">@MediumTest
-public void testNextActivityWasLaunchedWithIntent() {
-    startActivity(mLaunchIntent, null, null);
-    final Button launchNextButton =
+<p>为了验证一个触发<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>的Button的事件，我们可以使用<a href="http://developer.android.com/reference/android/test/ActivityUnitTestCase.html#getStartedActivityIntent()">getStartedActivityIntent()</a>方法。通过使用断言方法，我们可以验证返回的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>是否为空，以及是否包含了预期的数据来启动下一个Activity。如果两个断言值都是真，那么我们就成功地验证了Activity发送的Intent是正确的了。</p>
+<p>我们可以这样实现测试方法:</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@MediumTest</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testNextActivityWasLaunchedWithIntent</span><span class="hljs-params">()</span> </span>{
+    startActivity(mLaunchIntent, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">null</span>);
+    <span class="hljs-keyword">final</span> Button launchNextButton =
             (Button) getActivity()
             .findViewById(R.id.launch_next_activity_button);
     launchNextButton.performClick();
 
-    final Intent launchIntent = getStartedActivityIntent();
-    assertNotNull(&quot;Intent was null&quot;, launchIntent);
+    <span class="hljs-keyword">final</span> Intent launchIntent = getStartedActivityIntent();
+    assertNotNull(<span class="hljs-string">"Intent was null"</span>, launchIntent);
     assertTrue(isFinishCalled());
 
-    final String payload =
+    <span class="hljs-keyword">final</span> String payload =
             launchIntent.getStringExtra(NextActivity.EXTRAS_PAYLOAD_KEY);
-    assertEquals(&quot;Payload is empty&quot;, LaunchActivity.STRING_PAYLOAD, payload);
+    assertEquals(<span class="hljs-string">"Payload is empty"</span>, LaunchActivity.STRING_PAYLOAD, payload);
 }
 </code></pre>
-<p>因为LaunchActivity是独立运行的,所以不可以使用<a href="http://developer.android.com/reference/android/test/TouchUtils.html" target="_blank">TouchUtils</a>库来操作UI。要正确处理<a href="http://developer.android.com/reference/android/widget/Button.html" target="_blank">Button</a>点击,你可以调用<a href="http://developer.android.com/reference/android/view/View.html#performClick(" target="_blank">perfoemClick()</a>)方法</p>
+<p>因为LaunchActivity是独立运行的，所以不可以使用<a href="http://developer.android.com/reference/android/test/TouchUtils.html" target="_blank">TouchUtils</a>库来操作UI。如果要直接进行<a href="http://developer.android.com/reference/android/widget/Button.html" target="_blank">Button</a>点击，我们可以调用<a href="http://developer.android.com/reference/android/view/View.html#performClick()">perfoemClick()</a>方法。</p>
 <p>本节示例代码<a href="http://developer.android.com/shareables/training/AndroidTestingFun.zip" target="_blank">AndroidTestingFun.zip</a></p>
 
                     

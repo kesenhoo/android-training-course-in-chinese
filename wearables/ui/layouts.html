@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>定义Layouts | Android官方培训课程中文版(v0.9.2)</title>
+        <title>定义Layouts | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.3.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,190 +5091,157 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_304">
+                    <section class="normal" id="section-gitbook_302">
                     
                         <h1 id="layouts">定义Layouts</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/layouts.html" target="_blank">https://developer.android.com/training/wearables/ui/layouts.html</a></p>
 </blockquote>
-<!--Wearables use the same layout techniques as handheld Android devices, but need to be designed with specific constraints. Do not port functionality and the UI from a handheld app and expect a good experience. For more information on how to design great wearable apps, read the Android Wear Design Guidelines.-->
-<p>可穿戴设备使用与手持Android设备同样的布局技术，但需要有具体的约束来设计。不要以一个手持app的角度开发功能和UI以期待提供一个好的体验。关于如何设计优秀的可穿戴apps的更多信息，请阅读<a href="https://developer.android.com/design/wear/index.html" target="_blank">Android Wear Design Guidelines</a>。</p>
-<!--When you create layouts for Android Wear apps, you need to account for devices with square and round screens. Any content placed near the corners of the screen may be cropped on round Android Wear devices, so layouts designed for square screens do not work well on round devices. For a demonstration of this type of problem, see the video Full Screen Apps for Android Wear.-->
-<p>当你为Android Wear apps创建layouts时，你需要同时考虑方形和圆形屏幕的设备。在圆形Android Wear设备上所有放置在靠近屏幕边角的内容会被剪裁掉，所以为方形屏幕设计的layouts不能在圆形设备上很好的工作。对这类问题是示范请查看这个视屏<a href="https://www.youtube.com/watch?v=naf_WbtFAlY" target="_blank">Full Screen Apps for Android Wear</a>。</p>
-<!--For example, figure 1 shows how the following layout looks on square and round screens:-->
-<p>举个例子，figure 1展示了下面的layout在圆形和方形屏幕上看起来是怎样的：</p>
-<p><img src="https://developer.android.com/wear/images/01_uilib.png" alt=""></p>
-<!--Figure 1. Demonstration of how a layout designed for square screens does not work well on round screens.-->
-<p><strong>Figure 1.</strong> <em>为方形屏幕设计的layouts不能在圆形设备上很好工作的示范</em></p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot;
-android:orientation=&quot;vertical&quot;&gt;
+<p>可穿戴设备使用与手持Android设备同样的布局技术，但需要有具体的约束来设计。不要以一个手持app的角度开发功能和UI并期待得到一个好的体验。关于如何设计优秀的可穿戴应用的更多信息，请阅读<a href="https://developer.android.com/design/wear/index.html" target="_blank">Android Wear Design Guidelines</a>。</p>
+<p>当为Android Wear应用创建layout时，我们需要同时考虑方形和圆形屏幕的设备。在圆形Android Wear设备上所有放置在靠近屏幕边角的内容可能会被剪裁掉，所以为方形屏幕设计的layouts在圆形设备上不能很好地显示出来。对这类问题的示范请查看这个视频<a href="https://www.youtube.com/watch?v=naf_WbtFAlY" target="_blank">Full Screen Apps for Android Wear</a>。</p>
+<p>举个例子，figure 1展示了下面的layout在圆形和方形屏幕上的效果：</p>
+<p><img src="01_uilib.png" alt=""></p>
+<p><strong>Figure 1.</strong> 为方形屏幕设计的layouts在圆形设备上不能很好显示的示范</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>&gt;</span>
 
-&lt;TextView
-    android:id=&quot;@+id/text&quot;
-    android:layout_width=&quot;wrap_content&quot;
-    android:layout_height=&quot;wrap_content&quot;
-    android:text=&quot;@string/hello_square&quot; /&gt;
-&lt;/LinearLayout&gt;
-</code></pre><!--The text does not display correctly on devices with round screens.-->
-<p>text没有正确的显示在圆形屏幕上。</p>
-<!--The Wearable UI Library provides two different approaches to solve this problem:-->
-<p>Wearable UI Library为这个问题提供了两种不同的解决方案：</p>
-<!--Define different layouts for square and round devices. Your app detects the shape of the device screen and inflates the correct layout at runtime.-->
+    <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/text"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/hello_square"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p>上述范例的文本没有正确地显示在圆形屏幕上。</p>
+<p>Wearable UI库为这个问题提供了两种不同的解决方案：</p>
 <ul>
-<li>为圆形和方形屏幕定义不同的layouts。你的app会在运行时检查设备屏幕形状后inflates正确的layout。</li>
+<li><p>为圆形和方形屏幕定义不同的layouts。我们的app会在运行时检查设备屏幕形状并inflate正确的layout。</p>
+</li>
+<li><p>用一个包含在库里面的特殊layout同时适配方形和圆形设备。这个layout会在不同形状的设备屏幕窗口中插入不同的间隔。</p>
+</li>
 </ul>
-<!--Use a special layout included in the library for both square and round devices. This layout applies different window insets depending on the shape of the device screen.-->
-<ul>
-<li>用一个包含在library里面的特殊layout同时适配方形和圆形设备。这个layout会在不同形状的设备屏幕窗口中插入间隔。</li>
-</ul>
-<!--You typically use the first approach when you want your app to look different depending on the shape of the device screen. You use the second approach when you want to use a similar layout on both screen shapes without having views cropped near the edges of round screens.-->
-<p>当你希望你的app在不同形状的屏幕上看起来不同时，你可以典型的使用第一种方案。当你希望用一个相似的layout在两种屏幕上且在圆形屏幕上没有视图被边缘剪裁时，你可以使用第二种方案。</p>
-<!--Add the Wearable UI Library-->
+<p>当我们希望应用在不同形状的屏幕上看起来不同时，一般会使用第一种方案。当我们希望用一个相似的layout在两种屏幕上且在圆形屏幕上没有视图被边缘剪裁时，可以使用第二种方案。</p>
 <h2 id="wearable-ui">添加Wearable UI库</h2>
-<!--Android Studio includes the Wearable UI Library on your wear module by default when you use the Project Wizard. To compile your project with this library, ensure that the Extras > Google Repository package is installed in the Android SDK manager and that the following dependency is included in the build.gradle file of your wear module:-->
-<p>Android Studio会在你使用工程向导时includes你在<strong>wear</strong> module中的Wearable UI库。为了编译你的工程和这个库，确保 <em>Extras &gt; Google Repository</em> 包已经被安装在Android SDK manager里、以下的<strong>wear</strong> module依赖被包含在你的<strong>build.gradle</strong>文件中。</p>
-<pre><code>dependencies {
+<p>当我们使用Android Studio的工程向导时，Android Studio会自动地在<code>wear</code>模块中包含Wearable UI库。为了在工程中编译到这个库，确保 <em>Extras &gt; Google Repository</em> 包已经被安装在Android SDK manager里，下面的依赖被包含在<code>wear</code>模块的<code>build.gradle</code>文件中：</p>
+<pre><code class="lang-xml">dependencies {
     compile fileTree(dir: &#39;libs&#39;, include: [&#39;*.jar&#39;])
     compile &#39;com.google.android.support:wearable:+&#39;
     compile &#39;com.google.android.gms:play-services-wearable:+&#39;
 }
-</code></pre><!--The 'com.google.android.support:wearable' dependency is required to implement the layout techniques shown in the following sections.-->
-<p>要实现以下的布局方法 <strong>&#39;com.google.android.support:wearable&#39;</strong> 依赖是必须的。</p>
-<!--Browse the API reference documentation for the Wearable UI Library classes.-->
-<p>浏览<a href="https://developer.android.com/reference/android/support/wearable/view/package-summary.html" target="_blank">API reference documentation</a>查看Wearable UI类库。</p>
-<!--Specify Different Layouts for Square and Round Screens-->
+</code></pre>
+<p>要实现以下的布局方法需要用到 <code>&#39;com.google.android.support:wearable&#39;</code> 依赖。</p>
+<p>浏览<a href="https://developer.android.com/reference/android/support/wearable/view/package-summary.html" target="_blank">API reference documentation</a>查看Wearable UI库的类。</p>
 <h2 id="layouts">为方形和圆形屏幕指定不同的Layouts</h2>
-<!--The WatchViewStub class included in the Wearable UI Library lets you specify different layout definitions for square and round screens. This class detects the screen shape at runtime and inflates the corresponding layout.-->
-<p>在Wearable UI库中的<strong>WatchViewStub</strong>类允许你为方形和圆形屏幕指定不同的layouts。这个类会在运行时姜茶屏幕形状后inflates符合的layout。</p>
-<!--To use this class for handling different screen shapes in your app:-->
-<p>在你的app中使用这个类以应对不用和的屏幕形状：</p>
-<!--Add WatchViewStub as the main element of your activity's layout.
-Specify a layout definition file for square screens with the rectLayout attribute.
-Specify a layout definition file for round screens with the roundLayout attribute.-->
+<p>包含在Wearable UI库中的<code>WatchViewStub</code>类允许我们为方形和圆形屏幕指定不同的layout。这个类会在运行时检查屏幕形状并inflate相应的layout。</p>
+<p>为了在我们的应用中使用这个类以应对不同的屏幕形状，我们需要：</p>
 <ul>
-<li>在你的activity&#39;s layout以WatchViewStub为主元素。</li>
-<li>为方形屏幕指定一个layout解释文件使用rectLayout属性。</li>
-<li>为圆形屏幕指定一个layout解释文件使用roundLayout属性。</li>
+<li>添加<code>WatchViewStub</code>作为activity的layout的主元素。</li>
+<li>使用<code>rectLayout</code>属性为方形屏幕指定一个layout文件。</li>
+<li>使用<code>roundLayout</code>属性为圆形屏幕指定一个layout文件。</li>
 </ul>
-<!--Define your activity's layout as follows:-->
-<p>定义你的activity&#39;s layout类似于：</p>
-<pre><code>&lt;android.support.wearable.view.WatchViewStub
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:id=&quot;@+id/watch_view_stub&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    app:rectLayout=&quot;@layout/rect_activity_wear&quot;
-    app:roundLayout=&quot;@layout/round_activity_wear&quot;&gt;
-&lt;/android.support.wearable.view.WatchViewStub&gt;
-</code></pre><!--Inflate this layout in your activity:-->
-<p>在你的activity中inflate这个layout：</p>
-<pre><code>@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+<p>类似下面定义activity的layout：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.WatchViewStub</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:app</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/watch_view_stub"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">app:rectLayout</span>=<span class="hljs-value">"@layout/rect_activity_wear"</span>
+    <span class="hljs-attribute">app:roundLayout</span>=<span class="hljs-value">"@layout/round_activity_wear"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.wearable.view.WatchViewStub</span>&gt;</span>
+</code></pre>
+<p>在activity中inflate这个layout：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
     setContentView(R.layout.activity_wear);
 }
-</code></pre><!--Then create different layout definition files for square and round screens. In this example, you need to create the files res/layout/rect_activity_wear.xml and res/layout/round_activity_wear.xml. You define these layouts in the same way that you create layouts for handheld apps, but taking into account the constraints of wearable devices. The system inflates the correct layout at runtime depending on the screen shape.-->
-<p>然后为方形和圆形屏幕创建不同的layout描述文件，在这个例子中，你需要创建文件 <em>res/layout/rect_activity_wear.xml</em> 和 <em>res/layout/round_activity_wear.xml</em> 。像创建手持apps的layouts一样定义这些layouts，但同时考虑可穿戴设备的限制。系统会在运行时以屏幕形状inflates适合的layout。</p>
-<!--Accessing layout views-->
-<h2 id="layout-views">取得layout views</h2>
-<!--The layouts that you specify for square or round screens are not inflated until WatchViewStub detects the shape of the screen, so your app cannot access their views immediately. To access these views, set a listener in your activity to be notified when the shape-specific layout has been inflated:-->
-<p>你为方形或圆形屏幕定义的layouts在WatchViewStub检查完屏幕形状之前不会被inflated。所以你的app不能立即取得它们的views。为了取得这些views，你需要在你的activity中设置一个listener，当屏幕适配的layout被inflated时会通知这个listener：</p>
-<pre><code>@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+</code></pre>
+<p>然后为方形和圆形屏幕创建不同的layout文件，在这个例子中，我们需要创建<code>res/layout/rect_activity_wear.xml</code>和<code>res/layout/round_activity_wear.xml</code>两个文件。像创建手持应用的layouts一样定义这些layouts，但需要考虑可穿戴设备的限制。系统会在运行时根据屏幕形状来inflate适合的layout。</p>
+<h3 id="layout-views">取得layout views</h3>
+<p>我们为方形或圆形屏幕定义的layouts在<code>WatchViewStub</code>检测到屏幕形状之前不会被inflate，所以你的app不能立即取得它们的view。为了取得这些view，需要在我们的activity中设置一个listener，当屏幕适配的layout被inflate时会通知这个listener：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
     setContentView(R.layout.activity_wear);
 
     WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
-    stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-        @Override public void onLayoutInflated(WatchViewStub stub) {
-            // Now you can access your views
+    stub.setOnLayoutInflatedListener(<span class="hljs-keyword">new</span> WatchViewStub.OnLayoutInflatedListener() {
+        <span class="hljs-annotation">@Override</span> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLayoutInflated</span><span class="hljs-params">(WatchViewStub stub)</span> </span>{
+            <span class="hljs-comment">// Now you can access your views</span>
             TextView tv = (TextView) stub.findViewById(R.id.text);
             ...
         }
     });
 }
-</code></pre><!--Use a Shape-Aware Layout-->
-<h2 id="layout">使用形状感知的Layout</h2>
-<!--The BoxInsetLayout class included in the Wearable UI Library extends FrameLayout and lets you define a single layout that works for both square and round screens. This class applies the required window insets depending on the screen shape and lets you easily align views on the center or near the edges of the screen.-->
-<p>包含在你的Wearable UI库中的 <strong>BoxInsetLayout</strong> 继承自 <a href="https://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank">FrameLayout</a>允许你定义一个同时适配方形和圆形屏幕的layout。这个类适用于需要根据屏幕形状插入间隔的情况并允许你简单的对齐views在屏幕边缘或中心。</p>
-<!--The gray square in figure 2 shows the area where BoxInsetLayout can automatically place its child views on round screens after applying the required window insets. To be displayed inside this area, children views specify the layout_box atribute with these values:-->
-<p>figure 2中，在 <strong>BoxInsetLayout</strong> 里的灰色方形区域会在圆形屏幕里应用所需的窗口间隔后自动放置child views。为了显示在这个区域内，子views需要具体声明附加属性 <em>layout_box</em> 为这些值：</p>
-<!--A combination of top, bottom, left, and right. For example, "left|top" positions the child's left and top edges inside the gray square in figure 2.
-The all value positions all the child's content inside the gray square in figure 2.-->
+</code></pre>
+<h2 id="layout">使用感知形状的Layout</h2>
+<p>包含在Wearable UI库中的<code>BoxInsetLayout</code>类继承自 <a href="https://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank">FrameLayout</a>，该类允许我们定义一个同时适配方形和圆形屏幕的layout。这个类适用于需要根据屏幕形状插入间隔的情况，并让我们容易地将view对其到屏幕的边缘或中心。</p>
+<p><img src="02_uilib.png" alt=""></p>
+<p><strong>Figure 2.</strong> 在圆形屏幕上的窗口间隔</p>
+<p>figure 2中灰色的部分显示了在应用了窗口间隔之后，<code>BoxInsetLayout</code>自动将它的子view放置在圆形屏幕的区域。为了显示在这个区域内，子view需要用下面这些值指定 <code>layout_box</code>属性：</p>
 <ul>
-<li>一个<em>top</em>, <em>bottom</em>, <em>left</em>, <em>right</em>的复合属性。比如 <em>&quot;left|top&quot;</em> 说明子view的左和上边缘如figure 2。</li>
-<li><em>all</em> 说明子view的内容在灰色方形内如figure 2。</li>
+<li>一个<code>top</code>、<code>bottom</code>、<code>left</code>和<code>right</code>的组合。比如，<code>&quot;left|top&quot;</code>将子view的左和上边缘定位在figure 2的灰色区域里面。</li>
+<li><code>all</code>将所有子view的内容定位在figure 2的灰色区域里面。</li>
 </ul>
-<p><img src="https://developer.android.com/wear/images/02_uilib.png" alt=""></p>
-<!--Figure 2. Window insets on a round screen.-->
-<p><strong>Figure 2.</strong> <em>在圆形屏幕上的窗口间隔</em></p>
-<!--On square screens, the window insets are zero and the layout_box attribute is ignored.-->
-<p>在方形屏幕上，窗口间隔为0、 <em>layout_box</em> 属性会被忽略。</p>
-<p><img src="https://developer.android.com/wear/images/03_uilib.png" alt=""></p>
-<!--Figure 3. A layout definition that works on both square and round screens.-->
-<p><strong>Figure 3.</strong> <em>同一个layout定义工作在方形和圆形屏幕上</em></p>
-<!--The layout shown in figure 3 uses BoxInsetLayout and works on square and round screens:-->
-<p>这个layout在figure 3中展示了在圆形和方形屏幕上使用 <em>BoxInsetLayout</em> ：</p>
-<pre><code>&lt;android.support.wearable.view.BoxInsetLayout
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-*   android:background=&quot;@drawable/robot_background&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_width=&quot;match_parent&quot;
-*   android:padding=&quot;15dp&quot;&gt;
+<p>在方形屏幕上，窗口间隔为0，<code>layout_box</code>属性会被忽略。</p>
+<p><img src="03_uilib.png" alt=""></p>
+<p><strong>Figure 3.</strong> 同一个layout工作在方形和圆形屏幕上</p>
+<p>在figure 3中展示的layout使用了<code>BoxInsetLayout</code>，该layout在圆形和方形屏幕上都可以使用：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.BoxInsetLayout</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:app</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@drawable/robot_background"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:padding</span>=<span class="hljs-value">"15dp"</span>&gt;</span>
 
-    &lt;FrameLayout
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-*       android:padding=&quot;5dp&quot;
-*       app:layout_box=&quot;all&quot;&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:padding</span>=<span class="hljs-value">"5dp"</span>
+        <span class="hljs-attribute">app:layout_box</span>=<span class="hljs-value">"all"</span>&gt;</span>
 
-        &lt;TextView
-            android:gravity=&quot;center&quot;
-            android:layout_height=&quot;wrap_content&quot;
-            android:layout_width=&quot;match_parent&quot;
-            android:text=&quot;@string/sometext&quot;
-            android:textColor=&quot;@color/black&quot; /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>
+            <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center"</span>
+            <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+            <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+            <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/sometext"</span>
+            <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"@color/black"</span> /&gt;</span>
 
-        &lt;ImageButton
-            android:background=&quot;@null&quot;
-            android:layout_gravity=&quot;bottom|left&quot;
-            android:layout_height=&quot;50dp&quot;
-            android:layout_width=&quot;50dp&quot;
-            android:src=&quot;@drawable/ok&quot; /&gt;
+        <span class="hljs-tag">&lt;<span class="hljs-title">ImageButton</span>
+            <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@null"</span>
+            <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"bottom|left"</span>
+            <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"50dp"</span>
+            <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"50dp"</span>
+            <span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/ok"</span> /&gt;</span>
 
-        &lt;ImageButton
-            android:background=&quot;@null&quot;
-            android:layout_gravity=&quot;bottom|right&quot;
-            android:layout_height=&quot;50dp&quot;
-            android:layout_width=&quot;50dp&quot;
-            android:src=&quot;@drawable/cancel&quot; /&gt;
-    &lt;/FrameLayout&gt;
-&lt;/android.support.wearable.view.BoxInsetLayout&gt;
-</code></pre><!--Notice the parts of the layout marked in bold:-->
-<p>注意layout中这些被加*的部分</p>
-<!--android:padding="15dp"
-This line assigns padding to the BoxInsetLayout element. Because the window insets on round devices are larger than 15dp, this padding only applies to square screens.
-android:padding="5dp"
-This line assigns padding to the inner FrameLayout element. This padding applies to both square and round screens. The total padding between the buttons and the window insets is 20 dp on square screens (15+5) and 5 dp on round screens.
-app:layout_box="all"
-This line ensures that the FrameLayout element and its children are boxed inside the area defined by the window insets on round screens. This line has no effect on square screens.-->
+        <span class="hljs-tag">&lt;<span class="hljs-title">ImageButton</span>
+            <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@null"</span>
+            <span class="hljs-attribute">android:layout_gravity</span>=<span class="hljs-value">"bottom|right"</span>
+            <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"50dp"</span>
+            <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"50dp"</span>
+            <span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/cancel"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">FrameLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.wearable.view.BoxInsetLayout</span>&gt;</span>
+</code></pre>
+<p>注意layout中的这些部分：</p>
 <ul>
-<li><p>android:padding=&quot;15dp&quot;</p>
-<p>这行指定了 <em>BoxInsetLayout</em> 元素的padding。因为在圆形设备商窗口间隔大于15dp，这个padding只工作在方形屏幕上。</p>
-</li>
-<li><p>android:padding=&quot;5dp&quot;</p>
-<p>这行指定 <em>FrameLayout</em> 内部的元素padding。这个padding同时生效在方形和圆形屏幕上。在方形屏幕上总的padding是20dp(15+5)、在圆形屏幕上是5dp。</p>
-</li>
-<li><p>app:layout_box=&quot;all&quot;</p>
-<p>这行声明 <em>FrameLayout</em> 和它的子views都被放在有窗口间隔的圆形屏幕里。这行在方形屏幕上没有任何效果。</p>
-</li>
+<li><code>android:padding=&quot;15dp&quot;</code></li>
 </ul>
+<p>这行指定了<code>BoxInsetLayout</code>元素的padding。因为在圆形设备上窗口间隔大于15dp，所以这个padding只应用在方形屏幕上。</p>
+<ul>
+<li><code>android:padding=&quot;5dp&quot;</code></li>
+</ul>
+<p>这行指定内部<code>FrameLayout</code>元素的padding。这个padding同时应用在方形和圆形屏幕上。在方形屏幕上，按钮和窗口间隔总的padding是20dp(15+5)，在圆形屏幕上是5dp。</p>
+<ul>
+<li><code>app:layout_box=&quot;all&quot;</code></li>
+</ul>
+<p>这行声明<code>FrameLayout</code>和它的子views都被放在圆形屏幕上窗口间隔定义的区域里。这行在方形屏幕上没有任何效果。</p>
 
                     
                     </section>
@@ -5320,7 +5255,7 @@ This line ensures that the FrameLayout element and its children are boxed inside
         <a href="../../wearables/ui/index.html" class="navigation navigation-prev " aria-label="Previous page: 创建自定义的UI"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../wearables/ui/cards.html" class="navigation navigation-next " aria-label="Next page: 创建Cards"><i class="fa fa-angle-right"></i></a>
+        <a href="../../wearables/ui/cards.html" class="navigation navigation-next " aria-label="Next page: 创建Card"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

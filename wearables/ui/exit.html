@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>退出全屏的Activity | Android官方培训课程中文版(v0.9.2)</title>
+        <title>退出全屏的Activity | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3.6" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.3.6" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,73 +5091,68 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_302">
+                    <section class="normal" id="section-gitbook_301">
                     
                         <h1 id="activity">退出全屏的Activity</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/exit.html" target="_blank">https://developer.android.com/training/wearables/ui/exit.html</a></p>
 </blockquote>
-<!--By default, users exit Android Wear activities by swiping from left to right. If the app contains horizontally scrollable content, users first have to navigate to the edge of the content and then swipe again from left to right to exit the app.-->
-<p>默认情况下，用户可以从左到右划动退出Android Wear activities。如果app含有水平水滚的内容，用户首先滚动至内容边缘然后再次从左到又滑动可以退出app。</p>
-<!--For more immersive experiences, like an app that can scroll a map in any direction, you can disable the swipe to exit gesture in your app. However, if you disable it, you must implement the long-press-to-dismiss UI pattern to let users exit your app using the DismissOverlayView class from the Wearable UI Library. You must also inform your users the first time they run your app that they can exit using a long press.-->
-<p>对于更加沉浸的体验，比如在app中可以滚动地图到任何位置，你可以在你的app中禁用滑动退出手势，然而，如果你禁用了这个，你必须使用Wearable UI库中的 <em>DismissOverlayView</em> 类实现long-press-to-dismiss UI让用户退出你的app。你当然也需要在用户第一次运行你的app的时候提醒用户可以长按退出app。</p>
-<!--For design guidelines about exiting Android Wear activities, see Breaking out of the card.-->
+<p>默认情况下，用户通过从左到右滑动退出Android Wear activities。如果应用含有水平滚动的内容，用户首先滑动到内容边缘，然后再次从左到右滑动即退出app。</p>
+<p>对于更加沉浸式的体验，比如在应用中可以任意方向地滚动地图，这时我们可以在应用中禁用滑动退出手势。然而，如果我们禁用了这个功能，那么我们必须使用Wearable UI库中的<code>DismissOverlayView</code>类实现长按退出UI模式让用户退出应用。当然，我们需要在用户第一次运行我们应用的时候提醒用户可以通过长按退出应用。</p>
 <p>更多关于退出Android Wear activities的设计指南，请查看<a href="https://developer.android.com/design/wear/structure.html#Custom" target="_blank">Breaking out of the card</a>。</p>
-<h2 id="swipe-to-dismiss">禁用Swipe-To-Dismiss手势</h2>
-<!-- the user interaction model of your app interferes with the swipe-to-dismiss gesture, you can disable it for your app. To disable the swipe-to-dismiss gesture in your app, extend the default theme and set the android:windowSwipeToDismiss attribute to false:-->
-<p>如果你的app要干涉滑动退出手势的用户交互模型，你在你的app中可以禁用它。为了在你的app中禁用滑动退出手势，继承默认theme然后设置 <em>android:windowSwipeToDismiss</em> 属性为 <em>false</em>：</p>
-<pre><code>&lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.DeviceDefault&quot;&gt;
-    &lt;item name=&quot;android:windowSwipeToDismiss&quot;&gt;false&lt;/item&gt;
-&lt;/style&gt;
-</code></pre><!--If you disable this gesture, you must implement the long-press-to-dismiss UI pattern to let users exit your app, as described in the next section.-->
-<p>如果你禁用了这个手势，你需要实现长按退出UI元素以让用户可以退出你的app，类似下面章节的描述：</p>
-<h2 id="">实现长按忽略元素</h2>
-<!--To use the DissmissOverlayView class in your activity, add this element to your layout definition such that it covers the whole screen and is placed above all other views. For example:-->
-<p>要在你的activity中使用 <em>DissmissOverlayView</em> 类，添加这个元素到你的layout解释文件，让它全屏且覆盖在所有其他view上，例子：</p>
-<pre><code>&lt;FrameLayout
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_width=&quot;match_parent&quot;&gt;
+<h2 id="">禁用滑动退出手势</h2>
+<p>如果我们应用的用户交互模型与滑动退出手势相冲突，那么我们可以在应用中禁用它。为了禁用滑动退出手势，需要继承默认的theme，然后设置<code>android:windowSwipeToDismiss</code> 属性为<code>false</code>：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"AppTheme"</span> <span class="hljs-attribute">parent</span>=<span class="hljs-value">"Theme.DeviceDefault"</span>&gt;</span><span class="css">
+    &lt;<span class="hljs-tag">item</span> <span class="hljs-tag">name</span>="<span class="hljs-tag">android</span><span class="hljs-pseudo">:windowSwipeToDismiss"</span>&gt;<span class="hljs-tag">false</span>&lt;/<span class="hljs-tag">item</span>&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+</code></pre>
+<p>如果我们禁用了这个手势，那么我们需要实现长按退出UI模型来让用户退出我们的应用，下面的章节会介绍相关内容。</p>
+<h2 id="">实现长按退出模式</h2>
+<p>要在activity中使用<code>DissmissOverlayView</code>类，添加下面这个节点到layout文件，让它全屏且覆盖在所有其他view上。例如：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>
 
-    &lt;!-- other views go here --&gt;
+    <span class="hljs-comment">&lt;!-- other views go here --&gt;</span>
 
-    &lt;android.support.wearable.view.DismissOverlayView
-        android:id=&quot;@+id/dismiss_overlay&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_width=&quot;match_parent&quot;/&gt;
-&lt;FrameLayout&gt;
-</code></pre><!--In your activity, obtain the DismissOverlayView element and set some introductory text. This text is shown to users the first time they run your app to inform them that they can exit the app using a long press gesture. Then use a GestureDetector to detect a long press:-->
-<p>在你的activity中，取得 <em>DismissOverlayView</em> 元素然后设置一些提示文字。这些文字会在用户第一次运行你的app时提醒用户可以使用长按手势退出app。接着用一个 <em>GestureDetector</em> 探测长按动作：</p>
-<pre><code>public class WearActivity extends Activity {
+    <span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.DismissOverlayView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/dismiss_overlay"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span>&gt;</span>
+</code></pre>
+<p>在我们的activity中，取得<code>DismissOverlayView</code>元素并设置一些提示文字。这些文字会在用户第一次运行我们的应用时提醒用户可以使用长按手势退出应用。接着用<code>GestureDetector</code>检测长按动作：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WearActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 
-    private DismissOverlayView mDismissOverlay;
-    private GestureDetector mDetector;
+    <span class="hljs-keyword">private</span> DismissOverlayView mDismissOverlay;
+    <span class="hljs-keyword">private</span> GestureDetector mDetector;
 
-    public void onCreate(Bundle savedState) {
-        super.onCreate(savedState);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedState);
         setContentView(R.layout.wear_activity);
 
-        // Obtain the DismissOverlayView element
+        <span class="hljs-comment">// Obtain the DismissOverlayView element</span>
         mDismissOverlay = (DismissOverlayView) findViewById(R.id.dismiss_overlay);
         mDismissOverlay.setIntroText(R.string.long_press_intro);
         mDismissOverlay.showIntroIfNecessary();
 
-        // Configure a gesture detector
-        mDetector = new GestureDetector(this, new SimpleOnGestureListener() {
-            public void onLongPress(MotionEvent ev) {
+        <span class="hljs-comment">// Configure a gesture detector</span>
+        mDetector = <span class="hljs-keyword">new</span> GestureDetector(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> SimpleOnGestureListener() {
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLongPress</span><span class="hljs-params">(MotionEvent ev)</span> </span>{
                 mDismissOverlay.show();
             }
         });
     }
 
-    // Capture long presses
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        return mDetector.onTouchEvent(ev) || super.onTouchEvent(ev);
+    <span class="hljs-comment">// Capture long presses</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouchEvent</span><span class="hljs-params">(MotionEvent ev)</span> </span>{
+        <span class="hljs-keyword">return</span> mDetector.onTouchEvent(ev) || <span class="hljs-keyword">super</span>.onTouchEvent(ev);
     }
 }
-</code></pre><!--When the system detects a long press gesture, DismissOverlayView shows an Exit button, which terminates your activity if the user presses it.-->
-<p>当系统发现长按动作， <em>DismissOverlayView</em> 会显示一个<strong>退出</strong>按钮，当用户点击它，你的activity会被终止。</p>
+</code></pre>
+<p>当系统检测到一个长按动作，<code>DismissOverlayView</code>会显示一个<strong>退出</strong>按钮。如果用户点击它，那么我们的activity会被终止。</p>
 
                     
                     </section>

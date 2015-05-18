@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保存到数据库 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>保存到数据库 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.6.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.6.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,21 +5091,21 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_32">
+                    <section class="normal" id="section-gitbook_31">
                     
                         <h1 id="">保存到数据库</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/data-storage/databases.html" target="_blank">http://developer.android.com/training/basics/data-storage/databases.html</a></p>
 </blockquote>
-<p>对于重复或者结构化的数据（如联系人信息）等保存到DB是个不错的主意。这节课假定你已经熟悉SQL数据库的操作。在Android上可能会使用到的APIs，可以从<a href="http://developer.android.com/reference/android/database/sqlite/package-summary.html" target="_blank">android.database.sqlite</a>包中找到。</p>
+<p>对于重复或者结构化的数据（如联系人信息）等保存到DB是个不错的主意。本课假定读者已经熟悉SQL数据库的常用操作。在Android上可能会使用到的APIs，可以从<a href="http://developer.android.com/reference/android/database/sqlite/package-summary.html" target="_blank">android.database.sqlite</a>包中找到。</p>
 <h2 id="schemacontract">定义Schema与Contract</h2>
-<p>SQL中一个中重要的概念是schema：一种DB结构的正式声明。schema是从你创建DB的SQL语句中生成的。你可能会发现创建一个伴随类（companion class）是很有益的，这个类称为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了你的schema样式。</p>
-<p>Contract Clsss是一些常量的容器。它定义了例如URIs，表名，列名等。这个contract类允许你在同一个包下与其他类使用同样的常量。 它让你只需要在一个地方修改列名，然后这个列名就可以自动传递给你整个code。</p>
-<p>一个组织你的contract类的好方法是在你的类的根层级定义一些全局变量，然后为每一个table来创建内部类。</p>
+<p>SQL中一个重要的概念是schema：一种DB结构的正式声明，用于表示database的组成结构。schema是从创建DB的SQL语句中生成的。我们会发现创建一个伴随类（companion class）是很有益的，这个类称为合约类（contract class）,它用一种系统化并且自动生成文档的方式，显示指定了schema样式。</p>
+<p>Contract Clsss是一些常量的容器。它定义了例如URIs，表名，列名等。这个contract类允许在同一个包下与其他类使用同样的常量。 它让我们只需要在一个地方修改列名，然后这个列名就可以自动传递给整个code。</p>
+<p>组织contract类的一个好方法是在类的根层级定义一些全局变量，然后为每一个table来创建内部类。</p>
 <blockquote>
-<p><strong>Note：</strong>通过实现 <a href="http://developer.android.com/reference/android/provider/BaseColumns.html" target="_blank">BaseColumns</a> 的接口，你的内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这么做不是必须的，但这样能够使得你的DB与Android的framework能够很好的相容。</p>
+<p><strong>Note：</strong>通过实现 <a href="http://developer.android.com/reference/android/provider/BaseColumns.html" target="_blank">BaseColumns</a> 的接口，内部类可以继承到一个名为_ID的主键，这个对于Android里面的一些类似cursor adaptor类是很有必要的。这么做不是必须的，但这样能够使得我们的DB与Android的framework能够很好的相容。</p>
 </blockquote>
-<p>例如，下面的例子定义了表名与这个表的列名：</p>
+<p>例如，下面的例子定义了表名与该表的列名：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedReaderContract</span> </span>{
     <span class="hljs-comment">// To prevent someone from accidentally instantiating the contract class,</span>
     <span class="hljs-comment">// give it an empty constructor.</span>
@@ -5154,7 +5122,7 @@
 }
 </code></pre>
 <h2 id="sql-helperdb">使用SQL Helper创建DB</h2>
-<p>当你定义好了你的DB的结构之后，你应该实现那些创建与维护db与table的方法。下面是一些典型的创建与删除table的语句。</p>
+<p>定义好了的DB的结构之后，就应该实现那些创建与维护db和table的方法。下面是一些典型的创建与删除table的语句。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String TEXT_TYPE = <span class="hljs-string">" TEXT"</span>;
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String COMMA_SEP = <span class="hljs-string">","</span>;
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SQL_CREATE_ENTRIES =
@@ -5168,12 +5136,12 @@
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SQL_DELETE_ENTRIES =
     <span class="hljs-string">"DROP TABLE IF EXISTS "</span> + TABLE_NAME_ENTRIES;
 </code></pre>
-<p>就像保存文件到设备的<a href="http://developer.android.com/guide/topics/data/data-storage.html#filesInternal" target="_blank">internal storage</a> 一样，Android会保存db到你的程序的private的空间上。你的数据是受保护的，因为那些区域默认是私有的，不可被其他程序所访问。</p>
-<p>在<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>类中有一些很有用的APIs。当你使用这个类来做一些与你的db有关的操作时，系统会对那些有可能比较耗时的操作（例如创建与更新等）在真正需要的时候才去执行，而不是在app刚启动的时候就去做那些动作。你所需要做的仅仅是执行<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getWritableDatabase()">getWritableDatabase()</a>或者<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getReadableDatabase()">getReadableDatabase()</a>.</p>
+<p>类似于保存文件到设备的<a href="http://developer.android.com/guide/topics/data/data-storage.html#filesInternal" target="_blank">internal storage</a> ，Android会将db保存到程序的private的空间。我们的数据是受保护的，因为那些区域默认是私有的，不可被其他程序所访问。</p>
+<p>在<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank">SQLiteOpenHelper</a>类中有一些很有用的APIs。当使用这个类来做一些与db有关的操作时，系统会对那些有可能比较耗时的操作（例如创建与更新等）在真正需要的时候才去执行，而不是在app刚启动的时候就去做那些动作。我们所需要做的仅仅是执行<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getWritableDatabase()">getWritableDatabase()</a>或者<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#getReadableDatabase()">getReadableDatabase()</a>.</p>
 <blockquote>
-<p><strong>Note：</strong>因为那些操作可能是很耗时的，请确保你在background thread（AsyncTask or IntentService）里面去执行 getWritableDatabase() 或者 getReadableDatabase() 。</p>
+<p><strong>Note：</strong>因为那些操作可能是很耗时的，请确保在background thread（AsyncTask or IntentService）里面去执行 getWritableDatabase() 或者 getReadableDatabase() 。</p>
 </blockquote>
-<p>为了使用 SQLiteOpenHelper, 你需要创建一个子类并重写<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase)">onCreate()</a>, <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)">onUpgrade()</a>与<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onOpen(android.database.sqlite.SQLiteDatabase)">onOpen()</a>等callback方法。你也许还需要实现<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onDowngrade(android.database.sqlite.SQLiteDatabase, int, int)">onDowngrade()</a>, 但是这并不是必需的。</p>
+<p>为了使用 SQLiteOpenHelper, 需要创建一个子类并重写<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onCreate(android.database.sqlite.SQLiteDatabase)">onCreate()</a>, <a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)">onUpgrade()</a>与<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onOpen(android.database.sqlite.SQLiteDatabase)">onOpen()</a>等callback方法。也许还需要实现<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onDowngrade(android.database.sqlite.SQLiteDatabase, int, int)">onDowngrade()</a>, 但这并不是必需的。</p>
 <p>例如，下面是一个实现了SQLiteOpenHelper 类的例子：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedReaderDbHelper</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">SQLiteOpenHelper</span> </span>{
     <span class="hljs-comment">// If you change the database schema, you must increment the database version.</span>
@@ -5197,7 +5165,7 @@
     }
 }
 </code></pre>
-<p>为了访问你的db，需要实例化你的 SQLiteOpenHelper的子类：</p>
+<p>为了访问我们的db，需要实例化 SQLiteOpenHelper的子类：</p>
 <pre><code class="lang-java">FeedReaderDbHelper mDbHelper = <span class="hljs-keyword">new</span> FeedReaderDbHelper(getContext());
 </code></pre>
 <h2 id="db">添加信息到DB</h2>
@@ -5220,7 +5188,7 @@ newRowId = db.insert(
 </code></pre>
 <p><code>insert()</code>方法的第一个参数是table名，第二个参数会使得系统自动对那些<code>ContentValues</code> 没有提供数据的列填充数据为<code>null</code>，如果第二个参数传递的是null，那么系统则不会对那些没有提供数据的列进行填充。</p>
 <h2 id="db">从DB中读取信息</h2>
-<p>为了从DB中读取数据，需要使用<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#query(boolean, java.lang.String, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.String)">query()</a>方法， 传递你需要查询的条件。查询后会返回一个 <a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a> 对象。</p>
+<p>为了从DB中读取数据，需要使用<a href="http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html#query(boolean, java.lang.String, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String, java.lang.String, java.lang.String, java.lang.String)">query()</a>方法，传递需要查询的条件。查询后会返回一个 <a href="http://developer.android.com/reference/android/database/Cursor.html" target="_blank">Cursor</a> 对象。</p>
 <pre><code class="lang-java">SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 <span class="hljs-comment">// Define a projection that specifies which columns from the database</span>
@@ -5246,8 +5214,8 @@ Cursor c = db.query(
     sortOrder                                 <span class="hljs-comment">// The sort order</span>
     );
 </code></pre>
-<p>要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说你应该先调用<code>moveToFirst()</code>函数，将读取位置置于结果集最开始的位置。对每一行，你可以使用cursor的其中一个get方法比如<code>getString()</code>或<code>getLong()</code>获取列的值。对于每一个get方法必须传递你想要获取的列的索引位置(index position)，索引位置可以通过调用<code>getColumnIndex()</code>或<code>getColumnIndexOrThrow()</code>获得。</p>
-<p>下面是演示如何从course对象中读取数据信息：</p>
+<p>要查询在cursor中的行，使用cursor的其中一个move方法，但必须在读取值之前调用。一般来说应该先调用<code>moveToFirst()</code>函数，将读取位置置于结果集最开始的位置。对每一行，我们可以使用cursor的其中一个get方法如<code>getString()</code>或<code>getLong()</code>获取列的值。对于每一个get方法必须传递想要获取的列的索引位置(index position)，索引位置可以通过调用<code>getColumnIndex()</code>或<code>getColumnIndexOrThrow()</code>获得。</p>
+<p>下面演示如何从course对象中读取数据信息：</p>
 <pre><code class="lang-java">cursor.moveToFirst();
 <span class="hljs-keyword">long</span> itemId = cursor.getLong(
     cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID)
@@ -5256,9 +5224,9 @@ Cursor c = db.query(
 <h2 id="db">删除DB中的信息</h2>
 <p>和查询信息一样，删除数据同样需要提供一些删除标准。DB的API提供了一个防止SQL注入的机制来创建查询与删除标准。</p>
 <blockquote>
-<p><strong>SQL Injection：</strong>(<em>随着B/S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但是由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码的时候，没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入</em>)</p>
+<p><strong>SQL Injection：</strong>(<em>随着B/S模式应用开发的发展，使用这种模式编写应用程序的程序员也越来越多。但由于程序员的水平及经验也参差不齐，相当大一部分程序员在编写代码时没有对用户输入数据的合法性进行判断，使应用程序存在安全隐患。用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入</em>)</p>
 </blockquote>
-<p>这个机制把查询语句划分为选项条款与选项参数两部分。条款部分定义了查询的列的特征，参数部分用来测试是否符合前面的条款。(<em>这里翻译的怪怪的，附上原文，The clause defines the columns to look at, and also allows you to combine column tests. The arguments are values to test against that are bound into the clause.</em>) 因为处理的结果与通常的SQL语句不同，这样可以避免SQL注入问题。</p>
+<p>该机制把查询语句划分为选项条件与选项参数两部分。条件定义了查询的列的特征，参数用于测试是否符合前面的条款。由于处理的结果不同于通常的SQL语句，这样可以避免SQL注入问题。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Define 'where' part of query.</span>
 String selection = FeedReaderContract.FeedEntry.COLUMN_NAME_ENTRY_ID + <span class="hljs-string">" LIKE ?"</span>;
 <span class="hljs-comment">// Specify arguments in placeholder order.</span>
@@ -5267,8 +5235,8 @@ String[] selelectionArgs = { String.valueOf(rowId) };
 db.delete(table_name, mySelection, selectionArgs);
 </code></pre>
 <h2 id="">更新数据</h2>
-<p>当你需要修改DB中的某些数据时，使用 update() 方法。</p>
-<p>更新操作结合了插入与删除的语法。</p>
+<p>当需要修改DB中的某些数据时，使用 update() 方法。</p>
+<p>update结合了插入与删除的语法。</p>
 <pre><code class="lang-java">SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
 <span class="hljs-comment">// New value for one column</span>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立ActionBar | Android官方培训课程中文版(v0.9.2)</title>
+        <title>建立ActionBar | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.2.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.2.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,32 +5091,32 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_25">
+                    <section class="normal" id="section-gitbook_24">
                     
                         <h1 id="actionbar">建立ActionBar</h1>
 <blockquote>
 <p>编写:<a href="http://github.com/vincent4j" target="_blank">Vincent 4J</a> - 原文:<a href="http://developer.android.com/training/basics/actionbar/setting-up.html" target="_blank">http://developer.android.com/training/basics/actionbar/setting-up.html</a></p>
 </blockquote>
-<p>Action bar 最基本的形式，就是为 activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，对于所有的 activity 来说，action bar 对告知用户他们当前所处的位置十分有用，并为你的 app 维护了持续的同一标识。</p>
-<p><img src="actionbar-basic.png" alt="actionbar-basic">
-图 1. 一个有 app icon 和 activity 标题的 action bar</p>
-<p>设置一个基本的 action bar，需要你的 app 使用一个 action bar 可用的 activity 主题。如何声明这样的主题取决于你的 app 支持的 Android 最低版本。所以本课程根据你的 app 支持的 Android 最低版本分为两部分。</p>
+<p>Action bar 最基本的形式，就是为 Activity 显示标题，并且在标题左边显示一个 app icon。即使在这样简单的形式下，action bar对于所有的 activity 来说是十分有用的。它告知用户他们当前所处的位置，并为你的 app 维护了持续的同一标识。</p>
+<p><img src="actionbar-basic.png" alt="actionbar-basic"></p>
+<p>图 1. 一个有 app icon 和 Activity 标题的 action bar</p>
+<p>设置一个基本的 action bar，需要 app 使用一个 activity 主题，该主题必须是 action bar 可用的。如何声明这样的主题取决于我们 app 支持的 Android 最低版本。本课程根据我们 app 支持的 Android 最低版本分为两部分。</p>
 <h2 id="-android-30-">仅支持 Android 3.0 及以上版本</h2>
-<p>从 Android 3.0(API lever 11) 开始，所有使用 <a href="http://developer.android.com/reference/android/R.style.html#Theme_Holo" target="_blank">Theme.Holo</a> 主题（或者它的子类）的activity 都包含了 action bar，当 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">targetSdkVersion</a> 或 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank">minSdkVersion</a> 属性被设置成 “11” 或更大时，它是默认主题。</p>
-<p>所以，为你的 activity 添加 action bar，只需简单地设置属性为 <code>11</code> 或者更大。例如：</p>
+<p>从 Android 3.0(API lever 11) 开始，所有使用 <a href="http://developer.android.com/reference/android/R.style.html#Theme_Holo" target="_blank">Theme.Holo</a> 主题（或者它的子类）的 Activity 都包含了 action bar，当 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#target" target="_blank">targetSdkVersion</a> 或 <a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html#min" target="_blank">minSdkVersion</a> 属性被设置成 “11” 或更大时，它是默认主题。</p>
+<p>所以，要为 activity 添加 action bar，只需简单地设置属性为 <code>11</code> 或者更大。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"11"</span> <span class="hljs-attribute">...</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
 <blockquote>
-<p><strong>Notes</strong>: 如果你创建了一个自定义主题，需确保这个主题使用一个 Theme.Holo的主题作为父辈。详情请查看 <a href="styling.html">Action bar 的风格化</a></p>
+<p><strong>注意</strong>: 如果创建了一个自定义主题，需确保这个主题使用一个 Theme.Holo的主题作为父类。详情见 <a href="styling.html">Action bar 的风格化</a></p>
 </blockquote>
-<p>到此，你的 app 使用了 <code>Theme.Holo</code> 主题，并且所有的 activity 都显示 action bar。</p>
+<p>到此，我们的 app 使用了 <code>Theme.Holo</code> 主题，并且所有的 activity 都显示 action bar。</p>
 <h2 id="-android-21-">支持 Android 2.1 及以上版本</h2>
 <p>当 app 运行在 Andriod 3.0 以下版本（不低于 Android 2.1）时，如果要添加 action bar，需要加载 Android Support 库。</p>
-<p>开始之前，通过阅读<a href="http://developer.android.com/tools/support-library/setup.html" target="_blank"> Support Library Setup</a>文档来建立<strong>v7 appcompat</strong> library（下载完library包之后，按照<a href="http://developer.android.com/tools/support-library/setup.html#libs-with-res" target="_blank">Adding libraries with resources</a>的指引进行操作）。</p>
-<p>一旦 Support Library集成到你的 app 工程之中：</p>
+<p>开始之前，通过阅读<a href="http://developer.android.com/tools/support-library/setup.html" target="_blank">Support Library Setup</a>文档来建立<strong>v7 appcompat</strong> library（下载完library包之后，按照<a href="http://developer.android.com/tools/support-library/setup.html#libs-with-res" target="_blank">Adding libraries with resources</a>的指引进行操作）。</p>
+<p>在 Support Library集成到你的 app 工程中之后：</p>
 <p>1、更新 activity，以便于它继承于 <a href="http://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html" target="_blank">ActionBarActivity</a>。例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> </span>{ ... }
 </code></pre>
@@ -5156,9 +5124,9 @@
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@style/Theme.AppCompat.Light"</span> <span class="hljs-attribute">...</span> &gt;</span>
 </code></pre>
 <blockquote>
-<p>Notes: 如果创建一个自定义主题，需确保它使用一个 <code>Theme.AppCompat</code> 主题作为父辈。详情请查看 <a href="styling.html">Action bar 风格化</a></p>
+<p><strong>注意</strong>: 如果创建一个自定义主题，需确保其使用一个 <code>Theme.AppCompat</code> 主题作为父类。详情见 <a href="styling.html">Action bar 风格化</a></p>
 </blockquote>
-<p>当 app 运行在 Android 2.1(API level 7) 或者以上时，activity 将包含 action bar。</p>
+<p>现在，当 app 运行在 Android 2.1(API level 7) 或者以上时，activity 将包含 action bar。</p>
 <p>切记，在 manifest 中正确地设置 app 支持的 API level：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"7"</span>  <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"18"</span> /&gt;</span>

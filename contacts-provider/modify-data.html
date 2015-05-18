@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>修改联系人信息 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>使用Intents修改联系人信息 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.1.3" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.1.3" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,24 +5097,25 @@
 <blockquote>
 <p>编写:<a href="https://github.com/spencer198711" target="_blank">spencer198711</a> - 原文:<a href="http://developer.android.com/training/contacts-provider/modify-data.html" target="_blank">http://developer.android.com/training/contacts-provider/modify-data.html</a></p>
 </blockquote>
-<p>这一课向你展示了如何使用<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>去插入一个新的联系人或者修改联系人的数据。我们不是直接访问Contacts Provider，而是通过Intent去启动Contacts应用的适当的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。对于这一课中描述的数据修改行为，如果你向Intent发送扩展的数据，它会自动填充进启动的Activity页面中。</p>
+<p>这一课介绍如何使用<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>去插入一个新的联系人或者修改联系人的数据。我们不是直接访问Contacts Provider，而是通过Intent启动Contacts应用去运行适当的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>。对于这一课中描述的数据修改行为，如果你向Intent发送扩展的数据，它会自动填充进启动的Activity页面中。</p>
 <p>使用Intent去插入或者更新一个联系人是比较推荐的修改Contacts Provider的做法。原因如下：</p>
 <ul>
-<li>节省了你去开发自己的UI和代码的时间和精力</li>
-<li>避免了由于不符合Contacts Provider规则的修改，从而引入错误</li>
-<li>减少你的应用所需要申请的权限数量。你的应用不需要去申请写Contacts Provider的权限，因为它把修改行为委托给了已经拥有这个权限的Contacts应用。</li>
+<li>节省了我们自行开发UI和编写代码的时间和精力。</li>
+<li>避免了由于不按照Contacts Provider的规则去修改而产生的错误。</li>
+<li>减少应用需要申请的权限数量。因为我们的应用把修改行为委托给已经拥有写Contacts Provider权限的Contacts应用，所以我们的应用不需要再去申请这个权限，。</li>
 </ul>
-<h2 id="1intent">1)使用Intent插入新的联系人</h2>
-<p>当你的应用接收到新的数据时，你通常会允许用户去插入一个新的联系人。例如，一个餐馆评论应用可以允许用户在评论餐馆的时候，把这个餐馆添加为一个联系人。可以使用Intent去做这个任务，使用你所拥有的尽可能多的数据去创建对应的Intent，然后发送这个Intent到Contacts应用。</p>
-<p>使用Contacts应用去插入一个联系人将会向Contacts Provider中的<a href="http://developer.android.com/reference/android/provider/ContactsContract.RawContacts.html" target="_blank">ContactsContract.RawContact</a>表中插入一个原始联系人。必要的情况下，在创建原始联系人的时候，Contacts应用将会提示用户选择账户类型和要使用的账户。如果联系人已经存在，Contacts应用也会告知用户。用户将会有取消插入的选项，在这种情况下不会有联系人创建。想要知道更多关于原始联系人的信息，请参阅<a href="http://developer.android.com/guide/topics/providers/contacts-provider.html" target="_blank">Contacts Provider</a>的API指导。</p>
-<p>开始需要创建一个拥有Intents.Insert.ACTION的Intent对象，并设置其MIME类型为<a href="http://developer.android.com/reference/android/provider/ContactsContract.RawContacts.html#CONTENT_TYPE" target="_blank">RawContacts.CONTENT_TYPE</a>。例如：</p>
+<h2 id="intent">使用Intent插入新的联系人</h2>
+<p>当我们的应用接收到新的数据时，我们通常会允许用户去插入一个新的联系人。例如，一个餐馆评论应用可以允许用户在评论餐馆的时候，把这个餐馆添加为一个联系人。可以使用Intent去做这个任务，使用我们拥有的尽可能多的数据去创建对应的Intent，然后发送这个Intent到Contacts应用。</p>
+<p>使用Contacts应用去插入一个联系人将会向Contacts Provider中的<a href="http://developer.android.com/reference/android/provider/ContactsContract.RawContacts.html" target="_blank">ContactsContract.RawContacts</a>表中插入一个原始联系人。必要的情况下，在创建原始联系人的时候，Contacts应用将会提示用户选择账户类型和要使用的账户。如果联系人已经存在，Contacts应用也会告知用户。用户将会有取消插入的选项，在这种情况下不会有联系人被创建。想要知道更多关于原始联系人的信息，请参阅<a href="http://developer.android.com/guide/topics/providers/contacts-provider.html" target="_blank">Contacts Provider</a>的API指导。</p>
+<h3 id="intent">创建一个Intent</h3>
+<p>利用Intents.Insert.ACTION创建一个新的Intent对象，并设置其MIME类型为<a href="http://developer.android.com/reference/android/provider/ContactsContract.RawContacts.html#CONTENT_TYPE" target="_blank">RawContacts.CONTENT_TYPE</a>。例如：</p>
 <pre><code class="lang-java">...
 <span class="hljs-comment">// Creates a new Intent to insert a contact</span>
 Intent intent = <span class="hljs-keyword">new</span> Intent(Intents.Insert.ACTION);
 <span class="hljs-comment">// Sets the MIME type to match the Contacts Provider</span>
 intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
 </code></pre>
-<p>如果你已经获得了此联系人的详细信息，比如说电话号码或者email地址，你可以把它们作为扩展数据添加到Intent中。对于键值，需要使用<a href="http://developer.android.com/reference/android/provider/ContactsContract.Intents.Insert.html" target="_blank">Intents.Insert</a>中对应的常量。Contacts应用将会在插入界面显示这些数据，以便用户作进一步的数据编辑和数据添加。</p>
+<p>如果我们已经获得了此联系人的详细信息，比如说电话号码或者email地址，那么我们可以把它们作为扩展数据添加到Intent中。对于键值，需要使用<a href="http://developer.android.com/reference/android/provider/ContactsContract.Intents.Insert.html" target="_blank">Intents.Insert</a>中对应的常量。Contacts应用将会在插入界面显示这些数据，以便用户作进一步的数据编辑和数据添加。</p>
 <pre><code class="lang-java"><span class="hljs-comment">/* Assumes EditText fields in your UI contain an email address
  * and a phone number.
  *
@@ -5173,19 +5142,19 @@ intent.putExtra(Intents.Insert.EMAIL, mEmailAddress.getText())
  */</span>
       .putExtra(Intents.Insert.PHONE_TYPE, Phone.TYPE_WORK);
 </code></pre>
-<p>一旦你已经创建好Intent，调用startActivity()发送到Contacts应用。</p>
+<p>一旦我们创建好Intent，调用startActivity()将其发送到Contacts应用。</p>
 <pre><code class="lang-java">    <span class="hljs-comment">/* Sends the Intent
      */</span>
     startActivity(intent);
 </code></pre>
-<p>这个调用将会打开Contacts应用的界面，并允许用户进入一个新的联系人。这个联系人可用的账户类型和账户名字列在屏幕的上方。一旦用户输入数据并点击确定。Contacts应用的联系人列表则会显示出来。用户可以点击Back键返回。</p>
-<h2 id="2intent">2)使用Intent编辑已经存在的联系人</h2>
-<p>如果用户已经选择了一个感兴趣的联系人，使用Intent去编辑这个已存在的联系人会很有用。例如，一个用来查找拥有邮政地址但是缺少邮政编码的联系人的应用，可以给用户查找邮政编码的选项，然后把它添加到这个联系人中。</p>
-<p>使用Intent编辑已经存在的联系人，同插入一个联系人的步骤类似。创建一个在<a href="">使用Intent插入新的联系人</a>那一节课描述的Intent，但是需要给这个Intent添加对应联系人的<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html#CONTENT_LOOKUP_URI" target="_blank">Contacts.CONTENT_LOOKUP_URI</a>和MIME类型<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html#CONTENT_ITEM_TYPE" target="_blank">Contacts.CONTENT_ITEM_TYPE</a>。如果你想要使用已经拥有的详情信息编辑这个联系人，你需要把这些数据放到Intent的扩展数据中。同时注意有些列是不能使用Intent编辑的，这些不可编辑的列在<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html" target="_blank">ContactsContract.Contacts</a>的API参考文档中的摘要部分的“Update”标题下有列出。</p>
-<p>最后发送这个Intent。作为回应，Contacts应用会显示一个编辑界面。当用户编辑完成并保存，Contacts应用会显示一个联系人列表。当用户点击Back，就回显示你自己的应用。</p>
-<h3 id="21intent">2.1)创建Intent</h3>
-<p>为了能够编辑一个联系人，需要调用Intent(action)去创建一个拥有ACTION_EDIT行为的Intent，调用setDataAndType()去设置这个Intent要编辑的联系人的Contacts.CONTENT_LOOKUP_URI和MIME类型Contacts.CONTENT_ITEM_TYPE。因为对setType()的调用会重写Intent的当前data数据，你必须同时设置data数据和MIME类型。</p>
-<p>为了得到联系人的Contacts.CONTENT_LOOKUP_URI，需要调用Contacts.getLookupUri(id, lookupkey)方法，并用这个联系人的Contacts._ID和Contacts.LOOKUP_KEY作为参数。</p>
+<p>这个调用将会打开Contacts应用的界面，并允许用户进入一个新的联系人。这个联系人的账户类型和账户名字列在屏幕的上方。一旦用户输入数据并点击<em>确定</em>，Contacts应用的联系人列表则会显示出来。用户可以点击<em>Back</em>键返回到我们自己创建的应用。</p>
+<h2 id="intent">使用Intent编辑已经存在的联系人</h2>
+<p>如果用户已经选择了一个感兴趣的联系人，使用Intent去编辑这个已存在的联系人会很有用。例如，一个用来查找拥有邮政地址但是缺少邮政编码的联系人的应用，可以给用户提供查找邮政编码的选项，然后把找到的邮政编码添加到这个联系人中。</p>
+<p>使用Intent编辑已经存在的联系人，同插入一个联系人的步骤类似。像前面介绍的<a href="">使用Intent插入新的联系人</a>创建一个Intent，但是需要给这个Intent添加对应联系人的<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html#CONTENT_LOOKUP_URI">Contacts.CONTENT_LOOKUP_URI</a>和MIME类型<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html#CONTENT_ITEM_TYPE">Contacts.CONTENT_ITEM_TYPE</a>。如果想要使用已经拥有的详情信息编辑这个联系人，我们需要把这些数据放到Intent的扩展数据中。同时注意有些列是不能使用Intent编辑的，这些不可编辑的列在<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html" target="_blank">ContactsContract.Contacts</a> 摘要部分“Update”标题下有列出。</p>
+<p>最后，发送这个Intent。Contacts应用会显示一个编辑界面作为回应。当用户编辑完成并保存，Contacts应用会显示一个联系人列表。当用户点击<em>Back</em>，我们自己的应用会出现。</p>
+<h3 id="intent">创建Intent</h3>
+<p>为了能够编辑一个联系人，需要调用Intent(action)去创建一个拥有ACTION_EDIT行为的Intent。调用setDataAndType()去设置这个Intent要编辑的联系人的Contacts.CONTENT_LOOKUP_URI和MIME类型Contacts.CONTENT_ITEM_TYPE。因为调用setType()会重写Intent当前的数据，所以我们必须同时设置数据和MIME类型。</p>
+<p>为了得到联系人的Contacts.CONTENT_LOOKUP_URI，需要调用Contacts.getLookupUri(id, lookupkey)方法，该方法的参数分别是联系人的Contacts._ID和Contacts.LOOKUP_KEY。</p>
 <p>以下的代码片段展示了如何创建这个Intent：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// The Cursor that contains the Contact row</span>
     <span class="hljs-keyword">public</span> Cursor mCursor;
@@ -5223,22 +5192,22 @@ intent.putExtra(Intents.Insert.EMAIL, mEmailAddress.getText())
      */</span>
     editIntent.setDataAndType(mSelectedContactUri,Contacts.CONTENT_ITEM_TYPE);
 </code></pre>
-<h3 id="22">2.2)添加导航标志</h3>
-<p>在android 4.0（API版本14）之后，Contacts应用中的一个问题会导致错误的页面导航。当你的应用发送一个编辑联系人的Intent到Contacts应用，然后用户编辑并保存这个联系人，当用户点击Back键的时候会看到联系人列表页面，为了能够导航回到你自己的应用，用户不得不点击最近使用的应用，然后选择你的应用，才能回到之前的页面。</p>
-<p>要在android 4.0.3（API版本15）及以后的版本解决此问题，需要添加finishActivityOnSaveCompleted扩展数据参数到这个Intent，并将它的值设置为true。Android 4.0之前的版本也能够接受这个参数，但是不起作用。为了设置扩展数据，请按照以下方式去做：</p>
+<h3 id="">添加导航标志</h3>
+<p>在Android 4.0（API版本14）和更高的版本，Contacts应用中的一个问题会导致错误的页面导航。我们的应用发送一个编辑联系人的Intent到Contacts应用，用户编辑并保存这个联系人，当用户点击<em>Back</em>键的时候会看到联系人列表页面。用户需要点击最近使用的应用，然后选择我们的应用，才能返回到我们自己的应用。</p>
+<p>要在Android 4.0.3（API版本15）及以后的版本解决此问题，需要添加<code>finishActivityOnSaveCompleted</code>扩展数据参数到这个Intent，并将它的值设置为true。Android 4.0之前的版本也能够接受这个参数，但是不起作用。为了设置扩展数据，请按照以下方式去做：</p>
 <pre><code class="lang-java">    <span class="hljs-comment">// Sets the special extended data for navigation</span>
     editIntent.putExtra(<span class="hljs-string">"finishActivityOnSaveCompleted"</span>, <span class="hljs-keyword">true</span>);
 </code></pre>
-<h3 id="23">2.3)添加其他的扩展数据</h3>
-<p>对Intent添加额外的扩展数据，需要调用putExtra()。可以为常见的联系人数据字段添加扩展数据，这些常见字段的key值可以从Intents.InsertAPI参考文档中查到。记住ContactsContract.Contacts表中的有些列是不能编辑的，这列在ContactsContract.Contacts的API参考文档中的摘要部分的“Update”标题下有列出。</p>
-<h3 id="24intent">2.4)发送Intent</h3>
-<p>最后，发送你已经构建好的Intent。例如：</p>
+<h3 id="">添加其他的扩展数据</h3>
+<p>对Intent添加额外的扩展数据，需要调用putExtra()。可以为常见的联系人数据字段添加扩展数据，这些常见字段的key值可以从<a href="http://developer.android.com/reference/android/provider/ContactsContract.Intents.Insert.html" target="_blank">Intents.Insert</a> API参考文档中查到。记住ContactsContract.Contacts表中有些列是不能编辑的，这些列在<a href="http://developer.android.com/reference/android/provider/ContactsContract.Contacts.html" target="_blank">ContactsContract.Contacts</a>的摘要部分“Update”标题下有列出。</p>
+<h3 id="intent">发送Intent</h3>
+<p>最后，发送我们已经构建好的Intent。例如：</p>
 <pre><code class="lang-java">    <span class="hljs-comment">// Sends the Intent</span>
     startActivity(editIntent);
 </code></pre>
-<h2 id="3intent">3)使用Intent让用户去选择是插入还是编辑联系人</h2>
-<p>你可以通过发送<code>ACTION_INSERT_OR_EDIT</code>行为的Intent，让用户去选择是插入联系人还是编辑已有的联系人。例如，一个email客户端应用会允许用户添加一个收件地址到新的联系人，或者仅仅作为额外的邮件地址添加到已有的联系人。需要为这个Intent设置MIME类型Contacts.CONTENT_ITEM_TYPE，但是不需要设置数据URI。</p>
-<p>当你发送这个Intent后，Contacts应用会展示一个联系人列表，用户可以选择是插入一个新的联系人还是挑选一个存在的联系人去编辑。任何你添加到Intent中得扩展数据字段都会填充在界面上。你可以使用任何在Intents.InsertAPI参考文档中制定的的key值。以下的代码片段展示了如何构建和发送这个Intent：</p>
+<h2 id="intent">使用Intent让用户去选择是插入还是编辑联系人</h2>
+<p>我们可以通过发送带有<code>ACTION_INSERT_OR_EDIT</code>行为的Intent，让用户去选择是插入联系人还是编辑已有的联系人。例如，一个email客户端应用会允许用户添加一个收件地址到新的联系人，或者仅仅作为额外的邮件地址添加到已有的联系人。需要为这个Intent设置MIME类型Contacts.CONTENT_ITEM_TYPE，但是不需要设置数据URI。</p>
+<p>当我们发送这个Intent后，Contacts应用会展示一个联系人列表。用户可以选择是插入一个新的联系人还是挑选一个存在的联系人去编辑。任何添加到Intent中的扩展数据字段都会填充在界面上。我们可以使用任何在<a href="http://developer.android.com/reference/android/provider/ContactsContract.Intents.Insert.html" target="_blank">Intents.Insert</a>中指定的的key值。以下的代码片段展示了如何构建和发送这个Intent：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Creates a new Intent to insert or edit a contact</span>
     Intent intentInsertEdit = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_INSERT_OR_EDIT);
     <span class="hljs-comment">// Sets the MIME type</span>

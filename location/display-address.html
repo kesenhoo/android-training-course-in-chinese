@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>显示位置地址 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>显示位置地址 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.2.3" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.2.3" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,186 +5091,241 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_149">
+                    <section class="normal" id="section-gitbook_148">
                     
                         <h1 id="">显示位置地址</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/display-address.html" target="_blank">http://developer.android.com/training/location/display-address.html</a></p>
 </blockquote>
-<p><a href="retrieve-current.html">获取当前的位置</a>和<a href="receive-location-updates.html">接收位置更新</a>课程描述了如何以一个<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象的形式获取用户当前的位置信息，这个位置信息包括了经纬度。尽管经纬度对计算地理距离和在地图上显示位置很有帮助，但是更多情况下位置信息的地址更有用。</p>
-<p>Android平台API提供一个根据地理经纬度返回一个大概的街道地址信息这一课教你如何使用这个地址检索功能。</p>
-<blockquote>
-<p><strong>Note：</strong> 地址检索需要一个后台服务，然后这个后台服务是不包含在核心的Android框架里面的。如果这个后台服务不可用，<a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int" target="_blank"><code>Geocoder.getFromLocation()</code></a>方法将会返回一个空列表。在Android API 9以上的API里面有一个辅助方法<a href="http://developer.android.com/reference/android/location/Geocoder.html#isPresent(" target="_blank"><code>isPresent()</code></a>可以检查这个后台服务是否可用。</p>
-</blockquote>
-<p>下面的代码假设你已经获取到了位置信息并将位置信息以<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象的形式保存到全局变量<code>mLocation</code>里面。</p>
-<h2 id="">定义地址检索任务</h2>
-<p>为了通过给定的经纬度获取地址信息，你需要调用<a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int" target="_blank">Geocoder.getFromLocation()</a>方法并返回一个地址列表。由于这个方法是同步的，所以在获取地址信息的时候可能耗时较长，因此你需要通过<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a>的<a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a> 方法来执行这个方法。</p>
-<p>当你的应用在获取地址信息的时候，可以使用一个进度条之类的控件来表示你的应用正在后台工作中。你可以将这个控件的初始状态设为<code>android:visibility=&quot;gone&quot;</code>，这样可以让这个控件不可见。当你开始进行地址检索的时候，你需要将这个控件的可见属性设为&quot;visible&quot;。</p>
-<p>下面的代码教你如何在你的布局文件里面添加一个进度条：</p>
-<pre><code class="lang-java">&lt;ProgressBar
-android:id=<span class="hljs-string">"@+id/address_progress"</span>
-android:layout_width=<span class="hljs-string">"wrap_content"</span>
-android:layout_height=<span class="hljs-string">"wrap_content"</span>
-android:layout_centerHorizontal=<span class="hljs-string">"true"</span>
-android:indeterminate=<span class="hljs-string">"true"</span>
-android:visibility=<span class="hljs-string">"gone"</span> /&gt;
+<p><a href="retrieve-current.html">获取最后可知位置</a>和<a href="receive-location-updates.html">获取位置更新</a>课程描述了如何以一个<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象的形式获取用户的位置信息，这个位置信息包括了经纬度。尽管经纬度对计算地理距离和在地图上显示位置很有用，但是更多情况下位置的地址更有用。例如，如果我们想让用户知道他们在哪里，那么一个街道地址比地理坐标（经度/纬度）更加有意义。</p>
+<p>使用 Android 框架位置 APIs 的 <a href="http://developer.android.com/reference/android/location/Geocoder.html" target="_blank">Geocoder</a> 类，我们可以将地址转换成相应的地理坐标。这个过程叫做<em>地理编码</em>。或者，我们可以将地理位置转换成相应的地址。这种地址查找功能叫做<em>反向地理编码</em>。</p>
+<p>这节课介绍了如何用 <a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int)">getFromLocation()</a> 方法将地理位置转换成地址。这个方法返回与制定经纬度相对应的估计的街道地址。</p>
+<h2 id="">获取地理位置</h2>
+<p>设备的最后可知位置对于地址查找功能是很有用的基础。<a href="retrieve-current.html">获取最后可知位置</a>介绍了如何通过调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html" target="_blank">fused location provider</a> 提供的 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>) 方法找到设备的最后可知位置。</p>
+<p>为了访问 fused location provider，我们需要创建一个 Google Play services API client 的实例。关于如何连接 client，请见<a href="retrieve-current.html">连接 Google Play Services</a> 。</p>
+<p>为了让 fused location provider 得到一个准确的街道地址，在应用的 manifest 文件添加位置权限 <code>ACCESS_FINE_LOCATION</code>，如下所示：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">package</span>=<span class="hljs-value">"com.google.android.gms.location.sample.locationupdates"</span> &gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_FINE_LOCATION"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>要创建一个后台任务，首先要定义一个AsycnTask的子类来调用getFromLocation()方法，然后返回地址。定义一个TextView对象mAddress来显示返回的地址信息，进度条则用来显示请求的进度过程。例如：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
+<h2 id="-intent-">定义一个 Intent 服务来取得地址</h2>
+<p><a href="http://developer.android.com/reference/android/location/Geocoder.html" target="_blank">Geocoder</a> 类的 <a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int)">getFromLocation()</a> 方法接收一个经度和纬度，返回一个地址列表。这个方法是同步的，可能会花很长时间来完成它的工作，所以我们不应该在应用的主线程和 UI 线程里调用这个方法。</p>
+<p><a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a> 类提供了一种结构使一个任务在后台线程运行。使用这个类，我们可以在不影响 UI 响应速度的情况下处理一个长时间运行的操作。注意到，<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 类也可以执行后台操作，但是它被设计用于短时间运行的操作。在 activity 重新创建时（例如当设备旋转时），<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 不应该保存 UI 的引用。相反，当 activity 重建时，不需要取消 <a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>。</p>
+<p>定义一个继承 <a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a> 的类 <code>FetchAddressIntentService</code>。这个类是地址查找服务。这个 Intent 服务在一个工作线程上异步地处理一个 intent，并在它离开这个工作时自动停止。Intent 外加的数据提供了服务需要的数据，包括一个用于转换成地址的 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象和一个用于处理地址查找结果的 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a> 对象。这个服务用一个 <a href="http://developer.android.com/reference/android/location/Geocoder.html" target="_blank">Geocoder</a> 来获取位置的地址，并且将结果发送给 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a>。</p>
+<h3 id="-manifest--intent-">在应用的 manifest 文件中定义 Intent 服务</h3>
+<p>在 manifest 文件中添加一个节点以定义 intent 服务：</p>
+<pre><code class="lang-xml">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.gms.location.sample.locationaddress" &gt;
+    &lt;application
+        ...
+        &lt;service
+            android:name=".FetchAddressIntentService"
+            android:exported="false"/&gt;
+    &lt;/application&gt;
     ...
-    <span class="hljs-keyword">private</span> TextView mAddress;
-    <span class="hljs-keyword">private</span> ProgressBar mActivityIndicator;
+&lt;/manifest&gt;
+</code></pre>
+<blockquote>
+<p><strong>Note：</strong>manifest 文件里的 <code>&lt;service&gt;</code> 节点不需要包含一个 intent filter，这是因为我们的主 activity 通过指定 intent 用到的类的名字来创建一个隐式的 intent。</p>
+</blockquote>
+<h3 id="-geocoder">创建一个 Geocoder</h3>
+<p>将一个地理位置传换成地址的过程叫做<em>反向地理编码</em>。通过实现 <code>FetchAddressIntentService</code> 类的 <a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a>) 来执行 intent 服务的主要工作，即反向地理编码请求。创建一个 <a href="http://developer.android.com/reference/android/location/Geocoder.html" target="_blank">Geocoder</a> 对象来处理反向地理编码。</p>
+<p>一个区域设置代表一个特定的地理上的或者语言上的区域。Locale 对象用于调整信息的呈现方式，例如数字或者日期，来适应区域设置表示的区域的约定。传一个 <a href="http://developer.android.com/reference/java/util/Locale.html" target="_blank">Locale</a> 对象到 <a href="http://developer.android.com/reference/android/location/Geocoder.html" target="_blank">Geocoder</a> 对象，确保地址结果为用户的地理区域作出了本地化。</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHandleIntent</span><span class="hljs-params">(Intent intent)</span> </span>{
+    Geocoder geocoder = <span class="hljs-keyword">new</span> Geocoder(<span class="hljs-keyword">this</span>, Locale.getDefault());
+    ...
+}
+</code></pre>
+<h3 id="">获取街道地址数据</h3>
+<p>下一步是从 geocoder 获取街道地址，处理可能出现的错误，和将结果返回给请求地址的 activity。我们需要两个分别代表成功和失败的数字常量来报告地理编码过程的结果。定义一个 <code>Constants</code> 类来包含这些值，如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Constants</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SUCCESS_RESULT = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> FAILURE_RESULT = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String PACKAGE_NAME =
+        <span class="hljs-string">"com.google.android.gms.location.sample.locationaddress"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String RECEIVER = PACKAGE_NAME + <span class="hljs-string">".RECEIVER"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String RESULT_DATA_KEY = PACKAGE_NAME +
+        <span class="hljs-string">".RESULT_DATA_KEY"</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String LOCATION_DATA_EXTRA = PACKAGE_NAME +
+        <span class="hljs-string">".LOCATION_DATA_EXTRA"</span>;
+}
+</code></pre>
+<p>为了获取与地理位置相对应的街道地址，调用 <a href="http://developer.android.com/reference/android/location/Geocoder.html#getFromLocation(double, double, int)">getFromLocation()</a>，传入位置对象的经度和纬度，以及我们想要返回的地址的最大数量。在这种情况下，我们只需要一个地址。geocoder 返回一个地址数组。如果没有找到匹配指定位置的地址，那么它会返回空的列表。如果没有可用的后台地理编码服务，geocoder 会返回 null。</p>
+<p>如下面代码介绍来检查下述这些错误。如果出现错误，就将相应的错误信息传给变量 <code>errorMessage</code>，从而将错误信息发送给发出请求的 activity：</p>
+<ul>
+<li><strong>No location data provided</strong> - Intent 的附加数据没有包含反向地理编码需要用到的 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象。</li>
+<li><strong>Invalid latitude or longitude used</strong> - <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象提供的纬度和/或者经度无效。</li>
+<li><strong>No geocoder available</strong> - 由于网络错误或者 IO 异常，导致后台地理编码服务不可用。</li>
+<li><strong>Sorry, no address found</strong> - geocoder 找不到指定纬度/经度对应的地址。</li>
+</ul>
+<p>使用 <a href="http://developer.android.com/reference/android/location/Address.html" target="_blank">Address</a> 类中的 <a href="http://developer.android.com/reference/android/location/Address.html#getAddressLine(int" target="_blank">getAddressLine()</a>) 方法来获得地址对象的个别行。然后将这些行加入一个地址 fragment 列表当中。其中，这个地址 fragment 列表准备好返回到发出地址请求的 activity。</p>
+<p>为了将结果返回给发出地址请求的 activity，需要调用 <code>deliverResultToReceiver()</code> 方法（定义于下面的<a href="">把地址返回给请求端</a>）。结果由之前提到的成功/失败数字代码和一个字符串组成。在反向地理编码成功的情况下，这个字符串包含着地址。在失败的情况下，这个字符串包含错误的信息。如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHandleIntent</span><span class="hljs-params">(Intent intent)</span> </span>{
+    String errorMessage = <span class="hljs-string">""</span>;
+
+    <span class="hljs-comment">// Get the location passed to this service through an extra.</span>
+    Location location = intent.getParcelableExtra(
+            Constants.LOCATION_DATA_EXTRA);
+
+    ...
+
+    List&lt;Address&gt; addresses = <span class="hljs-keyword">null</span>;
+
+    <span class="hljs-keyword">try</span> {
+        addresses = geocoder.getFromLocation(
+                location.getLatitude(),
+                location.getLongitude(),
+                <span class="hljs-comment">// In this sample, get just a single address.</span>
+                <span class="hljs-number">1</span>);
+    } <span class="hljs-keyword">catch</span> (IOException ioException) {
+        <span class="hljs-comment">// Catch network or other I/O problems.</span>
+        errorMessage = getString(R.string.service_not_available);
+        Log.e(TAG, errorMessage, ioException);
+    } <span class="hljs-keyword">catch</span> (IllegalArgumentException illegalArgumentException) {
+        <span class="hljs-comment">// Catch invalid latitude or longitude values.</span>
+        errorMessage = getString(R.string.invalid_lat_long_used);
+        Log.e(TAG, errorMessage + <span class="hljs-string">". "</span> +
+                <span class="hljs-string">"Latitude = "</span> + location.getLatitude() +
+                <span class="hljs-string">", Longitude = "</span> +
+                location.getLongitude(), illegalArgumentException);
+    }
+
+    <span class="hljs-comment">// Handle case where no address was found.</span>
+    <span class="hljs-keyword">if</span> (addresses == <span class="hljs-keyword">null</span> || addresses.size()  == <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">if</span> (errorMessage.isEmpty()) {
+            errorMessage = getString(R.string.no_address_found);
+            Log.e(TAG, errorMessage);
+        }
+        deliverResultToReceiver(Constants.FAILURE_RESULT, errorMessage);
+    } <span class="hljs-keyword">else</span> {
+        Address address = addresses.get(<span class="hljs-number">0</span>);
+        ArrayList&lt;String&gt; addressFragments = <span class="hljs-keyword">new</span> ArrayList&lt;String&gt;();
+
+        <span class="hljs-comment">// Fetch the address lines using getAddressLine,</span>
+        <span class="hljs-comment">// join them, and send them to the thread.</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; address.getMaxAddressLineIndex(); i++) {
+            addressFragments.add(address.getAddressLine(i));
+        }
+        Log.i(TAG, getString(R.string.address_found));
+        deliverResultToReceiver(Constants.SUCCESS_RESULT,
+                TextUtils.join(System.getProperty(<span class="hljs-string">"line.separator"</span>),
+                        addressFragments));
+    }
+}
+</code></pre>
+<h3 id="">把地址返回给请求端</h3>
+<p>Intent 服务最后要做的事情是将地址返回给启动服务的 activity 里的 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a>。这个 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a> 类允许我们发送一个带有结果的数字代码和一个包含结果数据的消息。这个数字代码说明了地理编码请求是成功还是失败。在反向地理编码成功的情况下，这个消息包含着地址。在失败的情况下，这个消息包含一些描述失败原因的文本。</p>
+<p>我们已经可以从 geocoder 取得地址，捕获到可能出现的错误，调用 <code>deliverResultToReceiver()</code> 方法。现在我们需要定义 <code>deliverResultToReceiver()</code> 方法来将结果代码和消息包发送给结果接收端。</p>
+<p>对于结果代码，使用已经传给 <code>deliverResultToReceiver()</code> 方法的 <code>resultCode</code> 参数的值。对于消息包的结构，连接 <code>Constants</code> 类的 <code>RESULT_DATA_KEY</code> 常量（定义与<a href="">获取街道地址数据</a>）和传给 <code>deliverResultToReceiver()</code> 方法的 <code>message</code> 参数的值。如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FetchAddressIntentService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span> </span>{
+    <span class="hljs-keyword">protected</span> ResultReceiver mReceiver;
+    ...
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliverResultToReceiver</span><span class="hljs-params">(<span class="hljs-keyword">int</span> resultCode, String message)</span> </span>{
+        Bundle bundle = <span class="hljs-keyword">new</span> Bundle();
+        bundle.putString(Constants.RESULT_DATA_KEY, message);
+        mReceiver.send(resultCode, bundle);
+    }
+}
+</code></pre>
+<h2 id="-intent-">启动 Intent 服务</h2>
+<p>上节课定义的 intent 服务在后台运行，同时，该服务负责提取与指定地理位置相对应的地址。当我们启动服务，Android 框架会实例化并启动服务（如果该服务没有运行），并且如果需要的话，创建一个进程。如果服务正在运行，那么让它保持运行状态。因为服务继承于 <a href="http://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>，所以当所有 intent 都被处理完之后，该服务会自动停止。</p>
+<p>在我们应用的主 activity 中启动服务，并且创建一个 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a> 来把数据传给服务。我们需要创建一个<em>显式的</em> intent，这是因为我们只想我们的服务响应该 intent。详细请见 <a href="http://developer.android.com/guide/components/intents-filters.html#Types" target="_blank">Intent Types</a>。</p>
+<p>为了创建一个显式的 intent，需要为服务指定要用到的类名：<code>FetchAddressIntentService.class</code>。在 intent 附加数据中传入两个信息：</p>
+<ul>
+<li>一个用于处理地址查找结果的 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a>。</li>
+<li>一个包含想要转换成地址的纬度和经度的 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象。</li>
+</ul>
+<p>下面的代码介绍了如何启动 intent 服务：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> </span>{
+
+    <span class="hljs-keyword">protected</span> Location mLastLocation;
+    <span class="hljs-keyword">private</span> AddressResultReceiver mResultReceiver;
+    ...
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startIntentService</span><span class="hljs-params">()</span> </span>{
+        Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, FetchAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, mResultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, mLastLocation);
+        startService(intent);
+    }
+}
+</code></pre>
+<p>当用户请求查找地理地址时，调用上述的 <code>startIntentService()</code> 方法。例如，用户可能会在我们应用的 UI 上面点击<em>提取地址</em>按钮。在启动 intent 服务之前，我们需要检查是否已经连接到 Google Play services。下面的代码片段介绍在一个按钮 handler 中调用 <code>startIntentService()</code> 方法。</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fetchAddressButtonHandler</span><span class="hljs-params">(View view)</span> </span>{
+    <span class="hljs-comment">// Only start the service to fetch the address if GoogleApiClient is</span>
+    <span class="hljs-comment">// connected.</span>
+    <span class="hljs-keyword">if</span> (mGoogleApiClient.isConnected() &amp;&amp; mLastLocation != <span class="hljs-keyword">null</span>) {
+        startIntentService();
+    }
+    <span class="hljs-comment">// If GoogleApiClient isn't connected, process the user's request by</span>
+    <span class="hljs-comment">// setting mAddressRequested to true. Later, when GoogleApiClient connects,</span>
+    <span class="hljs-comment">// launch the service to fetch the address. As far as the user is</span>
+    <span class="hljs-comment">// concerned, pressing the Fetch Address button</span>
+    <span class="hljs-comment">// immediately kicks off the process of getting the address.</span>
+    mAddressRequested = <span class="hljs-keyword">true</span>;
+    updateUIWidgets();
+}
+</code></pre>
+<p>如果用户点击了应用 UI 上面的<em>提取地址</em>按钮，那么我们必须在 Google Play services 连接稳定之后启动 intent 服务。下面的代码片段介绍了调用 Google API Client 提供的 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>) 回调函数中的 <code>startIntentService()</code> 方法。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> </span>{
     ...
     <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-    <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
-    ...
-    mAddress = (TextView) findViewById(R.id.address);
-    mActivityIndicator =
-            (ProgressBar) findViewById(R.id.address_progress);
-    }
-    ...
-    <span class="hljs-javadoc">/**
-    * A subclass of AsyncTask that calls getFromLocation() in the
-    * background. The class definition has these generic types:
-    * Location - A Location object containing
-    * the current location.
-    * Void     - indicates that progress units are not used
-    * String   - An address passed to onPostExecute()
-    */</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetAddressTask</span> <span class="hljs-keyword">extends</span>
-            <span class="hljs-title">AsyncTask</span>&lt;<span class="hljs-title">Location</span>, <span class="hljs-title">Void</span>, <span class="hljs-title">String</span>&gt; </span>{
-        Context mContext;
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GetAddressTask</span><span class="hljs-params">(Context context)</span> </span>{
-            <span class="hljs-keyword">super</span>();
-            mContext = context;
-        }
-        ...
-        <span class="hljs-javadoc">/**
-         * Get a Geocoder instance, get the latitude and longitude
-         * look up the address, and return it
-         *
-         *<span class="hljs-javadoctag"> @params</span> params One or more Location objects
-         *<span class="hljs-javadoctag"> @return</span> A string containing the address of the current
-         * location, or an empty string if no address can be found,
-         * or an error message
-         */</span>
-        <span class="hljs-annotation">@Override</span>
-        <span class="hljs-function"><span class="hljs-keyword">protected</span> String <span class="hljs-title">doInBackground</span><span class="hljs-params">(Location... params)</span> </span>{
-            Geocoder geocoder =
-                    <span class="hljs-keyword">new</span> Geocoder(mContext, Locale.getDefault());
-            <span class="hljs-comment">// Get the current location from the input parameter list</span>
-            Location loc = params[<span class="hljs-number">0</span>];
-            <span class="hljs-comment">// Create a list to contain the result address</span>
-            List&lt;Address&gt; addresses = <span class="hljs-keyword">null</span>;
-            <span class="hljs-keyword">try</span> {
-                <span class="hljs-comment">/*
-                 * Return 1 address.
-                 */</span>
-                addresses = geocoder.getFromLocation(loc.getLatitude(),
-                        loc.getLongitude(), <span class="hljs-number">1</span>);
-            } <span class="hljs-keyword">catch</span> (IOException e1) {
-            Log.e(<span class="hljs-string">"LocationSampleActivity"</span>,
-                    <span class="hljs-string">"IO Exception in getFromLocation()"</span>);
-            e1.printStackTrace();
-            <span class="hljs-keyword">return</span> (<span class="hljs-string">"IO Exception trying to get address"</span>);
-            } <span class="hljs-keyword">catch</span> (IllegalArgumentException e2) {
-            <span class="hljs-comment">// Error message to post in the log</span>
-            String errorString = <span class="hljs-string">"Illegal arguments "</span> +
-                    Double.toString(loc.getLatitude()) +
-                    <span class="hljs-string">" , "</span> +
-                    Double.toString(loc.getLongitude()) +
-                    <span class="hljs-string">" passed to address service"</span>;
-            Log.e(<span class="hljs-string">"LocationSampleActivity"</span>, errorString);
-            e2.printStackTrace();
-            <span class="hljs-keyword">return</span> errorString;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle connectionHint)</span> </span>{
+        <span class="hljs-comment">// Gets the best and most recent location currently available,</span>
+        <span class="hljs-comment">// which may be null in rare cases when a location is not available.</span>
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+
+        <span class="hljs-keyword">if</span> (mLastLocation != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// Determine whether a Geocoder is available.</span>
+            <span class="hljs-keyword">if</span> (!Geocoder.isPresent()) {
+                Toast.makeText(<span class="hljs-keyword">this</span>, R.string.no_geocoder_available,
+                        Toast.LENGTH_LONG).show();
+                <span class="hljs-keyword">return</span>;
             }
-            <span class="hljs-comment">// If the reverse geocode returned an address</span>
-            <span class="hljs-keyword">if</span> (addresses != <span class="hljs-keyword">null</span> &amp;&amp; addresses.size() &gt; <span class="hljs-number">0</span>) {
-                <span class="hljs-comment">// Get the first address</span>
-                Address address = addresses.get(<span class="hljs-number">0</span>);
-                <span class="hljs-comment">/*
-                 * Format the first line of address (if available),
-                 * city, and country name.
-                 */</span>
-                String addressText = String.format(
-                        <span class="hljs-string">"%s, %s, %s"</span>,
-                        <span class="hljs-comment">// If there's a street address, add it</span>
-                        address.getMaxAddressLineIndex() &gt; <span class="hljs-number">0</span> ?
-                                address.getAddressLine(<span class="hljs-number">0</span>) : <span class="hljs-string">""</span>,
-                        <span class="hljs-comment">// Locality is usually a city</span>
-                        address.getLocality(),
-                        <span class="hljs-comment">// The country of the address</span>
-                        address.getCountryName());
-                <span class="hljs-comment">// Return the text</span>
-                <span class="hljs-keyword">return</span> addressText;
-            } <span class="hljs-keyword">else</span> {
-                <span class="hljs-keyword">return</span> <span class="hljs-string">"No address found"</span>;
+
+            <span class="hljs-keyword">if</span> (mAddressRequested) {
+                startIntentService();
             }
         }
-        ...
     }
-    ...
 }
 </code></pre>
-<p>下一部分教你如何在用户界面上显示地址信息。</p>
-<h2 id="">定义显示结果的方法</h2>
-<p><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>)方法返回一个包含地址检索结果的字符串。这个值会被传入<a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>)方法，通过这个方法你可以对结果进行更深的处理。因为<a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>)运行在UI主线程上面，它可以更新用户界面；例如，它可以隐藏进度条然后显示返回的地址结果给用户：</p>
-<pre><code class="lang-java">  <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetAddressTask</span> <span class="hljs-keyword">extends</span>
-            <span class="hljs-title">AsyncTask</span>&lt;<span class="hljs-title">Location</span>, <span class="hljs-title">Void</span>, <span class="hljs-title">String</span>&gt; </span>{
-        ...
-        <span class="hljs-javadoc">/**
-         * A method that's called once doInBackground() completes. Turn
-         * off the indeterminate activity indicator and set
-         * the text of the UI element that shows the address. If the
-         * lookup failed, display the error message.
-         */</span>
+<h2 id="">获取地理编码结果</h2>
+<p>Intent 服务已经处理完地理编码请求，并用 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a> 将结果返回给发出请求的 activity。在发出请求的 activity 里，定义一个继承于 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html" target="_blank">ResultReceiver</a> 的 <code>AddressResultReceiver</code>，用于处理在 <code>FetchAddressIntentService</code> 中的响应。</p>
+<p>结果包含一个数字代码（<code>resultCode</code>）和一个包含结果数据（<code>resultData</code>）的消息。如果反向地理编码成功的话，<code>resultData</code> 会包含地址。如果失败，<code>resultData</code> 包含描述失败原因的文本。关于错误信息更详细的内容，请见<a href="">把地址返回给请求端</a></p>
+<p>重写 <a href="http://developer.android.com/reference/android/os/ResultReceiver.html#onReceiveResult(int, android.os.Bundle)">onReceiveResult()</a> 方法来处理发送给接收端的结果，如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> </span>{
+    ...
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AddressResultReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ResultReceiver</span> </span>{
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">AddressResultReceiver</span><span class="hljs-params">(Handler handler)</span> </span>{
+            <span class="hljs-keyword">super</span>(handler);
+        }
+
         <span class="hljs-annotation">@Override</span>
-        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPostExecute</span><span class="hljs-params">(String address)</span> </span>{
-            <span class="hljs-comment">// Set activity indicator visibility to "gone"</span>
-            mActivityIndicator.setVisibility(View.GONE);
-            <span class="hljs-comment">// Display the results of the lookup.</span>
-            mAddress.setText(address);
+        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceiveResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> resultCode, Bundle resultData)</span> </span>{
+
+            <span class="hljs-comment">// Display the address string</span>
+            <span class="hljs-comment">// or an error message sent from the intent service.</span>
+            mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
+            displayAddressOutput();
+
+            <span class="hljs-comment">// Show a toast message if an address was found.</span>
+            <span class="hljs-keyword">if</span> (resultCode == Constants.SUCCESS_RESULT) {
+                showToast(getString(R.string.address_found));
+            }
+
         }
-        ...
     }
-</code></pre>
-<p>最后一步就是运行地址检索任务。</p>
-<h2 id="">运行地址检索任务</h2>
-<p>为了获取地址信息，调用<a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank">execute()</a>方法即可。例如，下面的代码片段展示了当用户点击&quot;Get Address&quot;按钮时应用就开始检索地址信息了：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
-    ...
-    <span class="hljs-javadoc">/**
-     * The "Get Address" button in the UI is defined with
-     * android:onClick="getAddress". The method is invoked whenever the
-     * user clicks the button.
-     *
-     *<span class="hljs-javadoctag"> @param</span> v The view object associated with this method,
-     * in this case a Button.
-     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">getAddress</span><span class="hljs-params">(View v)</span> </span>{
-        <span class="hljs-comment">// Ensure that a Geocoder services is available</span>
-        <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;=
-                Build.VERSION_CODES.GINGERBREAD
-                            &amp;&amp;
-                Geocoder.isPresent()) {
-            <span class="hljs-comment">// Show the activity indicator</span>
-            mActivityIndicator.setVisibility(View.VISIBLE);
-            <span class="hljs-comment">/*
-             * Reverse geocoding is long-running and synchronous.
-             * Run it on a background thread.
-             * Pass the current location to the background task.
-             * When the task finishes,
-             * onPostExecute() displays the address.
-             */</span>
-            (<span class="hljs-keyword">new</span> GetAddressTask(<span class="hljs-keyword">this</span>)).execute(mLocation);
-        }
-        ...
-    }
-    ...
 }
 </code></pre>
-<p>下一课，<a href="geofencing.html">创建和监视Geofences</a>将会教你如何定义地理围栏以及如何使用地理围栏来探测用户对一个兴趣位置的接近程度。</p>
 
                     
                     </section>
@@ -5316,7 +5339,7 @@ android:visibility=<span class="hljs-string">"gone"</span> /&gt;
         <a href="../location/retrieve-location-updates.html" class="navigation navigation-prev " aria-label="Previous page: 获取位置更新"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../location/geofencing.html" class="navigation navigation-next " aria-label="Next page: 创建并监视异常区域"><i class="fa fa-angle-right"></i></a>
+        <a href="../location/geofencing.html" class="navigation navigation-next " aria-label="Next page: 创建和监视地理围栏"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

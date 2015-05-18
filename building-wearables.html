@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Android可穿戴应用 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>Android可穿戴应用 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -21,7 +21,7 @@
     <link rel="next" href="./wearables/notifications/index.html" />
     
     
-    <link rel="prev" href="./location/location-testing.html" />
+    <link rel="prev" href="./location/geofencing.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7" data-basepath="." data-revision="1427722131239">
+    <div class="book"  data-level="7" data-basepath="." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="./location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="./location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="./" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,14 +5091,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_3">
+                    <section class="normal" id="section-gitbook_2">
                     
                         <h1 id="android">Android可穿戴应用</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文: <a href="http://developer.android.com/training/building-wearables.html" target="_blank">http://developer.android.com/training/building-wearables.html</a></p>
 </blockquote>
-<p>这些课程将教会你如何在手持应用上构建notification，并且使得这些notification能够自动同步到可穿戴设备上。同样也会教你如何创建直接运行在可穿戴设备上的应用。</p>
-<p>有下面几个课程：</p>
+<p>这些课程将教我们如何在手持应用上构建notification，并且使得这些notification能够自动同步到可穿戴设备上。同样也会教我们如何创建直接运行在可穿戴设备上的应用。</p>
+<blockquote>
+<p><strong>Note：</strong>关于这几节课用到的API的详细信息，请见<a href="http://developer.android.com/reference/packages-wearable-support.html" target="_blank">Wear API reference documentation</a>。</p>
+</blockquote>
 <h4 id="notificationwearablesnotificationsindexhtml"><a href="wearables/notifications/index.html">赋予Notification可穿戴的特性</a></h4>
 <p>学习如何构建运行在手持设备的上得notification并且使得他们能够同步到可穿戴上设备时有良好的体验。</p>
 <h4 id="wearablesappsindexhtml"><a href="wearables/apps/index.html">创建可穿戴应用</a></h4>
@@ -5139,6 +5109,10 @@
 <p>学习如何为可穿戴应用创建自定义的界面。</p>
 <h4 id="wearablesdata-layerindexhtml"><a href="wearables/data-layer/index.html">发送与同步数据</a></h4>
 <p>学习如何在手持设备与可穿戴设备之间同步数据。</p>
+<h4 id="wearableswatch-facesindexhtml"><a href="wearables/watch-faces/index.html">创建表盘</a></h4>
+<p>学习如何创建表盘。</p>
+<h4 id="articleswear-location-detectionhtml"><a href="articles/wear-location-detection.html">检测位置</a></h4>
+<p>学习如何在Android穿戴设备上检测位置数据。</p>
 
                     
                     </section>
@@ -5149,7 +5123,7 @@
         </div>
 
         
-        <a href="./location/location-testing.html" class="navigation navigation-prev " aria-label="Previous page: 使用模拟位置进行测试"><i class="fa fa-angle-left"></i></a>
+        <a href="./location/geofencing.html" class="navigation navigation-prev " aria-label="Previous page: 创建和监视地理围栏"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="./wearables/notifications/index.html" class="navigation navigation-next " aria-label="Next page: 赋予Notification可穿戴特性"><i class="fa fa-angle-right"></i></a>
@@ -5178,7 +5152,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"kesenhoo"},"ga":{"token":"UA-37679268-1","configuration":"auto"}};
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"disqus":{"shortName":"kesenhoo"},"ga":{"token":"UA-37679268-1"}};
     gitbook.start(config);
 });
 </script>

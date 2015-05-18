@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>兼容不同的屏幕密度 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>兼容不同的屏幕密度 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.1.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.1.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_249">
+                    <section class="normal" id="section-gitbook_247">
                     
                         <h1 id="">兼容不同的屏幕密度</h1>
 <blockquote>
@@ -5131,8 +5099,8 @@
 </blockquote>
 <p>这节课将教你如何通过提供不同的资源和使用独立分辨率（dp）来支持不同的屏幕密度。</p>
 <h2 id="dp">使用密度独立像素（dp）</h2>
-<p>在做UI布局的时候有一个常见的问题，你必须要避免，就是当你设计的布局的时候不要使用规定像素来定义你UI的距离和尺寸。使用像素单位用来做UI的单位是会有问题的。因为，不同的屏幕有不同的像素密度，所以，同样单位的像素在不同的设备上会有不同的物理尺寸。因此，在指定单位的时候，通常使用dp或者sp。一个dp代表一个密度独立像素，也就相当于在每英寸160点的屏幕上，1dp = 1px。sp也是一个基本的单位，不过它主要是用在文本尺寸上（它也是一种尺寸规格独立的像素），所以，你在定义文本尺寸的时候应该使用这种规格单位（不要使用在布尺寸上）。</p>
-<p>例如，当你是定两个view之间的空间时，应该使用dp而不是px：</p>
+<p>设计布局时，要避免使用绝对像素（absolutepixels）定义距离和尺寸。使用像素单位来定义布局大小是有问题的。因为，不同的屏幕有不同的像素密度，所以，同样单位的像素在不同的设备上会有不同的物理尺寸。因此，在指定单位的时候，通常使用dp或者sp。一个dp代表一个密度独立像素，也就相当于在160 dpi的一个像素的物理尺寸，sp也是一个基本的单位，不过它主要是用在文本尺寸上（它也是一种尺寸规格独立的像素），所以，你在定义文本尺寸的时候应该使用这种规格单位（不要使用在布尺寸上）。</p>
+<p>例如，当你是定义两个view之间的空间时，应该使用dp而不是px：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">Button</span> <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
     <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/clickme"</span>
@@ -5144,15 +5112,15 @@
     <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"20sp"</span> /&gt;</span>
 </code></pre>
 <h2 id="">提供可供选择的图片</h2>
-<p>因为Android能运行在很多不同屏幕密度的设备上，所以，你应该针对不同的但是常用的几种密度提供不同的bitmap资源：小屏幕（low），medium（中），high（高）以及超高（extra-high）密度。这将能帮助你在所有的屏幕密度中得到非常好的图形质量和性能。</p>
-<p>为了提供更好的用户体验，你应该使用以下几种规格为不同的屏幕密度提供位图资源：</p>
+<p>因为Android能运行在很多不同屏幕密度的设备上，所以，你应该针对不同的设备密度提供不同的bitmap资源：小屏幕（low），medium（中），high（高）以及超高（extra-high）密度。这将能帮助你在所有的屏幕密度中得到非常好的图形质量和性能。</p>
+<p>为了提供更好的用户体验，你应该使用以下几种规格来缩放图片大小，为不同的屏幕密度提供相应的位图资源：</p>
 <pre><code class="lang-xml">xhdpi:2.0
 hdpi:1.5
 mdpi:1.0(标准线)
 ldpi:0.75
 </code></pre>
 <p>这也就意味着如果在xhdpi设备上你需要一个200x200的图片，那么你则需要一张150x150的图片用于hdpi，100x100的用于mdpi以及75x75的用户ldpi设备。</p>
-<p>然后将这些图片资源放到res/对应的目录下面，系统会自动根据当前屏幕密度自动去选择合适的资源进行加载：</p>
+<p>然后将这些图片资源放到res/对应的目录下面，系统会自动根据当前设备屏幕密度自动去选择合适的资源进行加载：</p>
 <pre><code class="lang-xml">MyProject/
   res/
     drawable-xhdpi/
@@ -5164,7 +5132,7 @@ ldpi:0.75
     drawable-ldpi/
         awesomeimage.png
 </code></pre>
-<p>这样放置图片资源后，不过你什么时候使用@drawable/awesomeimage，系统都会给予屏幕的dp来选择合适的图片。</p>
+<p>这样放置图片资源后，不论你什么时候使用@drawable/awesomeimage，系统都会给予屏幕的dp来选择合适的图片。</p>
 <p>如果你想知道更多关于如何为你的应用程序创建icon资源，你可以看看Icon设计指南<a href="http://developer.android.com/guide/practices/ui_guidelines/icon_design.html" target="_blank">Icon Design Guidelines</a>.</p>
 
                     

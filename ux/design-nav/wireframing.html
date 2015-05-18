@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>综合：设计样例 App | Android官方培训课程中文版(v0.9.2)</title>
+        <title>综合：设计样例 App | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.1.5" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.1.5" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_265">
+                    <section class="normal" id="section-gitbook_263">
                     
                         <h1 id="-app">综合：设计我们的样例 App</h1>
 <blockquote>
@@ -5131,16 +5099,20 @@
 </blockquote>
 <p>现在我们对导航模式和界面组合技术有了深入的理解，是时候应用到我们的界面上了。让我再看看我们第一节课上提到的新闻应用的界面完备图：</p>
 <p><img src="app-navigation-screen-planning-exhaustive-map.png" alt="app-navigation-screen-planning-exhaustive-map"></p>
+<p><strong>Figure 1.</strong> 新闻应用例子的界面完备集</p>
 <p>我们下一步得去我们前几节讨论的导航模式选择，然后应用到这个界面图中。这样就能最大化导航速度并且最少化获取内容的点击次数，但又能参考 Android 做法来保证界面的直观性和一致性。此外，我们也需要根据我们不同目标设备的参数做出不同的决定。为方便，我们集中讨论平板和手持设备。</p>
 <h2 id="">选择模式</h2>
 <p>首先，我们二级界面（<em>新闻类别列表</em> ，<em>图片列表</em> 和 <em>保存列表</em>）可用 Tab 组合在一起。注意到我们不必使用水平排列的 Tab；某些情况下下拉菜单可作为合适的替代品，特别在手机这种窄屏设备上。在手机上，我们能用 Tab 把 <em>图片保存列表</em> 和 <em>新闻保存列表</em> 组合到一起，或在平板上用多个纵向排列的内容视窗。</p>
 <p>最后，让我们看看如何展示新闻。第一个简化不同新闻类别间导航的选项：使用水平分页，然后再在滑动区域上添加一组标签来提示当前可见和临近的新闻类别。对于平板横屏，我们可以进一步地展示能水平分页的 <em>新闻列表</em> 界面作为左边的视窗，并且把 <em>新闻详情 View</em> 界面作为基础内容视窗放在右边。</p>
 <p>下图分别表示在手持设备和平板上应用了这些导航模式后的新界面图。</p>
 <p><img src="app-navigation-wireframing-map-example-phone.png" alt="app-navigation-wireframing-map-example-phone"></p>
+<p><strong>Figure 2.</strong> 手持设备上新闻应用例子的最终界面集</p>
 <p><img src="app-navigation-wireframing-map-example-tablet.png" alt="app-navigation-wireframing-map-example-tablet"></p>
+<p><strong>Figure 3.</strong> 平板上新闻应用例子的最终界面集，横屏</p>
 <p>至此，得好好考虑下界面图的衍化了，以免我们选择的模式实际上用不了（比如当你画应用界面布局的草图时）。下面有个为平板衍化的界面图样例，它并排展示不同类别的 <em>新闻列表</em>，但是 <em>新闻详情View</em> 保持独立。</p>
 <p><img src="app-navigation-wireframing-map-example-tablet-alt.png" alt="app-navigation-wireframing-map-example-tablet-alt"></p>
-<h2 id="">打草稿</h2>
+<p><strong>Figure 4.</strong> 平板上新闻应用例子的最终界面集，竖屏</p>
+<h2 id="">画草稿</h2>
 <p><a href="http://en.wikipedia.org/wiki/Website_wireframe" target="_blank">Wireframing</a>就是设计过程中你开始排布界面的那步。发挥你的创造性，想想怎么排列这些 UI 元件来帮助你的用户在你的 App 中导航。这时你要记住细枝末节是不重要的（别去想着做个实物）。</p>
 <p>最简单快速的起步方法就是用纸笔手画你界面。一旦你开始画，你会发现在你原本的界面图或在你决定使用的模式中有很多实际的问题。某些情况下，模式理论上能很好的解决特定设计问题，但实际上他们可能失效并且给视觉交互添乱（例如，界面上出现了两行 Tab）。如果那样，探索下其他的导航模式，或在选择的模式上做点变化，来让你的草稿更优。</p>
 <p>当你对初稿满意后，继续用一些软件画你的数字wireframe吧，例如：Adobe® Illustrator，Adobe® Fireworks，OmniGraffle 或者 向量图工具。选择画图工具时，考虑以下特性：</p>
@@ -5156,9 +5128,9 @@
 <h2 id="">创建数字草图</h2>
 <p>在纸上画完草图并且选择好一款心仪的数字wireframing工具后，你可以创建一个数字wireframe作为你应用视觉设计的起点。下面就是一些我们新闻客户端wireframe例子，他们和我们之前的界面图一一对应。</p>
 <p><img src="app-navigation-wireframing-wires-phone.png" alt="app-navigation-wireframing-wires-phone"></p>
-<p><strong> 图 5.</strong> 新闻客户端手机竖屏Wireframe样例（下载 <a href="http://developer.android.com/training/design-navigation/example-wireframe-phone.svg" target="_blank">SVG</a> 图）</p>
+<p><strong>Figure 5.</strong> 新闻客户端手机竖屏Wireframe样例（下载 <a href="http://developer.android.com/training/design-navigation/example-wireframe-phone.svg" target="_blank">SVG</a> 图）</p>
 <p><img src="app-navigation-wireframing-wires-tablet.png" alt="app-navigation-wireframing-wires-tablet"></p>
-<p><strong> 图 6.</strong> 新闻客户端平板横屏Wireframe样例（下载 <a href="http://developer.android.com/training/design-navigation/example-wireframe-tablet.svg" target="_blank">SVG</a> 图）</p>
+<p><strong>Figure 6.</strong> 新闻客户端平板横屏Wireframe样例（下载 <a href="http://developer.android.com/training/design-navigation/example-wireframe-tablet.svg" target="_blank">SVG</a> 图）</p>
 <p>（<a href="http://developer.android.com/training/design-navigation/example-wireframe-device-template.svg" target="_blank">下载表示设备的 Wireframe 的 SVG 图</a>）</p>
 <h2 id="">下一步</h2>
 <p>现在你已经为你的应用设计出了高效直观的 App 内部导航，你可用开始花时间来为单个界面改善 UI了。例如，展示交互内容时，你可以选择使用更花哨的控件来代替简单的文本标签，图像和按钮。你也可以开始定义你应用的视觉风格。在这过程中把你品牌的元素作为视觉语言融入其中吧。</p>
@@ -5183,7 +5155,7 @@
         </div>
 
         
-        <a href="../../ux/design-nav/ancestral-temporal.html" class="navigation navigation-prev " aria-label="Previous page: 提供向上和操作顺序导航"><i class="fa fa-angle-left"></i></a>
+        <a href="../../ux/design-nav/ancestral-temporal.html" class="navigation navigation-prev " aria-label="Previous page: 提供向上和历史导航"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../ux/implement-nav/index.html" class="navigation navigation-next " aria-label="Next page: 实现高效的导航"><i class="fa fa-angle-right"></i></a>

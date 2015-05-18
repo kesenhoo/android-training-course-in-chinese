@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>执行Android程序 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>执行Android程序 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.1.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.1.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,48 +5097,52 @@
 <blockquote>
 <p>编写:<a href="https://github.com/yuanfentiank789" target="_blank">yuanfentiank789</a> - 原文:<a href="http://developer.android.com/training/basics/firstapp/running-app.html" target="_blank">http://developer.android.com/training/basics/firstapp/running-app.html</a></p>
 </blockquote>
-<p>通过<a href="creating-project.html">上一节课</a>创建了一个Android的Hello World项目，项目默认包含一系列源文件，它让您可以立即运行的应用程序。</p>
-<p>如何运行Android应用取决于两件事情：你是否有一个Android设备和你是否正在使用Android Studio开发程序。本节课将会教使用Android Studio和命令行两种方式在真实的android设备或者android模拟器上安装并且运行你的应用。</p>
+<p>通过<a href="creating-project.html">上一节课</a>创建了一个Android的Hello World项目，项目默认包含一系列源文件，它让我们可以立即运行应用程序。</p>
+<p>如何运行Android应用取决于两件事情：是否有一个Android设备和是否正在使用Android Studio开发程序。本节课将会教使用Android Studio和命令行两种方式在真实的android设备或者android模拟器上安装并且运行应用。</p>
 <h2 id="">在真实设备上运行</h2>
-<p>如果你有一个真实的Android设备，以下的步骤可以使你在你的设备上安装和运行你的应用程序：</p>
+<p>如果有一个真实的Android设备，以下的步骤可以使我们在自己的设备上安装和运行应用程序：</p>
 <h3 id="">手机设置</h3>
 <ol>
-<li>把你的设备用USB线连接到计算机上。如果你是在windows系统上进行开发的，你可能还需要安装你设备对应的USB驱动，详见<a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB Drivers</a> 文档。</li>
+<li>把设备用USB线连接到计算机上。如果是在windows系统上进行开发的，你可能还需要安装你设备对应的USB驱动，详见<a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB Drivers</a> 文档。</li>
 <li>开启设备上的<strong>USB调试</strong>选项。<ul>
 
 </li>
 </ol>
-<p><li>  在大部分运行Andriod3.2或更老版本系统的设备上，这个选项位于“<strong>设置</strong>&gt;<strong>应用程序</strong>&gt;<strong>开发选项</strong>”里。</li></p>
+<p><li> 在大部分运行Andriod3.2或更老版本系统的设备上，这个选项位于“<strong>设置</strong>&gt;<strong>应用程序</strong>&gt;<strong>开发选项</strong>”里。</li></p>
 <p><li> 在Andriod 4.0或更新版本中，这个选项在“<strong>设置</strong>&gt;<strong>开发人员选项</strong>”里。</li>
-</ul>
-   <strong>Note:</strong> 从Android4.2开始，<strong>开发人员选项</strong>在默认情况下是隐藏的，想让它可见，可以去<strong>设置&gt;关于手机（或者关于设备)</strong>点击<strong>版本号</strong>七次。再返回就能找到<strong>开发人员选项</strong>了。</p>
-<h3 id="android-studio">用Android Studio在运行程序</h3>
+</ul></p>
+<blockquote>
+<p><strong>Note:</strong> 从Android4.2开始，<strong>开发人员选项</strong>在默认情况下是隐藏的，想让它可见，可以去<strong>设置&gt;关于手机（或者关于设备)</strong>点击<strong>版本号</strong>七次。再返回就能找到<strong>开发人员选项</strong>了。</p>
+</blockquote>
+<h3 id="android-studio">从Android Studio运行程序</h3>
 <ol>
 <li><p>选择项目的一个文件，点击工具栏里的<strong>Run</strong><img src="as-run.png" alt="image">按钮。</p>
 </li>
 <li><p><strong>Choose Device</strong>窗口出现时，选择<strong>Choose a running device</strong>单选框，点击<strong>OK</strong>。</p>
 </li>
 </ol>
-<p>Android Studio 会把应用程序安装到你的设备中并启动应用程序。</p>
-<h3 id="">从命令行安装运行你的应用程序</h3>
-<p>命令行切换当前目录到Andriod项目的根目录，在debug模式下使用Gradle编译项目，使用gradle脚本执行assembleDebug编译项目，执行后会在build/目录下生成MyFirstApp-debug.apk。</p>
+<p>Android Studio 会把应用程序安装到我们的设备中并启动应用程序。</p>
+<h3 id="">从命令行安装运行应用程序</h3>
+<p>打开命令行并切换当前目录到Andriod项目的根目录，在debug模式下使用Gradle编译项目，使用gradle脚本执行assembleDebug编译项目，执行后会在build/目录下生成MyFirstApp-debug.apk。</p>
 <p>Windows操作系统下，执行：</p>
 <pre><code>gradlew.bat assembleDebug
 </code></pre><p>Mac OS或Linux系统下：</p>
 <pre><code>$ chmod +x gradlew
 $ ./gradlew assembleDebug
-</code></pre><p>编译完成后在app/build/outputs/apk/目录生成apk。
-<strong>Note:</strong> chmod命令是给gradlew增加执行权限，只需要执行一次。</p>
-<p>确保 Android SDK里的 <code>platform-tools/</code> 路径已经添加到环境变量的<code>PATH</code>中，执行：</p>
+</code></pre><p>编译完成后在app/build/outputs/apk/目录生成apk。</p>
+<blockquote>
+<p><strong>Note:</strong> chmod命令是给gradlew增加执行权限，只需要执行一次。</p>
+</blockquote>
+<p>确保 Android SDK里的 <code>platform-tools/</code> 路径已经添加到环境变量<code>PATH</code>中，执行：</p>
 <pre><code>adb install bin/MyFirstApp-debug.apk
-</code></pre><p>在你的Android设备中找到 MyFirstActivity，点击打开。</p>
+</code></pre><p>在我们的Android设备中找到 MyFirstActivity，点击打开。</p>
 <h2 id="">在模拟器上运行</h2>
-<p>无论你是用 Android Studio 还是命令行，在模拟器中运行程序首先要创建一个 <a href="http://developer.android.com/tools/devices/index.html" target="_blank">Android Virtual Device</a> (AVD)。AVD 是对 Android 模拟器的配置，可以让你模拟不同的设备。</p>
+<p>无论是使用 Android Studio 还是命令行，在模拟器中运行程序首先要创建一个 <a href="http://developer.android.com/tools/devices/index.html" target="_blank">Android Virtual Device</a> (AVD)。AVD 是对 Android 模拟器的配置，可以让我们模拟不同的设备。</p>
 <h3 id="-avd">创建一个 AVD:</h3>
 <ol>
 <li>启动 Android Virtual Device Manager（AVD Manager）的两种方式：
 <ul>
-<li>用Android Studio, <strong>Tools &gt; Android &gt; AVD Manager</strong>,或者点击工具栏里面Android Virtual Device Manager<img src="avd-manager-studio.png" alt="image">  ；
+<li> 用Android Studio, <strong>Tools &gt; Android &gt; AVD Manager</strong>,或者点击工具栏里面Android Virtual Device Manager<img src="avd-manager-studio.png" alt="image">  ；
 <li> 在命令行窗口中，把当前目录切换到<code>&lt;sdk&gt;/tools/</code> 后执行：
 </ul><pre><code>android avd
 </code></pre><img src="studio-avdmgr-firstscreen.png" alt="avds-config"></li>
@@ -5178,14 +5150,14 @@ $ ./gradlew assembleDebug
 <p>2  在AVD Manager 面板中，点击<strong>Create Virtual Device</strong>.</p>
 <p>3  在Select Hardware窗口，选择一个设备，比如 Nexus 6，点击<strong>Next</strong>。</p>
 <p>4  选择列出的合适系统镜像.</p>
-<p>5 校验模拟器配置，点击<strong>Finish</strong>。</p>
+<p>5  校验模拟器配置，点击<strong>Finish</strong>。</p>
 <p>更多AVD的知识请阅读<a href="http://developer.android.com/tools/devices/managing-avds.html" target="_blank">Managing AVDs with AVD Manager</a>.</p>
-<h3 id="android-studio">用Android Studio在运行程序：</h3>
+<h3 id="android-studio">从Android Studio运行程序：</h3>
 <p>1 在Android Studio选择要运行的项目，从工具栏选择<strong>Run</strong><img src="as-run.png" alt="image">；</p>
 <p>2 <strong>Choose Device</strong>窗口出现时，选择<strong>Launch emulator</strong>单选框；</p>
 <p>3 从<strong> Android virtual device</strong>下拉菜单选择创建好的模拟器，点击<strong>OK</strong>；</p>
 <p>模拟器启动需要几分钟的时间，启动完成后，解锁即可看到程序已经运行到模拟器屏幕上了。</p>
-<h3 id="">从命令行安装运行你的应用程序</h3>
+<h3 id="">从命令行安装运行应用程序</h3>
 <p>1 用命令行编译应用，生成位于app/build/outputs/apk/的apk；</p>
 <p>2 确认platform-tools/ 已添加到PATH环境变量；</p>
 <p>3 执行如下命令：</p>

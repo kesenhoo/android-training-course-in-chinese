@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用BigView风格 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>使用BigView风格 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.3.4" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.3.4" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,41 +5091,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_272">
+                    <section class="normal" id="section-gitbook_271">
                     
                         <h1 id="bigview">使用BigView样式</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/notify-user/expanded.html" target="_blank">http://developer.android.com/training/notify-user/expanded.html</a></p>
 </blockquote>
-<ul>
-<li>Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才能出现。当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。</li>
-</ul>
-<ul>
-<li>Big views在Android4.1被引进的，它不支持老版本设备。这节课叫你如何让把big view notifications合并进你的APP，同时提供normal view的全部功能。更多信息请见<a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#BigNotify">Notifications API guide</a> 。</li>
-</ul>
-<ul>
-<li><p>这是一个 normal view的例子</p>
-<p><img src="notifications-normalview.png" alt="fragments-screen-mock"></p>
-<p> 图1 Normal view notification.</p>
-</li>
-<li><p>这是一个 big view的例子</p>
-<p><img src="notifications-bigview.png" alt="fragments-screen-mock">
- 图2 Big view notification.</p>
-</li>
-<li><p>在这节课的例子应用中， normal view 与 big view给用户相同的功能：</p>
+<p>Notification抽屉中的Notification主要有两种视觉展示形式，normal view（平常的视图，下同） 与 big view（大视图，下同）。Notification的 big view样式只有当Notification被扩展时才能出现。当Notification在Notification抽屉的最上方或者用户点击Notification时才会展现大视图。</p>
+<p>Big views在Android4.1被引进的，它不支持老版本设备。这节课叫你如何让把big view notifications合并进你的APP，同时提供normal view的全部功能。更多信息请见<a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#BigNotify">Notifications API guide</a> 。</p>
+<p>这是一个 normal view的例子</p>
+<p>  <img src="notifications-normalview.png" alt="fragments-screen-mock"></p>
+<p>   图1 Normal view notification.</p>
+<p>这是一个 big view的例子</p>
+<p>  <img src="notifications-bigview.png" alt="fragments-screen-mock"></p>
+<p>   图2 Big view notification.</p>
+<p>在这节课的例子应用中， normal view 与 big view给用户相同的功能：</p>
 <ul>
 <li>继续小睡或者消除Notification</li>
 <li>一个查看用户设置的类似计时器的提醒文字的方法，</li>
 </ul>
-</li>
-<li><p>normal view 通过当用户点击Notification来启动一个新的activity的方式提供这些特性，记住当你设计你的notifications时，首先在normal view 中提供这些功能，因为很多用户会与notification交互。</p>
-</li>
+<ul>
+<li>normal view 通过当用户点击Notification来启动一个新的activity的方式提供这些特性，记住当你设计你的notifications时，首先在normal view 中提供这些功能，因为很多用户会与notification交互。</li>
 </ul>
 <h2 id="notificationactivity">设置Notification用来登陆一个新的Activity</h2>
-<ul>
-<li>这个例子应用用<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>的子类（PingService）来构造以及发布notification。</li>
-<li>在这个代码片段中，<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>中的方法<a href="developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent">onHandleIntent()</a>) 指定了当用户点击notification时启动一个新的activity。方法<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)定义了pending intent在用户点击notification时被激发，因此登陆这个activity.</li>
-</ul>
+<p>这个例子应用用<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>的子类（PingService）来构造以及发布notification。
+ 在这个代码片段中，<a href="developer.android.com/reference/android/app/IntentService.html">IntentService</a>中的方法<a href="developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent">onHandleIntent()</a>) 指定了当用户点击notification时启动一个新的activity。方法<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent">setContentIntent()</a>)定义了pending intent在用户点击notification时被激发，因此登陆这个activity.</p>
 <pre><code class="lang-java">
 Intent resultIntent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ResultActivity.class);
 resultIntent.putExtra(CommonConstants.EXTRA_MESSAGE, msg);
@@ -5179,9 +5137,7 @@ PendingIntent resultPendingIntent =
 builder.setContentIntent(resultPendingIntent);
 </code></pre>
 <h2 id="big-view">构造big view</h2>
-<ul>
-<li>这个代码片段展示了如何在big view中设置buttons</li>
-</ul>
+<p> 这个代码片段展示了如何在big view中设置buttons</p>
 <pre><code class="lang-java">
 <span class="hljs-comment">// Sets up the Snooze and Dismiss action buttons that will appear in the</span>
 <span class="hljs-comment">// big view of the notification.</span>
@@ -5193,9 +5149,7 @@ Intent snoozeIntent = <span class="hljs-keyword">new</span> Intent(<span class="
 snoozeIntent.setAction(CommonConstants.ACTION_SNOOZE);
 PendingIntent piSnooze = PendingIntent.getService(<span class="hljs-keyword">this</span>, <span class="hljs-number">0</span>, snoozeIntent, <span class="hljs-number">0</span>);
 </code></pre>
-<ul>
-<li>这个代码片段展示了如何构造一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">Builder</a>对象，它设置了big view 的样式为&quot;big text&quot;,同时设置了它的内容为提醒文字。它使用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action">addAction()</a>)方法来添加将要在big view中出现的Snooze与Dismiss按钮（以及它们相关联的pending intents).</li>
-</ul>
+<p> 这个代码片段展示了如何构造一个<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html">Builder</a>对象，它设置了big view 的样式为&quot;big text&quot;,同时设置了它的内容为提醒文字。它使用<a href="developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#addAction(android.support.v4.app.NotificationCompat.Action">addAction()</a>)方法来添加将要在big view中出现的Snooze与Dismiss按钮（以及它们相关联的pending intents).</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Constructs the Builder object.</span>
 NotificationCompat.Builder builder =
         <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>)

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Android位置信息 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>Android位置信息 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.2" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.2" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,15 +5097,16 @@
 <blockquote>
 <p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/index.html" target="_blank">http://developer.android.com/training/location/index.html</a></p>
 </blockquote>
-<p>移动应用一个独特的特征就是对地址的感知。移动用户把他们的设备带到各个地方，这时将位置的感知能力添加到你的应用里可以让用户有更多的地理位置相关的体验。最新的位置服务API集成在Google Play服务里面，内置有自动位置记录，地理围栏，用户活动识别。这个API让Android平台的位置API优势更加突出了。</p>
-<p>这个课程教你如何在你的应用里使用位置服务，获取周期性的位置更新，查询地址，创建并监视地理围栏以及探测用户的活动。这个课程包括示例应用和代码片段，你可以使用它们让你的应用拥有位置感知能力。</p>
+<p>位置感知是移动应用一个独特的功能。用户去到哪里都会带着他们的移动设备，而将位置感知功能添加到我们的应用里，可以让用户有更加真实的情境体验。位置服务API集成在Google Play服务里面，这便于我们将自动位置跟踪、地理围栏和用户活动识别等位置感知功能添加到我们的应用当中。</p>
+<p>我们喜欢用<a href="http://developer.android.com/reference/com/google/android/gms/location/package-summary.html" target="_blank">Google Play services location APIs</a>胜过Android framework location APIs (<a href="http://developer.android.com/reference/android/location/package-summary.html" target="_blank">android.location</a>) 来给我们的应用添加位置感知功能。如果你现在正在使用Android framework location APIs，我们强烈建议你尽可能切换到Google Play services location APIs。</p>
+<p>这个课程介绍如何使用Google Play services location APIs来获取当前位置、周期性地更新位置以及查找地址。创建并监视地理围栏以及探测用户的活动。这个课程包括示例应用和代码片段，你可以利用这些资源作为添加位置感知到你的应用的基础。</p>
 <blockquote>
-<p><strong>Note</strong>: 因为这个课程基于Google Play services client library，在使用这些示例应用和代码段之前确保你安装了最新版本的Google Play services client library。要想学习如何安装最新版的client library，请参考安装<a href="http://developer.android.com/google/play-services/setup.html" target="_blank">Google Play services</a>向导。</p>
+<p><strong>Note：</strong>因为这个课程基于Google Play services client library，所以在使用这些示例应用和代码段之前确保你安装了最新版本的Google Play services client library。要想学习如何安装最新版的client library，请参考<a href="http://developer.android.com/google/play-services/setup.html" target="_blank">安装Google Play services向导</a>。</p>
 </blockquote>
 <h2 id="lessons">Lessons</h2>
 <ul>
-<li><p><a href="retrieve-current.html"><strong>获取当前的位置</strong></a></p>
-<p>  学习如何获取用户当前的位置。</p>
+<li><p><a href="retrieve-current.html"><strong>获取最后可知位置</strong></a></p>
+<p>  学习如何获取Android设备的最后可知位置。通常Android设备的最后可知位置相当于用户的当前位置。</p>
 </li>
 </ul>
 <ul>
@@ -5146,23 +5115,13 @@
 </li>
 </ul>
 <ul>
-<li><p><a href="display-address.html"><strong>显示一个地点位置</strong></a></p>
-<p>  学习如何将一个位置的经纬度转化成一个地址（反向geocoding）。</p>
+<li><p><a href="display-address.html"><strong>显示位置地址</strong></a></p>
+<p>  学习如何将一个位置的经纬度转化成一个地址（反向地理编码）。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="geofencing.html"><strong>创建和监视Geofences</strong></a></p>
+<li><p><a href="geofencing.html"><strong>创建和监视地理围栏</strong></a></p>
 <p>  学习如何将一个或多个地理区域定义成一个兴趣位置集合，称为地理围栏。学习如何探测用户靠近或者进入地理围栏事件。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="activity-recognition.html"><strong>识别用户当前的活动</strong></a></p>
-<p>  学习如何识别用户当前的活动，比如步行，骑行，或者驾车行驶。学习如何使用这些信息去更改你应用的位置策略。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="location-testing.html"><strong>使用Mock Locations测试你的应用</strong></a></p>
-<p>  学习如何使用虚拟的位置数据来测试一个位置应用。在mock模式里面，位置服务将会发送一些虚拟的位置数据。</p>
 </li>
 </ul>
 
@@ -5178,7 +5137,7 @@
         <a href="../contacts-provider/display-badge.html" class="navigation navigation-prev " aria-label="Previous page: 显示联系人头像"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../location/retrieve-current.html" class="navigation navigation-next " aria-label="Next page: 获取当前位置"><i class="fa fa-angle-right"></i></a>
+        <a href="../location/retrieve-current.html" class="navigation navigation-next " aria-label="Next page: 获取最后可知位置"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

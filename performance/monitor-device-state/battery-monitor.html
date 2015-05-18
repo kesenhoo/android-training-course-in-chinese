@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>监测电量与充电状态 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>监测电量与充电状态 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="14.4.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="14.4.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_182">
+                    <section class="normal" id="section-gitbook_179">
                     
                         <h1 id="">监测电池的电量与充电状态</h1>
 <blockquote>
@@ -5132,10 +5100,9 @@
 <p>当你想通过改变后台更新操作的频率来减少对电池寿命的影响时，那么首先需要检查当前电量与充电状态。</p>
 <p>执行应用更新对电池寿命的影响是与电量和充电状态密切相关的。当使用交流电对设备充电时，更新操作的影响可以忽略不计，所以在大多数情况下，如果使用壁式充电器对设备进行充电，我们可以将刷新频率设置到最大。相反的，如果设备没有在充电状态，那么我们就需要尽量减少设备的更新操作来延长电池的续航能力。</p>
 <p>同样的，如果我们监测到电量即将耗尽时，那么应该尽可能降低甚至停止更新操作。</p>
-<!-- More -->
 <h2 id="">判断当前充电状态</h2>
-<p>首先来看一下应该如何确定当前的充电状态。<a href="http://developer.android.com/reference/android/os/BatteryManager.html" target="_blank">BatteryManager</a>会广播一个带有电池与充电详情的<a href="http://developer.android.com/guide/topics/fundamentals/services.html" target="_blank">Sticky Intent</a>
-因为广播的是一个sticky Intent，所以不需要注册<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>。仅仅只需要调用一个以<code>null</code>作为Receiver参数的<code>regiserReceiver()</code>方法就可以了。如下面的代码片段中展示的那样，它返回了保存当前电池信息的Intent。你也可以在这里传入一个实际的<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>对象，但这并不是必须的。</p>
+<p>首先来看一下应该如何确定当前的充电状态。<a href="http://developer.android.com/reference/android/os/BatteryManager.html" target="_blank">BatteryManager</a>会广播一个带有电池与充电详情的<a href="http://developer.android.com/guide/topics/fundamentals/services.html" target="_blank">Sticky Intent</a></p>
+<p>因为广播的是一个sticky Intent，所以不需要注册<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>。仅仅只需要调用一个以<code>null</code>作为Receiver参数的<code>registerReceiver()</code>方法就可以了。如下面的代码片段中展示的那样，它返回了保存当前电池信息的Intent。你也可以在这里传入一个实际的<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>对象，但这并不是必须的。</p>
 <pre><code class="lang-java">IntentFilter ifilter = <span class="hljs-keyword">new</span> IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 Intent batteryStatus = context.registerReceiver(<span class="hljs-keyword">null</span>, ifilter);
 </code></pre>
@@ -5164,7 +5131,7 @@ Intent batteryStatus = context.registerReceiver(<span class="hljs-keyword">null<
 <p>我们可以在该<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>的实现中，提取出当前的充电状态，如下所示：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PowerConnectionReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> </span>{
     <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> </span>{ 
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> </span>{
         <span class="hljs-keyword">int</span> status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -<span class="hljs-number">1</span>);
         <span class="hljs-keyword">boolean</span> isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
                             status == BatteryManager.BATTERY_STATUS_FULL;
@@ -5193,8 +5160,8 @@ Intent batteryStatus = context.registerReceiver(<span class="hljs-keyword">null<
   <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">receiver</span>&gt;</span>
 </code></pre>
-<p>通常我们都需要在进入低电量的情况下，关闭所有后台更新来维持设备的续航，因为这个时候做任何更新等操作都极有可能是无用的，因为也许在你还没来得及处理更新的数据时，设备就因电量耗尽而自动关机了。
-在很多时候，用户往往会将设备放入某种底座中充电（译注：比如车载的底座式充电器），在下一节课程当中，我们将会学习如何确定当前的底座状态，以及如何监听设备底座的变化。</p>
+<p>通常我们都需要在进入低电量的情况下，关闭所有后台更新来维持设备的续航，因为这个时候做任何更新等操作都极有可能是无用的，因为也许在你还没来得及处理更新的数据时，设备就因电量耗尽而自动关机了。</p>
+<p>在很多时候，用户往往会将设备放入某种底座中充电（译注：比如车载的底座式充电器），在下一节课程当中，我们将会学习如何确定当前的底座状态，以及如何监听设备底座的变化。</p>
 
                     
                     </section>

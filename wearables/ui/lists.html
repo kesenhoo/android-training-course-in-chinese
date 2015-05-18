@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建Lists | Android官方培训课程中文版(v0.9.2)</title>
+        <title>创建List | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.3.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,237 +5091,224 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_305">
+                    <section class="normal" id="section-gitbook_303">
                     
-                        <h1 id="lists">创建Lists</h1>
+                        <h1 id="list">创建List</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/lists.html" target="_blank">https://developer.android.com/training/wearables/ui/lists.html</a></p>
 </blockquote>
-<!--Lists let users select an item from a set of choices easily on wearable devices. This lesson shows you how to create lists in your Android Wear apps.-->
-<p>Lists在可穿戴设备上简单的从一组选项中选择一个项目，这个课程为你演示了如何在Android Wear apps中创建lists。</p>
-<!--The Wearable UI Library includes the WearableListView class, which is a list implementation optimized for wearable devices..-->
-<p>Wearable UI库包含了 <em>WearableListView</em> 类，用于实现为可穿戴设备优化的list。</p>
-<!--Note: The Notifications sample in the Android SDK demonstrates how to use WearableListView in your apps. This sample is located in the android-sdk/samples/android-20/wearable/Notifications directory.-->
+<p>List让用户在可穿戴设备上很容易地从一组选项中选择一个项目。这个课程介绍了如何在Android Wear应用中创建List。</p>
+<p>Wearable UI库包含了<code>WearableListView</code>类，该类是对可穿戴设备进行优化的List实现。</p>
 <blockquote>
-<p><strong>Note:</strong> Android SDK 中的 <em>Notifications</em> 例子示范了如何在你的apps中使用 <em>WearableListView</em>。这个例子的位置在 <em>android-sdk/samples/android-20/wearable/Notifications</em> 目录。</p>
+<p><strong>Note:</strong> Android SDK 中的<code>Notifications</code>例子示范了如何在应用中使用 <code>WearableListView</code>。这个例子的位于<code>android-sdk/samples/android-20/wearable/Notifications</code>目录。</p>
 </blockquote>
-<!--To create a list in your Android Wear apps:
-Add a WearableListView element to your activity's layout definition.
-Create a custom layout implementation for your list items.
-Use this implementation to create a layout definition file for your list items.
-Create an adapter to populate the list.
-Assign the adapter to the WearableListView element.
-These steps are described in detail in the following sections.-->
-<p>为了在你的Android Wear apps中创建list:</p>
+<p>为了在Android Wear应用中创建List，我们需要:</p>
 <ol>
-<li>添加 <em>WearableListView</em> 元素到你的activity的layout描述中。</li>
-<li>为你的list items创建一个自定义layout实现。</li>
-<li>为你的list items使用这个实现创建一个layout描述。</li>
-<li>创建一个adapter以填充list。</li>
-<li>为 <em>WearableListView</em> 元素指定这个adapter。</li>
+<li>添加<code>WearableListView</code>元素到activity的layout定义中。</li>
+<li>为List选项创建一个自定义的layout实现。</li>
+<li>使用这个实现为List选项创建一个layout定义文件。</li>
+<li>创建一个adapter以填充List。</li>
+<li>指定这个adapter到<code>WearableListView</code>元素。</li>
 </ol>
-<p>这些步骤的详细描述在下面的章节中。</p>
-<p><img src="https://developer.android.com/wear/images/06_uilib.png" alt=""></p>
-<p><strong>Figure 3:</strong> A list view on Android Wear.</p>
+<p>下面的章节有这些步骤的详细描述。</p>
+<p><img src="06_uilib.png" alt=""></p>
+<p><strong>Figure 3:</strong> 在Android Wear上的List View.</p>
 <h2 id="list-view">添加List View</h2>
-<!--The following layout adds a list view to an activity using a BoxInsetLayout, so the list is displayed properly on both round and square devices:-->
-<p>下面的layout使用 <em>BoxInsetLayout</em> 添加了一个list view到activity中，所以这个列表可以正确的现实在圆形和方形两种设备上：</p>
-<pre><code>&lt;android.support.wearable.view.BoxInsetLayout
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    android:background=&quot;@drawable/robot_background&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:layout_width=&quot;match_parent&quot;&gt;
+<p>下面的layout使用<code>BoxInsetLayout</code>添加了一个List view到activity中，所以这个List可以正确地显示在圆形和方形两种设备上：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.BoxInsetLayout</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:app</span>=<span class="hljs-value">"http://schemas.android.com/apk/res-auto"</span>
+    <span class="hljs-attribute">android:background</span>=<span class="hljs-value">"@drawable/robot_background"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>
 
-    &lt;FrameLayout
-        android:id=&quot;@+id/frame_layout&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:layout_width=&quot;match_parent&quot;
-        app:layout_box=&quot;left|bottom|right&quot;&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/frame_layout"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">app:layout_box</span>=<span class="hljs-value">"left|bottom|right"</span>&gt;</span>
 
-        &lt;android.support.wearable.view.WearableListView
-            android:id=&quot;@+id/wearable_list&quot;
-            android:layout_height=&quot;match_parent&quot;
-            android:layout_width=&quot;match_parent&quot;&gt;
-        &lt;/android.support.wearable.view.WearableListView&gt;
-    &lt;/FrameLayout&gt;
-&lt;/android.support.wearable.view.BoxInsetLayout&gt;
-</code></pre><h2 id="list-itemslayou">为List Items创建一个Layou实现</h2>
-<!--In many cases, each list item consists of an icon and a description. The Notifications sample from the Android SDK implements a custom layout that extends LinearLayout to incorporate these two elements inside each list item. This layout also implements the methods in the WearableListView.OnCenterProximityListener interface to change the color of the item's icon and fade the text in response to events from WearableListView as the user scrolls through the list.-->
-<p>在许多例子中，每个 list item 都由一个icon和一个描述组成。Android SDK中的<em>Notifications</em> 例子实现了一个自定义layout：继承<a href="https://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>以合并两元素在每个list item。这个layout也实现了 <em>WearableListView.OnCenterProximityListener</em> interface以实现在用户滚动 <em>WearableListView</em> 时改变item的icon颜色和渐隐文字。</p>
-<pre><code>public class WearableListItemLayout extends LinearLayout
-             implements WearableListView.OnCenterProximityListener {
+        <span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.WearableListView</span>
+            <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/wearable_list"</span>
+            <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+            <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">android.support.wearable.view.WearableListView</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">FrameLayout</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.wearable.view.BoxInsetLayout</span>&gt;</span>
+</code></pre>
+<h2 id="listlayou">为List选项创建一个Layou实现</h2>
+<p>在许多例子中，每个List选项都由一个图标和一个描述组成。Android SDK中的<em>Notifications</em> 例子实现了一个自定义layout：继承<a href="https://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>以合并两元素到每个List选项。这个layout也实现了 <code>WearableListView.OnCenterProximityListener</code>接口里的方法，以实现在用户在List中滚动时，因<code>WearableListView</code>的事件而改变选项图标颜色和渐隐文字：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WearableListItemLayout</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">LinearLayout</span>
+             <span class="hljs-keyword">implements</span> <span class="hljs-title">WearableListView</span>.<span class="hljs-title">OnCenterProximityListener</span> </span>{
 
-    private ImageView mCircle;
-    private TextView mName;
+    <span class="hljs-keyword">private</span> ImageView mCircle;
+    <span class="hljs-keyword">private</span> TextView mName;
 
-    private final float mFadedTextAlpha;
-    private final int mFadedCircleColor;
-    private final int mChosenCircleColor;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> mFadedTextAlpha;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> mFadedCircleColor;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> mChosenCircleColor;
 
-    public WearableListItemLayout(Context context) {
-        this(context, null);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WearableListItemLayout</span><span class="hljs-params">(Context context)</span> </span>{
+        <span class="hljs-keyword">this</span>(context, <span class="hljs-keyword">null</span>);
     }
 
-    public WearableListItemLayout(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WearableListItemLayout</span><span class="hljs-params">(Context context, AttributeSet attrs)</span> </span>{
+        <span class="hljs-keyword">this</span>(context, attrs, <span class="hljs-number">0</span>);
     }
 
-    public WearableListItemLayout(Context context, AttributeSet attrs,
-                                  int defStyle) {
-        super(context, attrs, defStyle);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">WearableListItemLayout</span><span class="hljs-params">(Context context, AttributeSet attrs,
+                                  <span class="hljs-keyword">int</span> defStyle)</span> </span>{
+        <span class="hljs-keyword">super</span>(context, attrs, defStyle);
 
         mFadedTextAlpha = getResources()
-                         .getInteger(R.integer.action_text_faded_alpha) / 100f;
+                         .getInteger(R.integer.action_text_faded_alpha) / <span class="hljs-number">100</span>f;
         mFadedCircleColor = getResources().getColor(R.color.grey);
         mChosenCircleColor = getResources().getColor(R.color.blue);
     }
 
-    // Get references to the icon and text in the item layout definition
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-        // These are defined in the layout file for list items
-        // (see next section)
+    <span class="hljs-comment">// Get references to the icon and text in the item layout definition</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onFinishInflate</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">super</span>.onFinishInflate();
+        <span class="hljs-comment">// These are defined in the layout file for list items</span>
+        <span class="hljs-comment">// (see next section)</span>
         mCircle = (ImageView) findViewById(R.id.circle);
         mName = (TextView) findViewById(R.id.name);
     }
 
-    @Override
-    public void onCenterPosition(boolean animate) {
-        mName.setAlpha(1f);
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCenterPosition</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> animate)</span> </span>{
+        mName.setAlpha(<span class="hljs-number">1</span>f);
         ((GradientDrawable) mCircle.getDrawable()).setColor(mChosenCircleColor);
     }
 
-    @Override
-    public void onNonCenterPosition(boolean animate) {
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onNonCenterPosition</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> animate)</span> </span>{
         ((GradientDrawable) mCircle.getDrawable()).setColor(mFadedCircleColor);
         mName.setAlpha(mFadedTextAlpha);
     }
 }
-</code></pre><!--You can also create animator objects to enlarge the icon of the center item in the list. You can use the onCenterPosition() and onNonCenterPosition() callback methods in the WearableListView.OnCenterProximityListener interface to manage your animators. For more information about animators, see Animating with ObjectAnimator.-->
-<p>你也可以创建animator对象以放大中间的item的icon。你可以使用<em>WearableListView.OnCenterProximityListener</em> interface的 <em>onCenterPosition()</em> 和  <em>onNonCenterPosition()</em>回调方法来管理你的animators。更多关于animators的信息请查看<a href="https://developer.android.com/guide/topics/graphics/prop-animation.html#object-animator" target="_blank">Animating with ObjectAnimator</a></p>
+</code></pre>
+<p>我们也可以创建animator对象以放大List中间选项的图标。我们可以使用<code>WearableListView.OnCenterProximityListener</code>接口的<code>onCenterPosition()</code>和  <code>onNonCenterPosition()</code>回调方法来管理animator对象。更多关于animator对象的信息请查看<a href="https://developer.android.com/guide/topics/graphics/prop-animation.html#object-animator" target="_blank">Animating with ObjectAnimator</a></p>
 <h2 id="itemslayout">为Items创建Layout解释</h2>
-<!--After you implement a custom layout for list items, you provide a layout definition file that specifies the layout parameters of each of the components inside a list item. The following layout definition uses the custom layout implementation from the previous section and defines an icon and a text view whose IDs match those in the layout implementation class:-->
-<p>在你为list items 实现自定义layout之后，你需要提供一个layout解释文件以具体说明list item中的组件参数。下面的layout解释使用先前的自定义layout实现然后定义icon和text view的ID以匹配layout实现类。</p>
-<blockquote>
-<p>res/layout/list_item.xml</p>
-</blockquote>
-<pre><code>&lt;com.example.android.support.wearable.notifications.WearableListItemLayout
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:gravity=&quot;center_vertical&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;80dp&quot;&gt;
-    &lt;ImageView
-        android:id=&quot;@+id/circle&quot;
-        android:layout_height=&quot;20dp&quot;
-        android:layout_margin=&quot;16dp&quot;
-        android:layout_width=&quot;20dp&quot;
-        android:src=&quot;@drawable/wl_circle&quot;/&gt;
-    &lt;TextView
-        android:id=&quot;@+id/name&quot;
-        android:gravity=&quot;center_vertical|left&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_marginRight=&quot;16dp&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:fontFamily=&quot;sans-serif-condensed-light&quot;
-        android:lineSpacingExtra=&quot;-4sp&quot;
-        android:textColor=&quot;@color/text_color&quot;
-        android:textSize=&quot;16sp&quot;/&gt;
-&lt;/com.example.android.support.wearable.notifications.WearableListItemLayout&gt;
-</code></pre><h2 id="adapterlist">创建Adapter以填充List</h2>
-<!--The adapter populates the WearableListView with content. The following simple adapter populates the list with elements based on an array of strings:-->
-<p>Adapter用内容填充 <em>WearableListView</em>。下面的adapter基于strings数组简单的填充了List：</p>
-<pre><code>private static final class Adapter extends WearableListView.Adapter {
-    private String[] mDataset;
-    private final Context mContext;
-    private final LayoutInflater mInflater;
+<p>在为List选项实现自定义layout之后，我们需要提供一个layout解释文件以具体说明list item中的组件参数。下面的layout使用先前的自定义layout实现，并且定义图标和文本view，这两个view的ID对应layout实现类的ID：</p>
+<p><code>res/layout/list_item.xml</code></p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">com.example.android.support.wearable.notifications.WearableListItemLayout</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center_vertical"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"80dp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/circle"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"20dp"</span>
+        <span class="hljs-attribute">android:layout_margin</span>=<span class="hljs-value">"16dp"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"20dp"</span>
+        <span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/wl_circle"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">TextView</span>
+        <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/name"</span>
+        <span class="hljs-attribute">android:gravity</span>=<span class="hljs-value">"center_vertical|left"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_marginRight</span>=<span class="hljs-value">"16dp"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+        <span class="hljs-attribute">android:fontFamily</span>=<span class="hljs-value">"sans-serif-condensed-light"</span>
+        <span class="hljs-attribute">android:lineSpacingExtra</span>=<span class="hljs-value">"-4sp"</span>
+        <span class="hljs-attribute">android:textColor</span>=<span class="hljs-value">"@color/text_color"</span>
+        <span class="hljs-attribute">android:textSize</span>=<span class="hljs-value">"16sp"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">com.example.android.support.wearable.notifications.WearableListItemLayout</span>&gt;</span>
+</code></pre>
+<h2 id="adapterlist">创建Adapter以填充List</h2>
+<p>Adapter用内容填充<code>WearableListView</code>。下面的adapter基于strings数组元素填充了List：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Adapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WearableListView</span>.<span class="hljs-title">Adapter</span> </span>{
+    <span class="hljs-keyword">private</span> String[] mDataset;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Context mContext;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> LayoutInflater mInflater;
 
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public Adapter(Context context, String[] dataset) {
+    <span class="hljs-comment">// Provide a suitable constructor (depends on the kind of dataset)</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Adapter</span><span class="hljs-params">(Context context, String[] dataset)</span> </span>{
         mContext = context;
         mInflater = LayoutInflater.from(context);
         mDataset = dataset;
     }
 
-    // Provide a reference to the type of views you&#39;re using
-    public static class ItemViewHolder extends WearableListView.ViewHolder {
-        private TextView textView;
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-            // find the text view within the custom item&#39;s layout
+    <span class="hljs-comment">// Provide a reference to the type of views you're using</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ItemViewHolder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WearableListView</span>.<span class="hljs-title">ViewHolder</span> </span>{
+        <span class="hljs-keyword">private</span> TextView textView;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ItemViewHolder</span><span class="hljs-params">(View itemView)</span> </span>{
+            <span class="hljs-keyword">super</span>(itemView);
+            <span class="hljs-comment">// find the text view within the custom item's layout</span>
             textView = (TextView) itemView.findViewById(R.id.name);
         }
     }
 
-    // Create new views for list items
-    // (invoked by the WearableListView&#39;s layout manager)
-    @Override
-    public WearableListView.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                          int viewType) {
-        // Inflate our custom layout for list items
-        return new ItemViewHolder(mInflater.inflate(R.layout.list_item, null));
+    <span class="hljs-comment">// Create new views for list items</span>
+    <span class="hljs-comment">// (invoked by the WearableListView's layout manager)</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-keyword">public</span> WearableListView.<span class="hljs-function">ViewHolder <span class="hljs-title">onCreateViewHolder</span><span class="hljs-params">(ViewGroup parent,
+                                                          <span class="hljs-keyword">int</span> viewType)</span> </span>{
+        <span class="hljs-comment">// Inflate our custom layout for list items</span>
+        <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">ItemViewHolder</span><span class="hljs-params">(mInflater.inflate(R.layout.list_item, <span class="hljs-keyword">null</span>)</span>)</span>;
     }
 
-    // Replace the contents of a list item
-    // Instead of creating new views, the list tries to recycle existing ones
-    // (invoked by the WearableListView&#39;s layout manager)
-    @Override
-    public void onBindViewHolder(WearableListView.ViewHolder holder,
-                                 int position) {
-        // retrieve the text view
+    <span class="hljs-comment">// Replace the contents of a list item</span>
+    <span class="hljs-comment">// Instead of creating new views, the list tries to recycle existing ones</span>
+    <span class="hljs-comment">// (invoked by the WearableListView's layout manager)</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBindViewHolder</span><span class="hljs-params">(WearableListView.ViewHolder holder,
+                                 <span class="hljs-keyword">int</span> position)</span> </span>{
+        <span class="hljs-comment">// retrieve the text view</span>
         ItemViewHolder itemHolder = (ItemViewHolder) holder;
         TextView view = itemHolder.textView;
-        // replace text contents
+        <span class="hljs-comment">// replace text contents</span>
         view.setText(mDataset[position]);
-        // replace list item&#39;s metadata
+        <span class="hljs-comment">// replace list item's metadata</span>
         holder.itemView.setTag(position);
     }
 
-    // Return the size of your dataset
-    // (invoked by the WearableListView&#39;s layout manager)
-    @Override
-    public int getItemCount() {
-        return mDataset.length;
-    }
-}
-</code></pre><h2 id="adapterclick-listener">连接Adapter和设置Click Listener</h2>
-<!--In your activity, obtain a reference to the WearableListView element from your layout, assign an instance of the adapter to populate the list, and set a click listener to complete an action when the user selects a particular list item.-->
-<p>在你的activity中，从你的layout中取得 <em>WearableListView</em> 元素的引用，分配一个adapter实例以填充list，然后设置一个click listener以完成动作当用户选择了一个特定的list item。</p>
-<pre><code>public class WearActivity extends Activity
-                          implements WearableListView.ClickListener {
-
-    // Sample dataset for the list
-    String[] elements = { &quot;List Item 1&quot;, &quot;List Item 2&quot;, ... };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_list_activity);
-
-        // Get the list component from the layout of the activity
-        WearableListView listView =
-            (WearableListView) findViewById(R.id.wearable_list);
-
-        // Assign an adapter to the list
-        listView.setAdapter(new Adapter(this, elements));
-
-        // Set a click listener
-        listView.setClickListener(this);
-    }
-
-    // WearableListView click listener
-    @Override
-    public void onClick(WearableListView.ViewHolder v) {
-        Integer tag = (Integer) v.itemView.getTag();
-        // use this data to complete some action ...
-    }
-
-    @Override
-    public void onTopEmptyRegionClick() {
+    <span class="hljs-comment">// Return the size of your dataset</span>
+    <span class="hljs-comment">// (invoked by the WearableListView's layout manager)</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getItemCount</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> mDataset.length;
     }
 }
 </code></pre>
+<h2 id="adapterclick-listener">连接Adapter和设置Click Listener</h2>
+<p>在我们的activity中，从layout中取得<code>WearableListView</code>元素的引用，分配一个adapter实例以填充List，然后设置一个click listener以完成当用户选择了一个特定的List选项的动作。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WearActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span>
+                          <span class="hljs-keyword">implements</span> <span class="hljs-title">WearableListView</span>.<span class="hljs-title">ClickListener</span> </span>{
+
+    <span class="hljs-comment">// Sample dataset for the list</span>
+    String[] elements = { <span class="hljs-string">"List Item 1"</span>, <span class="hljs-string">"List Item 2"</span>, ... };
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.my_list_activity);
+
+        <span class="hljs-comment">// Get the list component from the layout of the activity</span>
+        WearableListView listView =
+            (WearableListView) findViewById(R.id.wearable_list);
+
+        <span class="hljs-comment">// Assign an adapter to the list</span>
+        listView.setAdapter(<span class="hljs-keyword">new</span> Adapter(<span class="hljs-keyword">this</span>, elements));
+
+        <span class="hljs-comment">// Set a click listener</span>
+        listView.setClickListener(<span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-comment">// WearableListView click listener</span>
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(WearableListView.ViewHolder v)</span> </span>{
+        Integer tag = (Integer) v.itemView.getTag();
+        <span class="hljs-comment">// use this data to complete some action ...</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTopEmptyRegionClick</span><span class="hljs-params">()</span> </span>{
+    }
+}
+</code></pre>
+
                     
                     </section>
                 
@@ -5363,10 +5318,10 @@ These steps are described in detail in the following sections.-->
         </div>
 
         
-        <a href="../../wearables/ui/cards.html" class="navigation navigation-prev " aria-label="Previous page: 创建Cards"><i class="fa fa-angle-left"></i></a>
+        <a href="../../wearables/ui/cards.html" class="navigation navigation-prev " aria-label="Previous page: 创建Card"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../wearables/ui/2d-picker.html" class="navigation navigation-next " aria-label="Next page: 创建2D-Picker"><i class="fa fa-angle-right"></i></a>
+        <a href="../../wearables/ui/2d-picker.html" class="navigation navigation-next " aria-label="Next page: 创建2D Picker"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

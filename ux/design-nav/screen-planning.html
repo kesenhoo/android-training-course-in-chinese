@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>规划屏幕界面与他们之间的关系 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>规划屏幕界面与他们之间的关系 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,25 +5091,26 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_264">
+                    <section class="normal" id="section-gitbook_262">
                     
                         <h1 id="">规划界面和他们之间的关系</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/design-navigation/screen-planning.html" target="_blank">http://developer.android.com/training/design-navigation/screen-planning.html</a></p>
 </blockquote>
-<p>多数 App 都有一种内在的信息模型，它能被表示成一个对象类型的树或图。更浅显的说，你可以画一个有不同类型信息的图，这些信息代表用户在你 App 里与之互动的各种东西。软件工程师和数据架构师经常使用实例-关系图（Entity-Relationship Diagram，ERD）描述一个应用的信息模型。</p>
-<p>让我们考虑一个让用户浏览一群分类好的新闻事件和图片的应用例子。这种 App 一个可能的模型如下 ERD 图。</p>
+<p>多数 App 都有一种内在的信息模型，它能被表示成一个用对象类型构成的树或图。更浅显的说，你可以画一个有不同类型信息的图，这些信息代表用户在你 App 里用户与之互动的各种东西。软件工程师和数据架构师经常使用实例-关系图（Entity-Relationship Diagram，ERD）描述一个应用的信息模型。</p>
+<p>让我们考虑一个让用户浏览一群已分类好的新闻事件和图片的应用例子。这种 App 一个可能的模型如下 ERD 图。</p>
 <p><img src="app-navigation-screen-planning-erd.png" alt="app-navigation-screen-planning-erd"></p>
+<p><strong>Figure 1.</strong> 新闻应用例子的实例关系图</p>
 <h2 id="">创建一个界面列表</h2>
-<p>一旦你定义了信息模型，你就可以开始定义那些使用户在你的 App  中有效地发掘，查看和操作数据的上下文环境了。实际上，一种方法就是确定供用户导航和交互数据所需的 <em>界面完备集</em>（归纳了所有界面的集合）。但我们实际发现的画面集合应该根据目标设备变化。在设计过程中早点考虑到这点很重要，这样可以保证程序可以适应运行环境。</p>
-<p>在我们的例子中，我们想让用户<strong>查看</strong>，<strong>保存</strong>和<strong>分享</strong>分类好了的<strong>新闻</strong>和<strong>图片</strong>。下面是涵盖了这些用例的画面完备列表。</p>
+<p>一旦你定义了信息模型，你就可以开始定义那些能使用户在你的 App  中有效地发掘，查看和操作数据的上下文环境了。实际上，其中一种方法就是确定供用户导航和交互数据所需的 <em>界面完备集</em>（归纳了所有界面的集合）。但我们实际发现的界面集合应该根据目标设备变化。在设计过程中早点考虑到这点很重要，这样可以保证程序可以适应运行环境。</p>
+<p>在我们的例子中，我们想让用户<strong>查看</strong>，<strong>保存</strong>和<strong>分享</strong>分类好了的<strong>新闻</strong>和<strong>图片</strong>。下面是涵盖了这些用例的界面完备列表。</p>
 <ul>
 <li>用来访问新闻和图片的 Home 或者 &quot;Launchpad&quot; 画面</li>
 <li>类别列表</li>
 <li>某个分类下的新闻列表</li>
-<li>新闻详细信息 View （在这里面我们可以保存和分享）</li>
+<li>新闻详情 View （在这里我们可以保存和分享）</li>
 <li>图片列表，不分类</li>
-<li>图片详细信息 View （在这里面我们可以保存和分享）</li>
+<li>图片详情 View （在这里我们可以保存和分享）</li>
 <li>所有保存项列表</li>
 <li>图片保存列表</li>
 <li>新闻保存列表</li>
@@ -5149,15 +5118,16 @@
 <h2 id="">图示界面关系</h2>
 <p>现在我们可以定义界面间的有向关系了。一个从界面 <em>A</em> 指向另一个界面 <em>B</em> 的箭头表示通过用户在画面 <em>A</em> 的某个交互动作可直达画面 <em>B</em> 。一旦我们定义了界面集和他们之间的关系，我们可以将他们一起全部表示在一张界面图中了：</p>
 <p><img src="app-navigation-screen-planning-exhaustive-map.png" alt="app-navigation-screen-planning-exhaustive-map"></p>
+<p><strong>Figure 2.</strong> 新闻应用例子的界面完备Map</p>
 <p>如果之后我们想允许用户提交新闻事件或者上传图片，我们可以在图中加额外的界面。</p>
 <h2 id="">脱离简陋设计</h2>
-<p>就此，我们有希望根据这张完备的界面图设计一个功能完备应用。一个简陋的 UI 可以由列表和导向子画面的按钮组成。</p>
+<p>这时，我们可以据这张完备的界面图设计一个功能完备应用了。可以由列表和导向子界面的按钮构成一个简单的UI：</p>
 <ul>
-<li>导向不同页面的按钮（例如，事件，图片，保存的项目）</li>
-<li>纵向列表表示集合（例如，事件列表，图片列表，等等）</li>
-<li>详细信息（例如，事件 View ，图片 View ，等等）</li>
+<li>导向不同页面的按钮（例如，新闻，图片，保存的项目）</li>
+<li>纵向列表表示集合（例如，新闻列表，图片列表，等等）</li>
+<li>详细信息（例如，新闻 View ，图片 View ，等等）</li>
 </ul>
-<p>但是，你可以利用屏幕组合技术和更高深导航元件以一种更直观，设备更理解的方式呈现内容。下节课，我们探索屏幕组合技术，比如为平板而生的多视窗（Multi-pane）布局。之后，我将深入讲解更多不同的 Android 常见导航模式。</p>
+<p>但是，你可以利用屏幕组合技术和更高深导航元素以一种更直观，设备更理解的方式呈现内容。下节课，我们探索屏幕组合技术，比如为平板而生的多视窗（Multi-pane）布局。之后，我将深入讲解更多不同的 Android 常见导航模式。</p>
 <p><a href="multi-sizes.html">下节课：规划多种触屏大小</a></p>
 
                     

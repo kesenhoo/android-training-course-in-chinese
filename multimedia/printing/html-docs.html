@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>打印HTML文档 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>打印HTML文档 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.3.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="3.3.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,18 +5091,18 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_172">
+                    <section class="normal" id="section-gitbook_171">
                     
                         <h1 id="html">打印HTML文档</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/printing/html-docs.html" target="_blank">http://developer.android.com/training/printing/html-docs.html</a></p>
 </blockquote>
 <p>如果要在Android上打印比一副照片更丰富的内容，我们需要将文本和图片组合在一个待打印的文档中。Android框架提供了一种使用HTML语言来构建文档并进行打印的方法，它使用的代码数量是很小的。</p>
-<p><a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>类在Android 4.4（API Level 19）中得到了更新，使得它可以打印HTML内容。这个类允许你加载一个本地HTML资源或者从网页下载一个页面，创建一个打印任务，并把它交给Android打印服务。</p>
-<p>这节课将向您展示如何快速地构建一个包含有文本和图片的HTML文档，以及如何使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>打印该文档。</p>
+<p><a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>类在Android 4.4（API Level 19）中得到了更新，使得它可以打印HTML内容。该类允许我们加载一个本地HTML资源或者从网页下载一个页面，创建一个打印任务，并把它交给Android打印服务。</p>
+<p>这节课将展示如何快速地构建一个包含有文本和图片的HTML文档，以及如何使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>打印该文档。</p>
 <h2 id="html">加载一个HTML文档</h2>
 <p>用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>打印一个HTML文档，会涉及到加载一个HTML资源，或者用一个字符串构建HTML文档。这一节将描述如何构建一个HTML的字符串并将它加载到<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>中，以备打印。</p>
-<p>该View对象一般被用来作为一个activity布局的一部分。然而，如果你的应用当前并没有使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>，你可以创建一个该类的实例，以进行打印。创建该自定义View的主要步骤是：</p>
+<p>该View对象一般被用来作为一个Activity布局的一部分。然而，如果应用当前并没有使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>，我们可以创建一个该类的实例，以进行打印。创建该自定义View的主要步骤是：</p>
 <ol>
 <li>在HTML资源加载完毕后，创建一个<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html" target="_blank">WebViewClient</a>用来启动一个打印任务。</li>
 <li>加载HTML资源至<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象中。</li>
@@ -5171,31 +5139,31 @@
 </code></pre>
 <blockquote>
 <p><strong>Note：</strong>
-请确保在<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String" target="_blank">WebViewClient</a>)中的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String)">onPageFinished()</a>方法内调用创建打印任务的方法。如果你没有等到页面加载完毕就进行打印，打印的输出可能会不完整或空白，甚至可能会失败。</p>
-<p><strong>Note：</strong>在上面的样例代码中，保留了一个<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象实例的引用，这样能够确保它不会在打印任务创建之前就被垃圾回收器所回收。务必在你自己的实现中也这样做，否则打印的进程可能会无法继续执行。</p>
+请确保在<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String" target="_blank">WebViewClient</a>)中的<a href="http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView, java.lang.String)">onPageFinished()</a>方法内调用创建打印任务的方法。如果没有等到页面加载完毕就进行打印，打印的输出可能会不完整或空白，甚至可能会失败。</p>
+<p><strong>Note：</strong>在上面的样例代码中，保留了一个<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象实例的引用，这样能够确保它不会在打印任务创建之前就被垃圾回收器所回收。在编写代码时请务必这样做，否则打印的进程可能会无法继续执行。</p>
 </blockquote>
-<p>如果你希望页面中包含图像，将这个图像文件放置在你的工程的“assets/”目录中，并指定一个基URL（Base URL），并将它作为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法的第一个参数，就像下面所显示的一样：</p>
+<p>如果我们希望页面中包含图像，将这个图像文件放置在你的工程的“assets/”目录中，并指定一个基URL（Base URL），并将它作为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法的第一个参数，就像下面所显示的一样：</p>
 <pre><code class="lang-java">webView.loadDataWithBaseURL(<span class="hljs-string">"file:///android_asset/images/"</span>, htmlBody,
         <span class="hljs-string">"text/HTML"</span>, <span class="hljs-string">"UTF-8"</span>, <span class="hljs-keyword">null</span>);
 </code></pre>
-<p>你也可以加载一个需要打印的网页，具体做法是将<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法替换为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadUrl(java.lang.String)">loadUrl()</a>，如下所示：</p>
+<p>我们也可以加载一个需要打印的网页，具体做法是将<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadDataWithBaseURL(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">loadDataWithBaseURL()</a>方法替换为<a href="http://developer.android.com/reference/android/webkit/WebView.html#loadUrl(java.lang.String)">loadUrl()</a>，如下所示：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Print an existing web page (remember to request INTERNET permission!):</span>
 webView.loadUrl(<span class="hljs-string">"http://developer.android.com/about/index.html"</span>);
 </code></pre>
 <p>当使用<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>创建打印文档时，你要注意下面的一些限制：</p>
 <ul>
-<li>你不能为文档添加页眉和页脚，包括页号。</li>
+<li>不能为文档添加页眉和页脚，包括页号。</li>
 <li>HTML文档的打印选项不包含选择打印的页数范围，例如：对于一个10页的HTMl文档，只打印2到4页是不可以的。</li>
 <li>一个<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>的实例只能在同一时间处理一个打印任务。</li>
 <li>若一个HTML文档包含CSS打印属性，比如一个landscape属性，这是不被支持的。</li>
-<li>你不能通过一个HTML文档中的JavaScript脚本来激活打印。</li>
+<li>不能通过一个HTML文档中的JavaScript脚本来激活打印。</li>
 </ul>
 <blockquote>
 <p><strong>Note：</strong>一旦在布局中包含的<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象将文档加载完毕后，就可以打印<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>对象的内容了。</p>
 </blockquote>
-<p>如果你希望创建一个更加自定义化的打印输出并希望可以完全控制打印页面上绘制的内容，可以学习下一节课程：<a href="custom-docs.html">打印自定义文档</a></p>
+<p>如果希望创建一个更加自定义化的打印输出并希望可以完全控制打印页面上绘制的内容，可以学习下一节课程：<a href="custom-docs.html">打印自定义文档</a></p>
 <h2 id="">创建一个打印任务</h2>
-<p>在创建了<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>并加载了你的HTML内容之后，你的应用就已经几乎完成了属于它的任务。接下来，我们需要访问<a href="http://developer.android.com/reference/android/print/PrintManager.html" target="_blank">PrintManager</a>，创建一个打印适配器，并在最后，创建一个打印任务。下面的代码展示了如何执行这些步骤：</p>
+<p>在创建了<a href="http://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView</a>并加载了我们的HTML内容之后，应用就已经几乎完成了属于它的任务。接下来，我们需要访问<a href="http://developer.android.com/reference/android/print/PrintManager.html" target="_blank">PrintManager</a>，创建一个打印适配器，并在最后创建一个打印任务。下面的代码展示了如何执行这些步骤：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createWebPrintJob</span><span class="hljs-params">(WebView webView)</span> </span>{
 
     <span class="hljs-comment">// Get a PrintManager instance</span>
@@ -5214,7 +5182,7 @@ webView.loadUrl(<span class="hljs-string">"http://developer.android.com/about/in
     mPrintJobs.add(printJob);
 }
 </code></pre>
-<p>这个例子保存了一个<a href="http://developer.android.com/reference/android/print/PrintJob.html" target="_blank">PrintJob</a>对象的实例，以供我们的应用将来使用，当然这是不必须的。你的应用可以使用这个对象来跟踪打印任务执行时的进度。当你希望监控在你应用中的打印任务是否完成，是否失败或者是否被用户取消，这个方法非常有用。另外，不需要创建一个应用内置的通知，因为打印框架会自动的创建一个该打印任务的系统通知。</p>
+<p>这个例子保存了一个<a href="http://developer.android.com/reference/android/print/PrintJob.html" target="_blank">PrintJob</a>对象的实例，以供我们的应用将来使用，当然这是不必须的。我们的应用可以使用这个对象来跟踪打印任务执行时的进度。如果希望监控应用中的打印任务是否完成，是否失败或者是否被用户取消，这个方法非常有用。另外，我们不需要创建一个应用内置的通知，因为打印框架会自动的创建一个该打印任务的系统通知。</p>
 
                     
                     </section>

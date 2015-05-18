@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用Material的主题 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>使用Material的主题 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.6.2" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="11.6.2" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_162">
+                    <section class="normal" id="section-gitbook_160">
                     
                         <h1 id="material">使用Material的主题</h1>
 <blockquote>
@@ -5144,17 +5112,11 @@
 <li><code>@android:style/Theme.Material.Light</code> (亮色版本)</li>
 <li><code>@android:style/Theme.Material.Light.DarkActionBar</code></li>
 </ul>
-<p>
-
-<img src="MaterialDark.png" alt="">
-
-<img src="MaterialLight.png" alt="">
-
-</p>
-
+<p><img src="MaterialDark.png" alt="">
+<img src="MaterialLight.png" alt=""></p>
 <p>想知道可用的 Material style 的列表，可以在 API 文档中参见 <a href="http://developer.android.com/reference/android/R.style.html" target="_blank">R.style</a>.</p>
 <blockquote>
-<p>注意： Material 主题只支持 Android 5.0 (API level 21) 及以上版本。<a href="https://developer.android.com/tools/support-library/features.html#v7" target="_blank">v7 Support 库</a>提供了一些组件的 Material Deisgn 样式，也支持自定义调色板。更多信息，请参见维护兼容性章节。</p>
+<p>Note:  Material 主题只支持 Android 5.0 (API level 21) 及以上版本。<a href="https://developer.android.com/tools/support-library/features.html#v7" target="_blank">v7 Support 库</a>提供了一些组件的 Material Deisgn 样式，也支持自定义调色板。更多信息，请参见维护兼容性章节。</p>
 </blockquote>
 <h2 id="">自定义调色板</h2>
 <p>在根据自己的品牌自定义调色板时，你需要在继承 material 主题时定义 theme 属性。</p>
@@ -5175,7 +5137,7 @@
 <p>Material 主题使得你很容易自定义状态栏，你可以设定适合自己品牌的颜色，并提供足够的对比度，以显示白色的状态图标。设置状态栏颜色时，要在继承 Material 主题时设定 <code>android:statsBarColor</code> 属性。默认情况下，<code>android:statusBarColor</code> 会继承 <code>android:colorPrimaryDark</code> 的值。</p>
 <p>你也可以在状态栏的背景上绘画。比如，你想让位于照片之上的状态栏透明，并保留一点深色渐变以确保白色图标可见。这样的话，设定 <code>android:statusBarColor</code> 属性为 <code>@android:color/transparent</code> 并调整窗口的 Flag 标记。你也可以用 <code>Window.setStatusBarColor()</code> 来实现动画或淡入淡出。</p>
 <blockquote>
-<p>注意：状态栏必须随时保持和 primary toolbar (即顶部Actionbar，译者注) 的界线清晰。除了一种情况，即在状态栏后面显示图片或媒体内容时之外，你都要用渐变色来确保前台图标仍然可见。</p>
+<p><strong>Note:</strong> 状态栏必须随时保持和 primary toolbar (即顶部Actionbar，译者注) 的界线清晰。除了一种情况，即在状态栏后面显示图片或媒体内容时之外，你都要用渐变色来确保前台图标仍然可见。</p>
 </blockquote>
 <p>当你自定义导航栏和状态栏时，要么两者都透明，要么只修改状态栏。其他情况下，导航栏应该保持黑色。</p>
 <h2 id="">主题单独视图</h2>

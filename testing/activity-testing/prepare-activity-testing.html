@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立测试环境 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>建立测试环境 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="16.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="16.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,44 +5091,39 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_206">
+                    <section class="normal" id="section-gitbook_204">
                     
                         <h1 id="">建立测试环境</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:<a href="http://developer.android.com/training/activity-testing/preparing-activity-testing.html" target="_blank">http://developer.android.com/training/activity-testing/preparing-activity-testing.html</a></p>
 </blockquote>
-<p>再开始编写,运行你的测试之前,你应该建立你的测试开发环境。本小节将会教你怎样建立Eclipse IDE来构建和运行你的测试,以及怎样用Gradle框架在命令行下构建和运行你的测试。</p>
-<p><strong>注意</strong> :为了帮助你开始,这小节是基于Eclipse及ADT插件。然而,你在自己测试开发时可以自由选用IDE或命令行。</p>
+<p>在开始编写并运行我们的测试之前，我们应该建立测试开发环境。本小节将会讲解如何建立Eclipse IDE来构建和运行我们的测试，以及怎样用Gradle构建工具在命令行下构建和运行我们的测试。</p>
+<blockquote>
+<p>注意: 本小节基于的是Eclipse及ADT插件。然而，你在自己测试开发时可以自由选用IDE或命令行。</p>
+</blockquote>
 <h2 id="eclipse">用Eclipse建立测试</h2>
-<p>安装了Android Developer Tools (ADT) 插件的Eclipse将为你创建,构建,以及运行Android程序提供一个基于图形界面的集成开发环境。Eclipse的一项方便的特性是可以自动为你的Android应用项目创建一个对应的测试项目。</p>
+<p>安装了Android Developer Tools (ADT) 插件的Eclipse将为我们创建，构建，以及运行Android程序提供一个基于图形界面的集成开发环境。Eclipse可以自动为我们的Android应用项目创建一个对应的测试项目。</p>
 <p>开始在Eclipse中创建测试环境:</p>
 <ol>
-<li><p>要是还没安装Eclipse <a href="http://developer.android.com/sdk/installing/bundle.html" target="_blank">ADT</a>插件,请先下载安装。</p>
-</li>
-<li><p>导入或创建你想再次测试的Android应用项目。</p>
-</li>
-<li><p>生成一个对应于应用程序项目测试的测试项目。为你的导入项目生成一个测试项目:</p>
-</li>
+<li>如果还没安装Eclipse <a href="http://developer.android.com/sdk/installing/bundle.html" target="_blank">ADT</a>插件，请先下载安装。</li>
+<li>导入或创建我们想要测试的Android应用项目。</li>
+<li>生成一个对应于应用程序项目测试的测试项目。为导入项目生成一个测试项目:
+ a.在项目浏览器里，右击我们的应用项目，然后选择<strong>Android Tools &gt; New Test Project</strong>
+ b.在新建Android测试项目面板，为我们的测试项目设置合适的参数，然后点击<strong>Finish</strong></li>
 </ol>
-<blockquote>
-<p>a.在项目浏览器里,右击你的应用项目,然后选择<strong>Android Tools &gt; New Test Project</strong></p>
-<p>b.在新建Android测试项目面板,为你的测试项目设置合适的参数,然后点击<strong>Finish</strong></p>
-</blockquote>
-<p>你现在应该可以在Eclipse环境中创建，构建和运行测试项目了。想要继续学习如何在Eclipse中进行这些任务,请转到<a href="activity-basic-testing.html">Creating and Running a Test Case</a></p>
+<p>现在应该可以在Eclipse环境中创建，构建和运行测试项目了。想要继续学习如何在Eclipse中进行这些任务，可以阅读<a href="activity-basic-testing.html">创建与执行测试用例</a></p>
 <h2 id="">用命令行建立测试</h2>
-<p>如果正在使用Gradle version 1.6或者更高的版本作为构建环境,可以用Gradle Wrapper创建。构建和运行Android应用测试。确保你的gradle.build文件中默认<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank">minSdkVersion</a>属性是8或更高。可以参考包含在这下载包中的示例文件gradle.build</p>
-<p>用Gradle Wrapper运行你的测试:</p>
+<p>如果正在使用Gradle version 1.6或者更高的版本作为构建工具，可以用Gradle Wrapper创建。构建和运行Android应用测试。确保在<code>gradle.build</code>文件中，<code>defaultConfig</code>部分中的<a href="http://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank">minSdkVersion</a>属性是8或更高。可以参考包含在下载包中的示例文件gradle.build</p>
+<h2 id="gradle-wrapper">用Gradle Wrapper运行测试:</h2>
 <ol>
-<li><p>连接你的Android真机或开启你的Android模拟器。</p>
-</li>
-<li><p>在你的项目目录运行如下命令:</p>
-</li>
+<li>连接Android真机或开启Android模拟器。</li>
+<li>在项目目录运行如下命令:</li>
 </ol>
 <blockquote>
 <p>./gradlew build connectedCheck</p>
 </blockquote>
-<p>进一步学习Gradle关于Android测试的内容,参看<a href="http://www.gradle.org/docs/current/userguide/userguide_single.html" target="_blank">Gradle Plugin User Guide</a>。</p>
-<p>进一步学习使用Gradle及其它命令行工具,参看<a href="http://developer.android.com/tools/testing/testing_otheride.html" target="_blank">Testing from Other IDEs.</a>。</p>
+<p>进一步学习Gradle关于Android测试的内容，参看<a href="http://www.gradle.org/docs/current/userguide/userguide_single.html" target="_blank">Gradle Plugin User Guide</a>。</p>
+<p>进一步学习使用Gradle及其它命令行工具，参看<a href="http://developer.android.com/tools/testing/testing_otheride.html" target="_blank">Testing from Other IDEs.</a>。</p>
 <p>本节示例代码<a href="http://developer.android.com/shareables/training/AndroidTestingFun.zip" target="_blank">AndroidTestingFun.zip</a></p>
 
                     

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保存到Preference | Android官方培训课程中文版(v0.9.2)</title>
+        <title>保存到Preference | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.6.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.6.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,39 +5097,39 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/data-storage/shared-preferences.html" target="_blank">http://developer.android.com/training/basics/data-storage/shared-preferences.html</a></p>
 </blockquote>
-<p>如果你有一个相对较小的key-value集合需要保存，你应该使用<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> APIs。 SharedPreferences 对象指向了一个保存key-value pairs的文件，并为读写他们提供了简单的方法。每一个 SharedPreferences 文件均由framework管理，其既可以是私有的，也可以是共享的。
+<p>当有一个相对较小的key-value集合需要保存时，可以使用<a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> APIs。 SharedPreferences 对象指向一个保存key-value pairs的文件，并为读写他们提供了简单的方法。每个 SharedPreferences 文件均由framework管理，其既可以是私有的，也可以是共享的。
 这节课会演示如何使用 SharedPreferences APIs 来存储与检索简单的数据。</p>
 <blockquote>
-<p><strong>Note：</strong> SharedPreferences APIs 仅仅提供了读写key-value对的功能，请不要与<a href="http://developer.android.com/reference/android/preference/Preference.html" target="_blank">Preference</a> APIs相混淆。后者可以帮助你建立一个设置用户配置的页面（尽管它实际上是使用SharedPreferences 来实现保存用户配置的)。如果想了解更多关于Preference APIs的信息，请参考<a href="http://developer.android.com/guide/topics/ui/settings.html" target="_blank">Settings</a> 指南。</p>
+<p><strong>Note：</strong> SharedPreferences APIs 仅仅提供了读写key-value对的功能，请不要与<a href="http://developer.android.com/reference/android/preference/Preference.html" target="_blank">Preference</a> APIs相混淆。后者可以帮助我们建立一个设置用户配置的页面（尽管它实际上是使用SharedPreferences 来实现保存用户配置的)。更多关于Preference APIs的信息，请参考<a href="http://developer.android.com/guide/topics/ui/settings.html" target="_blank">Settings</a> 指南。</p>
 </blockquote>
 <h2 id="sharedpreference">获取SharedPreference</h2>
-<p>你可以通过下面两个方法之一来创建或者访问shared preference 文件:</p>
+<p>我们可以通过以下两种方法之一创建或者访问shared preference 文件:</p>
 <ul>
-<li><a href="http://developer.android.com/reference/android/content/Context.html#getSharedPreferences(java.lang.String, int)">getSharedPreferences()</a> — 如果你需要多个通过名称参数来区分的shared preference文件, 名称可以通过第一个参数来指定。你可以在你的app里面通过任何一个<a href="http://developer.android.com/reference/android/content/Context.html" target="_blank">Context</a> 来执行这个方法。</li>
-<li><a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a> — 当你的activity仅仅需要一个shared preference文件时。因为这个方法会检索activity下的默认的shared preference文件，并不需要提供文件名称。</li>
+<li><a href="http://developer.android.com/reference/android/content/Context.html#getSharedPreferences(java.lang.String, int)">getSharedPreferences()</a> — 如果需要多个通过名称参数来区分的shared preference文件, 名称可以通过第一个参数来指定。可在app中通过任何一个<a href="http://developer.android.com/reference/android/content/Context.html" target="_blank">Context</a> 执行该方法。</li>
+<li><a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a> — 当activity仅需要一个shared preference文件时。因为该方法会检索activity下默认的shared preference文件，并不需要提供文件名称。</li>
 </ul>
-<p>例如：下面的示例是在一个 <a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a> 中被执行的，它会访问名为 <code>R.string.preference_file_key</code> 的shared preference文件，并使用private模式来打开它，这种情况下，该文件仅能被你的app访问了。</p>
+<p>例：下面的示例在一个 <a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a> 中被执行，它以private模式访问名为 <code>R.string.preference_file_key</code> 的shared preference文件。这种情况下，该文件仅能被我们的app访问。</p>
 <pre><code class="lang-java">Context context = getActivity();
 SharedPreferences sharedPref = context.getSharedPreferences(
         getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 </code></pre>
-<p>当命名你的shared preference文件时，你应该像 <code>&quot;com.example.myapp.PREFERENCE_FILE_KEY&quot;</code> 这样来命名。</p>
-<p>当然，如果你的activity仅仅需要一个shared preference文件时，你可以使用<a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a>方法：</p>
+<p>应以与app相关的方式为shared preference文件命名，该名称应唯一。如本例中可将其命名为 <code>&quot;com.example.myapp.PREFERENCE_FILE_KEY&quot;</code> 。</p>
+<p>当然，当activity仅需要一个shared preference文件时，我们可以使用<a href="http://developer.android.com/reference/android/app/Activity.html#getPreferences(int)">getPreferences()</a>方法：</p>
 <pre><code class="lang-java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 </code></pre>
 <blockquote>
-<p><strong>Caution:</strong> 如果你创建了一个<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_READABLE" target="_blank">MODE_WORLD_READABLE</a>或者<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_WRITEABLE" target="_blank">MODE_WORLD_WRITEABLE</a> 模式的shared preference文件，那么任何其他的app只要知道文件名，就可以访问这个文件。</p>
+<p><strong>Caution:</strong> 如果创建了一个<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_READABLE" target="_blank">MODE_WORLD_READABLE</a>或者<a href="http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_WRITEABLE" target="_blank">MODE_WORLD_WRITEABLE</a> 模式的shared preference文件，则其他任何app均可通过文件名访问该文件。</p>
 </blockquote>
 <h2 id="shared-preference">写Shared Preference</h2>
-<p>为了写<code>shared preferences</code>文件，需要通过执行<a href="http://developer.android.com/reference/android/content/SharedPreferences.html#edit()">edit()</a>来创建一个 <a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html" target="_blank">SharedPreferences.Editor</a>。</p>
-<p>通过类似<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putInt(java.lang.String, int)">putInt()</a>与<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putString(java.lang.String, java.lang.String)">putString()</a>方法来传递keys与values。然后执行<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#commit()">commit()</a> 来提交改变. (<em>后来有建议除非是出于线程同步的需要，否则请使用apply()方法来替代commit()，因为后者有可能会卡到UI Thread.</em>)</p>
+<p>为了写<code>shared preferences</code>文件，需要通过执行<a href="http://developer.android.com/reference/android/content/SharedPreferences.html#edit()">edit()</a>创建一个 <a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html" target="_blank">SharedPreferences.Editor</a>。</p>
+<p>通过类似<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putInt(java.lang.String, int)">putInt()</a>与<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#putString(java.lang.String, java.lang.String)">putString()</a>等方法传递keys与values，接着通过<a href="http://developer.android.com/reference/android/content/SharedPreferences.Editor.html#commit()">commit()</a> 提交改变. </p>
 <pre><code class="lang-java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 SharedPreferences.Editor editor = sharedPref.edit();
 editor.putInt(getString(R.string.saved_high_score), newHighScore);
 editor.commit();
 </code></pre>
 <h2 id="shared-preference">读Shared Preference</h2>
-<p>为了从shared preference中检索读取数据，可以通过类似 getInt() 与 getString()等方法来读取。在那些方法里面传递你想要获取的value对应的key，并提供一个默认的value作为查找的key不存在时函数的返回值。如下：</p>
+<p>为了从shared preference中读取数据，可以通过类似于 getInt() 及 getString()等方法来读取。在那些方法里面传递我们想要获取的value对应的key，并提供一个默认的value作为查找的key不存在时函数的返回值。如下：</p>
 <pre><code class="lang-java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
 <span class="hljs-keyword">long</span> <span class="hljs-keyword">default</span> = getResources().getInteger(R.string.saved_high_score_default));
 <span class="hljs-keyword">long</span> highScore = sharedPref.getInt(getString(R.string.saved_high_score), <span class="hljs-keyword">default</span>);

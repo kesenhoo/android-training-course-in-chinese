@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建2D-Picker | Android官方培训课程中文版(v0.9.2)</title>
+        <title>创建2D Picker | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3.4" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.3.4" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,127 +5091,118 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_300">
+                    <section class="normal" id="section-gitbook_297">
                     
-                        <h1 id="2d-picker">创建2D-Picker</h1>
+                        <h1 id="2d-picker">创建2D Picker</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/2d-picker.html" target="_blank">https://developer.android.com/training/wearables/ui/2d-picker.html</a></p>
 </blockquote>
-<!--The 2D Picker pattern in Android Wear allows users to navigate and choose from a set of items shown as pages. The Wearable UI Library lets you easily implement this pattern using a page grid, which is a layout manager that allows users to scroll vertically and horizontally through pages of data.-->
-<p>Android Wear中的<a href="https://developer.android.com/design/wear/structure.html#2DPicker" target="_blank">2D Picker</a>模式允许用户像换页一样从一组项目中导航和选择。</p>
-<!--To implement this pattern, you add a GridViewPager element to the layout of your activity and implement an adapter that provides a set of pages by extending the FragmentGridPagerAdapter class.-->
-<p>要实现这个模式，你需要添加一个 <em>GridViewPager</em> 元素到你的activity的layout中然后实现一个继承 <em>FragmentGridPagerAdapter</em>类的adapter以提供一组页面。</p>
-<!--Note: The GridViewPager sample in the Android SDK demonstrates how to use the GridViewPager layout in your apps. This sample is located in the android-sdk/samples/android-20/wearable/GridViewPager directory.-->
+<p>Android Wear中的<a href="https://developer.android.com/design/wear/structure.html#2DPicker" target="_blank">2D Picker</a>模式允许用户像换页一样从一组选项中导航和选择。Wearable UI库让我们可以容易地用一个page grid来实现这个模式。其中，page grid是一个layout管理器，它允许用户垂直和水平滚动页面。</p>
+<p>要实现这个模式，我们需要添加一个<code>GridViewPager</code>元素到activity的layout中，然后实现一个继承<code>FragmentGridPagerAdapter</code>类的adapter以提供一组页面。</p>
 <blockquote>
-<p><strong>Note:</strong> Android SDK中的<em>GridViewPager</em>例子示范了如何在你的apps中使用 <em>GridViewPager</em> layout。这个例子的位置在 <em>android-sdk/samples/android-20/wearable/GridViewPager</em>目录中。</p>
+<p><strong>Note:</strong> Android SDK中的<em>GridViewPager</em>例子示范了如何在应用中使用 <code>GridViewPager</code> layout。这个例子的位于<code>android-sdk/samples/android-20/wearable/GridViewPager</code>目录中。</p>
 </blockquote>
 <h2 id="page-grid">添加Page Grid</h2>
-<!--Add a GridViewPager element to your layout definition as follows:-->
-<p>像下面一样添加一个 <em>GridViewPager</em> 元素到你的layout描述文件：</p>
-<pre><code>&lt;android.support.wearable.view.GridViewPager
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:id=&quot;@+id/pager&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot; /&gt;
-</code></pre><!--You can use any of the techniques described in Defining Layouts to ensure that your 2D picker works on both round and square devices.-->
-<p>你可以使用任何<a href="https://developer.android.com/training/wearables/ui/layouts.html" target="_blank">定义Layouts</a>技术以保证你的2D picker可以工作在圆形和方形两种设备上。</p>
+<p>像下面一样添加一个<code>GridViewPager</code>元素到layout描述文件：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.GridViewPager</span>
+    <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/pager"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
+</code></pre>
+<p>我们可以使用任何<a href="https://developer.android.com/training/wearables/ui/layouts.html" target="_blank">定义Layouts</a>技术以保证2D picker可以工作在圆形和方形两种设备上。</p>
 <h2 id="page-adapter">实现Page Adapter</h2>
-<!--A page adapter provides a set of pages to populate a GridViewPager component. To implement this adapter, you extend the FragmentGridPageAdapter class from the Wearable UI Library-->
-<p>Page Adapter提供一组页面以填充 <em>GridViewPager</em> 部件。要实现这个adapter，你需要继承Wearable UI Library中的 <em>FragmentGridPageAdapter</em> 类。</p>
-<!--For example, the GridViewPager sample in the Android SDK contains the following adapter implementation that provides a set of static cards with custom background images:-->
-<p>举个栗子🌰，Android SDK内的<em>GridViewPager</em>例子🌰中包含了下面的adapter实现将提供一组静态cards和自定义背景图片：</p>
-<pre><code>public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
+<p>Page Adapter提供一组页面以填充<code>GridViewPager</code>部件。要实现这个adapter，需要继承Wearable UI库中的<code>FragmentGridPageAdapter</code>类。</p>
+<p>举个例子，Android SDK内的<em>GridViewPager</em>例子中包含了下面的adapter实现，该实现提供一组静态的具有自定义背景图片的card：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleGridPagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentGridPagerAdapter</span> </span>{
 
-    private final Context mContext;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Context mContext;
 
-    public SampleGridPagerAdapter(Context ctx, FragmentManager fm) {
-        super(fm);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SampleGridPagerAdapter</span><span class="hljs-params">(Context ctx, FragmentManager fm)</span> </span>{
+        <span class="hljs-keyword">super</span>(fm);
         mContext = ctx;
     }
 
-    static final int[] BG_IMAGES = new int[] {
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span>[] BG_IMAGES = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] {
             R.drawable.debug_background_1, ...
             R.drawable.debug_background_5
     };
 
-    // A simple container for static data in each page
-    private static class Page {
-        // static resources
-        int titleRes;
-        int textRes;
-        int iconRes;
+    <span class="hljs-comment">// A simple container for static data in each page</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Page</span> </span>{
+        <span class="hljs-comment">// static resources</span>
+        <span class="hljs-keyword">int</span> titleRes;
+        <span class="hljs-keyword">int</span> textRes;
+        <span class="hljs-keyword">int</span> iconRes;
         ...
     }
 
-    // Create a static set of pages in a 2D array
-    private final Page[][] PAGES = { ... };
+    <span class="hljs-comment">// Create a static set of pages in a 2D array</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Page[][] PAGES = { ... };
 
-    // Override methods in FragmentGridPagerAdapter
+    <span class="hljs-comment">// Override methods in FragmentGridPagerAdapter</span>
     ...
 }
-</code></pre><!--The picker calls getFragment and getBackground to retrieve the content to display at each position of the grid:-->
-<p>picker调用 <em>getFragment</em> 和 <em>getBackground</em>来取得内容以显示到每个grid的位置中。</p>
-<pre><code>// Obtain the UI fragment at the specified position
-@Override
-public Fragment getFragment(int row, int col) {
+</code></pre>
+<p>picker调用<code>getFragment</code>和<code>getBackground</code>来取得内容以显示到grid的每个位置中。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Obtain the UI fragment at the specified position</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> Fragment <span class="hljs-title">getFragment</span><span class="hljs-params">(<span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> col)</span> </span>{
     Page page = PAGES[row][col];
     String title =
-        page.titleRes != 0 ? mContext.getString(page.titleRes) : null;
+        page.titleRes != <span class="hljs-number">0</span> ? mContext.getString(page.titleRes) : <span class="hljs-keyword">null</span>;
     String text =
-        page.textRes != 0 ? mContext.getString(page.textRes) : null;
+        page.textRes != <span class="hljs-number">0</span> ? mContext.getString(page.textRes) : <span class="hljs-keyword">null</span>;
     CardFragment fragment = CardFragment.create(title, text, page.iconRes);
 
-    // Advanced settings (card gravity, card expansion/scrolling)
+    <span class="hljs-comment">// Advanced settings (card gravity, card expansion/scrolling)</span>
     fragment.setCardGravity(page.cardGravity);
     fragment.setExpansionEnabled(page.expansionEnabled);
     fragment.setExpansionDirection(page.expansionDirection);
     fragment.setExpansionFactor(page.expansionFactor);
-    return fragment;
+    <span class="hljs-keyword">return</span> fragment;
 }
 
-// Obtain the background image for the page at the specified position
-@Override
-public ImageReference getBackground(int row, int column) {
-    return ImageReference.forDrawable(BG_IMAGES[row % BG_IMAGES.length]);
+<span class="hljs-comment">// Obtain the background image for the page at the specified position</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> ImageReference <span class="hljs-title">getBackground</span><span class="hljs-params">(<span class="hljs-keyword">int</span> row, <span class="hljs-keyword">int</span> column)</span> </span>{
+    <span class="hljs-keyword">return</span> ImageReference.forDrawable(BG_IMAGES[row % BG_IMAGES.length]);
 }
-</code></pre><!--The getRowCount method tells the picker how many rows of content are available, and the getColumnCount method tells the picker how many columns of content are available for each of the rows.-->
-<p><em>getRowCount</em>方法告诉picker有多少行内容是可获得的，然后 <em>getColumnCount</em>方法告诉picker每行中有多少列内容是可获得的。</p>
-<pre><code>// Obtain the number of pages (vertical)
-@Override
-public int getRowCount() {
-    return PAGES.length;
+</code></pre>
+<p><code>getRowCount</code>方法告诉picker有多少行内容是可获得的，<code>getColumnCount</code>方法告诉picker每行中有多少列内容是可获得的。</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Obtain the number of pages (vertical)</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getRowCount</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> PAGES.length;
 }
 
-// Obtain the number of pages (horizontal)
-@Override
-public int getColumnCount(int rowNum) {
-    return PAGES[rowNum].length;
+<span class="hljs-comment">// Obtain the number of pages (horizontal)</span>
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getColumnCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> rowNum)</span> </span>{
+    <span class="hljs-keyword">return</span> PAGES[rowNum].length;
 }
-</code></pre><!--The adapter implementation details depend on your particular set of pages. Each page provided by the adapter is of type Fragment. In this example, each page is a CardFragment instance that uses one of the default card layouts. However, you can combine different types of pages in the same 2D picker, such as cards, action icons, and custom layouts depending on your use cases.-->
-<p>adapter是实现细节依赖于你的特定的某组pages。由adapter提供每个页面类型的 <em>Fragment</em>。在这个例子中，每个page是一个使用默认card layouts的 <em>CardFragment</em> 实例。然而，你可以混合不同类型的pages在同一个2D picker，比如cards，action icons，和自定义layouts，由你的情况决定。</p>
-<!--Not all rows need to have the same number of pages. Notice that in this example the number of colums is different for each row. You can also use a GridViewPager component to implement a 1D picker with only one row or only one column.-->
-<p>不是所有行都需要有同样数量的pages，注意这个例子中的每行有不同的列数。你也可以用一个 <em>GridViewPager</em> 组件实现只有一行或一列的1D picker。</p>
-<p><img src="https://developer.android.com/wear/images/07_uilib.png" alt=""></p>
-<p><strong>Figure 1:</strong>GridViewPager例子</p>
-<!--GridViewPager provides support for scrolling in cards whose content does not fit the device screen. This example configures each card to expand as required, so users can scroll through the card's content. When users reach the end of a scrollable card, a swipe in the same direction shows the next page on the grid, if one is available.-->
-<p><em>GridViewPager</em> 提供了滚动支持当cards内容超出设备屏幕。这种例子配置了每张card需要被扩展，所以用户可以滚动卡片的内容。当用户到大可滚动卡片的底部，向同样方向滑动将显示grid中的下个page（当下一page可用时）。</p>
-<!--You can specify a custom background for each page with the getBackground() method. When users swipe to navigate across pages, GridViewPager applies parallax and crossfade effects between different backgrounds automatically.-->
-<p>你可以使用 <em>getBackground()</em> 方法自定义每页page的背景。当用户划过page，<em>GridViewPager</em> 自动使用视差滚动和淡出效果在不同的背景之间。</p>
-<h2 id="adapterpage-grid">分配adapter实例给page grid</h2>
-<!--In your activity, assign an instance of your adapter implementation to the GridViewPager component:-->
-<p>在你的activity中，分配一个你的adapter实现实例给 <em>GridViewPager</em> 组件：</p>
-<pre><code>public class MainActivity extends Activity {
+</code></pre>
+<p>adapter是实现细节取决于我们指定的某组页面。由adapter提供的每个页面是<code>Fragement</code>类型。在这个例子中，每个页面是一个使用默认card layouts的<code>CardFragment</code>实例。然而，我们可以在同一个2D picker混合不同类型的页面，比如cards，action icons，和自定义layouts，由具体情况决定。</p>
+<p>不是所有行都需要有同样数量的页面。注意这个例子中的每行有不同的列数。我们也可以用一个 <code>GridViewPager</code> 组件实现只有一行或一列的1D picker。</p>
+<p><img src="07_uilib.png" alt=""></p>
+<p><strong>Figure 1:</strong> GridViewPager例子</p>
+<p>对于那些超出设备屏幕大小的card，<code>GridViewPager</code>为它们提供了滚动支持。这个例子配置了每张card可以按照需要进行展开，所以用户可以滚动卡片的内容。当用户滚动到card的尽头，向同一方向滑动将显示grid中的下一页（如果下一页存在的话）。</p>
+<p>我们可以使用<code>getBackground()</code>方法自定义每页的背景。当用户在页面间滑动时，<code>GridViewPager</code>自动在不同的背景之间使用视差滚动和淡出效果。</p>
+<h3 id="adapterpage-grid">分配adapter实例给page grid</h3>
+<p>在activity中，分配一个adapter实现实例给<code>GridViewPager</code>组件：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ...
-        final GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+        <span class="hljs-keyword">final</span> GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
+        pager.setAdapter(<span class="hljs-keyword">new</span> SampleGridPagerAdapter(<span class="hljs-keyword">this</span>, getFragmentManager()));
     }
 }
 </code></pre>
+
                     
                     </section>
                 
@@ -5253,7 +5212,7 @@ public int getColumnCount(int rowNum) {
         </div>
 
         
-        <a href="../../wearables/ui/lists.html" class="navigation navigation-prev " aria-label="Previous page: 创建Lists"><i class="fa fa-angle-left"></i></a>
+        <a href="../../wearables/ui/lists.html" class="navigation navigation-prev " aria-label="Previous page: 创建List"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../wearables/ui/confirm.html" class="navigation navigation-next " aria-label="Next page: 创建确认界面"><i class="fa fa-angle-right"></i></a>

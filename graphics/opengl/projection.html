@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>运用投影与相机视图 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>运用投影与相机视图 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.2.4" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="4.2.4" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,7 +5097,7 @@
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/graphics/opengl/projection.html" target="_blank">http://developer.android.com/training/graphics/opengl/projection.html</a></p>
 </blockquote>
-<p>在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于你用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：</p>
+<p>在OpenGL ES环境中，利用投影和相机视角可以让显示的绘图对象更加酷似于我们用肉眼看到的真实物体。该物理视角的仿真是对绘制对象坐标的进行数学变换实现的：</p>
 <ul>
 <li><strong>投影（Projection）：</strong>这个变换会基于显示它们的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>的长和宽，来调整绘图对象的坐标。如果没有该计算，那么用OpenGL ES绘制的对象会由于其长宽比例和View窗口比例的不一致而发生形变。一个投影变换一般仅当OpenGL View的比例在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceChanged(javax.microedition.khronos.opengles.GL10, int, int)">onSurfaceChanged()</a>方法中建立或发生变化时才被计算。关于更多OpenGL ES投影和坐标映射的知识，可以阅读<a href="http://developer.android.com/guide/topics/graphics/opengl.html#coordinate-mapping" target="_blank">Mapping Coordinates for Drawn Objects</a>。</li>
 <li><strong>相机视角（Camera View）：</strong>这个变换会基于一个虚拟相机位置改变绘图对象的坐标。注意到OpenGL ES并没有定义一个实际的相机对象，取而代之的，它提供了一些辅助方法，通过对绘图对象的变换来模拟相机视角。一个相机视角变换可能仅在建立你的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.html" target="_blank">GLSurfaceView</a>时计算一次，也可能根据用户的行为或者你的应用的功能进行动态调整。</li>
@@ -5153,12 +5121,12 @@
     Matrix.frustumM(mProjectionMatrix, <span class="hljs-number">0</span>, -ratio, ratio, -<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">7</span>);
 }
 </code></pre>
-<p>该代码填充了一个投影矩阵：mProjectionMatrix，在下一节中，你可以在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>方法中将它和一个相机视角变换结合起来。</p>
+<p>该代码填充了一个投影矩阵：mProjectionMatrix，在下一节中，我们可以在<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onDrawFrame(javax.microedition.khronos.opengles.GL10)">onDrawFrame()</a>方法中将它和一个相机视角变换结合起来。</p>
 <blockquote>
-<p><strong>Note：</strong>在你的绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，你还要实现一个相机视角，使得所有对象出现在屏幕上。</p>
+<p><strong>Note：</strong>在绘图对象上只应用一个投影变换会导致显示效果看上去很空旷。一般而言，我们还要实现一个相机视角，使得所有对象出现在屏幕上。</p>
 </blockquote>
 <h2 id="">定义一个相机视角</h2>
-<p>在你的渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成你的绘图对象所需变换的所有步骤。在下面的代码中，使用<a href="http://developer.android.com/reference/android/opengl/Matrix.html#setLookAtM(float[], int, float, float, float, float, float, float, float, float, float)">Matrix.setLookAtM()</a>方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：</p>
+<p>在渲染器中添加一个相机视角变换作为绘图过程的一部分，以此完成我们的绘图对象所需变换的所有步骤。在下面的代码中，使用<a href="http://developer.android.com/reference/android/opengl/Matrix.html#setLookAtM(float[], int, float, float, float, float, float, float, float, float, float)">Matrix.setLookAtM()</a>方法来计算相机视角变换，然后与之前计算的投影矩阵结合起来，结合后的变换矩阵传递给绘制图像：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDrawFrame</span><span class="hljs-params">(GL10 unused)</span> </span>{
     ...
@@ -5211,9 +5179,9 @@
     GLES20.glDisableVertexAttribArray(mPositionHandle);
 }
 </code></pre>
-<p>一旦你正确地计算并应用了投影变换和相机视角变换，你的图形就会以正确的比例绘制出来，它看上去会像是这样:</p>
+<p>一旦我们正确地计算并应用了投影变换和相机视角变换，我们的图形就会以正确的比例绘制出来，它看上去会像是这样:</p>
 <p><img src="ogl-triangle-projected.png" alt="ogl-triangle-projected" title="应用了投影变换和相机视图变换的三角形"></p>
-<p>现在你的应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！</p>
+<p>现在，应用已经可以通过正确的比例显示图形了，下面就为图形添加一些动画效果吧！</p>
 
                     
                     </section>

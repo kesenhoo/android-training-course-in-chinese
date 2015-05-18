@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>兼容不同的屏幕大小 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>兼容不同的屏幕大小 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,19 +5091,19 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_250">
+                    <section class="normal" id="section-gitbook_248">
                     
-                        <h1 id="">兼容不同的屏幕大小</h1>
+                        <h1 id="">支持不同的屏幕大小</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/riverfeng" target="_blank">riverfeng</a> - 原文:<a href="http://developer.android.com/training/multiscreen/screensizes.html" target="_blank">http://developer.android.com/training/multiscreen/screensizes.html</a></p>
 </blockquote>
 <p>这节课教你如何通过以下几种方式支持多屏幕：</p>
-<p>1：确保你的布局能自适应屏幕</p>
-<p>2：根据你的屏幕配置提供合适的UI布局</p>
-<p>3：确保你当前的布局适合当前的屏幕。</p>
-<p>4：提供合适的位图（bitmap）</p>
+<p>1、确保你的布局能自适应屏幕</p>
+<p>2、根据你的屏幕配置提供合适的UI布局</p>
+<p>3、确保正确的布局适合正确的屏幕。</p>
+<p>4、提供缩放正确的位图（bitmap）</p>
 <h2 id="wrap_contentmatch_parent">使用“wrap_content”和“match_parent”</h2>
-<p>为了确保你的布局能灵活的适应不同的屏幕尺寸，针对一些view组件，你应该使用wrap_content和match_parent来设置他们的宽和高。如果你使用了wrap_content，view的宽和高会被设置为该view所包含的内容的大小值。如果是match_parent（在API 8之前是fill_parent）则被设置为该组件的父控件的大小。</p>
+<p>为了确保你的布局能灵活的适应不同的屏幕尺寸，针对一些view组件，你应该使用wrap_content和match_parent来设置他们的宽和高。如果你使用了wrap_content，view的宽和高会被设置为该view所包含的内容的大小值。如果是match_parent（在API 8之前是fill_parent）则会匹配该组件的父控件的大小。</p>
 <p>通过使用wrap_content和match_parent尺寸值代替硬编码的尺寸，你的视图将分别只使用控件所需要的空间或者被拓展以填充所有有效的空间。比如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
@@ -5170,7 +5138,7 @@
               <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>注意上面的例子使用wrap_content和match_parent来指定组件尺寸而不是使用固定的尺寸。这样就能使你的布局正确的适配不同的屏幕尺寸和屏幕配置（这里的配置主要是指屏幕的横竖屏切换）。</p>
+<p>注意上面的例子使用wrap_content和match_parent来指定组件尺寸而不是使用固定的尺寸。这样就能使你的布局正确的适配不同的屏幕尺寸和屏幕方向（这里的配置主要是指屏幕的横竖屏切换）。</p>
 <p>例如，下图演示的就是该布局在竖屏和横屏模式下的效果，注意组件的尺寸是自动适应宽和高的。</p>
 <p><img src="layout-hvga.png" alt=""></p>
 <p>图1：News Reader示例app（左边竖屏，右边横屏）。</p>
@@ -5206,18 +5174,18 @@
         <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"Cancel"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">RelativeLayout</span>&gt;</span>
 </code></pre>
-<p><img src="relativelayout1.png" alt="">
-图2：QVGA（小尺寸屏幕）屏幕下截图</p>
-<p><img src="relativelayout2.png" alt="">
-图3：WSVGA（大尺寸屏幕）屏幕下截图</p>
+<p><img src="relativelayout1.png" alt=""></p>
+<p>图2：QVGA（小尺寸屏幕）屏幕下截图</p>
+<p><img src="relativelayout2.png" alt=""></p>
+<p>图3：WSVGA（大尺寸屏幕）屏幕下截图</p>
 <blockquote>
-<p>注意：尽管组件的尺寸发生了变化，但是它的子view之间的关系还是通过RelativeLayout.LayoutParams已经指定好了。</p>
+<p>注意：尽管组件的尺寸发生了变化，但是它的子view之间的空间关系还是通过RelativeLayout.LayoutParams已经指定好了。</p>
 </blockquote>
-<h2 id="">使用据尺寸限定词</h2>
-<p>（译者注：这里的限定词只要是指在编写布局文件时，将布局文件放在加上类似large，sw600dp等这样限定词的文件夹中，以此来告诉系统根据屏幕选择对应的布局文件，比如下面例子的layout-large文件夹）</p>
-<p>从上一节的学习里程中，我们知道如何编写灵活的布局或者相对布局，它们都能通过拉伸或者填充控件来适应不同的屏幕，但是它们却无法为每个不同屏幕尺寸提供最好的用户体验。因此，你的应用不应该只是实现灵活的布局，同时也应该为不同的屏幕配置提供几种不同的布局方式。你可以通过配置限定（configuration qualifiers）来做这件事情，它能在运行时根据你当前设备的配置（比如不同的屏幕尺寸设计了不同的布局）来选择合适的资源。</p>
-<p> 比如，很多应用都为大屏幕实现了“两个方框”模式（应用可能在一个方框中实现一个list，另外一个则实现list的content），平板和电视都是大到能在一个屏幕上适应两个方框，但是手机屏幕却只能单个显示。所以，如果你想实现这些布局，你就需要以下文件：</p>
-<p>res/layout/main.xml.单个方框（默认）布局：</p>
+<h2 id="">使用尺寸限定词</h2>
+<p>（译者注：这里的限定词主要是指在编写布局文件时，将布局文件放在加上类似large，sw600dp等这样限定词的文件夹中，以此来告诉系统根据屏幕选择对应的布局文件，比如下面例子的layout-large文件夹）</p>
+<p>从上一节的学习里程中，我们知道如何编写灵活的布局或者相对布局，它们都能通过拉伸或者填充控件来适应不同的屏幕，但是它们却不能为每个不同屏幕尺寸提供最好的用户体验。因此，你的应用不应该只是实现灵活的布局，同时也应该为不同的屏幕配置提供几种不同的布局方式。你可以通过配置限定（configuration qualifiers）来做这件事情，它能在运行时根据你当前设备的配置（比如不同的屏幕尺寸设计了不同的布局）来选择合适的布局资源。</p>
+<p> 比如，很多应用都为大屏幕实现了“两个窗格”模式（应用可能在一个窗格中实现一个list的item，另外一个则实现list的content），平板和电视都是大到能在一个屏幕上适应两个窗格，但是手机屏幕却只能分别显示。所以，如果你想实现这些布局，你就需要以下文件：</p>
+<p>res/layout/main.xml.单个窗格（默认）布局：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5229,7 +5197,7 @@
               <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>res/layout-large/main.xml,两个方框布局：</p>
+<p>res/layout-large/main.xml,两个窗格布局：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"fill_parent"</span>
@@ -5248,8 +5216,8 @@
 <p>注意第二个布局文件的目录名字“large qualifier”，在大尺寸的设备屏幕时（比如7寸平板或者其他大屏幕的设备）就会选择该布局文件，而其他比较小的设备则会选择没有限定词的另一个布局（也就是第一个布局文件）。</p>
 <h2 id="">使用最小宽度限定词</h2>
 <p>在Android 3.2之前，开发者还有一个困难，那就是Android设备的“large”屏幕尺寸，其中包括Dell Streak（设备名称），老版Galaxy Tab和一般的7寸平板，有很多的应用都想针对这些不同的设备（比如5和7寸的设备）定义不同的布局，但是这些设备都被定义为了large尺寸屏幕。也是因为这个，所以Android在3.2的时候开始使用最小宽度限定词。</p>
-<p>最小宽度限定词允许你根据设备的最小宽度（dp单位）来指定不同布局。比如，传统的7寸平板最小宽度为600dp，如果你希望你的UI能够在这样的屏幕上显示两个方框（一个方框的显示在小屏幕上），你可以使用上节中提到的同样的两个布局文件，不同的是，使用sw600来指定两个方框的布局使用在最小宽度为600dp的设备上。</p>
-<p>res/layout/main.xml,单个方框（默认）布局：</p>
+<p>最小宽度限定词允许你根据设备的最小宽度（dp单位）来指定不同布局。比如，传统的7寸平板最小宽度为600dp，如果你希望你的UI能够在这样的屏幕上显示两个窗格（不是一个窗格显示在小屏幕上），你可以使用上节中提到的使用同样的两个布局文件。不同的是，使用sw600来指定两个方框的布局使用在最小宽度为600dp的设备上。</p>
+<p>res/layout/main.xml,单个窗格（默认）布局：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5277,40 +5245,52 @@
               <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"fill_parent"</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>这样意味着当你的设备的最小宽度等于600dp或者更大时，系统选择layout-sw600dp/main.xml（两个方框）的布局，而小一点的屏幕则会选择layout/main.xml（单个方框）的布局。
+<p>这样意味着当你的设备的最小宽度等于600dp或者更大时，系统选择layout-sw600dp/main.xml（两个窗格）的布局，而小一点的屏幕则会选择layout/main.xml（单个窗格）的布局。
 然而，在3.2之前的设备上，这样做并不是很好的选择。因为3.2之前还没有将sw600dp作为一个限定词出现，所以，你还是需要使用large限定词来做。因此，你还是应该要有一个布局文件名为res/layout-large/main.xml，和res/layout-sw600dp/main.xml一样。在下一节中，你将学到如何避免像这样出现重复的布局文件。</p>
 <h2 id="">使用布局别名</h2>
 <p>最小宽度限定词只能在android3.2或者更高的版本上使用。因此，你还是需要使用抽象尺寸（small，normal，large，xlarge）来兼容以前的版本。比如，你想要将你的UI设计为在手机上只显示一个方框的布局，而在7寸平板或电视，或者其他大屏幕设备上显示多个方框的布局，你可能得提供这些文件：</p>
-<p>res/layout/main.xml：单个方框布局</p>
-<p>res/layout-large：多个方框布局</p>
-<p>res/layout-sw600dp：多个方框布局</p>
+<ul>
+<li><p>res/layout/main.xml：单个窗格布局</p>
+</li>
+<li><p>res/layout-large：多个窗格布局</p>
+</li>
+<li><p>res/layout-sw600dp：多个窗格布局</p>
+</li>
+</ul>
 <p>最后两个文件都是一样的，因为其中一个将会适配Android3.2的设备，而另外一个则会适配其他Android低版本的平板或者电视。
-为了避免这些重复的文件（维护让人感觉头痛就是因为这个），你可以使用别名文件。比如，你可以定义如下布局：
-res/layout/main.xml，单个方框布局
-res/layout/main_twopans.xml，两个方框布局
-然后添加这两个文件：
-res/values-large/layout.xml：</p>
+为了避免这些重复的文件（维护让人感觉头痛就是因为这个），你可以使用别名文件。比如，你可以定义如下布局：</p>
+<ul>
+<li>res/layout/main.xml，单个方框布局</li>
+<li>res/layout/main_twopans.xml，两个方框布局</li>
+</ul>
+<p>然后添加这两个文件：</p>
+<ul>
+<li>res/values-large/layout.xml：</li>
+</ul>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"main"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"layout"</span>&gt;</span>@layout/main_twopanes<span class="hljs-tag">&lt;/<span class="hljs-title">item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
-<p>res/values-sw600dp/layout.xml：</p>
-<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"main"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"layout"</span>&gt;</span>@layout/main_twopanes<span class="hljs-tag">&lt;/<span class="hljs-title">item</span>&gt;</span>
+<ul>
+<li>res/values-sw600dp/layout.xml：<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">item</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"main"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"layout"</span>&gt;</span>@layout/main_twopanes<span class="hljs-tag">&lt;/<span class="hljs-title">item</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
 </code></pre>
-<p>最后两个文件拥有相同的内容，但它们并没有真正意义上的定义布局。它们只是将main_twopanes设置成为了别名main，它们分别处在large和sw600dp选择器中，所以它们能适配Android任何版本的平板和电视（在3.2之前平板和电视可以直接匹配large，而3.2或者以上的则匹配sw600dp）。</p>
+最后两个文件拥有相同的内容，但它们并没有真正意义上的定义布局。它们只是将main_twopanes设置成为了别名main，它们分别处在large和sw600dp选择器中，所以它们能适配Android任何版本的平板和电视（在3.2之前平板和电视可以直接匹配large，而3.2或者以上的则匹配sw600dp）。</li>
+</ul>
 <h2 id="">使用方向限定词</h2>
 <p>有一些布局不管是在横向还是纵向的屏幕配置中都能显示的非常好，但是更多的时候，适当的调整一下会更好。在News Reader应用例子中，以下是布局在不同屏幕尺寸和方向的行为：</p>
-<p>小屏幕，纵向：一个方框加logo
-小屏幕，横向：一个方框加logo
-7寸平板，纵向：一个方框加action bar
-7寸平板，横向：两个宽方框加action bar
-10寸平板，纵向：两个窄方框加action bar
-10寸平板，横向：两个宽方框加action bar
-电视，横向：两个宽方框加action bar</p>
-<p>这些每个布局都会再res/layout目录下定义一个xml文件，如此，应用就能根据屏幕配置的变化根据别名匹配到对应的布局来适应屏幕。</p>
-<p>res/layout/onpane.xml：</p>
+<ul>
+<li>小屏幕，纵向：一个窗格加logo</li>
+<li>小屏幕，横向：一个窗格加logo</li>
+<li>7寸平板，纵向：一个窗格加action bar</li>
+<li>7寸平板，横向：两个宽窗格加action bar</li>
+<li>10寸平板，纵向：两个窄窗格加action bar</li>
+<li>10寸平板，横向：两个宽窗格加action bar</li>
+<li>电视，横向：两个宽窗格加action bar</li>
+</ul>
+<p>这些每个布局都会在res/layout目录下定义一个xml文件，如此，应用就能根据屏幕配置的变化根据别名匹配到对应的布局来适应屏幕。</p>
+<p>res/layout/onepane.xml：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"vertical"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5421,13 +5401,13 @@ res/values-large/layout.xml：</p>
 </code></pre>
 <h2 id="9png">使用.9.png图片</h2>
 <p>支持不同的屏幕尺寸同时也意味着你的图片资源也必须能兼容不同的屏幕尺寸。比如，一个button的背景图片就必须要适应该button的各种形状。</p>
-<p>如果你在使用组件时可以改变图像的大小，你很快就会发现这是一个不明确的选择，因为运行的时候，图片会被拉伸或者压缩（这样容易造成图像失真）。避免这种情况的解决方案就是使用点9图片，这是一种能够指定哪些区域能够或者不能够拉伸的特殊png文件。</p>
-<p>因此，在设计的图像需要与组件一起变大变小时，一定要使用点9.若要将位图转换为点9，你可以用一个普通的图像开始（下图，是在4倍变焦情况下的图像显示）。
+<p>如果你在使用组件时可以改变图片的大小，你很快就会发现这是一个不明确的选择。因为运行的时候，图片会被拉伸或者压缩（这样容易造成图片失真）。避免这种情况的解决方案就是使用点9图片，这是一种能够指定哪些区域能够或者不能够拉伸的特殊png文件。</p>
+<p>因此，在设计的图片需要与组件一起变大变小时，一定要使用点9.若要将位图转换为点9，你可以用一个普通的图片开始（下图，是在4倍变焦情况下的图片显示）。
 <img src="button.png" alt=""></p>
 <p>你可以通过sdk中的draw9patch程序（位于tools/directory目录下）来画点9图片。通过沿左侧和顶部边框绘制像素来标记应该被拉伸的区域。也可以通过沿右侧和底部边界绘制像素来标记。就像下图所示一样：</p>
 <p><img src="button_with_marks.png" alt=""></p>
 <p>请注意，上图沿边界的黑色像素。在顶部边框和左边框的那些表明图像的可拉伸区域，右边和底部边框则表示内容应该放置的地方。</p>
-<p>此外，注意.9.png这个格式，你也必须用这个格式，因为框架会检测这是一个点9图片而不是一个普通图片。</p>
+<p>此外，注意.9.png这个格式，你也必须用这个格式，因为系统会检测这是一个点9图片而不是一个普通PNG图片。</p>
 <p>当你将这个应用到组件的背景的时候（通过设置android:background=&quot;@drawable/button&quot;），android框架会自动正确的拉伸图像以适应按钮的大小，下图就是各种尺寸中的显示效果：</p>
 <p><img src="buttons_stretched.png" alt=""></p>
 

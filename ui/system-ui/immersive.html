@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>全屏沉浸式应用 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>全屏沉浸式应用 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.5.4" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.5.4" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_253">
+                    <section class="normal" id="section-gitbook_251">
                     
                         <h1 id="">全屏沉浸式应用</h1>
 <blockquote>
@@ -5131,33 +5099,40 @@
 </blockquote>
 <p><strong>这节课将教您</strong></p>
 <ol>
-<li>确定一种方式</li>
+<li>选择一种沉浸方式</li>
 <li>使用非粘性沉浸模式</li>
 <li>使用粘性沉浸模式</li>
 </ol>
-<p>Adnroid 4.4中引入为<code>setSystemUiVisibility()</code>引入了一个新标签<code>SYSTEM_UI_FLAG_IMMERSIVE</code>，它可以让应用进入真正的全屏模式。当这个标签与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>一起使用的时候，导航栏和状态栏就会隐藏，让你的应用可以接受屏幕上任何地方的触摸事件。</p>
-<p>当沉浸式全屏模式启用的时候，你的activity会继续接受各类的触摸事件。用户可以通过在边缘区域向内滑动来让系统栏重新显示。这个操作清空了<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>(和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>，如果有的话)两个标志，因此系统栏重新变得可见。如果设置了的话，这个操作同时也触发了<code>View.OnSystemUiVisibilityChangeListener</code>。然而， 如果你想让系统栏在一段时间后自动隐藏的话，你应该使用<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>标签。请注意，&#39;sticky&#39;版本的标签不会触发任何的监听器，因为在这个模式下展示的系统栏是处于暂时的状态。</p>
+<p>Adnroid 4.4(API level 19)中引入为<code>setSystemUiVisibility()</code>引入了一个新标签<code>SYSTEM_UI_FLAG_IMMERSIVE</code>，它可以让应用进入真正的全屏模式。当这个标签与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>一起使用的时候，导航栏和状态栏就会隐藏，让你的应用可以接受屏幕上任何地方的触摸事件。</p>
+<p>当沉浸式全屏模式启用的时候，你的Activity会继续接受各类的触摸事件。用户可以通过在边缘区域向内滑动来让系统栏重新显示。这个操作清空了<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>(和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>，如果有的话)两个标签，因此系统栏重新变得可见。如果设置了的话，这个操作同时也触发了<code>View.OnSystemUiVisibilityChangeListener</code>。然而， 如果你想让系统栏在一段时间后自动隐藏的话，你应该使用<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>标签。请注意，带有&#39;sticky&#39;的标签不会触发任何的监听器，因为在这个模式下展示的系统栏是处于暂时(transient)的状态。</p>
 <p>图1展示了各种不同的“沉浸式”状态</p>
 <p><img src="imm-states.png" alt="imm-states"></p>
+<p><strong>图1</strong>. 沉浸模式状态.</p>
 <p>在上图中：</p>
 <ol>
-<li><strong>非沉浸模式</strong> —— 展示了应用进入沉浸模式之前的状态。也展示了设置<code>IMMERSIVE</code>标签后用户滑动展示系统栏的状态。用户滑动后，<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>就会被清除，系统栏就会重新显示并保持可见。
-请注意，最好的方式就是让所有的UI控件与系统栏的显示隐藏保持同步，这样可以减少屏幕显示所处的状态，同时提供了更无缝平滑的用户体验。因此所有的UI控件跟随系统栏一同显示。一旦应用进入了沉浸模式，UI控件也跟随着系统栏一同隐藏。为了确保UI的可见性与系统栏保持一致，我们需要一个监听器<code>View.OnSystemUiVisibilityChangeListener</code>来监听系统栏的变化。这在下一节中将详细讲解。</li>
-<li><strong>提示气泡</strong>——第一次进入沉浸模式时，系统将会显示一个提示气泡，提示用户如何再让系统栏显示出来。请注意，如果为了测试你想强制显示提示气泡，你可以先将应用设为沉浸模式，然后按下电源键进入锁屏模式，并在5秒中之后打开屏幕。</li>
-<li><strong>沉浸模式</strong>—— 这张图展示了隐藏了系统栏和其他UI控件的状态。你可以设置<code>IMMERSIVE</code>和<code>IMMERSIVE_STICKY</code>来进入这个状态。</li>
-<li><strong>粘性标签</strong>——这就是你设置了<code>IMMERSIVE_STICKY</code>标签时的UI状态，用户会向内滑动以展示系统栏。半透明的系统栏会临时的进行显示，一段时间后自动隐藏。滑动的操作并不会清空任何标签，也不会触发系统UI可见性的监听器，因为暂时显示的导航栏并不被认为是一种可见的状态。</li>
+<li><p><strong>非沉浸模式</strong> —— 展示了应用进入沉浸模式之前的状态。也展示了设置<code>IMMERSIVE</code>标签后用户滑动展示系统栏的状态。用户滑动后，<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>就会被清除，系统栏就会重新显示并保持可见。
+请注意，最好的实践方式就是让所有的UI控件的变化与系统栏的显示隐藏保持同步，这样可以减少屏幕显示所处的状态，同时提供了更无缝平滑的用户体验。因此所有的UI控件跟随系统栏一同显示。一旦应用进入了沉浸模式，相应的UI控件也跟随着系统栏一同隐藏。为了确保UI的可见性与系统栏保持一致，我们需要一个监听器<code>View.OnSystemUiVisibilityChangeListener</code>来监听系统栏的变化。这在下一节中将详细讲解。</p>
+</li>
+<li><p><strong>提示气泡</strong>——第一次进入沉浸模式时，系统将会显示一个提示气泡，提示用户如何再让系统栏显示出来。</p>
+<blockquote>
+<p><strong>Note</strong>：如果为了测试你想强制显示提示气泡，你可以先将应用设为沉浸模式，然后按下电源键进入锁屏模式，并在5秒中之后打开屏幕。</p>
+</blockquote>
+</li>
+<li><p><strong>沉浸模式</strong>—— 这张图展示了隐藏了系统栏和其他UI控件的状态。你可以设置<code>IMMERSIVE</code>和<code>IMMERSIVE_STICKY</code>来进入这个状态。</p>
+</li>
+<li><strong>粘性标签</strong>——这就是你设置了<code>IMMERSIVE_STICKY</code>标签时的UI状态，用户会向内滑动以展示系统栏。半透明的系统栏会临时的进行显示，一段时间后自动隐藏。滑动的操作并不会清空任何标签，也不会触发系统UI可见性的监听器，因为暂时显示的导航栏并不被认为是一种可见性状态的变化。</li>
 </ol>
 <blockquote>
-<p><strong>Notes</strong>：<code>immersive</code>类的标签只有在与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>,<code>SYSTEM_UI_FLAG_FULLSCREEN</code>中一个或两个一起使用的时候才会生效。你可以只使用其中的一个，但是一般情况下你需要同时隐藏状态栏和导航栏以达到沉浸的效果。</p>
+<p><strong>Note</strong>：<code>immersive</code>类的标签只有在与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>,<code>SYSTEM_UI_FLAG_FULLSCREEN</code>中一个或两个一起使用的时候才会生效。你可以只使用其中的一个，但是一般情况下你需要同时隐藏状态栏和导航栏以达到沉浸的效果。</p>
 </blockquote>
-<h2 id="1">1)确定一种方式</h2>
+<h2 id="">选择一种沉浸方式</h2>
 <p><code>SYSTEM_UI_FLAG_IMMERSIVE</code>与<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>都提供了沉浸式的体验，但是在上面的描述中，他们是不一样的，下面讲解一下什么时候该用哪一种标签。</p>
 <ul>
 <li>如果你在写一款图书浏览器、新闻杂志阅读器，请将<code>IMMERSIVE</code>标签与<code>SYSTEM_UI_FLAG_FULLSCREEN</code>,<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>一起使用。因为用户可能会经常访问Action Bar和一些UI控件，又不希望在翻页的时候有其他的东西进行干扰。<code>IMMERSIVE</code>在该种情况下就是个很好的选择。</li>
-<li>如果你在打造一款真正的沉浸式应用，而且你希望屏幕边缘的区域也可以与用户进行交互，并且他们也不会经常访问系统UI。这个时候就要将<code>IMMERSIVE_STICKY</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code> <code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>两个标签一起使用。比如做一款游戏或者绘图应用就很合适。</li>
+<li>如果你在打造一款真正的沉浸式应用，而且你希望屏幕边缘的区域也可以与用户进行交互，并且用户也不会经常访问系统UI。这个时候就要将<code>IMMERSIVE_STICKY</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code> <code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>两个标签一起使用。比如做一款游戏或者绘图应用就很合适。</li>
 <li>如果你在打造一款视频播放器，并且需要少量的用户交互操作。你可能就需要之前版本的一些方法了（从Android 4.0开始）。对于这种应用，简单的使用<code>SYSTEM_UI_FLAG_FULLSCREEN</code>与<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>就足够了，不需要使用<code>immersive</code>标签。</li>
 </ul>
-<h2 id="2">2)使用非粘性沉浸模式</h2>
+<h2 id="">使用非粘性沉浸模式</h2>
 <p>当你使用<code>SYSTEM_UI_FLAG_IMMERSIVE</code>标签的时候，它是基于其他设置过的标签(<code>SYSTEM_UI_FLAG_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_FULLSCREEN</code>)来隐藏系统栏的。当用户向内滑动，系统栏重新显示并保持可见。</p>
 <p>用其他的UI标签(如<code>SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION</code>和<code>SYSTEM_UI_FLAG_LAYOUT_STABLE</code>)来防止系统栏隐藏时内容区域大小发生变化是一种很不错的方法。你也需要确保Action Bar和其他系统UI控件同时进行隐藏。下面这段代码展示了如何在不改变内容区域大小的情况下，隐藏与显示状态栏和导航栏。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// This snippet hides the system bars.</span>
@@ -5190,10 +5165,11 @@
 <li>实现一个<code>GestureDetector</code>，它监听了<code>onSingleTapUp(MotionEvent)</code>事件。可以使用户点击内容区域来切换系统栏的显示状态。单纯的点击监听可能不是最好的解决方案，因为当用户在屏幕上拖动手指的时候（假设点击的内容占据了整个屏幕），这个事件也会被触发。</li>
 </ul>
 <p>更多关于此话题的讨论，可以观看这个视频 <a href="http://www.youtube.com/embed/cBi8fjv90E4" target="_blank">DevBytes: Android 4.4 Immersive Mode</a></p>
-<h2 id="3">3)使用粘性沉浸模式</h2>
+<h2 id="">使用粘性沉浸模式</h2>
 <p>当使用了<code>SYSTEM_UI_FLAG_IMMERSIVE_STICKY</code>标签的时候，向内滑动的操作会让系统栏临时显示，并处于半透明的状态。此时没有标签会被清除，系统UI可见性监听器也不会被触发。如果用户没有进行操作，系统栏会在一段时间内自动隐藏。</p>
 <p>图2展示了当使用<code>IMMERSIVE_STICKY</code>标签时，半透明的系统栏展示与又隐藏的状态。</p>
 <p><img src="imm-sticky.png" alt="imm-sticky"></p>
+<p><strong>图2</strong>. 自动隐藏系统栏.</p>
 <p>下面是一段实现代码。一旦窗口获取了焦点，只要简单的设置<code>IMMERSIVE_STICKY</code>与上面讨论过的其他标签即可。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onWindowFocusChanged</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> hasFocus)</span> </span>{

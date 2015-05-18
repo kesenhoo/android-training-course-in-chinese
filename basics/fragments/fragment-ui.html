@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立灵活动态的UI | Android官方培训课程中文版(v0.9.2)</title>
+        <title>建立灵活动态的UI | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.5.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.5.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5130,29 +5098,29 @@
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/basics/fragments/fragment-ui.html" target="_blank">http://developer.android.com/training/basics/fragments/fragment-ui.html</a></p>
 </blockquote>
 <ul>
-<li><p>如果你的APP设计成要支持范围广泛的屏幕尺寸时，在可利用的屏幕空间内，你可以通过在不同的布局配置中重用你的fragment来优化你的用户体验。</p>
+<li><p>如果我们的APP设计成要支持范围广泛的屏幕尺寸时，在可利用的屏幕空间内，我们可以通过在不同的布局配置中重用fragment来优化用户体验。</p>
 </li>
-<li><p>比如，一个手机设备可能适合一次只有一个fragment的单面板用户交互。相反，在更大屏幕尺寸的平板电脑上，你可能更想要两个fragment并排在一起，用来向用户展示更多信息。</p>
+<li><p>比如，一个手持设备可能适合一次只有一个fragment的单面板用户交互。而在更大屏幕尺寸的平板电脑上，我们可能更想要两个fragment并排在一起，用来向用户展示更多信息。</p>
 </li>
 </ul>
 <p><img src="fragments-screen-mock.png" alt="fragments-screen-mock"></p>
-<p><strong>图1：</strong>两个fragments，在同一个activity不同屏幕尺寸中用不同的配置来展示。在大屏幕上，两个fragment被并排放置，但是在手机上，一次只放置一个fragment，所以在用户导航中，两个fragment必须进行替换。</p>
+<p><strong>图1：</strong>两个fragments，在同一个activity不同屏幕尺寸中用不同的配置来展示。在大屏幕上，两个fragment被并排放置，在手持设备上，一次只放置一个fragment，所以在用户导航中，两个fragment必须进行替换。</p>
 <ul>
-<li><a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a>类提供了方法，让你在activity运行时能够对fragment进行添加，移除，替换，来实现动态的用户体验。</li>
+<li><a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a>类为在activity运行时对fragment进行添加，移除，替换等操作提供了方法，来实现动态的用户体验。</li>
 </ul>
 <h2 id="activityfragment">在activity运行时添加fragment</h2>
 <ul>
-<li><p>比起用<code>&lt;fragment&gt;</code>标签在activity的布局文件中定义fragment,就像<a href="creating.html">上节课</a>说的，你也可以在activity运行时动态添加fragment，如果你在打算在activity的生命周期内替换fragment，这是必须的。</p>
+<li><p>比起用<code>&lt;fragment&gt;</code>标签在activity的布局文件中定义fragment,就像<a href="creating.html">上节课</a>说的，我们还可以在activity运行时动态添加fragment，如果打算在activity的生命周期内替换fragment，这是必须的。</p>
 </li>
-<li><p>为了执行fragment的增加或者移除操作，你必须用 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a> 创建一个<a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>对象, FragmentTransaction提供了用来增加、移除、替换以及其它一些操作的APIs。</p>
+<li><p>为了执行fragment的增加或者移除操作，必须通过 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a> 创建一个<a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>对象, FragmentTransaction提供了用来增加、移除、替换以及其它一些操作的APIs。</p>
 </li>
-<li><p>如果你的activity允许fragment移除或者替换，你应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始化fragment(s).</p>
+<li><p>如果我们的activity允许fragment移除或者替换，我们应该在activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法中添加初始化fragment(s).</p>
 </li>
-<li><p>运用fragment（特别是那些你在运行时添加的）的一个很重要的规则就是在布局中你必须有一个容器<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">view</a>，fragment的layout将会放在这个view里面。</p>
+<li><p>运用fragment（尤其是那些在运行时添加的）的一个很重要的规则就是在布局中必须有一个容器<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>，fragment的layout将会放在这个view里面。</p>
 </li>
-<li><p>下面的这个布局是<a href="creating.html">上节课</a>的一次只显示一个fragment的布局的替代布局。为了从一个布局替换为另外一个布局，activity的布局包含了一个空的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank">FrameLayout</a>作为fragment的容器。</p>
+<li><p>下面的这个布局是<a href="creating.html">上节课</a>的一次只显示一个fragment的布局的替代布局。为了从一个布局替    ctivity的布局包含了一个空的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank">FrameLayout</a>作为fragment的容器。</p>
 </li>
-<li><p>注意文件名与上节课的布局一样，但是文件目录没有<code>large</code>标识， 所以你的布局将会在比large小的屏幕上被使用，因为这个屏幕无法满足同时放置两个fragments</p>
+<li><p>注意文件名与上节课的布局一样，但是文件目录没有<code>large</code>标识， 所以这一布局将会在比large小的屏幕上被使用，因为该屏幕无法满足同时放置两个fragments</p>
 </li>
 </ul>
 <p>res/layout/news_articles.xml:</p>
@@ -5162,10 +5130,10 @@
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
 </code></pre>
 <ul>
-<li>在你的activity里面，用Support Library APIs调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29" target="_blank">getSupportFragmentManager()</a>方法获取<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a> 对象，然后调用 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()">beginTransaction()</a> 方法创建一个<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>对象，然后调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法添加一个fragment.</li>
-<li>你可以使用同一个 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>进行多次fragment事务。当你完成这些变化操作的时候，必须调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a>方法。</li>
+<li>在activity中，用Support Library APIs调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29" target="_blank">getSupportFragmentManager()</a>方法获取<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html" target="_blank">FragmentManager</a> 对象，然后调用 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()">beginTransaction()</a> 方法创建一个<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>对象，然后调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法添加一个fragment.</li>
+<li>可以使用同一个 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>进行多次fragment事务。完成这些变化操作，准备开始执行改变时，必须调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a>方法。</li>
 </ul>
-<p>例如，如何添加一个fragment到之前的layout中</p>
+<p>下例显示了如何添加一个fragment到之前的layout中</p>
 <pre><code class="lang-java"><span class="hljs-keyword">import</span> android.os.Bundle;
 <span class="hljs-keyword">import</span> android.support.v4.app.FragmentActivity;
 
@@ -5203,13 +5171,13 @@
 <ul>
 <li>因为fragment是在activity运行时被添加进来时（不是在XML布局中用<code>&lt;fragment&gt;</code>定义的），activity 可以移除这个fragment或者用另外一个来替换它。</li>
 </ul>
-<h2 id="fragment">Fragment替换</h2>
+<h2 id="fragment">替换Fragment</h2>
 <ul>
-<li>替换fragment的过程与添加过程类似，只需要将<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法替换为 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#replace(int,%20android.support.v4.app.Fragment)">replace()</a>方法。</li>
-<li>记住当你执行fragment事务的时候，例如移除或者替换，你经常要适当地让用户可以向后导航与&quot;撤销&quot;这次改变。为了让用户向后导航fragment事务，你必须在<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>提交前调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)">addToBackStack()</a>方法。</li>
+<li>替换fragment的过程类似于添加过程，只需要将<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)">add()</a>方法替换为 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#replace(int,%20android.support.v4.app.Fragment)">replace()</a>方法。</li>
+<li>记住在执行fragment事务时，如移除或者替换，我们经常要适当地让用户可以向后导航与&quot;撤销&quot;这次改变。为了让用户向后导航fragment事务，我们必须在<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html" target="_blank">FragmentTransaction</a>提交前调用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)">addToBackStack()</a>方法。</li>
 </ul>
 <blockquote>
-<p><strong>Note：</strong>当你移除或者替换一个fragment并把它放入返回栈中时，被移除的fragment的生命周期是stopped(不是destoryed).当用户返回重新恢复这个fragment,它的生命周期是restarts。如果你没把fragment放入返回栈中，那么当他被移除或者替换时，它的生命周期是destoryed。</p>
+<p><strong>Note：</strong>当移除或者替换一个fragment并把它放入返回栈中时，被移除的fragment的生命周期是stopped(不是destoryed).当用户返回重新恢复这个fragment,它的生命周期是restarts。如果没有把fragment放入返回栈中，那么当它被移除或者替换时，其生命周期是destoryed。</p>
 </blockquote>
 <ul>
 <li>下面是一个fragment替换的例子</li>
@@ -5231,7 +5199,7 @@ transaction.addToBackStack(<span class="hljs-keyword">null</span>);
 transaction.commit();
 </code></pre>
 <ul>
-<li><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)">addToBackStack()</a>方法提供了一个可选的String参数为事务指定了一个唯一的名字。这个名字不是必须的，除非你打算用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.BackStackEntry.html" target="_blank">FragmentManager.BackStackEntry</a> APIs来进行一些高级的fragments操作。</li>
+<li><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)">addToBackStack()</a>方法提供了一个可选的String参数为事务指定了一个唯一的名字。除非打算用<a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.BackStackEntry.html" target="_blank">FragmentManager.BackStackEntry</a> APIs来进行一些高级的fragments操作，这个名字不是必须的。</li>
 </ul>
 
                     

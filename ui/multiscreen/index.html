@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>为多屏幕设计 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>为多屏幕设计 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,23 +5091,23 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_248">
+                    <section class="normal" id="section-gitbook_246">
                     
                         <h1 id="">为多屏幕设计</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/riverfeng" target="_blank">riverfeng</a> - 原文:<a href="http://developer.android.com/training/multiscreen/index.html" target="_blank">http://developer.android.com/training/multiscreen/index.html</a></p>
 </blockquote>
-<p>从小屏手机到大屏电视，android拥有数百种不同屏幕尺寸的设备，因此，设计兼容不同屏幕尺寸的应用程序满足不同的用户体验就变得非常重要。</p>
-<p>但是，只是单纯的兼容不同的设备类型是远远不够的。每个不同的屏幕尺寸都给用户体验带来不同的可能性和挑战。所以，为了充分的满足用户，你的应用不仅要支持多屏幕，更要针对每个屏幕配置优化你的用户体验。</p>
+<p>从小屏手机到大屏电视，android拥有数百种不同屏幕尺寸的设备。因此，设计兼容不同屏幕尺寸的应用程序满足不同的用户体验就变得非常重要。</p>
+<p>但是，只是单纯的兼容不同的设备类型是远远不够的。每个不同的屏幕尺寸都给用户体验带来不同的可能性和挑战。所以，为了充分的满足和打动用户，你的应用不仅要支持多屏幕，更要针对每个屏幕配置优化你的用户体验。</p>
 <p>这个课程就将教你如何针对不同屏幕配置来优化你的UI。</p>
-<p>本课程提供了一个简单的示例<a href="http://developer.android.com/shareables/training/NewsReader.zip" target="_blank">NewsReader</a>。这个示例中提供的代码对多屏幕适配是非常好的一个练习，并且你也可以将这个示例中的代码运用到你自己的项目中。</p>
+<p>本课程提供了一个简单的示例<a href="http://developer.android.com/shareables/training/NewsReader.zip" target="_blank">NewsReader</a>。这个示例中每节课的代码展示了如何更好的优化多屏幕适配，你也可以将这个示例中的代码运用到你自己的项目中。</p>
 <blockquote>
-<p>Notes：这节课中相关的例子为了兼容android 3.0以下的版本使用了support library中的fragment，如果你需要使用该示例，请先下载support library并添加到例子中。</p>
+<p>Note：这节课中相关的例子为了兼容android 3.0以下的版本使用了support library中的Fragment相关APIs。在使用该示例前，请先确定support library已经添加到你的应用中。</p>
 </blockquote>
 <h2 id="lessons">Lessons</h2>
 <ul>
 <li><p><a href="screen-sizes.html">支持不同屏幕尺寸</a></p>
-<p>这节课程主要告诉你如何设计能适配多种不同尺寸的屏幕（通过使用灵活的规格（dimensions），RelativeLayout，屏幕尺寸和方向限定词（qualifier），别名过滤器（alias filter）和点9图片）。</p>
+<p>这节课程将引导你如何设计适配多种不同尺寸的布局（通过使用灵活的尺寸规格guige（dimensions），相对布局（RelativeLayout），屏幕尺寸和方向限定（qualifiers），别名过滤器（alias filter）和点9图片）。</p>
 </li>
 <li><p><a href="screen-desities.html">支持不同的屏幕密度</a></p>
 <p>这节课程将演示如何支持不同像素密度的屏幕（使用密度独立像素（dip）以及为不同的密度提供合适的位图（bitmap））。</p>
@@ -5147,7 +5115,7 @@
 </ul>
 <ul>
 <li><p><a href="adapt-ui.html">实现自适应UI流（Flows）</a></p>
-<p>这节课将说的是如何通过实现UI流（flow）的方式来适配不同屏幕尺寸和密度的组合（运行时检测活动布局，根据当前布局正确的响应，处理屏幕配置的变化）。</p>
+<p>这节课将演示如何以UI流（flow）的方式来适配一些屏幕大小/密度组合（动态布局运行时检测，响应当前布局，处理屏幕配置变化）。</p>
 </li>
 </ul>
 

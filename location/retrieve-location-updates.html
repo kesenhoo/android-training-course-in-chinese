@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>获取位置更新 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>获取位置更新 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.2.2" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.2.2" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,361 +5091,166 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_154">
+                    <section class="normal" id="section-gitbook_153">
                     
                         <h1 id="">获取位置更新</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/receive-location-updates.html" target="_blank">http://developer.android.com/training/location/receive-location-updates.html</a></p>
 </blockquote>
-<p>如果你的应用需要导航或者记录路径，你可能会周期性地去获取用户的位置信息。此时你可以使用Location Services 里面的 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">LocationClient.getLastLocation()</a>)来进行周期性的位置信息更新。使用这个方法之后，Location Services 会基于当前可用的位置信息提供源（比如WiFi和GPS）返回最准确的位置信息更新。</p>
-<p>你可以使用一个location client从 Location Services 那里请求周期性的位置更新。根据不同请求的形式，Location Services 要么调用一个回调函数并传入一个 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象，或者发送一个包含位置信息的 <a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a> 。位置更新的精度和频率与你的应用所申请的权限相关联。</p>
-<h2 id="">确定应用的权限</h2>
-<p>使用位置服务的应用必须用户位置权限。Android拥有两种位置权限：<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a> 和 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>。选择不同的权限决定你的应用最后获取的位置信息的精度。如果你只请求了一个精度比较低的位置权限，位置服务会对返回的位置信息处理成一个相当于城市级别精确度的位置。</p>
-<p>请求<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>权限时也包含了<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>权限。</p>
-<p>举个例子，如果你要添加<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>权限，你需要将下面的权限添加到<code>&lt;manifest&gt;</code>标签中：</p>
-<pre><code class="lang-java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;
+<p>如果我们的应用可以周期性地跟踪位置，那么应用可以给用户提供更多相关信息。例如，如果我们的应用在用户行走或者驾车时帮助找到他们的路，或者如果我们的应用跟踪用户的位置，那么它需要定期获取设备的位置。除了地理位置之外（经度和纬度），我们可能还想为用户提供更多的信息，例如方位（行驶的水平方向）、海拔或者设备的速度。这些信息可以在 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象中获得，我们的应用可以从 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html" target="_blank">fused location provider</a> 中得到这个对象。</p>
+<p>当我们用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>) 获取设备的位置时，如上一节课<a href="retrieve-current.html">获取最后可知位置</a>介绍的一样，一个更加直接的方法是从 fused location provider 中请求周期性的更新。作为回应，API根据现有的位置供应源，如Wifi和GPS（Global Positioning System），用最佳位置周期地更新我们的应用。这些providers、我们请求的权限和我们在位置请求中设置的选项决定了位置的精确度。</p>
+<p>这节课介绍如何用fused location provider的<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.location.LocationRequest, com.google.android.gms.location.LocationListener)">requestLocationUpdates()</a>方法来请求定期更新设备的位置。</p>
+<h2 id="location-services">连接Location Services</h2>
+<p>应用的 Location Services 由 Google Play services 和 fused location provider 提供。为了用这些服务，用 Google API Client 连接到我们的应用，然后请求位置更新。用 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.html" target="_blank">GoogleApiClient</a> 进行连接的详细步骤请见<a href="retrieve-current.html">获取最后可知位置</a>，包括了请求当前位置。</p>
+<p>设备的最后可知位置提供有关起点的基准信息，在开始定期更新位置信息前，保证应用拥有一个可知的位置。<a href="retrieve-current.html">获取最后可知位置</a>介绍了如何通过调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>) 获取最后可知位置。接下来的内容假设我们的应用已经取得最后可知位置，并已将最后可知位置作为一个 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象保存在全局变量 <code>mCurrentLocation</code>中。</p>
+<p>使用位置服务的应用必须请求位置权限。在这节课中我们需要很好的定位检测，使得我们的应用可以从可用的位置供应源得到尽可能精确的位置数据。在我们应用的manifest文件中，用<code>uses-permission</code>节点请求位置权限，如下所示：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">package</span>=<span class="hljs-value">"com.google.android.gms.location.sample.locationupdates"</span> &gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_FINE_LOCATION"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<h2 id="google-play-services">检测Google Play Services</h2>
-<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#getErrorDialog(int, android.app.Activity, int" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>)获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent" target="_blank">onActivityResult()</a>)即可。</p>
+<h2 id="">设置位置请求</h2>
+<p>创建一个 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html" target="_blank">LocationRequest</a> 以保存请求 fused location provider 的参数。这些参数决定了请求精确度的水平。对于位置请求中所有可用的选项，请见 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html" target="_blank">LocationRequest</a> 类的参考文档。这节课设置更新间隔、最快更新间隔和优先级。如下所述：</p>
+<p><strong>更新间隔</strong></p>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setInterval(long" target="_blank">setInterval()</a>) - 这个方法设置应用接收位置更新的速率（每毫秒）。注意如果另一个应用正在接收一个更快的或者更慢的更新速率，又或者根本没有更新（例如，设备还没有连接），那么我们应用的位置更新速率可能会比<code>setInterval()</code>设置的速率更快。</p>
+<p><strong>最快更新间隔</strong></p>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long" target="_blank">setFastestInterval()</a>) - 这个方法设置应用可以处理位置更新的<strong>最快</strong>速率（每毫秒）。因为其它应用会影响到已发送出去的位置更新的速率，所以我们需要设置这个最快速率。Google Play services location APIs 发送任何应用用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setInterval(long" target="_blank">setInterval()</a>) 请求的最快的更新速率。如果这个速率比我们的应用可以处理的速率还要快，那么我们可能会遇到UI闪烁或者数据溢出等问题。为了避免这个问题，调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long" target="_blank">setFastestInterval()</a>) 限制更新速率的上限。</p>
+<p><strong>优先级</strong></p>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setPriority(int" target="_blank">setPriority()</a>) - 这个方法设置请求的优先级，为 Google Play services 位置服务提供了关于使用哪个位置源的强烈的暗示。支持下面几个值：</p>
+<ul>
+<li><p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_BALANCED_POWER_ACCURACY">PRIORITY_BALANCED_POWER_ACCURACY</a> - 这个设置请求一个城市街区范围的位置精确度（精确度约为100米）。这被认为是一个粗略的精确度，也可能是耗电较小的设置。对于这个设置，位置服务可能使用 WiFi 和基站进行定位。注意，无论如何，位置供应源的选择依赖于很多其它的因素。</p>
+</li>
+<li><p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_HIGH_ACCURACY">PRIORITY_HIGH_ACCURACY</a> - 这个设置请求最高精度的位置信息。对于这个设置，位置服务更可能使用 GPS(Global Positioning System) 来定位。</p>
+</li>
+<li><p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_LOW_POWER"> PRIORITY_LOW_POWER</a> - 这个设置请求一个城市范围的精确度（精确度约为10公里）。这被认为是一个粗略的精确度，也可能是耗电较小的设置。</p>
+</li>
+<li><p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_NO_POWER">PRIORITY_NO_POWER</a> - 如果需要对功率消耗的影响微乎其微，但又想在可用的时候接收位置更新，那么使用这个设置。对于这个设置，我们的应用不会触发任何位置更新，但是会接收由其它应用触发的位置。</p>
+</li>
+</ul>
+<p>下面的示例介绍创建位置请求和设置相关的参数：</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">createLocationRequest</span><span class="hljs-params">()</span> </span>{
+    LocationRequest mLocationRequest = <span class="hljs-keyword">new</span> LocationRequest();
+    mLocationRequest.setInterval(<span class="hljs-number">10000</span>);
+    mLocationRequest.setFastestInterval(<span class="hljs-number">5000</span>);
+    mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+}
+</code></pre>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_HIGH_ACCURACY">PRIORITY_HIGH_ACCURACY</a> 的优先级联合在我们应用的 manifest 文件中定义的 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION">ACCESS_FINE_LOCATION</a> 权限和一个5000毫秒（5秒）的更新间隔。该优先级使 fused location provider 返回精确到几英尺之内的位置更新。这个方法适用于需要实时显示位置的地图应用。</p>
 <blockquote>
-<p><strong>Note:</strong> 为了让你的应用能够兼容 Android 1.6 之后的版本，用来显示DialogFragment的必须是FragmentActivity而不是之前的Activity。使用FragmentActivity同样可以调用 getSupportFragmentManager() 方法来显示 DialogFragment。</p>
+<p><strong>性能提示：</strong>如果我们的应用在接收一个位置更新后接入网络或者执行持续时间长的工作，那么将最快更新间隔调整到一个更慢的值。这个调整防止我们的应用接收不可用的更新。一旦持续时间长的工作完成，将最快更新间隔改回一个快的值。</p>
 </blockquote>
-<p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
+<h2 id="">请求位置更新</h2>
+<p>我们已经设置了包含应用位置更新要求的位置请求，我们可以调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.location.LocationRequest, com.google.android.gms.location.LocationListener)">requestLocationUpdates()</a> 来启动周期性的更新。在 Google API Client 提供的 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>) 回调函数（当 client 准备好之后会调用这个回调函数）中启动周期性更新。 </p>
+<p>根据请求的形式，fused location provider 要么调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html" target="_blank">LocationListener.onLocationChanged()</a> 回调函数并传递一个 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象，要么发出一个将位置信息包含在扩展数据的 <a href="http://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>。更新的精确度和频率受已请求的位置权限和在位置请求对象中设置的选项等因素影响。</p>
+<p>这节课介绍如何使用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html" target="_blank">LocationListener</a> 回调函数获取位置更新。调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#requestLocationUpdates(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.location.LocationRequest, com.google.android.gms.location.LocationListener)">requestLocationUpdates()</a> ,并传入 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.html" target="_blank">GoogleApiClient</a> 的实例、<a href="http://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html" target="_blank">LocationRequest</a> 对象和一个 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html" target="_blank">LocationListener</a>。定义一个 <code>startLocationUpdates()</code> 方法，该方法在 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>) 回调函数被调用，如下面的示例代码所示：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle connectionHint)</span> </span>{
     ...
-    <span class="hljs-comment">//全局变量</span>
-    <span class="hljs-comment">/*
-     * 定义一个发送给Google Play services的请求代码
-     * 这个代码将会在Activity.onActivityResult的方法中返回
-     */</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>
-            CONNECTION_FAILURE_RESOLUTION_REQUEST = <span class="hljs-number">9000</span>;
-    ...
-    <span class="hljs-comment">// 定义一个显示错误对话框的DialogFragment</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorDialogFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DialogFragment</span> </span>{
-        <span class="hljs-comment">// 表示错误对话框的全局属性</span>
-        <span class="hljs-keyword">private</span> Dialog mDialog;
-        <span class="hljs-comment">// 默认的构造函数，将 dialog 属性设为空</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ErrorDialogFragment</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">super</span>();
-            mDialog = <span class="hljs-keyword">null</span>;
-        }
-        <span class="hljs-comment">// 设置要显示的dialog</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDialog</span><span class="hljs-params">(Dialog dialog)</span> </span>{
-            mDialog = dialog;
-        }
-        <span class="hljs-comment">// 返回一个 Dialog 给 DialogFragment.</span>
-        <span class="hljs-annotation">@Override</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> Dialog <span class="hljs-title">onCreateDialog</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-            <span class="hljs-keyword">return</span> mDialog;
-        }
+    <span class="hljs-keyword">if</span> (mRequestingLocationUpdates) {
+        startLocationUpdates();
     }
-    ...
-    <span class="hljs-comment">/*
-     * 处理来自Google Play services 发给FragmentActivity的结果
-     *
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(
-            <span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
-        <span class="hljs-comment">// 根据请求代码来决定做什么</span>
-        <span class="hljs-keyword">switch</span> (requestCode) {
-            ...
-            <span class="hljs-keyword">case</span> CONNECTION_FAILURE_RESOLUTION_REQUEST :
-            <span class="hljs-comment">/*
-             * 如果结果代码是 Activity.RESULT_OK, 尝试重新连接
-             *
-             */</span>
-                <span class="hljs-keyword">switch</span> (resultCode) {
-                    <span class="hljs-keyword">case</span> Activity.RESULT_OK :
-                    <span class="hljs-comment">/*
-                     * 尝试重新请求
-                     */</span>
-                    ...
-                    <span class="hljs-keyword">break</span>;
-                }
-            ...
-        }
-     }
-    ...
-    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">servicesConnected</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// 检测Google Play services 是否可用</span>
-        <span class="hljs-keyword">int</span> resultCode =
-                GooglePlayServicesUtil.
-                        isGooglePlayServicesAvailable(<span class="hljs-keyword">this</span>);
-        <span class="hljs-comment">// 如果 Google Play services 可用</span>
-        <span class="hljs-keyword">if</span> (ConnectionResult.SUCCESS == resultCode) {
-            <span class="hljs-comment">// 在 debug 模式下, 记录程序日志</span>
-            Log.d(<span class="hljs-string">"Location Updates"</span>,
-                    <span class="hljs-string">"Google Play services is available."</span>);
-            <span class="hljs-comment">// Continue</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-        <span class="hljs-comment">// 因为某些原因Google Play services 不可用</span>
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">// 获取error code</span>
-            <span class="hljs-keyword">int</span> errorCode = connectionResult.getErrorCode();
-            <span class="hljs-comment">// 从Google Play services 获取 error dialog</span>
-            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-                    errorCode,
-                    <span class="hljs-keyword">this</span>,
-                    CONNECTION_FAILURE_RESOLUTION_REQUEST);
+}
 
-            <span class="hljs-comment">// 如果 Google Play services可以提供一个error dialog</span>
-            <span class="hljs-keyword">if</span> (errorDialog != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-comment">// 为这个error dialog 创建一个新的DialogFragment</span>
-                ErrorDialogFragment errorFragment =
-                        <span class="hljs-keyword">new</span> ErrorDialogFragment();
-                <span class="hljs-comment">// 在DialogFragment中设置dialog</span>
-                errorFragment.setDialog(errorDialog);
-                <span class="hljs-comment">// 在DialogFragment中显示error dialog</span>
-                errorFragment.show(getSupportFragmentManager(),
-                        <span class="hljs-string">"Location Updates"</span>);
-            }
-        }
-    }
-    ...
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startLocationUpdates</span><span class="hljs-params">()</span> </span>{
+    LocationServices.FusedLocationApi.requestLocationUpdates(
+            mGoogleApiClient, mLocationRequest, <span class="hljs-keyword">this</span>);
 }
 </code></pre>
-<p>下面的代码片段使用了这个方法来检查Google Play services是否可用。</p>
-<h2 id="">定义位置服务回调函数</h2>
-<p>在你创建location client之前, 你必须实现一些被 Location Services用来同你的应用通信的接口</p>
-<p><a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html" target="_blank">ConnectionCallbacks</a></p>
-<ul>
-<li>设置了当一个location client连接成功或者断开连接时 Location Services必须调用了方法。</li>
-</ul>
-<p><a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.OnConnectionFailedListener.html" target="_blank">OnConnectionFailedListener</a></p>
-<ul>
-<li>设置了当一个错误出现而需要去连接location client时Location Services需要要调用的方法。这个方法用到了之前定义好的 <code>showErrorDialog</code> 方法来显示一个error dialog，并尝试用Google Play services来修复这个问题。</li>
-</ul>
-<p>下面的代码片段展示了如何实现这些接口并定义对应的方法：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> </span>{
+<p>注意到上述的代码片段提到一个布尔标志位，<code>mRequestingLocationUpdates</code>，该标志位用于判断用户将位置更新打开还是关闭。关于这个标志位更详细的介绍，请见下面的<a href="">保存 Activity 的状态</a>的内容。</p>
+<h2 id="">定义位置更新回调函数</h2>
+<p>fused location provider 调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html#onLocationChanged(android.location.Location" target="_blank">LocationListener.onLocationChanged()</a>) 回调函数。这个回调函数传入的参数是一个含有位置经纬度的 <a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a> 对象。下面的代码介绍了如何实现 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html" target="_blank">LocationListener</a> 接口和定义方法，然后获取位置更新的时间戳并在应用用户界面上显示经度、纬度和时间戳：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span>, <span class="hljs-title">LocationListener</span> </span>{
     ...
-    <span class="hljs-comment">/*
-     * 当连接到client的请求成功结束时被Location Services 调用。这时你可以请求当前位置或者开始周期性的更新位置信息。
-     */</span>
     <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle dataBundle)</span> </span>{
-        <span class="hljs-comment">// 显示连接状态</span>
-        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Connected"</span>, Toast.LENGTH_SHORT).show();
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLocationChanged</span><span class="hljs-params">(Location location)</span> </span>{
+        mCurrentLocation = location;
+        mLastUpdateTime = DateFormat.getTimeInstance().format(<span class="hljs-keyword">new</span> Date());
+        updateUI();
+    }
 
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateUI</span><span class="hljs-params">()</span> </span>{
+        mLatitudeTextView.setText(String.valueOf(mCurrentLocation.getLatitude()));
+        mLongitudeTextView.setText(String.valueOf(mCurrentLocation.getLongitude()));
+        mLastUpdateTimeTextView.setText(mLastUpdateTime);
     }
-    ...
-    <span class="hljs-comment">/*
-     * 当连接因为错误被location client丢弃时，Location Services调用此方法
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDisconnected</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// 显示连接状态</span>
-        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Disconnected. Please re-connect."</span>,
-                Toast.LENGTH_SHORT).show();
+}
+</code></pre>
+<h2 id="">停止位置更新</h2>
+<p>我们需要考虑当 activity 不在焦点上时我们是否需要停止位置更新，例如，当用户切换到另一个应用或者同一个应用的不同 activity 的情况。假如应用即使在后台运行时也不需要收集用户数据，将会有利于降低功耗。这节课会介绍如何在 activity 的 <a href="http://developer.android.com/reference/android/app/Activity.html#onPause(" target="_blank">onPause()</a>) 方法里停止位置更新。</p>
+<p>为了停止位置更新，调用 <a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#removeLocationUpdates(com.google.android.gms.common.api.GoogleApiClient, com.google.android.gms.location.LocationListener)">removeLocationUpdates()</a>，并传入 <a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.html" target="_blank">GoogleApiClient</a> 对象的实例和一个 <a href="http://developer.android.com/reference/com/google/android/gms/location/LocationListener.html" target="_blank">LocationListener</a>，如下面的示例代码所示：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPause</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">super</span>.onPause();
+    stopLocationUpdates();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">stopLocationUpdates</span><span class="hljs-params">()</span> </span>{
+    LocationServices.FusedLocationApi.removeLocationUpdates(
+            mGoogleApiClient, <span class="hljs-keyword">this</span>);
+}
+</code></pre>
+<p>使用一个布尔值，<code>mRequestingLocationUpdates</code>，来判断当前位置更新是否打开。在 activity 的 <a href="http://developer.android.com/reference/android/app/Activity.html#onResume(" target="_blank">onResume()</a>) 方法里，检查当前的位置更新是否起作用。如果位置更新不起作用，那么激活它：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">super</span>.onResume();
+    <span class="hljs-keyword">if</span> (mGoogleApiClient.isConnected() &amp;&amp; !mRequestingLocationUpdates) {
+        startLocationUpdates();
     }
+}
+</code></pre>
+<h2 id="-activity-">保存 Activity 的状态</h2>
+<p>一个设备配置的变动，如旋转屏幕或者改变语言，可以导致当前的 activity 崩溃。我们的应用必须保存任何在重新创建 activity 时需要用到的信息。一种方法是通过一个保存在 <a href="http://developer.android.com/reference/android/os/Bundle.html" target="_blank">Bundle</a> 对象的实例状态来解决这个问题。</p>
+<p>下面的示例代码介绍了如何用 activity 的 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle" target="_blank">onSaveInstanceState()</a>) 回调函数来保存实例状态：</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onSaveInstanceState</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+    savedInstanceState.putBoolean(REQUESTING_LOCATION_UPDATES_KEY,
+            mRequestingLocationUpdates);
+    savedInstanceState.putParcelable(LOCATION_KEY, mCurrentLocation);
+    savedInstanceState.putString(LAST_UPDATED_TIME_STRING_KEY, mLastUpdateTime);
+    <span class="hljs-keyword">super</span>.onSaveInstanceState(savedInstanceState);
+}
+</code></pre>
+<p>定义一个 <code>updateValuesFromBundle()</code> 方法来恢复保存在 activity 的上一个实例的值（如果这些值可用的话）。在 <a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle" target="_blank">onCreate()</a>) 中调用这个方法。如下所示：</p>
+<pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
     ...
-    <span class="hljs-comment">/*
-     * 尝试连接Location Services失败后被 Location Services调用的方法
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnectionFailed</span><span class="hljs-params">(ConnectionResult connectionResult)</span> </span>{
-        <span class="hljs-comment">/*
-         * Google Play services 可以解决它探测到的一些错误。
-         * 如果这个错误有一个解决方案，这个方法会试着发送一个Intent去启动一个Google Play services activity来解决错误。
-         */</span>
-        <span class="hljs-keyword">if</span> (connectionResult.hasResolution()) {
-            <span class="hljs-keyword">try</span> {
-                <span class="hljs-comment">// 启动一个尝试解决问题的Activity</span>
-                connectionResult.startResolutionForResult(
-                        <span class="hljs-keyword">this</span>,
-                        CONNECTION_FAILURE_RESOLUTION_REQUEST);
-                <span class="hljs-comment">/*
-                 * 如果Google Play services 取消这个最初的PendingIntent，抛出异常
-                 */</span>
-            } <span class="hljs-keyword">catch</span> (IntentSender.SendIntentException e) {
-                <span class="hljs-comment">// 记录错误</span>
-                e.printStackTrace();
-            }
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">/*
-             * 如果没有可用的解决方案，将错误通过一个 dialog 显示给用户
-             */</span>
-            showErrorDialog(connectionResult.getErrorCode());
+    updateValuesFromBundle(savedInstanceState);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">updateValuesFromBundle</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+    <span class="hljs-keyword">if</span> (savedInstanceState != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-comment">// Update the value of mRequestingLocationUpdates from the Bundle, and</span>
+        <span class="hljs-comment">// make sure that the Start Updates and Stop Updates buttons are</span>
+        <span class="hljs-comment">// correctly enabled or disabled.</span>
+        <span class="hljs-keyword">if</span> (savedInstanceState.keySet().contains(REQUESTING_LOCATION_UPDATES_KEY)) {
+            mRequestingLocationUpdates = savedInstanceState.getBoolean(
+                    REQUESTING_LOCATION_UPDATES_KEY);
+            setButtonsEnabledState();
         }
+
+        <span class="hljs-comment">// Update the value of mCurrentLocation from the Bundle and update the</span>
+        <span class="hljs-comment">// UI to show the correct latitude and longitude.</span>
+        <span class="hljs-keyword">if</span> (savedInstanceState.keySet().contains(LOCATION_KEY)) {
+            <span class="hljs-comment">// Since LOCATION_KEY was found in the Bundle, we can be sure that</span>
+            <span class="hljs-comment">// mCurrentLocationis not null.</span>
+            mCurrentLocation = savedInstanceState.getParcelable(LOCATION_KEY);
+        }
+
+        <span class="hljs-comment">// Update the value of mLastUpdateTime from the Bundle and update the UI.</span>
+        <span class="hljs-keyword">if</span> (savedInstanceState.keySet().contains(LAST_UPDATED_TIME_STRING_KEY)) {
+            mLastUpdateTime = savedInstanceState.getString(
+                    LAST_UPDATED_TIME_STRING_KEY);
+        }
+        updateUI();
     }
-    ...
 }
 </code></pre>
-<p>现在你已经写好了回调函数，你可以设置位置更新的请求了。第一步就是确定可以控制位置更新的参数。</p>
-<h2 id="">确定位置更新参数</h2>
-<p>Location Services可以让你通过设置<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html" target="_blank">LocationRequest</a>里面的值来控制位置更新的频率和精度，然后把<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html" target="_blank">LocationRequest</a>这个对象作为更新请求的一部分发送出去，接着就可以开始更新位置信息了。</p>
-<p>首页，设置下面的周期参数：</p>
-<p>更新频率</p>
-<ul>
-<li>更新频率通过 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setInterval(long" target="_blank">LocationRequest.setInterval()</a>)方法来设置。 这个方法设置的毫秒数表示你的应用在这个时间内尽可能的接受位置更新信息。如果当时没有其他应用从Location Services获取位置更新，那么你的应用就会已设置的频率接收位置更新。</li>
-</ul>
-<p>最快更新频率</p>
-<ul>
-<li>最快更新频率通过<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#setFastestInterval(long" target="_blank">LocationRequest.setFastestInterval()</a>方法设置。这个方法设置你的应用能够接收位置更新最快的频率。你必须设置这个频率因为其他应用也会影响位置更新的频率。Location Services 会以选择所有请求位置更新的应用中频率最快的发送位置更新。如果这个频率比你的应用能处理的频率还要快，那么你的应用可能会出现UI闪烁或者数据溢出。为了防止这样的情况出现，调用<code>LocationRequest.setFastestInterval()</code>方法来设置位置更新频率的上限，同时还可以节约电量。当你通过 LocationRequest.setInterval()方法设置理想的更新频率，通过 LocationRequest.setFastestInterval()设置更新频率的上限，然后你的应用就会在系统中获得最快的位置更新频率。如果其他应用设置的更新频率更快，那么你的应用也跟着受益。如果其他应用的更新频率没有你的频率快，那么你的应用将会以你通过LocationRequest.setInterval()方法设置的频率更新位置信息。</li>
-</ul>
-<p>接着，设置精度参数。在一个前台应用（foreground app）中，你需要不断地获取高精度的位置更新，因此需要使用<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationRequest.html#PRIORITY_HIGH_ACCURACY" target="_blank">LocationRequest.PRIORITY_HIGH_ACCURACY</a>。</p>
-<p>下面的代码片段展示了如何在<code>onCreate()</code>方法里面设置更新频率和精度：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span>,
-        <span class="hljs-title">LocationListener</span> </span>{
-    ...
-    <span class="hljs-comment">// Global constants</span>
-    ...
-    <span class="hljs-comment">// Milliseconds per second</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MILLISECONDS_PER_SECOND = <span class="hljs-number">1000</span>;
-    <span class="hljs-comment">// Update frequency in seconds</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> UPDATE_INTERVAL_IN_SECONDS = <span class="hljs-number">5</span>;
-    <span class="hljs-comment">// Update frequency in milliseconds</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> UPDATE_INTERVAL =
-            MILLISECONDS_PER_SECOND * UPDATE_INTERVAL_IN_SECONDS;
-    <span class="hljs-comment">// The fastest update frequency, in seconds</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> FASTEST_INTERVAL_IN_SECONDS = <span class="hljs-number">1</span>;
-    <span class="hljs-comment">// A fast frequency ceiling in milliseconds</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> FASTEST_INTERVAL =
-            MILLISECONDS_PER_SECOND * FASTEST_INTERVAL_IN_SECONDS;
-    ...
-    <span class="hljs-comment">// 定义一个包含定位精度和定位频率的对象</span>
-    LocationRequest mLocationRequest;
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
-        <span class="hljs-comment">// Create the LocationRequest object</span>
-        mLocationRequest = LocationRequest.create();
-        <span class="hljs-comment">// 使用高精度</span>
-        mLocationRequest.setPriority(
-                LocationRequest.PRIORITY_HIGH_ACCURACY);
-        <span class="hljs-comment">// 设置更新频率为 5 seconds</span>
-        mLocationRequest.setInterval(UPDATE_INTERVAL);
-        <span class="hljs-comment">// 设置最快更新频率为  1 second</span>
-        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-        ...
-    }
-    ...
-}
-</code></pre>
+<p>更多关于保存实例状态的内容，请看 <a href="http://developer.android.com/reference/android/app/Activity.html#ConfigurationChanges" target="_blank">Android Activity</a> 类的参考文档。</p>
 <blockquote>
-<p><strong>Note:</strong> 如果你的应用在获取位置更新后需要访问网络或者进行长时的操作，你可以将最快更新频率调整至更慢的值。这样可以让你的应用不会接受无法使用的位置更新。一旦这样的长时操作完成，将最快更新频率设回原值。</p>
+<p><strong>Note：</strong>为了可以更加持久地存储，我们可以将用户的偏好设定保存在应用的 <a href="http://developer.android.com/reference/android/content/SharedPreferences.html" target="_blank">SharedPreferences</a> 中。在 activity 的 <a href="http://developer.android.com/reference/android/app/Activity.html#onPause(" target="_blank">onPause()</a>) 方法中设置偏好设定，在 <a href="http://developer.android.com/reference/android/app/Activity.html#onResume(" target="_blank">onResume()</a>) 中获取这些设定。更多关于偏好设定的内容，请见<a href="http://hukai.me/android-training-course-in-chinese/basics/data-storage/shared-preference.html" target="_blank">保存到 Rreference</a>。</p>
 </blockquote>
-<h2 id="">开始进行位置更新</h2>
-<p>To send the request for location updates, create a location client in onCreate(), then connect it and make the request by calling requestLocationUpdates(). Since your client must be connected for your app to receive updates, you should connect the client in onStart(). This ensures that you always have a valid, connected client while your app is visible. Since you need a connection before you can request updates, make the update request in ConnectionCallbacks.onConnected()</p>
-<p>Remember that the user may want to turn off location updates for various reasons. You should provide a way for the user to do this, and you should ensure that you don&#39;t start updates in onStart() if updates were previously turned off. To track the user&#39;s preference, store it in your app&#39;s SharedPreferences in onPause() and retrieve it in onResume().</p>
-<p>The following snippet shows how to set up the client in onCreate(), and how to connect it and request updates in onStart():</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span>,
-        <span class="hljs-title">LocationListener</span> </span>{
-    ...
-    <span class="hljs-comment">// Global variables</span>
-    ...
-    LocationClient mLocationClient;
-    <span class="hljs-keyword">boolean</span> mUpdatesRequested;
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-        ...
-        <span class="hljs-comment">// Open the shared preferences</span>
-        mPrefs = getSharedPreferences(<span class="hljs-string">"SharedPreferences"</span>,
-                Context.MODE_PRIVATE);
-        <span class="hljs-comment">// Get a SharedPreferences editor</span>
-        mEditor = mPrefs.edit();
-        <span class="hljs-comment">/*
-         * Create a new location client, using the enclosing class to
-         * handle callbacks.
-         */</span>
-        mLocationClient = <span class="hljs-keyword">new</span> LocationClient(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>);
-        <span class="hljs-comment">// Start with updates turned off</span>
-        mUpdatesRequested = <span class="hljs-keyword">false</span>;
-        ...
-    }
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onPause</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// Save the current setting for updates</span>
-        mEditor.putBoolean(<span class="hljs-string">"KEY_UPDATES_ON"</span>, mUpdatesRequested);
-        mEditor.commit();
-        <span class="hljs-keyword">super</span>.onPause();
-    }
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStart</span><span class="hljs-params">()</span> </span>{
-        ...
-        mLocationClient.connect();
-    }
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onResume</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">/*
-         * Get any previous setting for location updates
-         * Gets "false" if an error occurs
-         */</span>
-        <span class="hljs-keyword">if</span> (mPrefs.contains(<span class="hljs-string">"KEY_UPDATES_ON"</span>)) {
-            mUpdatesRequested =
-                    mPrefs.getBoolean(<span class="hljs-string">"KEY_UPDATES_ON"</span>, <span class="hljs-keyword">false</span>);
-
-        <span class="hljs-comment">// Otherwise, turn off location updates</span>
-        } <span class="hljs-keyword">else</span> {
-            mEditor.putBoolean(<span class="hljs-string">"KEY_UPDATES_ON"</span>, <span class="hljs-keyword">false</span>);
-            mEditor.commit();
-        }
-    }
-    ...
-    <span class="hljs-comment">/*
-     * Called by Location Services when the request to connect the
-     * client finishes successfully. At this point, you can
-     * request the current location or start periodic updates
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle dataBundle)</span> </span>{
-        <span class="hljs-comment">// Display the connection status</span>
-        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Connected"</span>, Toast.LENGTH_SHORT).show();
-        <span class="hljs-comment">// If already requested, start periodic updates</span>
-        <span class="hljs-keyword">if</span> (mUpdatesRequested) {
-            mLocationClient.requestLocationUpdates(mLocationRequest, <span class="hljs-keyword">this</span>);
-        }
-    }
-    ...
-}
-</code></pre>
-<p>For more information about saving preferences, read Saving Key-Value Sets.</p>
-<h2 id="stop-location-updates">Stop Location Updates</h2>
-<p>To stop location updates, save the state of the update flag in onPause(), and stop updates in onStop() by calling removeLocationUpdates(LocationListener). For example:</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span>,
-        <span class="hljs-title">LocationListener</span> </span>{
-    ...
-    <span class="hljs-comment">/*
-     * Called when the Activity is no longer visible at all.
-     * Stop updates and disconnect.
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStop</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// If the client is connected</span>
-        <span class="hljs-keyword">if</span> (mLocationClient.isConnected()) {
-            <span class="hljs-comment">/*
-             * Remove location updates for a listener.
-             * The current Activity is the listener, so
-             * the argument is "this".
-             */</span>
-            removeLocationUpdates(<span class="hljs-keyword">this</span>);
-        }
-        <span class="hljs-comment">/*
-         * After disconnect() is called, the client is
-         * considered "dead".
-         */</span>
-        mLocationClient.disconnect();
-        <span class="hljs-keyword">super</span>.onStop();
-    }
-    ...
-}
-</code></pre>
-<p>You now have the basic structure of an app that requests and receives periodic location updates. You can combine the features described in this lesson with the geofencing, activity recognition, or reverse geocoding features described in other lessons in this class.</p>
-<p>The next lesson, Displaying a Location Address, shows you how to use the current location to display the current street address.</p>
+<p>下一节课，<a href="display-address.html">显示位置地址</a>，介绍如何显示指定位置的街道地址。</p>
 
                     
                     </section>
@@ -5488,7 +5261,7 @@
         </div>
 
         
-        <a href="../location/retrieve-current.html" class="navigation navigation-prev " aria-label="Previous page: 获取当前位置"><i class="fa fa-angle-left"></i></a>
+        <a href="../location/retrieve-current.html" class="navigation navigation-prev " aria-label="Previous page: 获取最后可知位置"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../location/display-address.html" class="navigation navigation-next " aria-label="Next page: 显示位置地址"><i class="fa fa-angle-right"></i></a>

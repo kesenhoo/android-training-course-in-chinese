@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建确认界面 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>创建确认界面 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3.5" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.3.5" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,122 +5091,107 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_301">
+                    <section class="normal" id="section-gitbook_298">
                     
-                        <h1 id="confirmation">显示Confirmation</h1>
+                        <h1 id="">显示确认界面</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/RoyaAoki" target="_blank">roya</a> 原文:<a href="https://developer.android.com/training/wearables/ui/confirm.html" target="_blank">https://developer.android.com/training/wearables/ui/confirm.html</a></p>
 </blockquote>
-<!--Confirmations in Android Wear apps use the whole screen or a larger portion of it than those in handheld apps. This ensures that users can see these confirmations by just glancing at the screen and that they have large enough touch targets to cancel an action.-->
-<p>Android Wear apps中的<a href="https://developer.android.com/design/wear/patterns.html#Countdown" target="_blank">Confirmations</a>通常全屏或是相比于手持app占更大的部分。这样确保用户可以一眼看到确认器(confirmations)且有一个足够大的触摸区域用于取消一个操作。</p>
-<!--The Wearable UI Library helps you show confirmation animations and timers in your Android Wear apps:-->
-<p>Wearable UI Library帮助你在你的Android Wear apps中显示确认器（confirmation）动画和定时器：</p>
-<!--Confirmation timers
-Automatic confirmation timers show users an animated timer that lets them cancel an action they just performed.
-Confirmation animations
-Confirmation animations give users visual feedback when they complete an action.-->
-<p><em>Confirmation timers</em></p>
+<p>Android Wear应用中的<a href="https://developer.android.com/design/wear/patterns.html#Countdown" target="_blank">确认界面(Confirmations)</a>通常是全屏或者相比于手持应用占更大的部分。这样确保用户可以一眼看到确认界面(confirmations)且有一个足够大的触摸区域用于取消一个操作。</p>
+<p>Wearable UI库帮助我们在Android Wear应用中显示确认动画和定时器：</p>
+<p><em>确认定时器</em></p>
 <ul>
-<li>自动confirmation定时器为用户显示一个包含动画的定时器，让用户可以取消他们最近的操作。</li>
+<li>自动确认定时器为用户显示一个定时器动画，让用户可以取消他们最近的操作。</li>
 </ul>
-<p><em>Confirmation animations</em></p>
+<p><em>确认界面动画</em></p>
 <ul>
-<li>Confirmation animations 给用户一个在操作完成时的完成的视觉反馈。</li>
+<li>确认界面动画给用户在完成一个操作时的视觉反馈。</li>
 </ul>
-<!--The following sections show you how to implement these patterns.-->
-<p>下面的章节为你演示了如何实现这些样式。</p>
-<h2 id="-confirmation-">使用自动 Confirmation 定时器</h2>
-<!--Automatic confirmation timers let users cancel an action they just performed. When the user performs the action, your app shows a button to cancel the action with a timer animation and starts the timer. The user has the option to cancel the action until the timer finishes. Your app gets notified if the user cancels the action and when the timer expires.-->
-<p>自动 Confirmation 定时器让用户只需要取消操作。当用户做一个操作，你的app显示带有定时动画的一个cancel按钮，用户可以在定时结束前选择取消操作。如果用户选择取消操作货定时结束你的app会得到一个通知。</p>
-<p><img src="https://developer.android.com/wear/images/09_uilib.png" alt="">
-<strong>Figure 1:</strong> A confirmation timer.</p>
-<!--To show a confirmation timer when users complete an action in your app:-->
-<p>为了在用户完成操作时显示一个confirmation timer：</p>
-<!--Add a DelayedConfirmationView element to your layout.
-Implement the DelayedConfirmationListener interface in your activity.
-Set the duration of the timer and start it when the user completes an action.-->
+<p>下面的章节将演示了如何实现这些模式。</p>
+<h2 id="">使用自动确认定时器</h2>
+<p>自动确认定时器让用户取消刚做的操作。当用户做一个操作，我们的应用会显示一个带有定时动画的取消按钮，并且启动该定时器。用户可以在定时结束前选择取消操作。如果用户选择取消操作或定时结束，我们的应用会得到一个通知。</p>
+<p><img src="09_uilib.png" alt=""></p>
+<p><strong>Figure 1:</strong> 一个确认定时器.</p>
+<p>为了在用户完成操作时显示一个确认定时器：</p>
 <ol>
-<li>添加 <em>DelayedConfirmationView</em> 元素到你的layout中。</li>
-<li>在你的activity中实现 <em>DelayedConfirmationListener</em> 接口。</li>
+<li>添加<code>DelayedConfirmationView</code>元素到layout中。</li>
+<li>在activity中实现<code>DelayedConfirmationListener</code>接口。</li>
 <li>当用户完成一个操作时，设置定时器的定时时间然后启动它。</li>
 </ol>
-<!--Add the DelayedConfirmationView element to your layout as follows:-->
-<p>像下面这样添加 <em>DelayedConfirmationView</em> 元素到你的layout中：</p>
-<pre><code>&lt;android.support.wearable.view.DelayedConfirmationView
-    android:id=&quot;@+id/delayed_confirm&quot;
-    android:layout_width=&quot;40dp&quot;
-    android:layout_height=&quot;40dp&quot;
-    android:src=&quot;@drawable/cancel_circle&quot;
-    app:circle_border_color=&quot;@color/lightblue&quot;
-    app:circle_border_width=&quot;4dp&quot;
-    app:circle_radius=&quot;16dp&quot;&gt;
-&lt;/android.support.wearable.view.DelayedConfirmationView&gt;
-</code></pre><!--You can assign a drawable resource to display inside the circle with the android:src attribute and configure the parameters of the circle directly on the layout definition.-->
-<p>你可以在layout解释里分配 <em>android:src</em> 中的drawable资源显示在圆中然后直接设置圆的属性。</p>
-<!--To be notified when the timer finishes or when users tap on it, implement the corresponding listener methods in your activity:-->
-<p>为了获得定时结束货用户点击按钮的通知，你需要在activity中实现相应的接口模块：</p>
-<p>public class WearActivity extends Activity implements
-                           DelayedConfirmationView.DelayedConfirmationListener {</p>
-<pre><code>private DelayedConfirmationView mDelayedView;
+<p>像下面这样添加<code>DelayedConfirmationView</code>元素到layout中：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">android.support.wearable.view.DelayedConfirmationView</span>
+    <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/delayed_confirm"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"40dp"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"40dp"</span>
+    <span class="hljs-attribute">android:src</span>=<span class="hljs-value">"@drawable/cancel_circle"</span>
+    <span class="hljs-attribute">app:circle_border_color</span>=<span class="hljs-value">"@color/lightblue"</span>
+    <span class="hljs-attribute">app:circle_border_width</span>=<span class="hljs-value">"4dp"</span>
+    <span class="hljs-attribute">app:circle_radius</span>=<span class="hljs-value">"16dp"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">android.support.wearable.view.DelayedConfirmationView</span>&gt;</span>
+</code></pre>
+<p>在layout定义中，我们可以用<code>android:src</code>制定一个drawable资源，用于显示在圆形里。然后直接设置圆的参数。</p>
+<p>为了获得定时结束或用户点击按钮时的通知，需要在activity中实现相应的listener方法：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WearActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> <span class="hljs-keyword">implements</span>
+                           <span class="hljs-title">DelayedConfirmationView</span>.<span class="hljs-title">DelayedConfirmationListener</span> </span>{
 
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_wear_activity);
+    <span class="hljs-keyword">private</span> DelayedConfirmationView mDelayedView;
 
-    mDelayedView =
-            (DelayedConfirmationView) findViewById(R.id.delayed_confirm);
-    mDelayedView.setListener(this);
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
+        <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_wear_activity);
+
+        mDelayedView =
+                (DelayedConfirmationView) findViewById(R.id.delayed_confirm);
+        mDelayedView.setListener(<span class="hljs-keyword">this</span>);
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTimerFinished</span><span class="hljs-params">(View view)</span> </span>{
+        <span class="hljs-comment">// User didn't cancel, perform the action</span>
+    }
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onTimerSelected</span><span class="hljs-params">(View view)</span> </span>{
+        <span class="hljs-comment">// User canceled, abort the action</span>
+    }
 }
-
-@Override
-public void onTimerFinished(View view) {
-    // User didn&#39;t cancel, perform the action
-}
-
-@Override
-public void onTimerSelected(View view) {
-    // User canceled, abort the action
-}
-</code></pre><p>}</p>
-<!--To start the timer, add the following code to the point in your activity where users select an action:-->
-<p>为了开始定时器，添加下面的代码到你的activity中处理用户选择了某个操作的位置中：</p>
-<pre><code>// Two seconds to cancel the action
-mDelayedView.setTotalTimeMs(2000);
-// Start the timer
+</code></pre>
+<p>为了启动定时器，添加下面的代码到activity处理用户选择某个操作的位置中：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Two seconds to cancel the action</span>
+mDelayedView.setTotalTimeMs(<span class="hljs-number">2000</span>);
+<span class="hljs-comment">// Start the timer</span>
 mDelayedView.start();
-</code></pre><h2 id="-confirmation-">显示 Confirmation 动画</h2>
-<!--To show a confirmation animation when users complete an action in your app, create an intent that starts ConfirmationActivity from one of your activities. You can specify one of the these animations with the EXTRA_ANIMATION_TYPE intent extra:-->
-<p>为了显示confirmation动画当用户在你的app中完成一个操作，创建一个从其他activities启动<em>ConfirmationActivity</em> 的 <em>intent</em> 。你可以具体制定一种动画到 intent extra 的 <em>EXTRA_ANIMATION_TYPE</em>：</p>
+</code></pre>
+<h2 id="">显示确认动画</h2>
+<p>为了当用户在我们的应用中完成一个操作时显示确认动画，我们需要创建一个从应用中的某个activity启动<code>ConfirmationActivity</code>的intent。我们可以用<code>EXTRA_ANIMATION_TYPE</code> intent extra来指定下面其中一种动画：</p>
 <ul>
-<li>SUCCESS_ANIMATION</li>
-<li>FAILURE_ANIMATION</li>
-<li>OPEN_ON_PHONE_ANIMATION</li>
+<li><code>SUCCESS_ANIMATION</code></li>
+<li><code>FAILURE_ANIMATION</code></li>
+<li><code>OPEN_ON_PHONE_ANIMATION</code></li>
 </ul>
-<!--You can also add a message that appears under the confirmation icon.-->
-<p>你也可以添加一条消息出现在 confirmation icon下面。</p>
-<p><img src="https://developer.android.com/wear/images/08_uilib.png" alt=""></p>
-<p><strong>Figure 2:</strong> A confirmation animation.</p>
-<!--To use the ConfirmationActivity in your app, first declare this activity in your manifest file:-->
-<p>要在你的app中使用 <em>ConfirmationActivity</em>，首先在你的manifest文件：</p>
-<pre><code>&lt;manifest&gt;
-  &lt;application&gt;
+<p>我们还可以在确认图标下面添加一条消息。</p>
+<p><img src="08_uilib.png" alt=""></p>
+<p><strong>Figure 2:</strong> 一个确认动画</p>
+<p>要在应用中使用<code>ConfirmationActivity</code>，首先在manifest文件声明这个activity：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">application</span>&gt;</span>
     ...
-    &lt;activity
-        android:name=&quot;android.support.wearable.activity.ConfirmationActivity&quot;&gt;
-    &lt;/activity&gt;
-  &lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre><!--Then determine the result of the user action and start the activity with an intent:-->
-<p>当用户操作获得结果，使用intent启动activity:</p>
-<pre><code>Intent intent = new Intent(this, ConfirmationActivity.class);
+    <span class="hljs-tag">&lt;<span class="hljs-title">activity</span>
+        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.support.wearable.activity.ConfirmationActivity"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<p>然后确定用户操作的结果，并使用intent启动activity:</p>
+<pre><code class="lang-java">Intent intent = <span class="hljs-keyword">new</span> Intent(<span class="hljs-keyword">this</span>, ConfirmationActivity.class);
 intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE,
                 ConfirmationActivity.SUCCESS_ANIMATION);
 intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE,
                 getString(R.string.msg_sent));
 startActivity(intent);
-</code></pre><!--After showing the confirmation animation, ConfirmationActivity finishes and your activity resumes.-->
-<p>当confirmation动画显示结束。<em>ConfirmationActivity</em> finish然后你的activity resumes。</p>
+</code></pre>
+<p>当确认动画显示结束后，<code>ConfirmationActivity</code>会销毁（Finish），我们的的activity会恢复（Resume）。</p>
 
                     
                     </section>
@@ -5249,7 +5202,7 @@ startActivity(intent);
         </div>
 
         
-        <a href="../../wearables/ui/2d-picker.html" class="navigation navigation-prev " aria-label="Previous page: 创建2D-Picker"><i class="fa fa-angle-left"></i></a>
+        <a href="../../wearables/ui/2d-picker.html" class="navigation navigation-prev " aria-label="Previous page: 创建2D Picker"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../wearables/ui/exit.html" class="navigation navigation-next " aria-label="Next page: 退出全屏的Activity"><i class="fa fa-angle-right"></i></a>

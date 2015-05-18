@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>简单的拍照 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>简单的拍照 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.2.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="3.2.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,25 +5091,25 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_169">
+                    <section class="normal" id="section-gitbook_168">
                     
                         <h1 id="">轻松拍摄照片</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/camera/photobasics.html" target="_blank">http://developer.android.com/training/camera/photobasics.html</a></p>
 </blockquote>
 <p>这节课将讲解如何使用已有的相机应用拍摄照片。</p>
-<p>假设你正在实现一个基于人群的气象服务，通过应用客户端拍下的天气图片汇聚在一起，可以组成全球气象图。整合图片只是应用的一小部分，你想要通过最简单的方式获取图片，而不是重新设计并实现一个具有相机功能的组件。幸运的是，通常来说，大多数Android设备都已经安装了至少一款相机程序。在这节课中，你会学习如何利用已有的相机应用拍摄照片。</p>
+<p>假设我们正在实现一个基于人群的气象服务，通过应用客户端拍下的天气图片汇聚在一起，可以组成全球气象图。整合图片只是应用的一小部分，我们想要通过最简单的方式获取图片，而不是重新设计并实现一个具有相机功能的组件。幸运的是，通常来说，大多数Android设备都已经安装了至少一款相机程序。在这节课中，我们会学习如何利用已有的相机应用拍摄照片。</p>
 <h2 id="">请求使用相机权限</h2>
-<p>如果拍照是你的应用的必要功能，那么应该令它在Google Play中仅对有相机的设备可见。为了让别人知道你的应用需要依赖相机，在你的Manifest清单文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
+<p>如果拍照是应用的必要功能，那么应该令它在Google Play中仅对有相机的设备可见。为了让用户知道我们的应用需要依赖相机，在Manifest清单文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
 <pre><code class="lang-xml"> <span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span>
                   <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"true"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>如果你的程序使用相机，但相机并不是应用的正常运行所必不可少的组件，可以将<code>android:required</code>设置为<code>&quot;false&quot;</code>。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然你有必要在使用相机之前通过调用<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有相机。如果没有，你应该禁用和相机相关的功能！</p>
+<p>如果我们的应用使用相机，但相机并不是应用的正常运行所必不可少的组件，可以将<code>android:required</code>设置为<code>&quot;false&quot;</code>。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然我们有必要在使用相机之前通过调用<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有相机。如果没有，我们应该禁用和相机相关的功能！</p>
 <h2 id="">使用相机应用程序进行拍照</h2>
-<p>利用一个描述了你想要做什么的Intent对象，Android可以将某些执行任务委托给其他应用。整个过程包含三部分： Intent 本身，一个函数调用来启动外部的 Activity，当焦点返回到你的Activity时，处理返回图像数据的代码。</p>
+<p>利用一个描述了执行目的Intent对象，Android可以将某些执行任务委托给其他应用。整个过程包含三部分： Intent 本身，一个函数调用来启动外部的 Activity，当焦点返回到我们的Activity时，处理返回图像数据的代码。</p>
 <p>下面的函数通过发送一个Intent来捕获照片：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_IMAGE_CAPTURE = <span class="hljs-number">1</span>;
 
@@ -5152,10 +5120,10 @@
     }
 }
 </code></pre>
-<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有应用能处理你的Intent，你的应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。</p>
+<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有应用能处理你的Intent，应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。</p>
 <h2 id="">获取缩略图</h2>
-<p>如果拍一张照片并不不是你的应用的最终目的，那么你可能想要从相机应用那里取回你的照片，并用它做些什么。</p>
-<p>Android的相机应用会把拍好的照片编码为缩小的<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>，使用extra value的方式添加到返回的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>当中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>，并且对应的Key为<code>&quot;data&quot;</code>。下面的代码展示的是如何获取这一图片并显示在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>上。</p>
+<p>拍摄照片并不是应用的最终目的，我们还想要从相机应用那里取回拍摄的照片，并对它执行某些操作。</p>
+<p>Android的相机应用会把拍好的照片编码为缩小的<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>，使用extra value的方式添加到返回的<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>当中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>，对应的Key为<code>&quot;data&quot;</code>。下面的代码展示的是如何获取这一图片并显示在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>上。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
     <span class="hljs-keyword">if</span> (requestCode == REQUEST_IMAGE_CAPTURE &amp;&amp; resultCode == RESULT_OK) {
@@ -5169,14 +5137,14 @@
 <p><strong>Note:</strong> 这张从<code>&quot;data&quot;</code>中取出的缩略图适用于作为图标，但其他作用会比较有限。而处理一张全尺寸图片需要做更多的工作。</p>
 </blockquote>
 <h2 id="">保存全尺寸照片</h2>
-<p>如果你提供一个File对象给Android的相机程序，它会保存这张全尺寸照片到给定的路径下。你必须提供存储图片所需要的含有后缀名形式的文件名。</p>
-<p>一般而言，用户使用设备相机所拍摄的任何照片都应该被存放在设备的公共外部存储中，这样它们就能被所有的图片访问。将<a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES" target="_blank">DIRECTORY_PICTURES</a>作为参数，传递给<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">getExternalStoragePublicDirectory()</a>方法，可以返回适用于存储公共图片的目录。由于该方法提供的目录被所有应用共享，因此对该目录进行读写操作分别需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>和<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。另外，因为写权限隐含了读权限，所以如果你需要外部存储的写权限，那么你仅仅需要请求一项权限就可以了：</p>
+<p>如果我们提供了一个File对象给Android的相机程序，它会保存这张全尺寸照片到给定的路径下。另外，我们必须提供存储图片所需要的含有后缀名形式的文件名。</p>
+<p>一般而言，用户使用设备相机所拍摄的任何照片都应该被存放在设备的公共外部存储中，这样它们就能被所有的应用访问。将<a href="http://developer.android.com/reference/android/os/Environment.html#DIRECTORY_PICTURES" target="_blank">DIRECTORY_PICTURES</a>作为参数，传递给<a href="http://developer.android.com/reference/android/os/Environment.html#getExternalStoragePublicDirectory(java.lang.String)">getExternalStoragePublicDirectory()</a>方法，可以返回适用于存储公共图片的目录。由于该方法提供的目录被所有应用共享，因此对该目录进行读写操作分别需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#READ_EXTERNAL_STORAGE" target="_blank">READ_EXTERNAL_STORAGE</a>和<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。另外，因为写权限隐含了读权限，所以如果需要外部存储的写权限，那么仅仅需要请求一项权限就可以了：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>然而，如果你希望照片对你的应用而言是私有的，你可以使用<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录。在Android 4.3及以下版本的系统中，写这个目录需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。从Android 4.4开始，该目录将无法被其他应用访问，所以该权限就不再需要了，你可以通过添加<a href="http://developer.android.com/guide/topics/manifest/uses-permission-element.html#maxSdk" target="_blank">maxSdkVersion</a>属性，声明只在低版本的Android设备上请求这个权限。</p>
+<p>然而，如果希望照片对我们的应用而言是私有的，那么可以使用<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录。在Android 4.3及以下版本的系统中，写这个目录需要<a href="http://developer.android.com/reference/android/Manifest.permission.html#WRITE_EXTERNAL_STORAGE" target="_blank">WRITE_EXTERNAL_STORAGE</a>权限。从Android 4.4开始，该目录将无法被其他应用访问，所以该权限就不再需要了，你可以通过添加<a href="http://developer.android.com/guide/topics/manifest/uses-permission-element.html#maxSdk" target="_blank">maxSdkVersion</a>属性，声明只在低版本的Android设备上请求这个权限。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.WRITE_EXTERNAL_STORAGE"</span>
                      <span class="hljs-attribute">android:maxSdkVersion</span>=<span class="hljs-value">"18"</span> /&gt;</span>
@@ -5186,7 +5154,7 @@
 <blockquote>
 <p><strong>Note:</strong> 所有存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录中的文件会在用户卸载你的app后被删除。</p>
 </blockquote>
-<p>一旦你选定了存储文件的目录，你需要设计一个保证文件名不会冲突的命名规则。也许你还希望将路径存储在一个成员变量里以备在将来使用。下面的例子使用日期时间戳为新照片生成唯一的文件名：</p>
+<p>一旦选定了存储文件的目录，我们还需要设计一个保证文件名不会冲突的命名规则。当然我们还可以将路径存储在一个成员变量里以备在将来使用。下面的例子使用日期时间戳作为新照片的文件名：</p>
 <pre><code class="lang-java">String mCurrentPhotoPath;
 
 <span class="hljs-function"><span class="hljs-keyword">private</span> File <span class="hljs-title">createImageFile</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> IOException </span>{
@@ -5206,7 +5174,7 @@
     <span class="hljs-keyword">return</span> image;
 }
 </code></pre>
-<p>有了上面的方法，我们就可以给新照片创建文件对象了，现在你可以像这样创建并触发一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>：</p>
+<p>有了上面的方法，我们就可以给新照片创建文件对象了，现在我们可以像这样创建并触发一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_TAKE_PHOTO = <span class="hljs-number">1</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">dispatchTakePictureIntent</span><span class="hljs-params">()</span> </span>{
@@ -5231,11 +5199,11 @@
 }
 </code></pre>
 <h2 id="">将照片添加到相册中</h2>
-<p>当你通过Intent创建了一张照片，你应该知道你的图片在哪，因为是你决定将它存储在哪里的。对其他人来说，也许查看你的照片最简单的方式是通过系统的Media Provider。</p>
+<p>由于我们通过Intent创建了一张照片，因此图片的存储位置我们是知道的。对其他人来说，也许查看我们的照片最简单的方式是通过系统的Media Provider。</p>
 <blockquote>
-<p><strong>Note:</strong> 如果你将你的图片存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录中，媒体扫描器不能访问到你的文件，因为它们属于你的应用的私有数据。</p>
+<p><strong>Note:</strong> 如果将图片存储在<a href="http://developer.android.com/reference/android/content/Context.html#getExternalFilesDir(java.lang.String)">getExternalFilesDir()</a>提供的目录中，Media Scanner将无法访问到我们的文件，因为它们隶属于应用的私有数据。</p>
 </blockquote>
-<p>下面的例子演示了如何触发系统的Media Scanner将你的照片添加到Media Provider的数据库中，这样就可以使得Android相册程序与其他程序能够读取到这些照片。</p>
+<p>下面的例子演示了如何触发系统的Media Scanner，将我们的照片添加到Media Provider的数据库中，这样就可以使得Android相册程序与其他程序能够读取到这些照片。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">galleryAddPic</span><span class="hljs-params">()</span> </span>{
     Intent mediaScanIntent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
     File f = <span class="hljs-keyword">new</span> File(mCurrentPhotoPath);
@@ -5244,8 +5212,8 @@
     <span class="hljs-keyword">this</span>.sendBroadcast(mediaScanIntent);
 }
 </code></pre>
-<h2 id="">解码解码一幅缩放图片</h2>
-<p>在有限的内存下，管理许多全尺寸的图片会很棘手。如果你发现你的应用在展示了少量图片后消耗了所有内存，你可以通过缩放图片到目标视图尺寸，之后再载入到内存中的方法，来显著降低内存的使用，下面的例子演示了这个技术：</p>
+<h2 id="">解码一幅缩放图片</h2>
+<p>在有限的内存下，管理许多全尺寸的图片会很棘手。如果发现应用在展示了少量图片后消耗了所有内存，我们可以通过缩放图片到目标视图尺寸，之后再载入到内存中的方法，来显著降低内存的使用，下面的例子演示了这个技术：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPic</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-comment">// Get the dimensions of the View</span>
     <span class="hljs-keyword">int</span> targetW = mImageView.getWidth();

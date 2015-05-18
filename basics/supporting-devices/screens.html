@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>适配不同的屏幕 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>适配不同的屏幕 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.3.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.3.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,23 +5091,23 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_53">
+                    <section class="normal" id="section-gitbook_54">
                     
                         <h1 id="">适配不同的屏幕</h1>
 <blockquote>
 <p>编写:<a href="http://github.com/Lin-H" target="_blank">Lin-H</a> - 原文:<a href="http://developer.android.com/training/basics/supporting-devices/screens.html" target="_blank">http://developer.android.com/training/basics/supporting-devices/screens.html</a></p>
 </blockquote>
-<p>Android将设备屏幕归类为两种常规属性：尺寸和分辨率。你应该想到你的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，你的app就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化你的app外观。</p>
+<p>Android用尺寸和分辨率这两种常规属性对不同的设备屏幕加以分类。我们应该想到自己的app会被安装在各种屏幕尺寸和分辨率的设备中。这样，app中就应该包含一些可选资源，针对不同的屏幕尺寸和分辨率，来优化其外观。</p>
 <ul>
 <li>有4种普遍尺寸：小(small)，普通(normal)，大(large)，超大(xlarge)</li>
 <li>4种普遍分辨率：低精度(ldpi), 中精度(mdpi), 高精度(hdpi), 超高精度(xhdpi)</li>
 </ul>
-<p>声明针对不同屏幕所用的layout和bitmap，你必须把这些可选资源放置在独立的目录中，与你适配不同语言时的做法类似。</p>
-<p>同样要注意屏幕的方向(横向或纵向)也是一种需要考虑的屏幕尺寸变化，所以许多app会修改layout，来针对不同的屏幕方向优化用户体验。</p>
+<p>声明针对不同屏幕所用的layout和bitmap，必须把这些可选资源放置在独立的目录中，这与适配不同语言时的做法类似。</p>
+<p>同样要注意屏幕的方向(横向或纵向)也是一种需要考虑的屏幕尺寸变化，因此许多app会修改layout，来针对不同的屏幕方向优化用户体验。</p>
 <h2 id="layout">创建不同的layout</h2>
-<p>为了针对不同的屏幕去优化用户体验，你需要对每一种将要支持的屏幕尺寸，创建唯一的XML文件。每一种layout需要保存在相应的资源目录中，目录以<code>-&lt;screen_size&gt;</code>为后缀命名。例如，对大尺寸屏幕(large screens)，一个唯一的layout文件应该保存在<code>res/layout-large/</code>中。</p>
+<p>为了针对不同的屏幕去优化用户体验，我们需要为每一种将要支持的屏幕尺寸创建唯一的XML文件。每一种layout需要保存在相应的资源目录中，目录以<code>-&lt;screen_size&gt;</code>为后缀命名。例如，对大尺寸屏幕(large screens)，一个唯一的layout文件应该保存在<code>res/layout-large/</code>中。</p>
 <blockquote>
-<p><strong>Note</strong>:为了匹配合适的屏幕尺寸Android会自动地测量你的layout文件。所以你不需要因不同的屏幕尺寸去担心UI元素的大小，而应该专注于layout结构对用户体验的影响。(比如关键视图相对于同级视图的尺寸或位置)</p>
+<p><strong>Note</strong>:为了匹配合适的屏幕尺寸Android会自动地测量我们的layout文件。所以不需要因不同的屏幕尺寸去担心UI元素的大小，而应该专注于layout结构对用户体验的影响。(比如关键视图相对于同级视图的尺寸或位置)</p>
 </blockquote>
 <p>例如，这个工程包含一个默认layout和一个适配大屏幕的layout：</p>
 <pre><code>MyProject/
@@ -5149,14 +5117,14 @@
         layout-large/
             main.xml
 </code></pre><p>layout文件的名字必须完全一样，为了对相应的屏幕尺寸提供最优的UI，文件的内容不同。</p>
-<p>按照惯例在你的app中简单引用：</p>
+<p>如平常一样在app中简单引用：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
      <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
      setContentView(R.layout.main);
 }
 </code></pre>
-<p>系统会根据你的app所运行的设备屏幕尺寸，在与之对应的layout目录中加载layout。更多关于Android如何选择恰当资源的信息，详见<a href="https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch" target="_blank">Providing Resources</a>。</p>
+<p>系统会根据app所运行的设备屏幕尺寸，在与之对应的layout目录中加载layout。更多关于Android如何选择恰当资源的信息，详见<a href="https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch" target="_blank">Providing Resources</a>。</p>
 <p>另一个例子，这一个工程中有为适配横向屏幕的layout:</p>
 <pre><code>MyProject/
     res/
@@ -5165,7 +5133,7 @@
         layout-land/
             main.xml
 </code></pre><p>默认的，<code>layout/main.xml</code>文件用作竖屏的layout。</p>
-<p>如果你想给横屏提供一个特殊的layout，也适配于大屏幕，那么你需要使用<code>large</code>和<code>land</code>修饰符。</p>
+<p>如果想给横屏提供一个特殊的layout，也适配于大屏幕，那么则需要使用<code>large</code>和<code>land</code>修饰符。</p>
 <pre><code> MyProject/
     res/
         layout/              # default (portrait)
@@ -5177,18 +5145,18 @@
         layout-large-land/   # large landscape
             main.xml
 </code></pre><blockquote>
-<p><strong>Note</strong>:Android 3.2和以上版本支持定义屏幕尺寸的高级方法，它允许你根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见<a href="../../ui/multiscreen/index.html">Designing for Multiple Screens</a>。</p>
+<p><strong>Note</strong>:Android 3.2及以上版本支持定义屏幕尺寸的高级方法，它允许我们根据屏幕最小长度和宽度，为各种屏幕尺寸指定与密度无关的layout资源。这节课程不会涉及这一新技术，更多信息详见<a href="../../ui/multiscreen/index.html">Designing for Multiple Screens</a>。</p>
 </blockquote>
 <h2 id="bitmap">创建不同的bitmap</h2>
-<p>你应该为4种普遍分辨率:低，中，高，超高精度，都提供相适配的bitmap资源。这能帮助你在所有屏幕分辨率中都能有良好的画质和效果。</p>
-<p>要生成这些图像，你应该从原始的矢量图像资源着手，然后根据下列尺寸比例，生成各种密度下的图像。</p>
+<p>我们应该为4种普遍分辨率:低，中，高，超高精度，都提供相适配的bitmap资源。这能使我们的app在所有屏幕分辨率中都能有良好的画质和效果。</p>
+<p>要生成这些图像，应该从原始的矢量图像资源着手，然后根据下列尺寸比例，生成各种密度下的图像。</p>
 <ul>
 <li>xhdpi: 2.0</li>
 <li>hdpi:  1.5</li>
 <li>mdpi:  1.0 (基准)</li>
 <li>ldpi:  0.75</li>
 </ul>
-<p>这意味着，如果你针对xhdpi的设备生成了一张200x200的图像，同样的你应该为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。</p>
+<p>这意味着，如果针对xhdpi的设备生成了一张200x200的图像，那么应该为hdpi生成150x150,为mdpi生成100x100, 和为ldpi生成75x75的图片资源。</p>
 <p>然后，将这些文件放入相应的drawable资源目录中:</p>
 <pre><code>MyProject/
     res/
@@ -5200,9 +5168,9 @@
             awesomeimage.png
         drawable-ldpi/
             awesomeimage.png
-</code></pre><p>任何时候，当你引用<code>@drawable/awesomeimage</code>时系统会根据屏幕的分辨率选择恰当的bitmap。</p>
+</code></pre><p>任何时候，当引用<code>@drawable/awesomeimage</code>时系统会根据屏幕的分辨率选择恰当的bitmap。</p>
 <blockquote>
-<p><strong>Note</strong>:低密度(ldpi)资源是非必要的，当你提供了hdpi的图像，系统会把hdpi的图像按比例缩小一半，去适配ldpi的屏幕。</p>
+<p><strong>Note</strong>:低密度(ldpi)资源是非必要的，当提供了hdpi的图像，系统会把hdpi的图像按比例缩小一半，去适配ldpi的屏幕。</p>
 </blockquote>
 <p>更多关于为app创建图标assets的信息和指导，详见<a href="https://developer.android.com/design/style/iconography.html" target="_blank">Iconography design</a>。</p>
 

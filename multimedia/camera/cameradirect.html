@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>控制相机硬件 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>控制相机硬件 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.2.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="3.2.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,17 +5091,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_167">
+                    <section class="normal" id="section-gitbook_165">
                     
                         <h1 id="">控制相机</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - :<a href="http://developer.android.com/training/camera/cameradirect.html" target="_blank">http://developer.android.com/training/camera/cameradirect.html</a></p>
 </blockquote>
-<p>在这一节课，我们会讨论如何通过使用框架的API来直接控制相机硬件。</p>
-<p>直接控制设备的相机，比起向已有的相机应用请求图片或视频，要复杂一些。然而，如果你想要创建一个特殊的相机应用或将相机整合在你的应用当中，这节课会演示如何做到。</p>
+<p>在这一节课，我们会讨论如何通过使用Android框架所提供的API来直接控制相机硬件。</p>
+<p>直接控制相机，比起向已有的相机应用请求图片或视频，要复杂一些。这节课将会讲解如何创建一个特殊的相机应用或将相机整合在我们的应用当中。</p>
 <h2 id="">打开相机对象</h2>
-<p>获取一个 <a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a> 对象是直接控制相机的第一步。正如Android自带的相机程序一样，访问相机推荐的方式是在<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法里面另起一个线程来打开相机。这种办法可以避免因为启动时间较长导致UI线程被阻塞。还有一种更好的方法，可以把打开相机的操作延迟到<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>方法里面去执行，这样使得代码更容易重用，并且保持控制流程简单。</p>
-<p>当相机正在被另外一个程序使用的时候去执行<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">Camera.open()</a>会抛出一个Exception，利用<code>try</code>语句块进行捕获：</p>
+<p>获取一个 <a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a> 对象是直接控制相机的第一步。正如Android自带的相机程序一样，比较好的访问相机的方式是在<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>方法里面另起一个线程来打开相机。这种办法可以避免因为启动时间较长导致UI线程被阻塞。另外还有一种更好的方法：可以把打开相机的操作延迟到<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>方法里面去执行，这样可以使得代码更容易重用，还能保持控制流程更为简单。</p>
+<p>如果我们在执行<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">Camera.open()</a>方法的时候相机正在被另外一个应用使用，那么函数会抛出一个Exception，我们可以利用<code>try</code>语句块进行捕获：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">safeCameraOpen</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>{
     <span class="hljs-keyword">boolean</span> qOpened = <span class="hljs-keyword">false</span>;
 
@@ -5157,11 +5125,11 @@
     }
 }
 </code></pre>
-<p>自从API Level 9开始，相机框架可以支持多个相机。如果你使用旧的API，在调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">open()</a>时不传入参数 ，那么你会获取后置摄像头。</p>
+<p>自从API Level 9开始，相机框架可以支持多个相机。如果使用旧的API，在调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#open()">open()</a>时不传入参数 ，那么我们会获取后置摄像头。</p>
 <h2 id="">创建相机预览界面</h2>
-<p>拍照通常需要向用户提供一个预览界面来显示待拍摄的事物。你可以使用<a href="http://developer.android.com/reference/android/view/SurfaceView.html" target="_blank">SurfaceView</a>来展现照相机采集的图像。</p>
+<p>拍照通常需要向用户提供一个预览界面来显示待拍摄的事物。我们可以使用<a href="http://developer.android.com/reference/android/view/SurfaceView.html" target="_blank">SurfaceView</a>来展现照相机采集的图像。</p>
 <h3 id="preview">Preview类</h3>
-<p>为了显示一个预览界面，你需要一个Preview类。这个类需要实现<code>android.view.SurfaceHolder.Callback</code>接口，用这个接口把相机硬件获取的数据传递给程序。</p>
+<p>我们需要使用Preview类来显示预览界面。这个类需要实现<code>android.view.SurfaceHolder.Callback</code>接口，用这个接口把相机硬件获取的数据传递给应用。</p>
 <pre><code class="lang-java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Preview</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ViewGroup</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">SurfaceHolder</span>.<span class="hljs-title">Callback</span> </span>{
 
     SurfaceView mSurfaceView;
@@ -5182,9 +5150,9 @@
 ...
 }
 </code></pre>
-<p>这个Preview类必须在实时图像预览开始之前传递给<a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a>对象。正如下一节所描述的：</p>
+<p>Preview类必须在实时图像预览开始之前传递给<a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a>对象。</p>
 <h3 id="preview">设置和启动Preview</h3>
-<p>一个Camera实例与它相关的Preview必须以特定的顺序来创建，其中Camera对象首先被创建。在下面的示例中，初始化Camera的动作被封装了起来，这样，无论用户想对Camera做出任何改变，<a href="http://developer.android.com/reference/android/hardware/Camera.html#startPreview()">Camera.startPreview()</a>都会被<code>setCamera()</code>调用。另外，Preview对象必须在<code>surfaceChanged()</code>这一回调方法里面重新启用（restart）。</p>
+<p>一个Camera实例与它相关的Preview必须以特定的顺序来创建，其中Camera对象首先被创建。在下面的示例中，初始化Camera的动作被封装了起来，这样，无论用户想对Camera做什么样的改变，<a href="http://developer.android.com/reference/android/hardware/Camera.html#startPreview()">Camera.startPreview()</a>都会被<code>setCamera()</code>调用。另外，Preview对象必须在<code>surfaceChanged()</code>这一回调方法里面重新启用（restart）。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCamera</span><span class="hljs-params">(Camera camera)</span> </span>{
     <span class="hljs-keyword">if</span> (mCamera == camera) { <span class="hljs-keyword">return</span>; }
 
@@ -5225,12 +5193,12 @@
 }
 </code></pre>
 <h2 id="">设置预览方向</h2>
-<p>大多数相机程序会锁定预览为横屏状态，因为该方向是相机传感器的自然方向。当然这一设定并不会阻止你去拍竖屏的照片，因为设备的方向信息会被记录在EXIF头中。<a href="http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int)">setCameraDisplayOrientation()</a>方法可以让你在不影响照片拍摄过程的情况下，改变预览的方向。然而，对于Android API Level 14及以下版本的系统，在改变方向之前，你必须先停止你的预览，然后再去重启它。</p>
+<p>大多数相机程序会锁定预览为横屏状态，因为该方向是相机传感器的自然方向。当然这一设定并不会阻止我们去拍竖屏的照片，因为设备的方向信息会被记录在EXIF头中。<a href="http://developer.android.com/reference/android/hardware/Camera.html#setDisplayOrientation(int)">setCameraDisplayOrientation()</a>方法可以让你在不影响照片拍摄过程的情况下，改变预览的方向。然而，对于Android API Level 14及以下版本的系统，在改变方向之前，我们必须先停止预览，然后再去重启它。</p>
 <h2 id="">拍摄照片</h2>
-<p>只要预览开始之后，可以使用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>方法拍摄照片。你可以创建<a href="http://developer.android.com/reference/android/hardware/Camera.PictureCallback.html">Camera.PictureCallback</a>与<a href="http://developer.android.com/reference/android/hardware/Camera.ShutterCallback.html">Camera.ShutterCallback</a>对象并将他们传递到<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>中。</p>
-<p>如果你想要进行连拍，你可以创建一个<a href="http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html" target="_blank">Camera.PreviewCallback</a>并实现<a href="http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html#onPreviewFrame(byte[], android.hardware.Camera)">onPreviewFrame()</a>方法。你可以拍摄选中的预览帧，或是为调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">takePicture()</a>建立一个延迟。</p>
+<p>只要预览开始之后，可以使用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>方法拍摄照片。我们可以创建<a href="http://developer.android.com/reference/android/hardware/Camera.PictureCallback.html">Camera.PictureCallback</a>与<a href="http://developer.android.com/reference/android/hardware/Camera.ShutterCallback.html">Camera.ShutterCallback</a>对象并将他们传递到<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">Camera.takePicture()</a>中。</p>
+<p>如果我们想要进行连拍，可以创建一个<a href="http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html" target="_blank">Camera.PreviewCallback</a>并实现<a href="http://developer.android.com/reference/android/hardware/Camera.PreviewCallback.html#onPreviewFrame(byte[], android.hardware.Camera)">onPreviewFrame()</a>方法。我们可以拍摄选中的预览帧，或是为调用<a href="http://developer.android.com/reference/android/hardware/Camera.html#takePicture(android.hardware.Camera.ShutterCallback, android.hardware.Camera.PictureCallback, android.hardware.Camera.PictureCallback)">takePicture()</a>建立一个延迟。</p>
 <h2 id="preview">重启Preview</h2>
-<p>在拍摄好图片后，你必须在用户拍下一张图片之前重启预览。在下面的示例中，利用快门按钮来实现重启。</p>
+<p>在拍摄好图片后，我们必须在用户拍下一张图片之前重启预览。下面的示例使用快门按钮来实现重启。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>{
     <span class="hljs-keyword">switch</span>(mPreviewState) {
@@ -5247,8 +5215,8 @@
 }
 </code></pre>
 <h2 id="">停止预览并释放相机</h2>
-<p>当你的程序在使用相机完毕后，有必要做清理的动作。特别地，你必须释放<a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a>对象，不然可能会引起其他应用崩溃，包括你自己应用的新实例。</p>
-<p>那么何时应该停止预览并释放相机呢？在预览的Surface被摧毁之后，可以做停止预览与释放相机的动作。如下面Preview类中的方法所示：</p>
+<p>当应用使用好相机后，我们有必要进行清理操作。特别地，我们必须释放<a href="http://developer.android.com/reference/android/hardware/Camera.html" target="_blank">Camera</a>对象，不然的话可能会引起其他应用崩溃，包括我们自己应用的新实例。</p>
+<p>那么何时应该停止预览并释放相机呢？在预览的Surface被摧毁之后，可以做停止预览与释放相机的操作。如下面Preview类中的方法所做的那样：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">surfaceDestroyed</span><span class="hljs-params">(SurfaceHolder holder)</span> </span>{
     <span class="hljs-comment">// Surface will be destroyed when we return, so stop the preview.</span>
     <span class="hljs-keyword">if</span> (mCamera != <span class="hljs-keyword">null</span>) {

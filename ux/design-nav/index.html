@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>设计高效的导航 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>设计高效的导航 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,38 +5091,38 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_262">
+                    <section class="normal" id="section-gitbook_260">
                     
                         <h1 id="">设计高效的导航</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/design-navigation/index.html" target="_blank">http://developer.android.com/training/design-navigation/index.html</a></p>
 </blockquote>
 <p>设计开发 App 的起初步骤之一就是决定用户能够在App上看到什么和做什么。一旦你知道用户在App上和哪种内容互动，下一步就是去设计容许用户在 App 的不同内容块间切换，进入，回退的交互。</p>
-<p>本课程演示如何为你的应用规划出高标准的屏幕层次，然后为它选择适宜的导航形式来允许用户高效而直观的浏览内容。按粗略的先后顺序,每堂课涵盖Android应用导航交互设计过程中的不同阶段。学过这些课之后，你应该可以应用这些列出的方法和设计范例到你自己的应用中，为你的用户提供一致的导航体验了。</p>
+<p>本课程演示如何为你的应用规划出高标准的界面层次，然后为它选择适宜的导航形式来允许用户高效而直观的浏览内容。按粗略的先后顺序,每堂课涵盖Android应用导航交互设计过程中的不同阶段。学过这些课之后，你应该可以应用这些列出的方法和设计范例到你自己的应用中，为你的用户提供一致的导航体验了。</p>
 <h2 id="lessons">Lessons</h2>
 <ul>
 <li><p><a href="screen-planning.html"><strong>规划界面和他们之间的关系</strong></a></p>
-<p>学习如何选择你应用应该包含的画面。并且学习如何决定某个画面对其他画面可直达。这节课介绍了一个假想的新闻应用为以后课程作例子。</p>
+<p>学习如何选择你应用应该包含的界面。并且学习如何选择其他界面可直达的界面。这节课介绍了一个假想的新闻应用为以后课程作例子。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="multi-sizes.html"><strong>为多种大小的屏幕进行规划</strong></a></p>
-<p>学习如何在大屏设备上组合相关画面来优化用户可视画面空间。</p>
+<p>学习如何在大屏设备上组合相关界面来优化用户可视界面空间。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="descendant-lateral.html"><strong>提供向下和横向导航</strong></a></p>
-<p>学习容许用户深入某一层或者在内容层次间横跨的技巧。而且学习一些特定导航 UI 元件在不同情景下的优缺点和最佳用法。</p>
+<p>学习容许用户深入某一层或者在内容层次间横跨的技巧。而且学习一些特定导航 UI 元素在不同情景下的优缺点和最佳用法。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="ancestral-temporal.html"><strong>提供向上和时间导航</strong></a></p>
-<p>学习如何容许用户在内容层级向上导航。并且学习 Back 键和时间导航的最佳做法，也即导航到和层次无关的之前的画面。</p>
+<li><p><a href="ancestral-temporal.html"><strong>提供向上和历史导航</strong></a></p>
+<p>学习如何容许用户在内容层级向上导航。并且学习 Back 键和历史导航的最佳做法，也即导航到和层次无关的之前的画面。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="wireframing.html"><strong>综合：设计样例 App</strong></a></p>
-<p>学习如何创建画面的 Wireframe（线框图，模糊的图形模型），它代表新闻应用基于设想信息模型的界面。这些 Wireframe 利用上述课程讨论的导航元件来展示直观高效导航。</p>
+<p>学习如何创建界面的 Wireframe（线框图，模糊的图形模型）来代表新闻应用基于设想信息模型的界面。这些 Wireframe 利用上述课程讨论的导航元件来展示直观高效导航。</p>
 </li>
 </ul>
 

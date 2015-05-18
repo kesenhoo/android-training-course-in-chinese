@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>为Notification添加显示页面 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>为Notification添加显示页面 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.1.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.1.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,20 +5091,20 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_296">
+                    <section class="normal" id="section-gitbook_294">
                     
-                        <h1 id="notification">为Notification添加显示页面</h1>
+                        <h1 id="-notification-">为 Notification 添加页面</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/wangyacheng" target="_blank">wangyachen</a> - 原文:<a href="http://developer.android.com/training/wearables/notifications/pages.html" target="_blank">http://developer.android.com/training/wearables/notifications/pages.html</a></p>
 </blockquote>
-<p>当开发者想要在不需要用户在他们的手机上打开app的情况下，还可以允许表达更多的信息，那么开发者可以在可穿戴设备上的Notification中添加一个或更多的页面。</p>
+<p>当开发者想要在不需要用户在他们的手机上打开app的情况下，还可以允许表达更多的信息，那么开发者可以在可穿戴设备上的Notification中添加一个或多个的页面。添加的页面会马上出现在主 Notification 卡片的右边。</p>
 <p><img src="09_pages.png" alt="">
 <img src="08_pages.png" alt=""></p>
-<p>为了创建一个多页的Notification，开发者需要：</p>
+<p>为了创建一个拥有多个页面的 Notification，开发者需要：</p>
 <ol>
 <li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>创建主Notification（首页），以开发者想要的方式使其出现在手持设备上。</li>
 <li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html" target="_blank">NotificationCompat.Builder</a>为可穿戴设备添加更多的页面。</li>
-<li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPage()</a>)方法为主Notification应用这些添加的页面，或者通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPages()</a>)添加一个以<a href="http://developer.android.com/reference/java/util/Collection.html" target="_blank">Collection</a>组织的多个页面。</li>
+<li>通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPage()</a>)方法将这些页面应用到主 Notification 中，或者通过<a href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.WearableExtender.html#addPage(android.app.Notification" target="_blank">addPages()</a>)将多个页面添加到一个<a href="http://developer.android.com/reference/java/util/Collection.html" target="_blank">Collection</a>。</li>
 </ol>
 <p>举个例子，以下代码为Notification添加了第二个页面：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Create builder for the main notification</span>

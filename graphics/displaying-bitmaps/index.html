@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>高效显示Bitmap | Android官方培训课程中文版(v0.9.2)</title>
+        <title>高效显示Bitmap | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="4.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,12 +5097,12 @@
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/displaying-bitmaps/index.html" target="_blank">http://developer.android.com/training/displaying-bitmaps/index.html</a></p>
 </blockquote>
-<p>这一章节会介绍一些处理与加载<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>对象的常用方法，这些技术能够使得程序的UI不会被卡到，并且可以避免程序超出内存限制。如果你不注意这些，Bitmaps会迅速的消耗你可用的内存从而导致程序crash，出现下面的异常:<code>java.lang.OutofMemoryError: bitmap size exceeds VM budget.</code></p>
-<p>在你的Android程序中加载Bitmaps的操作是需要特别小心处理的，有下面几个方面的原因:</p>
+<p>这一章节会介绍一些处理与加载<a href="http://developer.android.com/reference/android/graphics/Bitmap.html" target="_blank">Bitmap</a>对象的常用方法，这些技术能够使得程序的UI不会被阻塞，并且可以避免程序超出内存限制。如果我们不注意这些，Bitmaps会迅速的消耗掉可用内存从而导致程序崩溃，出现下面的异常:<code>java.lang.OutofMemoryError: bitmap size exceeds VM budget.</code></p>
+<p>在Android应用中加载Bitmaps的操作是需要特别小心处理的，有下面几个方面的原因:</p>
 <ul>
-<li>移动设备的系统资源有限。Android设备对于单个程序至少需要16MB的内存。<a href="http://source.android.com/compatibility/downloads.html" target="_blank">Android Compatibility Definition Document (CDD)</a>, Section 3.7. Virtual Machine Compatibility 给出了对于不同大小与密度的屏幕的最低内存需求。 程序应该在这个最低内存限制下去优化程序的效率。当然，大多数设备的都有更高的限制需求。</li>
-<li>Bitmap会消耗很多内存，特别是对于类似照片等内容更加丰富的图片。 例如，<a href="http://www.android.com/devices/detail/galaxy-nexus" target="_blank">Galaxy Nexus</a>的照相机能够拍摄2592x1936 pixels (5 MB)的图片。 如果bitmap的图像配置是使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.Config.html" target="_blank">ARGB_8888</a> (从Android 2.3开始的默认配置) ，那么加载这张照片到内存会大概需要19MB(<code>2592*1936*4</code> bytes) 的内存, 这样的话会迅速消耗掉这个程序的剩余内存空间。</li>
-<li>Android应用的UI通常会在一次操作中立即加载许多张bitmaps。 例如在<a href="http://developer.android.com/reference/android/widget/ListView.html" target="_blank">ListView</a>, <a href="http://developer.android.com/reference/android/widget/GridView.html" target="_blank">GridView</a> 与 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 等组件中通常会需要一次加载许多张bitmaps，而且需要预先加载一些没有在屏幕上显示的内容，为用户滑动的显示做准备。</li>
+<li>移动设备的系统资源有限。Android设备对于单个程序至少需要16MB的内存。<a href="http://source.android.com/compatibility/downloads.html" target="_blank">Android Compatibility Definition Document (CDD)</a>, Section 3.7. Virtual Machine Compatibility 中给出了对于不同大小与密度的屏幕的最低内存需求。 应用应该在这个最低内存限制下去优化程序的效率。当然，大多数设备的都有更高的限制需求。</li>
+<li>Bitmap会消耗很多内存，特别是对于类似照片等内容更加丰富的图片。 例如，<a href="http://www.android.com/devices/detail/galaxy-nexus" target="_blank">Galaxy Nexus</a>的照相机能够拍摄2592x1936 pixels (5 MB)的图片。 如果bitmap的图像配置是使用<a href="http://developer.android.com/reference/android/graphics/Bitmap.Config.html" target="_blank">ARGB_8888</a> (从Android 2.3开始的默认配置) ，那么加载这张照片到内存大约需要19MB(<code>2592*1936*4</code> bytes) 的空间，从而迅速消耗掉该应用的剩余内存空间。</li>
+<li>Android应用的UI通常会在一次操作中立即加载许多张bitmaps。 例如在<a href="http://developer.android.com/reference/android/widget/ListView.html" target="_blank">ListView</a>, <a href="http://developer.android.com/reference/android/widget/GridView.html" target="_blank">GridView</a> 与 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 等控件中通常会需要一次加载许多张bitmaps，而且需要预先加载一些没有在屏幕上显示的内容，为用户滑动的显示做准备。</li>
 </ul>
 <h2 id="">参考资料</h2>
 <ul>
@@ -5150,7 +5118,7 @@
 </ul>
 <ul>
 <li><p><a href="process-bitmap.html"><strong>非UI线程处理Bitmap(Processing Bitmaps Off the UI Thread)</strong></a></p>
-<p>处理Bitmap(裁剪,下载等操作)不能执行在主线程。这节课会带领你学习如何使用AsyncTask在后台线程对Bitmap进行处理，并解释如何处理并发带来的问题。</p>
+<p>处理Bitmap（裁剪，下载等操作）不能执行在主线程。这节课会带领你学习如何使用AsyncTask在后台线程对Bitmap进行处理，并解释如何处理并发带来的问题。</p>
 </li>
 </ul>
 <ul>
@@ -5159,13 +5127,13 @@
 </li>
 </ul>
 <ul>
-<li><p><a href="manage-memory.html"><strong>管理Bitmap占用的内存(Managing Bitmap Memory)</strong></a></p>
-<p>这节课会介绍为了最大化程序的性能如何管理Bitmap的内存占用。</p>
+<li><p><a href="manage-memory.html"><strong>管理Bitmap的内存使用(Managing Bitmap Memory)</strong></a></p>
+<p>这节课会介绍如何管理Bitmap的内存占用，以此来提升程序的性能。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="display-bitmap.html"><strong>在UI上显示Bitmap(Displaying Bitmaps in Your UI)</strong></a></p>
-<p>这节课会把前面介绍的内容综合起来，演示如何在类似<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>与<a href="http://developer.android.com/reference/android/widget/GridView.html" target="_blank">GridView</a>的控件中使用后台线程与缓存进行加载多张Bitmaps。</p>
+<p>这节课会综合之前章节的内容，演示如何在诸如<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>与<a href="http://developer.android.com/reference/android/widget/GridView.html" target="_blank">GridView</a>等控件中使用后台线程与缓存加载多张Bitmaps。</p>
 </li>
 </ul>
 

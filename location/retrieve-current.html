@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>获取当前位置 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>获取最后可知位置 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.2.1" data-basepath=".." data-revision="1427722131239">
+    <div class="book"  data-level="6.2.1" data-basepath=".." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,247 +5091,57 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_152">
+                    <section class="normal" id="section-gitbook_151">
                     
-                        <h1 id="">获取当前位置</h1>
+                        <h1 id="">获取最后可知位置</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/penkzhou" target="_blank">penkzhou</a> - 原文:<a href="http://developer.android.com/training/location/retrieve-current.html" target="_blank">http://developer.android.com/training/location/retrieve-current.html</a></p>
 </blockquote>
-<p>位置服务会自动持有用户当前的位置信息，你的应用在需要位置的时候获取一下即可。位置的精确度基于你所请求的位置权限以及当前设备已经激活的位置传感器。</p>
-<p>位置服务通过一个<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">LocationClient</a>（位置服务类LocationClient的一个实例）将当前的位置发送给你的应用。关于位置信息的所有请求都是通过这个类发送。</p>
-<blockquote>
-<p><strong>Note:</strong> 在开始这个课程之前，确定你的开发环境和测试设备处于正常可用状态。要了解更多，请阅读Google Play services 引导。</p>
-</blockquote>
+<p>使用Google Play services location APIs，我们的应用可以请求获得用户设备的最后可知位置。大多数情况下，我们会对用户的当前位置比较感兴趣。而通常用户的当前位置相当于设备的最后可知位置。</p>
+<p>特别地，使用<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html" target="_blank">fused location provider</a>来获取设备的最后可知位置。fused location provider是Google Play services location APIs中的一个。它处理基本定位技术并提供一个简单的API，使得我们可以指定高水平的需求，如高精度或者低功耗。同时它优化了设备的耗电情况。</p>
+<p>这节课介绍如何通过使用fused location provider的<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>)方法为设备的位置构造一个单一请求。</p>
+<h2 id="google-play-services">安装Google Play Services</h2>
+<p>为了访问fused location provider，我们的应用开发工程必须包括Google Play services。通过<a href="http://developer.android.com/tools/help/sdk-manager.html" target="_blank">SDK Manager</a>下载和安装Google Play services组件，添加相关的库到我们的工程。更详细的介绍，请看<a href="http://developer.android.com/google/play-services/setup.html" target="_blank">Setting Up Google Play Services</a>。</p>
 <h2 id="">确定应用的权限</h2>
-<p>使用位置服务的应用必须用户位置权限。Android拥有两种位置权限：<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a> 和 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>。选择不同的权限决定你的应用最后获取的位置信息的精度。如果你只请求了一个精度比较低的位置权限，位置服务会对返回的位置信息处理成一个相当于城市级别精确度的位置。</p>
-<p>请求<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>权限时也包含了<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>权限。</p>
-<p>举个例子，如果你要添加<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>权限，你需要将下面的权限添加到<code>&lt;manifest&gt;</code>标签中：</p>
-<pre><code class="lang-java">&lt;uses-permission android:name=<span class="hljs-string">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;
-</code></pre>
-<h2 id="google-play-services">检测Google Play Services</h2>
-<p>位置服务是Google Play services 中的一部分。由于很难预料用户设备的状态，所以你在尝试连接位置服务之前应该要检测你的设备是否安装了Google Play services安装包。为了检测这个安装包是否被安装，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html#isGooglePlayServicesAvailable(android.content.Context" target="_blank">GooglePlayServicesUtil.isGooglePlayServicesAvailable()</a>，这个方法将会返回一个结果代码。你可以通过查询<a href="http://developer.android.com/reference/com/google/android/gms/common/ConnectionResult.html" target="_blank">ConnectionResult</a>的参考文档中结果代码列表来理解对应的结果代码。如果你碰到了错误，你可以调用<a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesUtil.html" target="_blank">GooglePlayServicesUtil.getErrorDialog()</a>获取本地化的对话框来提示用户采取适当地行为，接着你需要将这个对话框置于一个<a href="http://developer.android.com/reference/android/support/v4/app/DialogFragment.html" target="_blank">DialogFragment</a>中显示。这个对话框可以让用户去纠正这个问题，这个时候Google Services可以将结果返回给你的activity。为了处理这个结果，重写<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">onActivityResult()</a>即可。</p>
-<p>因为你的代码里通常会不止一次地检测Google Play services是否安装, 为了方便，可以定义一个方法来封装这种检测行为。下面的代码片段包含了所有检测Google Play services是否安装需要用到的代码：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
-    ...
-    <span class="hljs-comment">//全局变量</span>
-    <span class="hljs-comment">/*
-     * 定义一个发送给Google Play services的请求代码
-     * 这个代码将会在Activity.onActivityResult的方法中返回
-     */</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span>
-            CONNECTION_FAILURE_RESOLUTION_REQUEST = <span class="hljs-number">9000</span>;
-    ...
-    <span class="hljs-comment">// 定义一个显示错误对话框的DialogFragment</span>
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorDialogFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">DialogFragment</span> </span>{
-        <span class="hljs-comment">// 表示错误对话框的全局属性</span>
-        <span class="hljs-keyword">private</span> Dialog mDialog;
-        <span class="hljs-comment">// 默认的构造函数，将 dialog 属性设为空</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ErrorDialogFragment</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">super</span>();
-            mDialog = <span class="hljs-keyword">null</span>;
-        }
-        <span class="hljs-comment">// 设置要显示的dialog</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setDialog</span><span class="hljs-params">(Dialog dialog)</span> </span>{
-            mDialog = dialog;
-        }
-        <span class="hljs-comment">// 返回一个 Dialog 给 DialogFragment.</span>
-        <span class="hljs-annotation">@Override</span>
-        <span class="hljs-function"><span class="hljs-keyword">public</span> Dialog <span class="hljs-title">onCreateDialog</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-            <span class="hljs-keyword">return</span> mDialog;
-        }
-    }
-    ...
-    <span class="hljs-comment">/*
-     * 处理来自Google Play services 发给FragmentActivity的结果
-     *
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(
-            <span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>{
-        <span class="hljs-comment">// 根据请求代码来决定做什么</span>
-        <span class="hljs-keyword">switch</span> (requestCode) {
-            ...
-            <span class="hljs-keyword">case</span> CONNECTION_FAILURE_RESOLUTION_REQUEST :
-            <span class="hljs-comment">/*
-             * 如果结果代码是 Activity.RESULT_OK, 尝试重新连接
-             *
-             */</span>
-                <span class="hljs-keyword">switch</span> (resultCode) {
-                    <span class="hljs-keyword">case</span> Activity.RESULT_OK :
-                    <span class="hljs-comment">/*
-                     * 尝试重新请求
-                     */</span>
-                    ...
-                    <span class="hljs-keyword">break</span>;
-                }
-            ...
-        }
-     }
-    ...
-    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">servicesConnected</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// 检测Google Play services 是否可用</span>
-        <span class="hljs-keyword">int</span> resultCode =
-                GooglePlayServicesUtil.
-                        isGooglePlayServicesAvailable(<span class="hljs-keyword">this</span>);
-        <span class="hljs-comment">// 如果 Google Play services 可用</span>
-        <span class="hljs-keyword">if</span> (ConnectionResult.SUCCESS == resultCode) {
-            <span class="hljs-comment">// 在 debug 模式下, 记录程序日志</span>
-            Log.d(<span class="hljs-string">"Location Updates"</span>,
-                    <span class="hljs-string">"Google Play services is available."</span>);
-            <span class="hljs-comment">// Continue</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
-        <span class="hljs-comment">// 因为某些原因Google Play services 不可用</span>
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">// 获取error code</span>
-            <span class="hljs-keyword">int</span> errorCode = connectionResult.getErrorCode();
-            <span class="hljs-comment">// 从Google Play services 获取 error dialog</span>
-            Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-                    errorCode,
-                    <span class="hljs-keyword">this</span>,
-                    CONNECTION_FAILURE_RESOLUTION_REQUEST);
+<p>使用位置服务的应用必须请求用户位置权限。Android拥有两种位置权限：<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a> 和 <a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_FINE_LOCATION" target="_blank">ACCESS_FINE_LOCATION</a>。我们选择的权限决定API返回的位置信息的精度。如果我们选择了<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_COARSE_LOCATION" target="_blank">ACCESS_COARSE_LOCATION</a>，API返回的位置信息的精确度大体相当于一个城市街区。</p>
+<p>这节课只要求粗略的定位。在我们应用的manifest文件中，用<code>uses-permission</code>节点请求这个权限，如下所示：</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">package</span>=<span class="hljs-value">"com.google.android.gms.location.sample.basiclocationsample"</span> &gt;</span>
 
-            <span class="hljs-comment">// 如果 Google Play services可以提供一个error dialog</span>
-            <span class="hljs-keyword">if</span> (errorDialog != <span class="hljs-keyword">null</span>) {
-                <span class="hljs-comment">// 为这个error dialog 创建一个新的DialogFragment</span>
-                ErrorDialogFragment errorFragment =
-                        <span class="hljs-keyword">new</span> ErrorDialogFragment();
-                <span class="hljs-comment">// 在DialogFragment中设置dialog</span>
-                errorFragment.setDialog(errorDialog);
-                <span class="hljs-comment">// 在DialogFragment中显示error dialog</span>
-                errorFragment.show(getSupportFragmentManager(),
-                        <span class="hljs-string">"Location Updates"</span>);
-            }
+  <span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.ACCESS_COARSE_LOCATION"</span>/&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
+</code></pre>
+<h2 id="google-play-services">连接Google Play Services</h2>
+<p>为了连接到API，我们需要创建一个Google Play services API客户端实例。关于使用这个客户端的更详细的介绍，请看<a href="http://developer.android.com/google/auth/api-client.html#Starting" target="_blank">Accessing Google APIs</a>。</p>
+<p>在我们的activity的<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle" target="_blank">onCreate()</a>)方法中，用<a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.Builder.html" target="_blank">GoogleApiClient.Builder</a>创建一个Google API Client实例。使用这个builder添加<a href="http://developer.android.com/reference/com/google/android/gms/location/LocationServices.html" target="_blank">LocationServices</a> API。</p>
+<p>实例应用定义了一个<code>buildGoogleApiClient()</code>方法，这个方法在activity的onCreate()方法中被调用。<code>buildGoogleApiClient()</code>方法包括下面的代码。</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">buildGoogleApiClient</span><span class="hljs-params">()</span> </span>{
+    mGoogleApiClient = <span class="hljs-keyword">new</span> GoogleApiClient.Builder(<span class="hljs-keyword">this</span>)
+        .addConnectionCallbacks(<span class="hljs-keyword">this</span>)
+        .addOnConnectionFailedListener(<span class="hljs-keyword">this</span>)
+        .addApi(LocationServices.API)
+        .build();
+}
+</code></pre>
+<h2 id="">获取最后可知位置</h2>
+<p>一旦我们将Google Play services和location services API连接完成后，我们就可以获取用户设备的最后可知位置。当我们的应用连接到这些服务之后，我们可以用fused location provider的<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>)方法来获取设备的位置。调用这个方法返回的定位精确度是由我们在应用的manifest文件里添加的权限决定的，如本文的<a href="">确定应用的权限</a>部分描述的内容一样。</p>
+<p>为了请求最后可知位置，调用<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>)方法，并将我们创建的<a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.html" target="_blank">GoogleApiClient</a>对象的实例传给该方法。在Google API Client提供的<a href="http://developer.android.com/reference/com/google/android/gms/common/api/GoogleApiClient.ConnectionCallbacks.html#onConnected(android.os.Bundle" target="_blank">onConnected()</a>)回调函数里调用<a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>)方法，这个回调函数在client准备好的时候被调用。下面的示例代码说明了请求和一个对响应简单的处理：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionBarActivity</span> <span class="hljs-keyword">implements</span>
+        <span class="hljs-title">ConnectionCallbacks</span>, <span class="hljs-title">OnConnectionFailedListener</span> </span>{
+    ...
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle connectionHint)</span> </span>{
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        <span class="hljs-keyword">if</span> (mLastLocation != <span class="hljs-keyword">null</span>) {
+            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
+            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
         }
     }
-    ...
 }
 </code></pre>
-<p>下面的代码片段使用了这个方法来检查Google Play services是否可用。</p>
-<h2 id="">定义位置服务回调函数</h2>
-<p>为了获取当前的位置，你需要创建一个location client，将它连接到Location Services，然后调用它的 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html#getLastLocation(" target="_blank">getLastLocation()</a>) 方法。最后返回的值是基于你应用请求的权限以及当时启用的位置传感器的最佳位置信息。</p>
-<p>在你创建location client之前, 你必须实现一些被 Location Services用来同你的应用通信的接口</p>
-<p><a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.ConnectionCallbacks.html" target="_blank">ConnectionCallbacks</a></p>
-<ul>
-<li>设置了当一个location client连接成功或者断开连接时 Location Services必须调用了方法。</li>
-</ul>
-<p><a href="http://developer.android.com/reference/com/google/android/gms/common/GooglePlayServicesClient.OnConnectionFailedListener.html" target="_blank">OnConnectionFailedListener</a></p>
-<ul>
-<li>设置了当一个错误出现而需要去连接location client时Location Services需要要调用的方法。这个方法用到了之前定义好的 <code>showErrorDialog</code> 方法来显示一个error dialog，并尝试用Google Play services来修复这个问题。</li>
-</ul>
-<p>下面的代码片段展示了如何实现这些接口并定义对应的方法：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> </span>{
-    ...
-    <span class="hljs-comment">/*
-     * 当连接到client的请求成功结束时被Location Services 调用。这时你可以请求当前位置或者开始周期性的更新位置信息。
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnected</span><span class="hljs-params">(Bundle dataBundle)</span> </span>{
-        <span class="hljs-comment">// 显示连接状态</span>
-        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Connected"</span>, Toast.LENGTH_SHORT).show();
-
-    }
-    ...
-    <span class="hljs-comment">/*
-     * 当连接因为错误被location client丢弃时，Location Services调用此方法
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onDisconnected</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// 显示连接状态</span>
-        Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Disconnected. Please re-connect."</span>,
-                Toast.LENGTH_SHORT).show();
-    }
-    ...
-    <span class="hljs-comment">/*
-     * 尝试连接Location Services失败后被 Location Services调用的方法
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onConnectionFailed</span><span class="hljs-params">(ConnectionResult connectionResult)</span> </span>{
-        <span class="hljs-comment">/*
-         * Google Play services 可以解决它探测到的一些错误。
-         * 如果这个错误有一个解决方案，这个方法会试着发送一个Intent去启动一个Google Play services activity来解决错误。
-         */</span>
-        <span class="hljs-keyword">if</span> (connectionResult.hasResolution()) {
-            <span class="hljs-keyword">try</span> {
-                <span class="hljs-comment">// 启动一个尝试解决问题的Activity</span>
-                connectionResult.startResolutionForResult(
-                        <span class="hljs-keyword">this</span>,
-                        CONNECTION_FAILURE_RESOLUTION_REQUEST);
-                <span class="hljs-comment">/*
-                 * 如果Google Play services 取消这个最初的PendingIntent，抛出异常
-                 */</span>
-            } <span class="hljs-keyword">catch</span> (IntentSender.SendIntentException e) {
-                <span class="hljs-comment">// 记录错误</span>
-                e.printStackTrace();
-            }
-        } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">/*
-             * 如果没有可用的解决方案，将错误通过一个 dialog 显示给用户
-             */</span>
-            showErrorDialog(connectionResult.getErrorCode());
-        }
-    }
-    ...
-}
-</code></pre>
-<h2 id="-location-client">连接 Location Client</h2>
-<p>既然这个回调函数已经写好了，现在我们可以创建location client并将它连接到Location Services。</p>
-<p>首先你要在onCreate()方法里面创建location client，然后在onStart()方法里面连接它，这样当你的activity对用户可见时 Location Services 就保存着当前的位置信息了。你需要在onStop()方法里面断开连接，这样当你的activity不可见时，Location Services 就不会保存你的位置信息。下面连接和断开连接的方式对节省电池很有帮助。例如：</p>
-<blockquote>
-<p><strong>Note:</strong> 当前的位置信息只有在location client 连接到 Location Service时才会被保存。 假设没有其他应用连接到 Location Services，如果你断开 client 的连接，那么这时你调用 <a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">getLastLocation() </a>所获取到的位置信息可能已经过时。</p>
-</blockquote>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> </span>{
-    ...
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
-        ...
-        <span class="hljs-comment">/*
-         * Create a new location client, using the enclosing class to
-         * handle callbacks.
-         */</span>
-        mLocationClient = <span class="hljs-keyword">new</span> LocationClient(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>, <span class="hljs-keyword">this</span>);
-        ...
-    }
-    ...
-    <span class="hljs-comment">/*
-     * 当Activity可见时调用
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStart</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-keyword">super</span>.onStart();
-        <span class="hljs-comment">// 连接 client.</span>
-        mLocationClient.connect();
-    }
-    ...
-    <span class="hljs-comment">/*
-     * Called when the Activity is no longer visible.
-     */</span>
-    <span class="hljs-annotation">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onStop</span><span class="hljs-params">()</span> </span>{
-        <span class="hljs-comment">// 断开 client 与Location Services的连接，使client失效。</span>
-        mLocationClient.disconnect();
-        <span class="hljs-keyword">super</span>.onStop();
-    }
-    ...
-}
-</code></pre>
-<h2 id="">获取当前的位置信息</h2>
-<p>为了获取当前的位置信息，调用<a href="https://developer.android.com/reference/com/google/android/gms/location/LocationClient.html" target="_blank">getLastLocation()</a>方法。例如：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">ConnectionCallbacks</span>,
-        <span class="hljs-title">GooglePlayServicesClient</span>.<span class="hljs-title">OnConnectionFailedListener</span> </span>{
-    ...
-    <span class="hljs-comment">// 保存当前位置信息的全局变量</span>
-    Location mCurrentLocation;
-    ...
-    mCurrentLocation = mLocationClient.getLastLocation();
-    ...
-}
-</code></pre>
-<p>下一课，<a href="receive-location-updates.html">获取位置更新</a>，教你如何周期性地从Location Services获取位置信息更新。</p>
+<p><a href="http://developer.android.com/reference/com/google/android/gms/location/FusedLocationProviderApi.html#getLastLocation(com.google.android.gms.common.api.GoogleApiClient" target="_blank">getLastLocation()</a>)方法返回一个<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象。通过<a href="http://developer.android.com/reference/android/location/Location.html" target="_blank">Location</a>对象，我们可以取得地理位置的经度和纬度坐标。在少数情况下，当位置不可用时，这个Location对象会返回null。</p>
+<p>下一课，<a href="receive-location-updates.html">获取位置更新</a>，教你如何周期性地获取位置信息更新。</p>
 
                     
                     </section>

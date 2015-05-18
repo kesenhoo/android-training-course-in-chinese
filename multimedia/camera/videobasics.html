@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>简单的录像 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>简单的录像 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.2.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="3.2.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,25 +5091,25 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_171">
+                    <section class="normal" id="section-gitbook_167">
                     
                         <h1 id="">轻松录制视频</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/camera/videobasics.html" target="_blank">http://developer.android.com/training/camera/videobasics.html</a></p>
 </blockquote>
-<p>这节课会介绍如何使用现有的相机应用来录制视频。</p>
-<p>假设在你的应用的所有功能当中，整合视频只是其中的一小部分，你想要以最简单的方法录制视频，而不是重新实现一个摄像机组件。幸运的是，大多数Android设备已经安装了一个能录制视频的相机应用。在本节课当中，我们让它为我们完成这一任务。</p>
+<p>这节课会介绍如何使用已有的相机应用来录制视频。</p>
+<p>假设在我们应用的所有功能当中，整合视频只是其中的一小部分，我们想要以最简单的方法录制视频，而不是重新实现一个摄像机组件。幸运的是，大多数Android设备已经安装了一个能录制视频的相机应用。在本节课当中，我们将会让它为我们完成这一任务。</p>
 <h2 id="">请求相机权限</h2>
-<p>为了让别人知道你的应用依赖照相机，在你的Manifest清单文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
+<p>为了让用户知道我们的应用依赖照相机，在Manifest清单文件中添加<code>&lt;uses-feature&gt;</code>标签:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-feature</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.hardware.camera"</span>
                   <span class="hljs-attribute">android:required</span>=<span class="hljs-value">"true"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>如果你的程序使用相机，但相机并不是应用的正常运行所必不可少的组件，可以将<code>android:required</code>设置为<code>&quot;false&quot;</code>。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然你有必要在使用相机之前通过调用<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有相机。如果没有，你应该禁用和相机相关的功能！</p>
+<p>如果应用使用相机，但相机并不是应用正常运行所必不可少的组件，可以将<code>android:required</code>设置为<code>&quot;false&quot;</code>。这样的话，Google Play 也会允许没有相机的设备下载该应用。当然我们有必要在使用相机之前通过调用<a href="http://developer.android.com/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String)">hasSystemFeature(PackageManager.FEATURE_CAMERA)</a>方法来检查设备上是否有相机。如果没有，那么和相机相关的功能应该禁用！</p>
 <h2 id="">使用相机程序来录制视频</h2>
-<p>利用一个描述了你想要做什么的Intent对象，Android可以将某些执行任务委托给其他应用。整个过程包含三部分： Intent 本身，一个函数调用来启动外部的 Activity，当焦点返回到你的Activity时，处理返回图像数据的代码。</p>
+<p>利用一个描述了执行目的的Intent对象，Android可以将某些执行任务委托给其他应用。整个过程包含三部分： Intent 本身，一个函数调用来启动外部的 Activity，当焦点返回到Activity时，处理返回图像数据的代码。</p>
 <p>下面的函数将会发送一个Intent来录制视频</p>
 <pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_VIDEO_CAPTURE = <span class="hljs-number">1</span>;
 
@@ -5152,7 +5120,7 @@
     }
 }
 </code></pre>
-<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果你调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有应用能处理你的Intent，你的应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。</p>
+<p>注意在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>方法之前，先调用<a href="http://developer.android.com/reference/android/content/Intent.html#resolveActivity(android.content.pm.PackageManager)">resolveActivity()</a>，这个方法会返回能处理该Intent的第一个Activity（译注：即检查有没有能处理这个Intent的Activity）。执行这个检查非常重要，因为如果在调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>时，没有应用能处理你的Intent，应用将会崩溃。所以只要返回结果不为null，使用该Intent就是安全的。</p>
 <h2 id="">查看视频</h2>
 <p>Android的相机程序会把指向视频存储地址的<a href="http://developer.android.com/reference/android/net/Uri.html" target="_blank">Uri</a>添加到<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>中，并传送给<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>方法。下面的代码获取该视频并显示到一个VideoView当中：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>

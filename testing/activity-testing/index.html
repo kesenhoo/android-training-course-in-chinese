@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>测试你的Activity | Android官方培训课程中文版(v0.9.2)</title>
+        <title>测试你的Activity | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="16.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="16.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,41 +5091,36 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_205">
+                    <section class="normal" id="section-gitbook_203">
                     
                         <h1 id="activity">测试你的Activity</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/huanglizhuo" target="_blank">huanglizhuo</a> - 原文:<a href="http://developer.android.com/training/activity-testing/index.html" target="_blank">http://developer.android.com/training/activity-testing/index.html</a></p>
 </blockquote>
-<p>你应该把编写和运行测试作为你Android应用开发周期的一部分.编写好的测试可以帮助你在开发过程中尽早发现漏洞,并让你对自己的代码更有信心.</p>
-<p>测试用例定义了一系列对象和方法从而独立进行多个测试.测试用例可以编写成测试组并按计划的运行,由测试框架组织成一个可以重复运行的测试者</p>
-<p>这节内容将会教你如何使用Android基于最流行的JUnit框架来自定义测试框架.你可以编写测试用例来测试你应用程序的特定行为,并在不用的Android设备上检测一致性.你的测试用例也可以通过描述应用组件的预期行为来作为内部代码注释文档.</p>
-<h2 id="lessons">Lessons</h2>
+<p>我们应该把编写和运行测试作为Android应用开发周期的一部分。完备的测试可以帮助我们在开发过程中尽早发现漏洞，并让我们对自己的代码更有信心。</p>
+<p>测试用例定义了一系列对象和方法从而独立进行多个测试。测试用例可以编写成测试组并按计划的运行，由测试框架组织成一个可以重复运行的测试Runner（运行器，译者注）。</p>
+<p>这节内容将会讲解如何基于最流行的JUnit框架来自定义测试框架。我们可以编写测试用例来测试我们应用程序的特定行为，并在不同的Android设备上检测一致性。测试用例还可以用来描述应用组件的预期行为，并作为内部代码文档。</p>
+<h2 id="">课程</h2>
 <ul>
-<li><p><a href="prepare-activity-testing.html"><strong>建立测试环境</strong></a></p>
-<p>Learn how to create your test project.</p>
-</li>
+<li><a href="prepare-activity-testing.html"><strong>建立测试环境</strong></a></li>
 </ul>
+<p>学习如何创建测试项目</p>
 <ul>
-<li><p><a href="activity-basic-testing.html"><strong>创建与执行测试用例</strong></a></p>
-<p>Learn how to write test cases to verify the expected properties of your Activity, and run the test cases with the Instrumentation test runner provided by the Android framework.</p>
-</li>
+<li><a href="activity-basic-testing.html"><strong>创建与执行测试用例</strong></a></li>
 </ul>
+<p>学习如何写测试用例来检验Activity中的特性，并使用Android框架提供的Instrumentation运行用例。</p>
 <ul>
-<li><p><a href="activity-ui-testing.html"><strong>测试UI组件</strong></a></p>
-<p>Learn how to test the behavior of specific UI components in your Activity.</p>
-</li>
+<li><a href="activity-ui-testing.html"><strong>测试UI组件</strong></a></li>
 </ul>
+<p>学习如何编写UI测试用例</p>
 <ul>
-<li><p><a href="activity-unit-testing.html"><strong>创建单元测试</strong></a></p>
-<p>Learn how to how to perform unit testing to verify the behavior of an Activity in isolation.</p>
-</li>
+<li><a href="activity-unit-testing.html"><strong>创建单元测试</strong></a></li>
 </ul>
+<p>学习如何隔离开Activity执行单元测试</p>
 <ul>
-<li><p><a href="activity-function-testing.html"><strong>创建功能测试</strong></a></p>
-<p>Learn how to perform functional testing to verify the interaction of multiple Activities.</p>
-</li>
+<li><a href="activity-function-testing.html"><strong>创建功能测试</strong></a></li>
 </ul>
+<p>学习如何执行功能测试来检验各Activity之间的交互</p>
 
                     
                     </section>

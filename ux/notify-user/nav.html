@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>当启动Activity时保留导航 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>当启动Activity时保留导航 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="10.3.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="10.3.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,26 +5091,19 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_275">
+                    <section class="normal" id="section-gitbook_272">
                     
                         <h1 id="activity">启动Activity时保留导航</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/fastcome1985" target="_blank">fastcome1985</a> - 原文:<a href="http://developer.android.com/training/notify-user/navigation.html" target="_blank">http://developer.android.com/training/notify-user/navigation.html</a></p>
 </blockquote>
-<ul>
-<li><p>部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 <a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse">Notifications</a> API引导，分为下列两种主要情况：</p>
-<ul>
-<li>常规的activity
-你启动的是你application工作流中的一部分<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>。</li>
-<li>特定的activity
-用户只能从notification中启动，才能看到这个<a href="http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html" target="_blank">Activity</a>，在某种意义上，这个<a href="http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html" target="_blank">Activity</a>是notification的扩展，额外展示了一些notification本身难以展示的信息。</li>
-</ul>
-</li>
-</ul>
-<h2 id="activity-pendingintent">设置一个常规的Activity PendingIntent</h2>
-<ul>
-<li>设置一个直接启动的入口Activity的PendingIntent，遵循以下步骤：</li>
-</ul>
+<p>部分设计一个notification的目的是为了保持用户的导航体验。为了详细讨论这个课题，请看 <a href="developer.android.com/guide/topics/ui/notifiers/notifications.html#NotificationResponse">Notifications</a> API引导，分为下列两种主要情况：</p>
+<pre><code>* 常规的activity
+你启动的是你application工作流中的一部分[Activity](developer.android.com/reference/android/app/Activity.html)。
+* 特定的activity
+用户只能从notification中启动，才能看到这个[Activity](http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html)，在某种意义上，这个[Activity](http://developer.android.com/intl/zh-cn/reference/android/app/Activity.html)是notification的扩展，额外展示了一些notification本身难以展示的信息。
+</code></pre><h2 id="activity-pendingintent">设置一个常规的Activity PendingIntent</h2>
+<p>设置一个直接启动的入口Activity的PendingIntent，遵循以下步骤：</p>
 <p>1  在manifest中定义你application的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>层次，最终的manifest文件应该像这个：</p>
 <pre><code class="lang-java">&lt;activity
     android:name=".MainActivity"
@@ -5180,24 +5141,24 @@ NotificationManager mNotificationManager =
 mNotificationManager.notify(id, builder.build());
 </code></pre>
 <h2 id="activity-pendingintent">设置一个特定的Activity PendingIntent</h2>
-<ul>
-<li>一个特定的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不需要一个返回栈，所以你不需要在manifest中定义<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的层次，以及你不需要调用 <a href="developer.android.com/reference/android/support/v4/app/TaskStackBuilder.html#addParentStack(android.app.Activity">addParentStack()</a>)方法去构建一个返回栈。作为代替，你需要用manifest设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>任务选项，以及调用 <a href="developer.android.com/reference/android/app/PendingIntent.html#getActivity(android.content.Context,%20int,%20android.content.Intent,%20int">getActivity()</a>)创建<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a></li>
-</ul>
-<p>1 manifest中，在<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的 <a href="developer.android.com/guide/topics/manifest/activity-element.html"><activity></a> 标签中增加下列属性：
-  <a href="developer.android.com/guide/topics/manifest/activity-element.html#nm">android:name=&quot;activityclass&quot;</a>
-    activity的完整的类名。
-  <a href="developer.android.com/guide/topics/manifest/activity-element.html#aff">android:taskAffinity=&quot;&quot;</a>
-  结合你在代码里设置的<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a>标识， 确保这个<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不会进入application的默认任务。任何与 application的默认任务有密切关系的任务都不会受到影响。
-  <a href="developer.android.com/guide/topics/manifest/activity-element.html#exclude">android:excludeFromRecents=&quot;true&quot;</a>
-  将新任务从最近列表中排除，目的是为了防止用户不小心返回到它。</p>
-<p>2 建立以及发布notification：
-  a.创建一个启动<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>.
-  b.通过调用<a href="developer.android.com/reference/android/content/Intent.html#setFlags(int">setFlags()</a>)方法并设置标识<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a> 与 <a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TASK">FLAG_ACTIVITY_CLEAR_TASK</a>，来设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>在一个新的，空的任务中启动。
-  c.在<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中设置其他你需要的选项。
-  d.通过调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/app/PendingIntent.html#getActivity%28android.content.Context,%20int,%20android.content.Intent,%20int%29" target="_blank">getActivity()</a>方法从<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中创建一个 <a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>，你可以把这个<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> 当做 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent%28android.app.PendingIntent%29" target="_blank">setContentIntent()</a>的参数来使用。</p>
-<ul>
-<li>下面的代码片段演示了这个过程：</li>
-</ul>
+<p>一个特定的<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不需要一个返回栈，所以你不需要在manifest中定义<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的层次，以及你不需要调用 <a href="developer.android.com/reference/android/support/v4/app/TaskStackBuilder.html#addParentStack(android.app.Activity">addParentStack()</a>)方法去构建一个返回栈。作为代替，你需要用manifest设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>任务选项，以及调用 <a href="developer.android.com/reference/android/app/PendingIntent.html#getActivity(android.content.Context,%20int,%20android.content.Intent,%20int">getActivity()</a>)创建<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a></p>
+<ol>
+<li><p>manifest中，在<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的 <a href="developer.android.com/guide/topics/manifest/activity-element.html"><activity></a> 标签中增加下列属性：
+<a href="developer.android.com/guide/topics/manifest/activity-element.html#nm">android:name=&quot;activityclass&quot;</a>
+ activity的完整的类名。
+<a href="developer.android.com/guide/topics/manifest/activity-element.html#aff">android:taskAffinity=&quot;&quot;</a>
+结合你在代码里设置的<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a>标识， 确保这个<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>不会进入application的默认任务。任何与 application的默认任务有密切关系的任务都不会受到影响。
+<a href="developer.android.com/guide/topics/manifest/activity-element.html#exclude">android:excludeFromRecents=&quot;true&quot;</a>
+将新任务从最近列表中排除，目的是为了防止用户不小心返回到它。</p>
+</li>
+<li><p>建立以及发布notification：
+a.创建一个启动<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>的<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>.
+b.通过调用<a href="developer.android.com/reference/android/content/Intent.html#setFlags(int">setFlags()</a>)方法并设置标识<a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_NEW_TASK">FLAG_ACTIVITY_NEW_TASK</a> 与 <a href="developer.android.com/reference/android/content/Intent.html#FLAG_ACTIVITY_CLEAR_TASK">FLAG_ACTIVITY_CLEAR_TASK</a>，来设置<a href="developer.android.com/reference/android/app/Activity.html">Activity</a>在一个新的，空的任务中启动。
+c.在<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中设置其他你需要的选项。
+d.通过调用 <a href="http://developer.android.com/intl/zh-cn/reference/android/app/PendingIntent.html#getActivity%28android.content.Context,%20int,%20android.content.Intent,%20int%29" target="_blank">getActivity()</a>方法从<a href="developer.android.com/reference/android/content/Intent.html">Intent</a>中创建一个 <a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a>，你可以把这个<a href="developer.android.com/reference/android/app/PendingIntent.html">PendingIntent</a> 当做 <a href="http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent%28android.app.PendingIntent%29" target="_blank">setContentIntent()</a>的参数来使用。
+下面的代码片段演示了这个过程：</p>
+</li>
+</ol>
 <pre><code class="lang-java"><span class="hljs-comment">// Instantiate a Builder object.</span>
 NotificationCompat.Builder builder = <span class="hljs-keyword">new</span> NotificationCompat.Builder(<span class="hljs-keyword">this</span>);
 <span class="hljs-comment">// Creates an Intent for the Activity</span>

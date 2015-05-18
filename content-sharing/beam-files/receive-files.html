@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>接收其他设备的文件 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>接收其他设备的文件 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="2.3.2" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="2.3.2" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5131,7 +5099,7 @@
 </blockquote>
 <p>Android Beam文件传输将文件拷贝至接收设备上的一个特殊目录。同时使用Android Media Scanner扫描拷贝的文件，并在<a href="http://developer.android.com/reference/android/provider/MediaStore.html" target="_blank">MediaStore</a> provider中为媒体文件添加对应的条目记录。这节课将向你展示当文件拷贝完成时要如何响应，以及在接收设备上应该如何定位拷贝的文件。</p>
 <h2 id="">响应请求并显示数据</h2>
-<p>当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，该Intent拥有：<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>这一Action，首个被传输文件的MIME类型，以及一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>所对应的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html" target="_blank"><code>&lt;activity&gt;</code></a>标签添加一个<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签，在<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签中，添加下面的子标签：</p>
+<p>当Android Beam文件传输将文件拷贝至接收设备后，它会发布一个通知，该通知包含有一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank">Intent</a>，该Intent拥有：<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>这一Action，首个被传输文件的MIME类型，以及一个指向第一个文件的URI。当用户点击了这个通知后，Intent会被发送至系统。为了让你的应用程序能够响应这个Intent，我们需要为响应的<a href="http://developer.android.com/reference/android/app/Activity.html">Activity</a>所对应的<a href="http://developer.android.com/guide/topics/manifest/activity-element.html">&lt;activity&gt;</a>标签添加一个<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签，在<a href="http://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank"><code>&lt;intent-filter&gt;</code></a>标签中，添加下面的子标签：</p>
 <p><a href="http://developer.android.com/guide/topics/manifest/action-element.html" target="_blank"><code>&lt;action android:name=&quot;android.intent.action.VIEW&quot; /&gt;</code></a></p>
 <p>该标签用来匹配从通知发出的Intent，这些Intent具有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_VIEW" target="_blank">ACTION_VIEW</a>这一Action。</p>
 <p><a href="http://developer.android.com/guide/topics/manifest/category-element.html" target="_blank"><code>&lt;category android:name=&quot;android.intent.category.CATEGORY_DEFAULT&quot; /&gt;</code></a></p>

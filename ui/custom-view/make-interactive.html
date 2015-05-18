@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使得View可交互 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>使得View可交互 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.2.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.2.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,7 +5091,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_245">
+                    <section class="normal" id="section-gitbook_244">
                     
                         <p>﻿# 使得View可交互</p>
 <blockquote>
@@ -5133,7 +5101,7 @@
 <p>用户应该可以感受到UI上的微小变化，并对模仿现实世界的细微之处反应强烈。例如，当用户fling(迅速滑动)一个对象时，应该在开始时感到摩擦带来的阻力，在结束时感到fling带动的动力。应该在滑动开始与结束的时候给用户一定的反馈。</p>
 <p>这节课会演示如何使用Android framework的功能来为自定义的View添加那些现实世界中的行为。</p>
 <!-- more -->
-<h2 id="handle-input-gestures">Handle Input Gestures</h2>
+<h2 id="">处理输入的手势</h2>
 <p>像许多其他UI框架一样，Android提供一个输入事件模型。用户的动作会转换成触发一些回调函数的事件，你可以重写这些回调方法来定制你的程序应该如何响应用户的输入事件。在Android中最常用的输入事件是touch，它会触发<a href="http://developer.android.com/reference/android/view/View.html#onTouchEvent(android.view.MotionEvent" target="_blank">onTouchEvent(android.view.MotionEvent)</a>)的回调。重写这个方法来处理touch事件：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onTouchEvent</span><span class="hljs-params">(MotionEvent event)</span> </span>{
@@ -5164,9 +5132,10 @@ mDetector = <span class="hljs-keyword">new</span> GestureDetector(PieChart.<span
 }
 </code></pre>
 <p>当你传递一个touch事件到onTouchEvent()时，若这个事件没有被辨认出是何种gesture，它会返回false。你可以执行自定义的gesture-decection代码。</p>
-<h2 id="create-physically-plausible-motion">Create Physically Plausible(貌似可信的) Motion</h2>
+<h2 id="">创建基本合理的物理运动</h2>
 <p>Gestures是控制触摸设备的一种强有力的方式，但是除非你能够产出一个合理的触摸反馈，否则将是违反用户直觉的。一个很好的例子是fling手势，用户迅速的在屏幕上移动手指然后抬手离开屏幕。这个手势应该使得UI迅速的按照fling的方向进行滑动，然后慢慢停下来，就像是用户旋转一个飞轮一样。</p>
 <p>但是模拟这个飞轮的感觉并不简单，要想得到正确的飞轮模型，需要大量的物理，数学知识。幸运的是，Android有提供帮助类来模拟这些物理行为。<a href="http://developer.android.com/reference/android/widget/Scroller.html" target="_blank">Scroller</a>是控制飞轮式的fling的基类。</p>
+<p>要启动一个fling，需调用<code>fling()</code>，并传入启动速率、x、y的最小值和最大值，对于启动速度值，可以使用<a href="http://developer.android.com/reference/android/view/GestureDetector.html" target="_blank">GestureDetector</a>计算得出。</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onFling</span><span class="hljs-params">(MotionEvent e1, MotionEvent e2, <span class="hljs-keyword">float</span> velocityX, <span class="hljs-keyword">float</span> velocityY)</span> </span>{
    mScroller.fling(currentX, currentY, velocityX / SCALE, velocityY / SCALE, minX, minY, maxX, maxY);
@@ -5176,6 +5145,8 @@ mDetector = <span class="hljs-keyword">new</span> GestureDetector(PieChart.<span
 <blockquote>
 <p><strong>Note:</strong> 尽管速率是通过GestureDetector来计算的，许多开发者感觉使用这个值使得fling动画太快。通常把x与y设置为4到8倍的关系。</p>
 </blockquote>
+<p>调用<a href="http://developer.android.com/reference/android/widget/Scroller.html#fling(int, int, int, int, int, int, int, int" target="_blank">fling()</a>)时会为fling手势设置物理模型。然后，通过调用定期调用 <a href="http://developer.android.com/reference/android/widget/Scroller.html#computeScrollOffset(" target="_blank">Scroller.computeScrollOffset()</a>)来更新Scroller。<a href="http://developer.android.com/reference/android/widget/Scroller.html#computeScrollOffset(" target="_blank">computeScrollOffset()</a>)通过读取当前时间和使用物理模型来计算x和y的位置更新Scroller对象的内部状态。调用<a href="http://developer.android.com/reference/android/widget/Scroller.html#getCurrX(" target="_blank">getCurrX()</a>)和<a href="http://developer.android.com/reference/android/widget/Scroller.html#getCurrY(" target="_blank">getCurrY()</a>)来获取这些值。</p>
+<p>大多数view通过Scroller对象的x,y的位置直接到<a href="http://developer.android.com/reference/android/view/View.html#scrollTo(int, int" target="_blank">scrollTo()</a>)，PieChart例子稍有不同，它使用当前滚动y的位置设置图表的旋转角度。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">if</span> (!mScroller.isFinished()) {
     mScroller.computeScrollOffset();
     setPieRotation(mScroller.getCurrY());
@@ -5205,7 +5176,7 @@ mDetector = <span class="hljs-keyword">new</span> GestureDetector(PieChart.<span
      }
  });
 </code></pre>
-<h2 id="make-your-transitions-smooth">Make Your Transitions Smooth</h2>
+<h2 id="">使过渡平滑</h2>
 <p>用户期待一个UI之间的切换是能够平滑过渡的。UI元素需要做到渐入淡出来取代突然出现与消失。Android从3.0开始有提供<a href="http://developer.android.com/guide/topics/graphics/prop-animation.html" target="_blank">property animation framework</a>,用来使得平滑过渡变得更加容易。</p>
 <p>使用这套动画系统时，任何时候属性的改变都会影响到你的视图，所以不要直接改变属性的值。而是使用ValueAnimator来实现改变。在下面的例子中，在PieChart 中更改选择的部分将导致整个图表的旋转，以至选择的进入选择区内。ValueAnimator在数百毫秒内改变旋转量，而不是突然地设置新的旋转值。</p>
 <pre><code class="lang-java">mAutoCenterAnimator = ObjectAnimator.ofInt(PieChart.<span class="hljs-keyword">this</span>, <span class="hljs-string">"PieRotation"</span>, <span class="hljs-number">0</span>);

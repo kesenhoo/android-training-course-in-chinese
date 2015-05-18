@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>控制音量与音频播放 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>控制音量与音频播放 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="3.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,31 +5091,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_166">
+                    <section class="normal" id="section-gitbook_164">
                     
                         <h1 id="">控制音量与音频播放</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/managing-audio/volume-playback.html" target="_blank">http://developer.android.com/training/managing-audio/volume-playback.html</a></p>
 </blockquote>
-<p>良好的用户体验应该是可预期且可控的。如果你的应用可以播放音频，那么显然我们需要做到能够通过硬件按钮，软件按钮，蓝牙耳麦等来控制音量。
+<p>良好的用户体验应该是可预期且可控的。如果我们的应用可以播放音频，那么显然我们需要做到能够通过硬件按钮，软件按钮，蓝牙耳麦等来控制音量。
 同样地，我们需要能够对应用的音频流进行播放（Play），停止（Stop），暂停（Pause），跳过（Skip），以及回放（Previous）等动作，并且并确保其正确性。</p>
 <!-- more -->
 <h2 id="identify-which-audio-stream-to-use">鉴别使用的是哪个音频流(Identify Which Audio Stream to Use)</h2>
-<p>为了创建一个良好的音频体验，首先需要知道的是我们的应用会使用到哪些音频流。Android为播放音乐，闹铃，通知铃，来电声音，系统声音，打电话声音与拨号声音分别维护了一个独立的音频流。这样做的主要目的是让用户能够单独地控制不同的种类的音频。上述音频种类中，大多数都是被系统限制。例如，除非你的应用需要做替换闹钟的铃声的操作，不然的话你只能通过<a href="http://developer.android.com/reference/android/media/AudioManager.html#STREAM_MUSIC" target="_blank">STREAM_MUSIC</a>来播放你的音频。</p>
+<p>为了创建一个良好的音频体验，我们首先需要知道应用会使用到哪些音频流。Android为播放音乐，闹铃，通知铃，来电声音，系统声音，打电话声音与拨号声音分别维护了一个独立的音频流。这样做的主要目的是让用户能够单独地控制不同的种类的音频。上述音频种类中，大多数都是被系统限制。例如，除非你的应用需要做替换闹钟的铃声的操作，不然的话你只能通过<a href="http://developer.android.com/reference/android/media/AudioManager.html#STREAM_MUSIC" target="_blank">STREAM_MUSIC</a>来播放你的音频。</p>
 <h2 id="use-hardware-volume-keys-to-control-your-apps-audio-volume">使用硬件音量键来控制应用的音量(Use Hardware Volume Keys to Control Your App’s Audio Volume)</h2>
-<p>默认情况下，按下音量控制键会调节当前被激活的音频流，如果你的应用当前没有播放任何声音，那么按下音量键会调节响铃的音量。对于游戏或者音乐播放器而言，用户按下音量键的操作通常都意味着他们希望调节游戏或者音乐的音量，即使是在歌曲之间无声音的状态，或是当前游戏处于无声的状态。你可能希望通过监听音量键被按下的事件，来调节音频流的音量。我们不必这样做。Android提供了<a href="http://developer.android.com/reference/android/app/Activity.html#setVolumeControlStream(int)">setVolumeControlStream()</a>方法来直接控制指定的音频流。在鉴别出应用会使用哪个音频流之后，你需要在应用生命周期的早期阶段调用该方法，因为该方法只需要在Activity整个生命周期中调用一次，通常，你可以在负责控制多媒体的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>或者<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>的<code>onCreate()</code>方法中调用它。这样能确保不管应用当前是否可见，音频控制的功能都能符合用户的预期。</p>
+<p>默认情况下，按下音量控制键会调节当前被激活的音频流，如果我们的应用当前没有播放任何声音，那么按下音量键会调节响铃的音量。对于游戏或者音乐播放器而言，即使是在歌曲之间无声音的状态，或是当前游戏处于无声的状态，用户按下音量键的操作通常都意味着他们希望调节游戏或者音乐的音量。你可能希望通过监听音量键被按下的事件，来调节音频流的音量。其实我们不必这样做。Android提供了<a href="http://developer.android.com/reference/android/app/Activity.html#setVolumeControlStream(int)">setVolumeControlStream()</a>方法来直接控制指定的音频流。在鉴别出应用会使用哪个音频流之后，我们需要在应用生命周期的早期阶段调用该方法，因为该方法只需要在Activity整个生命周期中调用一次，通常，我们可以在负责控制多媒体的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>或者<a href="http://developer.android.com/reference/android/app/Fragment.html" target="_blank">Fragment</a>的<code>onCreate()</code>方法中调用它。这样能确保不管应用当前是否可见，音频控制的功能都能符合用户的预期。</p>
 <pre><code class="lang-java">setVolumeControlStream(AudioManager.STREAM_MUSIC);
 </code></pre>
-<p>自此之后，不管目标Activity或Fragment是否可见，按下设备的音量键都能够影响你所指定的音频流（在这个例子中，音频流是&quot;music&quot;）。</p>
+<p>自此之后，不管目标Activity或Fragment是否可见，按下设备的音量键都能够影响我们指定的音频流（在这个例子中，音频流是&quot;music&quot;）。</p>
 <h2 id="use--hardware-playback-control-keys-to-control-your-apps-audio-playback">使用硬件的播放控制按键来控制应用的音频播放(Use  Hardware Playback Control Keys to Control Your App’s Audio Playback)</h2>
-<p>许多线控或者无限耳机都会有许多媒体播放控制按钮，例如：播放，停止，暂停，跳过，以及回放等。无论用户按下设备上任意一个控制按钮，系统都会广播一个带有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_MEDIA_BUTTON" target="_blank">ACTION_MEDIA_BUTTON</a>的Intent。为了正确地响应那些操作，需要在Manifest文件中注册一个针对于该Action的<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>，如下所示：</p>
+<p>许多线控或者无线耳机都会有许多媒体播放控制按钮，例如：播放，停止，暂停，跳过，以及回放等。无论用户按下设备上任意一个控制按钮，系统都会广播一个带有<a href="http://developer.android.com/reference/android/content/Intent.html#ACTION_MEDIA_BUTTON" target="_blank">ACTION_MEDIA_BUTTON</a>的Intent。为了正确地响应这些操作，需要在Manifest文件中注册一个针对于该Action的<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>，如下所示：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">receiver</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".RemoteControlReceiver"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.MEDIA_BUTTON"</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">receiver</span>&gt;</span>
 </code></pre>
-<p>在Receiver的实现中，需要判断这个广播是来自哪个按钮的操作，Intent在<a href="http://developer.android.com/reference/android/content/Intent.html#EXTRA_KEY_EVENT" target="_blank">EXTRA_KEY_EVENT</a>这一Key中包含了该信息，另外，<a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>类包含了一系列诸如<code>KEYCODE_MEDIA_*</code>的静态变量来表示不同的媒体按钮，例如<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_PLAY_PAUSE" target="_blank">KEYCODE_MEDIA_PLAY_PAUSE</a> 与 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_NEXT" target="_blank">KEYCODE_MEDIA_NEXT</a>。</p>
+<p>在Receiver的实现中，需要判断这个广播来自于哪一个按钮，Intent通过<a href="http://developer.android.com/reference/android/content/Intent.html#EXTRA_KEY_EVENT" target="_blank">EXTRA_KEY_EVENT</a>这一Key包含了该信息，另外，<a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>类包含了一系列诸如<code>KEYCODE_MEDIA_*</code>的静态变量来表示不同的媒体按钮，例如<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_PLAY_PAUSE" target="_blank">KEYCODE_MEDIA_PLAY_PAUSE</a> 与 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MEDIA_NEXT" target="_blank">KEYCODE_MEDIA_NEXT</a>。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RemoteControlReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BroadcastReceiver</span> </span>{
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onReceive</span><span class="hljs-params">(Context context, Intent intent)</span> </span>{
@@ -5160,7 +5128,7 @@
     }
 }
 </code></pre>
-<p>因为可能会有多个程序在监听与媒体按钮相关的事件，所以你必须在代码中控制你的应用接收相关事件的时机。下面的例子显示了如何使用<a href="http://developer.android.com/reference/android/media/AudioManager.html" target="_blank">AudioManager</a>来为你的应用注册监听与取消监听媒体按钮事件，当Receiver被注册上时，它将是唯一一个能够响应媒体按钮广播的Receiver。</p>
+<p>因为可能会有多个程序在监听与媒体按钮相关的事件，所以我们必须在代码中控制应用接收相关事件的时机。下面的例子显示了如何使用<a href="http://developer.android.com/reference/android/media/AudioManager.html" target="_blank">AudioManager</a>来为我们的应用注册监听与取消监听媒体按钮事件，当Receiver被注册上时，它将是唯一一个能够响应媒体按钮广播的Receiver。</p>
 <pre><code class="lang-java">AudioManager am = mContext.getSystemService(Context.AUDIO_SERVICE);
 ...
 
@@ -5171,7 +5139,7 @@ am.registerMediaButtonEventReceiver(RemoteControlReceiver);
 <span class="hljs-comment">// Stop listening for button presses</span>
 am.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
 </code></pre>
-<p>通常，应用需要在他们失去焦点或者不可见的时候（比如在<a href="http://developer.android.com/reference/android/app/Activity.html#onStop()">onStop()</a>方法里面）取消注册监听。但是对于媒体播放应用来说并没有那么简单，实际上，在你的应用不可见（不能通过可见的UI控件进行控制）的时候，仍然能够响应媒体播放按钮事件是极其重要的。为了实现这一点，有一个更好的方法，我们可以在程序获取与失去音频焦点的时候注册与取消对音频按钮事件的监听。这个内容会在后面的课程中详细讲解。</p>
+<p>通常，应用需要在他们失去焦点或者不可见的时候（比如在<a href="http://developer.android.com/reference/android/app/Activity.html#onStop()">onStop()</a>方法里面）取消注册监听。但是对于媒体播放应用来说并没有那么简单，实际上，在应用不可见（不能通过可见的UI控件进行控制）的时候，仍然能够响应媒体播放按钮事件是极其重要的。为了实现这一点，有一个更好的方法，我们可以在程序获取与失去音频焦点的时候注册与取消对音频按钮事件的监听。这个内容会在后面的课程中详细讲解。</p>
 
                     
                     </section>

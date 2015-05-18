@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>管理系统UI | Android官方培训课程中文版(v0.9.2)</title>
+        <title>管理系统UI | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="11.5" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="11.5" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,34 +5091,34 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_254">
+                    <section class="normal" id="section-gitbook_252">
                     
                         <h1 id="ui">管理系统UI</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/K0ST" target="_blank">K0ST</a> - 原文:<a href="http://developer.android.com/training/system-ui/index.html" target="_blank">http://developer.android.com/training/system-ui/index.html</a></p>
 </blockquote>
-<p><a href="https://developer.android.com/design/get-started/ui-overview.html#system-bars" target="_blank">System Bar</a>是用来展示通知、表现设备状态和完成设备导航的屏幕区域。通常上来说，系统Bar包括状态栏和导航栏(Figure 1)，他们一般都是与程序同时显示在屏幕上的。而照片、视频等这类沉浸式的应用可以临时弱化系统Bar图标来创造一个更加专注的体验环境，甚至可以完全隐藏系统Bar。</p>
+<p><a href="https://developer.android.com/design/get-started/ui-overview.html#system-bars" target="_blank">System Bar</a>是用来展示通知、表现设备状态和完成设备导航的屏幕区域。通常上来说，系统栏(System bar)包括状态栏和导航栏(Figure 1)，他们一般都是与程序同时显示在屏幕上的。而照片、视频等这类沉浸式的应用可以临时弱化系统栏图标来创造一个更加专注的体验环境，甚至可以完全隐藏系统Bar。</p>
 <p><img src="system-ui.png" alt=""></p>
-<p>Figure 1. System bars, including the [1] status bar, and [2] navigation bar.</p>
-<p>如果你对<a href="http://developer.android.com/design/index.html" target="_blank">Android Design Guide</a>很熟悉，你应该已经知道遵照标准的Android UI Guideline与使用模式来设计App的重要性。在你修改系统Bar之前，你应该仔细的考虑一下用户的需求与预期，因为它们是操作设备和观察设备状态的的常规途径。</p>
-<p>这节课描述了如何在不同版本的Android上隐藏或淡化系统Bar，来营造一个沉浸式的用户体验，同时做到快速的访问与操作系统Bar。</p>
+<p>Figure 1. System bars，包含[1]状态栏，和[2]导航栏。</p>
+<p>如果你对<a href="http://developer.android.com/design/index.html" target="_blank">Android Design Guide</a>很熟悉，你应该已经知道遵照标准的Android UI Guideline与遵循模式来设计App的重要性。在你修改系统栏之前，你应该仔细的考虑一下用户的需求与预期，因为它们是操作设备和观察设备状态的的常规途径。</p>
+<p>这节课描述了如何在不同版本的Android上隐藏或淡化系统栏，来营造一个沉浸式的用户体验，同时做到快速的访问与操作系统栏。</p>
 <h2 id="sample">Sample</h2>
 <p><strong>ImmersiveMode</strong> - <a href="http://developer.android.com/samples/ImmersiveMode/index.html
 " target="_blank">http://developer.android.com/samples/ImmersiveMode/index.html
 </a></p>
 <h2 id="lessons">Lessons</h2>
 <ul>
-<li><p><a href="dim.html"><strong>淡化系统Bar</strong></a></p>
+<li><p><a href="dim.html"><strong>淡化系统栏</strong></a></p>
 <p>学习如何淡化和隐藏状态栏与导航栏。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="status.html"><strong>隐藏状态栏</strong></a></p>
+<li><p><a href="hide-ui.html"><strong>隐藏状态栏</strong></a></p>
 <p>学习如何在不同版本的Android上隐藏状态栏。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="navigation.html"><strong>隐藏导航栏</strong></a></p>
+<li><p><a href="hide-nav.html"><strong>隐藏导航栏</strong></a></p>
 <p>学习如何隐藏导航栏。</p>
 </li>
 </ul>

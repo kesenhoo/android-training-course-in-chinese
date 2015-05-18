@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>适配不同的系统版本 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>适配不同的系统版本 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.3.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.3.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,21 +5097,21 @@
 <blockquote>
 <p>编写:<a href="http://github.com/Lin-H" target="_blank">Lin-H</a> - 原文:<a href="http://developer.android.com/training/basics/supporting-devices/platforms.html" target="_blank">http://developer.android.com/training/basics/supporting-devices/platforms.html</a></p>
 </blockquote>
-<p>新的Android版本会为你的app提供更棒的APIs，但你的app仍应该支持旧版本的Android，直到更多的设备升级到新版本为止。这节课程向你展示如何在利用新的APIs的同时仍支持旧版本Android。</p>
-<p><a href="http://developer.android.com/about/dashboards/index.html" target="_blank">Platform Versions</a>的控制面板会定时更新，通过统计访问Google Play Store的设备数量，来显示运行每个版本的安卓设备的分布。一般情况下，在更新你的app至最新Android版本时，最好先保证你的新版app可以支持90%的设备使用。</p>
+<p>新的Android版本会为我们的app提供更棒的APIs，但我们的app仍应支持旧版本的Android，直到更多的设备升级到新版本为止。这节课程将展示如何在利用新的APIs的同时仍支持旧版本Android。</p>
+<p><a href="http://developer.android.com/about/dashboards/index.html" target="_blank">Platform Versions</a>的控制面板会定时更新，通过统计访问Google Play Store的设备数量，来显示运行每个版本的安卓设备的分布。一般情况下，在更新app至最新Android版本时，最好先保证新版的app可以支持90%的设备使用。</p>
 <blockquote>
-<p><strong>Tip</strong>:为了能在几个Android版本中都能提供最好的特性和功能，你应该在你的app中使用<a href="https://developer.android.com/tools/support-library/index.html" target="_blank">Android Support Library</a>，它能使你的app能在旧平台上使用最近的几个平台的APIs。</p>
+<p><strong>Tip</strong>:为了能在几个Android版本中都能提供最好的特性和功能，应该在我们的app中使用<a href="https://developer.android.com/tools/support-library/index.html" target="_blank">Android Support Library</a>，它能使我们的app能在旧平台上使用最近的几个平台的APIs。</p>
 </blockquote>
 <h2 id="api">指定最小和目标API级别</h2>
-<p><a href="https://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">AndroidManifest.xml</a>文件中描述了你的app的细节，并且标明app支持哪些Android版本。具体来说，<a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank"><code>&lt;uses-sdk&gt;</code></a>元素中的<code>minSdkVersion</code>和<code>targetSdkVersion</code> 属性，标明在设计和测试app时，最低兼容API的级别和最高适用的API级别(这个最高的级别是需要通过你的测试的)。例如：</p>
+<p><a href="https://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">AndroidManifest.xml</a>文件中描述了我们的app的细节及app支持哪些Android版本。具体来说，<a href="https://developer.android.com/guide/topics/manifest/uses-sdk-element.html" target="_blank"><code>&lt;uses-sdk&gt;</code></a>元素中的<code>minSdkVersion</code>和<code>targetSdkVersion</code> 属性，标明在设计和测试app时，最低兼容API的级别和最高适用的API级别(这个最高的级别是需要通过我们的测试的)。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">manifest</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span> <span class="hljs-attribute">...</span> &gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">uses-sdk</span> <span class="hljs-attribute">android:minSdkVersion</span>=<span class="hljs-value">"4"</span> <span class="hljs-attribute">android:targetSdkVersion</span>=<span class="hljs-value">"15"</span> /&gt;</span>
     ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">manifest</span>&gt;</span>
 </code></pre>
-<p>随着新版本Android的发布，一些风格和行为可能会改变，为了能使你的app能利用这些变化，而且能适配不同风格的用户的设备，你应该设置<code>targetSdkVersion</code>的值去匹配最新的可用Android版本。</p>
-<h2 id="">在运行时检查系统版本</h2>
-<p>Android在<a href="https://developer.android.com/reference/android/os/Build.html" target="_blank">Build</a>常量类中提供了对每一个版本的唯一代号，在你的app中使用这些代号可以建立条件，保证依赖于高级别的API的代码，只会在这些API在当前系统中可用时，才会执行。</p>
+<p>随着新版本Android的发布，一些风格和行为可能会改变，为了能使app能利用这些变化，而且能适配不同风格的用户的设备，我们应该将<code>targetSdkVersion</code>的值尽量的设置与最新可用的Android版本匹配。</p>
+<h2 id="">运行时检查系统版本</h2>
+<p>Android在<a href="https://developer.android.com/reference/android/os/Build.html" target="_blank">Build</a>常量类中提供了对每一个版本的唯一代号，在我们的app中使用这些代号可以建立条件，保证依赖于高级别的API的代码，只会在这些API在当前系统中可用时，才会执行。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUpActionBar</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-comment">// Make sure we're running on Honeycomb or higher to use ActionBar APIs</span>
     <span class="hljs-keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
@@ -5153,20 +5121,20 @@
 }
 </code></pre>
 <blockquote>
-<p><strong>Note</strong>:当解析XML资源时，Android会忽略当前设备不支持的XML属性。所以你可以安全地使用较新版本的XML属性，而不需要担心旧版本Android遇到这些代码时会崩溃。例如如果你设置<code>targetSdkVersion=&quot;11&quot;</code>，你的app会在Android 3.0或更高时默认包含<a href="https://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>。然后添加menu items到action bar时，你需要在你的menu XML资源中设置<code>android:showAsAction=&quot;ifRoom&quot;</code>。在跨版本的XML文件中这么做是安全的，因为旧版本的Android会简单地忽略<code>showAsAction</code>属性(就是这样，你并不需要用到<code>res/menu-v11/</code>中单独版本的文件)。</p>
+<p><strong>Note</strong>:当解析XML资源时，Android会忽略当前设备不支持的XML属性。所以我们可以安全地使用较新版本的XML属性，而不需要担心旧版本Android遇到这些代码时会崩溃。例如如果我们设置<code>targetSdkVersion=&quot;11&quot;</code>，app会在Android 3.0或更高时默认包含<a href="https://developer.android.com/reference/android/app/ActionBar.html" target="_blank">ActionBar</a>。然后添加menu items到action bar时，我们需要在自己的menu XML资源中设置<code>android:showAsAction=&quot;ifRoom&quot;</code>。在跨版本的XML文件中这么做是安全的，因为旧版本的Android会简单地忽略<code>showAsAction</code>属性(就是这样，你并不需要用到<code>res/menu-v11/</code>中单独版本的文件)。</p>
 </blockquote>
 <h2 id="">使用平台风格和主题</h2>
-<p>Android提供了用户体验主题，为app提供基础操作系统的外观和体验。这些主题可以在manifest文件中被应用于你的app中.通过使用内置的风格和主题，你的app自然地随着Android新版本的发布，自动适配最新的外观和体验.</p>
-<p>使你的activity看起来像对话框:</p>
+<p>Android提供了用户体验主题，为app提供基础操作系统的外观和体验。这些主题可以在manifest文件中被应用于app中。通过使用内置的风格和主题，我们的app自然地随着Android新版本的发布，自动适配最新的外观和体验.</p>
+<p>使activity看起来像对话框:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@android:style/Theme.Dialog"</span>&gt;</span>
 </code></pre>
-<p>使你的activity有一个透明背景:</p>
+<p>使activity有一个透明背景:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@android:style/Theme.Translucent"</span>&gt;</span>
 </code></pre>
 <p>应用在<code>/res/values/styles.xml</code>中定义的自定义主题:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@style/CustomTheme"</span>&gt;</span>
 </code></pre>
-<p>使整个app应用一个主题(全部activities)在<a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank"><application></a>元素中添加<code>android:theme</code>属性:</p>
+<p>使整个app应用一个主题(全部activities)在<a href="https://developer.android.com/guide/topics/manifest/application-element.html" target="_blank"><application\\></a>元素中添加<code>android:theme</code>属性:</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span> <span class="hljs-attribute">android:theme</span>=<span class="hljs-value">"@style/CustomTheme"</span>&gt;</span>
 </code></pre>
 <p>更多关于创建和使用主题，详见<a href="https://developer.android.com/guide/topics/ui/themes.html" target="_blank">Styles and Themes</a>。</p>

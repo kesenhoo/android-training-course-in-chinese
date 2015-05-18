@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建Android项目 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>创建Android项目 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.1.1" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.1.1" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5132,88 +5100,80 @@
 <p>一个Android项目包含了所有构成Android应用的源代码文件。</p>
 <p>本小节介绍如何使用Android Studio或SDK Tools命令行来创建一个新的项目。</p>
 <blockquote>
-<p><strong>Note</strong>：在此之前，你应该以及安装了Android SDK，如果你使用Android Studio开发，应该确保已经安装了<a href="http://developer.android.com/sdk/installing/studio.html" target="_blank">Android Studio</a>。否则，请先阅读 <a href="http://developer.android.com/sdk/installing/index.html" target="_blank">Installing the Android SDK</a>按照向导完成步骤安装。</p>
+<p><strong>Note</strong>：在此之前，我们应该已经安装了Android SDK，如果使用Android Studio开发，应该确保已经安装了<a href="http://developer.android.com/sdk/installing/studio.html" target="_blank">Android Studio</a>。否则，请先阅读 <a href="http://developer.android.com/sdk/installing/index.html" target="_blank">Installing the Android SDK</a>按照向导完成步骤安装。</p>
 </blockquote>
 <h2 id="android-studio">使用Android Studio创建项目</h2>
-<ol>
-<li><p>使用Android Studio创建Android项目，启动Android Studio</p>
-<ul>
-<li>如果你还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
-<li>如果已经用Android Studio打开过项目，点击File==&gt;New Project新建项目</li>
-</ul>
-</li>
-<li><p>参照图1在弹出的窗口（<strong>Configure your new project</strong>）中填入内容，点击<strong>Next</strong>.</p>
-<p>按照要求使用如图所示的值会使学习变得更容易。</p>
-<ul>
-<li><strong>Application Name</strong> 此处填写想呈现给用户的应用名称，此处我们使用“My First App&quot;.</li>
-<li><strong>Company domain</strong> 包名限定符，Android Studio会将这个限定符应用于每个新建的Android项目</li>
-<li><strong>Package Name</strong>是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中      具有唯一性，你可以独立地编辑该包名.</li>
-<li><strong>Project location</strong>操作系统存放项目的目录</li>
-</ul>
-
-</li>
-</ol>
+<p>1. 使用Android Studio创建Android项目，启动Android Studio
+   <ul>
+   <li>如果我们还没有用Android Studio打开过项目，会看到欢迎页，点击New Project</li>
+   <li>如果已经用Android Studio打开过项目，点击File==&gt;New Project新建项目</li>
+   </ul></p>
+<p>2. 参照图1在弹出的窗口（<strong>Configure your new project</strong>）中填入内容，点击<strong>Next</strong>.</p>
+<p>   按照要求使用如图所示的值会使学习变得更容易。
+   <ul>
+   <li><strong>Application Name</strong> 此处填写想呈现给用户的应用名称，此处我们使用“My First App&quot;.</li>
+   <li><strong>Company domain</strong> 包名限定符，Android Studio会将这个限定符应用于每个新建的Android项目</li>
+   <li><strong>Package Name</strong>是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，我们可以独立地编辑该包名.</li>
+   <li><strong>Project location</strong>操作系统存放项目的目录</li>
+   </ul></p>
 <p><img src="studio-setup-1.png" alt="image">
-    <strong >图1 </strong>Configure your new project</p>
-<ol>
-<li>在<strong>Select the form factors your app will run on</strong>窗口勾选<strong>Phone and Tablet</strong>。</li>
-</ol>
-<p>4
-. <strong>Minimum SDK</strong>, 选择 <strong>API 8: Android 2.2 (Froyo)</strong>.</p>
-<p>   Minimum Required SDK表示你的应用支持的最低Android版本，为了支持尽可能多的设备，你应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考<a href="../supporting-devices/platforms.html">兼容不同的系统版本</a>),此处采用默认值即可。</p>
-<p>5 不要勾选其他选项 (TV, Wear, and Glass) ，点击 <strong>Next</strong>.</p>
-<p>6 在Add an activity 模板窗口选择<strong>Blank Activity</strong>，点击 <strong>Next</strong>.</p>
-<p>7 在<strong>Choose options for your new file</strong>窗口修改<strong> Activity Name </strong>为<I>MyActivity</I>,修改<strong>Layout Name </strong>为activity_my，<strong>Title </strong>修改为MyActivity，<strong>Menu Resource Name </strong>修改为menu_my。</p>
-<p>8 点击<strong>Finish</strong>完成创建。</p>
+    <strong>图1</strong> Configure your new project</p>
+<p>3. 在<strong>Select the form factors your app will run on</strong>窗口勾选<strong>Phone and Tablet</strong>。</p>
+<p>4. <strong>Minimum SDK</strong>, 选择 <strong>API 8: Android 2.2 (Froyo)</strong>.</p>
+<p>   Minimum Required SDK表示我们的应用支持的最低Android版本，为了支持尽可能多的设备，我们应该设置为能支持你应用核心功能的最低API版本。如果某些非核心功能仅在较高版本的API支持，你可以只在支持这些功能的版本上开启它们(参考<a href="../supporting-devices/platforms.html">兼容不同的系统版本</a>),此处采用默认值即可。</p>
+<p>5. 不要勾选其他选项 (TV, Wear, and Glass) ，点击 <strong>Next</strong>.</p>
+<p>6. 在<strong>Add an activity to <em><template\></em></strong> 窗口选择<strong>Blank Activity</strong>，点击 <strong>Next</strong>.</p>
+<p>7. 在<strong>Choose options for your new file</strong> 窗口修改<strong>Activity Name</strong> 为<em>MyActivity</em>，修改 <strong>Layout Name</strong> 为<em>activity_my</em>，<strong>Title</strong> 修改为<em>MyActivity</em>，<strong>Menu Resource Name</strong> 修改为<em>menu_my</em>。</p>
+<p>8. 点击<strong>Finish</strong>完成创建。</p>
 <p>  刚创建的Android项目是一个基础的Hello World项目，包含一些默认文件，我们花一点时间看看最重要的部分：</p>
 <p>app/src/main/res/layout/activity_my.xml</p>
-<p>这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studi会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。</p>
+<p>这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studio会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。</p>
 <p>app/src/main/java/com.mycompany.myfirstapp/MyActivity.java</p>
 <p>用Android Studio创建新项目完成后，可在Android Studio看到该文件对应的选项卡，选中该选项卡，可以看到刚创建的Activity类的定义。编译并运行该项目后，Activity启动并加载布局文件activity_my.xml，显示一条文本：&quot;Hello world!&quot;</p>
 <p>app/src/main/AndroidManifest.xml</p>
-<p><a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">manifest</a>文件描述了项目的基本特征并列出了组成应用的各个组件，接下来额学习会更深入了解这个文件并添加更多组件到该文件中。</p>
+<p><a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html" target="_blank">manifest</a>文件描述了项目的基本特征并列出了组成应用的各个组件，接下来的学习会更深入了解这个文件并添加更多组件到该文件中。</p>
 <p>app/build.gradle</p>
 <p>Android Studio使用Gradle 编译运行Android工程. 工程的每个模块以及整个工程都有一个build.gradle文件。通常你只需要关注模块的build.gradle文件，该文件存放编译依赖设置，包括defaultConfig设置：</p>
 <ul>
 <li><p>compiledSdkVersion
-是你的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用<a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">SDK Manager</a>来完成安装)，你仍然可以使用较老的版本编译项目，但把该值设为最新版本，使你可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。</p>
+是我们的应用将要编译的目标Android版本，此处默认为你的SDK已安装的最新Android版本(目前应该是4.1或更高版本，如果你没有安装一个可用Android版本，就要先用<a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">SDK Manager</a>来完成安装)，我们仍然可以使用较老的版本编译项目，但把该值设为最新版本，可以使用Android的最新特性，同时可以在最新的设备上优化应用来提高用户体验。</p>
 </li>
 <li><p>applicationId 创建新项目时指定的包名。</p>
 </li>
 <li><p>minSdkVersion 创建项目时指定的最低SDK版本，是新建应用支持的最低SDK版本。</p>
 </li>
-<li><p>targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level)表示).当Android发布最新版本后，你应该在最新版本的Android测试你的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读<a href="http://developer.android.com/training/basics/supporting-devices/platforms.html" target="_blank">Supporting Different Platform Versions</a>。</p>
+<li><p>targetSdkVersion 表示你测试过你的应用支持的最高Android版本(同样用API level表示).当Android发布最新版本后，我们应该在最新版本的Android测试自己的应用同时更新target sdk到Android最新版本，以便充分利用Android新版本的特性。更多知识，请阅读<a href="http://developer.android.com/training/basics/supporting-devices/platforms.html" target="_blank">Supporting Different Platform Versions</a>。</p>
 </li>
 </ul>
 <p>更多关于Gradle的知识请阅读<a href="http://developer.android.com/sdk/installing/studio-build.html" target="_blank">Building Your Project with Gradle</a></p>
 <p>注意/res目录下也包含了<a href="http://developer.android.com/guide/topics/resources/overview.html" target="_blank">resources</a>资源：</p>
 <p>drawable<density>/</p>
-<p>存放各种densities图像的文件夹，mdpi，hdpi等，在这里你能找到应用运行时的图标文件ic_launcher.png</p>
+<p>存放各种densities图像的文件夹，mdpi，hdpi等，这里能够找到应用运行时的图标文件ic_launcher.png</p>
 <p>layout/</p>
 <p>存放用户界面文件，如前边提到的activity_my.xml，描述了MyActivity对应的用户界面。</p>
 <p>menu/</p>
 <p>存放应用里定义菜单项的文件。</p>
 <p>values/</p>
 <p>存放其他xml资源文件，如string，color定义。string.xml定义了运行应用时显示的文本&quot;Hello world!&quot;</p>
-<p>要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
+<p>要运行这个APP，继续<a href="running-app.html">下个小节</a>的学习。</p>
 <h2 id="">使用命令行创建项目</h2>
-<p>如果你没有使用Android Studio开发Android项目，你可以在命令行使用SDK提供的tools来创建一个Android项目。</p>
-<p>1 打开命令行切换到SDK根目录下；</p>
-<p>2 执行:</p>
+<p>如果没有使用Android Studio开发Android项目，我们可以在命令行使用SDK提供的tools来创建一个Android项目。</p>
+<p>1. 打开命令行切换到SDK根目录下；</p>
+<p>2. 执行:</p>
 <pre><code class="lang-java">    tools/android list targets
 </code></pre>
-<p>会在屏幕上打印出所有你的Android SDK中下载好的可用Android  platforms，找到你想要创建项目的目标platform，记录该platform对应的Id，推荐你使用最新的platform。你仍可以使你的应用支持较老版本的platform，但设置为最新版本允许你为最新的Android设备优化你的应用。
-如果你没有看到任何可用的platform，你需要使用Android SDK Manager完成下载安装，参见 <a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">Adding Platforms and Packages</a>。</p>
-<p>3 执行：</p>
+<p>会在屏幕上打印出我们所有的Android SDK中下载好的可用Android  platforms，找想要创建项目的目标platform，记录该platform对应的Id，推荐使用最新的platform。我们仍可以使自己的应用支持较老版本的platform，但设置为最新版本允许我们为最新的Android设备优化我们的应用。
+如果没有看到任何可用的platform，我们需要使用Android SDK Manager完成下载安装，参见 <a href="http://developer.android.com/sdk/installing/adding-packages.html" target="_blank">Adding Platforms and Packages</a>。</p>
+<p>3. 执行：</p>
 <pre><code class="lang-java">android create project --target &lt;target-id&gt; --name MyFirstApp \
 --path &lt;path-to-workspace&gt;/MyFirstApp --activity MyActivity \
 --<span class="hljs-keyword">package</span> com.example.myfirstapp
 </code></pre>
-<p>替换<code>&lt;target-id&gt;</code>为上一步记录好的Id，替换<code>&lt;path-to-workspace&gt;</code>为你想要保存项目的路径。</p>
-<p>到此为止，你的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
+<p>替换<code>&lt;target-id&gt;</code>为上一步记录好的Id，替换<code>&lt;path-to-workspace&gt;</code>为我们想要保存项目的路径。</p>
 <blockquote>
 <p><strong>Tip</strong>:把<code>platform-tools/</code>和 <code>tools/</code>添加到环境变量<code>PATH</code>，开发更方便。</p>
 </blockquote>
+<p>到此为止，我们的Android项目已经是一个基本的“Hello World”程序，包含了一些默认的文件。要运行它，继续<a href="running-app.html">下个小节</a>的学习。</p>
 
                     
                     </section>

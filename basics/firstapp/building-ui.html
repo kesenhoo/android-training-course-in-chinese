@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立简单的用户界面 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>建立简单的用户界面 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.1.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="1.1.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5129,131 +5097,140 @@
 <blockquote>
 <p>编写:<a href="https://github.com/yuanfentiank789" target="_blank">yuanfentiank789</a> - 原文:<a href="http://developer.android.com/training/basics/firstapp/building-ui.html" target="_blank">http://developer.android.com/training/basics/firstapp/building-ui.html</a></p>
 </blockquote>
-<pre><code>在本小节里，你将学到怎样用XML创建一个带有文本输入框和按钮的界面。在下一节课里，你将学会对按钮做出响应，当按钮被按下的时候文本框里的内容被发送到另外一个Activity。
-</code></pre><p>Android的图形用户界面是由多个<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>和<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>构建出来的。<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>是通用的UI窗体小组件，比如按钮(<a href="http://developer.android.com/guide/topics/ui/controls/button.html" target="_blank">Button</a>)或者文本框(<a href="http://developer.android.com/guide/topics/ui/controls/text.html" target="_blank">text field</a>)，而<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>是不可见的用于定义子View布局方式的容器，比如网格部件(grid)和垂直列表部件(list)。</p>
-<p>Android提供了一个对应于<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>和<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>子类的一系列XMl标签，你可以在XML里使用层级视图元素创建自己的UI，Layouts是ViewGroup的子类，接下来的练习将使用<a href="http://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>。</p>
+<pre><code>在本小节里，我们将学习如何用XML创建一个带有文本输入框和按钮的界面，下一节课将学会使app对按钮做出响应：按钮被按下时，文本框里的内容被发送到另外一个Activity。
+</code></pre><p>Android的图形用户界面是由多个<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>和<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>构建出来的。<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>是通用的UI窗体小组件，比如按钮(<a href="http://developer.android.com/guide/topics/ui/controls/button.html" target="_blank">Button</a>)或者文本框(<a href="http://developer.android.com/guide/topics/ui/controls/text.html" target="_blank">text field</a>)，而<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>是不可见的，是用于定义子View布局方式的容器，比如网格部件(grid)和垂直列表部件(list)。</p>
+<p>Android提供了一个对应于<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>和<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>子类的一系列XMl标签，我们可以在XML里使用层级视图元素创建自己的UI。</p>
+<p>Layouts是ViewGroup的子类，接下来的练习将使用<a href="http://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>。</p>
 <p><img src="viewgroup.png" alt="viewgroup"></p>
+<p><strong>Figure 1.</strong> 关于viewgroup对象如何组织布局分支和包含其他view对象。</p>
 <blockquote>
-<p>图一:关于viewgroup对象如何组织布局分支和包含其他view对象。</p>
-<p>可选的布局文件：在XML中定义界面布局而不是在运行时去动态生成布局是有多个原因的，其中最重要的一个原因是这样可以使得你为不同大小的屏幕创建不同的布局文件。例如，你可以创建创建2个版本的布局文件，告诉系统在小的屏幕上使用其中一个布局文件，在大的屏幕上使用另外一个布局文件。更多信息，请参考<a href="../supporting-devices/index.html">兼容不同的设备</a></p>
+<p>可选的布局文件：在XML中定义界面布局而不是在运行时去动态生成布局是有多个原因的，其中最重要的一点是这样可以使得你为不同大小的屏幕创建不同的布局文件。例如，你可以创建创建2个版本的布局文件，告诉系统在小的屏幕上使用其中一个布局文件，在大的屏幕上使用另外一个布局文件。更多信息，请参考<a href="../supporting-devices/index.html">兼容不同的设备</a></p>
 </blockquote>
 <h2 id="linearlayout">创建一个LinearLayout</h2>
-<p>1 在Android Studio里，从res/layout目录打开activity_my.xml文件。上一节创建新项目时生成的BlankActivity，包含一个activity_my.xml文件，该文件根元素是一个RelativeLayout，包含一个TextView。</p>
-<p>2 在<strong>Preview</strong>面板点击<img src="as-hide-side.png" alt="image">关闭右侧Preview面板，在Android Studio中，当你打开布局文件的时候，可以看到一个Preview面板，点击这个面板中的标签，可利用WYSIWYG（所见即所得）工具在Design面板看到对应的图形化效果，但在本节直接操作XML文件即可。</p>
+<p>1 在Android Studio中，从res/layout目录打开activity_my.xml文件。上一节创建新项目时生成的BlankActivity，包含一个activity_my.xml文件，该文件根元素是一个包含TextView的RelativeLayout。</p>
+<p>2 在<strong>Preview</strong>面板点击<img src="as-hide-side.png" alt="image">关闭右侧Preview面板，在Android Studio中，当打开布局文件的时，可以看到一个Preview面板，点击这个面板中的标签，可利用WYSIWYG（所见即所得）工具在Design面板看到对应的图形化效果，但在本节直接操作XML文件即可。</p>
 <p>3 删除 TextView 标签.</p>
 <p>4 把 RelativeLayout 标签改为 LinearLayout.</p>
 <p>5 为<LinearLayout>添加 android:orientation 属性并设置值为 &quot;horizontal&quot;.</p>
 <p>6 去掉android:padding 属性和tools:context 属性.</p>
 <p>修改后结果如下：</p>
 <p>res/layout/activity_my.xml</p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;horizontal&quot; &gt;
-&lt;/LinearLayout&gt;
-</code></pre><p><a href="http://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>是<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>的一个子类，用于放置水平或者垂直放置子视图的部件，由属性<code>android:orientation</code>来设定方向。LinearLayout里的子布局按照XML里定义的顺序向显示在屏幕上。</p>
-<p>另外的两个属性<a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_width" target="_blank">android:layout_width</a>和<a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_height" target="_blank">android:layout_height</a>，对于所有的Views都需要对这两个属性进行设置来指定尺寸。</p>
-<p>在这里因为LinearLayout是整个视图的根布局，所以对于宽和高都应该是充满整个屏幕的，通过指定width 和 height属性为<code>&quot;match_parent&quot;</code>。该值表示子View扩张自己width和height来匹配父控件的width和height。</p>
-<p>想要获得更多关于<a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank">Layout</a>属性的信息，请参照XML布局向导。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"horizontal"</span> &gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<p><a href="http://developer.android.com/reference/android/widget/LinearLayout.html" target="_blank">LinearLayout</a>是<a href="http://developer.android.com/reference/android/view/ViewGroup.html" target="_blank">ViewGroup</a>的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性<code>android:orientation</code>设定。LinearLayout里的子布局按照XML里定义的顺序显示在屏幕上。</p>
+<p>所有的Views都需要用到<a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_width" target="_blank">android:layout_width</a>和<a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_height" target="_blank">android:layout_height</a>这两个属性来设置自身的大小。</p>
+<p>由于LinearLayout是整个视图的根布局，所以其宽和高都应充满整个屏幕的，通过指定width 和 height属性为<code>&quot;match_parent&quot;</code>。该值表示子View扩张自己width和height来匹配父控件的width和height。</p>
+<p>更多关于<a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank">Layout</a>属性的信息，请参照XML布局向导。</p>
 <h2 id="">添加一个文本输入框</h2>
-<p>与其它View一样，你需要设置XML里的某些属性来指定EditText的属性值，下边是你应该在线性布局里指定的一些属性元素：</p>
-<p>1 在activity_my.xml 文件的 <LinearLayout>标签内定义一个 <EditText> 标签，并设置id为@+id/edit_message.</p>
+<p>与其它View一样，我们需要设置XML里的某些属性来指定EditText的属性值，以下是应该在线性布局里指定的一些属性元素：</p>
+<p>1 在activity_my.xml文件的 <LinearLayout\> 标签内定义一个 <EditText\> 标签，并设置id属性为@+id/edit_message.</p>
 <p>2 设置layout_width和layout_height属性为 wrap_content.</p>
 <p>3 设置hint属性为一个string 值的引用edit_message.</p>
+<p>代码如下：</p>
 <p>res/layout/activity_my.xml</p>
-<pre><code>&lt;EditText android:id=&quot;@+id/edit_message&quot;
-    android:layout_width=&quot;wrap_content&quot;
-    android:layout_height=&quot;wrap_content&quot;
-    android:hint=&quot;@string/edit_message&quot; /&gt;
-</code></pre><p>属性说明:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">EditText</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/edit_message"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+    <span class="hljs-attribute">android:hint</span>=<span class="hljs-value">"@string/edit_message"</span> /&gt;</span>
+</code></pre>
+<p>各属性说明:</p>
 <h4 id="androididhttpdeveloperandroidcomreferenceandroidviewviewhtmlattr_androidid"><a href="http://developer.android.com/reference/android/view/View.html#attr_android:id" target="_blank">android:id</a></h4>
-<p>这里定义的是View的唯一标示符，你可以在程序的代码里进行引用，你可以对这个类进行读和修改的操作(在下一课里将会用到)</p>
-<p>当你想从XML里使用资源类的时候必须使用@符号，紧随<code>@</code>之后的是资源的类型(这里是<code>id</code>)，然后是资源的名字(这里使用的是<code>edit_message</code>)。(其他的资源可以使用相同的名字只要他们不是相同的资源类型，例如：字符串资源可以使用相同的名字)。</p>
-<p>+号只是当你第一次定义一个资源ID的时候需要。这里是告诉SDK此资源ID需要被创建出来。在应用程序被编译之后，SDK就可以直接使用ID值，edit_message是在项目<code>gen/R.java</code>文件中创建一个新的标示符，这个标示符就和<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>关联起来了。一旦资源ID被创建了，其他资源如果引用这个ID就不再需要+号了。这里是唯一一个需要+号的属性。</p>
+<p>这是定义View的唯一标识符。可以在程序代码中通过该标识符对对象进行引用，例如对这个对象进行读和修改的操作(在下一课里将会用到)。</p>
+<p>当想从XML里引用资源对象的时候必须使用@符号。紧随@之后的是资源的类型(这里是<code>id</code>)，然后是资源的名字(这里使用的是<code>edit_message</code>)。</p>
+<p>+号只是当你第一次定义一个资源ID的时候需要。这里是告诉SDK此资源ID需要被创建出来。在应用程序被编译之后，SDK就可以直接使用ID值，edit_message是在项目<code>gen/R.java</code>文件中创建一个新的标识符，这个标识符就和<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>关联起来了。一旦资源ID被创建了，其他资源如果引用这个ID就不再需要+号了。这里是唯一一个需要+号的属性。</p>
 <h4 id="androidlayout_widthhttpdeveloperandroidcomreferenceandroidviewviewhtmlattr_androidlayout_width-androidlayout_heighthttpdeveloperandroidcomreferenceandroidviewviewhtmlattr_androidlayout_height"><a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_width" target="_blank">android:layout_width</a> 和<a href="http://developer.android.com/reference/android/view/View.html#attr_android:layout_height" target="_blank">android:layout_height</a></h4>
-<p>对于宽和高不建议指定具体的大小，使用<code>wrap_content</code>指定之后，这个视图只是占据内容大小的空间。如果你使用了<code>match_parent</code>，这时<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>将会布满整个屏幕，因为它将适应父布局的大小。想要看到更多信息，请参考 <a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank">布局向导</a>。</p>
+<p>对于宽和高不建议指定具体的大小，使用<code>wrap_content</code>指定之后，这个视图将只占据内容大小的空间。如果你使用了<code>match_parent</code>，这时<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>将会布满整个屏幕，因为它将适应父布局的大小。更多信息，请参考 <a href="http://developer.android.com/guide/topics/ui/declaring-layout.html" target="_blank">布局向导</a>。</p>
 <h4 id="androidhinthttpdeveloperandroidcomreferenceandroidwidgettextviewhtmlattr_androidhint"><a href="http://developer.android.com/reference/android/widget/TextView.html#attr_android:hint" target="_blank">android:hint</a></h4>
-<p>当文本框为空的时候,会默认显示这个字符串。对于字符串<code>@string/edit_message</code>的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的是值是存在的资源，所以不需要使用+号。然而，由于你还没有定义字符串的值，所以在添加<code>@string/edit_message</code>时候会出现编译错误。下边你可以定义字符串资源值来去除这个错误。</p>
+<p>当文本框为空的时候,会默认显示这个字符串。对于字符串<code>@string/edit_message</code>的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用+号。然而，由于你还没有定义字符串的值，所以在添加<code>@string/edit_message</code>时候会出现编译错误。下边你可以定义字符串资源值来去除这个错误。</p>
 <blockquote>
 <p><strong>Note</strong>: 该字符串资源与id使用了相同的名称（edit_message）。然而，对于资源的引用是区分类型的（比如id和字符串），因此，使用相同的名称不会引起冲突。</p>
 </blockquote>
 <h2 id="">增加字符串资源</h2>
 <p>默认情况下，你的Android项目包含一个字符串资源文件，<code>res/values/string.xml</code>。打开这个文件，为<code>&quot;edit_message&quot;</code>增加一个供使用的字符串定义，设置值为&quot;Enter a message.&quot;</p>
-<p>1 在Android Studio, f从res/values 打开strings.xml.</p>
+<p>1 在Android Studio里，编辑 res/values 下的 strings.xml 文件.</p>
 <p>2 添加一个string名为&quot;edit_message&quot; ,值为 &quot;Enter a message&quot;.</p>
-<p>3 再添加一个string名为 &quot;button_send&quot;，值为&quot;Send&quot;.</p>
-<p>4 接下来将使用第3步创建的string.</p>
-<p>5 删除 &quot;hello world&quot; string.</p>
-<p>下边就是定义好的<code>res/values/strings.xml</code>文件内容：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;resources&gt;
-    &lt;string name=&quot;app_name&quot;&gt;My First App&lt;/string&gt;
-    &lt;string name=&quot;edit_message&quot;&gt;Enter a message&lt;/string&gt;
-    &lt;string name=&quot;button_send&quot;&gt;Send&lt;/string&gt;
-    &lt;string name=&quot;action_settings&quot;&gt;Settings&lt;/string&gt;
-    &lt;string name=&quot;title_activity_main&quot;&gt;MainActivity&lt;/string&gt;
-&lt;/resources&gt;
-</code></pre><p>当你在用户界面定义一个文本的时候，你应该把每一个文本字符串列入资源文件。对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许您对不同语言本地化应用程序。</p>
-<p>要想获得跟多的对于不同语言本字符串资源本地化的问题，请参考<a href="../supporting-devices/index.html">兼容不同的设备(Supporting Different Devices)</a> 。</p>
+<p>3 再添加一个string名为 &quot;button_send&quot;，值为&quot;Send&quot;.下面的内容将使用这个string来创建一个按钮.</p>
+<p>4 删除 &quot;hello world&quot; string这一行.</p>
+<p>下边就是修改好的<code>res/values/strings.xml</code>：</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"app_name"</span>&gt;</span>My First App<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"edit_message"</span>&gt;</span>Enter a message<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"button_send"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"action_settings"</span>&gt;</span>Settings<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">string</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"title_activity_main"</span>&gt;</span>MainActivity<span class="hljs-tag">&lt;/<span class="hljs-title">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">resources</span>&gt;</span>
+</code></pre>
+<p>当你在用户界面定义一个文本的时候，你应该把每一个文本字符串列入资源文件。这样做的好处是：对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许您对不同语言本地化应用程序。</p>
+<p>更多的于不同语言本字符串资源本地化的问题，请参考<a href="../supporting-devices/index.html">兼容不同的设备(Supporting Different Devices)</a> 。</p>
 <h2 id="">添加一个按钮</h2>
 <p>1 在 Android Studio里, 编辑 res/layout下的 activity_my.xml 文件.</p>
-<p>2 在LinearLayout 内部, 定义一个Button&gt;标签紧接着 EditText标签.</p>
+<p>2 在LinearLayout 内部, 在<EditText\>标签之后定义一个<Button\>标签.</p>
 <p>3 设置Button的width 和 height 属性值为 &quot;wrap_content&quot; 以便让Button大小能完整显示其上的文本.</p>
-<p>4 定义button的文本使用android:text 属性，设置其值为前边定义好的 button_send 字符串.</p>
+<p>4 定义button的文本使用android:text 属性，设置其值为之前定义好的 button_send 字符串.</p>
 <p>此时的 LinearLayout 看起来应该是这样</p>
 <p>res/layout/activity_my.xml</p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;horizontal&quot; &gt;
-      &lt;EditText android:id=&quot;@+id/edit_message&quot;
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:hint=&quot;@string/edit_message&quot; /&gt;
-      &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/button_send&quot; /&gt;
-&lt;/LinearLayout&gt;
-</code></pre><p><strong> Note</strong> 宽和高被设置为<code>&quot;wrap_content&quot;</code>，这时按钮占据的大小就是按钮里文本的大小。这个按钮不需要指定<a href="http://developer.android.com/reference/android/view/View.html#attr_android:id" target="_blank">android:id</a>的属性，因为在Activity代码里不被引用到。</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"horizontal"</span> &gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">EditText</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/edit_message"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:hint</span>=<span class="hljs-value">"@string/edit_message"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Button</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/button_send"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong> 宽和高被设置为<code>&quot;wrap_content&quot;</code>，这时按钮占据的大小就是按钮里文本的大小。这个按钮不需要指定<a href="http://developer.android.com/reference/android/view/View.html#attr_android:id" target="_blank">android:id</a>的属性，因为Activity代码中不会引用该Button。</p>
+</blockquote>
 <p>当前EditText和Button部件只是适应了他们各自内容的大小，如下图所示：</p>
 <p><img src="edittext_wrap.png" alt="edittext_wrap"></p>
-<p>这样设置对按钮来说很合适，但是对于文本框来说就不太好了，因为用户可能输入更长的文本内容。因此如果能够占满整个屏幕宽度会更好。LinearLayout使用权重的属性来达到这个目的，你可以使用<a href="http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html#weight" target="_blank">android:layout_weight</a>属性来设置。</p>
-<p>你可以根据每一个部件所占的空间来指定权重值的大小，它的总数是有同级别的部件来决定的。就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，意思就是这个酒中伏特加酒占三分之二。例如，你设置一个View的权重是2，另一个View的权重是1，那么总数就是3，这时第一个View占据2/3的空间，第二个占据1/3的空间。如果你再加入第三个View，权重设为1，那么第一个View(权重为2的)会占据1/2的空间，剩余的另外两个View各占1/4。(请注意，使用权重的前提一般是给View的宽或者高的大小设置为0dp，然后系统根据上面的权重规则来计算View应该占据的空间。但是很多情况下，如果给View设置了match_parent的属性，那么上面计算权重时则不是通常的正比，而是反比，也就是权重值大的反而占据空间小)。</p>
-<p>对于所有的View默认的权重是0，如果你只设置了一个View的权重大于0，那么这个View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。</p>
+<p>这样设置对按钮来说很合适，但是对于文本框来说就不太好了，因为用户可能输入更长的文本内容。因此如果能够占满整个屏幕宽度会更好。LinearLayout使用<em>权重</em>属性来达到这个目的，你可以使用<a href="http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html#weight" target="_blank">android:layout_weight</a>属性来设置。</p>
+<p>权重的值指的是每个部件所占剩余空间的大小，该值与同级部件所占空间大小有关。就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，即该酒中伏特加酒占三分之二。例如，我们设置一个View的权重是2，另一个View的权重是1，那么总数就是3，这时第一个View占据2/3的空间，第二个占据1/3的空间。如果你再加入第三个View，权重设为1，那么第一个View(权重为2的)会占据1/2的空间，剩余的另外两个View各占1/4。(请注意，使用权重的前提一般是给View的宽或者高的大小设置为0dp，然后系统根据上面的权重规则来计算View应该占据的空间。但是很多情况下，如果给View设置了match_parent的属性，那么上面计算权重时则不是通常的正比，而是反比，也就是权重值大的反而占据空间小)。</p>
+<p>对于所有的View默认的权重是0，如果只设置了一个View的权重大于0，则该View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。</p>
 <h2 id="">让输入框充满整个屏幕的宽度</h2>
 <p>为让 EditText充满剩余空间，做如下操作：</p>
 <p>1  在activity_my.xml文件里，设置EditText的layout_weight属性值为1 .</p>
-<p>2  同时设置EditText的layout_width值为0dp.</p>
+<p>2  设置EditText的layout_width值为0dp.</p>
 <p>res/layout/activity_my.xml</p>
-<pre><code>&lt;EditText
-    android:layout_weight=&quot;1&quot;
-    android:layout_width=&quot;0dp&quot;
-    ... /&gt;
-</code></pre><p>为了提升布局的效率，在设置权重的时候，你应该把<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>的宽度设置为0dp。如果你设置为&quot;wrap_content&quot;作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为你设置了权重，所以系统自动会占据剩余空间，EditText的宽度最终成了不起作用的属性。</p>
-<p>下图展示了设置权重后的的效果</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">EditText</span>
+    <span class="hljs-attribute">android:layout_weight</span>=<span class="hljs-value">"1"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"0dp"</span>
+    <span class="hljs-attribute">...</span> /&gt;</span>
+</code></pre>
+<p>为了提升布局的效率，在设置权重的时候，应该把<a href="http://developer.android.com/reference/android/widget/EditText.html" target="_blank">EditText</a>的宽度设为0dp。如果设置&quot;wrap_content&quot;作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为设置了权重，所以系统自动会占据剩余空间，EditText的宽度最终成了不起作用的属性。</p>
+<p>设置权重后的效果图</p>
 <p><img src="edittext_gravity.png" alt="edittext_gravity"></p>
 <p>现在看一下完整的布局文件内容：</p>
 <p>res/layout/activity_my.xml</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:orientation=&quot;horizontal&quot;&gt;
-    &lt;EditText android:id=&quot;@+id/edit_message&quot;
-        android:layout_weight=&quot;1&quot;
-        android:layout_width=&quot;0dp&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:hint=&quot;@string/edit_message&quot; /&gt;
-    &lt;Button
-        android:layout_width=&quot;wrap_content&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:text=&quot;@string/button_send&quot; /&gt;
-&lt;/LinearLayout&gt;
-</code></pre><h2 id="">运行应用</h2>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
+    <span class="hljs-attribute">xmlns:tools</span>=<span class="hljs-value">"http://schemas.android.com/tools"</span>
+    <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
+    <span class="hljs-attribute">android:orientation</span>=<span class="hljs-value">"horizontal"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">EditText</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/edit_message"</span>
+        <span class="hljs-attribute">android:layout_weight</span>=<span class="hljs-value">"1"</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"0dp"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:hint</span>=<span class="hljs-value">"@string/edit_message"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Button</span>
+        <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"wrap_content"</span>
+        <span class="hljs-attribute">android:text</span>=<span class="hljs-value">"@string/button_send"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
+</code></pre>
+<h2 id="">运行应用</h2>
 <p>整个布局默认被应用于创建项目的时候SDK工具自动生成的Activity，运行看下效果:</p>
 <ul>
 <li><p>在Android Studio里，点击工具栏里的Run按钮<img src="eclipse-run.png" /></p>
@@ -5263,8 +5240,8 @@
 </ul>
 <pre><code>ant debug
 adb install bin/MyFirstApp-debug.apk
-</code></pre><p>继续下一小节学习有关怎么对按钮做出相应，同时读取文本里的内容，启动另外一个Activity，以及更多信息。</p>
-<p><a href="starting-activity.html">下一节：启动另外的Activity</a></p>
+</code></pre><p>下一小节将学习有关如何对按钮做出相应，同时读取文本中的内容，启动另外一个Activity等。</p>
+<p><a href="starting-activity.html">下一节：启动另一个Activity</a></p>
 
                     
                     </section>

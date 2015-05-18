@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>添加语音能力 | Android官方培训课程中文版(v0.9.2)</title>
+        <title>添加语音功能 | Android官方培训课程中文版(v0.9.3)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.2.3" data-basepath="../.." data-revision="1427722131239">
+    <div class="book"  data-level="7.2.3" data-basepath="../.." data-revision="1431962371981">
     
 
 <div class="book-summary">
@@ -1997,7 +1997,7 @@
                         
                             <b>6.1.3.</b>
                         
-                         修改联系人信息
+                         使用Intents修改联系人信息
                     </a>
                 
             
@@ -2051,7 +2051,7 @@
                         
                             <b>6.2.1.</b>
                         
-                         获取当前位置
+                         获取最后可知位置
                     </a>
                 
             
@@ -2099,39 +2099,7 @@
                         
                             <b>6.2.4.</b>
                         
-                         创建并监视异常区域
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.5" data-path="location/activity-recognition.html">
-            
-                
-                    <a href="../../location/activity-recognition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.5.</b>
-                        
-                         识别用户的当下活动
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2.6" data-path="location/location-testing.html">
-            
-                
-                    <a href="../../location/location-testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.2.6.</b>
-                        
-                         使用模拟位置进行测试
+                         创建和监视地理围栏
                     </a>
                 
             
@@ -2277,7 +2245,7 @@
                         
                             <b>7.2.1.</b>
                         
-                         创建并执行可穿戴应用
+                         创建并运行可穿戴应用
                     </a>
                 
             
@@ -2309,7 +2277,7 @@
                         
                             <b>7.2.3.</b>
                         
-                         添加语音能力
+                         添加语音功能
                     </a>
                 
             
@@ -2395,7 +2363,7 @@
                         
                             <b>7.3.2.</b>
                         
-                         创建Cards
+                         创建Card
                     </a>
                 
             
@@ -2411,7 +2379,7 @@
                         
                             <b>7.3.3.</b>
                         
-                         创建Lists
+                         创建List
                     </a>
                 
             
@@ -2427,7 +2395,7 @@
                         
                             <b>7.3.4.</b>
                         
-                         创建2D-Picker
+                         创建2D Picker
                     </a>
                 
             
@@ -3051,7 +3019,7 @@
                         
                             <b>10.1.4.</b>
                         
-                         提供向上和操作顺序导航
+                         提供向上和历史导航
                     </a>
                 
             
@@ -5115,7 +5083,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.2)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
     </h1>
 </div>
 
@@ -5123,31 +5091,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_287">
+                    <section class="normal" id="section-gitbook_285">
                     
-                        <h1 id="">添加语音能力</h1>
+                        <h1 id="">添加语音功能</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文: <a href="http://developer.android.com/training/wearables/apps/voice.html" target="_blank">http://developer.android.com/training/wearables/apps/voice.html</a></p>
 </blockquote>
 <p>语音指令是可穿戴体验的一个重要的部分。这使得用户可以释放双手，快速发出指令。穿戴提供了2种类型的语音操作：</p>
 <ul>
 <li><p><strong>系统提供的</strong></p>
-<p>这些语音指令都是基于任务的，并且内置在Wear的平台内。你在activity中过滤你想要接收的指令。例如包含&quot;Take a note&quot; 或者 &quot;Set an alarm&quot;的指令。</p>
+<p>这些语音指令都是基于任务的，并且内置在Wear的平台内。我们在activity中过滤我们想要接收的指令。例如包含&quot;Take a note&quot; 或者 &quot;Set an alarm&quot;的指令。</p>
 </li>
 <li><p><strong>应用提供的</strong></p>
-<p>这些语音指令都是基于应用的，你需要像声明一个Launcher Icon一样定义这些指令。用户通过说&quot;Start XXX&quot;来使用那些语音指令，然后会启动你指定启动的activity。</p>
+<p>这些语音指令都是基于应用的，我们需要像声明一个Launcher Icon一样声明这些指令。用户通过说&quot;Start &quot;来使用那些语音指令，然后会启动我们指定启动的activity。</p>
 </li>
 </ul>
 <h2 id="">声明系统提供的语音指令</h2>
-<p>Android Wear平台基于用户的操作提供了一些语音指令，例如&quot;Take a note&quot; 或者 &quot;Set an alarm&quot;。用户发出想要做的操作指令，让系统寻找应该启动最合适的activity。</p>
-<p>当用户说出语音指令时，你的应用能够被过滤出来启动一个activity。如果你想要启动一个service在后台执行任务，需要显示一个activity呈现作为线索。当你想要废弃这个可见的线索时，需要确保执行了finish()。</p>
-<p>例如，对于&quot;Take a note&quot;的指令，定义一个MyNoteActivity来接收这个指令:</p>
-<pre><code class="lang-java">&lt;activity android:name="MyNoteActivity"&gt;
-      &lt;intent-filter&gt;
-          &lt;action android:name="android.intent.action.SEND" /&gt;
-          &lt;category android:name="com.google.android.voicesearch.SELF_NOTE" /&gt;
-      &lt;/intent-filter&gt;
-  &lt;/activity&gt;
+<p>Android Wear平台基于用户的操作提供了一些语音指令，例如&quot;Take a note&quot; 或者 &quot;Set an alarm&quot;。用户发出想要做的操作指令，让系统启动最合适的activity。</p>
+<p>当用户说出语音指令时，我们的应用能够过滤出用于启动activity的intent。如果我们想要启动一个在后台执行任务的service，需要显示一个activity作为视觉线索，并且在该activity中启动service。当我们想要废弃这个视觉线索时，需要确保执行了finish()。</p>
+<p>例如，对于&quot;Take a note&quot;的指令，声明下面这个intent filter来启动一个名为<code>MyNoteActivity</code>的activity:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"MyNoteActivity"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">action</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.intent.action.SEND"</span> /&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">category</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"com.google.android.voicesearch.SELF_NOTE"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">intent-filter</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 </code></pre>
 <p>下面列出了Wear平台支持的语音指令：</p>
 <p><img src="voice_intent_1.png" alt="voice_intent_1">
@@ -5155,9 +5123,9 @@
 <img src="voice_intent_3.png" alt="voice_intent_3"></p>
 <p>关于注册intent与获取intent extra的信息，请参考<a href="http://developer.android.com/guide/components/intents-common.html" target="_blank">Common intents</a>.</p>
 <h2 id="">声明应用提供的语音指令</h2>
-<p>如果系统提供的语音指令无法满足你的需求，你可以使用&quot;Start MyActivityName&quot;的指令来直接启动你的应用。</p>
-<p>注册一个&quot;Start&quot;指令和注册手持应用上得Launcher是一样的。</p>
-<p>在&quot;Start&quot;指令的后面需要指定的文字, 这个文字需要注册在activity的label属性上。例如，下面的设置能够识别&quot;Start MyRunningApp&quot;的语音指令并启动StartRunActivity.</p>
+<p>如果系统提供的语音指令无法满足我们的需求，我们可以使用&quot;Start MyActivityName&quot;语音指令来直接启动我们的应用。</p>
+<p>注册一个&quot;Start&quot;指令的方法和注册手持应用上的Launcher Icon是一样的。除了在launcher里面需要一个应用图标，而我们的应用需要一个语音指令。</p>
+<p>为了指定在&quot;Start&quot;指令之后需要说出的文本, 我们需要指定想要启动的activity的<code>label</code>属性。例如，下面的intent filter能够识别&quot;Start MyRunningApp&quot;语音指令并启动<code>StartRunActivity</code>。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">activity</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"StartRunActivity"</span> <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"MyRunningApp"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>
@@ -5167,9 +5135,9 @@
   <span class="hljs-tag">&lt;/<span class="hljs-title">activity</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">application</span>&gt;</span>
 </code></pre>
-<h2 id="">获取输入的自由语音</h2>
-<p>除了使用语音指令来启动activity之外，你也可以执行系统内置的语言识别activity来获取用户的语音输入。这对于获取用户的输入信息非常有帮助，例如执行搜索或者发送一个消息。</p>
-<p>在你的应用中，startActivityForResult()使用<code>ACTION_RECOGNIZE_SPEECH</code>启动系统语音识别应用。在onActivityResult()中处理返回的结果：</p>
+<h2 id="">获取自由格式的语音输入</h2>
+<p>除了使用语音指令来启动activity之外，我们也可以执行系统内置的语言识别activity来获取用户的语音输入。这对于获取用户的输入信息非常有帮助，例如执行搜索或者发送一个消息。</p>
+<p>在我们的应用中，使用<a href="http://developer.android.com/reference/android/speech/RecognizerIntent.html#ACTION_RECOGNIZE_SPEECH" target="_blank">ACTION_RECOGNIZE_SPEECH</a> action并调用<a href="http://developer.android.com/reference/android/app/Activity.html#startActivityForResult(android.content.Intent, int)">startActivityForResult()</a>。这样可以启动系统语音识别应用，并且我们可以在<a href="http://developer.android.com/reference/android/app/Activity.html#onActivityResult(int, int, android.content.Intent)">onActivityResult()</a>中处理返回的结果：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SPEECH_REQUEST_CODE = <span class="hljs-number">0</span>;
 
 <span class="hljs-comment">// Create an intent that can start the Speech Recognizer activity</span>
