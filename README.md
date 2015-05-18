@@ -2,9 +2,8 @@
 
 ![Android Training](android_training.jpg)
 
-Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。起初，自己学习Android Training的课程，就把课程
-我们通过Github发起开源协作翻译的项目，完成中文版的输出，欢迎大家传阅学习!
-项目难免会有很多写的不对不好的地方，欢迎读者加入此协作项目，进行纠错，为完善这份教程贡献你的一点力量!
+Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。我们通过Github发起开源协作翻译的项目，完成中文版的输出，欢迎大家传阅学习！
+文章中难免会有很多写的不对不好的地方，欢迎读者加入此协作项目，进行纠错，为完善这份教程贡献一点力量!
 
 ## Github托管主页
 
