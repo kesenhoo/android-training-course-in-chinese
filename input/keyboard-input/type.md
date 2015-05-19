@@ -11,6 +11,7 @@
 通过添加[android:inputType](http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType)属性到 [&lt;EditText&gt;](http://developer.android.com/reference/android/widget/EditText.html) 标签中，可以为文本域定义输入的类型。
 
 举例来说，如果我们想要输入电话号码，可以填写`phone`作为值:
+
 ![edittext-phone](edittext-phone.png "Figure 1. The phone input type.")
 
 ```xml
@@ -23,6 +24,7 @@
 ```
 
 或着如果文本域是密码，使用`textPassword`作为值来隐藏用户的输入:
+
 ![ime_password](ime_password.png )
 
 ```xml
