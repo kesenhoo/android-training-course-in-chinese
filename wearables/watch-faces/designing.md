@@ -40,7 +40,9 @@
 
 更多关于 Android Wear 表盘的设计，请见 [Watch Faces for Android Wear](http://developer.android.com/design/wear/watchfaces.html) 设计指引。
 
-## 创建实施策略
+
+<a name="ImplementationStrategy"></a>
+## 创建实现策略
 
 完成表盘的设计后，我们需要决定如何获得必要的数据和将表盘绘制到可穿戴设备上。大部分实现方案由如下部分组成：
 
