@@ -223,6 +223,7 @@ public void onTimeTick() {
 }
 ```
 
+<a name="SystemUI"></a>
 ## 配置系统 UI
 
 表盘不应该干涉系统 UI 组件，在 [Accommodate System UI Element](http://developer.android.com/design/wear/watchfaces.html#SystemUI) 中有介绍。如果我们的表盘背景比较亮或者在屏幕的底部附近显示了信息，那么我们可能要配置 notification cards 的尺寸或者启用背景保护。
