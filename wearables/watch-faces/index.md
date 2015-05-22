@@ -28,7 +28,7 @@ Android Wear 允许我们为 Wear 设备创建自定义的表盘。当用户安�
 
 学习如何将上下文信息集成到表盘中。
 
-[提供可配置的 Activity](configuration.html)
+[提供配置 Activity](configuration.html)
 
 学习如何创建带有可配置参数的表盘。
 

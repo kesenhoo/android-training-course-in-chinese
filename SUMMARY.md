@@ -148,7 +148,7 @@
        * [构建表盘服务](wearables/watch-faces/service.md)
        * [绘制表盘](wearables/watch-faces/drawing.md)
        * [在表盘上显示信息](wearables/watch-faces/information.md)
-       * [提供可配置的 Activity](wearables/watch-faces/configuration.md)
+       * [提供配置 Activity](wearables/watch-faces/configuration.md)
        * [定位常见的问题](wearables/watch-faces/issues.md)
        * [优化性能和电池使用时间](wearables/watch-faces/performance.md)
    * [位置检测](articles/wear-location-detection.md)
