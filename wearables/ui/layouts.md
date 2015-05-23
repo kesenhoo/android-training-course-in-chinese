@@ -111,6 +111,7 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 ```
 
+<a name="same-layout"></a>
 ## 使用感知形状的Layout
 
 包含在Wearable UI库中的`BoxInsetLayout`类继承自 [FrameLayout](https://developer.android.com/reference/android/widget/FrameLayout.html)，该类允许我们定义一个同时适配方形和圆形屏幕的layout。这个类适用于需要根据屏幕形状插入间隔的情况，并让我们容易地将view对其到屏幕的边缘或中心。
