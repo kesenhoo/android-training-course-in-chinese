@@ -15,7 +15,7 @@
   * 一个标题，用[setContentTitle()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentTitle(java.lang.CharSequence))方法设置。
   * 详细的文本，用[setContentText()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentText(java.lang.CharSequence))方法设置
 
-比如：
+例如：
 
 
 ```java
@@ -53,9 +53,9 @@ PendingIntent resultPendingIntent =
 
 ## 设置Notification的点击行为
 
-* 可以通过调用[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)中合适的方法，将上一步创建的[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)与一个手势产生关联。比方说，当点击Notification抽屉里的Notification文本时，启动一个activity，可以通过调用[setContentIntent()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent))方法把[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)添加进去。
+ 可以通过调用[NotificationCompat.Builder](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html)中合适的方法，将上一步创建的[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)与一个手势产生关联。比方说，当点击Notification抽屉里的Notification文本时，启动一个activity，可以通过调用[setContentIntent()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent))方法把[PendingIntent](developer.android.com/reference/android/app/PendingIntent.html)添加进去。
 
-比如：
+例如：
 
 ```java
 
@@ -68,7 +68,7 @@ mBuilder.setContentIntent(resultPendingIntent);
 
 ## 发布Notification
 
-* 为了发布notification：
+为了发布notification：
     * 获取一个[NotificationManager](http://www.baidu.com/baidu?wd=NotificationManager.&tn=monline_4_dg)实例
     * 使用[notify()](developer.android.com/reference/java/lang/Object.html#notify())方法发布Notification。当你调用[notify()](developer.android.com/reference/java/lang/Object.html#notify())方法时，指定一个notification ID。你可以在以后使用这个ID来更新你的notification。这在[Managing Notifications](developer.android.com/intl/zh-cn/training/notify-user/managing.html)中有更详细的描述。
     * 调用[build()](developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#build())方法，会返回一个包含你的特征的[Notification](developer.android.com/reference/android/app/Notification.html)对象。

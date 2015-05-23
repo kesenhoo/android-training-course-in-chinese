@@ -1,11 +1,11 @@
-# 实现可适应的UI流程
+# 实现自适应UI流（Flows）
 
 > 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/adaptui.html>
 
-在你应用已经可以显示UI的基础上，UI的流程可能会不一样。比如，当你的应用在有两个方框的模式中，点击左边方框的item时，内容显示在右边方框中。如果是在只有一个方框的模式中，当你点击某个item的时候，内容则显示在一个新的activity中。
+根据当前你的应用显示的布局，它的UI流可能会不一样。比如，当你的应用是双窗格模式，点击左边窗格的条目（item）时，内容（content）显示在右边窗格中。如果是单窗格模式中，当你点击某个item的时候，内容则显示在一个新的activity中。
 
 ## 确定当前布局
-当你在实现不同布局的时候，首先，你应该确定用户在当前的情况下看到的view应该是个什么样子。比如，你可能想知道当前用户到底是处于“单个方框”的模式还是“多个方框”的模式。这个时候，你就可以通过查询指定的view是不是存在并是否显示来判断当前的模式：
+由于每种布局的实现会略有差别，首先你可能要确定用户当前可见的布局是哪一个。比如，你可能想知道当前用户到底是处于“单窗格”的模式还是“双窗格”的模式。你可以通过检查指定的视图（view）是否存在和可见来实现：
 
 ```java
 public class NewsReaderActivity extends FragmentActivity {
@@ -25,7 +25,7 @@ public class NewsReaderActivity extends FragmentActivity {
 
 > 注意：使用代码查询id为“article”的view是否可见比直接硬编码查询指定的布局更加的灵活。
 
-另一个关于如何适配已经存在的不同组件的例子是在组件执行操作之前先检查它是否是可用的。比如，在News Reader示例中，有一个按钮点击后打开一个菜单，但是这个按钮仅仅只在Android3.0之后的版本中才能显示（因为这个函数是在API 11中ActionBar中才能有的）。所以，在给这个按钮添加事件之间，你可以这样做：
+另一个关于如何适配不同组件是否存在的例子，是在组件执行操作之前先检查它是否是可用的。比如，在News Reader示例中，有一个按钮点击后打开一个菜单，但是这个按钮仅仅只在Android3.0之后的版本中才能显示（因为这个功能被ActionBar代替，在API 11+中定义）。所以，在给这个按钮添加事件之间，你可以这样做：
 ```java
 Button catButton = (Button) findViewById(R.id.categorybutton);
 OnClickListener listener = /* create your listener here */;
@@ -36,7 +36,7 @@ if (catButton != null) {
 
 ## 根据当前布局响应
 
-根据当前不同的布局有一些操作肯定会带来不一样的结果。比如，在News Reader示例中，当你点击headlines列表中的某一条headline时，如果你的UI是在多个方框模式中，内容会显示在右边的方框中，如果你的UI是在单个方框模式中，内容则会显示在一个新的独立的Activity中：
+一些操作会根据当前的布局产生不同的效果。比如，在News Reader示例中，当你点击标题（headlines）列表中的某一条headline时，如果你的UI是双窗格模式，内容会显示在右边的窗格中，如果你的UI是单窗格模式，会启动一个分开的Activity并显示：
 ```java
 @Override
 public void onHeadlineSelected(int index) {
@@ -53,7 +53,7 @@ public void onHeadlineSelected(int index) {
     }
 }
 ```
-同样，如果你的应用程序时多个方框的模式，那么它应该在导航栏中设置带有选项卡的action bar。而如果是单框模式，那么导航栏应该设置为spinner widget。所以，你的代码应该检查哪个方案是最合适的：
+同样，如果你的应用处于多窗格模式，那么它应该在导航栏中设置带有选项卡的action bar。而如果是单窗格模式，那么导航栏应该设置为spinner widget。所以，你的代码应该检查哪个方案是最合适的：
 ```java
 final String CATEGORIES[] = { "Top Stories", "Politics", "Economy", "Technology" };
 
@@ -81,9 +81,9 @@ public void onCreate(Bundle savedInstanceState) {
 
 ## 在其他Activity中复用Fragment
 
-在设计为多屏幕适配的UI时有一个复用的原则：将你的界面变为单独部分，这样它能在某些屏幕配置上被实现为一个方框，而在其他屏幕配置中，则被实现为一个单独的activity。例如，在News Reader中，新闻内容文字在大屏幕上市显示在屏幕右边的方框中，而在小屏幕中，则是由单独的activity显示的。
+在多屏幕设计时经常出现的情况是：在一些屏幕配置上设计一个窗格，而在其他屏幕配置上启动一个独立的Activity。例如，在News Reader中，新闻内容文字在大屏幕上市显示在屏幕右边的方框中，而在小屏幕中，则是由单独的activity显示的。
 
-像这样的情况，你就应该在不同的activity中使用同一个Fragment，以此来避免代码的重复，而达到代码复用的效果。比如，ArticleFragment在多个方框模式下是这样用的：
+像这样的情况，你就应该在不同的activity中使用同一个Fragment，以此来避免代码的重复，而达到代码复用的效果。比如，ArticleFragment在双窗格模式下是这样用的：
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -107,7 +107,7 @@ getSupportFragmentManager().beginTransaction().add(android.R.id.content, frag).c
 ```
 当然，如果将这个fragment定义在XML布局文件中，也有同样的效果，但是在这个例子中，则没有必要，因为这个article fragment是这个activity的唯一组件。
 
-当你在设计fragment的时候，有一个非常重要的知识点：不要为某个特定的activity设计耦合度高的fragment。通常的做法是，通过定义抽象接口，并在接口中定义需要与该fragment进行交互的activity的抽象方法，然后与该fragment进行交互的activity实现这些抽象接口方法的具体方法。
+当你在设计fragment的时候，非常重要的一点：不要为某个特定的activity设计耦合度高的fragment。通常的做法是，通过定义抽象接口，并在接口中定义需要与该fragment进行交互的activity的抽象方法，然后与该fragment进行交互的activity实现这些抽象接口方法。
 
 例如，在News Reader中，HeadlinesFragment就很好的诠释了这一点：
 ```java
@@ -144,10 +144,10 @@ public class HeadlinesFragment extends ListFragment {
 
 ## 处理屏幕配置变化
 
-如果使用的是单独的activity来实现你界面的不同部分，你需要注意的是，屏幕变化（如旋转变化）的时候，你也应该根据屏幕配置的变化来改变你UI的变化。
+如果使用的是单独的activity来实现你界面的不同部分，你需要注意的是，屏幕变化（如旋转变化）的时候，你也应该根据屏幕配置的变化来保持你的UI布局的一致性。
 
-例如，在传统的Android3.0或以上版本的7寸平板上，News Reader示例在竖屏的时候使用独立的activity显示文章内容，而在横屏的时候，则使用两个方框的模式（即内容显示在右边的方框中）。
-这也就意味着，当用户在竖屏模式下观看文章的时候，你需要检测屏幕是否被改变为了横屏，如果改变了，则结束当前activity并返回到主activity中，这样，UI就能显示为两个方框的模式了。
+例如，在传统的Android3.0或以上版本的7寸平板上，News Reader示例在竖屏的时候使用独立的activity显示文章内容，而在横屏的时候，则使用两个窗格模式（即内容显示在右边的方框中）。
+这也就意味着，当用户在竖屏模式下观看文章的时候，你需要检测屏幕是否变成了横屏，如果改变了，则结束当前activity并返回到主activity中，这样，content就能显示在双窗格模式布局中。
 ```java
 public class ArticleActivity extends FragmentActivity {
     int mCatIndex, mArtIndex;

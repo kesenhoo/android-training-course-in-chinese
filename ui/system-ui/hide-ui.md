@@ -1,4 +1,4 @@
-# 隐藏系统栏
+# 隐藏状态栏
 
 > 编写:[K0ST](https://github.com/K0ST) - 原文:<http://developer.android.com/training/system-ui/status.html>
 
@@ -21,12 +21,15 @@
 
 ![status_bar_show](status_bar_show.png)
 
+**图1**. 显示状态栏.
+
 图2展示了隐藏状态栏的界面。请注意，Action Bar这个时候也被隐藏了。请永远不要在隐藏状态栏的时候显示Action Bar。
 
 ![status_bar_hide](status_bar_hide.png)
 
+**图2**. 隐藏状态栏.
 
-## 1)在4.0及以下版本中隐藏状态栏
+## 在4.0及以下版本中隐藏状态栏
 
 在Android 4.0及更低的版本中，你可以通过设置`WindowManager`来隐藏状态栏。你可以动态的隐藏，也可以在你的manifest文件中设置Activity的主题。如果你的应用的状态栏在运行过程中会一直隐藏，那么推荐你使用改写manifest设定主题的方法（严格上来讲，即便设置了manifest你也可以动态的改变界面主题）。
 
@@ -65,9 +68,9 @@ public class MainActivity extends Activity {
 
 设置了`FLAG_LAYOUT_IN_SCREEN`之后，你可以拥有与启用`FLAG_FULLSCREEN`后相同的屏幕区域。这个方法防止了状态栏隐藏和展示的时候内容区域的大小变化。
 
-## 2)在4.1及以上版本中隐藏状态栏
+## 在4.1及以上版本中隐藏状态栏
 
-在Android 4.1(API level 16)以及更高的版本中，你可以使用`setSystemUiVisibility()`来进行动态隐藏。`setSystemUiVisibility()`在View层面设置了UI的标签，然后这些设置被整合到了Window层面。`setSystemUiVisibility()`给了你一个比设置`WindowManager`标签更加粒度化的操作。下面这段代码隐藏了状态栏：
+在Android 4.1(API level 16)以及更高的版本中，你可以使用[setSystemUiVisibility()](http://developer.android.com/reference/android/view/View.html#setSystemUiVisibility(int))来进行动态隐藏。`setSystemUiVisibility()`在View层面设置了UI的标签，然后这些设置被整合到了Window层面。`setSystemUiVisibility()`给了你一个比设置`WindowManager`标签更加粒度化的操作。下面这段代码隐藏了状态栏：
 
 ```java
 View decorView = getWindow().getDecorView();
@@ -87,7 +90,7 @@ actionBar.hide();
 * 当从View导航到别的地方时，用setSystemUiVisibility()设置的标签会被清除。
 
 
-## 3)让内容显示在状态栏之后
+## 让内容显示在状态栏之后
 
 在Android 4.1及以上版本，你可以将应用的内容显示在状态栏之后，这样当状态栏显示与隐藏的时候，内容区域的大小就不会发生变化。要做到这个效果，我们需要用到`SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN`这个标志。同时，你也有可能需要`SYSTEM_UI_FLAG_LAYOUT_STABLE`这个标志来帮助你的应用维持一个稳定的布局。
 
@@ -95,7 +98,7 @@ actionBar.hide();
 
 在一些情况下，你可能需要修改默认的padding大小来获取合适的布局。为了控制内容区域的布局相对系统栏（它占据了一个叫做“内容嵌入”`content insets`的区域）的位置，你可以重写`fitSystemWindows(Rect insets)`方法。当窗口的内容嵌入区域发生变化时，`fitSystemWindows()`方法会被view的hierarchy调用，让View做出相应的调整适应。重写这个方法你就可以按你的意愿处理嵌入区域与应用的布局。
 
-## 4)同步状态栏与Action Bar的变化
+## 同步状态栏与Action Bar的变化
 
 在Android 4.1及以上的版本，为了防止在Action Bar隐藏和显示的时候布局发生变化，你可以使用Action Bar的overlay模式。在Overlay模式中，Activity的布局占据了所有可能的空间，好像Action Bar不存在一样，系统会在布局的上方绘制Aciton Bar。虽然这会遮盖住上方的一些布局，但是当Action Bar显示或者隐藏的时候，系统就不需要重新改变布局区域的大小，使之无缝的变化。
 

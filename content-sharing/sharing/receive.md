@@ -2,13 +2,13 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/sharing/receive.html>
 
-就像你的程序能够发送数据到其他程序一样，其也能够方便的接收其他程序发来的数据。需要考虑的是用户与你的程序如何进行交互，以及你想要从其他程序接收哪些数据类型。例如，一个社交网络程序会希望能够从其他程序接受文本数据，像一个有趣的网址链接。Google+的Android客户端会接受文本数据与单张或者多张图片。用这个app，用户可以简单的从Gallery程序选择一张图片来启动Google+进行发布。
+就像我们的程序能够分享数据给其他程序一样，其也能方便的接收来自其他程序的数据。需要考虑的是用户与我们的程序如何进行交互，以及我们想要从其他程序接收数据的类型。例如，一个社交网络程序可能会希望能够从其他程序接受文本数据，比如一个有趣的网址链接。Google+的Android客户端会接受文本数据与单张或者多张图片。用户可以简单的从Gallery程序选择一张图片来启动Google+，并利用其发布文本或图片。
 
 <!-- more -->
 
-## 更新你的manifest文件(Update Your Manifest)
+## 更新我们的manifest文件(Update Your Manifest)
 
-Intent filters通知Android系统一个程序愿意接受的数据。像上一课一样，你可以创建intent filters来表明程序能够接收哪些action。下面是个例子，对三个activit分别指定接受单张图片，文本与多张图片。(这里有不清楚Intent filter的，请参考[Intents and Intent Filters](http://developer.android.com/guide/topics/intents/intents-filters.html#ifs))
+Intent filters告诉Android系统一个程序愿意接受的数据类型。类似于上一课，我们可以创建intent filters来表明程序能够接收的action类型。下面是个例子，对三个activit分别指定接受单张图片，文本与多张图片。(Intent filter相关资料，请参考[Intents and Intent Filters](http://developer.android.com/guide/topics/intents/intents-filters.html#ifs))
 
 ```xml
 <activity android:name=".ui.MyActivity" >
@@ -30,11 +30,11 @@ Intent filters通知Android系统一个程序愿意接受的数据。像上一�
 </activity>
 ```
 
-当另外一个程序尝试通过创建一个intent并将其传递给startActivity来分享一些东西的时候，你的程序会被呈现在一个列表里面让用户进行选择。如果用户选择了你的程序，相应的activity就应该被调用开启，这个时候就是你如何处理获取到的数据的问题了。
+当某个程序尝试通过创建一个intent并将其传递给startActivity来分享一些东西时，我们的程序会被呈现在一个列表中让用户进行选择。如果用户选择了我们的程序，相应的activity会被调用开启，这个时候就是我们如何处理获取到的数据的问题了。
 
 ## 处理接受到的数据(Handle the Incoming Content)
 
-为了处理从Intent带过来的数据，可以通过调用getIntent()方法来获取到Intent对象。一旦你拿到这个对象，你可以对里面的数据进行判断，从而决定下一步应该做什么。请记住，如果一个activity可以被其他的程序启动，你需要在检查intent的时候考虑这种情况(是被其他程序而调用启动的)。
+为了处理从Intent带来的数据，可以通过调用getIntent()方法来获取到Intent对象。拿到这个对象后，我们可以对其中面的数据进行判断，从而决定下一步行为。请记住，如果一个activity可以被其他的程序启动，我们需要在检查intent的时候考虑这种情况(是被其他程序而调用启动的)。
 
 ```java
 void onCreate (Bundle savedInstanceState) {
@@ -82,7 +82,8 @@ void handleSendMultipleImages(Intent intent) {
 }
 ```
 
-请注意，因为你无法知道其他程序发送过来的数据内容是文本还是其他的数据，因此你需要避免在UI线程里面去处理那些获取到的数据。
-更新UI可以像更新EditText一样简单，也可以是更加复杂一点的操作，例如过滤出感兴趣的图片。这完全取决于你的应用接下来要做些什么。
+请注意，由于无法知道其他程序发送过来的数据内容是文本还是其他类型的数据，若数据量巨大，则需要大量处理时间，因此我们应避免在UI线程里面去处理那些获取到的数据。
+
+更新UI可以像更新EditText一样简单，也可以是更加复杂一点的操作，例如过滤出感兴趣的图片。这完全取决于我们的应用接下来要做些什么。
 
 *********************************

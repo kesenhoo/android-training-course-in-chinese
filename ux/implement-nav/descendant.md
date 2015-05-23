@@ -1,4 +1,4 @@
-# 实现Descendant Navigation
+# 实现向下的导航
 
 > 编写:[Lin-H](https://github.com/Lin-H) - 原文:<http://developer.android.com/training/implementing-navigation/descendant.html>
 

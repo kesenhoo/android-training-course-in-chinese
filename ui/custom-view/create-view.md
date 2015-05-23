@@ -12,7 +12,7 @@
 Android的framework提供了许多基类与XML标签用来帮助你创建一个符合上面要求的View。这节课会介绍如何使用Android framework来创建一个view的核心功能。
 
 
-## Subclass a View
+## 继承一个View
 Android framework里面定义的view类都继承自View。你自定义的view也可以直接继承View，或者你可以通过继承既有的一个子类(例如Button)来节约一点时间。
 
 为了让Android Developer Tools能够识别你的view，你必须至少提供一个constructor，它包含一个Contenx与一个AttributeSet对象作为参数。这个constructor允许layout editor创建并编辑你的view的实例。
@@ -25,7 +25,7 @@ class PieChart extends View {
 }
 ```
 
-## Define Custom Attributes
+## 定义自定义属性
 为了添加一个内置的View到你的UI上，你需要通过XML属性来指定它的样式与行为。良好的自定义views可以通过XML添加和改变样式，为了让你的自定义的view也有如此的行为，你应该:
 
 * 为你的view在<declare-styleable>资源标签下定义自设的属性
@@ -67,7 +67,7 @@ class PieChart extends View {
 
 请注意，如果你的view是一个inner class，你必须指定这个view的outer class。同样的，如果PieChart有一个inner class叫做PieView。为了使用这个类中自设的属性，你应该使用com.example.customviews.charting.PieChart$PieView.
 
-## Apply Custom Attributes
+## 应用自定义属性
 当view从XML layout被创建的时候，在xml标签下的属性值都是从resource下读取出来并传递到view的constructor作为一个AttributeSet参数。尽管可以从AttributeSet中直接读取数值，可是这样做有些弊端：
 
 * 拥有属性的资源并没有经过解析
@@ -104,7 +104,7 @@ public PieChart(Context context, AttributeSet attrs) {
 
 清注意TypedArray对象是一个共享资源，必须被在使用后进行回收。
 
-## Add Properties and Events
+## 添加属性和事件
 Attributes是一个强大的控制view的行为与外观的方法，但是他们仅仅能够在view被初始化的时候被读取到。为了提供一个动态的行为，需要暴露出一些合适的getter 与setter方法。下面的代码演示了如何使用这个技巧:
 
 ```java
@@ -124,6 +124,14 @@ public void setShowText(boolean showText) {
 自定义的view也需要能够支持响应事件的监听器。例如，`PieChart`暴露了一个自定义的事件`OnCurrentItemChanged`来通知监听器，用户已经切换了焦点到一个新的组件上。
 
 我们很容易忘记了暴露属性与事件，特别是当你是这个view的唯一用户时。请花费一些时间来仔细定义你的view的交互。一个好的规则是总是暴露任何属性与事件。
+
+## 设计可访问性
+
+自定义view应该支持广泛的用户群体，包含一些不能看到或使用触屏的残障人士。为了支持残障人士，我们应该：
+
+* 使用`android:contentDescription`属性标记输入字段。
+* 在适当的时候通过调用`sendAccessibilityEvent()` 发送访问事件。
+* 支持备用控制器，如方向键（D-pad）和轨迹球（trackball）等。
 
 
 对于创建使用的 views的更多消息, 请参见Android Developers Guide中的 [Making Applications Accessible](http://developer.android.com/guide/topics/ui/accessibility/apps.html#custom-views) 。

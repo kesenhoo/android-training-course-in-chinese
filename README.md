@@ -1,10 +1,9 @@
-# Android官方培训课程中文版(v0.9.2)
+# Android官方培训课程中文版(v0.9.3)
 
 ![Android Training](android_training.jpg)
 
-Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。
-我们通过Github发起开源协作翻译的项目，完成中文版的输出，欢迎大家传阅学习!
-项目难免会有很多写的不对不好的地方，欢迎读者加入此协作项目，进行纠错，为完善这份教程贡献你的一点力量!
+Google Android团队在2012年的时候开设了**Android Training**板块 - <http://developer.android.com/training/index.html>，这些课程是学习Android应用开发的绝佳资料。我们通过Github发起开源协作翻译的项目，完成中文版的输出，欢迎大家传阅学习！
+文章中难免会有很多写的不对不好的地方，欢迎读者加入此协作项目，进行纠错，为完善这份教程贡献一点力量!
 
 ## Github托管主页
 
@@ -16,14 +15,8 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 **<http://hukai.me/android-training-course-in-chinese/index.html>**
 
-## 离线文档
-
-### 下载链接
-* PDF: <http://hukai.me/eBooks/AndroidTrainingCHS.pdf>
-* ePub: <http://hukai.me/eBooks/AndroidTrainingCHS.epub>
-* Mobi: <http://hukai.me/eBooks/AndroidTrainingCHS.mobi>
-
 ### 更新记录
+* v0.9.3 - 2015/05/18
 * v0.9.2 - 2015/03/30
 * v0.9.1 - 2015/03/14
 * v0.9.0 - 2015/03/09
@@ -48,9 +41,10 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 
 * Android Training基础群，适合刚接触Android Training课程的同学。
     * 基础群(1)：**363415744**，已满
-    * 基础群(2)：**399077455**
+    * 基础群(2)：**399077455**，已满
+    * 基础群(3)：**458929573**
 * Android Training进阶群：**414115939**，适合实际Android开发经验1-3年的同学。
-* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，谢谢配合！
+* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，未填写的会收到拒绝，谢谢配合！
 
 ## 课程结构
 
@@ -88,9 +82,11 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
    * [Android位置信息](http://hukai.me/android-training-course-in-chinese/location/index.html) - @[penkzhou](https://github.com/penkzhou)
 * [Android可穿戴应用](http://hukai.me/android-training-course-in-chinese/building-wearables.html)
    * [赋予Notification可穿戴的特性](http://hukai.me/android-training-course-in-chinese/wearables/notifications/index.html) - @[wangyachen](https://github.com/wangyachen)
-   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https:://github.com/kesenhoo)
+   * [创建可穿戴的应用](http://hukai.me/android-training-course-in-chinese/wearables/apps/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [创建自定义的UI](http://hukai.me/android-training-course-in-chinese/wearables/ui/index.html) - @[Roya](https://github.com/RoyaAoki)
    * [发送并同步数据](http://hukai.me/android-training-course-in-chinese/wearables/data-layer/index.html) - @[wly2014](https://github.com/wly2014)
+   * [创建表盘](http://hukai.me/android-training-course-in-chinese/wearables/watch-faces/index.html) - @[heray1990](https://github.com/heray1990)
+   * [位置检测](http://hukai.me/android-training-course-in-chinese/wearables/location/wear-location-detection.html) - @[heray1990](https://github.com/heray1990)
 * [Android企业级应用](http://hukai.me/android-training-course-in-chinese/enterprise/index.html)
    * [Ensuring Compatibility with Managed Profiles](http://hukai.me/android-training-course-in-chinese/enterprise/app-compatibility.html) - @2015/03/14 - 待认领
    * [Implementing App Restrictions](http://hukai.me/android-training-course-in-chinese/enterprise/app-restrictions.html) - @2015/03/14 - 待认领
@@ -118,7 +114,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android用户输入](http://hukai.me/android-training-course-in-chinese/best-user-input.html)
    * [使用触摸手势](http://hukai.me/android-training-course-in-chinese/input/gestures/index.html) - @[Andrwyw](https://github.com/Andrwyw)
    * [处理键盘输入](http://hukai.me/android-training-course-in-chinese/input/keyboard-input/index.html) - @[zhaochunqi](https://github.com/zhaochunqi)
-   * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html) - @2014/07/10 - 待认领
+   * [兼容游戏控制器](http://hukai.me/android-training-course-in-chinese/input/game-controller/index.html) - @[heray1990](https://github.com/heray1990) - 30%
 * [Android后台任务](http://hukai.me/android-training-course-in-chinese/best-background.html)
    * [在IntentService中执行后台任务](http://hukai.me/android-training-course-in-chinese/background-jobs/run-background-service/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [在后台加载数据](http://hukai.me/android-training-course-in-chinese/background-jobs/load-data-background/index.html) - @[kesenhoo](https://github.com/kesenhoo)

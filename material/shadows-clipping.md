@@ -23,6 +23,8 @@ Z = elevation + translationZ
 
 ![](shadows-depth.png)
 
+**图1** - 不同深度view的阴影.
+
 在layout中设置视图的elevation，要使用`android:elevation`属性。要在Activity代码中设置elevation，使用`View.setElevation()`方法。
 
 要设置视图的translation，使用`View.setTranslationZ()`方法。

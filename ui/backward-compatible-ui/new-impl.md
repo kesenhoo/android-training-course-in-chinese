@@ -10,7 +10,7 @@ CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使�
 
 你可以在这些具体子类中直接使用较新的APIs，由于使用延迟类加载的方式，在早期版本的设备上并不会发生崩溃现象。这些类在首次次被访问（实例化类对象或者访问类的静态属性或静态方法）的时候才会去加载并初始化。因此，只要你不在Honeycomb之前的设备上实例化Honeycomb相关的实现，dalvik虚拟机都不会抛出[VerifyError](http://developer.android.com/reference/java/lang/VerifyError.html)异常。
 
-对于本实现，一个比较好的命名约定是把具体子类需要的API等级或者版本名字附加在APIs接口的后边。例如，本地tab实现可以由CompatTabHoneycomb和abHelperHoneycomb这两个类提供，名字后面附加Honeycomb是由于它们都依赖于Android 3.0（API等级11）之后版本的APIs。
+对于本实现，一个比较好的命名约定是把具体子类需要的API等级或者版本名字附加在APIs接口的后边。例如，本地tab实现可以由`CompatTabHoneycomb`和`abHelperHoneycomb`这两个类提供，名字后面附加Honeycomb是由于它们都依赖于Android 3.0（API等级11）之后版本的APIs。
 
 ![backward-compatible-ui-classes-honeycomb](backward-compatible-ui-classes-honeycomb.png)
 
@@ -18,7 +18,7 @@ CompatTab和TabHelper抽象类的具体子类是一种代理实现，它们使�
 
 ## 实现CompatTabHoneycomb
 
-CompatTabHoneycomb是CompatTab抽象类的具体实现并用来引用单独的tabs。CompatTabHoneycomb只是简单的代理[ActionBar.Tab](http://developer.android.com/reference/android/app/ActionBar.Tab.html)对象的方法调用。
+`CompatTabHoneycomb`是`CompatTab`抽象类的具体实现并用来引用单独的tabs。`CompatTabHoneycomb`只是简单的代理[ActionBar.Tab](http://developer.android.com/reference/android/app/ActionBar.Tab.html)对象的方法调用。
 开始使用ActionBar.Tab的APIs实现CompatTabHoneycomb：
 
 ```java
@@ -43,9 +43,9 @@ public class CompatTabHoneycomb extends CompatTab {
 
 ## 实现TabHelperHoneycomb
 
-TabHelperHoneycomb是TabHelper抽象类的具体实现，TabHelperHoneycomb代理方法调用到[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)对象，而这个ActionBar对象是从包含他的Activity中获取的。
+`TabHelperHoneycomb`是`TabHelper`抽象类的具体实现，`TabHelperHoneycomb`代理方法调用到[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)对象，而这个ActionBar对象是从包含他的[Activity](http://developer.android.com/reference/android/app/Activity.html)中获取的。
 
-实现TabHelperHoneycomb，代理其方法调用到ActionBar的API：
+实现`TabHelperHoneycomb`，代理其方法调用到[ActionBar](http://developer.android.com/reference/android/app/ActionBar.html)的API：
 
 ```java
 public class TabHelperHoneycomb extends TabHelper {

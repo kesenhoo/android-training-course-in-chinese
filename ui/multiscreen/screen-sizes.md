@@ -1,20 +1,20 @@
-# 兼容不同的屏幕大小
+# 支持不同的屏幕大小
 
 > 编写:[riverfeng](https://github.com/riverfeng) - 原文:<http://developer.android.com/training/multiscreen/screensizes.html>
 
 这节课教你如何通过以下几种方式支持多屏幕：
 
-1：确保你的布局能自适应屏幕
+1、确保你的布局能自适应屏幕
 
-2：根据你的屏幕配置提供合适的UI布局
+2、根据你的屏幕配置提供合适的UI布局
 
-3：确保你当前的布局适合当前的屏幕。
+3、确保正确的布局适合正确的屏幕。
 
-4：提供合适的位图（bitmap）
+4、提供缩放正确的位图（bitmap）
 
 ## 使用“wrap_content”和“match_parent”
 
-为了确保你的布局能灵活的适应不同的屏幕尺寸，针对一些view组件，你应该使用wrap_content和match_parent来设置他们的宽和高。如果你使用了wrap_content，view的宽和高会被设置为该view所包含的内容的大小值。如果是match_parent（在API 8之前是fill_parent）则被设置为该组件的父控件的大小。
+为了确保你的布局能灵活的适应不同的屏幕尺寸，针对一些view组件，你应该使用wrap_content和match_parent来设置他们的宽和高。如果你使用了wrap_content，view的宽和高会被设置为该view所包含的内容的大小值。如果是match_parent（在API 8之前是fill_parent）则会匹配该组件的父控件的大小。
 
 通过使用wrap_content和match_parent尺寸值代替硬编码的尺寸，你的视图将分别只使用控件所需要的空间或者被拓展以填充所有有效的空间。比如：
 ```xml
@@ -51,7 +51,7 @@
               android:layout_width="match_parent" />
 </LinearLayout>
 ```
-注意上面的例子使用wrap_content和match_parent来指定组件尺寸而不是使用固定的尺寸。这样就能使你的布局正确的适配不同的屏幕尺寸和屏幕配置（这里的配置主要是指屏幕的横竖屏切换）。
+注意上面的例子使用wrap_content和match_parent来指定组件尺寸而不是使用固定的尺寸。这样就能使你的布局正确的适配不同的屏幕尺寸和屏幕方向（这里的配置主要是指屏幕的横竖屏切换）。
 
 例如，下图演示的就是该布局在竖屏和横屏模式下的效果，注意组件的尺寸是自动适应宽和高的。
 
@@ -94,22 +94,24 @@
 </RelativeLayout>
 ```
 ![](relativelayout1.png)
+
 图2：QVGA（小尺寸屏幕）屏幕下截图
 
 ![](relativelayout2.png)
+
 图3：WSVGA（大尺寸屏幕）屏幕下截图
 
-> 注意：尽管组件的尺寸发生了变化，但是它的子view之间的关系还是通过RelativeLayout.LayoutParams已经指定好了。
+> 注意：尽管组件的尺寸发生了变化，但是它的子view之间的空间关系还是通过RelativeLayout.LayoutParams已经指定好了。
 
-## 使用据尺寸限定词
+## 使用尺寸限定词
 
-（译者注：这里的限定词只要是指在编写布局文件时，将布局文件放在加上类似large，sw600dp等这样限定词的文件夹中，以此来告诉系统根据屏幕选择对应的布局文件，比如下面例子的layout-large文件夹）
+（译者注：这里的限定词主要是指在编写布局文件时，将布局文件放在加上类似large，sw600dp等这样限定词的文件夹中，以此来告诉系统根据屏幕选择对应的布局文件，比如下面例子的layout-large文件夹）
 
-从上一节的学习里程中，我们知道如何编写灵活的布局或者相对布局，它们都能通过拉伸或者填充控件来适应不同的屏幕，但是它们却无法为每个不同屏幕尺寸提供最好的用户体验。因此，你的应用不应该只是实现灵活的布局，同时也应该为不同的屏幕配置提供几种不同的布局方式。你可以通过配置限定（configuration qualifiers）来做这件事情，它能在运行时根据你当前设备的配置（比如不同的屏幕尺寸设计了不同的布局）来选择合适的资源。
+从上一节的学习里程中，我们知道如何编写灵活的布局或者相对布局，它们都能通过拉伸或者填充控件来适应不同的屏幕，但是它们却不能为每个不同屏幕尺寸提供最好的用户体验。因此，你的应用不应该只是实现灵活的布局，同时也应该为不同的屏幕配置提供几种不同的布局方式。你可以通过配置限定（configuration qualifiers）来做这件事情，它能在运行时根据你当前设备的配置（比如不同的屏幕尺寸设计了不同的布局）来选择合适的布局资源。
 
- 比如，很多应用都为大屏幕实现了“两个方框”模式（应用可能在一个方框中实现一个list，另外一个则实现list的content），平板和电视都是大到能在一个屏幕上适应两个方框，但是手机屏幕却只能单个显示。所以，如果你想实现这些布局，你就需要以下文件：
+ 比如，很多应用都为大屏幕实现了“两个窗格”模式（应用可能在一个窗格中实现一个list的item，另外一个则实现list的content），平板和电视都是大到能在一个屏幕上适应两个窗格，但是手机屏幕却只能分别显示。所以，如果你想实现这些布局，你就需要以下文件：
 
-res/layout/main.xml.单个方框（默认）布局：
+res/layout/main.xml.单个窗格（默认）布局：
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -124,7 +126,7 @@ res/layout/main.xml.单个方框（默认）布局：
 </LinearLayout>
 ```
 
-res/layout-large/main.xml,两个方框布局：
+res/layout-large/main.xml,两个窗格布局：
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -149,9 +151,9 @@ res/layout-large/main.xml,两个方框布局：
 
 在Android 3.2之前，开发者还有一个困难，那就是Android设备的“large”屏幕尺寸，其中包括Dell Streak（设备名称），老版Galaxy Tab和一般的7寸平板，有很多的应用都想针对这些不同的设备（比如5和7寸的设备）定义不同的布局，但是这些设备都被定义为了large尺寸屏幕。也是因为这个，所以Android在3.2的时候开始使用最小宽度限定词。
 
-最小宽度限定词允许你根据设备的最小宽度（dp单位）来指定不同布局。比如，传统的7寸平板最小宽度为600dp，如果你希望你的UI能够在这样的屏幕上显示两个方框（一个方框的显示在小屏幕上），你可以使用上节中提到的同样的两个布局文件，不同的是，使用sw600来指定两个方框的布局使用在最小宽度为600dp的设备上。
+最小宽度限定词允许你根据设备的最小宽度（dp单位）来指定不同布局。比如，传统的7寸平板最小宽度为600dp，如果你希望你的UI能够在这样的屏幕上显示两个窗格（不是一个窗格显示在小屏幕上），你可以使用上节中提到的使用同样的两个布局文件。不同的是，使用sw600来指定两个方框的布局使用在最小宽度为600dp的设备上。
 
-res/layout/main.xml,单个方框（默认）布局：
+res/layout/main.xml,单个窗格（默认）布局：
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -182,31 +184,35 @@ res/layout-sw600dp/main.xml,两个方框布局：
               android:layout_width="fill_parent" />
 </LinearLayout>
 ```
-这样意味着当你的设备的最小宽度等于600dp或者更大时，系统选择layout-sw600dp/main.xml（两个方框）的布局，而小一点的屏幕则会选择layout/main.xml（单个方框）的布局。
+这样意味着当你的设备的最小宽度等于600dp或者更大时，系统选择layout-sw600dp/main.xml（两个窗格）的布局，而小一点的屏幕则会选择layout/main.xml（单个窗格）的布局。
 然而，在3.2之前的设备上，这样做并不是很好的选择。因为3.2之前还没有将sw600dp作为一个限定词出现，所以，你还是需要使用large限定词来做。因此，你还是应该要有一个布局文件名为res/layout-large/main.xml，和res/layout-sw600dp/main.xml一样。在下一节中，你将学到如何避免像这样出现重复的布局文件。
 
 ## 使用布局别名
 
 最小宽度限定词只能在android3.2或者更高的版本上使用。因此，你还是需要使用抽象尺寸（small，normal，large，xlarge）来兼容以前的版本。比如，你想要将你的UI设计为在手机上只显示一个方框的布局，而在7寸平板或电视，或者其他大屏幕设备上显示多个方框的布局，你可能得提供这些文件：
 
-res/layout/main.xml：单个方框布局
+* res/layout/main.xml：单个窗格布局
 
-res/layout-large：多个方框布局
+* res/layout-large：多个窗格布局
 
-res/layout-sw600dp：多个方框布局
+* res/layout-sw600dp：多个窗格布局
 
 最后两个文件都是一样的，因为其中一个将会适配Android3.2的设备，而另外一个则会适配其他Android低版本的平板或者电视。
 为了避免这些重复的文件（维护让人感觉头痛就是因为这个），你可以使用别名文件。比如，你可以定义如下布局：
-res/layout/main.xml，单个方框布局
-res/layout/main_twopans.xml，两个方框布局
+
+* res/layout/main.xml，单个方框布局
+* res/layout/main_twopans.xml，两个方框布局
+
 然后添加这两个文件：
-res/values-large/layout.xml：
+
+* res/values-large/layout.xml：
+
 ```xml
 <resources>
     <item name="main" type="layout">@layout/main_twopanes</item>
 </resources>
 ```
-res/values-sw600dp/layout.xml：
+* res/values-sw600dp/layout.xml：
 ```xml
 <resources>
     <item name="main" type="layout">@layout/main_twopanes</item>
@@ -218,17 +224,18 @@ res/values-sw600dp/layout.xml：
 
 有一些布局不管是在横向还是纵向的屏幕配置中都能显示的非常好，但是更多的时候，适当的调整一下会更好。在News Reader应用例子中，以下是布局在不同屏幕尺寸和方向的行为：
 
-小屏幕，纵向：一个方框加logo
-小屏幕，横向：一个方框加logo
-7寸平板，纵向：一个方框加action bar
-7寸平板，横向：两个宽方框加action bar
-10寸平板，纵向：两个窄方框加action bar
-10寸平板，横向：两个宽方框加action bar
-电视，横向：两个宽方框加action bar
+* 小屏幕，纵向：一个窗格加logo
+* 小屏幕，横向：一个窗格加logo
+* 7寸平板，纵向：一个窗格加action bar
+* 7寸平板，横向：两个宽窗格加action bar
+* 10寸平板，纵向：两个窄窗格加action bar
+* 10寸平板，横向：两个宽窗格加action bar
+* 电视，横向：两个宽窗格加action bar
 
-这些每个布局都会再res/layout目录下定义一个xml文件，如此，应用就能根据屏幕配置的变化根据别名匹配到对应的布局来适应屏幕。
+这些每个布局都会在res/layout目录下定义一个xml文件，如此，应用就能根据屏幕配置的变化根据别名匹配到对应的布局来适应屏幕。
 
-res/layout/onpane.xml：
+res/layout/onepane.xml：
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -243,6 +250,7 @@ res/layout/onpane.xml：
 ```
 
 res/layout/onepane_with_bar.xml:
+
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -359,9 +367,9 @@ res/values-large-port/layouts.xml:
 
 支持不同的屏幕尺寸同时也意味着你的图片资源也必须能兼容不同的屏幕尺寸。比如，一个button的背景图片就必须要适应该button的各种形状。
 
-如果你在使用组件时可以改变图像的大小，你很快就会发现这是一个不明确的选择，因为运行的时候，图片会被拉伸或者压缩（这样容易造成图像失真）。避免这种情况的解决方案就是使用点9图片，这是一种能够指定哪些区域能够或者不能够拉伸的特殊png文件。
+如果你在使用组件时可以改变图片的大小，你很快就会发现这是一个不明确的选择。因为运行的时候，图片会被拉伸或者压缩（这样容易造成图片失真）。避免这种情况的解决方案就是使用点9图片，这是一种能够指定哪些区域能够或者不能够拉伸的特殊png文件。
 
-因此，在设计的图像需要与组件一起变大变小时，一定要使用点9.若要将位图转换为点9，你可以用一个普通的图像开始（下图，是在4倍变焦情况下的图像显示）。
+因此，在设计的图片需要与组件一起变大变小时，一定要使用点9.若要将位图转换为点9，你可以用一个普通的图片开始（下图，是在4倍变焦情况下的图片显示）。
 ![](button.png)
 
 你可以通过sdk中的draw9patch程序（位于tools/directory目录下）来画点9图片。通过沿左侧和顶部边框绘制像素来标记应该被拉伸的区域。也可以通过沿右侧和底部边界绘制像素来标记。就像下图所示一样：
@@ -370,7 +378,7 @@ res/values-large-port/layouts.xml:
 
 请注意，上图沿边界的黑色像素。在顶部边框和左边框的那些表明图像的可拉伸区域，右边和底部边框则表示内容应该放置的地方。
 
-此外，注意.9.png这个格式，你也必须用这个格式，因为框架会检测这是一个点9图片而不是一个普通图片。
+此外，注意.9.png这个格式，你也必须用这个格式，因为系统会检测这是一个点9图片而不是一个普通PNG图片。
 
 当你将这个应用到组件的背景的时候（通过设置android:background="@drawable/button"），android框架会自动正确的拉伸图像以适应按钮的大小，下图就是各种尺寸中的显示效果：
 

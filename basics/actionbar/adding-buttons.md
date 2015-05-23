@@ -2,7 +2,7 @@
 
 > 编写:[Vincent 4J](http://github.com/vincent4j) - 原文:<http://developer.android.com/training/basics/actionbar/adding-buttons.html>
 
-Action bar 允许你为当前上下文中最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或 文本被称作**action buttons(操作按钮)**。安排不下的或不足够重要的操作被隐藏在 **action overflow** （超出空间的action，译者注）中。
+Action bar 允许我们为当前环境下最重要的操作添加按钮。那些直接出现在 action bar 中的 icon 和/或文本被称作**action buttons(操作按钮)**。安排不下的或不足够重要的操作被隐藏在 **action overflow** （超出空间的action，译者注）中。
 
 ![actionbar-actions](actionbar-actions.png)
 
@@ -12,7 +12,7 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 
 所有的操作按钮和 action overflow 中其他可用的条目都被定义在 [menu资源](https://developer.android.com/guide/topics/resources/menu-resource.html) 的 XML 文件中。通过在项目的 `res/menu` 目录中新增一个 XML 文件来为 action bar 添加操作。
 
-为你想添加到 action bar 中的每个条目添加一个 `<item>` 元素。例如：
+为想要添加到 action bar 中的每个条目添加一个 `<item>` 元素。例如：
 
 `res/menu/main_activity_actions.xml`
 
@@ -32,11 +32,11 @@ Action bar 允许你为当前上下文中最重要的操作添加按钮。那些
 
 上述代码声明，当 action bar 有可用空间时，搜索操作将作为一个操作按钮来显示，但设置操作将一直只在 action overflow 中显示。（默认情况下，所有的操作都显示在 action overflow 中，但为每一个操作指明设计意图是很好的做法。）
 
-icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下图片的文件名。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string 资源`，详情请参见 [创建一个简单的 UI](../firstapp/building-ui.html) 。
+icon 属性要求每张图片提供一个 `resource ID`。在 `@drawable/` 之后的名字必须是存储在项目目录 `res/drawable/` 下位图图片的文件名。例如：`ic_action_search.png` 对应 "@drawable/ic_action_search"。同样地，title 属性使用通过 XML 文件定义在项目目录 `res/values/` 中的一个 `string 资源`，详情请参见 [创建一个简单的 UI](../firstapp/building-ui.html) 。
 
-> **注意**：当创建 icon 和其他 bitmap 图片时，你得为不同屏幕密度下的显示效果提供多个优化的版本，这一点很重要。在 [支持不同屏幕](../supporting-devices/screens.html) 课程中将会更详细地讨论。
+> **注意**：当创建 icon 和其他 bitmap 图片时，要为不同屏幕密度下的显示效果提供多个优化的版本，这一点很重要。在 [支持不同屏幕](../supporting-devices/screens.html) 课程中将会更详细地讨论。
 
-**如果你为了兼容 Android 2.1 的版本使用了 Support 库**，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，你必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以你的 app 名称为基础，但是可以取任何你想要的名称，它的作用域仅仅在你声明的文件之内。）例如：
+**如果为了兼容 Android 2.1 的版本使用了 Support 库**，在 `android` 命名空间下 `showAsAction` 属性是不可用的。Support 库会提供替代它的属性，我们必须声明自己的 XML 命名空间，并且使用该命名空间作为属性前缀。（一个自定义 XML 命名空间需要以我们的 app 名称为基础，但是可以取任何想要的名称，它的作用域仅仅在我们声明的文件之内。）例如：
 
 `res/menu/main_activity_actions.xml`
 
@@ -68,7 +68,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
 ## 为操作按钮添加响应事件
 
-当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>回调方法。在该方法的实现里面调用[MenuItem](https://developer.android.com/reference/android/view/MenuItem.html)的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 - 返回的 ID 会匹配你声明对应的 `<item>` 元素中 `android:id` 属性的值。
+当用户按下某一个操作按钮或者 action overflow 中的其他条目，系统将调用 activity 中<a href="https://developer.android.com/reference/android/app/Activity.html#onOptionsItemSelected(android.view.MenuItem)">onOptionsItemSelected()</a>的回调方法。在该方法的实现里面调用[MenuItem](https://developer.android.com/reference/android/view/MenuItem.html)的<a href="https://developer.android.com/reference/android/view/MenuItem.html#getItemId()">getItemId()</a>来判断哪个条目被按下 - 返回的 ID 会匹配我们声明对应的 `<item>` 元素中 `android:id` 属性的值。
 
 ```java
 @Override
@@ -95,7 +95,7 @@ public boolean onOptionsItemSelected(MenuItem item) {
 
 图 2. Gmail 中的 up button。
 
-当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要你在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
+当运行在 Android 4.1(API level 16) 或更高版本，或者使用 Support 库中的 [ActionBarActivity](https://developer.android.com/reference/android/support/v7/app/ActionBarActivity.html) 时，实现向上导航需要在 manifest 文件中声明父 activity ，同时在 action bar 中设置向上按钮可用。
 
 如何在 manifest 中声明一个 activity 的父类，例如：
 

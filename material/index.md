@@ -16,30 +16,30 @@ Material Design 是一个全面的关于视觉，动作和交互的指南，实�
 
 # 课程
 
-#### [ 开始使用Material Design ](get-started.html)
+#### [ 开始使用Material Design ](get-started.md)
 
 学习如何升级应用，使用 Material Design 特性
 
-#### [ 使用 Material Design 主题 ](theme.html)
+#### [ 使用 Material Design 主题 ](theme.md)
 
 学习如何使用 Material Design 主题
 
-#### [ 用于卡片和列表的小组件 ](lists-cards.html)
+#### [ 用于卡片和列表的小组件 ](lists-cards.md)
 
 学习如何创建列表和卡片视图，使得应用和其他系统组件风格统一
 
-#### [ 定义Shadows与Clipping视图 ](shadows-clipping.html)
+#### [ 定义Shadows与Clipping视图 ](shadows-clipping.md)
 
 学习如何设置 evaluation 来自定义阴影，以及创建 Clipping 视图
 
-#### [ 使用 Drawables ](drawables.html)
+#### [ 使用 Drawables ](drawables.md)
 
 学习如何创建矢量 Drawable 以及如何给 drawable 资源着色
 
-#### [ 自定义动画 ](animations.html)
+#### [ 自定义动画 ](animations.md)
 
 学习如何为视图和 Activity 切换创建自定义动画
 
-#### [ 维护兼容性 ](compatibility.html)
+#### [ 维护兼容性 ](compatibility.md)
 
 学习如何兼容 Android 5.0 以下的版本
