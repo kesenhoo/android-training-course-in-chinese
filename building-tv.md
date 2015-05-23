@@ -1,10 +1,10 @@
-# Android TV应用
+# 创建TV应用
 
 > 编写:[applepyarc](https://github.com/applepyarc) - 原文:<http://developer.android.com/training/tv/index.html>
 
-以下课程将教你如何为Android TV设备开发应用。
+以下课程将教授如何为TV设备开发应用。
 
->**Note**：如何在Google Play发布你的TV应用，请参考[Distributing to Android TV](http://developer.android.com/training/tv/%7BdocRoot%7Ddistribute/googleplay/tv.html)。
+>**Note**：如何在Google Play发布你的TV应用，详细请参考[Distributing to Android TV](http://developer.android.com/distribute/googleplay/tv.html)。
 
 #### [**创建TV应用**](tv/start/index.html)
 如何开发TV应用和移植已有应用到TV设备。
