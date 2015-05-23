@@ -12,7 +12,7 @@
 
 ## 初始化表盘
 
-当系统加载我们的服务时，我们应该分配和初始化表盘需要的大部分资源，包括加载 bitmap 资源、创建定时器对象来运行自定义动画、配置颜色风格和执行其他运算。我们通常只执行一次这些操作和重用它们的结果。这个习惯可以提高表盘的性能并且更容易地维护代码。
+当系统加载我们的服务时，我们应该分配和初始化表盘需要的大部分资源，包括加载位图资源、创建定时器对象来运行自定义动画、配置颜色风格和执行其他运算。我们通常只执行一次这些操作和重用它们的结果。这个习惯可以提高表盘的性能并且更容易地维护代码。
 
 初始化表盘，需要：
 
@@ -31,7 +31,7 @@
 
 *图形对象*
 
-大部分表盘至少包含一个 bitmap 用于表盘的背景，如[创建实施策略](designing.html#ImplementationStrategy)描述的一样。我们可以使用额外的 bitmap 图像来表示表盘的时钟指针或者其它设计元素。
+大部分表盘至少包含一个位图用于表盘的背景，如[创建实施策略](designing.html#ImplementationStrategy)描述的一样。我们可以使用额外的位图图像来表示表盘的时钟指针或者其它设计元素。
 
 *定时计时器*
 
@@ -95,7 +95,7 @@ private class Engine extends CanvasWatchFaceService.Engine {
 
 ### 初始化表盘组件
 
-在为 bitmap 资源、色彩风格和其它每次重新绘制表盘都会重用的组件声明成员变量之后，在系统加载服务时初始化这些组件。只初始化这些组件一次，然后重用它们以提升性能和电池使用时间。
+在为位图资源、色彩风格和其它每次重新绘制表盘都会重用的组件声明成员变量之后，在系统加载服务时初始化这些组件。只初始化这些组件一次，然后重用它们以提升性能和电池使用时间。
 
 在 `Engine.onCreate()` 方法中，初始化下面的组件：
 
@@ -132,7 +132,7 @@ public void onCreate(SurfaceHolder holder) {
 }
 ```
 
-当系统初始化表盘时，只会加载背景 bitmap 一次。图形风格被 [Paint](http://developer.android.com/reference/android/graphics/Paint.html) 类实例化。然后我们在 `Engine.onDraw()` 方法中使用这些风格来绘制表盘的组件，如[绘制表盘](drawing.html#Drawing)描述的那样。
+当系统初始化表盘时，只会加载背景位图一次。图形风格被 [Paint](http://developer.android.com/reference/android/graphics/Paint.html) 类实例化。然后我们在 `Engine.onDraw()` 方法中使用这些风格来绘制表盘的组件，如[绘制表盘](drawing.html#Drawing)描述的那样。
 
 <a name="Timer"></a>
 ### 初始化自定义定时器
@@ -280,10 +280,10 @@ public void onPropertiesChanged(Bundle properties) {
 
 当绘制表盘时，我们应该考虑这些设备属性。
 
-* 对于使用低比特率环境模式的设备，屏幕在环境模式下为每种颜色提供更少的比特，所以当设备切换到环境模式时，我们应该禁用抗锯齿和 bitmap 滤镜。
+* 对于使用低比特率环境模式的设备，屏幕在环境模式下为每种颜色提供更少的比特，所以当设备切换到环境模式时，我们应该禁用抗锯齿和位图滤镜。
 * 对于要求烧毁保护的设备，在环境模式下避免使用大块的白色像素，并且不要将内容放在离屏幕边缘 10 个像素范围内，因为系统会周期地改变内容以避免像素烧毁。
 
-更多关于低比特率环境模式和烧毁保护的内容，请见 [Optimize for Special Screens](http://developer.android.com/design/wear/watchfaces.html#SpecialScreens)。更多关于如何禁用 bitmap 滤镜的内容，请见[Bitmap 滤镜](performance.html#BitmapFiltering)
+更多关于低比特率环境模式和烧毁保护的内容，请见 [Optimize for Special Screens](http://developer.android.com/design/wear/watchfaces.html#SpecialScreens)。更多关于如何禁用位图滤镜的内容，请见[位图滤镜](performance.html#BitmapFiltering)
 
 ## 响应两种模式间的变化
 
@@ -319,7 +319,7 @@ public void onAmbientModeChanged(boolean inAmbientMode) {
 1. 如果是首次调用 `onDraw()` 方法，缩放背景来匹配它。
 2. 检查设备处于环境模式还是交互模式。
 3. 处理任何图形计算。
-4. 在画布上绘制背景 bitmap。
+4. 在画布上绘制背景位图。
 5. 使用 [Canvas](http://developer.android.com/reference/android/graphics/Canvas.html) 类中的方法绘制表盘。
 
 在 *WatchFace* 示例中的 `AnalogWatchFaceService` 类按照如下这些步骤来实现 `onDraw()` 方法：
@@ -378,7 +378,7 @@ public void onDraw(Canvas canvas, Rect bounds) {
 }
 ```
 
-这个方法根据现在的时间计算时钟指针的位置和使用在 `onCreate()` 方法中初始化的图形风格将时钟指针绘制在背景 bitmap 绘制之上。其中，秒针只会在交互模式下绘制出来，环境模式不会显示。
+这个方法根据现在的时间计算时钟指针的位置和使用在 `onCreate()` 方法中初始化的图形风格将时钟指针绘制在背景位图之上。其中，秒针只会在交互模式下绘制出来，环境模式不会显示。
 
 更多的关于用 Canvas 实例绘制的内容，请见 [Canvas and Drawables](http://developer.android.com/guide/topics/graphics/2d-graphics.html)。
 
