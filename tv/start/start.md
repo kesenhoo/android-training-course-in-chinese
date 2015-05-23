@@ -15,6 +15,27 @@ TV应用使用与手机和平板同样的架构。这种相似性意味着你可
 
 本课程介绍如何准备您的TV应用开发环境,和使应用能够运行在TV设备上所必须的最小改变。
 
+
+<!-- ## Determine Media Format Support -->
+## 查明支持的媒体格式
+<!--
+See the following documentation for information about the codecs, protocols, and formats supported by Android TV.
+
+- Supported Media Formats
+- DRM
+- android.drm
+- ExoPlayer
+- android.media.MediaPlayer
+-->
+
+查看一下文档关于代码，协议和Android TV支持的格式。
+
+- [支持的媒体格式](http://developer.android.com/guide/appendix/media-formats.html)
+- [DRM](https://source.android.com/devices/drm.html)
+- [android.drm](http://developer.android.com/reference/android/drm/package-summary.html)
+- [ExoPlayer](http://developer.android.com/guide/topics/media/exoplayer.html)
+- [android.media.MediaPlay](http://developer.android.com/reference/android/media/MediaPlayer.html)
+
 <!--Set up a TV Project -->
 ## 创建TV项目
 
