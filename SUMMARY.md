@@ -151,7 +151,7 @@
        * [提供配置 Activity](wearables/watch-faces/configuration.md)
        * [定位常见的问题](wearables/watch-faces/issues.md)
        * [优化性能和电池使用时间](wearables/watch-faces/performance.md)
-   * [位置检测](articles/wear-location-detection.md)
+   * [位置检测](wearables/location/wear-location-detection.md)
 * [Android TV应用](building-tv.md)
    * [创建TV应用](tv/start/index.md)
        * [创建TV应用的第一步](tv/start/start.md)
