@@ -213,4 +213,4 @@ Android TV不提供网页浏览器。我们的广告不应该尝试去启动网�
 >**Note**：[WebView](http://developer.android.com/reference/android/webkit/WebView.html)类用于登入服务器，如Google+和Facebook。
 
 ---------------------------------------
-[下一节: 设计TV导航 >](navigation.html)
+[下一节: 创建TV导航 >](navigation.html)
