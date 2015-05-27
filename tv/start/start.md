@@ -5,15 +5,15 @@
 
 <!-- TV apps use the same structure as those for phones and tablets. This similarity means you can modify your existing apps to also run on TV devices or create new apps based on what you already know about building apps for Android. -->
 
-TV应用使用与手机和平板同样的架构。这种相似性意味着你可以修改现有的应用到TV设备或者用以前安卓应用的经验开发TV应用。
+TV应用使用与手机和平板同样的架构。这种相似性意味着我们可以修改现有的应用到TV设备或者用以前安卓应用的经验开发TV应用。
 
 <!-- Important: There are specific requirements your app must meet to qualify as an Android TV app on Google Play. For more information, see the requirements listed in TV App Quality. -->
 
->**Important**: 在Google Play中的TV应用应满足一些特定要求。更多信息, 参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)中的要求列表。
+>**Important**: 想把Android TV应用放在Google Play中应满足一些特定要求。更多信息, 参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)中的要求列表。
 
 <!-- This lesson describes how to prepare your development environment for building TV apps, and the minimum required changes to enable an app to run on TV devices. -->
 
-本课程介绍如何准备您的TV应用开发环境,和使应用能够运行在TV设备上所必须的最小改变。
+本课程介绍如何准备TV应用开发环境,和使应用能够运行在TV设备上的最低要求。
 
 
 <!-- ## Determine Media Format Support -->
@@ -28,7 +28,7 @@ See the following documentation for information about the codecs, protocols, and
 - android.media.MediaPlayer
 -->
 
-查看一下文档关于代码，协议和Android TV支持的格式。
+查看以下文档信息，包括代码，协议和Android TV支持的格式。
 
 - [支持的媒体格式](http://developer.android.com/guide/appendix/media-formats.html)
 - [DRM](https://source.android.com/devices/drm.html)
@@ -41,7 +41,7 @@ See the following documentation for information about the codecs, protocols, and
 
 <!--This section discusses how to modify an existing app to run on TV devices, or create a new one. These are the main components you must use to create an app that runs on TV devices: -->
 
-本节讨论如何修改已有的应用或者新建一个应用使之能够运行在电视设备上。在TV设备运行的应用必须使用这些主要组件:
+本节讨论如何修改已有的应用或者新建一个应用使之能够运行在电视设备上。在TV设备上运行的应用必须使用这些主要组件:
 
 <!--
 * Activity for TV (Required) - In your application manifest, declare an activity that is intended to run on TV devices.
@@ -66,13 +66,13 @@ See the following documentation for information about the codecs, protocols, and
 -->
 
 - [更新SDK tools到版本24.0.0或更高](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
-	最新的SDK tools能确保编译和测试TV应用
+	更新的SDK工具能确保编译和测试TV应用
 
 - [更新SDK为Android 5.0 (API 21)或更高](http://developer.android.com/sdk/installing/adding-packages.html#GetTools)
-	最新的platform版本提供TV应用的新API
+	更新的平台版本为TV应用提供更新的API
 
-- [创建或更新应用项目](http://developer.android.com/sdk/installing/create-project.html)
-	为了支持TV新API, 你必须设置新项目或者修改原项目的目标平台为Android 5.0 (API level 21)或者更高。
+- [创建或更新应用工程](http://developer.android.com/sdk/installing/create-project.html)
+	为了支持TV新API, 我们必须创建一个新工程或者修改原工程的目标平台为Android 5.0 (API版本21)或者更高。
 
 
 <!-- Declare a TV Activity -->
@@ -80,7 +80,7 @@ See the following documentation for information about the codecs, protocols, and
 
 <!-- An application intended to run on TV devices must declare a launcher activity for TV in its manifest using a [CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER) intent filter. This filter identifies your app as being enabled for TV, and is required for your app to be considered a TV app in Google Play. Declaring this intent also identifies which activity in your app to launch when a user selects its icon on the TV home screen. -->
 
-一个应用想要运行在TV设备中，必须在它的manifest中定义一个启动activity，用intent filter包含[CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER)。这个filter表明你的应用是在TV上可用，并且为Google Play上发布TV应用所必须。定义这个intent也意味着在点击app在TV主屏幕的图标时，打开的就是这个activity。
+一个应用想要运行在TV设备中，必须在它的manifest中定义一个启动activity，用intent filter包含[CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER)。这个filter表明你的应用是在TV上可用，并且为Google Play上发布TV应用所必须。定义这个intent也意味着点击主屏幕的应用图标时，就是打开的这个activity。
 
 <!-- The following code snippet shows how to include this intent filter in your manifest: -->
 接下来的代码片段显示如何在manifest中包含这个intent filter：
@@ -114,7 +114,7 @@ See the following documentation for information about the codecs, protocols, and
 ```
 
 <!-- The second activity manifest entry in this example specifies that activity as the one to launch on a TV device. -->
-例子中第二个activity的manifest是TV设备中的一个启动入口。
+例子中第二个activity manifest定义的activity是TV设备中的一个启动入口。
 
 <!-- > **Caution**: If you do not include the [CATEGORY_LEANBACK_LAUNCHER](http://developer.android.com/reference/android/content/Intent.html#CATEGORY_LEANBACK_LAUNCHER) intent filter in your app, it is not visible to users running the Google Play store on TV devices. Also, if your app does not have this filter when you load it onto a TV device using developer tools, the app does not appear in the TV user interface. -->
 
@@ -123,7 +123,7 @@ See the following documentation for information about the codecs, protocols, and
 
 <!-- If you are modifying an existing app for use on TV, your app should not use the same activity layout for TV that it does for phones and tablets. The user interface of your TV app (or TV portion of your existing app) should provide a simpler interface that can be easily navigated using a remote control from a couch. For guidelines on designing an app for TV, see the [TV Design](http://developer.android.com/design/tv/index.html) guide. For more information on the minimum implementation requirements for interface layouts on TV, see [Building TV Layouts](http://developer.android.com/training/tv/start/layouts.html). -->
 
-如果你正在为TV设备修改现有的应用，不应该与手机和平板用同样的activity布局。TV的用户界面（或者现有应用的TV部分）应该提供一个更简单的界面，更容易坐在沙发上用遥控器操作。TV应用设计指南，参考[TV Design](http://developer.android.com/design/tv/index.html)指导。查看TV界面布局的最低要求，参考：[Building TV Layouts](http://developer.android.com/training/tv/start/layouts.html)。
+如果你正在为TV设备修改现有的应用，就不应该与手机和平板用同样的activity布局。TV的用户界面（或者现有应用的TV部分）应该提供一个更简单的界面，更容易坐在沙发上用遥控器操作。TV应用设计指南，参考[TV Design](http://developer.android.com/design/tv/index.html)指导。查看TV界面布局的最低要求，参考：[Building TV Layouts](http://developer.android.com/training/tv/start/layouts.html)。
 
 
 <!-- ### Declare Leanback support -->
@@ -131,7 +131,7 @@ See the following documentation for information about the codecs, protocols, and
 
 <!-- Declare that your app uses the Leanback user interface required by Android TV. If you are developing an app that runs on mobile (phones, wearables, tablets, etc.) as well as Android TV, set the required attribute value to `false`. If you set the `required` attribute value to `true`, your app will run only on devices that use the Leanback UI. -->
 
-安卓TV需要你的应用使用Leanback用户界面。如果你正在开发一个运行在移动设备（手机，可穿戴，平板等等）同时也包含安卓TV的应用，设置`required`属性为`false`。因为如果设置为`true`，你的应用将仅能运行在用Leanback UI的设备上。
+Android TV需要你的应用使用Leanback用户界面。如果你正在开发一个运行在移动设备（手机，可穿戴，平板等等）也包括TV的应用，设置`required`属性为`false`。因为如果设置为`true`，你的应用将仅能运行在用Leanback UI的设备上。
 
 ```java
 <manifest>
@@ -178,7 +178,7 @@ See the following documentation for information about the codecs, protocols, and
 
 <!-- Use the [android:banner] attribute with the [application] tag to supply a default banner for all application activities, or with the [activity] tag to supply a banner for a specific activity. -->
 
-在[`application`](http://developer.android.com/guide/topics/manifest/application.html)中添加[`android:banner`](http://developer.android.com/guide/topics/manifest/application-element.html#banner)属性为所有的应用activity提供默认的横幅，或者在特定的activity的[`activity`](http://developer.android.com/guide/topics/manifest/activity-element.html)中添加横幅。
+在[`application`](http://developer.android.com/guide/topics/manifest/application.html)中添加[`android:banner`](http://developer.android.com/guide/topics/manifest/application-element.html#banner)属性为所有的应用activity提供默认的横幅，或者在特定activity的[`activity`](http://developer.android.com/guide/topics/manifest/activity-element.html)中添加横幅。
 
 <!-- See [Banners](http://developer.android.com/design/tv/patterns.html#banner) in the UI Patterns for TV design guide. -->
 在UI模式和TV设计指导中查看[Banners](http://developer.android.com/design/tv/patterns.html#banner)。
@@ -197,19 +197,19 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 * [v7 cardview library](http://developer.android.com/tools/support-library/features.html#v7-cardview) - Provides user interface widgets for displaying information cards, such as media item pictures and descriptions.
 -->
 
-* [v17 leanback library](http://developer.android.com/tools/support-library/features.html#v17-leanback) - 提供TV应用的用户界面控件，特别是用于媒体播放应用的。
+* [v17 leanback library](http://developer.android.com/tools/support-library/features.html#v17-leanback) - 提供TV应用的用户界面控件，特别是用于媒体播放应用的控件。
 * [v7 recyclerview library](http://developer.android.com/tools/support-library/features.html#v7-recyclerview) - 提供了内存高效方式的长列表的管理显示类。有一些v17 leanback库的类依赖于本库的类。
 * [v7 cardview library](http://developer.android.com/tools/support-library/features.html#v7-cardview) - 提供显示信息卡的用户界面控件，如媒体图片和描述。
 
 
 <!-- >**Note**: You are not required to use these support libraries for your TV app. However, we strongly recommend using them, particularly for apps that provide a media catalog browsing interface. -->
 
->**Note**：TV应用中可以不用这些库。但是，我们强烈推荐你使用它们，特别是为应用提供媒体目录浏览界面时。
+>**Note**：TV应用中可以不用这些库。但是，我们强烈推荐使用它们，特别是为应用提供媒体目录浏览界面时。
 
 
 <!-- If you decide to use the v17 leanback library for your app, you should note that it is dependent on the [v4 support library](http://developer.android.com/tools/support-library/features.html#v4). This means that apps that use the leanback support library should include all of these support libraries: -->
 
-如果你决定用`v17 leanback library`，你应该注意它依赖于[v4 support library](http://developer.android.com/tools/support-library/features.html#v4)。这意味着要用leanback支持库必须包含以下所有的支持库：
+如果我们决定用`v17 leanback library`，我们应该注意它依赖于[v4 support library](http://developer.android.com/tools/support-library/features.html#v4)。这意味着要用leanback支持库必须包含以下所有的支持库：
 
 * v4 support library
 * v7 recyclerview support library
@@ -226,7 +226,7 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 
 <!-- After you have completed the steps described above, it's time to start building apps for the big screen! Check out these additional topics to help you build your app for TV: -->
 
-在完成上面的步骤之后，到了给大屏幕创建应用的时候了！检查一下这些额外的专题可以帮助您创建TV应用：
+在完成上面的步骤之后，到了给大屏幕创建应用的时候了！检查一下这些额外的专题可以帮助我们创建TV应用：
 
 <!--
 * [Building TV Playback Apps](http://developer.android.com/training/tv/playback/index.html) - TVs are built to entertain, so Android provides a set of user interface tools and widgets for building TV apps that play videos and music, and let users browse for the content they want.
@@ -234,8 +234,8 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 * [Games for TV](http://developer.android.com/training/tv/discovery/index.html) - TV devices are a great platform for games. See this topic for information on building great game experiences for TV.
 -->
 
-* [创建TV播放应用](http://developer.android.com/training/tv/playback/index.html) - TV主要是用来娱乐，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
-* [帮助用户找到TV内容](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择操作都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
+* [创建TV播放应用](http://developer.android.com/training/tv/playback/index.html) - TV就是用来娱乐的，因此安卓提供了一套用户界面工具和控件，用来创建视频和音乐的TV应用，并且让用户浏览想看到的内容。
+* [帮助用户找到TV内容](http://developer.android.com/training/tv/discovery/index.html) - 因为所有的内容选择都用手指操作遥控器，所以帮助用户找到想要的内容几乎和提供内容同样重要。这个主题讨论如何在TV设备中处理内容。
 * [TV游戏](http://developer.android.com/training/tv/games/index.html) - TV设备是非常好的游戏平台。参考这个主题去创造更好的TV游戏体验。
 
 <!-- ## Run TV Apps -->
@@ -243,7 +243,7 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 
 <!-- Running your app is an important part of the development process. The AVD Manager in the Android SDK provides the device definitions that allow you to create virtual TV devices for running and testing your applications. -->
 
-在开发过程中运行应用是一个重要的部分。在安卓SDK中的AVD管理器提供了创建虚拟TV设备的功能，可以让应用在虚拟设备中运行和测试。
+运行应用是在开发过程中的一个重要的部分。在安卓SDK中的AVD管理器提供了创建虚拟TV设备的功能，可以让应用在虚拟设备中运行和测试。
 
 <!-- To create an virtual TV device: -->
 创建一个虚拟TV设备
@@ -257,7 +257,7 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 
 1. 打开AVD管理器。更多信息，参考[AVD管理器](http://developer.android.com/tools/help/avd-manager.html)帮助。
 2. 在AVD管理器窗口，点击**Device Definitions**标签。
-3. 选择安卓一个TV设备定义，并且点击**Create AVD**。
+3. 选择一个Android TV设备描述，并且点击**Create AVD**。
 4. 选择模拟器选项并且点击**OK**创建AVD。
 
 <!-- >**Note**: For best performance of the TV emulator device, enable the Use Host GPU option and, where supported, use virtual device acceleration. For more information on hardware acceleration of the emulator, see [Using the Emulator](http://developer.android.com/tools/devices/emulator.html#acceleration). -->
@@ -281,4 +281,4 @@ Android SDK包含用于TV应用的支持库。这些库为TV设备提供API和�
 更多模拟器信息：[Using the Emulator](http://developer.android.com/tools/devices/emulator.html)。 用Android Studio部署应用到模拟器，查看[Debugging with Android Studio](http://developer.android.com/sdk/installing/studio-debug.html)。用带ADT插件的Eclipse部署应用到模拟器，查看[Building and Running from Eclipse with ADT ](http://developer.android.com/tools/building/building-eclipse.html)。
 
 -------------------------
-[下一节: 处理TV硬件](hardware.html)
+[下一节: 处理TV硬件 >](hardware.html)
