@@ -13,7 +13,7 @@
 
 ##创建详细Presenter
 
-在leanback库提供的媒体浏览框架中,可以用presenter对象控制屏幕显示数据,包括媒体详细信息。[AbstractDetailsDescriptionPresenter ](http://developer.android.com/reference/android/support/v17/leanback/widget/AbstractDetailsDescriptionPresenter.html)类提供的框架几乎是媒体项目详细信息的完全继承。你只需要实现[onBindDescription()]()方法,像下面这样把数据信息和视图绑定起来。
+在leanback库提供的媒体浏览框架中,可以用presenter对象控制屏幕显示数据,包括媒体详细信息。[AbstractDetailsDescriptionPresenter ](http://developer.android.com/reference/android/support/v17/leanback/widget/AbstractDetailsDescriptionPresenter.html)类提供的框架几乎是媒体项目详细信息的完全继承。我们只需要实现[onBindDescription()]()方法,像下面这样把数据信息和视图绑定起来。
 
 ```xml
 public class DetailsDescriptionPresenter
@@ -40,7 +40,7 @@ public class DetailsDescriptionPresenter
 
 ##扩展详细fragment
 
-当使用[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)类显示你的媒体项目详细信息时,扩展该类并提供像预览图片,操作等附加内容。你也可以提供一系列的相关媒体信息。
+当使用[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)类显示我们的媒体项目详细信息时,扩展该类并提供像预览图片,操作等附加内容。我们也可以提供一系列的相关媒体信息。
 
 下面的例子演示了怎样用presenter类为媒体项目添加预览图片和操作。这个例子也演示了添加相关媒体行。
 
@@ -94,7 +94,7 @@ public class MediaItemDetailsFragment extends DetailsFragment {
 
 ##创建详细信息activity
 
-像[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)这样的 fragment 为了使用或显示必须包含activity。为你的详细信息与浏览分开创建activity并通过传递Intent打开。这节演示了如何创建一个包含媒体详细信息的activity。
+像[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)这样的 fragment 为了使用或显示必须包含activity。为我们的详细信息与浏览分开创建activity并通过传递Intent打开。这节演示了如何创建一个包含媒体详细信息的activity。
 
 创建详细信息前先为[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)创建一个布局文件:
 
@@ -137,7 +137,7 @@ public class DetailsActivity extends Activity
 
 ##为点击项目添加Listener
 
-实现[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)后,在用户点击媒体条目时将你的媒体浏览view切换详细信息view。为了确保动作的实现,在[BrowserFragment]()中添加[OnItemViewClickedListener]通过Intent开启详细信息activity。
+实现[ DetailsFragment](http://developer.android.com/reference/android/support/v17/leanback/app/DetailsFragment.html)后,在用户点击媒体条目时将我们的媒体浏览view切换详细信息view。为了确保动作的实现,在[BrowserFragment]()中添加[OnItemViewClickedListener]通过Intent开启详细信息activity。
 
 
 下面的例子演示了实现怎样在媒体浏览view中实现一个 listener开启详细信息view。
@@ -169,3 +169,6 @@ public class BrowseMediaActivity extends Activity {
     }
 }
 ```
+
+-----------
+[下一节：显示正在播放卡片 >](now-playing.html)

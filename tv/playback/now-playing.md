@@ -2,7 +2,7 @@
 
 > 编写:[huanglizhuo](https://github.com/huanglizhuo) - 原文:<http://developer.android.com/training/tv/playback/now-playing.html>
 
-TV应用允许用户在使用其他应用时后台播放音乐或其他媒体。如果你的应用程序允许后台，它必须要为用户提供返回该应用暂停音乐或切换到一个新的歌曲的方法。 Android框架允许电视应用通过在主屏幕上显示正在播放卡做到这一点。
+TV应用允许用户在使用其他应用时后台播放音乐或其他媒体。如果我们的应用程序允许后台，它必须要为用户提供返回该应用暂停音乐或切换到一个新的歌曲的方法。 Android框架允许TV应用通过在主屏幕上显示正在播放卡做到这一点。
 
 正在播放卡片是系统的组建,它可以在推荐的行上显示正在播放的媒体会话它包括了媒体元数据，如专辑封面，标题和应用程序图标。当用户选择它，系统将打开拥有该会话的应用程序。
 
@@ -28,7 +28,7 @@ setSessionToken(mSession.getSessionToken());
 
 ##显示正在播放卡片
 
-如果会话是系统最高优先级的会话那么正在播放卡片将在[setActivity(true)](http://developer.android.com/reference/android/media/session/MediaSession.html#setActive(boolean))调用后显示。同时你的应用必须像在[Managing Audio Focus](http://developer.android.com/training/managing-audio/audio-focus/index.html)一节中那样请求音频焦点。
+如果会话是系统最高优先级的会话那么正在播放卡片将在[setActivity(true)](http://developer.android.com/reference/android/media/session/MediaSession.html#setActive(boolean))调用后显示。同时我们的应用必须像在[Managing Audio Focus](http://developer.android.com/training/managing-audio/audio-focus/index.html)一节中那样请求音频焦点。
 
 ```xml
 private void handlePlayRequest() {
@@ -80,7 +80,7 @@ private long getAvailableActions() {
 
 ##显示媒体元数据
 
-为当前正在播放通过[setMetadata()](http://developer.android.com/reference/android/media/session/MediaSession.html#setMetadata(android.media.MediaMetadata))方法设置[  MediaMetadata ](http://developer.android.com/reference/android/media/MediaMetadata.html)。.这个方法可以让你为正在播放卡提供有关轨道，如标题，副标题，和各种图标等信息。下面的例子假设你的播放数据存储在自定义的MediaData类中。
+为当前正在播放通过[setMetadata()](http://developer.android.com/reference/android/media/session/MediaSession.html#setMetadata(android.media.MediaMetadata))方法设置[  MediaMetadata ](http://developer.android.com/reference/android/media/MediaMetadata.html)。.这个方法可以让我们为正在播放卡提供有关轨道，如标题，副标题，和各种图标等信息。下面的例子假设我们的播放数据存储在自定义的MediaData类中。
 
 ```xml
 private void updateMetadata(MediaData myData) {
@@ -108,7 +108,7 @@ private void updateMetadata(MediaData myData) {
 
 ##响应用户的动作
 
-当用户选择正在播放卡片时,系统打开应用并拥有会话。如果你的应用在[setSessionActivity()](http://developer.android.com/reference/android/media/session/MediaSession.html#setSessionActivity(android.app.PendingIntent))有[PendingIntent](http://developer.android.com/reference/android/app/PendingIntent.html)要传递,系统将会像下面演示的那样开启activity。如果不是，则系统默认的Intent打开。您指定的活动必须提供播放控制，允许用户暂停或停止播放。
+当用户选择正在播放卡片时,系统打开应用并拥有会话。如果我们的应用在[setSessionActivity()](http://developer.android.com/reference/android/media/session/MediaSession.html#setSessionActivity(android.app.PendingIntent))有[PendingIntent](http://developer.android.com/reference/android/app/PendingIntent.html)要传递,系统将会像下面演示的那样开启activity。如果不是，则系统默认的Intent打开。您指定的活动必须提供播放控制，允许用户暂停或停止播放。
 
 ```xml
 Intent intent = new Intent(mContext, MyActivity.class);
