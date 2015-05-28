@@ -114,4 +114,4 @@ public class MySearchFragment extends SearchFragment
 上面的示例代码展示了在分开的线程用独立的`SearchRunnable`类去运行搜索请求。这个技巧是从正在阻塞的主线程保持了潜在的慢运行请求。
 
 ----------------
-[下一节: 创建TV游戏 >](../games/index.html)
+[下一节: 创建TV游戏应用 >](../games/index.html)
