@@ -2,14 +2,15 @@
 
 > 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:<http://developer.android.com/training/keyboard-input/style.html>
 
-每个文本域期待特定的文本类型，如Email，电话号码，或者纯文本。为应用中的每一个文本域指定特定的输入类型以便系统展示更为合适的软键盘输入法(比如屏幕上键盘)是很重要的。
+每个文本框都对应特定类型的文本输入，如Email地址，电话号码，或者纯文本。为应用中的每一个文本框指定输入类型是很重要的，这样做可以让系统展示更为合适的软输入法（比如屏幕上的键盘）。
+
+除了输入法可用的按钮类型之外，我们还应该指定一些行为，例如，输入法是否提供拼写建议，新的句子首字母大写，和将回车按钮替换成动作按钮（如 **Done** 或者 **Next**）。这节课介绍了如何添加这些属性。
 
 ## 指定键盘类型
 
-你总是可以为你的文本域定义输入法通过添加[android:inputType](http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType) 属性到 [&lt;EditText&gt;](http://developer.android.com/reference/android/widget/EditText.html) 元素中。
+通过将 [android:inputType](http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType) 属性添加到 [&lt;EditText&gt;](http://developer.android.com/reference/android/widget/EditText.html) 节点中，我们可以为文本框声明输入法。
 
-举例来说，如果你想要一个为输入电话号码的输入法，使用"phone"值:
-![edittext-phone](edittext-phone.png "Figure 1. The phone input type.")
+举例来说，如果我们想要一个用于输入电话号码的输入法，那么使用 `"phone"` 值：
 
 ```xml
 <EditText
@@ -20,8 +21,11 @@
     android:inputType="phone" />
 ```
 
-或着如果文本域是密码，使用"textPassword"值来隐藏用户的输入:
-![ime_password](ime_password.png )
+![edittext-phone](edittext-phone.png "Figure 1. The phone input type.")
+
+**Figure 1.** `phone` 输入类型
+
+或者如果文本框用于输入密码，那么使用 `"textPassword"` 值来隐藏用户的输入：
 
 ```xml
 <EditText
@@ -30,14 +34,23 @@
     android:inputType="textPassword"
     ... />
 ```
-有几种可供选择的值在android:inputType属性中记录，一些值可以组合起来实现特定的输入法表现和附加的行为。
 
-## 开启拼写建议和其他的行为
+![ime_password](ime_password.png )
 
-android:inputType属性允许你为输入法指定不同的行为。最为重要的是，如果你的文本域是为基本的文本输入( 如短信息)，你应该使用"textAutoCorrect"来开启拼写检查。
+**Figure 2.** `textPassword` 输入类型
 
-你可以组合不同的行为和输入法形式通过textAutoCorrect这个属性。如：如何创建一个文本域句子单词的首字母答谢并开启拼写检查：
+有几种可供选择的值在 `android:inputType` 记录在属性中，一些值可以组合起来实现特定的输入法外观和附加的行为。
+
+## 开启拼写建议和其它行为
+
+[android:inputType](http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType) 属性允许我们为输入法指定不同的行为。最为重要的是，如果文本框用于基本的文本输入（如短信息），那么我们应该使用 `"textAutoCorrect"` 值来开启自动拼写修正。
+
 ![ime_autocorrect](ime_autocorrect.png)
+
+**Figure 3.** 添加 `textAutoCorrect` 为拼写错误提供自动修正
+
+我们可以将不同的行为和输入法形式组合到 [android:inputType](http://developer.android.com/reference/android/widget/TextView.html#attr_android:inputType) 这个属性。如：如何创建一个文本框，里面的句子首字母大写并开启拼写修正：
+
 ```xml
 <EditText
     android:id="@+id/message"
@@ -50,10 +63,14 @@ android:inputType属性允许你为输入法指定不同的行为。最为重要
 
 ## 指定输入法的行为
 
-多数的软键盘会在底部角落里为用户提供一个合适的动作按钮来触发当前文本域的操作。默认情况下，系统使用**下一步(Next)**或者**确认(DONE)**除非你的文本域允许多行(如android:inputType="textMultiLine")，这种情况下，动作按钮就是回车换行。然而，你可以制定额外的动作一边更适合你的文本域，比如**SEND**和**GO**。
+多数的软键盘会在底部角落里为用户提供一个合适的动作按钮来触发当前文本框的操作。默认情况下，系统使用 **Next** 或者 **Done**，除非我们的文本框允许多行文本（如`android:inputType="textMultiLine"`），这种情况下，动作按钮就是回车换行。然而，我们可以指定一些更适合我们文本框的额外动作，比如 **Send** 和 **Go**。
 
-指定特定的动作按钮，将 [android:imeOptions](http://developer.android.com/reference/android/widget/TextView.html#attr_android:imeOptions) 属性的值设为"actionSend" 或 "actionSearch"。如：
 ![edittext-actionsend](edittext-actionsend.png)
+
+**Figure 4.** 当我们声明了 `android:imeOptions="actionSend"`，会出现 Send 按钮。
+
+使用[android:imeOptions](http://developer.android.com/reference/android/widget/TextView.html#attr_android:imeOptions) 属性，并设置一个动作值（如 `"actionSend"` 或 `"actionSearch"`），来指定键盘的动作按钮。如：
+
 ```xml
 <EditText
     android:id="@+id/search"
@@ -63,7 +80,8 @@ android:inputType属性允许你为输入法指定不同的行为。最为重要
     android:inputType="text"
     android:imeOptions="actionSend" />
 ```
-然后你可以通过为 [EditText](http://developer.android.com/reference/android/widget/EditText.html)定义[TextView.OnEditorActionListener](http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html)来监听动作按钮的启动。在监听器中，对输入法编辑器对合适的回应的动作ID对应在 [EditorInfo](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html) 类中，如 [IME_ACTION_SEND](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html#IME_ACTION_SEND) 。例如:
+
+然后，我们可以通过为 [EditText](http://developer.android.com/reference/android/widget/EditText.html) 节点定义 [TextView.OnEditorActionListener](http://developer.android.com/reference/android/widget/TextView.OnEditorActionListener.html) 来监听动作按钮的按压。在监听器中，响应 [EditorInfo](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html) 类中定义的适合的 IME action ID，如 [IME_ACTION_SEND](http://developer.android.com/reference/android/view/inputmethod/EditorInfo.html#IME_ACTION_SEND) 。例如:
 
 ```java
 EditText editText = (EditText) findViewById(R.id.search);
