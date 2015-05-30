@@ -36,6 +36,27 @@ See the following documentation for information about the codecs, protocols, and
 - [ExoPlayer](http://developer.android.com/guide/topics/media/exoplayer.html)
 - [android.media.MediaPlay](http://developer.android.com/reference/android/media/MediaPlayer.html)
 
+
+<!-- ## Determine Media Format Support -->
+## 查明支持的媒体格式
+<!--
+See the following documentation for information about the codecs, protocols, and formats supported by Android TV.
+
+- Supported Media Formats
+- DRM
+- android.drm
+- ExoPlayer
+- android.media.MediaPlayer
+-->
+
+查看一下文档关于代码，协议和Android TV支持的格式。
+
+- [支持的媒体格式](http://developer.android.com/guide/appendix/media-formats.html)
+- [DRM](https://source.android.com/devices/drm.html)
+- [android.drm](http://developer.android.com/reference/android/drm/package-summary.html)
+- [ExoPlayer](http://developer.android.com/guide/topics/media/exoplayer.html)
+- [android.media.MediaPlay](http://developer.android.com/reference/android/media/MediaPlayer.html)
+
 <!--Set up a TV Project -->
 ## 创建TV项目
 
