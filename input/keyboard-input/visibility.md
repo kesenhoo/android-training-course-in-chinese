@@ -2,15 +2,16 @@
 
 > 编写:[zhaochunqi](https://github.com/zhaochunqi) - 原文:<http://developer.android.com/training/keyboard-input/visibility.html>
 
-当输入焦点移入或移出可编辑当文本域时，Android系统会相应地显示或隐藏输入法（如屏幕输入法）。系统也会对输入法上方UI和文本域的显示进行调整。举例来说，当屏幕上竖直空间被压缩时，文本域可能填充所有的输入法上方的空间。对于多数的应用来说，这些默认的行为基本就足够了。
+当输入焦点移入或移出可编辑的文本框时，Android会相应的显示或隐藏输入法（如虚拟键盘）。系统也会决定输入法上方的 UI 和文本框的显示方式。举例来说，当屏幕上垂直空间被压缩时，文本框可能填充输入法上方所有的空间。对于多数的应用来说，这些默认的行为基本就足够了。
 
-然而，在某些情况中，我们可能会希望直接控制输入法的显示，指定在输入法显示时的布局等。这节课会讲解如何对输入法的可见性进行控制和响应。
+然而，在一些事例中，我们可能会想要更加直接地控制输入法的显示，指定在输入法显示的时候，如何显示我们的布局。这节课会解释如何控制和响应输入法的可见性。
 
+<a name="ShowOnStart"></a>
 ## 在Activity启动时显示输入法
 
-尽管Android会在Activity启动时给予第一个文本域焦点，但是并不会显示输入法。由于大多数情况下输入文本可能并不是Activity中的首要任务，所以这是合理的。可是，如果输入文本确实是首要的任务（如登录界面）,我们就可能需要输入法在默认状态下可以显示出来。
+尽管Android会在Activity启动时将焦点放在布局中的第一个文本框，但是并不会显示输入法。因为输入文本可能并不是activity中的首要任务，所以不显示输入法是很合理的。可是，如果输入文本确实是首要的任务（如在登录界面中），那么可能需要默认显示输入法。
 
-为了在Activity启动时展示输入法，添加[android:windowSoftInputMode](http://developer.android.com/guide/topics/manifest/activity-element.html#wsoft)属性到&lt;activity&gt;标签中，并使用`stateVisible`作为值，如下所示：
+为了在activity启动时显示输入法，添加 [android:windowSoftInputMode](http://developer.android.com/guide/topics/manifest/activity-element.html#wsoft)  属性到 &lt;activity&gt; 节点中，并将该属性的值设为 `"stateVisible"`。如下：
 
 ```xml
 <application ... >
@@ -22,13 +23,13 @@
 </application>
 ```
 
->**注意：**如果用户接入了一个实体键盘，软键盘输入法不会显示。
+> **Note:** 如果用户的设备有一个实体键盘，那么*不会*显示软输入法。
 
-## 需要时显示输入法
+## 根据需要显示输入法
 
-如果在Activity生命周期中，我们需要在某个方法内确保输入法是可见的，可以使用[InputMethodManager](http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html)来实现。
+如果我们想要确保输入法在activity生命周期的某个方法中是可见的，那么可以使用 [InputMethodManager](http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html) 来实现。
 
-举例来说，下面的方法接收一个[View](http://developer.android.com/reference/android/view/View.html)作为参数，该View即用户需要进行输入的View。通过调用<a href="http://developer.android.com/reference/android/view/View.html#requestFocus()">requestFocus()</a> 来获取焦点，然后 调用<a href="http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html#showSoftInput(android.view.View, int)">showSoftInput()</a>来打开输入法。
+举例来说，下面的方法调用了一个需要用户填写文本的[View](http://developer.android.com/reference/android/view/View.html)，调用了 <a href="http://developer.android.com/reference/android/view/View.html#requestFocus()">requestFocus()</a> 来获取焦点，然后调用 <a href="http://developer.android.com/reference/android/view/inputmethod/InputMethodManager.html#showSoftInput(android.view.View, int)">showSoftInput()</a> 来打开输入法。
 
 ```java
 public void showSoftKeyboard(View view) {
@@ -40,15 +41,15 @@ public void showSoftKeyboard(View view) {
 }
 ```
 
->**注意：**一旦输入法处于可见状态，不要通过代码的方式将其隐藏。系统会在用户结束文本域的任务时进行隐藏，或者用户可以使用系统控制（如返回键）将其隐藏。
+> **Note:** 一旦输入法可见，我们不应该以编程的方式来隐藏它。系统会在用户结束文本框的任务时隐藏输入法，或者可以使用系统控制（如*返回*键）来隐藏。
 
-## 指定UI响应方式
+## 指定 UI 的响应方式
 
-当输入法在屏幕上显示时，它会减少UI中的可用空间。系统会为对UI进行调整，但是其结果可能并非是我们期望的。为了确保应用的最佳表现，我们应该指定在剩余空间中如何展示UI。
+当输入法显示在屏幕上时，会减少 app UI 中的可用空间。系统会决定如何调整 UI 可见的部分，但是这样做不一定正确。为了确保应用的最佳表现，我们应该在 UI 的剩余空间中展示我们想要展示的系统界面。
 
-要声明在Activity中所期望的处理方案，在清单文件中的&lt;activity&gt;标签下使用`android:windowSoftInputMode`属性，并将某种`adjust`作为值。
+为了在activity中声明合适的处理方法，可以在 manifest 文件的 &lt;activity&gt; 节点中使用 [android:windowSoftInputMode](http://developer.android.com/guide/topics/manifest/activity-element.html#wsoft) 属性，并将该属性的值设为"adjust"。
 
-举例来说，为了确保系统会在可用空间中重新调整布局的大小以确保所有布局内容都是可用的（尽管可能需要滑动），可以使用`adjustResize`:
+举例来说，为了确保系统会在可用空间中重新调整布局的大小——确保所有的布局内容都可以被使用（尽管可能需要滑动）——使用 `"adjustResize"`:
 
 ```xml
 <application ... >
@@ -60,13 +61,13 @@ public void showSoftKeyboard(View view) {
 </application>
 ```
 
-我们也可以结合多种模式：
+我们可以结合上述调整说明和[初始化输入法可见性](#ShowOnStart)说明：
 
 ```xml
- <activity
+    <activity
         android:windowSoftInputMode="stateVisible|adjustResize" ... >
         ...
     </activity>
 ```
 
-如果UI中包含用户在输入过程中需要立即执行的控制功能，那么使用`adjustResize`非常重要。例如，如果我们使用相对布局在屏幕底部放置了一个按钮，使用`adjustResize`来重新调整布局后，就可以让按钮栏出现在输入法上方。
+如果 UI 中包含用户可能需要在文本输入时立即执行的事情，那么使用 `"adjustResize"` 是很重要的。例如，如果我们使用相对布局（relative layout）在屏幕底部放置一个按钮，用 `"adjustResize"` 来重新调整大小，使得按钮栏出现在输入法上方。
