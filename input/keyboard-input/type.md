@@ -97,6 +97,3 @@ editText.setOnEditorActionListener(new OnEditorActionListener() {
     }
 });
 ```
-
-
-

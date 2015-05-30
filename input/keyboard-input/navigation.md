@@ -98,4 +98,3 @@
     android:nextFocusUp="@id/button1"
     ...  />
 ```
-
