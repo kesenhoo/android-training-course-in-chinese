@@ -81,7 +81,7 @@
        * [布局变更动画](animations/layout.md)
 * [Android网络连接与云服务](building-connectivity.md)
    * [无线连接设备](connectivity/connect-devices-wireless/index.md)
-       * [使得网络服务可发现](connectivity/connect-devices-wireless/nsd.md)
+       * [使用网络服务发现](connectivity/connect-devices-wireless/nsd.md)
        * [使用WiFi建立P2P连接](connectivity/connect-devices-wireless/wifi-direct.md)
        * [使用WiFi P2P服务](connectivity/connect-devices-wireless/nsd-wifi-index.md)
    * [执行网络操作](connectivity/network-ops/index.md)
