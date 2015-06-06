@@ -2,7 +2,7 @@
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/crossfade.html>
 
-渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。当你不使用它们，不管怎么样转换经常感到生硬而仓促。
+渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view 的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。但当你不使用它们时，转换经常会感到生硬而仓促。
 
 下面是一个利用进度指示渐变到一些文本内容的例子。
 
@@ -19,11 +19,11 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </div>
 
 
-如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip) App 样例然后运行渐变例子。查看下列文件中的代码实现：
+如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行样例 App 然后选择渐变例子。查看下列文件中的代码实现：
 
-* src/CrossfadeActivity.java
-* layout/activity_crossfade.xml
-* menu/activity_crossfade.xml
+* `src/CrossfadeActivity.java`
+* `layout/activity_crossfade.xml`
+* `menu/activity_crossfade.xml`
 
 ## 创建View
 
@@ -60,13 +60,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 为设置动画，你需要：
 
-1. 为你想渐变的 view 创建成员变量。之后动画应用途中修改 View 的时候你会需要这些引用的。
+1. 为你想渐变的 view 创建成员变量。在之后动画应用途中修改 View 的时候你会需要这些引用的。
 
-2. 对于被淡出的 view，设置它的 visibility 为 [GONE](http://developer.android.com/reference/android/view/View.html#GONE)。这样防止 view 再占据布局的空间，而且也能在布局计算中将其忽略，加速处理过程。
+2. 对于被淡入的 view，设置它的 visibility 为 [`GONE`](http://developer.android.com/reference/android/view/View.html#GONE)。这样防止 view 再占据布局的空间，而且也能在布局计算中将其忽略，加速处理过程。
 
-3. 将 [config_shortAnimTime](http://developer.android.com/reference/android/R.integer.html#config_shortAnimTime) 系统属性暂存到一个成员变量里。这个属性为动画定义了一个标准的“短”持续时间。对于微妙或者快速发生的动画，这是个很理想的时间段。[config_longAnimTime](http://developer.android.com/reference/android/R.integer.html#config_longAnimTime) 和 [config_mediumAnimTime](http://developer.android.com/reference/android/R.integer.html#config_mediumAnimTime) 也行，如果你想用的话。
+3. 将 [`config_shortAnimTime`](http://developer.android.com/reference/android/R.integer.html#config_shortAnimTime) 系统属性暂存到一个成员变量里。这个属性为动画定义了一个标准的“短”持续时间。对于细微或者快速发生的动画，这是个很理想的持续时段。[`config_longAnimTime`](http://developer.android.com/reference/android/R.integer.html#config_longAnimTime) 和 [`config_mediumAnimTime`](http://developer.android.com/reference/android/R.integer.html#config_mediumAnimTime) 也行，如果你想用的话。
 
-下面是个内容 view 的 activity 例子，它使用了前面所述代码片段中的布局。
+下面是个使用之前代码布局作为内容 view 的 activity 例子。
 
 ```java
 public class CrossfadeActivity extends Activity {
@@ -85,10 +85,10 @@ public class CrossfadeActivity extends Activity {
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_spinner);
 
-        // 初始化隐藏这个View.
+        // Initially hide the content view.
         mContentView.setVisibility(View.GONE);
 
-        // 获取并缓存系统默认的“短”时长
+        // Retrieve and cache the system's default "short" animation time.
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
     }
@@ -98,13 +98,13 @@ public class CrossfadeActivity extends Activity {
 
 既然正确地设置了那些 view，做下面这些事情来渐变他们吧：
 
-1. 对于淡入的 view，设置 alpha 值为 0 并且设置 visibility 为 [VISIBLE](http://developer.android.com/reference/android/view/View.html#VISIBLE)（要记得他起初被设置成了 [GONE](http://developer.android.com/reference/android/view/View.html#GONE)）。这让 view 可见了但是它是透明的。
+1. 对于正在淡入的 view，设置它的 alpha 值为 0 并且设置 visibility 为 [`VISIBLE`](http://developer.android.com/reference/android/view/View.html#VISIBLE)（记住他起初被设置成了 [`GONE`](http://developer.android.com/reference/android/view/View.html#GONE)）。这样就让 view 可见了但是它是透明的。
 
-2. 对于淡入的 view，把 alpha 值从 0 动态改变到 1。同时，对于淡出的 view，把 alpha 值从 1 动态变到 0。
+2. 同样对于淡入的 view，把 alpha 值从 0 动态改变到 1。同时，对于淡出的 view，把 alpha 值从 1 动态变到 0。
 
-3. 使用 [Animator.AnimatorListener](http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html) 中的 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html#onAnimationEnd(android.animation.Animator)">onAnimationEnd()</a>，设置淡出 view 的 visibility 为 [GONE](http://developer.android.com/reference/android/view/View.html#GONE)。即使 alpha 值为 0，也要把 view 的 visibility 设置成 [GONE](http://developer.android.com/reference/android/view/View.html#GONE) 来防止 view 占据布局空间，还能把它从布局计算中忽略，加速处理过程。
+3. 使用 [`Animator.AnimatorListener`](http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html) 中的 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html#onAnimationEnd(android.animation.Animator)">`onAnimationEnd()`</a>，设置淡出 view 的 visibility 为 [`GONE`](http://developer.android.com/reference/android/view/View.html#GONE)。即使 alpha 值为 0，也要把 view 的 visibility 设置成 [`GONE`](http://developer.android.com/reference/android/view/View.html#GONE) 来防止 view 占据布局空间，还能把它从布局计算中忽略，加速处理过程。
 
-下面方法展示如何去做：
+下面方法展示如何做这些：
 
 ```java
 private View mContentView;
@@ -115,20 +115,21 @@ private int mShortAnimationDuration;
 
 private void crossfade() {
 
-    // 设置内容View为0%的不透明度，但是状态为“可见”，
-    // 因此在动画过程中是一直可见的（但是为全透明）。
+    // Set the content view to 0% opacity but visible, so that it is visible
+    // (but fully transparent) during the animation.
     mContentView.setAlpha(0f);
     mContentView.setVisibility(View.VISIBLE);
 
-    // 开始动画内容View到100%的不透明度，然后清除所有设置在View上的动画监听器。
+    // Animate the content view to 100% opacity, and clear any animation
+    // listener set on the view.
     mContentView.animate()
             .alpha(1f)
             .setDuration(mShortAnimationDuration)
             .setListener(null);
 
-    // 加载View开始动画逐渐变为0%的不透明度，
-    // 动画结束后，设置可见性为GONE（消失）作为一个优化步骤
-    //（它将不再参与布局的传递等过程）
+    // Animate the loading view to 0% opacity. After the animation ends,
+    // set its visibility to GONE as an optimization step (it won't
+    // participate in layout passes, etc.)
     mLoadingView.animate()
             .alpha(0f)
             .setDuration(mShortAnimationDuration)

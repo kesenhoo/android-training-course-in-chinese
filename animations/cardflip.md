@@ -1,10 +1,10 @@
-# 展示卡片翻转动画
+# 展示Card翻转动画
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/cardflip.html>
 
-这节课展示如何使用自定义 fragment 动画实现卡片翻转动画。通过展示一个模拟卡片翻转的动画实现 view 内容的卡片翻转效果。
+这节课展示如何使用自定义 fragment 动画实现card翻转动画。通过展示一个模拟card翻转的动画实现 view 内容的card翻转效果。
 
-下面是卡片翻转动画的样子：
+下面是card翻转动画的样子：
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -18,33 +18,32 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip) App 样例然后运行卡片翻转例子。查看下列文件中的代码实现：
+如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行 App 样例然后选择card翻转例子。查看下列文件中的代码实现：
 
-* src/CardFlipActivity.java
-* animator/card_flip_right_in.xml
-* animator/card_flip_right_out.xml
-* animator/card_flip_left_in.xml
-* animator/card_flip_left_out.xml
-* layout/fragment_card_back.xml
-* layout/fragment_card_front.xml
+* `src/CardFlipActivity.java`
+* `animator/card_flip_right_in.xml`
+* `animator/card_flip_right_out.xml`
+* `animator/card_flip_left_in.xml`
+* `animator/card_flip_left_out.xml`
+* `layout/fragment_card_back.xml`
+* `layout/fragment_card_front.xml`
 
 ## 创建Animator
 
-创建卡片翻转动画，你需要两个 animator 让前面的卡片向右翻转消失，向左翻转出现。你还需要两个 animator 让背面的卡片向左翻转出现，向右翻转消失。
+创建card翻转动画，你需要两个 animator 一个 让前面的card的右侧向左翻转渐出，一个让向右翻转渐入。你还需要两个 animator 让背面的card的右侧向左翻转渐入，一个让向右翻转渐入。
 
 **card_flip_left_in.xml**
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!--旋转之前，立刻设置透明度alpha为0-->
+    <!-- Before rotating, immediately set the alpha to 0. -->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
         android:propertyName="alpha"
         android:duration="0" />
 
-    <!--旋转-->
+    <!-- Rotate. -->
     <objectAnimator
         android:valueFrom="-180"
         android:valueTo="0"
@@ -52,7 +51,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1-->
+    <!-- Half-way through the rotation (see startOffset), set the alpha to 1. -->
     <objectAnimator
         android:valueFrom="0.0"
         android:valueTo="1.0"
@@ -66,7 +65,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 旋转. -->
+    <!-- Rotate. -->
     <objectAnimator
         android:valueFrom="0"
         android:valueTo="180"
@@ -74,7 +73,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0-->
+    <!-- Half-way through the rotation (see startOffset), set the alpha to 0. -->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
@@ -88,14 +87,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--旋转之前，立刻设置透明度alpha为0-->
+    <!-- Before rotating, immediately set the alpha to 0. -->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
         android:propertyName="alpha"
         android:duration="0" />
 
-    <!-- 旋转. -->
+    <!-- Rotate. -->
     <objectAnimator
         android:valueFrom="180"
         android:valueTo="0"
@@ -103,21 +102,21 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1-->
+    <!-- Half-way through the rotation (see startOffset), set the alpha to 1. -->
     <objectAnimator
         android:valueFrom="0.0"
         android:valueTo="1.0"
         android:propertyName="alpha"
         android:startOffset="@integer/card_flip_time_half"
         android:duration="1" />
-
+</set>
 ```
 
 **card_flip_right_out.xml**
 
 ```xml
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- 旋转. -->
+    <!-- Rotate. -->
     <objectAnimator
         android:valueFrom="0"
         android:valueTo="-180"
@@ -125,7 +124,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         android:interpolator="@android:interpolator/accelerate_decelerate"
         android:duration="@integer/card_flip_time_full" />
 
-    <!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0-->
+    <!-- Half-way through the rotation (see startOffset), set the alpha to 0. -->
     <objectAnimator
         android:valueFrom="1.0"
         android:valueTo="0.0"
@@ -137,7 +136,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建View
 
-卡片的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了卡片展示文本一面的布局：
+card的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了展示文本card的一面：
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -168,7 +167,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </LinearLayout>
 ```
 
-卡片另一面显示一个 [ImageView](http://developer.android.com/reference/android/widget/ImageView.html)：
+card另一面显示一个 [`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)：
 
 ```xml
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -181,13 +180,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 创建Fragment
 
-为卡片正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。在父activity中，你可以在你想要显示卡片时创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：
+为card正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> `onCreateView()` </a>方法中分别为每个framgent返回你之前创建的布局。在想要显示card的父activity中，你可以创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：
 
 ```java
 public class CardFlipActivity extends Activity {
     ...
     /**
-     * 一个呈现在卡片前方的fragment
+     * A fragment representing the front of the card.
      */
     public class CardFrontFragment extends Fragment {
         @Override
@@ -198,7 +197,7 @@ public class CardFlipActivity extends Activity {
     }
 
     /**
-     * 一个呈现在卡片后方的fragment
+     * A fragment representing the back of the card.
      */
     public class CardBackFragment extends Fragment {
         @Override
@@ -210,9 +209,9 @@ public class CardFlipActivity extends Activity {
 }
 ```
 
-## 应用卡片翻转动画
+## 应用card翻转动画
 
-现在，你需要在父activity中展示fragment。为做这件事，首先创建你activity的布局。下面例子创建了一个你可以在运行时添加fragment的 [FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)。
+现在，你需要在父activity中展示fragment。为做这件事，首先创建你activity的布局。下面例子创建了一个你可以在运行时添加fragment的 [`FrameLayout`](http://developer.android.com/reference/android/widget/FrameLayout.html)。
 
 ```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -241,13 +240,13 @@ public class CardFlipActivity extends Activity {
 }
 ```
 
-既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面需要做下面这些事情：
+既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面，它需要做下面这些事情：
 
-* 为fragment转换设置你刚做的自定义动画
+* 将fragment转换设置你刚做的自定义动画
 
 * 用新fragment替换当前显示的fragment，并且应用你刚创建的动画到这个事件中。
 
-* 添加之前显示的fragment到fragment的back stack中，所以当用户摁 *Back* 键时，卡片会翻转回来。
+* 添加之前显示的fragment到fragment的back stack中，所以当用户摁 *Back* 键时，card会翻转回来。
 
 ```java
 private void flipCard() {
@@ -256,29 +255,34 @@ private void flipCard() {
         return;
     }
 
-    // 向后翻转.
+    // Flip to the back.
 
     mShowingBack = true;
 
-    // 创建并提交一个新的Fragment事务用于在卡片后面添加Fragment，使用自定义动画，并且加入
-    // Fragment管理器回退栈
+    // Create and commit a new fragment transaction that adds the fragment for the back of
+    // the card, uses custom animations, and is part of the fragment manager's back stack.
+
     getFragmentManager()
             .beginTransaction()
 
-            // 用动画器资源呈现卡片自前向后的旋转效果替换默认的Fragment动画，
-            // 当翻转到前面的时候动画器资源也可以呈现自后向前的旋转效果（例如按下系统返回键时）
+            // Replace the default fragment animations with animator resources representing
+            // rotations when switching to the back of the card, as well as animator
+            // resources representing rotations when flipping back to the front (e.g. when
+            // the system Back button is pressed).
             .setCustomAnimations(
                     R.animator.card_flip_right_in, R.animator.card_flip_right_out,
                     R.animator.card_flip_left_in, R.animator.card_flip_left_out)
 
-            // 用一个Fragment替换任何当前在容器布局内的Fragment来呈现下一页
-            //（通过仅自增的变量currentPage来表示）
+            // Replace any fragments currently in the container view with a fragment
+            // representing the next page (indicated by the just-incremented currentPage
+            // variable).
             .replace(R.id.container, new CardBackFragment())
 
-            // 添加这个事务到回退栈，允许用户来按下返回按钮来回退到卡片正面.
+            // Add this transaction to the back stack, allowing users to press Back
+            // to get to the front of the card.
             .addToBackStack(null)
 
-            // 提交完成事务.
+            // Commit the transaction.
             .commit();
 }
 ```
