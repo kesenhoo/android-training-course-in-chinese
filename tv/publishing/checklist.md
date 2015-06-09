@@ -5,17 +5,17 @@
 
 <!-- Users enjoy the TV app experience when it is consistent, logical, and predictable. They should be able to navigate within your app and throughout Android TV without getting lost or having to "reset" the UI and start over. Users appreciate clear, colorful, and functional interfaces that make the experience magical. With these ideas in mind, you can create an app that fits nicely in Android TV and performs as users expect. -->
 
-用户喜欢的TV应用应是体验一致的，有逻辑的和可预测的。他们可以在应用内四处浏览，并且不会迷失在应用中，或者重设UI导致重头开始。用户欣赏干净的，有色彩的和起作用的界面，这样的体验会很好。把这些想法放在脑子中，你能创造适合安卓TV的应用并达到用户的期望。
+用户喜欢的TV应用应是体验一致的，有逻辑的和可预测的。他们可以在应用内四处浏览，并且不会迷失在应用从而重设UI导致重头开始。用户欣赏干净的，有色彩的和起作用的界面，这样的体验会很好。把这些想法放在脑子中，我们能创造适合Android TV的应用并达到用户的期望。
 
 <!-- This checklist covers the main aspects of development for both apps and games and provides guidelines to ensure that your app provides the best possible experience. Additional considerations for games only are covered in the Games section. -->
 
-这个清单覆盖了应用和游戏的开发的主要方面去确保你的应用提供了最好的体验。额外的游戏注意事项仅被包含在游戏小节。
+这个清单覆盖了应用和游戏的开发的主要方面去确保我们的应用提供了最好的体验。额外的游戏注意事项仅被包含在游戏小节。
 
 <!-- For criteria that qualify an Android TV app on Google Play, see TV App Quality. -->
-关于Google Play中安卓TV应用的质量标准，参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)。
+关于Google Play中Android TV应用的质量标准，参考[TV App Quality](http://developer.android.com/distribute/essentials/quality/tv.html)。
 
 <!-- ## TV Form Factor Support ## -->
-## TV形式的支持
+## TV格式因素的支持
 
 <!-- These checklist items apply to **Games** and **Apps**. -->
 这些清单项目使用在**游戏**和**应用**中。
@@ -37,7 +37,7 @@ See Declaring permissions that imply hardware features.
 1. 确定manifest的主activity使用`CATEGORY_LEANBACK_LAUNCHER`。
 	查看[Declare a TV Activity](http://developer.android.com/training/tv/start/start.html#tv-activity)。
 2. 提供每种语言的主屏幕横幅支持。
-    - Launcher应用横幅大小为320x180 px 
+    - 启动应用横幅大小为320x180 px 
     - 横幅资源放在`drawables/xhdpi`目录
     - 横幅图像包含本地化的文本去识别应用。
     查看[Provide a home screen banner](http://developer.android.com/training/tv/start/start.html#banner)。
@@ -81,7 +81,7 @@ See Provide Effective Advertising.
 	查看[Build Useable Text and Controls](http://developer.android.com/training/tv/start/layouts.html#visibility)。
 3. 为HDTV屏幕提供高分辨率的位图和图标。
 	查看 [Manage Layout Resources for TV](http://developer.android.com/design/tv/patterns.html#icons)。
-4. 确保你的图标和logo符合安卓TV的规范。
+4. 确保我们的图标和logo符合Android TV的规范。
 	查看[Manage Layout Resources for TV](http://developer.android.com/design/tv/patterns.html#icons)。
 5. 允许布局使用overscan。
 	查看[Overscan](http://developer.android.com/training/tv/start/layouts.html#overscan)。
@@ -91,7 +91,7 @@ See Provide Effective Advertising.
 	查看[Update the Background](http://developer.android.com/training/tv/playback/browse.html#background)。
 8. 在Leanback fragments中定制背景颜色去匹配品牌。
 	查看[Customize the Card View](http://developer.android.com/training/tv/playback/card.html#background)。
-9. 确保你的UI不需要触摸屏。
+9. 确保我们的UI不需要触摸屏。
 	查看[Touch screen](http://developer.android.com/training/tv/start/hardware.html#no-touchscreen) and [Declare touch screen not required](http://developer.android.com/training/tv/start/start.html#no-touchscreen)。
 10. 遵循有效的广告的指导。
 	查看[Provide Effective Advertising](http://developer.android.com/training/tv/start/layouts.html#advertising)。
@@ -113,7 +113,7 @@ See Display Your App in the Details Screen.
 See Recommending TV Content.
 -->
 
-1. 在安卓TV全局搜索框中提供搜索结果。
+1. 在Android TV全局搜索框中提供搜索结果。
 	查看[Provide Data](http://developer.android.com/training/tv/discovery/searchable.html#provide)。
 2. 提供TV特定数据字段的搜索。
 	查看[Identify Columns](http://developer.android.com/training/tv/discovery/searchable.html#columns)。
@@ -143,13 +143,13 @@ See Exit. and Apps.
 
 1. 在manifest中用`isGame`标记让游戏显示在主屏幕上。
 	查看[Show your game on the home screen](http://developer.android.com/training/tv/games/index.html#Launcher)。
-2. 确保游戏控制器支持不依靠开始，选择，或者菜单键操作(不是所有控制器有这些按键)。
+2. 确保游戏控制器可以不依靠开始，选择，或者菜单键操作(不是所有控制器有这些按键)。
 	查看[Input Devices](http://developer.android.com/training/tv/games/index.html#control)。
 3. 使用通常的游戏手柄布局（不包括特殊的控制器品牌）去显示游戏按键示意图。
 	查看[Show controller instructions](http://developer.android.com/training/tv/games/index.html#ControllerHelp)。
 4. 检查网络和WiFi连接。
 	查看[Networking](http://developer.android.com/training/tv/games/index.html#networking)。
 5. 提供给用户清晰的退出提示。
-	查看[Exit](http://developer.android.com/training/tv/games/index.html#exit). 
+	查看[Exit](http://developer.android.com/training/tv/games/index.html#exit)。
 
 ----------------
