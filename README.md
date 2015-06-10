@@ -1,4 +1,4 @@
-# Android官方培训课程中文版(v0.9.3)
+# Android官方培训课程中文版(v0.9.4)
 
 ![Android Training](android_training.jpg)
 
@@ -16,6 +16,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 **<http://hukai.me/android-training-course-in-chinese/index.html>**
 
 ### 更新记录
+* v0.9.4 - 2015/06/11
 * v0.9.3 - 2015/05/18
 * v0.9.2 - 2015/03/30
 * v0.9.1 - 2015/03/14
@@ -43,8 +44,10 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
     * 基础群(1)：**363415744**，已满
     * 基础群(2)：**399077455**，已满
     * 基础群(3)：**458929573**
-* Android Training进阶群：**414115939**，适合实际Android开发经验1-3年的同学。
-* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，未填写的会收到拒绝，谢谢配合！
+* Android Training进阶群：适合实际Android开发经验1-3年的同学。
+    * 进阶群(1)：**414115939**，已满
+    * 进阶群(2)：**386059229**
+* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，未填写的不予通过，谢谢配合！
 
 ## 课程结构
 
