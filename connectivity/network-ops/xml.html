@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>解析XML数据 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>解析XML数据 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.2.3" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="5.2.3" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,27 +5239,25 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_84">
+                    <section class="normal" id="section-gitbook_185">
                     
-                        <h1 id="xml">解析XML数据</h1>
+                        <h1 id="-xml-">解析 XML 数据</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/network-ops/xml.html" target="_blank">http://developer.android.com/training/basics/network-ops/xml.html</a></p>
 </blockquote>
-<p>Extensible Markup Language (XML) 是一组将文档编码成机器可读形式的规则，也是一种在网络上共享数据的普遍格式。经常更新内容的网站比如新闻网站和博客上都提供XML feed来记录更新的信息，以便用户进行订阅读取。</p>
-<p>上传[?]与解析XML数据是app的一个常见的功能。 这一课会介绍如何解析XML文档并使用他们的数据。</p>
-<p><em>([?]这里很奇怪，为什么是Upload，看文章最后一段代码示例的注释，应该是Download才对)</em></p>
+<p>Extensible Markup Language（XML）是一组将文档编码成机器可读形式的规则，也是一种在网络上共享数据的普遍格式。频繁更新内容的网站，比如新闻网站或者博客，经常会提供 XML 提要（XML feed）来使得外部程序可以跟上内容的变化。下载与解析 XML 数据是网络连接相关 app 的一个常见功能。 这一课会介绍如何解析 XML 文档并使用它们的数据。</p>
 <p><strong>示例</strong>：<a href="http://developer.android.com/shareables/training/NetworkUsage.zip" target="_blank">NetworkUsage.zip</a></p>
-<h2 id="1parser">1)选择一个Parser</h2>
-<p>我们推荐<a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html" target="_blank">XmlPullParser</a>, 它是在Android上一个高效且可维护的解析XML方法。 Android 上有这个接口的两种实现方式：</p>
+<h2 id="-parser">选择一个 Parser</h2>
+<p>我们推荐 <a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html" target="_blank">XmlPullParser</a>，它是 Android 上一个高效且可维护的解析 XML 的方法。 Android 上有这个接口的两种实现方式：</p>
 <ul>
-<li><a href="http://kxml.sourceforge.net/" target="_blank">KXmlParser</a>，通过 <a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParserFactory.html#newPullParser(" target="_blank">XmlPullParserFactory.newPullParser()</a>)得到.</li>
-<li>ExpatPullParser，通过<a href="http://developer.android.com/reference/android/util/Xml.html#newPullParser(" target="_blank">Xml.newPullParser()</a>)得到.</li>
+<li><a href="http://kxml.sourceforge.net/" target="_blank">KXmlParser</a>，通过 <a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParserFactory.html#newPullParser()">XmlPullParserFactory.newPullParser()</a> 得到。</li>
+<li><code>ExpatPullParser</code>，通过 <a href="http://developer.android.com/reference/android/util/Xml.html#newPullParser()">Xml.newPullParser()</a> 得到。</li>
 </ul>
-<p>两个选择都是比较好的。下面的示例中是使用ExpatPullParser，通过Xml.newPullParser()得到.</p>
-<!-- more -->
-<h2 id="2feed">2)分析Feed</h2>
-<p>解析一个feed的第一步是决定你需要获取的字段。这样解析器便去抽取出那些需要的字段而忽视其他的字段。</p>
-<p>下面的XML片段是章节概览Sample app中解析的Feed的片段。<a href="http://stackoverflow.com/" target="_blank">StackOverflow</a>上每一个帖子都在feed中以时包含几个嵌套的子标签(tag)的entry标签的形式出现。</p>
+<p>两个选择都是比较好的。下面的示例中是通过 <code>Xml.newPullParser()</code> 得到 <code>ExpatPullParser</code>。</p>
+<p><a name="analyze"></a></p>
+<h2 id="-feed">分析 Feed</h2>
+<p>解析一个 feed 的第一步是决定我们需要获取的字段。这样解析器便去抽取出那些需要的字段而忽视其他的字段。</p>
+<p>下面的XML片段是章节概览示例 app 中解析的 Feed 的片段。<a href="http://stackoverflow.com/" target="_blank">StackOverflow.com</a> 上每一个帖子在 feed 中以包含几个嵌套的子标签的 <code>entry</code> 标签的形式出现。</p>
 <pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">feed</span> <span class="hljs-attribute">xmlns</span>=<span class="hljs-value">"http://www.w3.org/2005/Atom"</span> <span class="hljs-attribute">xmlns:creativeCommons</span>=<span class="hljs-value">"http://backend.userland.com/creativeCommonsRssModule"</span> <span class="hljs-attribute">...</span>"&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">title</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span>newest questions tagged android - Stack Overflow<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
@@ -5291,9 +5289,9 @@
 ...
 <span class="hljs-tag">&lt;/<span class="hljs-title">feed</span>&gt;</span>
 </code></pre>
-<p>Sample app从entry标签与它的子标签title,link和summary中提取数据.</p>
-<h2 id="3parser">3)实例化Parser</h2>
-<p>下一步就是实例化一个parser并开始解析的操作。在下面的片段中，一个parser被初始化来处理名称空间，并且将<a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>作为输入。它通过调用<a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html#nextTag(" target="_blank">nextTag()</a>)开始解析，并调用 readFeed() 方法，readFeed()方法会提取并处理app需要的数据：</p>
+<p>示例 app 从 <code>entry</code> 标签与它的子标签 <code>title</code>，<code>link</code> 和 <code>summary</code> 中提取数据.</p>
+<h2 id="-parser">实例化 Parser</h2>
+<p>下一步就是实例化一个 parser 并开始解析的操作。在下面的片段中，一个 parser 被初始化来处理名称空间，并且将 <a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 作为输入。它通过调用 <a href="http://developer.android.com/reference/org/xmlpull/v1/XmlPullParser.html#nextTag()">nextTag()</a> 开始解析，并调用 <code>readFeed()</code> 方法，<code>readFeed()</code> 方法会提取并处理 app 需要的数据：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StackOverflowXmlParser</span> </span>{
     <span class="hljs-comment">// We don't use namespaces</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String ns = <span class="hljs-keyword">null</span>;
@@ -5312,8 +5310,8 @@
  ...
 }
 </code></pre>
-<h2 id="4feed">4)读取Feed</h2>
-<p>readFeed() 方法实际上并没有处理feed的内容。它只是在寻找一个 &quot;entry&quot; 的标签作为递归（recursively）处理整个feed的起点。 readFeed()方法会跳过不是&quot;entry&quot;的标签。当整个feed都被递归处理后，readFeed() 会返回一个从feed中提取的包含了entry标签（包括里面的数据成员）的 <a href="http://developer.android.com/reference/java/util/List.html" target="_blank">List</a>。然后这个<a href="http://developer.android.com/reference/java/util/List.html" target="_blank">List</a>成为parser的返回值。</p>
+<h2 id="feed">读取Feed</h2>
+<p><code>readFeed()</code> 方法实际的工作是处理 feed 的内容。它寻找一个 &quot;entry&quot; 的标签作为递归处理整个 feed 的起点。<code>readFeed()</code> 方法会跳过不是 <code>entry</code> 的标签。当整个 feed 都被递归处理后，<code>readFeed()</code> 会返回一个从 feed 中提取的包含了 <code>entry</code> 标签内容（包括里面的数据成员）的 <a href="http://developer.android.com/reference/java/util/List.html" target="_blank">List</a>。然后这个 <a href="http://developer.android.com/reference/java/util/List.html" target="_blank">List</a> 成为 parser 的返回值。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> List <span class="hljs-title">readFeed</span><span class="hljs-params">(XmlPullParser parser)</span> <span class="hljs-keyword">throws</span> XmlPullParserException, IOException </span>{
     List entries = <span class="hljs-keyword">new</span> ArrayList();
 
@@ -5333,23 +5331,27 @@
     <span class="hljs-keyword">return</span> entries;
 }
 </code></pre>
-<h2 id="5xml">5)解析XML</h2>
-<p>解析步骤如下：</p>
+<h2 id="-xml">解析 XML</h2>
+<p>解析 XML feed 的步骤如下：</p>
+<ol>
+<li>正如在上面<a href="#analyze">分析 Feed</a> 所说的，判断出应用中想要的标签。这个例子抽取了 <code>entry</code> 标签与它的内部标签 <code>title</code>，<code>link</code> 和 <code>summary</code> 中的数据。</li>
+<li>创建下面的方法:</li>
+<li><p>为每一个我们想要获取的标签创建一个 &quot;read&quot; 方法。例如 <code>readEntry()</code>，<code>readTitle()</code> 等等。解析器从输入流中读取标签。当读取到 <code>entry</code>，<code>title</code>，<code>link</code> 或者 <code>summary</code> 标签时，它会为那些标签调用相应的方法。否则，跳过这个标签。</p>
+</li>
+<li><p>为每一个不同的标签创建提取数据的方法，和使 parser 继续解析下一个标签的方法。例如：</p>
 <ul>
-<li>正如在上面“ 分析Feed”所说的, 判断出你想要的tag。这个example抽取了 entry 标签与它的内部标签 title,link,summary中的数据.</li>
-<li>创建下面的方法:<ul>
-<li>为每一个你想要获取的标签创建一个 &quot;read&quot; 方法。例如 readEntry(), readTitle() 等等. 解析器从input stream中读取tag . 当读取到 entry, title, link 或者 summary 标签时，它会为那些标签调用相应的方法，否则，跳过这个标签。</li>
-<li>为每一个不同的标签创建提取数据的方法，和使parser继续解析下一个tag的方法。例如：<ul>
-<li>对于 title 和 summary 标签, 解析器调用 readText(). 这个方法通过调用parser.getText()来获取数据。</li>
-<li>对于 link 标签,解析器先判断这个link是否是我们想要的类型，然后再读取数据。使用 parser.getAttributeValue() 来获取link的数据。</li>
-<li>对于 entry 标签, 解析起调用 readEntry(). 这个方法解析entry的内部标签并返回一个带有title, link 和 summary数据成员的Entry对象。</li>
-</ul>
+<li><p>对于 <code>title</code> 和 <code>summary</code> 标签，解析器调用 <code>readText()</code>。这个方法通过调用 <code>parser.getText()</code> 来获取数据。</p>
 </li>
-<li>一个递归的辅助方法：skip() . 关于这部分的讨论，请看下面一部分内容：跳过你不需要的tag</li>
-</ul>
+<li><p>对于 <code>link</code> 标签，解析器先判断这个 link 是否是我们想要的类型。然后再使用 <code>parser.getAttributeValue()</code> 来获取 link 标签的值。</p>
+</li>
+<li><p>对于 <code>entry</code> 标签，解析器调用 <code>readEntry()</code>。这个方法解析 entry 的内部标签并返回一个带有 <code>title</code>，<code>link</code> 和 <code>summary</code> 数据成员的 <code>Entry</code> 对象。</p>
 </li>
 </ul>
-<p>下面的代码演示了如何解析 entries, titles, links 与 summaries.</p>
+</li>
+<li><p>一个递归的辅助方法：<code>skip()</code>。关于这部分的讨论，请看下面一部分内容：<a href="#skip">跳过不关心的标签</a>。</p>
+</li>
+</ol>
+<p>下面的代码演示了如何解析 entries，titles，links 与 summaries。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Entry</span> </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String title;
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> String link;
@@ -5431,8 +5433,9 @@
   ...
 }
 </code></pre>
-<h2 id="6tag">6)跳过你不需要的tag</h2>
-<p>上面描述的XML解析步骤中有一步就是跳过不需要的tag，下面演示解析器的 skip() 方法:</p>
+<p><a name="skip"></a></p>
+<h2 id="">跳过不关心的标签</h2>
+<p>上面描述的 XML 解析步骤中有一步就是跳过不关心的标签，下面演示解析器的 <code>skip()</code> 方法:</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">skip</span><span class="hljs-params">(XmlPullParser parser)</span> <span class="hljs-keyword">throws</span> XmlPullParserException, IOException </span>{
     <span class="hljs-keyword">if</span> (parser.getEventType() != XmlPullParser.START_TAG) {
         <span class="hljs-function"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title">IllegalStateException</span><span class="hljs-params">()</span></span>;
@@ -5452,24 +5455,24 @@
 </code></pre>
 <p>下面解释这个方法如何工作:</p>
 <ul>
-<li>如果下一个标签不是一个 START_TAG (开始标签)，抛出异常。</li>
-<li>它消耗掉 START_TAG 以及接下来的所有内容，包括与开始标签配对的 END_TAG (结束标签).</li>
-<li>为了保证方法在遇到正确的 END_TAG 时停止，方法随时记录嵌套深度。</li>
+<li>如果当前事件不是一个 <code>START_TAG</code>，抛出异常。</li>
+<li>它消耗掉 <code>START_TAG</code> 以及接下来的所有内容，包括与开始标签配对的 <code>END_TAG</code>。</li>
+<li>为了保证方法在遇到正确的 <code>END_TAG</code> 时停止，而不是在最开始的 <code>START_TAG</code> 后面的第一个标签，方法随时记录嵌套深度。</li>
 </ul>
-<p>因此如果目前的标签有子标签, 直到解析器已经处理了所有位于START_TAG与对应的END_TAG之间的事件之前，depth 的值不会为 0。例如，看解析器如何跳过 <code>&lt;author&gt;</code> 标签，它有2个子标签，<code>&lt;name&gt;</code> 与 <code>&lt;uri&gt;</code>：</p>
+<p>因此如果目前的标签有子标签, 那么直到解析器已经处理了所有位于 <code>START_TAG</code> 与对应的 <code>END_TAG</code> 之间的事件之前，<code>depth</code> 的值不会为 0。例如，看解析器如何跳过 <code>&lt;author&gt;</code> 标签，它有2个子标签，<code>&lt;name&gt;</code> 与 <code>&lt;uri&gt;</code>：</p>
 <ul>
-<li>第一次循环, 在‘<author>’之后parser遇到的第一个标签是 START_TAG <code>&lt;name&gt;</code>. depth值变为2.</li>
-<li>第二次循环, parser遇到的下一个标签是 END_TAG <code>&lt;/name&gt;</code>. depth值变为1.</li>
-<li>第三次循环, parser遇到的下一个标签是 START_TAG <code>&lt;uri&gt;</code>. depth值变为2.</li>
-<li>第四次循环, parser遇到的下一个标签是 END_TAG <code>&lt;/uri&gt;</code>. depth值变为1.</li>
-<li>第五次同时也是最后一次循环, parser遇到的下一个标签是 END_TAG <code>&lt;/author&gt;</code>. depth值变为0, 表明成功跳过了<code>&lt;author&gt;</code>标签.</li>
+<li>第一次循环, 在 <code>&lt;author&gt;</code> 之后 parser 遇到的第一个标签是 <code>&lt;name&gt;</code> 标签的 <code>START_TAG</code>。<code>depth</code> 值变为2。</li>
+<li>第二次循环, parser 遇到的下一个标签是 <code>END_TAG</code> <code>&lt;/name&gt;</code>。depth 值变为1。</li>
+<li>第三次循环, parser 遇到的下一个标签是 <code>START_TAG</code> <code>&lt;uri&gt;</code>。depth 值变为2。</li>
+<li>第四次循环, parser 遇到的下一个标签是 <code>END_TAG</code> <code>&lt;/uri&gt;</code>。depth 值变为1。</li>
+<li>第五次同时也是最后一次循环, parser 遇到的下一个标签是 <code>END_TAG</code> <code>&lt;/author&gt;</code>。 depth 值变为0。表明成功跳过了 <code>&lt;author&gt;</code> 标签。</li>
 </ul>
-<h2 id="6xml">6)使用XML数据</h2>
-<p>示例程序是在 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 中获取与解析XML数据的。这样处理工程不会在UI线程中执行。当处理完毕后，app会更新main activity(NetworkActivity)的UI。</p>
-<p>在下面示例代码中，loadPage() 方法做了下面的事情：</p>
+<h2 id="-xml-">使用 XML 数据</h2>
+<p>示例程序是在 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 中获取与解析 XML 数据的。这会在主 UI 线程之外进行处理。当处理完毕后，app 会更新 main activity（<code>NetworkActivity</code>）的 UI。</p>
+<p>在下面示例代码中，<code>loadPage()</code> 方法做了下面的事情：</p>
 <ul>
-<li>初始化一个带有URL地址的String变量，用来订阅XML feed。</li>
-<li>如果用户设置与网络连接都允许，会触发 new DownloadXmlTask().execute(url). 这会初始化一个新的 DownloadXmlTask ( <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的子类) 对象并且开始执行它的 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank">execute()</a>) 方法，这个方法会下载并解析feed，并返回结果字符串展示在UI上。</li>
+<li>初始化一个带有 URL 地址的字符串变量，用来订阅 XML feed。</li>
+<li>如果用户设置与网络连接都允许，会调用 <code>new DownloadXmlTask().execute(url)</code>。这会初始化一个新的 <code>DownloadXmlTask</code> 对象（<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的子类）并且开始执行它的 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params...)">execute()</a> 方法，这个方法会下载并解析 feed，并返回展示在 UI 上的字符串。</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NetworkActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String WIFI = <span class="hljs-string">"Wi-Fi"</span>;
@@ -5499,10 +5502,10 @@
         }
     }
 </code></pre>
-<p>下面展示的是 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的子类，DownloadXmlTask实现了 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的如下方法：</p>
+<p>下面展示的是 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的子类，<code>DownloadXmlTask</code>，实现了 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的如下方法：</p>
 <ul>
-<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params..." target="_blank">doInBackground()</a>) 执行 loadXmlFromNetwork() 方法。它以feed的URL作为参数。loadXmlFromNetwork()获取并处理feed。当它完成时，返回一个结果字符串。</li>
-<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>) 接受返回的字符串并将其展示在UI上.</li>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#doInBackground(Params...)">doInBackground()</a> 执行 <code>loadXmlFromNetwork()</code> 方法。它以 feed 的 URL 作为参数。<code>loadXmlFromNetwork()</code> 获取并处理 feed。当它完成时，返回一个结果字符串。</li>
+<li><a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result)">onPostExecute()</a> 接收返回的字符串并将其展示在UI上。</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-comment">// Implementation of AsyncTask used to download XML feed from stackoverflow.com.</span>
 <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DownloadXmlTask</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">AsyncTask</span>&lt;<span class="hljs-title">String</span>, <span class="hljs-title">Void</span>, <span class="hljs-title">String</span>&gt; </span>{
@@ -5526,13 +5529,13 @@
     }
 }
 </code></pre>
-<p>下面是loadXmlFromNetwork()方法做的事情：</p>
+<p>下面是 <code>DownloadXmlTask</code> 中调用的 <code>loadXmlFromNetwork()</code> 方法做的事情：</p>
 <ol>
-<li>实例化一个StackOverflowXmlParser. 它同样创建一个<code>List&lt;Entry&gt;</code>，Entry对象包括title, url, summary字段来保存从XML feed中提取的数据.</li>
-<li>调用 downloadUrl() , 它会获取feed, 并将其作为 <a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 返回.</li>
-<li>使用 StackOverflowXmlParser 解析 <a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> . StackOverflowXmlParser 用从feed中获取的数据填充<code>List&lt;Entry&gt;</code>.</li>
-<li>处理 <code>List&lt;Entry&gt;</code> , 将feed数据与HTML标记结合起来.</li>
-<li>返回一个HTML字符串, <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的方法 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result" target="_blank">onPostExecute()</a>) 会将其展示在main activity的UI上.</li>
+<li>实例化一个 <code>StackOverflowXmlParser</code>。它同样创建一个 <code>Entry</code> 对象（<code>entries</code>）的 List，和 <code>title</code>，<code>url</code>，<code>summary</code>，来保存从 XML feed 中提取的值。</li>
+<li>调用 <code>downloadUrl()</code>，它会获取 feed, 并将其作为 <a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a> 返回。</li>
+<li>使用 <code>StackOverflowXmlParser</code> 解析 <a href="http://developer.android.com/reference/java/io/InputStream.html" target="_blank">InputStream</a>。<code>StackOverflowXmlParser</code> 用从 feed 中获取的数据填充 <code>entries</code> 的 List。</li>
+<li>处理 <code>entries</code> 的 List，并将 feed 数据与 HTML 标记结合起来。</li>
+<li>返回一个 HTML 字符串，<a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 的 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#onPostExecute(Result)">onPostExecute()</a> 方法会将其展示在 main activity 的 UI 上。</li>
 </ol>
 <pre><code class="lang-java"><span class="hljs-comment">// Uploads XML from stackoverflow.com, parses it, and combines it with</span>
 <span class="hljs-comment">// HTML markup. Returns HTML string.【这里可以看出应该是Download】</span>

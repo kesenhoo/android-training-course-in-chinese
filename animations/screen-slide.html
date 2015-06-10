@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用ViewPager实现屏幕侧滑 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>使用ViewPager实现屏幕滑动 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.2" data-basepath=".." data-revision="1433175461912">
+    <div class="book"  data-level="4.3.2" data-basepath=".." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,13 +5239,13 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_108">
                     
-                        <h1 id="viewpager">使用ViewPager实现屏幕侧滑</h1>
+                        <h1 id="viewpager">使用ViewPager实现屏幕滑动</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/screen-slide.html" target="_blank">http://developer.android.com/training/animation/screen-slide.html</a></p>
 </blockquote>
-<p>滑屏是在两个完整界面间的转换，它在一些 UI 中很常见，比如设置导向和幻灯放映。这节课将告诉你怎样通过<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">支持库（support library</a>提供的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>实现滑屏。<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a>能自动实现滑屏动画。下面展示了从一个内容界面到一下界面的滑屏转换是什么样子。</p>
+<p>屏幕划动是在两个完整界面间的转换，它在一些 UI 中很常见，比如设置向导和幻灯放映。这节课将告诉你怎样通过<a href="http://developer.android.com/tools/support-library/index.html" target="_blank">support library</a>提供的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a>实现屏幕滑动。<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a>能自动实现屏幕滑动动画。下面展示了从一个内容界面到一下界面的屏幕滑动转换是什么样子。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5258,15 +5258,15 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例然后运行屏幕滑动例子。查看下列文件中的代码实现：</p>
+<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行 App 样例然后选择屏幕滑动例子。查看下列文件中的代码实现：</p>
 <ul>
-<li>src/ScreenSlidePageFragment.java</li>
-<li>src/ScreenSlideActivity.java</li>
-<li>layout/activity_screen_slide.xml</li>
-<li>layout/fragment_screen_slide_page.xml</li>
+<li><code>src/ScreenSlidePageFragment.java</code></li>
+<li><code>src/ScreenSlideActivity.java</code></li>
+<li><code>layout/activity_screen_slide.xml</code></li>
+<li><code>layout/fragment_screen_slide_page.xml</code></li>
 </ul>
 <h2 id="view">创建View</h2>
-<p>创建你之后会为 Fragment 内容使用的布局文件。下面例子包含一个展示文本的 text view：</p>
+<p>创建你之后会为 fragment 内容使用的布局文件。下面例子包含一个显示文本的 text view：</p>
 <pre><code class="lang-xml"><span class="hljs-comment">&lt;!-- fragment_screen_slide_page.xml --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">ScrollView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/content"</span>
@@ -5283,7 +5283,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </code></pre>
 <p>同时也为 fragment 内容定义了一个字符串。</p>
 <h2 id="fragment">创建Fragment</h2>
-<p>创建一个 <a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank">Fragment</a> 子类，它从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中返回你刚创建的布局。无论什么时候，如果你需要为用户展示一个页面，你可以在它的父 activity 中为这个 fragment 新建实例：</p>
+<p>创建一个 <a href="http://developer.android.com/reference/android/support/v4/app/Fragment.html" target="_blank"><code>Fragment</code></a> 子类，它从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> <code>onCreateView()</code> </a>方法中返回你刚创建的布局。无论何时如果你需要为用户展示一个新page，你可以在它的父 activity 中创建这个 fragment 的实例：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">import</span> android.support.v4.app.Fragment;
 ...
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScreenSlidePageFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
@@ -5299,8 +5299,8 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 }
 </code></pre>
 <h2 id="viewpager">添加ViewPager</h2>
-<p><a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 有内建的滑动手势用来在页面间转换，并且他默认使用滑屏动画，所以你不用自己创建。<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 使用 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a> 来补充新页面，所以 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a> 会用到你之前新建 fragment 类。</p>
-<p>开始之前，创建一个包含 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 的布局：</p>
+<p><a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a> 有内建的滑动手势用来在页面间转换，并且他默认使用滑屏动画，所以你不用自己创建。<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a> 使用 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank"><code>PagerAdapter</code></a> 来补充新页面，所以 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank"><code>PagerAdapter</code></a> 会用到你之前新建 fragment 类。</p>
+<p>开始之前，创建一个包含 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a> 的布局：</p>
 <pre><code class="lang-xml"><span class="hljs-comment">&lt;!-- activity_screen_slide.xml --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">android.support.v4.view.ViewPager</span>
     <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
@@ -5308,13 +5308,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
 </code></pre>
-<p>创建一个 activity 做下面这些事情：</p>
+<p>创建一个 activity 来做下面这些事情：</p>
 <ul>
-<li><p>把 content view 设置成这个包含 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 的布局。</p>
+<li><p>把 content view 设置成这个包含 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a> 的布局。</p>
 </li>
-<li><p>创建一个继承自 <a href="http://developer.android.com/reference/android/support/v13/app/FragmentStatePagerAdapter.html" target="_blank">FragmentStatePagerAdapter </a> 抽象类的类，然后实现<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html#getItem(int)"> getItem() </a>方法来把 ScreenSlidePageFragment 实例作为新页面补充进来。pager adapter还需要实现<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html#getCount()"> getCount() </a>方法，它返回 adapter 将要创建页面的总数（例如5个）。</p>
+<li><p>创建一个继承自 <a href="http://developer.android.com/reference/android/support/v13/app/FragmentStatePagerAdapter.html" target="_blank"><code>FragmentStatePagerAdapter</code></a> 抽象类的类，然后实现<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html#getItem(int)"> <code>getItem()</code> </a>方法来把 <code>ScreenSlidePageFragment</code> 实例作为新页面补充进来。pager adapter还需要实现<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html#getCount()"> <code>getCount()</code> </a>方法，它返回 adapter 将要创建页面的总数（例如5个）。</p>
 </li>
-<li><p>把 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank">PagerAdapter</a> 和 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank">ViewPager</a> 关联起来。</p>
+<li><p>把 <a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html" target="_blank"><code>PagerAdapter</code></a> 和 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html" target="_blank"><code>ViewPager</code></a> 关联起来。</p>
 </li>
 <li><p>处理 Back 按钮，按下变为在虚拟的 fragment 栈中回退。如果用户已经在第一个页面了，则在 activity 的 back stack 中回退。</p>
 </li>
@@ -5324,17 +5324,18 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 ...
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScreenSlidePagerActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
     <span class="hljs-javadoc">/**
-     * 本演示代码的显示页数 (看作向导步骤).
+     * The number of pages (wizard steps) to show in this demo.
      */</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> NUM_PAGES = <span class="hljs-number">5</span>;
 
     <span class="hljs-javadoc">/**
-     * Pager控件，用来处理动画并允许整页横向滑动来展示上一个和下一个“向导步骤”
+     * The pager widget, which handles animation and allows swiping horizontally to access previous
+     * and next wizard steps.
      */</span>
     <span class="hljs-keyword">private</span> ViewPager mPager;
 
     <span class="hljs-javadoc">/**
-     * Pager适配器，用于提供ViewPager控件的具体页面。
+     * The pager adapter, which provides the pages to the view pager widget.
      */</span>
     <span class="hljs-keyword">private</span> PagerAdapter mPagerAdapter;
 
@@ -5343,7 +5344,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-        <span class="hljs-comment">// 初始化 ViewPager 和 PagerAdapter.</span>
+        <span class="hljs-comment">// Instantiate a ViewPager and a PagerAdapter.</span>
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = <span class="hljs-keyword">new</span> ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
@@ -5352,17 +5353,18 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onBackPressed</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-keyword">if</span> (mPager.getCurrentItem() == <span class="hljs-number">0</span>) {
-            <span class="hljs-comment">// 如果用户当前正在看第一步（也就是第一页），那就要让系统来处理返回按钮。</span>
-            <span class="hljs-comment">//这个是结束（finish()）当前活动并弹出回退栈。</span>
+            <span class="hljs-comment">// If the user is currently looking at the first step, allow the system to handle the</span>
+            <span class="hljs-comment">// Back button. This calls finish() on this activity and pops the back stack.</span>
             <span class="hljs-keyword">super</span>.onBackPressed();
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-comment">// 否则，返回前一页</span>
+            <span class="hljs-comment">// Otherwise, select the previous step.</span>
             mPager.setCurrentItem(mPager.getCurrentItem() - <span class="hljs-number">1</span>);
         }
     }
 
     <span class="hljs-javadoc">/**
-     * 一个简单的Pager控件适配器，它顺序地展示了5个ScreenSlidePageFragment对象
+     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
+     * sequence.
      */</span>
     <span class="hljs-keyword">private</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ScreenSlidePagerAdapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentStatePagerAdapter</span> </span>{
         <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ScreenSlidePagerAdapter</span><span class="hljs-params">(FragmentManager fm)</span> </span>{
@@ -5382,17 +5384,17 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 }
 </code></pre>
 <h2 id="pagetransformer">用PageTransformer自定义动画</h2>
-<p>为展示不同于默认滑屏效果的动画，实现 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">ViewPager.PageTransformer</a> 接口，然后把它补充到 view pager 里。这接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>。每次界面切换，这个方法都会为每个可见页面和界面中消失的相邻界面调用一次（通常只有一个页面可见）。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>在手势的各个阶段为第二，三，四页分别调用。</p>
-<p>在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>的实现中，基于当前界面上页面的 <code>position</code>（<code>position</code> 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> transformPage() </a>方法的参数给出）决定哪些页面需要被动画转换，通过这样你就能新建自己的动画。</p>
-<p><code>position</code> 参数表示给定页面相对于屏幕中的页面的位置。它的值在用户滑动页面过程中动态变化。当页面填充屏幕，它的值为 0。当页面刚从屏幕右边拖走，它的值为 1。如果用户在页面一和页面二间滑动到一半，那么页面一的 position 为 -0.5 并且 页面二的 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> setAlpha() </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> setTranslationX() </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> setScaleY() </a>这些方法设定页面属性来自定义滑动动画。</p>
-<p>当你实现了 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a> 后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> setPageTransformer() </a>来应用这些自定义动画。例如，如果你有一个叫做<code>ZoomOutPageTransformer</code>的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a>，你可以这样设置自定义动画：</p>
+<p>要展示不同于默认滑屏效果的动画，实现 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank"><code>ViewPager.PageTransformer</code></a> 接口，然后把它补充到 view pager 里就行了。这个接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> <code>transformPage()</code> </a>。每次界面切换，这个方法都会为每个可见page（通常只有一个页面可见）和其即将消失的相邻page面调用一次。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> <code>transformPage()</code> </a>在操作的各个阶段为第二，三，四页分别调用。</p>
+<p>在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> <code>transformPage()</code> </a>的实现中，基于当前界面上page的 <code>position</code>（<code>position</code> 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> <code>transformPage()</code> </a>方法的参数给出）决定哪些page需要被动画转换，这样你就能创建自己的动画。</p>
+<p><code>position</code> 参数表示特定page相对于屏幕中的page的位置。它的值在用户滑动页面过程中动态变化。当page填充屏幕，它的值为 0。当page刚从屏幕右边拖走，它的值为 1。如果用户在page 1和page 2间滑动到一半，那么page 1的 position 为 -0.5 并且page 2的 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> <code>setAlpha()</code> </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> <code>setTranslationX()</code> </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> <code>setScaleY()</code> </a>这些方法设定页面属性来自定义滑动动画。</p>
+<p>当你实现了 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank"><code>PageTransformer</code></a> 后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> <code>setPageTransformer()</code> </a>来应用这些自定义动画。例如，如果你有一个叫做<code>ZoomOutPageTransformer</code>的<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank"><code>PageTransformer</code></a>，你可以这样设置自定义动画：</p>
 <pre><code class="lang-java">ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 ...
 mPager.setPageTransformer(<span class="hljs-keyword">true</span>, <span class="hljs-keyword">new</span> ZoomOutPageTransformer());
 </code></pre>
-<p>详情查看<a href="#缩放型PageTransformer">缩放型 Page Transformer</a>和<a href="#潜藏型PageTransformer">潜藏型 Page Transformer</a>部分和 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank">PageTransformer</a> 视频。</p>
-<h3 id="pagetransformer">缩放PageTransformer</h3>
-<p>当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐明。</p>
+<p>详情查看<a href="#Zoom-out Page Transformer">Zoom-out Page Transformer</a>和<a href="#Depth Page Transformer">Depth Page Transformer</a>部分的 <a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html" target="_blank"><code>PageTransformer</code></a> 视频和例子。</p>
+<h3 id="zoom-out-page-transformer">Zoom-out Page Transformer</h3>
+<p>当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐入。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5413,12 +5415,12 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-keyword">int</span> pageWidth = view.getWidth();
         <span class="hljs-keyword">int</span> pageHeight = view.getHeight();
 
-        <span class="hljs-keyword">if</span> (position &lt; -<span class="hljs-number">1</span>) { <span class="hljs-comment">// [-∞,-1)</span>
-            <span class="hljs-comment">// 这一页已经是最左边的屏幕页</span>
+        <span class="hljs-keyword">if</span> (position &lt; -<span class="hljs-number">1</span>) { <span class="hljs-comment">// [-Infinity,-1)</span>
+            <span class="hljs-comment">// This page is way off-screen to the left.</span>
             view.setAlpha(<span class="hljs-number">0</span>);
 
         } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(position &lt;= <span class="hljs-number">1</span>)</span> </span>{ <span class="hljs-comment">// [-1,1]</span>
-            <span class="hljs-comment">// 修改默认的滑动过渡效果为缩放效果</span>
+            <span class="hljs-comment">// Modify the default slide transition to shrink the page as well</span>
             <span class="hljs-keyword">float</span> scaleFactor = Math.max(MIN_SCALE, <span class="hljs-number">1</span> - Math.abs(position));
             <span class="hljs-keyword">float</span> vertMargin = pageHeight * (<span class="hljs-number">1</span> - scaleFactor) / <span class="hljs-number">2</span>;
             <span class="hljs-keyword">float</span> horzMargin = pageWidth * (<span class="hljs-number">1</span> - scaleFactor) / <span class="hljs-number">2</span>;
@@ -5428,24 +5430,24 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
                 view.setTranslationX(-horzMargin + vertMargin / <span class="hljs-number">2</span>);
             }
 
-            <span class="hljs-comment">// 开始根据缩放系数进行变化 (在 MIN_SCALE 和 1 之间变化)</span>
+            <span class="hljs-comment">// Scale the page down (between MIN_SCALE and 1)</span>
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
 
-            <span class="hljs-comment">// 根据大小（缩放系数）变化化透明度实现淡化页面效果</span>
+            <span class="hljs-comment">// Fade the page relative to its size.</span>
             view.setAlpha(MIN_ALPHA +
                     (scaleFactor - MIN_SCALE) /
                     (<span class="hljs-number">1</span> - MIN_SCALE) * (<span class="hljs-number">1</span> - MIN_ALPHA));
 
-        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// (1,+∞ ]</span>
-            <span class="hljs-comment">// 这一页已经是最右边的屏幕页</span>
+        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// (1,+Infinity]</span>
+            <span class="hljs-comment">// This page is way off-screen to the right.</span>
             view.setAlpha(<span class="hljs-number">0</span>);
         }
     }
 }
 </code></pre>
-<h3 id="pagetransformer">潜藏型PageTransformer（页面转换动画）</h3>
-<p>这个page transformer使用默认动画的屏幕左滑动画。但是为右滑使用一种“潜藏”效果的动画。潜藏动画淡出页面，并且线性缩小它。</p>
+<h3 id="depth-page-transformer">Depth Page Transformer</h3>
+<p>这个page transformer使用默认动画的屏幕左滑动画。但是为右滑使用一种“潜藏”效果的动画。潜藏动画将page淡出，并且线性缩小它。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5459,7 +5461,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </div>
 
 <blockquote>
-<p><strong>注意：</strong>在潜藏过程中，默认动画（屏幕滑动）是仍旧发生的，所以你必须用负的 X平移来抵消它。例如：</p>
+<p><strong>注意：</strong>在潜藏过程中，默认动画（屏幕滑动）是仍旧发生的，所以你必须用负的X平移来抵消它。例如：</p>
 </blockquote>
 <pre><code class="lang-java">view.setTranslationX(-<span class="hljs-number">1</span> * view.getWidth() * position);
 </code></pre>
@@ -5470,32 +5472,32 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">transformPage</span><span class="hljs-params">(View view, <span class="hljs-keyword">float</span> position)</span> </span>{
         <span class="hljs-keyword">int</span> pageWidth = view.getWidth();
 
-        <span class="hljs-keyword">if</span> (position &lt; -<span class="hljs-number">1</span>) { <span class="hljs-comment">// [-∞ ,-1)</span>
-            <span class="hljs-comment">// 这一页已经是最左边的屏幕页</span>
+        <span class="hljs-keyword">if</span> (position &lt; -<span class="hljs-number">1</span>) { <span class="hljs-comment">// [-Infinity,-1)</span>
+            <span class="hljs-comment">// This page is way off-screen to the left.</span>
             view.setAlpha(<span class="hljs-number">0</span>);
 
         } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(position &lt;= <span class="hljs-number">0</span>)</span> </span>{ <span class="hljs-comment">// [-1,0]</span>
-            <span class="hljs-comment">// 向左面滑屏使用默认的过渡动画</span>
+            <span class="hljs-comment">// Use the default slide transition when moving to the left page</span>
             view.setAlpha(<span class="hljs-number">1</span>);
             view.setTranslationX(<span class="hljs-number">0</span>);
             view.setScaleX(<span class="hljs-number">1</span>);
             view.setScaleY(<span class="hljs-number">1</span>);
 
         } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(position &lt;= <span class="hljs-number">1</span>)</span> </span>{ <span class="hljs-comment">// (0,1]</span>
-            <span class="hljs-comment">// 淡出页面</span>
+            <span class="hljs-comment">// Fade the page out.</span>
             view.setAlpha(<span class="hljs-number">1</span> - position);
 
-            <span class="hljs-comment">// 抵消默认的整页过渡</span>
+            <span class="hljs-comment">// Counteract the default slide transition</span>
             view.setTranslationX(pageWidth * -position);
 
-            <span class="hljs-comment">// 根据缩放系数变化 (在 MIN_SCALE 和 1 之间变化)</span>
+            <span class="hljs-comment">// Scale the page down (between MIN_SCALE and 1)</span>
             <span class="hljs-keyword">float</span> scaleFactor = MIN_SCALE
                     + (<span class="hljs-number">1</span> - MIN_SCALE) * (<span class="hljs-number">1</span> - Math.abs(position));
             view.setScaleX(scaleFactor);
             view.setScaleY(scaleFactor);
 
-        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// (1,+∞]</span>
-            <span class="hljs-comment">// 这一页已经是最右边的屏幕页</span>
+        } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// (1,+Infinity]</span>
+            <span class="hljs-comment">// This page is way off-screen to the right.</span>
             view.setAlpha(<span class="hljs-number">0</span>);
         }
     }
@@ -5514,7 +5516,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <a href="../animations/crossfade.html" class="navigation navigation-prev " aria-label="Previous page: View间渐变"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../animations/cardflip.html" class="navigation navigation-next " aria-label="Next page: 展示卡片翻转动画"><i class="fa fa-angle-right"></i></a>
+        <a href="../animations/cardflip.html" class="navigation navigation-next " aria-label="Next page: 展示Card翻转动画"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

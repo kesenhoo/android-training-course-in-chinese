@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>View间渐变 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>View间渐变 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.1" data-basepath=".." data-revision="1433175461912">
+    <div class="book"  data-level="4.3.1" data-basepath=".." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,13 +5239,13 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_5">
+                    <section class="normal" id="section-gitbook_105">
                     
                         <h1 id="view">View间渐变</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/crossfade.html" target="_blank">http://developer.android.com/training/animation/crossfade.html</a></p>
 </blockquote>
-<p>渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。当你不使用它们，不管怎么样转换经常感到生硬而仓促。</p>
+<p>渐变动画（也叫消失）通常指渐渐的淡出某个 UI 组件，同时同步地淡入另一个。在你 App 想切换内容或 view 的情况下，这种动画很有用。渐变简短不易察觉，它也能提供从一个界面到下一个之间流畅的转换。但当你不使用它们时，转换经常会感到生硬而仓促。</p>
 <p>下面是一个利用进度指示渐变到一些文本内容的例子。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -5260,11 +5260,11 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </div>
 
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例然后运行渐变例子。查看下列文件中的代码实现：</p>
+<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行样例 App 然后选择渐变例子。查看下列文件中的代码实现：</p>
 <ul>
-<li>src/CrossfadeActivity.java</li>
-<li>layout/activity_crossfade.xml</li>
-<li>menu/activity_crossfade.xml</li>
+<li><code>src/CrossfadeActivity.java</code></li>
+<li><code>layout/activity_crossfade.xml</code></li>
+<li><code>menu/activity_crossfade.xml</code></li>
 </ul>
 <h2 id="view">创建View</h2>
 <p>创建两个你想相互渐变的 view。下面的例子创建了一个进度提示圈和可滑动文本 view。</p>
@@ -5297,14 +5297,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <h2 id="">设置动画</h2>
 <p>为设置动画，你需要：</p>
 <ol>
-<li><p>为你想渐变的 view 创建成员变量。之后动画应用途中修改 View 的时候你会需要这些引用的。</p>
+<li><p>为你想渐变的 view 创建成员变量。在之后动画应用途中修改 View 的时候你会需要这些引用的。</p>
 </li>
-<li><p>对于被淡出的 view，设置它的 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank">GONE</a>。这样防止 view 再占据布局的空间，而且也能在布局计算中将其忽略，加速处理过程。</p>
+<li><p>对于被淡入的 view，设置它的 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>。这样防止 view 再占据布局的空间，而且也能在布局计算中将其忽略，加速处理过程。</p>
 </li>
-<li><p>将 <a href="http://developer.android.com/reference/android/R.integer.html#config_shortAnimTime" target="_blank">config_shortAnimTime</a> 系统属性暂存到一个成员变量里。这个属性为动画定义了一个标准的“短”持续时间。对于微妙或者快速发生的动画，这是个很理想的时间段。<a href="http://developer.android.com/reference/android/R.integer.html#config_longAnimTime" target="_blank">config_longAnimTime</a> 和 <a href="http://developer.android.com/reference/android/R.integer.html#config_mediumAnimTime" target="_blank">config_mediumAnimTime</a> 也行，如果你想用的话。</p>
+<li><p>将 <a href="http://developer.android.com/reference/android/R.integer.html#config_shortAnimTime" target="_blank"><code>config_shortAnimTime</code></a> 系统属性暂存到一个成员变量里。这个属性为动画定义了一个标准的“短”持续时间。对于细微或者快速发生的动画，这是个很理想的持续时段。<a href="http://developer.android.com/reference/android/R.integer.html#config_longAnimTime" target="_blank"><code>config_longAnimTime</code></a> 和 <a href="http://developer.android.com/reference/android/R.integer.html#config_mediumAnimTime" target="_blank"><code>config_mediumAnimTime</code></a> 也行，如果你想用的话。</p>
 </li>
 </ol>
-<p>下面是个内容 view 的 activity 例子，它使用了前面所述代码片段中的布局。</p>
+<p>下面是个使用之前代码布局作为内容 view 的 activity 例子。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CrossfadeActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 
     <span class="hljs-keyword">private</span> View mContentView;
@@ -5321,10 +5321,10 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         mContentView = findViewById(R.id.content);
         mLoadingView = findViewById(R.id.loading_spinner);
 
-        <span class="hljs-comment">// 初始化隐藏这个View.</span>
+        <span class="hljs-comment">// Initially hide the content view.</span>
         mContentView.setVisibility(View.GONE);
 
-        <span class="hljs-comment">// 获取并缓存系统默认的“短”时长</span>
+        <span class="hljs-comment">// Retrieve and cache the system's default "short" animation time.</span>
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
     }
@@ -5332,14 +5332,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <h2 id="view">渐变View</h2>
 <p>既然正确地设置了那些 view，做下面这些事情来渐变他们吧：</p>
 <ol>
-<li><p>对于淡入的 view，设置 alpha 值为 0 并且设置 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#VISIBLE" target="_blank">VISIBLE</a>（要记得他起初被设置成了 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank">GONE</a>）。这让 view 可见了但是它是透明的。</p>
+<li><p>对于正在淡入的 view，设置它的 alpha 值为 0 并且设置 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#VISIBLE" target="_blank"><code>VISIBLE</code></a>（记住他起初被设置成了 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>）。这样就让 view 可见了但是它是透明的。</p>
 </li>
-<li><p>对于淡入的 view，把 alpha 值从 0 动态改变到 1。同时，对于淡出的 view，把 alpha 值从 1 动态变到 0。</p>
+<li><p>同样对于淡入的 view，把 alpha 值从 0 动态改变到 1。同时，对于淡出的 view，把 alpha 值从 1 动态变到 0。</p>
 </li>
-<li><p>使用 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html" target="_blank">Animator.AnimatorListener</a> 中的 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html#onAnimationEnd(android.animation.Animator)">onAnimationEnd()</a>，设置淡出 view 的 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank">GONE</a>。即使 alpha 值为 0，也要把 view 的 visibility 设置成 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank">GONE</a> 来防止 view 占据布局空间，还能把它从布局计算中忽略，加速处理过程。</p>
+<li><p>使用 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html" target="_blank"><code>Animator.AnimatorListener</code></a> 中的 <a href="http://developer.android.com/reference/android/animation/Animator.AnimatorListener.html#onAnimationEnd(android.animation.Animator)"><code>onAnimationEnd()</code></a>，设置淡出 view 的 visibility 为 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>。即使 alpha 值为 0，也要把 view 的 visibility 设置成 <a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a> 来防止 view 占据布局空间，还能把它从布局计算中忽略，加速处理过程。</p>
 </li>
 </ol>
-<p>下面方法展示如何去做：</p>
+<p>下面方法展示如何做这些：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> View mContentView;
 <span class="hljs-keyword">private</span> View mLoadingView;
 <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mShortAnimationDuration;
@@ -5348,20 +5348,21 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">crossfade</span><span class="hljs-params">()</span> </span>{
 
-    <span class="hljs-comment">// 设置内容View为0%的不透明度，但是状态为“可见”，</span>
-    <span class="hljs-comment">// 因此在动画过程中是一直可见的（但是为全透明）。</span>
+    <span class="hljs-comment">// Set the content view to 0% opacity but visible, so that it is visible</span>
+    <span class="hljs-comment">// (but fully transparent) during the animation.</span>
     mContentView.setAlpha(<span class="hljs-number">0</span>f);
     mContentView.setVisibility(View.VISIBLE);
 
-    <span class="hljs-comment">// 开始动画内容View到100%的不透明度，然后清除所有设置在View上的动画监听器。</span>
+    <span class="hljs-comment">// Animate the content view to 100% opacity, and clear any animation</span>
+    <span class="hljs-comment">// listener set on the view.</span>
     mContentView.animate()
             .alpha(<span class="hljs-number">1</span>f)
             .setDuration(mShortAnimationDuration)
             .setListener(<span class="hljs-keyword">null</span>);
 
-    <span class="hljs-comment">// 加载View开始动画逐渐变为0%的不透明度，</span>
-    <span class="hljs-comment">// 动画结束后，设置可见性为GONE（消失）作为一个优化步骤</span>
-    <span class="hljs-comment">//（它将不再参与布局的传递等过程）</span>
+    <span class="hljs-comment">// Animate the loading view to 0% opacity. After the animation ends,</span>
+    <span class="hljs-comment">// set its visibility to GONE as an optimization step (it won't</span>
+    <span class="hljs-comment">// participate in layout passes, etc.)</span>
     mLoadingView.animate()
             .alpha(<span class="hljs-number">0</span>f)
             .setDuration(mShortAnimationDuration)
@@ -5386,7 +5387,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <a href="../animations/index.html" class="navigation navigation-prev " aria-label="Previous page: 添加动画"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../animations/screen-slide.html" class="navigation navigation-next " aria-label="Next page: 使用ViewPager实现屏幕侧滑"><i class="fa fa-angle-right"></i></a>
+        <a href="../animations/screen-slide.html" class="navigation navigation-next " aria-label="Next page: 使用ViewPager实现屏幕滑动"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

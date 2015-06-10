@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用WiFi P2P服务 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>使用WiFi P2P服务 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.1.3" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="5.1.3" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,23 +5239,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_72">
+                    <section class="normal" id="section-gitbook_172">
                     
-                        <h1 id="wifi-p2p">使用WiFi P2P发现服务</h1>
+                        <h1 id="-wifi-p2p-">使用 WiFi P2P 服务发现</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/naizhengtan" target="_blank">naizhengtan</a> - 原文:<a href="http://developer.android.com/training/connect-devices-wirelessly/nsd-wifi-direct.html" target="_blank">http://developer.android.com/training/connect-devices-wirelessly/nsd-wifi-direct.html</a></p>
 </blockquote>
-<p>在本章第一节“<a href="nsd.html">使得网络服务可发现</a>”中介绍了如何在局域网中发现并连接到其他设备的服务上。
-然而，即使在不接入网络的环境中，Wi-Fi P2P的发现服务也可以使你的应用直接连接到附近的设备。
-与此同时，你也可以向外公布自己设备上的服务。
-Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点的情况下，
-帮助不同设备上的应用进行通信。</p>
-<p>虽然本节所述的API与第一节NSD（Network Service Discovery）的API相似，
-但是具体的实现代码却截然不同。
-本节将讲述如何通过Wi-Fi P2P技术发现附近可用设备中的服务。
-假设读者已经对Wi-Fi P2P的API有一定了解。</p>
-<h2 id="manifest">配置Manifest</h2>
-<p>使用Wi-Fi P2P技术，需要添加<a href="http://developer.android.com/reference/android/Manifest.permission.html#CHANGE_WIFI_STATE" target="_blank">CHANGE_WIFI_STATE</a>,<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_WIFI_STATE" target="_blank">ACCESS_WIFI_STATE</a>以及<a href="http://developer.android.com/reference/android/Manifest.permission.html#INTERNET" target="_blank">INTERNET</a>三种权限到应用的manifest文件。Wi-Fi P2P技术虽然不需要访问互联网，但是它会使用Java中的标准socket。而使用socket需要具有INTERNET权限，这也是Wi-Fi P2P技术需要申请该权限的原因。</p>
+<p>在本章第一节“<a href="nsd.html">使用网络服务发现</a>”中介绍了如何在局域网中发现已连接到网络的服务。然而，即使在不接入网络的情况下，Wi-Fi P2P 服务发现也可以使我们的应用直接发现附近的设备。我们也可以向外公布自己设备上的服务。这些能力可以在没有局域网或者网络热点的情况下，在应用间进行通信。</p>
+<p>虽然本节所述的 API 与第一节 NSD（Network Service Discovery）的 API 相似，但是具体的实现代码却截然不同。本节将讲述如何通 过Wi-Fi P2P 技术发现其它设备中可用的服务。本节假设读者已经对 Wi-Fi P2P 的 API 有一定了解。</p>
+<h2 id="-manifest">配置 Manifest</h2>
+<p>使用 Wi-Fi P2P 技术，需要添加 <a href="http://developer.android.com/reference/android/Manifest.permission.html#CHANGE_WIFI_STATE" target="_blank">CHANGE_WIFI_STATE</a>、<a href="http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_WIFI_STATE" target="_blank">ACCESS_WIFI_STATE</a> 以及 <a href="http://developer.android.com/reference/android/Manifest.permission.html#INTERNET" target="_blank">INTERNET</a> 三种权限到应用的 manifest 文件。虽然 Wi-Fi P2P 技术不需要访问互联网，但是它会使用 Java 中的标准 socket，而使用 socket 需要具有 INTERNET 权限，这也是 Wi-Fi P2P 技术需要申请该权限的原因。</p>
 <pre><code class="lang-xml">&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.nsdchat"
     ...
@@ -5272,12 +5265,12 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
     ...
 </code></pre>
 <h2 id="">添加本地服务</h2>
-<p>如果你想提供一个本地服务，就需要在服务发现框架中注册该服务。当本地服务被成功注册，系统将自动回复所有来自附近的服务发现请求。</p>
+<p>如果我们想提供一个本地服务，就需要在服务发现框架中注册该服务。当本地服务被成功注册，系统将自动回复所有来自附近的服务发现请求。</p>
 <p>三步创建本地服务：</p>
 <ol>
-<li>新建<a href="http://developer.android.com/reference/android/net/wifi/p2p/nsd/WifiP2pServiceInfo.html" target="_blank">WifiP2pServiceInfo</a>对象</li>
+<li>新建 <a href="http://developer.android.com/reference/android/net/wifi/p2p/nsd/WifiP2pServiceInfo.html" target="_blank">WifiP2pServiceInfo</a> 对象</li>
 <li>加入相应服务的详细信息</li>
-<li>调用<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#addLocalService(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.nsd.WifiP2pServiceInfo, android.net.wifi.p2p.WifiP2pManager.ActionListener)">addLocalService()</a>注册该服务</li>
+<li>调用 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#addLocalService(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.nsd.WifiP2pServiceInfo, android.net.wifi.p2p.WifiP2pManager.ActionListener)">addLocalService()</a> 为服务发现注册本地服务</li>
 </ol>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">startRegistration</span><span class="hljs-params">()</span> </span>{
         <span class="hljs-comment">//  Create a string map containing information about your service.</span>
@@ -5310,7 +5303,7 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
     }
 </code></pre>
 <h2 id="">发现附近的服务</h2>
-<p>Android使用回调函数通知应用程序附近可用的服务，因此发现服务的第一步是设置这些回调函数。新建一个<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdTxtRecordListener.html" target="_blank">WifiP2pManager.DnsSdTxtRecordListener</a>实例侦听实时收到的记录（record）。这些记录可以是来自其他设备的广播。当收到记录时，将其中的设备地址和其他相关信息拷贝出，供之后使用。下面的例子假设这条记录不仅包含设备的身份，还包含一个名为“buddyname”的域（field）。</p>
+<p>Android 使用回调函数通知应用程序附近可用的服务，因此首先要做的是设置这些回调函数。新建一个 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdTxtRecordListener.html" target="_blank">WifiP2pManager.DnsSdTxtRecordListener</a> 实例监听实时收到的记录（record）。这些记录可以是来自其他设备的广播。当收到记录时，将其中的设备地址和其他相关信息拷贝到当前方法之外的外部数据结构中，供之后使用。下面的例子假设这条记录包含一个带有用户身份的“buddyname”域（field）。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">final</span> HashMap&lt;String, String&gt; buddies = <span class="hljs-keyword">new</span> HashMap&lt;String, String&gt;();
 ...
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">discoverService</span><span class="hljs-params">()</span> </span>{
@@ -5331,7 +5324,7 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
     ...
 }
 </code></pre>
-<p>接下来创建<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html" target="_blank">WifiP2pManager.DnsSdServiceResponseListener</a>对象，用以获取目标服务的信息。这个对象将接受服务的实际描述以及连接信息。上一段代码构建了一个包含设备地址和“buddyname”键值对的<a href="http://developer.android.com/reference/java/util/Map.html" target="_blank">Map</a>对象。<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html" target="_blank">WifiP2pManager.DnsSdServiceResponseListener</a>对象使用这些配对信息将DNS记录和对应的服务信息对应起来。当上述两个监听器构建完成了，调用<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#setDnsSdResponseListeners(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener, android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener)">setDnsSdResponseListeners()</a>将他们加入<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html" target="_blank">WifiP2pManager</a>。</p>
+<p>接下来创建 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html" target="_blank">WifiP2pManager.DnsSdServiceResponseListener</a> 对象，用以获取服务的信息。这个对象将接收服务的实际描述以及连接信息。上一段代码构建了一个包含设备地址和“buddyname”键值对的 <a href="http://developer.android.com/reference/java/util/Map.html" target="_blank">Map</a> 对象。<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.DnsSdServiceResponseListener.html" target="_blank">WifiP2pManager.DnsSdServiceResponseListener</a> 对象使用这些配对信息将 DNS 记录和对应的服务信息对应起来。当上述两个 listener 构建完成后，调用 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#setDnsSdResponseListeners(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.DnsSdServiceResponseListener, android.net.wifi.p2p.WifiP2pManager.DnsSdTxtRecordListener)">setDnsSdResponseListeners()</a> 将他们加入到 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html" target="_blank">WifiP2pManager</a>。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">discoverService</span><span class="hljs-params">()</span> </span>{
 ...
 
@@ -5363,7 +5356,7 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
     ...
 }
 </code></pre>
-<p>然后创建服务请求，并调用<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#addServiceRequest(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.nsd.WifiP2pServiceRequest, android.net.wifi.p2p.WifiP2pManager.ActionListener)">addServiceRequest()</a>方法。这个方法也需要一个监听器（Listener）报告请求成功与失败。</p>
+<p>现在调用 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#addServiceRequest(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.nsd.WifiP2pServiceRequest, android.net.wifi.p2p.WifiP2pManager.ActionListener)">addServiceRequest()</a> 创建服务请求。这个方法也需要一个 Listener 报告请求成功与失败。</p>
 <pre><code class="lang-java">        serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
         mManager.addServiceRequest(channel,
                 serviceRequest,
@@ -5379,7 +5372,7 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
                     }
                 });
 </code></pre>
-<p>最后调用<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#discoverServices(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ActionListener)">discoverServices()</a>。</p>
+<p>最后调用 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#discoverServices(android.net.wifi.p2p.WifiP2pManager.Channel, android.net.wifi.p2p.WifiP2pManager.ActionListener)">discoverServices()</a>。</p>
 <pre><code class="lang-java">        mManager.discoverServices(channel, <span class="hljs-keyword">new</span> ActionListener() {
 
             <span class="hljs-annotation">@Override</span>
@@ -5397,18 +5390,13 @@ Wi-Fi P2P发现服务的这种能力可以在没有局域网或者网络热点�
             }
         })</span>;
 </code></pre>
-<p>如果所有部分都配置正确，你应该就能看到正确的结果了！如果遇到了问题，你可以查看<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.ActionListener.html" target="_blank">WifiP2pManager.ActionListener</a>中的回调函数。它们能够指示操作是否成功。你可以将debug的代码放置在<a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.ActionListener.html#onFailure(int)">onFailure()</a>中来诊断问题。其中的一些错误码（Error Code）也许能为你带来不小启发。下面是一些常见的错误：</p>
-<ul>
-<li><p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#P2P_UNSUPPORTED" target="_blank">P2P_UNSUPPORTED</a>
-<br>Wi-Fi P2P 不被现在的设备支持</p>
-</li>
-<li><p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#BUSY" target="_blank">BUSY</a>
-<br>系统忙于处理请求</p>
-</li>
-<li><p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#ERROR" target="_blank">ERROR</a>
-<br>内部错误</p>
-</li>
-</ul>
+<p>如果所有部分都配置正确，我们应该就能看到正确的结果了！如果遇到了问题，可以查看 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.ActionListener.html" target="_blank">WifiP2pManager.ActionListener</a> 中的回调函数。它们能够指示操作是否成功。我们可以将 debug 的代码放置在 <a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.ActionListener.html#onFailure(int)">onFailure()</a> 中来诊断问题。其中的一些错误码（Error Code）也许能为我们带来不小启发。下面是一些常见的错误：</p>
+<p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#P2P_UNSUPPORTED" target="_blank">P2P_UNSUPPORTED</a></p>
+<p>　　当前的设备不支持 Wi-Fi P2P</p>
+<p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#BUSY" target="_blank">BUSY</a></p>
+<p>　　系统忙，无法处理当前请求</p>
+<p><a href="http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html#ERROR" target="_blank">ERROR</a></p>
+<p>　　内部错误导致操作失败</p>
 
                     
                     </section>

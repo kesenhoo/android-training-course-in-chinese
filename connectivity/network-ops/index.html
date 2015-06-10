@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>执行网络操作 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>执行网络操作 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.2" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="5.2" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,16 +5239,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_82">
+                    <section class="normal" id="section-gitbook_182">
                     
-                        <h1 id="">网络连接操作</h1>
+                        <h1 id="">执行网络操作</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/basics/network-ops/index.html" target="_blank">http://developer.android.com/training/basics/network-ops/index.html</a></p>
 </blockquote>
-<p>这一章会介绍一些基本的网络操作，监视网络连接（包括网络改变），让用户来控制app对网络的选择使用。还会介绍如何解析与使用XML数据。</p>
-<p>这节课包括一个示例应用,展示如何执行常见的网络操作.你可以下载下面的的范例,并把它作为可重用代码在你自己的应用中使用.</p>
+<p>这一章会介绍一些基本的网络操作，涉及到网络连接、监视网络连接（包括网络改变）和让用户控制 app 的网络用途。还会介绍如何解析与使用 XML 数据。</p>
+<p>这节课包括一个示例应用，展示如何执行常见的网络操作。我们可以下载下面的的范例，并把它作为可重用代码在自己的应用中使用。</p>
 <p><a href="http://developer.android.com/shareables/training/NetworkUsage.zip" target="_blank">NetworkUsage.zip</a></p>
-<p>通过学习这章节的课程，你将会学习到一些有关于如何创建一个使用最少的网络流量下载并解析数据的高效app的基础知识。</p>
+<p>通过学习这章节的课程，我们将会学习到一些有关于如何创建一个使用最少的网络流量下载并解析数据的高效 app 的基础知识。</p>
 <p>你还可以参考下面文章进阶学习:</p>
 <ul>
 <li><a href="performance/monitoring-device-state/index.html">Optimizing Battery Life</a></li>
@@ -5257,24 +5257,15 @@
 <li><a href="connectivity/volley/index.html">Transmitting Network Data Using Volley</a></li>
 </ul>
 <blockquote>
-<p><strong>Node:</strong>查看<a href="connectivity/volley/index.html">Transmitting Network Data Using Volley</a>课程获取Volley的相关信息,它是一个能帮助Android apps更方便快捷的执行网络操作的HTTP库.Volly可以在开源<a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">AOSP</a>库中找到.Volly可能能帮助你简化网络操作,提高你的app网络操作的性能.</p>
+<p><strong>Node:</strong> 查看<a href="connectivity/volley/index.html">使用 Volley 传输网络数据</a>课程获取 Volley 的相关信息，它是一个能帮助 Android apps 更方便快捷地执行网络操作的 HTTP 库。Volly 可以在开源 <a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">AOSP</a> 库中找到。Volly 可能会帮助我们简化网络操作，提高我们 app 的网络操作性能。</p>
 </blockquote>
 <h2 id="lessons">Lessons</h2>
-<ul>
-<li><p><a href="connecting.html">连接到网络 - Connecting to the Network</a></p>
-<p>学习如何连接到网络，选择一个HTTP client，以及在UI线程外执行网络操作。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="managing.html">管理网络的使用情况 - Managing Network Usage</a></p>
-<p>学习如何检查设备的网络连接情况，创建偏好界面来控制网络使用，以及响应连接变化。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="xml.html">解析XML数据 - Parsing XML Data</a></p>
-<p>学习如何解析和使用XML数据。</p>
-</li>
-</ul>
+<p><a href="connecting.html">连接到网络 - Connecting to the Network</a></p>
+<p>  学习如何连接到网络，选择一个 HTTP client，以及在 UI 线程外执行网络操作。</p>
+<p><a href="managing.html">管理网络的使用情况 - Managing Network Usage</a></p>
+<p>  学习如何检查设备的网络连接情况，创建偏好界面来控制网络使用，以及响应连接变化。</p>
+<p><a href="xml.html">解析 XML 数据 - Parsing XML Data</a></p>
+<p>  学习如何解析和使用 XML 数据。</p>
 
                     
                     </section>

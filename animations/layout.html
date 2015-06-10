@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>布局变更动画 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>布局变更动画 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.5" data-basepath=".." data-revision="1433175461912">
+    <div class="book"  data-level="4.3.5" data-basepath=".." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,7 +5239,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_107">
                     
                         <h1 id="">布局变更动画</h1>
 <blockquote>
@@ -5247,7 +5247,7 @@
 </blockquote>
 <p>布局动画是一种预加载动画，系统在你每次改变的布局配置时运行它。你需要做的仅是在布局文件里设置属性告诉Android系统为你这些布局的变更应用动画。系统动画时为你默认执行的。</p>
 <blockquote>
-<p><strong>小贴士:</strong> 如果你想补充自定义布局动画，创建 <a href="http://developer.android.com/reference/android/animation/LayoutTransition.html" target="_blank">LayoutTransition</a> 对象和然后用 <a href="http://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition)"> setLayoutTransition() </a> 方法把它加到布局中。</p>
+<p><strong>小贴士:</strong> 如果你想补充自定义布局动画，创建 <a href="http://developer.android.com/reference/android/animation/LayoutTransition.html" target="_blank"><code>LayoutTransition</code></a> 对象和然后用 <a href="http://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition)"> <code>setLayoutTransition()</code> </a> 方法把它加到布局中。</p>
 </blockquote>
 <p>下面是在一个list中添加一项的默认布局动画：</p>
 <div style="
@@ -5262,14 +5262,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例然后运行布局渐变的例子。查看下列文件中的代码实现：</p>
-<ol>
-<li>src/LayoutChangesActivity.java</li>
-<li>layout/activity_layout_changes.xml</li>
-<li>menu/activity_layout_changes.xml</li>
-</ol>
+<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例并运行然后选择布局渐变的例子。查看下列文件中的代码实现：</p>
+<ul>
+<li><code>src/LayoutChangesActivity.java</code></li>
+<li><code>layout/activity_layout_changes.xml</code></li>
+<li><code>menu/activity_layout_changes.xml</code></li>
+</ul>
 <h2 id="">创建布局</h2>
-<p>在你activity的XML布局文件中，为你想开启动画的布局设置 <code>android:animateLayoutChanges</code> 属性为真。例如：</p>
+<p>在你activity的XML布局文件中，为你想开启动画的布局设置<code>android:animateLayoutChanges</code>属性为<code>true</code>。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:animateLayoutChanges</span>=<span class="hljs-value">"true"</span>
     <span class="hljs-attribute">...</span>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>处理控制器输入动作 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>处理控制器输入动作 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="12.3.1" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="12.3.1" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,55 +5239,55 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_133">
+                    <section class="normal" id="section-gitbook_232">
                     
                         <h1 id="">处理控制器输入动作</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/heray1990" target="_blank">heray1990</a> - 原文:<a href="http://developer.android.com/training/game-controllers/controller-input.html" target="_blank">http://developer.android.com/training/game-controllers/controller-input.html</a></p>
 </blockquote>
-<p>在系统层面上，Android会以Android键值和坐标值的形式来报告来自游戏控制器的输入事件。在我们的游戏应用里，我们可以接收这些键值和坐标值，并将它们转化成特定的游戏行为。</p>
-<p>当玩家将一个游戏控制器通过有线连接或者无线配对到基于Android的设备时，系统会自动检测控制器，将它设置成输入设备并且开始报告它的输入事件。我们的游戏应用可以通过在活动的<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>或者聚焦的<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>里调用下面这些回调方法来接收上述输入事件(要么在<a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>，要么在<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>中实现实现这些回调方法，不要两个地方都实现回调)。</p>
+<p>在系统层面上，Android 会以 Android 按键码值和坐标值的形式来报告来自游戏控制器的输入事件。在我们的游戏应用里，我们可以接收这些码值和坐标值，并将它们转化成特定的游戏行为。</p>
+<p>当玩家将一个游戏控制器通过有线连接或者无线配对到 Android 设备时，系统会自动检测控制器，将它设置成输入设备并且开始报告它的输入事件。我们的游戏应用可以通过在活动的 <a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a> 或者被选中的 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 里调用下面这些回调方法，来接收上述输入事件（要么在 <a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a>，要么在 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 中实现实现这些回调方法，不要两个地方都实现回调）。</p>
 <ul>
-<li>From <a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a><ul>
-<li><a href="http://developer.android.com/reference/android/app/Activity.html#dispatchGenericMotionEvent(android.view.MotionEvent" target="_blank">dispatchGenericMotionEvent(android.view. MotionEvent)</a>)<ul>
+<li>在 <a href="http://developer.android.com/reference/android/app/Activity.html" target="_blank">Activity</a> 中：<ul>
+<li><a href="http://developer.android.com/reference/android/app/Activity.html#dispatchGenericMotionEvent(android.view.MotionEvent)">dispatchGenericMotionEvent(android.view.MotionEvent)</a><ul>
 <li>处理一般的运动事件，如摇动摇杆</li>
 </ul>
 </li>
-<li><a href="http://developer.android.com/reference/android/app/Activity.html#dispatchKeyEvent(android.view.KeyEvent" target="_blank">dispatchKeyEvent(android.view.KeyEvent)</a>)<ul>
-<li>处理按键事件，如按下或者释放游戏键盘的按键或者十字方向键。</li>
+<li><a href="http://developer.android.com/reference/android/app/Activity.html#dispatchKeyEvent(android.view.KeyEvent)">dispatchKeyEvent(android.view.KeyEvent)</a><ul>
+<li>处理按键事件，如按下或者释放游戏键盘的按键或者 D-pad 按钮。</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>From <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a><ul>
-<li><a href="http://developer.android.com/reference/android/view/View.html#onGenericMotionEvent(android.view.MotionEvent" target="_blank">onGenericMotionEvent(android.view.MotionEvent)</a>)<ul>
+<li>在 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 中：<ul>
+<li><a href="http://developer.android.com/reference/android/view/View.html#onGenericMotionEvent(android.view.MotionEvent)">onGenericMotionEvent(android.view.MotionEvent)</a><ul>
 <li>处理一般的运动事件，如摇动摇杆</li>
 </ul>
 </li>
 <li><a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown(int, android.view.KeyEvent)</a><ul>
-<li>处理按下一个按键的事件，如按下游戏键盘的按键或者十字方向键。</li>
+<li>处理按下一个按键的事件，如按下游戏键盘的按键或者 D-pad 按钮。</li>
 </ul>
 </li>
 <li><a href="http://developer.android.com/reference/android/view/View.html#onKeyUp(int, android.view.KeyEvent)">onKeyUp(int, android.view.KeyEvent)</a><ul>
-<li>处理释放一个按键的事件，如释放游戏键盘的按键或者十字方向键。</li>
+<li>处理释放一个按键的事件，如释放游戏键盘的按键或者 D-pad 按钮。</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>建议的方法是从与用户交互的<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>对象捕获事件。请查看下面回调提供的对象，从而获取关于接收到的输入事件的类型：</p>
-<p><a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>：描述方向按键和游戏按键事件的对象。按键事件伴随着一个表示特定按键触发的<em>按键码值(key code)</em>，如<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_DOWN" target="_blank">DPAD_DOWN</a>或者<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>。我们可以通过调用<a href="http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode(" target="_blank">getKeyCode()</a>)或者从按键事件回调方法(如<a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>)来获得按键码值。</p>
-<p><a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>：描述摇杆和肩键运动的输入。动作事件伴随着一个动作码(action code)和一系列<em>坐标值(axis values)</em>。动作码表示出现变化的状态，例如摇动一个摇杆。坐标值描述了位置和其它运动属性，例如<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>或者<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER" target="_blank">AXIS_RTRIGGER</a>。我们可以通过调用<a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAction(" target="_blank">getAction()</a>)来获得动作码，通过调用<a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAxisValue(int" target="_blank">getAxisValue()</a>)来获得坐标值。</p>
-<p>这节课主要介绍如何通过上述的<a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a>回调方法和处理<a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>和<a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>对象来处理常用控制器(游戏键盘按键、方向按键和摇杆)的输入。</p>
+<p>建议的方法是从与用户交互的 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 对象捕获事件。请查看下面回调函数的对象，来获取关于接收到输入事件的类型：</p>
+<p><a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>：描述方向按键（D-pad）和游戏按键事件的对象。按键事件伴随着一个表示特定按键触发的<em>按键码值(key code)</em>，如 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_DOWN" target="_blank">DPAD_DOWN</a> 或者 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>。我们可以通过调用 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode()">getKeyCode()</a> 或者从按键事件回调方法（如 <a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>）来获得按键码值。</p>
+<p><a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>：描述摇杆和肩键运动的输入。动作事件伴随着一个动作码（action code）和一系列<em>坐标值</em>（<em>axis values</em>）。动作码表示出现变化的状态，例如摇动一个摇杆。坐标值描述了特定物理操控的位置和其它运动属性，例如 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 或者 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER" target="_blank">AXIS_RTRIGGER</a>。我们可以通过调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAction()">getAction()</a> 来获得动作码，通过调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAxisValue(int)">getAxisValue()</a> 来获得坐标值。</p>
+<p>这节课主要介绍如何通过实现上述的 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 回调方法与处理 <a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a> 和 <a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a> 对象，来处理常用控制器（游戏键盘按键、方向按键和摇杆）的输入。</p>
 <h2 id="">验证游戏控制器是否已连接</h2>
-<p>在报告输入事件的时候，Android不会区分游戏控制器事件与非游戏控制器事件。例如，一个触屏动作会产生一个表示触摸表面上X坐标的<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>，但是一个摇杆动作产生的<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>则表示摇杆水平移动的位置。如果我们的游戏关注游戏控制器的输入，那么我们应该首先检测事件相应的来源类型。</p>
-<p>通过调用<a href="http://developer.android.com/reference/android/view/InputDevice.html#getSources(" target="_blank">getSources()</a>)来获得设备上支持的输入类型的位字段，来验证一个已连接的输入设备是一个游戏控制器。我们可以测试以查看下面的字段是否被设置：</p>
+<p>在报告输入事件的时候，Android 不会区分游戏控制器事件与非游戏控制器事件。例如，一个触屏动作会产生一个表示触摸表面上 X 坐标的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>，但是一个摇杆动作产生的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 则表示摇杆水平移动的位置。如果我们的游戏关注游戏控制器的输入，那么我们应该首先检测相应的事件来源类型。</p>
+<p>通过调用 <a href="http://developer.android.com/reference/android/view/InputDevice.html#getSources()">getSources()</a> 来获得设备上支持的输入类型的位字段，来判断一个已连接的输入设备是不是一个游戏控制器。我们可以通过测试以查看下面的字段是否被设置：</p>
 <ul>
-<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_GAMEPAD" target="_blank">SOURCE_GAMEPAD</a>源类型表示输入设备有游戏手柄按键(如，<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>)。注意随然一般的游戏手柄都会有方向控制键，但是这个源类型并不代表游戏控制器具有十字方向键。</li>
-<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_DPAD" target="_blank">SOURCE_DPAD</a>源类型表示输入设备有十字方向键(如，<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_UP" target="_blank">DPAD_UP</a>)。</li>
-<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_JOYSTICK" target="_blank">SOURCE_JOYSTICK</a>源类型表示输入设备有遥控杆(如，会用<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>和<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Y" target="_blank">AXIS_Y</a>记录动作的摇杆)。</li>
+<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_GAMEPAD" target="_blank">SOURCE_GAMEPAD</a> 源类型表示输入设备有游戏手柄按键（如，<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>）。注意虽然一般的游戏手柄都会有方向控制键，但是这个源类型并不代表游戏控制器具有 D-pad 按钮。</li>
+<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_DPAD" target="_blank">SOURCE_DPAD</a> 源类型表示输入设备有 D-pad 按钮（如，<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_UP" target="_blank">DPAD_UP</a>）。</li>
+<li><a href="http://developer.android.com/reference/android/view/InputDevice.html#SOURCE_JOYSTICK" target="_blank">SOURCE_JOYSTICK</a> 源类型表示输入设备有遥控杆（如，会通过 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 和 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Y" target="_blank">AXIS_Y</a> 记录动作的摇杆）。</li>
 </ul>
-<p>下面的一小段代码介绍了一个helper方法，它的作用是让你检验已接入的输入设备是否是游戏控制器。如果检测到是游戏控制器，那么这个方法会获取到游戏控制器的设备ID。然后，我们应该将每个设备ID与游戏中的玩家关联起来，并且单独处理每个已接入的玩家的游戏操作。想更详细地了解关于在一台Android设备中同时支持多个游戏控制器的方法，请见<a href="multi-controller.html">支持多个游戏控制器</a>。</p>
+<p>下面的一小段代码介绍了一个 helper 方法，它的作用是让我们检验已接入的输入设备是否是游戏控制器。如果检测到是游戏控制器，那么这个方法会获得游戏控制器的设备 ID。然后，我们应该将每个设备 ID 与游戏中的玩家关联起来，并且单独处理每个已接入的玩家的游戏操作。想更详细地了解关于在一台Android设备中同时支持多个游戏控制器的方法，请见<a href="multi-controller.html">支持多个游戏控制器</a>。</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">public</span> ArrayList <span class="hljs-title">getGameControllerIds</span><span class="hljs-params">()</span> </span>{
     ArrayList gameControllerDeviceIds = <span class="hljs-keyword">new</span> ArrayList();
     <span class="hljs-keyword">int</span>[] deviceIds = InputDevice.getDeviceIds();
@@ -5308,14 +5308,14 @@
     <span class="hljs-keyword">return</span> gameControllerDeviceIds;
 }
 </code></pre>
-<p>另外，我们会想去检查已接入的游戏控制器个体的输入性能。这种检查在某些场合会很有用，例如，我们想游戏只用到游戏“知道”的物理操控。</p>
+<p>另外，我们可能想去检查已接入的单个游戏控制器的输入性能。这种检查在某些场合会很有用，例如，我们希望游戏只用到兼容的物理操控。</p>
 <p>用下面这些方法检测一个游戏控制器是否支持一个特定的按键码或者坐标码：</p>
 <ul>
-<li>在Android 4.4(API level 19)或者更高的系统中，调用<a href="http://developer.android.com/reference/android/view/InputDevice.html#hasKeys(int..." target="_blank">hasKeys(int)</a>)来确定游戏控制器是否支持一个按键码。</li>
-<li>在Android 3.1(API level 12)或者更高的系统中，首先调用<a href="http://developer.android.com/reference/android/view/InputDevice.html#getMotionRanges(" target="_blank">getMotionRanges()</a>)，然后在每个返回的<a href="http://developer.android.com/reference/android/view/InputDevice.MotionRange.html" target="_blank">InputDevice.MotionRange</a>对象中调用<a href="http://developer.android.com/reference/android/view/InputDevice.MotionRange.html#getAxis(" target="_blank">getAxis()</a>)来获得坐标ID。这样就可以得到游戏控制器支持的所有可用坐标轴。</li>
+<li>在Android 4.4（API level 19）或者更高的系统中，调用 <a href="http://developer.android.com/reference/android/view/InputDevice.html#hasKeys(int...)">hasKeys(int)</a> 来确定游戏控制器是否支持某个按键码。</li>
+<li>在Android 3.1（API level 12）或者更高的系统中，首先调用 <a href="http://developer.android.com/reference/android/view/InputDevice.html#getMotionRanges()">getMotionRanges()</a>，然后在每个返回的 <a href="http://developer.android.com/reference/android/view/InputDevice.MotionRange.html" target="_blank">InputDevice.MotionRange</a> 对象中调用 <a href="http://developer.android.com/reference/android/view/InputDevice.MotionRange.html#getAxis()">getAxis()</a> 来获得坐标 ID。这样就可以得到游戏控制器支持的所有可用坐标轴。</li>
 </ul>
 <h2 id="">处理游戏手柄按键</h2>
-<p>Figure 1介绍了Android如何将按键码和坐标值映射到实际的游戏手柄上。</p>
+<p>Figure 1介绍了 Android 如何将按键码和坐标值映射到实际的游戏手柄上。</p>
 <p><img src="game-controller-profiles.png" alt="game-controller-profiles" title="Figure 1. Profile for a generic game controller."></p>
 <p><strong>Figure 1.</strong> 一个常用的游戏手柄的外形</p>
 <p>上图的标注对应下面的内容：</p>
@@ -5332,8 +5332,8 @@
 <li><a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_LTRIGGER" target="_blank">AXIS_LTRIGGER</a>, <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_BRAKE" target="_blank">AXIS_BRAKE</a></li>
 <li><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_L1" target="_blank">BUTTON_L1</a></li>
 </ol>
-<p>游戏手柄产生的通用的按键码包括<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>、<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_B" target="_blank">BUTTON_B</a>、<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT" target="_blank">BUTTON_SELECT</a>和<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START" target="_blank">BUTTON_START</a>。当按下十字方向键的中间交叉按键时，一些游戏控制器会触发<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_CENTER" target="_blank">DPAD_CENTER</a>按键码。我们的游戏可以通过调用<a href="http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode(" target="_blank">getKeyCode()</a>)或者从按键事件回调(如<a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>)得到按键码。如果一个事件与我们的游戏相关，那么将其处理成一个游戏动作。Table 1列出供大多数通用游戏手柄的按钮使用的推荐的游戏动作。</p>
-<p><strong>Table 1.</strong> 供游戏手柄使用的推荐的游戏动作</p>
+<p>游戏手柄产生的通用的按键码包括 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>、<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_B" target="_blank">BUTTON_B</a>、<a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT" target="_blank">BUTTON_SELECT</a> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START" target="_blank">BUTTON_START</a>。当按下 D-pad 中间的交叉按键时，一些游戏控制器会触发 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_CENTER" target="_blank">DPAD_CENTER</a> 按键码。我们的游戏可以通过调用 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode()">getKeyCode()</a> 或者从按键事件回调（如<a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>）得到按键码。如果一个事件与我们的游戏相关，那么将其处理成一个游戏动作。Table 1列出供大多数通用游戏手柄按钮使用的推荐游戏动作。</p>
+<p><strong>Table 1.</strong> 供游戏手柄使用的推荐游戏动作</p>
 <table>
    <tr>
       <td>游戏动作</td>
@@ -5341,11 +5341,11 @@
    </tr>
    <tr>
       <td>在主菜单中启动游戏，或者在游戏过程中暂停/取消暂停</td>
-      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START">BUTTON_START</a><em></td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_START">BUTTON_START</a></td>
    </tr>
    <tr>
       <td>显示菜单</td>
-      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT">BUTTON_SELECT</a></em> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MENU">KEYCODE_MENU</a>*</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_SELECT">BUTTON_SELECT</a> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_MENU">KEYCODE_MENU</a></td>
    </tr>
    <tr>
       <td>跟Android导航设计指导中的Back导航行为一样</td>
@@ -5363,8 +5363,286 @@
 
 <p>* <em>我们的游戏不应该依赖于Start、Select或者Menu按键的存在。</em></p>
 <blockquote>
-<p><strong>Tip:</strong> </p>
+<p><strong>Tip:</strong> 可以考虑在游戏中提供一个配置界面，使得用户可以个性化游戏控制器与游戏动作的映射。</p>
 </blockquote>
+<p>下面的代码介绍了如何重写 <a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a> 来将 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a> 和 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_CENTER" target="_blank">DPAD_CENTER</a> 按钮结合到一个游戏动作。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GameView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
+    ...
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onKeyDown</span><span class="hljs-params">(<span class="hljs-keyword">int</span> keyCode, KeyEvent event)</span> </span>{
+        <span class="hljs-keyword">boolean</span> handled = <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">if</span> ((event.getSource() &amp; InputDevice.SOURCE_GAMEPAD)
+                == InputDevice.SOURCE_GAMEPAD) {
+            <span class="hljs-keyword">if</span> (event.getRepeatCount() == <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">switch</span> (keyCode) {
+                    <span class="hljs-comment">// Handle gamepad and D-pad button presses to</span>
+                    <span class="hljs-comment">// navigate the ship</span>
+                    ...
+
+                    <span class="hljs-keyword">default</span>:
+                         <span class="hljs-keyword">if</span> (isFireKey(keyCode)) {
+                             <span class="hljs-comment">// Update the ship object to fire lasers</span>
+                             ...
+                             handled = <span class="hljs-keyword">true</span>;
+                         }
+                     <span class="hljs-keyword">break</span>;
+                }
+            }
+            <span class="hljs-keyword">if</span> (handled) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.onKeyDown(keyCode, event);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isFireKey</span><span class="hljs-params">(<span class="hljs-keyword">int</span> keyCode)</span> </span>{
+        <span class="hljs-comment">// Here we treat Button_A and DPAD_CENTER as the primary action</span>
+        <span class="hljs-comment">// keys for the game.</span>
+        <span class="hljs-keyword">return</span> keyCode == KeyEvent.KEYCODE_DPAD_CENTER
+                || keyCode == KeyEvent.KEYCODE_BUTTON_A;
+    }
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> 在 Android 4.2（API level 17）和更低版本的系统中，系统默认会把 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a> 当作 Android <em>Back</em>（<em>返回</em>）键。如果我们的应用支持这些 Android 版本，请确保将 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a> 转换成主要的游戏动作。引用 <a href="http://developer.android.com/reference/android/os/Build.VERSION.html#SDK_INT" target="_blank">Build.VERSION.SDK_INT</a> 值来决定设备上当前的 Android SDK 版本。</p>
+</blockquote>
+<h2 id="-d-pad-">处理 D-pad 输入</h2>
+<p>四方向的方向键（D-pad）在很多游戏控制器中是一种很常见的物理控制。Android 将 D-pad 的上和下按键按压报告成 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_Y" target="_blank">AXIS_HAT_Y</a> 事件（范围从-1.0（上）到1.0（下）），将 D-pad 的左或者右按键按压报告成 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_X" target="_blank">AXIS_HAT_X</a> 事件（范围从-1.0（左）到1.0（右））。</p>
+<p>一些游戏控制器会将 D-pad 按压报告成一个按键码。如果我们的游戏有检测 D-pad 的按压，那么我们应该将坐标值事件和 D-pad 按键码当成一样的输入事件，如 table 2 介绍的一样。</p>
+<p><strong>Table 2.</strong> D-pad 按键码和坐标值的推荐默认游戏动作。</p>
+<table>
+   <tr>
+      <td>游戏动作</td>
+      <td>D-pad 按键码</td>
+      <td>坐标值</td>
+   </tr>
+   <tr>
+      <td>向上</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_UP">KEYCODE_DPAD_UP</a></td>
+      <td><a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_Y">AXIS_HAT_Y</a> （从 0 到 -1.0）</td>
+   </tr>
+   <tr>
+      <td>向下</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_DOWN">KEYCODE_DPAD_DOWN</a></td>
+      <td><a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_Y">AXIS_HAT_Y</a> （从 0 到 1.0）</td>
+   </tr>
+   <tr>
+      <td>向左</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_LEFT">KEYCODE_DPAD_LEFT</a></td>
+      <td><a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_X">AXIS_HAT_X</a> （从 0 到 -1.0）</td>
+   </tr>
+   <tr>
+      <td>向右</td>
+      <td><a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_RIGHT">KEYCODE_DPAD_RIGHT</a></td>
+      <td><a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_HAT_X">AXIS_HAT_X</a> （从 0 到 1.0）</td>
+   </tr>
+</table>
+
+<p>下面的代码介绍了通过一个 helper 类，来检查从一个输入事件来决定 D-pad 方向的坐标值和按键码。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dpad</span> </span>{
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> UP       = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> LEFT     = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> RIGHT    = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> DOWN     = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> CENTER   = <span class="hljs-number">4</span>;
+
+    <span class="hljs-keyword">int</span> directionPressed = -<span class="hljs-number">1</span>; <span class="hljs-comment">// initialized to -1</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getDirectionPressed</span><span class="hljs-params">(InputEvent event)</span> </span>{
+        <span class="hljs-keyword">if</span> (!isDpadDevice(event)) {
+           <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+        }
+
+        <span class="hljs-comment">// If the input event is a MotionEvent, check its hat axis values.</span>
+        <span class="hljs-keyword">if</span> (event <span class="hljs-keyword">instanceof</span> MotionEvent) {
+
+            <span class="hljs-comment">// Use the hat axis value to find the D-pad direction</span>
+            MotionEvent motionEvent = (MotionEvent) event;
+            <span class="hljs-keyword">float</span> xaxis = motionEvent.getAxisValue(MotionEvent.AXIS_HAT_X);
+            <span class="hljs-keyword">float</span> yaxis = motionEvent.getAxisValue(MotionEvent.AXIS_HAT_Y);
+
+            <span class="hljs-comment">// Check if the AXIS_HAT_X value is -1 or 1, and set the D-pad</span>
+            <span class="hljs-comment">// LEFT and RIGHT direction accordingly.</span>
+            <span class="hljs-keyword">if</span> (Float.compare(xaxis, -<span class="hljs-number">1.0</span>f) == <span class="hljs-number">0</span>) {
+                directionPressed =  Dpad.LEFT;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(Float.compare(xaxis, <span class="hljs-number">1.0</span>f)</span> </span>== <span class="hljs-number">0</span>) {
+                directionPressed =  Dpad.RIGHT;
+            }
+            <span class="hljs-comment">// Check if the AXIS_HAT_Y value is -1 or 1, and set the D-pad</span>
+            <span class="hljs-comment">// UP and DOWN direction accordingly.</span>
+            <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(Float.compare(yaxis, -<span class="hljs-number">1.0</span>f)</span> </span>== <span class="hljs-number">0</span>) {
+                directionPressed =  Dpad.UP;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(Float.compare(yaxis, <span class="hljs-number">1.0</span>f)</span> </span>== <span class="hljs-number">0</span>) {
+                directionPressed =  Dpad.DOWN;
+            }
+        }
+
+        <span class="hljs-comment">// If the input event is a KeyEvent, check its key code.</span>
+        <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(event <span class="hljs-keyword">instanceof</span> KeyEvent)</span> </span>{
+
+           <span class="hljs-comment">// Use the key code to find the D-pad direction.</span>
+            KeyEvent keyEvent = (KeyEvent) event;
+            <span class="hljs-keyword">if</span> (keyEvent.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT) {
+                directionPressed = Dpad.LEFT;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(keyEvent.getKeyCode()</span> </span>== KeyEvent.KEYCODE_DPAD_RIGHT) {
+                directionPressed = Dpad.RIGHT;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(keyEvent.getKeyCode()</span> </span>== KeyEvent.KEYCODE_DPAD_UP) {
+                directionPressed = Dpad.UP;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(keyEvent.getKeyCode()</span> </span>== KeyEvent.KEYCODE_DPAD_DOWN) {
+                directionPressed = Dpad.DOWN;
+            } <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(keyEvent.getKeyCode()</span> </span>== KeyEvent.KEYCODE_DPAD_CENTER) {
+                directionPressed = Dpad.CENTER;
+            }
+        }
+        <span class="hljs-keyword">return</span> directionPressed;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isDpadDevice</span><span class="hljs-params">(InputEvent event)</span> </span>{
+        <span class="hljs-comment">// Check that input comes from a device with directional pads.</span>
+        <span class="hljs-keyword">if</span> ((event.getSource() &amp; InputDevice.SOURCE_DPAD)
+             != InputDevice.SOURCE_DPAD) {
+             <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+         } <span class="hljs-keyword">else</span> {
+             <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+         }
+     }
+}
+</code></pre>
+<p>我们可以在任意想要处理 D-pad 输入（例如，在 <a href="http://developer.android.com/reference/android/view/View.html#onGenericMotionEvent(android.view.MotionEvent)">onGenericMotionEvent()</a> 或者 <a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a> 回调函数）的地方使用这个 helper 类。</p>
+<p>例如：</p>
+<pre><code class="lang-java">Dpad mDpad = <span class="hljs-keyword">new</span> Dpad();
+...
+<span class="hljs-annotation">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onGenericMotionEvent</span><span class="hljs-params">(MotionEvent event)</span> </span>{
+
+    <span class="hljs-comment">// Check if this event if from a D-pad and process accordingly.</span>
+    <span class="hljs-keyword">if</span> (Dpad.isDpadDevice(event)) {
+
+       <span class="hljs-keyword">int</span> press = mDpad.getDirectionPressed(event);
+       <span class="hljs-keyword">switch</span> (press) {
+            <span class="hljs-keyword">case</span> LEFT:
+                <span class="hljs-comment">// Do something for LEFT direction press</span>
+                ...
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">case</span> RIGHT:
+                <span class="hljs-comment">// Do something for RIGHT direction press</span>
+                ...
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            <span class="hljs-keyword">case</span> UP:
+                <span class="hljs-comment">// Do something for UP direction press</span>
+                ...
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+            ...
+        }
+    }
+
+    <span class="hljs-comment">// Check if this event is from a joystick movement and process accordingly.</span>
+    ...
+}
+</code></pre>
+<h2 id="">处理摇杆动作</h2>
+<p>当玩家移动游戏控制器上的摇杆时，Android 会报告一个包含 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE" target="_blank">ACTION_MOVE</a> 动作码和更新摇杆在坐标轴的位置的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>。我们的游戏可以使用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a> 提供的数据来确定是否发生摇杆的动作。</p>
+<p>注意到摇杆移动会在单个对象中批处理多个移动示例。<a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a> 对象包含每个摇杆坐标当前的位置和每个坐标轴上的多个历史位置。当用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#ACTION_MOVE" target="_blank">ACTION_MOVE</a> 动作码（例如摇杆移动）来报告移动事件时，Android 会高效地批处理坐标值。由坐标值组成的不同的历史值比当前的坐标值要旧，比之前报告的任意移动事件要新。详情见 <a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>  参考文档。</p>
+<p>我们可以使用历史信息，根据摇杆输入更精确地表达游戏对象的活动。调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAxisValue(int)">getAxisValue()</a> 或者 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getHistoricalAxisValue(int, int)">getHistoricalAxisValue()</a> 来获取现在和历史的值。我们也可以通过调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getHistorySize()">getHistorySize()</a> 来找到摇杆事件的历史点号码。</p>
+<p>下面的代码介绍了如何重写 <a href="http://developer.android.com/reference/android/view/View.html#onGenericMotionEvent(android.view.MotionEvent)">onGenericMotionEvent()</a> 回调函数来处理摇杆输入。我们应该首先处理历史坐标值，然后处理当前值。</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GameView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
+
+    <span class="hljs-annotation">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">onGenericMotionEvent</span><span class="hljs-params">(MotionEvent event)</span> </span>{
+
+        <span class="hljs-comment">// Check that the event came from a game controller</span>
+        <span class="hljs-keyword">if</span> ((event.getSource() &amp; InputDevice.SOURCE_JOYSTICK) ==
+                InputDevice.SOURCE_JOYSTICK &amp;&amp;
+                event.getAction() == MotionEvent.ACTION_MOVE) {
+
+            <span class="hljs-comment">// Process all historical movement samples in the batch</span>
+            <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> historySize = event.getHistorySize();
+
+            <span class="hljs-comment">// Process the movements starting from the</span>
+            <span class="hljs-comment">// earliest historical position in the batch</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; historySize; i++) {
+                <span class="hljs-comment">// Process the event at historical position i</span>
+                processJoystickInput(event, i);
+            }
+
+            <span class="hljs-comment">// Process the current movement sample in the batch (position -1)</span>
+            processJoystickInput(event, -<span class="hljs-number">1</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.onGenericMotionEvent(event);
+    }
+}
+</code></pre>
+<p>在使用摇杆输入之前，我们需要确定摇杆是否居中，然后计算相应的坐标移动距离。一般摇杆会有一个平面区，即在坐标 (0, 0) 附近一个值范围内的坐标点都被当作是中点。如果 Android 系统报告坐标值掉落在平面区内，那么我们应该认为控制器处于静止（即沿着 x、y 两个坐标轴都是静止的）。</p>
+<p>下面的代码介绍了一个用于计算沿着每个坐标轴的移动距离的 helper 方法。我们将在后面讨论的 <code>processJoystickInput()</code> 方法中调用这个 helper 方法。</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getCenteredAxis</span><span class="hljs-params">(MotionEvent event,
+        InputDevice device, <span class="hljs-keyword">int</span> axis, <span class="hljs-keyword">int</span> historyPos)</span> </span>{
+    <span class="hljs-keyword">final</span> InputDevice.MotionRange range =
+            device.getMotionRange(axis, event.getSource());
+
+    <span class="hljs-comment">// A joystick at rest does not always report an absolute position of</span>
+    <span class="hljs-comment">// (0,0). Use the getFlat() method to determine the range of values</span>
+    <span class="hljs-comment">// bounding the joystick axis center.</span>
+    <span class="hljs-keyword">if</span> (range != <span class="hljs-keyword">null</span>) {
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> flat = range.getFlat();
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> value =
+                historyPos &lt; <span class="hljs-number">0</span> ? event.getAxisValue(axis):
+                event.getHistoricalAxisValue(axis, historyPos);
+
+        <span class="hljs-comment">// Ignore axis values that are within the 'flat' region of the</span>
+        <span class="hljs-comment">// joystick axis center.</span>
+        <span class="hljs-keyword">if</span> (Math.abs(value) &gt; flat) {
+            <span class="hljs-keyword">return</span> value;
+        }
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>将它们都放在一起，下面是我们如何在游戏中处理摇杆移动：</p>
+<pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">processJoystickInput</span><span class="hljs-params">(MotionEvent event,
+        <span class="hljs-keyword">int</span> historyPos)</span> </span>{
+
+    InputDevice mInputDevice = event.getDevice();
+
+    <span class="hljs-comment">// Calculate the horizontal distance to move by</span>
+    <span class="hljs-comment">// using the input value from one of these physical controls:</span>
+    <span class="hljs-comment">// the left control stick, hat axis, or the right control stick.</span>
+    <span class="hljs-keyword">float</span> x = getCenteredAxis(event, mInputDevice,
+            MotionEvent.AXIS_X, historyPos);
+    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) {
+        x = getCenteredAxis(event, mInputDevice,
+                MotionEvent.AXIS_HAT_X, historyPos);
+    }
+    <span class="hljs-keyword">if</span> (x == <span class="hljs-number">0</span>) {
+        x = getCenteredAxis(event, mInputDevice,
+                MotionEvent.AXIS_Z, historyPos);
+    }
+
+    <span class="hljs-comment">// Calculate the vertical distance to move by</span>
+    <span class="hljs-comment">// using the input value from one of these physical controls:</span>
+    <span class="hljs-comment">// the left control stick, hat switch, or the right control stick.</span>
+    <span class="hljs-keyword">float</span> y = getCenteredAxis(event, mInputDevice,
+            MotionEvent.AXIS_Y, historyPos);
+    <span class="hljs-keyword">if</span> (y == <span class="hljs-number">0</span>) {
+        y = getCenteredAxis(event, mInputDevice,
+                MotionEvent.AXIS_HAT_Y, historyPos);
+    }
+    <span class="hljs-keyword">if</span> (y == <span class="hljs-number">0</span>) {
+        y = getCenteredAxis(event, mInputDevice,
+                MotionEvent.AXIS_RZ, historyPos);
+    }
+
+    <span class="hljs-comment">// Update the ship object based on the new x and y values</span>
+}
+</code></pre>
+<p>为了支持除了单个摇杆之外更多复杂的功能，按照下面的做法：</p>
+<ul>
+<li><p><strong>处理两个控制器摇杆。</strong>很多游戏控制器左右两边都有摇杆。对于左摇杆，Android 会报告水平方向的移动为 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 事件，垂直方向的移动为 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Y" target="_blank">AXIS_Y</a> 事件。对于右摇杆，Android 会报告水平方向的移动为 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_Z" target="_blank">AXIS_Z</a> 事件，垂直方向的移动为 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RZ" target="_blank">AXIS_RZ</a> 事件。确保在代码中处理两个摇杆。</p>
+</li>
+<li><p><strong>处理肩键按压（但需要提供另一种输入方法）。</strong>一些控制器会有左右肩键。如果存在这些按键，那么 Android 报告左肩键按压为一个 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_LTRIGGER" target="_blank">AXIS_LTRIGGER</a> 事件，右肩键按压为一个 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER" target="_blank">AXIS_RTRIGGER</a> 事件。在 Android 4.3（API level 18）中，一个产生了 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_LTRIGGER" target="_blank">AXIS_LTRIGGER</a> 事件的控制器也会报告一个完全一样的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_BRAKE" target="_blank">AXIS_BRAKE</a> 坐标值。同样，<a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER" target="_blank">AXIS_RTRIGGER</a> 对应 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_GAS" target="_blank">AXIS_GAS</a>。Android 会报告模拟按键按压为从 0.0（释放）到 1.0（按下）的标准值。并不是所有的控制器都有肩键，所以需要允许玩家用其它按钮来执行那些游戏动作。</p>
+</li>
+</ul>
 
                     
                     </section>
@@ -5375,7 +5653,7 @@
         </div>
 
         
-        <a href="../../input/game-controller/index.html" class="navigation navigation-prev " aria-label="Previous page: 兼容游戏控制器"><i class="fa fa-angle-left"></i></a>
+        <a href="../../input/game-controller/index.html" class="navigation navigation-prev " aria-label="Previous page: 支持游戏控制器"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../input/game-controller/compatibility.html" class="navigation navigation-next " aria-label="Next page: 支持不同的Android系统版本"><i class="fa fa-angle-right"></i></a>

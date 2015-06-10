@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>展示卡片翻转动画 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>展示Card翻转动画 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.3" data-basepath=".." data-revision="1433175461912">
+    <div class="book"  data-level="4.3.3" data-basepath=".." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,14 +5239,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_4">
+                    <section class="normal" id="section-gitbook_104">
                     
-                        <h1 id="">展示卡片翻转动画</h1>
+                        <h1 id="card">展示Card翻转动画</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/cardflip.html" target="_blank">http://developer.android.com/training/animation/cardflip.html</a></p>
 </blockquote>
-<p>这节课展示如何使用自定义 fragment 动画实现卡片翻转动画。通过展示一个模拟卡片翻转的动画实现 view 内容的卡片翻转效果。</p>
-<p>下面是卡片翻转动画的样子：</p>
+<p>这节课展示如何使用自定义 fragment 动画实现card翻转动画。通过展示一个模拟card翻转的动画实现 view 内容的card翻转效果。</p>
+<p>下面是card翻转动画的样子：</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5259,29 +5259,28 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例然后运行卡片翻转例子。查看下列文件中的代码实现：</p>
+<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行 App 样例然后选择card翻转例子。查看下列文件中的代码实现：</p>
 <ul>
-<li>src/CardFlipActivity.java</li>
-<li>animator/card_flip_right_in.xml</li>
-<li>animator/card_flip_right_out.xml</li>
-<li>animator/card_flip_left_in.xml</li>
-<li>animator/card_flip_left_out.xml</li>
-<li>layout/fragment_card_back.xml</li>
-<li>layout/fragment_card_front.xml</li>
+<li><code>src/CardFlipActivity.java</code></li>
+<li><code>animator/card_flip_right_in.xml</code></li>
+<li><code>animator/card_flip_right_out.xml</code></li>
+<li><code>animator/card_flip_left_in.xml</code></li>
+<li><code>animator/card_flip_left_out.xml</code></li>
+<li><code>layout/fragment_card_back.xml</code></li>
+<li><code>layout/fragment_card_front.xml</code></li>
 </ul>
 <h2 id="animator">创建Animator</h2>
-<p>创建卡片翻转动画，你需要两个 animator 让前面的卡片向右翻转消失，向左翻转出现。你还需要两个 animator 让背面的卡片向左翻转出现，向右翻转消失。</p>
+<p>创建card翻转动画，你需要两个 animator 一个 让前面的card的右侧向左翻转渐出，一个让向右翻转渐入。你还需要两个 animator 让背面的card的右侧向左翻转渐入，一个让向右翻转渐入。</p>
 <p><strong>card_flip_left_in.xml</strong></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">set</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
-
-    <span class="hljs-comment">&lt;!--旋转之前，立刻设置透明度alpha为0--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Before rotating, immediately set the alpha to 0. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"1.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0.0"</span>
         <span class="hljs-attribute">android:propertyName</span>=<span class="hljs-value">"alpha"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"0"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!--旋转--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Rotate. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"-180"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0"</span>
@@ -5289,7 +5288,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-attribute">android:interpolator</span>=<span class="hljs-value">"@android:interpolator/accelerate_decelerate"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"@integer/card_flip_time_full"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Half-way through the rotation (see startOffset), set the alpha to 1. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"0.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"1.0"</span>
@@ -5300,7 +5299,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </code></pre>
 <p><strong>card_flip_left_out.xml</strong></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">set</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- 旋转. --&gt;</span>
+    <span class="hljs-comment">&lt;!-- Rotate. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"180"</span>
@@ -5308,7 +5307,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-attribute">android:interpolator</span>=<span class="hljs-value">"@android:interpolator/accelerate_decelerate"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"@integer/card_flip_time_full"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Half-way through the rotation (see startOffset), set the alpha to 0. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"1.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0.0"</span>
@@ -5319,14 +5318,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </code></pre>
 <p><strong>card_flip_right_in.xml</strong></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">set</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
-    <span class="hljs-comment">&lt;!--旋转之前，立刻设置透明度alpha为0--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Before rotating, immediately set the alpha to 0. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"1.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0.0"</span>
         <span class="hljs-attribute">android:propertyName</span>=<span class="hljs-value">"alpha"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"0"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- 旋转. --&gt;</span>
+    <span class="hljs-comment">&lt;!-- Rotate. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"180"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0"</span>
@@ -5334,17 +5333,18 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-attribute">android:interpolator</span>=<span class="hljs-value">"@android:interpolator/accelerate_decelerate"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"@integer/card_flip_time_full"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为1--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Half-way through the rotation (see startOffset), set the alpha to 1. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"0.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"1.0"</span>
         <span class="hljs-attribute">android:propertyName</span>=<span class="hljs-value">"alpha"</span>
         <span class="hljs-attribute">android:startOffset</span>=<span class="hljs-value">"@integer/card_flip_time_half"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"1"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">set</span>&gt;</span>
 </code></pre>
 <p><strong>card_flip_right_out.xml</strong></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">set</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- 旋转. --&gt;</span>
+    <span class="hljs-comment">&lt;!-- Rotate. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"-180"</span>
@@ -5352,7 +5352,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-attribute">android:interpolator</span>=<span class="hljs-value">"@android:interpolator/accelerate_decelerate"</span>
         <span class="hljs-attribute">android:duration</span>=<span class="hljs-value">"@integer/card_flip_time_full"</span> /&gt;</span>
 
-    <span class="hljs-comment">&lt;!--旋转中途(时间偏移量取决于startOffset属性)设置透明度为0--&gt;</span>
+    <span class="hljs-comment">&lt;!-- Half-way through the rotation (see startOffset), set the alpha to 0. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">objectAnimator</span>
         <span class="hljs-attribute">android:valueFrom</span>=<span class="hljs-value">"1.0"</span>
         <span class="hljs-attribute">android:valueTo</span>=<span class="hljs-value">"0.0"</span>
@@ -5362,7 +5362,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <span class="hljs-tag">&lt;/<span class="hljs-title">set</span>&gt;</span>
 </code></pre>
 <h2 id="view">创建View</h2>
-<p>卡片的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了卡片展示文本一面的布局：</p>
+<p>card的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了展示文本card的一面：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
@@ -5390,7 +5390,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>卡片另一面显示一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>：</p>
+<p>card另一面显示一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
@@ -5399,11 +5399,11 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     <span class="hljs-attribute">android:contentDescription</span>=<span class="hljs-value">"@string/description_image_1"</span> /&gt;</span>
 </code></pre>
 <h2 id="fragment">创建Fragment</h2>
-<p>为卡片正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> onCreateView() </a>方法中分别为每个framgent返回你之前创建的布局。在父activity中，你可以在你想要显示卡片时创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：</p>
+<p>为card正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> <code>onCreateView()</code> </a>方法中分别为每个framgent返回你之前创建的布局。在想要显示card的父activity中，你可以创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardFlipActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
     ...
     <span class="hljs-javadoc">/**
-     * 一个呈现在卡片前方的fragment
+     * A fragment representing the front of the card.
      */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardFrontFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
         <span class="hljs-annotation">@Override</span>
@@ -5414,7 +5414,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     }
 
     <span class="hljs-javadoc">/**
-     * 一个呈现在卡片后方的fragment
+     * A fragment representing the back of the card.
      */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardBackFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Fragment</span> </span>{
         <span class="hljs-annotation">@Override</span>
@@ -5425,8 +5425,8 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     }
 }
 </code></pre>
-<h2 id="">应用卡片翻转动画</h2>
-<p>现在，你需要在父activity中展示fragment。为做这件事，首先创建你activity的布局。下面例子创建了一个你可以在运行时添加fragment的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank">FrameLayout</a>。</p>
+<h2 id="card">应用card翻转动画</h2>
+<p>现在，你需要在父activity中展示fragment。为做这件事，首先创建你activity的布局。下面例子创建了一个你可以在运行时添加fragment的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank"><code>FrameLayout</code></a>。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5450,13 +5450,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     ...
 }
 </code></pre>
-<p>既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面需要做下面这些事情：</p>
+<p>既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面，它需要做下面这些事情：</p>
 <ul>
-<li><p>为fragment转换设置你刚做的自定义动画</p>
+<li><p>将fragment转换设置你刚做的自定义动画</p>
 </li>
 <li><p>用新fragment替换当前显示的fragment，并且应用你刚创建的动画到这个事件中。</p>
 </li>
-<li><p>添加之前显示的fragment到fragment的back stack中，所以当用户摁 <em>Back</em> 键时，卡片会翻转回来。</p>
+<li><p>添加之前显示的fragment到fragment的back stack中，所以当用户摁 <em>Back</em> 键时，card会翻转回来。</p>
 </li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">flipCard</span><span class="hljs-params">()</span> </span>{
@@ -5465,29 +5465,34 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-keyword">return</span>;
     }
 
-    <span class="hljs-comment">// 向后翻转.</span>
+    <span class="hljs-comment">// Flip to the back.</span>
 
     mShowingBack = <span class="hljs-keyword">true</span>;
 
-    <span class="hljs-comment">// 创建并提交一个新的Fragment事务用于在卡片后面添加Fragment，使用自定义动画，并且加入</span>
-    <span class="hljs-comment">// Fragment管理器回退栈</span>
+    <span class="hljs-comment">// Create and commit a new fragment transaction that adds the fragment for the back of</span>
+    <span class="hljs-comment">// the card, uses custom animations, and is part of the fragment manager's back stack.</span>
+
     getFragmentManager()
             .beginTransaction()
 
-            <span class="hljs-comment">// 用动画器资源呈现卡片自前向后的旋转效果替换默认的Fragment动画，</span>
-            <span class="hljs-comment">// 当翻转到前面的时候动画器资源也可以呈现自后向前的旋转效果（例如按下系统返回键时）</span>
+            <span class="hljs-comment">// Replace the default fragment animations with animator resources representing</span>
+            <span class="hljs-comment">// rotations when switching to the back of the card, as well as animator</span>
+            <span class="hljs-comment">// resources representing rotations when flipping back to the front (e.g. when</span>
+            <span class="hljs-comment">// the system Back button is pressed).</span>
             .setCustomAnimations(
                     R.animator.card_flip_right_in, R.animator.card_flip_right_out,
                     R.animator.card_flip_left_in, R.animator.card_flip_left_out)
 
-            <span class="hljs-comment">// 用一个Fragment替换任何当前在容器布局内的Fragment来呈现下一页</span>
-            <span class="hljs-comment">//（通过仅自增的变量currentPage来表示）</span>
+            <span class="hljs-comment">// Replace any fragments currently in the container view with a fragment</span>
+            <span class="hljs-comment">// representing the next page (indicated by the just-incremented currentPage</span>
+            <span class="hljs-comment">// variable).</span>
             .replace(R.id.container, <span class="hljs-keyword">new</span> CardBackFragment())
 
-            <span class="hljs-comment">// 添加这个事务到回退栈，允许用户来按下返回按钮来回退到卡片正面.</span>
+            <span class="hljs-comment">// Add this transaction to the back stack, allowing users to press Back</span>
+            <span class="hljs-comment">// to get to the front of the card.</span>
             .addToBackStack(<span class="hljs-keyword">null</span>)
 
-            <span class="hljs-comment">// 提交完成事务.</span>
+            <span class="hljs-comment">// Commit the transaction.</span>
             .commit();
 }
 </code></pre>
@@ -5501,7 +5506,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         </div>
 
         
-        <a href="../animations/screen-slide.html" class="navigation navigation-prev " aria-label="Previous page: 使用ViewPager实现屏幕侧滑"><i class="fa fa-angle-left"></i></a>
+        <a href="../animations/screen-slide.html" class="navigation navigation-prev " aria-label="Previous page: 使用ViewPager实现屏幕滑动"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../animations/zoom.html" class="navigation navigation-next " aria-label="Next page: 缩放View"><i class="fa fa-angle-right"></i></a>

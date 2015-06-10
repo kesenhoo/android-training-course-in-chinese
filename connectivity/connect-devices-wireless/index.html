@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>无线连接设备 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>无线连接设备 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.1" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="5.1" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,30 +5239,21 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_71">
+                    <section class="normal" id="section-gitbook_171">
                     
                         <h1 id="">无线连接设备</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/acenodie" target="_blank">acenodie</a> - 原文:<a href="http://developer.android.com/training/connect-devices-wirelessly/index.html" target="_blank">http://developer.android.com/training/connect-devices-wirelessly/index.html</a></p>
 </blockquote>
-<p>除了能够在云端通信，Android的无线接口（wirless APIs）也允许同一局域网中的设备进行通信，甚至没有连接到网络上，而是物理上隔得很近，也可以相互通信。此外，网络服务发现（Network Service Discovery，简称NSD）可以进一步通过允许应用程序运行能相互通信的服务去寻找附近运行相同服务的设备。把这个功能整合到你的应用中可以提供许多功能，如在同一个房间，用户玩游戏，可以利用NSD实现从一个网络摄像头获取图像，或远程登录到在同一网络中的其他机器。</p>
-<p>  本节课介绍了一些使你的应用程序能够寻找和连接其他设备的主要的接口（APIs）。具体地说，它介绍了用于发现可用服务的NSD API和能实现点对点无线连接的无线点对点（ the Wi-Fi Peer-to-Peer，简称Wi-Fi P2P）API。本节课也将告诉我们怎样将NSD和Wi-Fi P2P结合起来去检测其他设备所提供的服务，当检测到时，连接到相应的设备上。即使设备都没有连接到一个网络中。</p>
+<p>除了能够在云端通信，Android 的无线 API 也允许同一局域网中的设备进行通信，甚至没有连接到网络上，而是物理上隔得很近，也可以相互通信。此外，网络服务发现（Network Service Discovery，简称NSD）可以进一步通过允许应用程序运行能相互通信的服务去寻找附近运行相同服务的设备。把这个功能整合到我们的应用中，可以提供许多功能，如在同一个房间，用户玩游戏，可以利用 NSD 实现从一个网络摄像头获取图像，或远程登录到在同一网络中的其他机器。</p>
+<p>本节课介绍了一些使我们的应用程序能够寻找和连接其他设备的主要 API。具体地说，它介绍了用于发现可用服务的 NSD API 和能实现点对点无线连接的无线点对点（the Wi-Fi Peer-to-Peer，简称 Wi-Fi P2P）API。本节课也将告诉我们怎样将 NSD 和 Wi-Fi P2P 结合起来去检测其他设备所提供的服务。当检测到时，连接到相应的设备上。即使设备都没有连接到一个网络中。</p>
 <h2 id="lessons">Lessons</h2>
-<ul>
-<li><p><a href="nsd.html"><strong>使用网络服务发现</strong></a></p>
-<p>学习如何广播由你自己的应用程序提供的服务，如何发现在本地网络上提供的服务并用NSD获取你将要连接的服务的详细信息。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="wifi-direct.html"><strong>使用WiFi建立P2P连接</strong></a></p>
-<p>学习如何获取附近的对等设备，如何创建一个设备接入点，如何连接到其他具有Wi-Fi P2P连接功能的设备。</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="nsd-wifi-index.html"><strong>使用WiFi P2P发现服务</strong></a></p>
-<p>学习如何使用WiFi P2P服务去发现附近的不在同一个网络的服务。</p>
-</li>
-</ul>
+<p><a href="nsd.html"><strong>使用网络服务发现</strong></a></p>
+<p>  学习如何广播由我们自己的应用程序提供的服务，如何发现在本地网络上提供的服务，并用 NSD 获取我们将要连接的服务的详细信息。</p>
+<p><a href="wifi-direct.html"><strong>使用 WiFi 建立 P2P 连接</strong></a></p>
+<p>  学习如何获取附近的对等设备，如何创建一个设备接入点，如何连接到其他具有 Wi-Fi P2P 连接功能的设备。</p>
+<p><a href="nsd-wifi-index.html"><strong>使用 WiFi P2P 发现服务</strong></a></p>
+<p>  学习如何使用 WiFi P2P 服务去发现附近的不在同一个网络的服务。</p>
 
                     
                     </section>
@@ -5276,7 +5267,7 @@
         <a href="../../building-connectivity.html" class="navigation navigation-prev " aria-label="Previous page: Android网络连接与云服务"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../connectivity/connect-devices-wireless/nsd.html" class="navigation navigation-next " aria-label="Next page: 使得网络服务可发现"><i class="fa fa-angle-right"></i></a>
+        <a href="../../connectivity/connect-devices-wireless/nsd.html" class="navigation navigation-next " aria-label="Next page: 使用网络服务发现"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

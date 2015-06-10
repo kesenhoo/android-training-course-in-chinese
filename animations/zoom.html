@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>缩放View | Android官方培训课程中文版(v0.9.3)</title>
+        <title>缩放View | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.4" data-basepath=".." data-revision="1433175461912">
+    <div class="book"  data-level="4.3.4" data-basepath=".." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,13 +5239,13 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_9">
+                    <section class="normal" id="section-gitbook_109">
                     
                         <h1 id="view">缩放View</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/zoom.html" target="_blank">http://developer.android.com/training/animation/zoom.html</a></p>
 </blockquote>
-<p>这节课示范怎样实现点击缩放动画，这对相册很有用，他能允许相片从缩略图转换成原图并填充屏幕提供动画。</p>
+<p>这节课示范怎样实现点击缩放动画，这对相册很有用，他能为相片从缩略图转换成原图并填充屏幕提供动画。</p>
 <p>下面展示了触摸缩放动画效果是什么样子，它将缩略图扩大并填充屏幕。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -5259,14 +5259,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例然后运行缩放的例子。查看下列文件中的代码实现：</p>
+<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行 App 样例然后选择缩放的例子。查看下列文件中的代码实现：</p>
 <ul>
-<li>src/TouchHighlightImageButton.java（简单的helper类，当image button被按下它显示蓝色高亮）</li>
-<li>src/ZoomActivity.java</li>
-<li>layout/activity_zoom.xml</li>
+<li><code>src/TouchHighlightImageButton.java</code>（简单的helper类，当image button被按下它显示蓝色高亮）</li>
+<li><code>src/ZoomActivity.java</code></li>
+<li><code>layout/activity_zoom.xml</code></li>
 </ul>
 <h2 id="view">创建View</h2>
-<p>为你想缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个 <a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank">ImageButton</a> 和一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a> 来展示原图：</p>
+<p>为你想缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a> 和一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a> 来展示原图：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5288,9 +5288,11 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
     <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 
-    <span class="hljs-comment">&lt;!-- 这个初始化状态为隐藏的ImageView将会持有一个扩大/缩放版本的图片，并且浮于布局上层，
-         没有动画施加在上面，并且占据整个屏幕。要实现“缩放”的动画，这个View是从上面的缩
-         略图按钮的边界开始，扩大至最终的放大后的边界。
+    <span class="hljs-comment">&lt;!-- This initially-hidden ImageView will hold the expanded/zoomed version of
+         the images above. Without transformations applied, it takes up the entire
+         screen. To achieve the "zoom" animation, this view's bounds are animated
+         from the bounds of the thumbnail button above, to its final laid-out
+         bounds.
          --&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span>
@@ -5303,14 +5305,15 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <span class="hljs-tag">&lt;/<span class="hljs-title">FrameLayout</span>&gt;</span>
 </code></pre>
 <h2 id="">设置缩放动画</h2>
-<p>一旦实现了布局，你需要设置触发缩放事件handler。下面的例子为<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank">ImageButton</a>添加了一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank">View.OnClickListener</a>，当用户点击按钮时它执行放大动画。</p>
+<p>一旦实现了布局，你需要设置触发缩放动画的事件handler。下面的例子为<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a>添加了一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>，当用户点击按钮时它执行放大动画。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ZoomActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
-    <span class="hljs-comment">// 持有一个当前animator的引用,</span>
-    <span class="hljs-comment">// 以后以便于中途取消动画.</span>
+    <span class="hljs-comment">// Hold a reference to the current animator,</span>
+    <span class="hljs-comment">// so that it can be canceled mid-way.</span>
     <span class="hljs-keyword">private</span> Animator mCurrentAnimator;
 
-    <span class="hljs-comment">//这个系统内的“短”动画时长是以毫秒为单位的。</span>
-    <span class="hljs-comment">//这个时长对于精确控制的动画或频繁激发的动画是非常理想的。</span>
+    <span class="hljs-comment">// The system "short" animation time duration, in milliseconds. This</span>
+    <span class="hljs-comment">// duration is ideal for subtle animations or animations that occur</span>
+    <span class="hljs-comment">// very frequently.</span>
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> mShortAnimationDuration;
 
     <span class="hljs-annotation">@Override</span>
@@ -5318,7 +5321,8 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         <span class="hljs-keyword">super</span>.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoom);
 
-        <span class="hljs-comment">// 为缩略图连结点击事件</span>
+        <span class="hljs-comment">// Hook up clicks on the thumbnail views.</span>
+
         <span class="hljs-keyword">final</span> View thumb1View = findViewById(R.id.thumb_button_1);
         thumb1View.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
             <span class="hljs-annotation">@Override</span>
@@ -5327,7 +5331,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
             }
         });
 
-        <span class="hljs-comment">//获取并缓存系统默认定义的“短”动画时长</span>
+        <span class="hljs-comment">// Retrieve and cache the system's default "short" animation time.</span>
         mShortAnimationDuration = getResources().getInteger(
                 android.R.integer.config_shortAnimTime);
     }
@@ -5337,53 +5341,59 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <h2 id="view">缩放View</h2>
 <p>你现在需要适时应用放大动画了。通常来说，你需要按边界来从小号View放大到大号View。下面的方法告诉你如何实现缩放动画：</p>
 <ol>
-<li><p>把高清图像设置到“放大版”隐藏的<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>中。为表简单，下面的例子在 UI 线程中加载了一张大图。但是你需要在一个单独的线程中来加载以免阻塞 UI 线程，然后再回到 UI 线程中设置。理想状况下，图片不要大过屏幕。</p>
+<li><p>把高清图像资源设置到已经被隐藏的“放大版”的<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中。为表简单，下面的例子在 UI 线程中加载了一张大图。但是你需要在一个单独的线程中来加载以免阻塞 UI 线程，然后再回到 UI 线程中设置。理想状况下，图片不要大过屏幕尺寸。</p>
 </li>
-<li><p>计算<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>开始和结束时的边界。</p>
+<li><p>计算<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>开始和结束时的边界。</p>
 </li>
-<li><p>同步地动态改变四个位置和大小属性<a href="http://developer.android.com/reference/android/view/View.html#X" target="_blank">X</a>，<a href="http://developer.android.com/reference/android/view/View.html#Y" target="_blank">Y</a>（<a href="http://developer.android.com/reference/android/view/View.html#SCALE_X" target="_blank">SCALE_X</a> 和 <a href="http://developer.android.com/reference/android/view/View.html#SCALE_Y" target="_blank">SCALE_Y</a>），从起始点到结束点。这四个动画被加入到了<a href="http://developer.android.com/reference/android/animation/AnimatorSet.html" target="_blank">AnimatorSet</a>，所以你可以一起开始。</p>
+<li><p>从起始边到结束边同步地动态改变四个位置和大小属性<a href="http://developer.android.com/reference/android/view/View.html#X" target="_blank"><code>X</code></a>，<a href="http://developer.android.com/reference/android/view/View.html#Y" target="_blank"><code>Y</code></a>（<a href="http://developer.android.com/reference/android/view/View.html#SCALE_X" target="_blank"><code>SCALE_X</code></a> 和 <a href="http://developer.android.com/reference/android/view/View.html#SCALE_Y" target="_blank"><code>SCALE_Y</code></a>）。这四个动画被加入到了<a href="http://developer.android.com/reference/android/animation/AnimatorSet.html" target="_blank"><code>AnimatorSet</code></a>，所以你可以让它们一起开始。</p>
 </li>
-<li><p>缩回则运行相同的动画，但是是用户点击屏幕放大时的逆向效果。你可以在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>中添加一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank">View.OnClickListener</a>来实现它。当点击时，<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank">ImageView</a>缩回到原来缩略图的大小，然后设置它的visibility为<a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank">GONE</a>来隐藏。</p>
+<li><p>缩小则运行相同的动画，但是是在用户点击屏幕放大时的逆向效果。你可以在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中添加一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>来实现它。当点击时，<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>缩回到原来缩略图的大小，然后设置它的visibility为<a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>来隐藏。</p>
 </li>
 </ol>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zoomImageFromThumb</span><span class="hljs-params">(<span class="hljs-keyword">final</span> View thumbView, <span class="hljs-keyword">int</span> imageResId)</span> </span>{
-    <span class="hljs-comment">//如果一个动画正在进行过程中，那么就要立即取消之前的动画并进行这一个。</span>
+    <span class="hljs-comment">// If there's an animation in progress, cancel it</span>
+    <span class="hljs-comment">// immediately and proceed with this one.</span>
     <span class="hljs-keyword">if</span> (mCurrentAnimator != <span class="hljs-keyword">null</span>) {
         mCurrentAnimator.cancel();
     }
 
-    <span class="hljs-comment">// 载入一个高分辨率的所谓 "已放大" 的图片.</span>
+    <span class="hljs-comment">// Load the high-resolution "zoomed-in" image.</span>
     <span class="hljs-keyword">final</span> ImageView expandedImageView = (ImageView) findViewById(
             R.id.expanded_image);
     expandedImageView.setImageResource(imageResId);
 
-    <span class="hljs-comment">// 为放大的图片计算开始动画和结束动画的矩形边界</span>
-    <span class="hljs-comment">// 这个步骤牵扯到了大量的数学计算，YEAH!!坑爹的数学!!</span>
+    <span class="hljs-comment">// Calculate the starting and ending bounds for the zoomed-in image.</span>
+    <span class="hljs-comment">// This step involves lots of math. Yay, math.</span>
     <span class="hljs-keyword">final</span> Rect startBounds = <span class="hljs-keyword">new</span> Rect();
     <span class="hljs-keyword">final</span> Rect finalBounds = <span class="hljs-keyword">new</span> Rect();
     <span class="hljs-keyword">final</span> Point globalOffset = <span class="hljs-keyword">new</span> Point();
 
-    <span class="hljs-comment">// 动画开始的边界是缩略图对全局可见的矩形，最终的边界是外部包裹的布局可见矩形。</span>
-    <span class="hljs-comment">// 这里还设置了包裹视图的偏移量为原点的边界,因为这是原点为定位的动画属性(X, Y)。</span>
+    <span class="hljs-comment">// The start bounds are the global visible rectangle of the thumbnail,</span>
+    <span class="hljs-comment">// and the final bounds are the global visible rectangle of the container</span>
+    <span class="hljs-comment">// view. Also set the container view's offset as the origin for the</span>
+    <span class="hljs-comment">// bounds, since that's the origin for the positioning animation</span>
+    <span class="hljs-comment">// properties (X, Y).</span>
     thumbView.getGlobalVisibleRect(startBounds);
-    findViewById(R.id.container).getGlobalVisibleRect(finalBounds, globalOffset);
+    findViewById(R.id.container)
+            .getGlobalVisibleRect(finalBounds, globalOffset);
     startBounds.offset(-globalOffset.x, -globalOffset.y);
     finalBounds.offset(-globalOffset.x, -globalOffset.y);
 
-    <span class="hljs-comment">// 调整开始边界要和使用了“centerCrop”技术的最终边界保持相同的纵横比。</span>
-    <span class="hljs-comment">// 这可以在动画过程中防止不希望出现的拉伸现象。还计算了开始大小的缩放系数</span>
-    <span class="hljs-comment">// (结束大小的系数则一直为1.0)</span>
+    <span class="hljs-comment">// Adjust the start bounds to be the same aspect ratio as the final</span>
+    <span class="hljs-comment">// bounds using the "center crop" technique. This prevents undesirable</span>
+    <span class="hljs-comment">// stretching during the animation. Also calculate the start scaling</span>
+    <span class="hljs-comment">// factor (the end scaling factor is always 1.0).</span>
     <span class="hljs-keyword">float</span> startScale;
     <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">float</span>) finalBounds.width() / finalBounds.height()
             &gt; (<span class="hljs-keyword">float</span>) startBounds.width() / startBounds.height()) {
-        <span class="hljs-comment">// 水平扩展开始边界</span>
+        <span class="hljs-comment">// Extend start bounds horizontally</span>
         startScale = (<span class="hljs-keyword">float</span>) startBounds.height() / finalBounds.height();
         <span class="hljs-keyword">float</span> startWidth = startScale * finalBounds.width();
         <span class="hljs-keyword">float</span> deltaWidth = (startWidth - startBounds.width()) / <span class="hljs-number">2</span>;
         startBounds.left -= deltaWidth;
         startBounds.right += deltaWidth;
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-comment">// 竖直扩展开始边界</span>
+        <span class="hljs-comment">// Extend start bounds vertically</span>
         startScale = (<span class="hljs-keyword">float</span>) startBounds.width() / finalBounds.width();
         <span class="hljs-keyword">float</span> startHeight = startScale * finalBounds.height();
         <span class="hljs-keyword">float</span> deltaHeight = (startHeight - startBounds.height()) / <span class="hljs-number">2</span>;
@@ -5391,16 +5401,20 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         startBounds.bottom += deltaHeight;
     }
 
-    <span class="hljs-comment">// 隐藏缩略图并显示放大后的View。当动画开始，将在缩略图的位置定位放大的视图</span>
+    <span class="hljs-comment">// Hide the thumbnail and show the zoomed-in view. When the animation</span>
+    <span class="hljs-comment">// begins, it will position the zoomed-in view in the place of the</span>
+    <span class="hljs-comment">// thumbnail.</span>
     thumbView.setAlpha(<span class="hljs-number">0</span>f);
     expandedImageView.setVisibility(View.VISIBLE);
 
-    <span class="hljs-comment">// 设置锚点，以放大后的View左上角坐标为准来准备 SCALE_X 和 SCALE_Y 变换</span>
-    <span class="hljs-comment">// (默认为View的中心)</span>
+    <span class="hljs-comment">// Set the pivot point for SCALE_X and SCALE_Y transformations</span>
+    <span class="hljs-comment">// to the top-left corner of the zoomed-in view (the default</span>
+    <span class="hljs-comment">// is the center of the view).</span>
     expandedImageView.setPivotX(<span class="hljs-number">0</span>f);
     expandedImageView.setPivotY(<span class="hljs-number">0</span>f);
 
-    <span class="hljs-comment">// 构建并并行化运行4个平移动画和缩放属性(X, Y, SCALE_X, and SCALE_Y)</span>
+    <span class="hljs-comment">// Construct and run the parallel animation of the four translation and</span>
+    <span class="hljs-comment">// scale properties (X, Y, SCALE_X, and SCALE_Y).</span>
     AnimatorSet set = <span class="hljs-keyword">new</span> AnimatorSet();
     set
             .play(ObjectAnimator.ofFloat(expandedImageView, View.X,
@@ -5426,8 +5440,9 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     set.start();
     mCurrentAnimator = set;
 
-    <span class="hljs-comment">// 点击放大后的图片，应该是缩放回原来的边界并显示缩略图</span>
-    <span class="hljs-comment">// 而不是显示扩大的图</span>
+    <span class="hljs-comment">// Upon clicking the zoomed-in image, it should zoom back down</span>
+    <span class="hljs-comment">// to the original bounds and show the thumbnail instead of</span>
+    <span class="hljs-comment">// the expanded image.</span>
     <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> startScaleFinal = startScale;
     expandedImageView.setOnClickListener(<span class="hljs-keyword">new</span> View.OnClickListener() {
         <span class="hljs-annotation">@Override</span>
@@ -5436,7 +5451,8 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
                 mCurrentAnimator.cancel();
             }
 
-            <span class="hljs-comment">// 开始并行动画这四个位置/大小属性，直到归至原始值。</span>
+            <span class="hljs-comment">// Animate the four positioning/sizing properties in parallel,</span>
+            <span class="hljs-comment">// back to their original values.</span>
             AnimatorSet set = <span class="hljs-keyword">new</span> AnimatorSet();
             set.play(ObjectAnimator
                         .ofFloat(expandedImageView, View.X, startBounds.left))
@@ -5482,7 +5498,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
         </div>
 
         
-        <a href="../animations/cardflip.html" class="navigation navigation-prev " aria-label="Previous page: 展示卡片翻转动画"><i class="fa fa-angle-left"></i></a>
+        <a href="../animations/cardflip.html" class="navigation navigation-prev " aria-label="Previous page: 展示Card翻转动画"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../animations/layout.html" class="navigation navigation-next " aria-label="Next page: 布局变更动画"><i class="fa fa-angle-right"></i></a>

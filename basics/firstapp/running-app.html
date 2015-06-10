@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>执行Android程序 | Android官方培训课程中文版(v0.9.3)</title>
+        <title>执行Android程序 | Android官方培训课程中文版(v0.9.4)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.1.2" data-basepath="../.." data-revision="1433175461912">
+    <div class="book"  data-level="1.1.2" data-basepath="../.." data-revision="1433953637803">
     
 
 <div class="book-summary">
@@ -1367,7 +1367,7 @@
                         
                             <b>4.3.2.</b>
                         
-                         使用ViewPager实现屏幕侧滑
+                         使用ViewPager实现屏幕滑动
                     </a>
                 
             
@@ -1383,7 +1383,7 @@
                         
                             <b>4.3.3.</b>
                         
-                         展示卡片翻转动画
+                         展示Card翻转动画
                     </a>
                 
             
@@ -1475,7 +1475,7 @@
                         
                             <b>5.1.1.</b>
                         
-                         使得网络服务可发现
+                         使用网络服务发现
                     </a>
                 
             
@@ -4314,7 +4314,7 @@
                         
                             <b>12.3.</b>
                         
-                         兼容游戏控制器
+                         支持游戏控制器
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.3)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
     </h1>
 </div>
 
@@ -5239,7 +5239,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_39">
+                    <section class="normal" id="section-gitbook_139">
                     
                         <h1 id="android">执行Android程序</h1>
 <blockquote>
@@ -5253,18 +5253,17 @@
 <ol>
 <li>把设备用USB线连接到计算机上。如果是在windows系统上进行开发的，你可能还需要安装你设备对应的USB驱动，详见<a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank">OEM USB Drivers</a> 文档。</li>
 <li>开启设备上的<strong>USB调试</strong>选项。<ul>
-
+<li>在大部分运行Andriod3.2或更老版本系统的设备上，这个选项位于“<strong>设置</strong>&gt;<strong>应用程序</strong>&gt;<strong>开发选项</strong>”里。</li>
+<li>在Andriod 4.0或更新版本中，这个选项在“<strong>设置</strong>&gt;<strong>开发人员选项</strong>”里。</li>
+</ul>
 </li>
 </ol>
-<p><li> 在大部分运行Andriod3.2或更老版本系统的设备上，这个选项位于“<strong>设置</strong>&gt;<strong>应用程序</strong>&gt;<strong>开发选项</strong>”里。</li></p>
-<p><li> 在Andriod 4.0或更新版本中，这个选项在“<strong>设置</strong>&gt;<strong>开发人员选项</strong>”里。</li>
-</ul></p>
 <blockquote>
 <p><strong>Note:</strong> 从Android4.2开始，<strong>开发人员选项</strong>在默认情况下是隐藏的，想让它可见，可以去<strong>设置&gt;关于手机（或者关于设备)</strong>点击<strong>版本号</strong>七次。再返回就能找到<strong>开发人员选项</strong>了。</p>
 </blockquote>
 <h3 id="android-studio">从Android Studio运行程序</h3>
 <ol>
-<li><p>选择项目的一个文件，点击工具栏里的<strong>Run</strong><img src="as-run.png" alt="image">按钮。</p>
+<li><p>选择项目的一个文件，点击工具栏里的<strong>Run</strong><img src="as-run.png" alt="as-run">按钮。</p>
 </li>
 <li><p><strong>Choose Device</strong>窗口出现时，选择<strong>Choose a running device</strong>单选框，点击<strong>OK</strong>。</p>
 </li>
@@ -5287,30 +5286,27 @@ $ ./gradlew assembleDebug
 <h2 id="">在模拟器上运行</h2>
 <p>无论是使用 Android Studio 还是命令行，在模拟器中运行程序首先要创建一个 <a href="http://developer.android.com/tools/devices/index.html" target="_blank">Android Virtual Device</a> (AVD)。AVD 是对 Android 模拟器的配置，可以让我们模拟不同的设备。</p>
 <h3 id="-avd">创建一个 AVD:</h3>
-<ol>
-<li>启动 Android Virtual Device Manager（AVD Manager）的两种方式：
-<ul>
-<li> 用Android Studio, <strong>Tools &gt; Android &gt; AVD Manager</strong>,或者点击工具栏里面Android Virtual Device Manager<img src="avd-manager-studio.png" alt="image">  ；
-<li> 在命令行窗口中，把当前目录切换到<code>&lt;sdk&gt;/tools/</code> 后执行：
-</ul><pre><code>android avd
-</code></pre><img src="studio-avdmgr-firstscreen.png" alt="avds-config"></li>
-</ol>
-<p>2  在AVD Manager 面板中，点击<strong>Create Virtual Device</strong>.</p>
-<p>3  在Select Hardware窗口，选择一个设备，比如 Nexus 6，点击<strong>Next</strong>。</p>
-<p>4  选择列出的合适系统镜像.</p>
-<p>5  校验模拟器配置，点击<strong>Finish</strong>。</p>
+<p>1. 启动 Android Virtual Device Manager（AVD Manager）的两种方式：</p>
+<pre><code>* 用Android Studio, **Tools &gt; Android &gt; AVD Manager**,或者点击工具栏里面Android Virtual Device Manager![image](avd-manager-studio.png)；
+* 在命令行窗口中，把当前目录切换到`&lt;sdk&gt;/tools/` 后执行：
+</code></pre><pre><code>android avd
+</code></pre><p><img src="studio-avdmgr-firstscreen.png" alt="avds-config"></p>
+<p>2. 在AVD Manager 面板中，点击<strong>Create Virtual Device</strong>.</p>
+<p>3. 在Select Hardware窗口，选择一个设备，比如 Nexus 6，点击<strong>Next</strong>。</p>
+<p>4. 选择列出的合适系统镜像.</p>
+<p>5. 校验模拟器配置，点击<strong>Finish</strong>。</p>
 <p>更多AVD的知识请阅读<a href="http://developer.android.com/tools/devices/managing-avds.html" target="_blank">Managing AVDs with AVD Manager</a>.</p>
 <h3 id="android-studio">从Android Studio运行程序：</h3>
-<p>1 在Android Studio选择要运行的项目，从工具栏选择<strong>Run</strong><img src="as-run.png" alt="image">；</p>
-<p>2 <strong>Choose Device</strong>窗口出现时，选择<strong>Launch emulator</strong>单选框；</p>
-<p>3 从<strong> Android virtual device</strong>下拉菜单选择创建好的模拟器，点击<strong>OK</strong>；</p>
+<p>1. 在Android Studio选择要运行的项目，从工具栏选择<strong>Run</strong><img src="as-run.png" alt="image">；</p>
+<p>2. <strong>Choose Device</strong>窗口出现时，选择<strong>Launch emulator</strong>单选框；</p>
+<p>3. 从<strong> Android virtual device</strong>下拉菜单选择创建好的模拟器，点击<strong>OK</strong>；</p>
 <p>模拟器启动需要几分钟的时间，启动完成后，解锁即可看到程序已经运行到模拟器屏幕上了。</p>
 <h3 id="">从命令行安装运行应用程序</h3>
-<p>1 用命令行编译应用，生成位于app/build/outputs/apk/的apk；</p>
-<p>2 确认platform-tools/ 已添加到PATH环境变量；</p>
-<p>3 执行如下命令：</p>
+<p>1. 用命令行编译应用，生成位于app/build/outputs/apk/的apk；</p>
+<p>2. 确认platform-tools/ 已添加到PATH环境变量；</p>
+<p>3. 执行如下命令：</p>
 <pre><code>adb install app/build/outputs/MyFirstApp-debug.apk
-</code></pre><p>4 在模拟器上找到MyFirstApp，并运行。</p>
+</code></pre><p>4. 在模拟器上找到MyFirstApp，并运行。</p>
 <p>以上就是创建并在设备上运行一个应用的全部过程！想要开始开发，点击<a href="building-ui.html">next lesson</a>。</p>
 
                     
