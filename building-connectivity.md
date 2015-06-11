@@ -14,7 +14,7 @@
   如何创建一个网络连接，监视连接的变化，以及使用 XML 数据执行事务.
 
 
-#### [高效下载 - Transferring Data Without Draining the Battery](connectivity/efficient-downloads/index.html)
+#### [传输数据时避免消耗大量电量 - Transferring Data Without Draining the Battery](connectivity/efficient-downloads/index.html)
 
   如何在 app 执行下载和其他网络事务时最小化对电池的消耗。
 
