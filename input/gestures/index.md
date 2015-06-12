@@ -15,7 +15,7 @@
   学习如何通过使用[GestureDetector](http://developer.android.com/reference/android/view/GestureDetector.html)来检测基本的触摸手势，如滑动、惯性滑动以及双击。
 
 
-[追踪手势移动](movement.html)
+[**追踪手势移动**](movement.html)
 
   学习如何追踪手势移动。
 

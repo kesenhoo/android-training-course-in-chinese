@@ -89,7 +89,7 @@
        * [管理网络的使用情况](connectivity/network-ops/managing.md)
        * [解析XML数据](connectivity/network-ops/xml.md)
    * [传输数据时避免消耗大量电量](connectivity/efficient-downloads/index.md)
-       * [使用有效的网络连接方式来优化下载](connectivity/efficient-downloads/efficient-network-access.md)
+       * [优化下载以高效地访问网络](connectivity/efficient-downloads/efficient-network-access.md)
        * [最小化频繁更新造成的影响](connectivity/efficient-downloads/regular-update.md)
        * [重复的下载是冗余的](connectivity/efficient-downloads/redundant-redundant.md)
        * [根据网络连接类型来调整下载模式](connectivity/efficient-downloads/connectivity-patterns.md)

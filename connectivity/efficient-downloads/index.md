@@ -11,7 +11,7 @@
 
 ## Lesson
 
-[**使用有效的网络连接方式来优化下载**](efficient-network-access.html)
+[**优化下载以高效地访问网络**](efficient-network-access.html)
 
   这节课介绍了无线电波状态机（wireless radio state machine），解释了 app 的连接模型（connectivity model）如何与它交互，以及如何最小化数据连接和使用预取（prefetching）和捆绑（bundling）来最小化数据传输对电池消耗的影响。
 
