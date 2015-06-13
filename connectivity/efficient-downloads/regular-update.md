@@ -1,4 +1,4 @@
-# Minimizing the Effect of Regular Updates
+# 最小化定期更新造成的影响
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/regular-update.html>
 

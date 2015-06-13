@@ -90,7 +90,7 @@
        * [解析XML数据](connectivity/network-ops/xml.md)
    * [传输数据时避免消耗大量电量](connectivity/efficient-downloads/index.md)
        * [优化下载以高效地访问网络](connectivity/efficient-downloads/efficient-network-access.md)
-       * [最小化频繁更新造成的影响](connectivity/efficient-downloads/regular-update.md)
+       * [最小化定期更新造成的影响](connectivity/efficient-downloads/regular-update.md)
        * [重复的下载是冗余的](connectivity/efficient-downloads/redundant-redundant.md)
        * [根据网络连接类型来调整下载模式](connectivity/efficient-downloads/connectivity-patterns.md)
    * [云同步](connectivity/cloudsync/index.md)

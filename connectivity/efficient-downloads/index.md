@@ -16,7 +16,7 @@
   这节课介绍了无线电波状态机（wireless radio state machine），解释了 app 的连接模型（connectivity model）如何与它交互，以及如何最小化数据连接和使用预取（prefetching）和捆绑（bundling）来最小化数据传输对电池消耗的影响。
 
 
-[**最小化频繁更新造成的影响**](regular-update.html)
+[**最小化定期更新造成的影响**](regular-update.html)
 
   这节课我们将了解如何调整刷新频率以最大程度减轻底层无线电波状态机的后台更新所造成的影响。
 
