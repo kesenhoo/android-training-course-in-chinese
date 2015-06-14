@@ -17,7 +17,7 @@ Material Design中的触摸反馈，是在用户与UI元素交互时，提供视
 大多数情况下，你需要在你的 XML 文件中设定视图的背景来实现这个功能：
 
 * `?android:attr/selectableItemBackground` 用于有界Ripple动画
-* `?android:attr/selectableItemBackgroundBorderless` 用于越出视图边界的动画。它会被绘制在最近的切不是全屏的父视图上。
+* `?android:attr/selectableItemBackgroundBorderless` 用于越出视图边界的动画。它会被绘制在最近的且不是全屏的父视图上。
 
 > **Note：**`selectableItemBackgroundBorderless` 是 API level 21 新加入的属性
 

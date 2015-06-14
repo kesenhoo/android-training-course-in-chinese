@@ -50,35 +50,35 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 ## 第2部分: 你的应用该如何管理内存
 
-你应该在开发过程的每一个阶段都考虑到RAM的有限性，甚至包括在开发开始之前的设计阶段就应该开始考虑RAM的限制。我们可以有许多种设计与实现方式，他们有着不同的效率，即使这些方式只是相同技术的不断组合与演变。
+你应该在开发过程的每一个阶段都考虑到RAM的有限性，甚至包括在开始编写代码之前的设计阶段就应该考虑到RAM的限制性。我们可以使用多种设计与实现方式，他们有着不同的效率，即使这些方式只是相同技术的不断组合与演变。
 
-为了使得你的应用效率更高，你应该在设计与实现代码时，遵循下面的技术要点。
+为了使得你的应用性能效率更高，你应该在设计与实现代码时，遵循下面的技术要点。
 
 ### 1) 珍惜Services资源
 
-如果你的app需要在后台使用service，除非它被触发执行一个任务，否则其他时候都应该是非运行状态。同样需要注意当这个service已经完成任务后因为停止service失败而引起的泄漏。
+如果你的应用需要在后台使用service，除非它被触发并执行一个任务，否则其他时候service都应该是停止状态。另外需要注意当这个service完成任务之后因为停止service失败而引起的内存泄漏。
 
-当你启动一个service，系统会倾向为了保留这个Service而一直保留Service所在的进程。这使得进程的运行代价很高，因为系统没有办法把Service所占用的RAM让给其他组件或者被paged out。这减少了系统能够存放到LRU缓存当中的进程数量，它会影响app之间的切换效率。它甚至会导致系统内存使用不稳定，从而无法继续保持住所有目前正在运行的Service。
+当你启动一个service，系统会倾向为了保留这个service而一直保留service所在的进程。这使得进程的运行代价很高，因为系统没有办法把service所占用的RAM空间腾出来让给其他组件，另外service还不能被paged out。这减少了系统能够存放到LRU缓存当中的进程数量，它会影响app之间的切换效率。它甚至会导致系统内存使用不稳定，从而无法继续保持住所有目前正在运行的service。
 
-限制你的Service的最好办法是使用[IntentService](http://developer.android.com/reference/android/app/IntentService.html), 它会在处理完扔给它的intent任务之后尽快结束自己。更多信息，请阅读[Running in a Background Service](http://developer.android.com/training/run-background-service/index.html).
+限制你的service的最好办法是使用[IntentService](http://developer.android.com/reference/android/app/IntentService.html)， 它会在处理完交代给它的intent任务之后尽快结束自己。更多信息，请阅读[Running in a Background Service](http://developer.android.com/training/run-background-service/index.html).
 
-当一个Service已经不需要的时候还继续保留它，这对Android应用的内存管理来说是**最糟糕的错误之一**。因此千万不要贪婪的使得一个Service持续保留。不仅仅是因为它会使得你的app因RAM的限制而性能糟糕，而且用户会发现那些有着常驻后台行为的应用并且卸载它。
+当一个Service已经不再需要的时候还继续保留它，这对Android应用的内存管理来说是**最糟糕的错误之一**。因此千万不要贪婪的使得一个Service持续保留。不仅仅是因为它会使得你的应用因为RAM空间的不足而性能糟糕，还会使得用户发现那些有着常驻后台行为的应用并且可能卸载它。
 
 ### 2) 当UI隐藏时释放内存
 
-当用户切换到其它应用并且你的应用 UI不再可见时，你应该释放你的UI上所占用的所有资源。在这个时候释放UI资源可以显著的增加系统缓存进程的能力，它会对用户体验有着很直接的影响。
+当用户切换到其它应用并且你的应用 UI不再可见时，你应该释放你的应用UI上所占用的所有内存资源。在这个时候释放UI资源可以显著的增加系统缓存进程的能力，它会对用户体验有着很直接的影响。
 
 为了能够接收到用户离开你的UI时的通知，你需要实现Activtiy类里面的`onTrimMemory()`回调方法。你应该使用这个方法来监听到`TRIM_MEMORY_UI_HIDDEN`级别的回调，此时意味着你的UI已经隐藏，你应该释放那些仅仅被你的UI使用的资源。
 
-请注意：你的应用仅仅会在所有UI组件的被隐藏的时候接收到`onTrimMemory()`的回调并带有参数`TRIM_MEMORY_UI_HIDDEN`。这与onStop()的回调是不同的，onStop会在activity的实例隐藏时会执行，例如当用户从你的app的某个activity跳转到另外一个activity时onStop会被执行。因此你应该实现onStop回调，并且在此回调里面释放activity的资源，例如网络连接，unregister广播接收者。除非接收到[onTrimMemory(TRIM_MEMORY_UI_HIDDEN)](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#onTrimMemory(int))的回调，否者你不应该释放你的UI资源。这确保了用户从其他activity切回来时，你的UI资源仍然可用，并且可以迅速恢复activity。
+请注意：你的应用仅仅会在所有UI组件的被隐藏的时候接收到`onTrimMemory()`的回调并带有参数`TRIM_MEMORY_UI_HIDDEN`。这与onStop()的回调是不同的，onStop会在activity的实例隐藏时会执行，例如当用户从你的app的某个activity跳转到另外一个activity时前面activity的onStop()会被执行。因此你应该实现onStop回调，并且在此回调里面释放activity的资源，例如释放网络连接，注销监听广播接收者。除非接收到[onTrimMemory(TRIM_MEMORY_UI_HIDDEN)](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#onTrimMemory(int))的回调，否者你不应该释放你的UI资源。这确保了用户从其他activity切回来时，你的UI资源仍然可用，并且可以迅速恢复activity。
 
 ### 3) 当内存紧张时释放部分内存
 
-在你的app生命周期的任何阶段，onTrimMemory回调方法同样可以告诉你整个设备的内存资源已经开始紧张。你应该根据onTrimMemory方法中的内存级别来进一步决定释放哪些资源。
+在你的app生命周期的任何阶段，onTrimMemory的回调方法同样可以告诉你整个设备的内存资源已经开始紧张。你应该根据onTrimMemory回调中的内存级别来进一步决定释放哪些资源。
 
-* [TRIM_MEMORY_RUNNING_MODERATE](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_MODERATE):你的app正在运行并且不会被列为可杀死的。但是设备此时正运行于低内存状态下，系统开始触发杀死LRU Cache中的Process的机制。
-* [TRIM_MEMORY_RUNNING_LOW](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_LOW):你的app正在运行且没有被列为可杀死的。但是设备正运行于更低内存的状态下，你应该释放不用的资源用来提升系统性能（但是这也会直接影响到你的app的性能）。
-* [TRIM_MEMORY_RUNNING_CRITICAL](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_CRITICAL):你的app仍在运行，但是系统已经把LRU Cache中的大多数进程都已经杀死，因此你应该立即释放所有非必须的资源。如果系统不能回收到足够的RAM数量，系统将会清除所有的LRU缓存中的进程，并且开始杀死那些之前被认为不应该杀死的进程，例如那个包含了一个运行态Service的进程。
+* [TRIM_MEMORY_RUNNING_MODERATE](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_MODERATE)：你的app正在运行并且不会被列为可杀死的。但是设备此时正运行于低内存状态下，系统开始触发杀死LRU Cache中的Process的机制。
+* [TRIM_MEMORY_RUNNING_LOW](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_LOW)：你的app正在运行且没有被列为可杀死的。但是设备正运行于更低内存的状态下，你应该释放不用的资源用来提升系统性能（但是这也会直接影响到你的app的性能）。
+* [TRIM_MEMORY_RUNNING_CRITICAL](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_RUNNING_CRITICAL)：你的app仍在运行，但是系统已经把LRU Cache中的大多数进程都已经杀死，因此你应该立即释放所有非必须的资源。如果系统不能回收到足够的RAM数量，系统将会清除所有的LRU缓存中的进程，并且开始杀死那些之前被认为不应该杀死的进程，例如那个包含了一个运行态Service的进程。
 
 同样，当你的app进程正在被cached时，你可能会接受到从onTrimMemory()中返回的下面的值之一:
 
@@ -86,13 +86,13 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 * [TRIM_MEMORY_MODERATE](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_MODERATE): 系统正运行于低内存状态并且你的进程已经已经接近LRU名单的**中部位置**。如果系统开始变得更加内存紧张，你的进程是有可能被杀死的。
 * [TRIM_MEMORY_COMPLETE](http://developer.android.com/reference/android/content/ComponentCallbacks2.html#TRIM_MEMORY_COMPLETE): 系统正运行与低内存的状态并且你的进程正处于LRU名单中**最容易被杀掉的位置**。你应该释放任何不影响你的app恢复状态的资源。
 
-因为onTrimMemory()的回调是在**API 14**才被加进来的，对于老的版本，你可以使用[onLowMemory](http://developer.android.com/reference/android/content/ComponentCallbacks.html#onLowMemory())回调来进行兼容。onLowMemory相当与TRIM_MEMORY_COMPLETE。
+因为onTrimMemory()的回调是在**API 14**才被加进来的，对于老的版本，你可以使用[onLowMemory](http://developer.android.com/reference/android/content/ComponentCallbacks.html#onLowMemory())回调来进行兼容。onLowMemory相当与`TRIM_MEMORY_COMPLETE`。
 
-**Note:** 当系统开始清除LRU缓存中的进程时，尽管它首先按照LRU的顺序来操作，但是它同样会考虑进程的内存使用量。因此消耗越少的进程则越容易被留下来。
+> **Note:** 当系统开始清除LRU缓存中的进程时，尽管它首先按照LRU的顺序来操作，但是它同样会考虑进程的内存使用量。因此消耗越少的进程则越容易被留下来。
 
 ### 4) 检查你应该使用多少的内存
 
-正如前面提到的，每一个Android设备都会有不同的RAM总大小与可用空间，因此不同设备为app提供了不同大小的heap限制。你可以通过调用[getMemoryClass()](http://developer.android.com/reference/android/app/ActivityManager.html#getMemoryClass())来获取你的app的可用heap大小。如果你的app尝试申请更多的内存，会出现OutOfMemory的错误。
+正如前面提到的，每一个Android设备都会有不同的RAM总大小与可用空间，因此不同设备为app提供了不同大小的heap限制。你可以通过调用[getMemoryClass()](http://developer.android.com/reference/android/app/ActivityManager.html#getMemoryClass())来获取你的app的可用heap大小。如果你的app尝试申请更多的内存，会出现`OutOfMemory`的错误。
 
 在一些特殊的情景下，你可以通过在manifest的application标签下添加`largeHeap=true`的属性来声明一个更大的heap空间。如果你这样做，你可以通过[getLargeMemoryClass()](http://developer.android.com/reference/android/app/ActivityManager.html#getLargeMemoryClass())来获取到一个更大的heap size。
 
@@ -104,7 +104,7 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 当你加载一个bitmap时，仅仅需要保留适配当前屏幕设备分辨率的数据即可，如果原图高于你的设备分辨率，需要做缩小的动作。请记住，增加bitmap的尺寸会对内存呈现出2次方的增加，因为X与Y都在增加。
 
-**Note:**在Android 2.3.x (API level 10)及其以下, bitmap对象的pixel data是存放在native内存中的，它不便于调试。然而，从Android 3.0(API level 11)开始，bitmap pixel data是分配在你的app的Dalvik heap中, 这提升了GC的工作效率并且更加容易Debug。因此如果你的app使用bitmap并在旧的机器上引发了一些内存问题，切换到3.0以上的机器上进行Debug。
+> **Note:**在Android 2.3.x (API level 10)及其以下, bitmap对象的pixel data是存放在native内存中的，它不便于调试。然而，从Android 3.0(API level 11)开始，bitmap pixel data是分配在你的app的Dalvik heap中, 这提升了GC的工作效率并且更加容易Debug。因此如果你的app使用bitmap并在旧的机器上引发了一些内存问题，切换到3.0以上的机器上进行Debug。
 
 ### 6) 使用优化的数据容器
 
@@ -133,9 +133,9 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 使用类似[Guice](https://code.google.com/p/google-guice/)或者[RoboGuice](https://github.com/roboguice/roboguice)等framework injection包是很有效的，因为他们能够简化你的代码。
 
-> RoboGuice 2 通过依赖注入改变代码风格，让Android开发时的体验更好。你在调用 `getIntent().getExtras()` 时经常忘记检查 null 吗？RoboGuice 2 可以帮你做。你认为将 `findViewById()` 的返回值强制转换成 TextView 是本不必要的工作吗？ RoboGuice 2 会帮你。RoboGuice 把这些需要猜测性的工作移到Android 开发以外去了。注入你的 View, Resource, System Service，或者其他对象，RoboGuice 2 会负责这些细节。
+> Notes：RoboGuice 2 通过依赖注入改变代码风格，让Android开发时的体验更好。你在调用 `getIntent().getExtras()` 时经常忘记检查 null 吗？RoboGuice 2 可以帮你做。你认为将 `findViewById()` 的返回值强制转换成 TextView 是本不必要的工作吗？ RoboGuice 2 会帮你。RoboGuice 把这些需要猜测性的工作移到Android 开发以外去了。注入你的 View, Resource, System Service或者其他对象，RoboGuice 2 会负责这些细节。
 
-然而，那些框架会通过扫描你的代码执行许多初始化的操作，这会导致你的代码需要大量的RAM来map代码。但是mapped pages会长时间的被保留在RAM中。
+然而，那些框架会通过扫描你的代码执行许多初始化的操作，这会导致你的代码需要大量的RAM来map代码，而且mapped pages会长时间的被保留在RAM中。
 
 ### 11) 谨慎使用external libraries
 
@@ -153,13 +153,13 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 ### 13) 使用ProGuard来剔除不需要的代码
 
-[ProGuard](http://developer.android.com/tools/help/proguard.html)能够通过移除不需要的代码，重命名类，域与方法等方对代码进行压缩，优化与混淆。使用ProGuard可以是的你的代码更加紧凑，这样能够使用更少mapped代码所需要的RAM。
+[ProGuard](http://developer.android.com/tools/help/proguard.html)能够通过移除不需要的代码，重命名类，域与方法等方对代码进行压缩，优化与混淆。使用ProGuard可以使得你的代码更加紧凑，这样能够使用更少mapped代码所需要的RAM。
 
 ### 14) 对最终的APK使用zipalign
 
 在编写完所有代码，并通过编译系统生成APK之后，你需要使用[zipalign](http://developer.android.com/tools/help/zipalign.html)对APK进行重新校准。如果你不做这个步骤，会导致你的APK需要更多的RAM，因为一些类似图片资源的东西不能被mapped。
 
-**注意: **Google Play不接受没有经过zipalign的APK。
+**Notes: **Google Play不接受没有经过zipalign的APK。
 
 ### 15) 分析你的RAM使用情况
 
