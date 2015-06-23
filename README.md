@@ -75,7 +75,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 * [Android网络连接与云服务](http://hukai.me/android-training-course-in-chinese/building-connectivity.html)
    * [无线连接设备](http://hukai.me/android-training-course-in-chinese/connectivity/connect-devices-wireless/index.html) - @[naizhengtan](https://github.com/naizhengtan)
    * [网络连接操作](http://hukai.me/android-training-course-in-chinese/connectivity/network-ops/index.html) - @[kesenhoo](https://github.com/kesenhoo)
-   * [高效下载](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/index.html) - @[kesenhoo](https://github.com/kesenhoo)
+   * [传输数据时避免消耗大量电量](http://hukai.me/android-training-course-in-chinese/connectivity/efficient-downloads/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [使用Sync Adapter传输数据](http://hukai.me/android-training-course-in-chinese/connectivity/sync-adapters/index.html) - @[jdneo](https://github.com/jdneo)
    * [使用Volley执行网络数据传输](http://hukai.me/android-training-course-in-chinese/connectivity/volley/index.html) - @[kesenhoo](https://github.com/kesenhoo)
    * [云同步](http://hukai.me/android-training-course-in-chinese/cloud/cloudsync/index.html) - @[kesenhoo](https://github.com/kesenhoo)，@[jdneo](https://github.com/jdneo)
