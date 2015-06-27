@@ -1,37 +1,35 @@
-# Minimizing the Effect of Regular Updates
+# 最小化定期更新造成的影响
 
-> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/regular-update.html>
+> 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/efficient-downloads/regular_updates.html>
 
-最佳的定时更新频率是不确定的，通常由设备状态，网络连接状态，用户行为与用户定义明确的偏好而决定。
+最佳的定期更新频率是不确定的，通常由设备状态，网络连接状态，用户行为与用户显式定义的偏好而决定。
 
-[Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)这一章有讨论如何根据设备状态来修改更新频率，从而达到编写一个低电量消耗的程序。可执行的操作包括当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率等。
+[Optimizing Battery Life](http://developer.android.com/training/monitoring-device-state/index.html)这一章有讨论如何根据主设备状态来修改更新频率，从而达到编写一个低电量消耗的程序。可执行的操作包括当断开网络连接的时候去关闭后台服务，在电量比较低的时候减少更新的频率等。
 
 这一课会介绍更新频率是多少才会使得更新操作对无线电状态机的影响最小。(C2DM与指数退避算法的使用)
 
-## 1)Use Google Cloud Messaging as an Alternative to Polling
-
-关于`Google Cloud Messaging for Android` (GCM)详情 ,请参考:[http://developer.android.com/google/gcm/index.html](http://developer.android.com/google/gcm/index.html)
+## 使用 Google Cloud Messaging 来轮询
 
 <!-- More -->
 
-每次app去向server询问检查是否有更新操作的时候会激活无线电，这样造成了不必要的能量消耗(在3G情况下，会差不多消耗20秒的能量)。
+每次 app 去向 server 询问检查是否有更新操作的时候，都会激活无线电，这样造成了不必要的能量消耗（在3G情况下，会差不多消耗20秒的能量）。
 
-GCM是一个用来从server到特定app传输数据的轻量级的机制。使用GCM,server会在某个app有需要获取新数据的时候通知app有这个消息。
+[Google Cloud Messaging for Android (GCM)](http://developer.android.com/google/gcm/index.html) 是一个用来从 server 到特定 app 传输数据的轻量级的机制。使用 GCM，server 会在某个 app 需要获取新数据的时候通知 app 有这个消息。
 
-比起轮询方式(app为了即时拿到最新的数据需要定时向server请求数据)，GCM这种有事件驱动的模式会在仅仅有数据更新的时候通知app去创建网络连接来获取数据(很显然这样减少了app的大量操作，当然也减少了很多电量消耗)。
+比起轮询方式（app 为了即时拿到最新的数据需要定时去ping server），GCM 这种由事件驱动的模式会在仅仅有数据更新的时候通知 app 去创建网络连接来获取数据（很显然这样减少了 app 的大量操作，当然也减少了很多电量消耗）。
 
-GCM需要通过使用固定TCP/IP连接来实现操作。当在你的设备上可以实现固定IP的时候，最好使用GCM。(这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下)
-。很明显，使用GCM既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。
+GCM 需要通过使用持续的 TCP/IP 连接来实现操作。当我们可以实现自己的推送服务，最好使用 GCM（这个地方应该不是传统意义上的固定IP，可以理解为某个会话情况下）
+。很明显，使用 GCM 既减少了网络连接次数，也优化了带宽，还减少了对电量的消耗。
 
-**Ps:大陆的Google框架通常被移除掉，这导致GCM实际上根本没有办法在大陆的App上使用**
+**PS：大陆的 Google 框架通常被移除掉，这导致 GCM 实际上根本没有办法在大陆的 App 上使用。**
 
-## 2)Optimize Polling with Inexact Repeating Alarms and Exponential Backoffs
+## 使用不严格的重复通知和指数避退算法来优化轮询
 
-如果需要使用轮询机制，在不影响用户体验的前提下，当然设置默认更新频率是越低越好(减少电量的浪费)。
+如果需要使用轮询机制，在不影响用户体验的前提下，设置默认的更新频率当然是越低越好（减少耗电量）。
 
-一个简单的方法是给用户提供更新频率的选择，允许用户自己来处理如何平衡数据及时性与电量的消耗。
+一个简单的方法是给用户显式修改更新频率的选项，允许用户自己来处理如何平衡数据及时性与电量的消耗。
 
-当设置安排好更新操作后，可以使用不确定重复提醒的方式来允许系统把当前这个操作进行定向移动(比如推迟一会)。
+当设置安排好更新操作后，可以使用不确定重复提醒的方式来允许系统把当前这个操作进行定向移动（比如推迟一会）。
 
 ```java
 int alarmType = AlarmManager.ELAPSED_REALTIME;
@@ -41,13 +39,13 @@ long start = System.currentTimeMillis() + interval;
 alarmManager.setInexactRepeating(alarmType, start, interval, pi);
 ```
 
-若是多个提醒都安排在某个点同时被触发，那么这样就可以使得多个操作在同一个无线电状态下操作完。
+如果几个提醒都安排在某个点同时被触发，那么就可以使得多个操作在同一个无线电状态下操作完。
 
-如果可以，请设置提醒的类型为`ELAPSED_REALTIME` or `RTC`而不是`_WAKEUP`。这样能够更进一步的减少电量的消耗。
+如果可以，请设置提醒的类型为 `ELAPSED_REALTIME` 或者 `RTC` 而不是 `_WAKEUP`。通过一直等待知道手机在提醒通知触发之前不再处于 standby 模式，进一步地减少电量的消耗。
 
-我们还可以通过根据app被使用的频率来有选择性的减少更新的频率。
+我们还可以通过根据最近 app 被使用的频率来有选择性地减少更新的频率，从而降低这些定期通知的影响。
 
-另一个方法是在app在上一次更新操作之后还未被使用的情况下，使用指数退避算法`exponential back-off algorithm`来减少更新频率。当然我们也可以使用一些类似指数退避的方法。
+另一个方法是在 app 在上一次更新操作之后还未被使用的情况下，使用指数退避算法 `exponential back-off algorithm` 来减少更新频率。断言一个最小的更新频率和任何时候使用 app 都去重置频率通常都是有用的方法。例如：
 
 ```java
 SharedPreferences sp =
@@ -69,7 +67,7 @@ rescheduleUpdates(updateInterval);
 executeUpdateOrPrefetch();
 ```
 
-初始化一个网络连接的花费不会因为是否成功下载了数据而改变。我们可以使用指数退避算法来减少重复尝试(retry)的次数，这样能够避免浪费电量。例如：
+初始化一个网络连接的花费不会因为是否成功下载了数据而改变。对于那些成功完成是很重要的时间敏感的传输，我们可以使用指数退避算法来减少重复尝试的次数，这样能够避免浪费电量。例如：
 
 ```java
 private void retryIn(long interval) {
@@ -81,6 +79,8 @@ private void retryIn(long interval) {
   }
 }
 ```
+
+另外，对于可以容忍失败连接的传输（例如定期更新），我们可以简单地忽略失败的连接和传输尝试。
 
 ***
 
