@@ -6,6 +6,9 @@
 
 这一章节会讲到如何实现一个IntentService，向它发送任务并反馈任务的结果给其他模块。
 
+## Demos
+[**ThreadSample.zip**](http://developer.android.com/shareables/training/ThreadSample.zip)
+
 ## Lessons
 
 * [创建IntentService](create-service.html)

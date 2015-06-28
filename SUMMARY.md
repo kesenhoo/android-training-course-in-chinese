@@ -256,7 +256,7 @@
        * [报告后台任务执行状态](background-jobs/run-background-service/report-status.md)
    * [使用CursorLoader在后台加载数据](background-jobs/load-data-background/index.md)
        * [使用CursorLoader执行查询任务](background-jobs/load-data-background/setup-loader.md)
-       * [处理查询的结果](background-jobs/load-data-background/handle-result.md)
+       * [处理CursorLoader查询的结果](background-jobs/load-data-background/handle-result.md)
    * [管理设备的唤醒状态](background-jobs/scheduling/index.md)
        * [保持设备的唤醒](background-jobs/scheduling/wake-lock.md)
        * [制定重复定时的任务](background-jobs/scheduling/alarms.md)
