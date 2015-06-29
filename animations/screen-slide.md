@@ -2,7 +2,7 @@
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/screen-slide.html>
 
-屏幕划动是在两个完整界面间的转换，它在一些 UI 中很常见，比如设置向导和幻灯放映。这节课将告诉你怎样通过[support library](http://developer.android.com/tools/support-library/index.html)提供的[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)实现屏幕滑动。[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)能自动实现屏幕滑动动画。下面展示了从一个内容界面到一下界面的屏幕滑动转换是什么样子。
+屏幕划动是在两个完整界面间的转换，它在一些UI中很常见，比如设置向导和幻灯放映。这节课将告诉你怎样通过[support library](http://developer.android.com/tools/support-library/index.html)提供的[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)实现屏幕滑动。[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)能自动实现屏幕滑动动画。下面展示了从一个内容界面到一下界面的屏幕滑动转换是什么样子的。
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -16,7 +16,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行 App 样例然后选择屏幕滑动例子。查看下列文件中的代码实现：
+如果你想直接查看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行App样例然后选择屏幕滑动例子。查看下列文件中的代码实现：
 
 * `src/ScreenSlidePageFragment.java`
 * `src/ScreenSlideActivity.java`
@@ -25,7 +25,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ##创建View
 
-创建你之后会为 fragment 内容使用的布局文件。下面例子包含一个显示文本的 text view：
+创建Fragment所使用的布局文件。下面的例子包含一个显示文本的TextView：
 
 ```xml
 <!-- fragment_screen_slide_page.xml -->
@@ -43,11 +43,11 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 </ScrollView>
 ```
 
-同时也为 fragment 内容定义了一个字符串。
+与此同时我们还定义了一个字符串作为该Fragment的内容。
 
 ## 创建Fragment
 
-创建一个 [`Fragment`](http://developer.android.com/reference/android/support/v4/app/Fragment.html) 子类，它从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> `onCreateView()` </a>方法中返回你刚创建的布局。无论何时如果你需要为用户展示一个新page，你可以在它的父 activity 中创建这个 fragment 的实例：
+创建一个 [`Fragment`](http://developer.android.com/reference/android/support/v4/app/Fragment.html) 子类，它从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> `onCreateView()` </a>方法中返回之前创建的布局。无论何时如果我们需要为用户展示一个新的页面，可以在它的父Activity中创建该Fragment的实例：
 
 ```java
 import android.support.v4.app.Fragment;
@@ -67,9 +67,9 @@ public class ScreenSlidePageFragment extends Fragment {
 
 ## 添加ViewPager
 
-[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 有内建的滑动手势用来在页面间转换，并且他默认使用滑屏动画，所以你不用自己创建。[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 使用 [`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 来补充新页面，所以 [`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 会用到你之前新建 fragment 类。
+[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 有内建的滑动手势用来在页面间转换，并且它默认使用滑屏动画，所以我们不用自己为其创建。[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)使用[`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html)来补充新页面，所以[`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html)会用到你之前新建的Fragment类。
 
-开始之前，创建一个包含 [`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 的布局：
+开始之前，创建一个包含[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)的布局：
 
 ```xml
 <!-- activity_screen_slide.xml -->
@@ -80,15 +80,15 @@ public class ScreenSlidePageFragment extends Fragment {
     android:layout_height="match_parent" />
 ```
 
-创建一个 activity 来做下面这些事情：
+创建一个Activity来做下面这些事情：
 
-* 把 content view 设置成这个包含 [`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 的布局。
+* 把ContentView设置成这个包含[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)的布局。
 
-* 创建一个继承自 [`FragmentStatePagerAdapter `](http://developer.android.com/reference/android/support/v13/app/FragmentStatePagerAdapter.html) 抽象类的类，然后实现<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html#getItem(int)"> `getItem()` </a>方法来把 `ScreenSlidePageFragment` 实例作为新页面补充进来。pager adapter还需要实现<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html#getCount()"> `getCount()` </a>方法，它返回 adapter 将要创建页面的总数（例如5个）。
+* 创建一个继承自[`FragmentStatePagerAdapter `](http://developer.android.com/reference/android/support/v13/app/FragmentStatePagerAdapter.html)抽象类的类，然后实现<a href="http://developer.android.com/reference/android/support/v4/app/FragmentStatePagerAdapter.html#getItem(int)">`getItem()`</a>方法来把`ScreenSlidePageFragment`实例作为新页面补充进来。PagerAdapter还需要实现<a href="http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html#getCount()">`getCount()`</a>方法，它返回 Adapter将要创建页面的总数（例如5个）。
 
-* 把 [`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html) 和 [`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) 关联起来。
+* 把[`PagerAdapter`](http://developer.android.com/reference/android/support/v4/view/PagerAdapter.html)和[`ViewPager`](http://developer.android.com/reference/android/support/v4/view/ViewPager.html)关联起来。
 
-* 处理 Back 按钮，按下变为在虚拟的 fragment 栈中回退。如果用户已经在第一个页面了，则在 activity 的 back stack 中回退。
+* 处理Back按钮，按下变为在虚拟的Fragment栈中回退。如果用户已经在第一个页面了，则在Activity的回退栈（back stack）中回退。
 
 ```java
 import android.support.v4.app.Fragment;
@@ -158,13 +158,13 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
 
 ## 用PageTransformer自定义动画
 
-要展示不同于默认滑屏效果的动画，实现 [`ViewPager.PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 接口，然后把它补充到 view pager 里就行了。这个接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> `transformPage()` </a>。每次界面切换，这个方法都会为每个可见page（通常只有一个页面可见）和其即将消失的相邻page面调用一次。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> `transformPage()` </a>在操作的各个阶段为第二，三，四页分别调用。
+要展示不同于默认滑屏效果的动画，我们需要实现[`ViewPager.PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)接口，然后把它补充到ViewPager里就行了。这个接口只暴露了一个方法，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)">`transformPage()`</a>。每次界面切换，这个方法都会为每个可见页面（通常只有一个页面可见）和刚消失的相邻页面调用一次。例如，第三页可见而且用户向第四页拖动，<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)">`transformPage()`</a>在操作的各个阶段为第二，三，四页分别调用。
 
-在你<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> `transformPage()` </a>的实现中，基于当前界面上page的 `position`（`position` 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)"> `transformPage()` </a>方法的参数给出）决定哪些page需要被动画转换，这样你就能创建自己的动画。
+在<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)">`transformPage()`</a>的实现中，基于当前屏幕显示的页面的`position`（`position` 由<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html#transformPage(android.view.View, float)">`transformPage()`</a>方法的参数给出）决定哪些页面需要被动画转换，这样我们就能创建自己的动画。
 
-`position` 参数表示特定page相对于屏幕中的page的位置。它的值在用户滑动页面过程中动态变化。当page填充屏幕，它的值为 0。当page刚从屏幕右边拖走，它的值为 1。如果用户在page 1和page 2间滑动到一半，那么page 1的 position 为 -0.5 并且page 2的 position 为 0.5。根据屏幕上页面的 position，你可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)"> `setAlpha()` </a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)"> `setTranslationX()` </a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)"> `setScaleY()` </a>这些方法设定页面属性来自定义滑动动画。
+`position`参数表示特定页面相对于屏幕中的页面的位置。它的值在用户滑动页面过程中动态变化。当某一页面填充屏幕，它的值为0。当页面刚向屏幕右侧方向被拖走，它的值为1。如果用户在页面1和页面2间滑动到一半，那么页面1的position为-0.5并且页面2的position为 0.5。根据屏幕上页面的position，我们可以通过<a href="http://developer.android.com/reference/android/view/View.html#setAlpha(float)">`setAlpha()`</a>，<a href="http://developer.android.com/reference/android/view/View.html#setTranslationX(float)">`setTranslationX()`</a>或<a href="http://developer.android.com/reference/android/view/View.html#setScaleY(float)">`setScaleY()`</a>这些方法设定页面属性来自定义滑动动画。
 
-当你实现了 [`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 后，用你的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)"> `setPageTransformer()` </a>来应用这些自定义动画。例如，如果你有一个叫做`ZoomOutPageTransformer`的[`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)，你可以这样设置自定义动画：
+当我们实现了[`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)后，用我们的实现调用<a href="http://developer.android.com/reference/android/support/v4/view/ViewPager.html#setPageTransformer(boolean, android.support.v4.view.ViewPager.PageTransformer)">`setPageTransformer()`</a>来应用这些自定义动画。例如，如果我们有一个叫做`ZoomOutPageTransformer`的[`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)，可以这样设置自定义动画：
 
 ```java
 ViewPager mPager = (ViewPager) findViewById(R.id.pager);
@@ -172,11 +172,11 @@ ViewPager mPager = (ViewPager) findViewById(R.id.pager);
 mPager.setPageTransformer(true, new ZoomOutPageTransformer());
 ```
 
-详情查看[Zoom-out Page Transformer](#Zoom-out Page Transformer)和[Depth Page Transformer](#Depth Page Transformer)部分的 [`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html) 视频和例子。
+详情查看[Zoom-out Page Transformer](#Zoom-out Page Transformer)和[Depth Page Transformer](#Depth Page Transformer)部分的 [`PageTransformer`](http://developer.android.com/reference/android/support/v4/view/ViewPager.PageTransformer.html)视频和例子。
 
 ### Zoom-out Page Transformer
 
-当在相邻界面滑动时，这个page transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐入。
+当在相邻界面滑动时，这个Page Transformer使页面收缩并褪色。当页面越靠近中心，它将渐渐还原到正常大小并且图像渐入。
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -233,7 +233,7 @@ public class ZoomOutPageTransformer implements ViewPager.PageTransformer {
 
 ### Depth Page Transformer
 
-这个page transformer使用默认动画的屏幕左滑动画。但是为右滑使用一种“潜藏”效果的动画。潜藏动画将page淡出，并且线性缩小它。
+这个Page Transformer使用默认动画的屏幕左滑动画。但是为右滑使用一种“潜藏”效果的动画。潜藏动画将page淡出，并且线性缩小它。
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
