@@ -1,12 +1,12 @@
-# 发送简单的网络请求(Sending a Simple Request)
+# 发送简单的网络请求
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/volley/simple.html>
 
-使用Volley的方式是，你通过创建一个`RequestQueue`并传递`Request`对象给它。RequestQueue管理用来执行网络操作的工作线程，从Cache中读写数据，并解析Http的响应内容。`Requests`执行raw responses的解析，Volley会把响应的数据分发给主线程。
+使用 Volley 的方式是，创建一个 `RequestQueue` 并传递 `Request` 对象给它。`RequestQueue` 管理用来执行网络操作的工作线程，从缓存中读取数据，写数据到缓存，并解析 Http 的响应内容。请求解析原始的响应数据，Volley 会把解析完的响应数据分发给主线程。
 
-这节课会介绍如何使用`Volley.newRequestQueue`这个建立请求队列RequestQueue的方法来发送一个请求，在下一节课[建立一个请求队列Setting Up a RequestQueue](request-queue.html)中会介绍你自己如何建立一个请求队列。
+这节课会介绍如何使用 `Volley.newRequestQueue` 这个便捷的方法（建立一个请求队列 `RequestQueue`）来发送一个请求。在下一节课[建立一个 RequestQueue](request-queue.html)中，会介绍如何自己建立一个 `RequestQueue`。
 
-这节课也会介绍如何添加一个请求到RequesutQueue以及如何取消一个请求。
+这节课也会介绍如何添加一个请求到 `RequesutQueue` 以及如何取消一个请求。
 
 ## 1)Add the INTERNET Permission
 
