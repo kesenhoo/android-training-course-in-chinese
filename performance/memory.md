@@ -133,13 +133,13 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 使用类似[Guice](https://code.google.com/p/google-guice/)或者[RoboGuice](https://github.com/roboguice/roboguice)等framework injection包是很有效的，因为他们能够简化你的代码。
 
-> Notes：RoboGuice 2 通过依赖注入改变代码风格，让Android开发时的体验更好。你在调用 `getIntent().getExtras()` 时经常忘记检查 null 吗？RoboGuice 2 可以帮你做。你认为将 `findViewById()` 的返回值强制转换成 TextView 是本不必要的工作吗？ RoboGuice 2 会帮你。RoboGuice 把这些需要猜测性的工作移到Android 开发以外去了。注入你的 View, Resource, System Service或者其他对象，RoboGuice 2 会负责这些细节。
+> Notes：RoboGuice 2 通过依赖注入改变代码风格，让Android开发时的体验更好。你在调用 `getIntent().getExtras()` 时经常忘记检查 null 吗？RoboGuice 2 可以帮你做。你认为将 `findViewById()` 的返回值强制转换成 TextView 是本不必要的工作吗？ RoboGuice 2 可以帮你。RoboGuice 把这些需要猜测性的工作移到Android开发以外去了。RoboGuice 2 会负责注入你的 View, Resource, System Service或者其他对象等等类似的细节。
 
-然而，那些框架会通过扫描你的代码执行许多初始化的操作，这会导致你的代码需要大量的RAM来map代码，而且mapped pages会长时间的被保留在RAM中。
+然而，那些框架会通过扫描你的代码执行许多初始化的操作，这会导致你的代码需要大量的RAM来mapping代码，而且mapped pages会长时间的被保留在RAM中。
 
-### 11) 谨慎使用external libraries
+### 11) 谨慎使用第三方libraries
 
-很多External library的代码都不是为移动网络环境而编写的，在移动客户端则显示的效率不高。至少，当你决定使用一个external library的时候，你应该针对移动网络做繁琐的porting与maintenance的工作。
+很多开源的library代码都不是为移动网络环境而编写的，如果运用在移动设备上，，这样的效率并不高。当你决定使用一个第三方library的时候，你应该针对移动网络做繁琐的迁移与维护的工作。
 
 即使是针对Android而设计的library，也可能是很危险的，因为每一个library所做的事情都是不一样的。例如，其中一个lib使用的是nano protobufs, 而另外一个使用的是micro protobufs。那么这样，在你的app里面就有2种protobuf的实现方式。这样的冲突同样可能发生在输出日志，加载图片，缓存等等模块里面。
 
@@ -147,7 +147,7 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 ### 12) 优化整体性能
 
-官方有列出许多优化整个app性能的文章：[Best Practices for Performance](http://developer.android.com/training/best-performance.html). 这篇文章就是其中之一。有些文章是讲解如何优化app的CPU使用效率，有些是如何优化app的内存使用效率。
+官方有列出许多优化整个app性能的文章：[Best Practices for Performance](http://developer.android.com/training/best-performance.html)。这篇文章就是其中之一。有些文章是讲解如何优化app的CPU使用效率，有些是如何优化app的内存使用效率。
 
 你还应该阅读[optimizing your UI](http://developer.android.com/tools/debugging/debugging-ui.html)来为layout进行优化。同样还应该关注lint工具所提出的建议，进行优化。
 
@@ -159,7 +159,7 @@ Android并不会在用户切换不同应用时候做交换内存的操作。Andr
 
 在编写完所有代码，并通过编译系统生成APK之后，你需要使用[zipalign](http://developer.android.com/tools/help/zipalign.html)对APK进行重新校准。如果你不做这个步骤，会导致你的APK需要更多的RAM，因为一些类似图片资源的东西不能被mapped。
 
-**Notes: **Google Play不接受没有经过zipalign的APK。
+> **Notes: **Google Play不接受没有经过zipalign的APK。
 
 ### 15) 分析你的RAM使用情况
 
