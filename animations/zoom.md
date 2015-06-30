@@ -2,9 +2,9 @@
 
 > 编写:[XizhiXu](https://github.com/XizhiXu) - 原文:<http://developer.android.com/training/animation/zoom.html>
 
-这节课示范怎样实现点击缩放动画，这对相册很有用，他能为相片从缩略图转换成原图并填充屏幕提供动画。
+这节课展示怎样实现点击缩放动画，这对相册很有用，他能为相片从缩略图转换成原图并填充屏幕提供动画。
 
-下面展示了触摸缩放动画效果是什么样子，它将缩略图扩大并填充屏幕。
+下面展示了触摸缩放动画的效果，它将缩略图扩大并填充屏幕。
 
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -18,15 +18,15 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-如果你想跳过看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行 App 样例然后选择缩放的例子。查看下列文件中的代码实现：
+如果你想直接查看整个例子，[下载](http://developer.android.com/shareables/training/Animations.zip)并运行App样例然后选择缩放的例子。查看下列文件中的代码实现：
 
-* `src/TouchHighlightImageButton.java`（简单的helper类，当image button被按下它显示蓝色高亮）
+* `src/TouchHighlightImageButton.java`（简单的helper类，当Image Button被按下它显示蓝色高亮）
 * `src/ZoomActivity.java`
 * `layout/activity_zoom.xml`
 
 ## 创建View
 
-为你想缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个[`ImageButton`](http://developer.android.com/reference/android/widget/ImageButton.html) 和一个 [`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html) 来展示原图：
+为想要缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个[`ImageButton`](http://developer.android.com/reference/android/widget/ImageButton.html)和一个[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)来展示原图：
 
 ```xml
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -69,7 +69,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 ## 设置缩放动画
 
-一旦实现了布局，你需要设置触发缩放动画的事件handler。下面的例子为[`ImageButton`](http://developer.android.com/reference/android/widget/ImageButton.html)添加了一个[`View.OnClickListener`](http://developer.android.com/reference/android/view/View.OnClickListener.html)，当用户点击按钮时它执行放大动画。
+一旦实现了布局，我们需要设置触发缩放动画的事件handler。下面的例子为[`ImageButton`](http://developer.android.com/reference/android/widget/ImageButton.html)添加了一个[`View.OnClickListener`](http://developer.android.com/reference/android/view/View.OnClickListener.html)，当用户点击按钮时它执行放大动画。
 
 ```java
 public class ZoomActivity extends FragmentActivity {
@@ -107,15 +107,15 @@ public class ZoomActivity extends FragmentActivity {
 
 ## 缩放View
 
-你现在需要适时应用放大动画了。通常来说，你需要按边界来从小号View放大到大号View。下面的方法告诉你如何实现缩放动画：
+我们现在需要适时应用放大动画了。通常来说，我们需要按边界来从小号View放大到大号View。下面的方法展示了如何实现缩放动画：
 
-1. 把高清图像资源设置到已经被隐藏的“放大版”的[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)中。为表简单，下面的例子在 UI 线程中加载了一张大图。但是你需要在一个单独的线程中来加载以免阻塞 UI 线程，然后再回到 UI 线程中设置。理想状况下，图片不要大过屏幕尺寸。
+1. 把高清图像资源设置到已经被隐藏的“放大版”的[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)中。为表简单，下面的例子在UI线程中加载了一张大图。但是我们需要在一个单独的线程中来加载以免阻塞UI线程，然后再回到UI线程中设置。理想状况下，图片不要大过屏幕尺寸。
 
 2. 计算[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)开始和结束时的边界。
 
-3. 从起始边到结束边同步地动态改变四个位置和大小属性[`X`](http://developer.android.com/reference/android/view/View.html#X)，[`Y`](http://developer.android.com/reference/android/view/View.html#Y)（[`SCALE_X`](http://developer.android.com/reference/android/view/View.html#SCALE_X) 和 [`SCALE_Y`](http://developer.android.com/reference/android/view/View.html#SCALE_Y)）。这四个动画被加入到了[`AnimatorSet`](http://developer.android.com/reference/android/animation/AnimatorSet.html)，所以你可以让它们一起开始。
+3. 从起始边到结束边同步地动态改变四个位置和大小属性[`X`](http://developer.android.com/reference/android/view/View.html#X)，[`Y`](http://developer.android.com/reference/android/view/View.html#Y)（[`SCALE_X`](http://developer.android.com/reference/android/view/View.html#SCALE_X) 和 [`SCALE_Y`](http://developer.android.com/reference/android/view/View.html#SCALE_Y)）。这四个动画被加入到了[`AnimatorSet`](http://developer.android.com/reference/android/animation/AnimatorSet.html)，所以我们可以让它们一起开始。
 
-4. 缩小则运行相同的动画，但是是在用户点击屏幕放大时的逆向效果。你可以在[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)中添加一个[`View.OnClickListener`](http://developer.android.com/reference/android/view/View.OnClickListener.html)来实现它。当点击时，[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)缩回到原来缩略图的大小，然后设置它的visibility为[`GONE`](http://developer.android.com/reference/android/view/View.html#GONE)来隐藏。
+4. 缩小则运行相同的动画，但是是在用户点击屏幕放大时的逆向效果。我们可以在[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)中添加一个[`View.OnClickListener`](http://developer.android.com/reference/android/view/View.OnClickListener.html)来实现它。当点击时，[`ImageView`](http://developer.android.com/reference/android/widget/ImageView.html)缩回到原来缩略图的大小，然后设置它的visibility为[`GONE`](http://developer.android.com/reference/android/view/View.html#GONE)来隐藏。
 
 ```java
 private void zoomImageFromThumb(final View thumbView, int imageResId) {

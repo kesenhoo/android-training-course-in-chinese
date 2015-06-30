@@ -2,13 +2,13 @@
 
 > 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/scheduling/wakelock.html>
 
-为了避免电量过度消耗，Android设备会在被闲置之后迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者CPU并且保持它们的唤醒状态，直至一些任务被完成。
+为了避免电量过度消耗，Android设备会在被闲置之后迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者是唤醒CPU并且保持它们的唤醒状态，直至一些任务被完成。
 
-想要做到这一点，所采取的方法依赖于应用的具体需求。但是，通常来说，你应该使用最轻量级的方法，减小其对系统资源的影响。在接下来的部分中，我们将会描述在设备默认的睡眠行为与应用的需求不相符合的情况下，你应该如何进行对应的处理。
+想要做到这一点，所采取的方法依赖于应用的具体需求。但是通常来说，我们应该使用最轻量级的方法，减小其对系统资源的影响。在接下来的部分中，我们将会描述在设备默认的睡眠行为与应用的需求不相符合的情况下，我们应该如何进行对应的处理。
 
 ## 保持屏幕常亮
 
-某些应用需要保持屏幕常亮，比如游戏与视频应用。最好的方式是在你的Activity中（且仅在Activity中，而不在Service或其他应用组件里）使用[FLAG_KEEP_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)，例如：
+某些应用需要保持屏幕常亮，比如游戏与视频应用。最好的方式是在你的Activity中（且仅在Activity中，而不是在Service或其他应用组件里）使用[FLAG_KEEP_SCREEN_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)属性，例如：
 
 ```java
 public class MainActivity extends Activity {
@@ -36,10 +36,7 @@ public class MainActivity extends Activity {
 
 使用`android:keepScreenOn="true"`与使用[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON)等效。你可以选择最适合你的应用的方法。在Activity中通过代码设置常亮标识的优点在于：你可以通过代码动态清除这个标示，从而使屏幕可以关闭。
 
-> **Notes**：除非你不再希望正在运行的应用长时间点亮屏幕（例如：在一定时间无操作发生后，你想要将屏幕关闭），否则你是不需要清除[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON) 标识的。WindowManager会在应用进入后台或者返回前台时，正确管理屏幕的点亮或者关闭。但是如果你想要显式地清除这一标识，从而使得屏幕能够关闭，可以使用<a href="https://developer.android.com/reference/android/view/Window.html#clearFlags(int)">clearFlags()</a>：
-```java
-getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON).
-```
+> **Notes**：除非你不再希望正在运行的应用长时间点亮屏幕（例如：在一定时间无操作发生后，你想要将屏幕关闭），否则你是不需要清除[FLAG_KEEP_SCRRE_ON](https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON) 标识的。WindowManager会在应用进入后台或者返回前台时，正确管理屏幕的点亮或者关闭。但是如果你想要显式地清除这一标识，从而使得屏幕能够关闭，可以使用`getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)`方法。
 
 ## 保持CPU运行
 
@@ -68,19 +65,20 @@ Wakelock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
         "MyWakelockTag");
 wakeLock.acquire();
 ```
-可以调用<a href="https://developer.android.com/reference/android/os/PowerManager.WakeLock.html#release()">wakelock.release()</a>来释放唤醒锁。当应用使用完毕时，应该释放该唤醒锁，以避免电量过度消耗。
+
+可以调用`wakelock.release()`来释放唤醒锁。当应用使用完毕时，应该释放该唤醒锁，以避免电量过度消耗。
 
 ### 使用WakefulBroadcastReceiver
 
-你可以将BroadcastReceiver和Service结合使用，以此来管理后台任务的生命周期。[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)是一种特殊的BroadcastReceiver，它关注于创建和管理应用的[PARTIAL_WAKE_LOCK](https://developer.android.com/reference/android/os/PowerManager.html#PARTIAL_WAKE_LOCK)。[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)会将任务交付给[Service](https://developer.android.com/reference/android/app/Service.html)（一般会是一个[IntentService](https://developer.android.com/reference/android/app/IntentService.html)），同时确保设备在此过程中不会进入睡眠状态。如果在该过程当中没有保持住唤醒锁，那么还没等任务完成，设备就有可能进入睡眠状态了。其结果就是：应用可能会在未来的某一个时间节点才把任务完成，这显然不是你所期望的。
+你可以将BroadcastReceiver和Service结合使用，以此来管理后台任务的生命周期。[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)是一种特殊的BroadcastReceiver，它专注于创建和管理应用的[PARTIAL_WAKE_LOCK](https://developer.android.com/reference/android/os/PowerManager.html#PARTIAL_WAKE_LOCK)。WakefulBroadcastReceiver会将任务交付给[Service](https://developer.android.com/reference/android/app/Service.html)（一般会是一个[IntentService](https://developer.android.com/reference/android/app/IntentService.html)），同时确保设备在此过程中不会进入睡眠状态。如果在该过程当中没有保持住唤醒锁，那么还没等任务完成，设备就有可能进入睡眠状态了。其结果就是：应用可能会在未来的某一个时间节点才把任务完成，这显然不是你所期望的。
 
-要使用[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)，首先在Manifest文件添加一个标签：
+要使用WakefulBroadcastReceiver，首先在Manifest文件添加一个标签：
 
 ```xml
 <receiver android:name=".MyWakefulReceiver"></receiver>
 ```
 
-下面的代码通过<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent)">startWakefulService()</a>启动`MyIntentService`。该方法和<a href="https://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent)">startService()</a>类似，除了[WakeflBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)会在Service启动后将唤醒锁保持住。传递给<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent)">startWakefulService()</a>的Intent会携带有一个Extra数据，用来标识唤醒锁。
+下面的代码通过`startWakefulService()`启动`MyIntentService`。该方法和`startService()`类似，除了WakeflBroadcastReceiver会在Service启动后将唤醒锁保持住。传递给`startWakefulService()`的Intent会携带有一个Extra数据，用来标识唤醒锁。
 
 ```java
 public class MyWakefulReceiver extends WakefulBroadcastReceiver {
@@ -96,7 +94,7 @@ public class MyWakefulReceiver extends WakefulBroadcastReceiver {
 }
 ```
 
-当Service结束之后，它会调用<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent)">MyWakefulReceiver.completeWakefulIntent()</a>来释放唤醒锁。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent)">completeWakefulIntent()</a>方法中的Intent参数是和[WakefulBroadcastReceiver](https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html)传递进来的Intent参数一致的：
+当Service结束之后，它会调用`MyWakefulReceiver.completeWakefulIntent()`来释放唤醒锁。`completeWakefulIntent()`方法中的Intent参数是和WakefulBroadcastReceiver传递进来的Intent参数一致的：
 
 ```java
 public class MyIntentService extends IntentService {
