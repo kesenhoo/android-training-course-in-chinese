@@ -27,7 +27,8 @@
 
 这节课主要介绍如何通过实现上述的 [View](http://developer.android.com/reference/android/view/View.html) 回调方法与处理 [KeyEvent](http://developer.android.com/reference/android/view/KeyEvent.html) 和 [MotionEvent](http://developer.android.com/reference/android/view/MotionEvent.html) 对象，来处理常用控制器（游戏键盘按键、方向按键和摇杆）的输入。
 
-##验证游戏控制器是否已连接
+<a name="input=></a>
+## 验证游戏控制器是否已连接
 
 在报告输入事件的时候，Android 不会区分游戏控制器事件与非游戏控制器事件。例如，一个触屏动作会产生一个表示触摸表面上 X 坐标的 [AXIS_X](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X)，但是一个摇杆动作产生的 [AXIS_X](http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X) 则表示摇杆水平移动的位置。如果我们的游戏关注游戏控制器的输入，那么我们应该首先检测相应的事件来源类型。
 
