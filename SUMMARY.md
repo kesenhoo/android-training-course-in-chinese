@@ -247,7 +247,7 @@
        * [处理按键动作](input/keyboard-input/commands.md)
    * [支持游戏控制器](input/game-controller/index.md)
        * [处理控制器输入动作](input/game-controller/controller-inputs.md)
-       * [支持不同的Android系统版本](input/game-controller/compatibility.md)
+       * [在不同的 Android 系统版本支持控制器](input/game-controller/compatibility.md)
        * [支持多个控制器](input/game-controller/multi-controller.md)
 * [Android后台任务](best-background.md)
    * [在IntentService中执行后台任务](background-jobs/run-background-service/index.md)
