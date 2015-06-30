@@ -36,7 +36,7 @@ private void pickContact() {
 
 * 通过startActivityForResult()传递的request code。
 * 第二个activity指定的result code。如果操作成功则是`RESULT_OK` ，如果用户没有操作成功，而是直接点击回退或者其他什么原因，那么则是`RESULT_CANCELED`
-* 第它包含了返回的result数据的intent。
+* 包含了所返回result数据的intent。
 
 例如，下面显示了如何处理pick a contact的result：
 
