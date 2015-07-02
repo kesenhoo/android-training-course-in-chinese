@@ -2,7 +2,7 @@
 
 > 编写:[craftsmanBai](https://github.com/craftsmanBai) - <http://z1ng.net> - 原文:<http://developer.android.com/training/articles/security-tips.html>
 
-Android内建的安全机制可以显著地减少了应用程序的安全问题所带来的影响。你可以在默认的系统设置和文件权限设置的环境下建立应用，避免针对一堆头疼的安全问题寻找解决方案。
+Android内建的安全机制可以显著地减少了应用程序的安全问题。你可以在默认的系统设置和文件权限设置的环境下建立应用，避免针对一堆头疼的安全问题寻找解决方案。
 
 一些帮助建立应用的核心安全特性如下：
 
@@ -13,56 +13,56 @@ Android内建的安全机制可以显著地减少了应用程序的安全问题�
 * 用户权限控制限制访问系统关键信息和用户数据。
 * 应用程序权限以单个应用为基础控制其数据。
 
-尽管如此，熟悉Android安全特性仍然很重要。遵守这些习惯将其作为优秀的代码风格，能够减少无意间给用户带来的安全问题。
+尽管如此，熟悉Android安全特性仍然很重要。遵守这些习惯并将其作为优秀的代码风格，能够减少无意间给用户带来的安全问题。
 
 ## 数据存储
 
 对于一个Android的应用程序来说，最为常见的安全问题是存放在设备上的数据能否被其他应用获取。在设备上存放数据基本方式有三种:
 
-### 使用内存储器
+### 使用内部存储
 
-默认情况下，你在[内存储器](http://developer.android.com/guide/topics/data/data-storage.html#filesInternal)中创建的文件只有你的应用可以访问。Android实现了这种机制，并且对于大多数应用程序都是有效的。
-你应该避免在IPC文件中使用[MODE_WORLD_WRITEABLE](http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_WRITEABLE)或者[MODE_WORLD_READABLE](http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_READABLE)模式，因为它们不为特殊程序提供限制数据访问的功能，它们也不对数据格式进行任何控制。如果你想与其他应用的进程共享数据，可以使用[content provider](http://developer.android.com/guide/topics/providers/content-providers.html)，它可以给其他应用提供了可读写权限以及逐项动态获取权限。
+默认情况下，你在[内部存储](http://developer.android.com/guide/topics/data/data-storage.html#filesInternal)中创建的文件只有你的应用可以访问。Android实现了这种机制，并且对于大多数应用程序都是有效的。
+你应该避免在IPC文件中使用[MODE_WORLD_WRITEABLE](http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_WRITEABLE)或者[MODE_WORLD_READABLE](http://developer.android.com/reference/android/content/Context.html#MODE_WORLD_READABLE)模式，因为它们不为特殊程序提供限制数据访问的功能，它们也不对数据格式进行任何控制。如果你想与其他应用的进程共享数据，可以使用[Content Provider](http://developer.android.com/guide/topics/providers/content-providers.html)，它可以给其他应用提供了可读写权限以及逐项动态获取权限。
 
 如果想对敏感数据进行特别保护，你可以使用应用程序无法直接获取的密钥来加密本地文件。例如，密钥可以存放在[KeyStore](http://developer.android.com/reference/java/security/KeyStore.html)而非设备上，使用用户密码进行保护。尽管这种方式无法防止通过root权限查看用户输入的密码，但是它可以为未进行[文件系统加密](http://source.android.com/tech/encryption/index.html)的丢失设备提供保护。
 
-### 使用外部存储器
+### 使用外部存储
 
 创建于[外部存储](http://developer.android.com/guide/topics/data/data-storage.html#filesExternal)的文件，比如SD卡，是全局可读写的。
-由于外部存储器可被用户移除并且能够被任何应用修改，因此不应使用外部存储存储应用的敏感信息。
-当处理来自外部存储器的数据时，应用程序应该[执行输入验证](http://developer.android.com/training/articles/security-tips.html#InputValidation)（参看输入验证章节）
-我们强烈建议应用在动态加载之前不要把可执行文件或class文件存储到外部存储器中。
-如果一个应用从外部存储器检索可执行文件，那么在动态加载之前它们应该进行签名与加密验证。
+由于外部存储器可被用户移除并且能够被任何应用修改，因此不应使用外部存储保存应用的敏感信息。
+当处理来自外部存储的数据时，应用程序应该[执行输入验证](http://developer.android.com/training/articles/security-tips.html#InputValidation)（参看输入验证章节）
+我们强烈建议应用在动态加载之前不要把可执行文件或class文件存储到外部存储中。
+如果一个应用从外部存储检索可执行文件，那么在动态加载之前它们应该进行签名与加密验证。
 
 ### 使用Content Providers
 
-[ContentProviders](http://developer.android.com/guide/topics/providers/content-providers.html)提供一个结构存储机制，它可以限制你自己的应用，也可以允许其他应用程序进行访问。
-如果你不打算为其他应用提供访问你的[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)功能，那么在manifest中标记他们为[android:exported=false](http://developer.android.com/guide/topics/manifest/provider-element.html#exported)即可。
-要建立一个给其他应用使用的[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)，你可以为读写操作指定一个单一的[permission](http://developer.android.com/guide/topics/manifest/provider-element.html#prmsn)，或者在manifest中为读写操作指定确切的权限。我们强烈建议你限制要分配权限，仅满足目前有的功能即可。
-记住，通常新的权限在新功能加入的时候同时增加，会比把现有权限撤销并打断已经存在的用户更容易。
+[ContentProviders](http://developer.android.com/guide/topics/providers/content-providers.html)提供了一种结构存储机制，它可以限制你自己的应用，也可以允许其他应用程序进行访问。
+如果你不打算向其他应用提供访问你的[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)功能，那么在manifest中标记他们为[android:exported=false](http://developer.android.com/guide/topics/manifest/provider-element.html#exported)即可。
+要建立一个给其他应用使用的[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)，你可以为读写操作指定一个单一的[permission](http://developer.android.com/guide/topics/manifest/provider-element.html#prmsn)，或者在manifest中为读写操作指定确切的权限。我们强烈建议你对要分配的权限进行限制，仅满足目前有的功能即可。
+记住，通常新的权限在新功能加入的时候同时增加，会比把现有权限撤销并打断已经存在的用户更合理。
 
 如果Content Provider仅在自己的应用中共享数据，使用签名级别[android:protectionLevel](http://developer.android.com/guide/topics/manifest/permission-element.html#plevel)的权限是更可取的。
 签名权限不需要用户确认，当应用使用同样的密钥获取数据时，这提供了更好的用户体验，也更好地控制了Content Provider数据的访问。
 Content Providers也可以通过声明[android:grantUriPermissions](http://developer.android.com/guide/topics/manifest/provider-element.html#gprmsn)并在触发组件的Intent对象中使用[FLAG_GRANT_READ_URI_PERMISSION](http://developer.android.com/reference/android/content/Intent.html#FLAG_GRANT_READ_URI_PERMISSION)和[FLAG_GRANT_WRITE_URI_PERMISSION](http://developer.android.com/reference/android/content/Intent.html#FLAG_GRANT_WRITE_URI_PERMISSION)标志提供更细致的访问。
 这些许可的作用域可以通过[grant-uri-permission](http://developer.android.com/guide/topics/manifest/grant-uri-permission-element.html)进一步限制。
-当访问一个ContentProvider时，使用参数化的查询方法，比如<a href="http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String">query()</a>，<a href="http://developer.android.com/reference/android/content/ContentProvider.html#update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[]">update()</a>，和<a href="http://developer.android.com/reference/android/content/ContentProvider.html#delete(android.net.Uri, java.lang.String, java.lang.String[]">delete()</a>来避免来自不信任源潜在的SQL注入。
+当访问一个ContentProvider时，使用参数化的查询方法，比如<a href="http://developer.android.com/reference/android/content/ContentProvider.html#query(android.net.Uri, java.lang.String[], java.lang.String, java.lang.String[], java.lang.String">query()</a>，<a href="http://developer.android.com/reference/android/content/ContentProvider.html#update(android.net.Uri, android.content.ContentValues, java.lang.String, java.lang.String[]">update()</a>和<a href="http://developer.android.com/reference/android/content/ContentProvider.html#delete(android.net.Uri, java.lang.String, java.lang.String[]">delete()</a>来避免来自不信任源潜在的SQL注入。
 注意，如果selection语句是在提交给方法之前先连接用户数据的，使用参数化的方法或许不够。
 不要对“写”权限有一个错误的观念。
 考虑“写”权限允许sql语句，它可以通过使用创造性的WHERE子句并且解析结果让部分数据的确认变为可能。
 例如：入侵者可能在通话记录中通过修改一条记录来检测某个特定存在的电话号码，只要那个电话号码已经存在。
 如果content provider数据有可预见的结构，提供“写”权限也许等同于同时提供了“读写”权限。
 
-## 使用许可
+## 使用权限
 
 因为安卓沙盒将应用程序隔离，程序必须显式地共享资源和数据。它们通过声明他们需要的权限来获取额外的功能，而基本的沙盒不提供这些功能，比如相机访问设备。
 
-### 请求许可
+### 请求权限
 
 我们建议最小化应用请求的权限数量，不具有访问敏感资料的权限可以减少无意中滥用这些权限的风险，可以增加用户接受度，并且减少应用被攻击者攻击利用的可能性。
 
 如果你的应用可以设计成不需要任何权限，那最好不过。例如：与其请求访问设备信息来建立一个标识，不如建立一个[GUID](http://developer.android.com/reference/java/util/UUID.html)（这个例子在下文“处理用户数据”中有说明）。
 
-除了请求许可之外，你的应用可以使用[permissions](http://developer.android.com/guide/topics/manifest/permission-element.html)来保护可能会暴露给其他应用的安全敏感的IPC：比如[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)。通常来说，我们建议使用访问控制而不是用户权限确认许可，因为权限会使用户感到困惑。例如，考虑在权限设置上为应用间的IPC通信使用单一开发者提供的[签名保护级别](http://developer.android.com/guide/topics/manifest/permission-element.html#plevel)。
+除了请求权限之外，你的应用可以使用[permissions](http://developer.android.com/guide/topics/manifest/permission-element.html)来保护可能会暴露给其他应用的安全敏感的IPC：比如[ContentProvider](http://developer.android.com/reference/android/content/ContentProvider.html)。通常来说，我们建议使用访问控制而不是用户权限确认许可，因为权限会使用户感到困惑。例如，考虑在权限设置上为应用间的IPC通信使用单一开发者提供的[签名保护级别](http://developer.android.com/guide/topics/manifest/permission-element.html#plevel)。
 
 不要泄漏受许可保护的数据。只有当应用通过IPC暴露数据才会发生这种情况，因为它具有特殊权限，却不要求任何客户端的IPC接口有那样的权限。更多关于这方面的潜在影响以及这种问题发生的频率在USENIX: [http://www.cs.be rkeley.edu/~afelt/felt_usenixsec2011.pdf](http://www.cs.berkeley.edu/~afelt/felt_usenixsec2011.pdf)研究论文中都有说明。
 
