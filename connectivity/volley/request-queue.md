@@ -79,7 +79,8 @@ mRequestQueue.add(stringRequest);
 下面是一个单例类，提供了 `RequestQueue` 与 `ImageLoader` 功能：
 
 ```java
-private static MySingleton mInstance;
+public class MySingleton {
+    private static MySingleton mInstance;
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
     private static Context mCtx;
