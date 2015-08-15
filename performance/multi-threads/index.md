@@ -10,7 +10,7 @@
 
 点击下载：[**ThreadSample**](http://developer.android.com/shareables/training/ThreadSample.zip)
 
-## 课程
+## Lessons
 
 ###[在一个线程中执行一段特定的代码](define-runnable.html)
 
