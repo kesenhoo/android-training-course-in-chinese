@@ -51,6 +51,6 @@ editor.commit();
 
 ```java
 SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
-long default = getResources().getInteger(R.string.saved_high_score_default));
+int defaultValue = getResources().getInteger(R.string.saved_high_score_default);
 long highScore = sharedPref.getInt(getString(R.string.saved_high_score), default);
 ```
