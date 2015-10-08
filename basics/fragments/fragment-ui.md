@@ -22,7 +22,7 @@
 
 * 运用fragment（尤其是那些在运行时添加的）的一个很重要的规则就是在布局中必须有一个容器[View](http://developer.android.com/reference/android/view/View.html)，fragment的layout将会放在这个view里面。
 
-* 下面的这个布局是[上节课](creating.html)的一次只显示一个fragment的布局的替代布局。为了从一个布局替	ctivity的布局包含了一个空的 [FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)作为fragment的容器。
+* 下面的这个布局是[上节课](creating.html)的一次只显示一个fragment的布局的替代布局。为了替换fragment，这个Activity的布局包含了一个空的 [FrameLayout](http://developer.android.com/reference/android/widget/FrameLayout.html)作为fragment的容器。
 
 * 注意文件名与上节课的布局一样，但是文件目录没有`large`标识， 所以这一布局将会在比large小的屏幕上被使用，因为该屏幕无法满足同时放置两个fragments
 
