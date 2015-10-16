@@ -1,6 +1,6 @@
 # 云同步
 
-> 编写:[kesenhoo](https://github.com/kesenhoo)，[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/cloudsync/index.html>
+> 编写:[kesenhoo](https://github.com/kesenhoo)，[jdneo](https://github.com/jdneo) - 原文:<https://developer.android.com/training/backup/index.html>
 
 通过为网络连接提供强大的 API，Android Framework 可以帮助我们建立丰富的、具有云功能的 App。这些 App 可以同步数据到远程服务器端，确保我们所有的设备都能保持数据同步，并且重要的数据都能够备份在云端。
 
