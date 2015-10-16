@@ -8,6 +8,7 @@
 
 ### You should also read
 [System Permissions](http://developer.android.com/guide/topics/security/permissions.html)
+
 [Interacting with other apps](http://developer.android.com/training/basics/intents/index.html)
 
 ### DESIGN PATTERNS
