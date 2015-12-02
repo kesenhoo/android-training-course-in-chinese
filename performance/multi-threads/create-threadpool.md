@@ -1,4 +1,4 @@
-## # # ### ## # 为多线程创建管理器
+# 为多线程创建管理器
 
 > 编写:[AllenZheng1991](https://github.com/AllenZheng1991) - 原文:<http://developer.android.com/training/multiple-threads/create-threadpool.html>
 
