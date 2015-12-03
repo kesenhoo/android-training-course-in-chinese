@@ -10,7 +10,7 @@
 
 1 下载[Android Studio](http://developer.android.com/sdk/index.html).
 
-2 使用[SDK Manager](http://developer.android.com/tools/help/sdk-manager.html)下载最新的SDK tools和platforms。
+2 使用[SDK Manager](http://developer.android.com/tools/help/sdk-manager.html)（可以设置g.cn:80作为SDK代理，实现免翻墙更新SDK）下载最新的SDK tools和platforms。
 
 > **Note**：虽然这一系列的培训课程中的大多数章节都预期你会使用Android Studio来进行开发，但某些开发操作还是可以通过SDK tools中提供的命令来实现的。
 
