@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使得ListView滑动顺畅 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>使得ListView滑动顺畅 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="14.3.4" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="14.3.4" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,7 +5239,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_277">
+                    <section class="normal" id="section-gitbook_190">
                     
                         <h1 id="listview">使得ListView滑动顺畅</h1>
 <blockquote>
@@ -5247,8 +5247,8 @@
 </blockquote>
 <p>保持程序流畅的关键，是让主线程（UI 线程）不要进行大量运算。你要确保在其他线程执行磁盘读写、网络读写或是 SQL 操作等。为了测试你的应用的状态，你可以启用 <a href="http://developer.android.com/reference/android/os/StrictMode.html" target="_blank">StrictMode</a>。</p>
 <h2 id="">使用后台线程</h2>
-<p>你应该把主线程中的耗时间的操作，提取到一个后台线程（也叫做“工人线程”，英文 worker thread）中，使得主线程只关注 UI 绘画。很多时候，使用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 是一个简单的在主线程以外进行操作的方法。系统使用一个全局队列来排列所有的 AsyncTask，并且一次运行其中的 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank">execute()</a>) 方法。这个行为是全局的，这意味着你不需要考虑自己定义线程池的事情。</p>
-<p>在以下的例子中，一个 AsyncTask 被用于在后台线程载入图片，并在载入完成后把图片放入 UI 。当图片正在载入时，它还回显示一个进度转盘。</p>
+<p>你应该把主线程中的耗时间的操作，提取到一个后台线程（也叫做“worker thread工作线程”）中，使得主线程只关注 UI 绘画。很多时候，使用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html" target="_blank">AsyncTask</a> 是一个简单的在主线程以外进行操作的方法。系统会自动把<code>execute()</code>的请求放入队列中并线性调用执行。这个行为是全局的，这意味着你不需要考虑自己定义线程池的事情。</p>
+<p>在下面的例子中，一个 AsyncTask 被用于在后台线程载入图片，并在载入完成后把图片显示到 UI  上。当图片正在载入时，它还会显示一个进度提示。</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Using an AsyncTask to load the slow images in a background thread</span>
 <span class="hljs-keyword">new</span> AsyncTask&lt;ViewHolder, Void, Bitmap&gt;() {
     <span class="hljs-keyword">private</span> ViewHolder v;
@@ -5272,9 +5272,9 @@
     }
 }.execute(holder);
 </code></pre>
-<p>从 Android 3.0 (API level 11) 开始, AsyncTask 有个新特性，那就是它可以在多个 CPU 核上运行。你可以调用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#executeOnExecutor(java.util.concurrent.Executor,%20Params..." target="_blank"><code>executeOnExecutor()</code></a> 来自动根据核数，在多核上执行任务，而不是调用 <a href="http://developer.android.com/reference/android/os/AsyncTask.html#execute(Params..." target="_blank"><code>execute()</code></a>。</p>
-<h2 id="-view-holder-">在 View Holder 中填入视图对象</h2>
-<p>你的代码可能在 ListView 滑动时经常使用 <code>findViewById()</code>，这样会降低性能。即使是 Adapter 返回一个用于回收的 inflate 后的视图，你仍然需要查看这个元素并更新它。避免频繁调用 <code>findViewById()</code> 的方法之一，就是使用 View Holder（视图占位符）设计模式。</p>
+<p>从 Android 3.0 (API level 11) 开始, AsyncTask 有个新特性，那就是它可以在多个 CPU 核上运行。你可以调用 <code>executeOnExecutor()</code>而不是<code>execute()</code>，前者可以根据CPU的核心数来触发多个任务同时进行。</p>
+<h2 id="-viewholder-">在 ViewHolder 中填入视图对象</h2>
+<p>你的代码可能在 ListView 滑动时经常使用 <code>findViewById()</code>，这样会降低性能。即使是 Adapter 返回一个用于回收的 inflate 后的视图，你仍然需要查看这个元素并更新它。避免频繁调用 <code>findViewById()</code> 的方法之一，就是使用 ViewHolder（视图占位符）的设计模式。</p>
 <p>一个 ViewHolder 对象存储了他的标签下的每个视图。这样你不用频繁查找这个元素。第一，你需要创建一个类来存储你会用到的视图。比如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ViewHolder</span> </span>{
   TextView text;
@@ -5292,7 +5292,7 @@ holder.timestamp = (TextView) convertView.findViewById(R.id.listitem_timestamp);
 holder.progress = (ProgressBar) convertView.findViewById(R.id.progress_spinner);
 convertView.setTag(holder);
 </code></pre>
-<p>这样你就可以轻松获取每个视图，而不是用 <code>findViewById()</code> 来不断查找视图，节省了宝贵的运算时间。</p>
+<p>这样你就可以轻松获取每个视图，而不是使用 <code>findViewById()</code> 来不断查找子视图，节省了宝贵的运算时间。</p>
 
                     
                     </section>

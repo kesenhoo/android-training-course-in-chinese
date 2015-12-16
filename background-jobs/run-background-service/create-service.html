@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>创建IntentService | Android官方培训课程中文版(v0.9.4)</title>
+        <title>创建IntentService | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.1.1" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.1.1" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,31 +5239,31 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_113">
+                    <section class="normal" id="section-gitbook_27">
                     
                         <h1 id="">创建后台服务</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/run-background-service/create-service.html" target="_blank">http://developer.android.com/training/run-background-service/create-service.html</a></p>
 </blockquote>
-<p>IntentService为在单个后台线程执行一个操作提供了一种直接的实现方式。它可以处理一个长时间操作的任务并确保不影响到UI的响应性。而且IntentService的执行并不受UI的生命周期的影响。所以继续运行的情况下将关闭一个AsyncTask。</p>
-<p>IntentService有下面几个局限性：</p>
+<p>IntentService为在单一后台线程中执行任务提供了一种直接的实现方式。它可以处理一个耗时的任务并确保不影响到UI的响应性。另外IntentService的执行还不受UI生命周期的影响，以此来确保AsyncTask能够顺利运行。</p>
+<p>但是IntentService有下面几个局限性：</p>
 <ul>
-<li>不可以直接和UI做交互。为了把他执行的结果体现在UI上，需要发送给Activity。</li>
-<li>工作任务队列是顺序执行的，如果一个任务正在IntentService中执行，此时你再发送一个任务请求，这个任务会一直等待直到前面一个任务执行完毕。</li>
+<li>不可以直接和UI做交互。为了把他执行的结果体现在UI上，需要把结果返回给Activity。</li>
+<li>工作任务队列是顺序执行的，如果一个任务正在IntentService中执行，此时你再发送一个新的任务请求，这个新的任务会一直等待直到前面一个任务执行完毕才开始执行。</li>
 <li>正在执行的任务无法打断。</li>
 </ul>
-<p>然而，在大多数情况下，IntentService都是简单后台任务操作的理想选择。</p>
-<p>这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须实现的回调<a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a> )。最后，还会解释如何在manifest文件中定义这个IntentService。</p>
+<p>虽然有上面那些限制，然而在在大多数情况下，IntentService都是执行简单后台任务操作的理想选择。</p>
+<p>这节课会演示如何创建继承的IntentService。同样也会演示如何创建必须的回调方法<code>onHandleIntent()</code>。最后，还会解释如何在manifest文件中定义这个IntentService。</p>
 <!-- More -->
 <h2 id="1intentservice">1)创建IntentService</h2>
-<p>为你的app创建一个IntentService组件，需要定义一个类，并继承IntentService类，在里面重写onHandleIntent()方法，如下所示：</p>
+<p>为你的app创建一个IntentService组件，需要自定义一个新的类，它继承自IntentService，并重写onHandleIntent()方法，如下所示：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RSSPullService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span> </span>{
     <span class="hljs-annotation">@Override</span>
     <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onHandleIntent</span><span class="hljs-params">(Intent workIntent)</span> </span>{
-        <span class="hljs-comment">// 从传入的intent获取数据</span>
+        <span class="hljs-comment">// Gets data from the incoming Intent</span>
         String dataString = workIntent.getDataString();
         ...
-        <span class="hljs-comment">// 根据dataString的内容在这里进行操作</span>
+        <span class="hljs-comment">// Do work here, based on the contents of dataString</span>
         ...
     }
 }
@@ -5272,21 +5272,22 @@
 <h2 id="2manifestintentservice">2)在Manifest文件中定义IntentService</h2>
 <p>IntentService需要在manifest文件添加相应的条目，将此条目<code>&lt;service&gt;</code>作为<code>&lt;application&gt;</code>元素的子元素下进行定义，如下所示：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">application</span>
-        <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/icon"</span>
-        <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>&gt;</span>
-        ...
-        <span class="hljs-comment">&lt;!--
-            因为android:exported 被设置为false，该服务只能在本应用中使用
-        --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">service</span>
-            <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".RSSPullService"</span>
-            <span class="hljs-attribute">android:exported</span>=<span class="hljs-value">"false"</span>/&gt;</span>
-        ...
+    <span class="hljs-attribute">android:icon</span>=<span class="hljs-value">"@drawable/icon"</span>
+    <span class="hljs-attribute">android:label</span>=<span class="hljs-value">"@string/app_name"</span>&gt;</span>
+    ...
+    <span class="hljs-comment">&lt;!--
+        Because android:exported is set to "false",
+        the service is only available to this app.
+    --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">service</span>
+        <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".RSSPullService"</span>
+        <span class="hljs-attribute">android:exported</span>=<span class="hljs-value">"false"</span>/&gt;</span>
+    ...
 <span class="hljs-tag">&lt;<span class="hljs-title">application</span>/&gt;</span>
 </code></pre>
 <p><code>android:name</code>属性指明了IntentService的名字。</p>
 <p>注意<code>&lt;service&gt;</code>标签并没有包含任何intent filter。因为发送任务给IntentService的Activity需要使用显式Intent，所以不需要filter。这也意味着只有在同一个app或者其他使用同一个UserID的组件才能够访问到这个Service。</p>
-<p>至此，你已经有了一个基本的IntentService类，你可以通过Intent对象向它发送操作请求。构造这些对象以及发送它们到你的IntentService的方式，将在接下来的课程中描述。</p>
+<p>至此，你已经有了一个基本的IntentService类，你可以通过构造Intent对象向它发送操作请求。构造这些对象以及发送它们到你的IntentService的方式，将在接下来的课程中描述。</p>
 
                     
                     </section>

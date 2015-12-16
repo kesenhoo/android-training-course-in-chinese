@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>实现自定义的网络请求 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>实现自定义的网络请求 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.7.4" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="5.7.4" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,22 +5239,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_192">
+                    <section class="normal" id="section-gitbook_105">
                     
-                        <h1 id="implementing-a-custom-request">实现自定义的网络请求Implementing a Custom Request</h1>
+                        <h1 id="">实现自定义的网络请求</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/volley/request-custom.html" target="_blank">http://developer.android.com/training/volley/request-custom.html</a></p>
 </blockquote>
-<p>这节课会介绍如何实现你自定义的请求类型，这些自定义的类型不属于Volley内置支持包里面。</p>
-<h2 id="write-a-custom-request">Write a Custom Request</h2>
-<p>大多数的请求类型都已经包含在Volley的工具箱里面。如果你的请求返回数值是一个string，image或者JSON，那么你是不需要自己去实现请求类的。</p>
-<p>对于那些你需要自定义的请求类型，你需要执行以下操作：</p>
+<p>这节课会介绍如何实现自定义的请求类型，这些自定义的类型不属于 Volley 内置支持包里面。</p>
+<h2 id="">编写一个自定义请求</h2>
+<p>大多数的请求类型都已经包含在 Volley 的工具箱里面。如果我们的请求返回数值是一个 string，image 或者 JSON，那么是不需要自己去实现请求类的。</p>
+<p>对于那些需要自定义的请求类型，我们需要执行以下操作：</p>
 <ul>
-<li>继承<code>Request&lt;T&gt;</code>类，<code>&lt;T&gt;</code>表示请求返回的数据类型。因此如果你需要解析的响应类型是一个String，可以通过继承<code>Request&lt;String&gt;</code>来创建你自定义的请求。请参考Volley工具类中的StringRequest与 ImageRequest来学习如何继承Request<T>。</li>
-<li>实现抽象方法<code>parseNetworkResponse()</code>与<code>deliverResponse()</code>，下面会详细介绍。</li>
+<li>继承 <code>Request&lt;T&gt;</code> 类，<code>&lt;T&gt;</code> 表示解析过的响应请求预期的数据类型。因此如果我们需要解析的响应类型是一个 String，可以通过继承 <code>Request&lt;String&gt;</code> 来创建自定义的请求。请参考 Volley 工具类中的 <code>StringRequest</code> 与 <code>ImageRequest</code> 来学习如何继承 <code>Request&lt;T&gt;</code>。</li>
+<li>实现抽象方法 <code>parseNetworkResponse()</code> 与 <code>deliverResponse()</code>，下面会详细介绍。</li>
 </ul>
 <h3 id="parsenetworkresponse">parseNetworkResponse</h3>
-<p>为了能够提交一种指定类型的数据(例如，string，image，JSON等)，需要对解析后的结果进行封装。下面会演示如何实现<code>parseNetworkResponse()</code>。</p>
+<p>一个 <code>Response</code> 封装了用于发送的给定类型（例如，string、image、JSON等）解析过的响应。下面会演示如何实现 <code>parseNetworkResponse()</code>：</p>
 <pre><code class="lang-java"><span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">protected</span> Response&lt;T&gt; <span class="hljs-title">parseNetworkResponse</span><span class="hljs-params">(
         NetworkResponse response)</span> </span>{
@@ -5270,21 +5270,21 @@
 </code></pre>
 <p>请注意：</p>
 <ul>
-<li><code>parseNetworkResponse()</code>的参数是类型是<code>NetworkResponse</code>，这种参数包含了的响应数据内容有一个byte[]，HTTP status code以及response headers.</li>
-<li>你实现的方法必须返回一个Response<T>，它包含了你响应对象与缓存metadata或者是一个错误。</li>
+<li><code>parseNetworkResponse()</code> 的参数是类型是 <code>NetworkResponse</code>，这种参数以 byte[]、HTTP status code 以及 response headers 的形式包含响应负载。</li>
+<li>我们实现的方法必须返回一个 <code>Response&lt;T&gt;</code>，它包含了我们指定类型的响应对象与缓存 metadata 或者是一个错误。</li>
 </ul>
-<p>如果你的协议没有标准的cache机制，你可以自己建立一个<code>Cache.Entry</code>, 但是大多数请求都可以用下面的方式来处理:</p>
+<p>如果我们的协议没有标准的缓存机制，那么我们可以自己建立一个 <code>Cache.Entry</code>, 但是大多数请求都可以用下面的方式来处理:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">return</span> Response.success(myDecodedObject,
         HttpHeaderParser.parseCacheHeaders(response));
 </code></pre>
-<p>Volley在工作线程中执行parseNetworkResponse()方法。这确保了耗时的解析操作，例如decode一张JPEG图片成bitmap，不会阻塞UI线程。</p>
+<p>Volley 在工作线程中执行 <code>parseNetworkResponse()</code> 方法。这确保了耗时的解析操作，例如 decode 一张 JPEG 图片成 bitmap，不会阻塞 UI 线程。</p>
 <h3 id="deliverresponse">deliverResponse</h3>
-<p>Volley会把parseNetworkResponse()方法返回的数据带到主线程的回调中。如下所示：</p>
+<p>Volley 会把 <code>parseNetworkResponse()</code> 方法返回的数据带到主线程的回调中。如下所示：</p>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">deliverResponse</span><span class="hljs-params">(T response)</span> </span>{
         listener.onResponse(response);
 </code></pre>
 <h3 id="example-gsonrequest">Example: GsonRequest</h3>
-<p><a href="http://code.google.com/p/google-gson/" target="_blank">Gson</a>是一个使用映射支持JSON与Java对象之间相互转换的库文件。你可以定义和JSON keys相对应名称的Java对象。把对象传递给传递Gson，然后Gson会帮你为对象填充字段值。 下面是一个完整的示例：演示了使用Gson解析Volley数据：</p>
+<p><a href="http://code.google.com/p/google-gson/" target="_blank">Gson</a> 是一个使用映射支持 JSON 与 Java 对象之间相互转换的库文件。我们可以定义与 JSON keys 相对应名称的 Java 对象。把对象传递给 Gson，然后 Gson 会帮我们为对象填充字段值。下面是一个完整的示例：演示了使用 Gson 解析 Volley 数据：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GsonRequest</span>&lt;<span class="hljs-title">T</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">Request</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Gson gson = <span class="hljs-keyword">new</span> Gson();
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Class&lt;T&gt; clazz;
@@ -5333,7 +5333,7 @@
     }
 }
 </code></pre>
-<p>如果你愿意使用的话，Volley提供了现成的<code>JsonArrayRequest</code>与<code>JsonArrayObject</code>类。参考上一课<a href="request.html">创建标准的网络请求</a></p>
+<p>如果你愿意使用的话，Volley 提供了现成的 <code>JsonArrayRequest</code> 与 <code>JsonArrayObject</code>类。参考上一课<a href="request.html">创建标准的网络请求</a>。</p>
 
                     
                     </section>

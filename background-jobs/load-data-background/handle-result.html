@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>处理查询的结果 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>处理CursorLoader查询的结果 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.2.2" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.2.2" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,17 +5239,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_110">
+                    <section class="normal" id="section-gitbook_23">
                     
                         <h1 id="">处理查询的结果</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/load-data-background/handle-results.html" target="_blank">http://developer.android.com/training/load-data-background/handle-results.html</a></p>
 </blockquote>
 <p>正如前面一节课讲到的，你应该在 <a href="1">onCreateLoader()</a>的回调里面使用CursorLoader执行加载数据的操作。Loader查询完后会调用Activity或者FragmentActivity的<a href="2">LoaderCallbacks.onLoadFinished()</a>将结果回调回来。这个回调方法的参数之一是<a href="4">Cursor</a>，它包含了查询的数据。你可以使用Cursor对象来更新需要显示的数据或者进行下一步的处理。</p>
-<p>除了<a href="1">onCreateLoader()</a>与<a href="2">onLoadFinished()</a>，你也需要实现<a href="3">onLoaderReset()</a>。这个方法在CursorLoader检测到<a href="4">Cursor</a>上的数据发生变化的时候会被触发。当数据发生变化时，系统会触发重新查询的操作。</p>
+<p>除了<a href="1">onCreateLoader()</a>与<a href="2">onLoadFinished()</a>，你也需要实现<a href="3">onLoaderReset()</a>。这个方法在CursorLoader检测到<a href="4">Cursor</a>上的数据发生变化的时候会被触发。当数据发生变化时，系统也会触发重新查询的操作。</p>
 <!-- More -->
-<h2 id="handle-query-results">Handle Query Results</h2>
-<p>为了显示CursorLoader返回的Cursor数据，需要使用实现AdapterView的类，并为这个类绑定一个实现了CursorAdapter的Adapter。系统会自动把Cursor中的数据显示到View上。</p>
+<h2 id="">处理查询结果</h2>
+<p>为了显示CursorLoader返回的Cursor数据，需要使用实现AdapterView的视图组件，，并为这个组件绑定一个实现了CursorAdapter的Adapter。系统会自动把Cursor中的数据显示到View上。</p>
 <p>你可以在显示数据之前建立View与Adapter的关联。然后在<a href="2">onLoadFinished()</a>的时候把Cursor与Adapter进行绑定。一旦你把Cursor与Adapter进行绑定之后，系统会自动更新View。当Cursor上的内容发生改变的时候，也会触发这些操作。</p>
 <p>例如:</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> String[] mFromColumns = {
@@ -5258,48 +5258,51 @@
 <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] mToFields = {
     R.id.PictureName
 };
-<span class="hljs-comment">// 取得ListView的引用[原词是句柄handle]</span>
+<span class="hljs-comment">// Gets a handle to a List View</span>
 ListView mListView = (ListView) findViewById(R.id.dataList);
 <span class="hljs-comment">/*
- * 为ListView定义一个SimpleCursorAdapter
+ * Defines a SimpleCursorAdapter for the ListView
+ *
  */</span>
 SimpleCursorAdapter mAdapter =
     <span class="hljs-keyword">new</span> SimpleCursorAdapter(
-            <span class="hljs-keyword">this</span>,                <span class="hljs-comment">// 当前上下文</span>
-            R.layout.list_item,  <span class="hljs-comment">// 一个只有单行的文本的布局</span>
-            <span class="hljs-keyword">null</span>,                <span class="hljs-comment">// 暂时还没有Cursor游标</span>
-            mFromColumns,        <span class="hljs-comment">// 要使用游标的列</span>
+            <span class="hljs-keyword">this</span>,                <span class="hljs-comment">// Current context</span>
+            R.layout.list_item,  <span class="hljs-comment">// Layout for a single row</span>
+            <span class="hljs-keyword">null</span>,                <span class="hljs-comment">// No Cursor yet</span>
+            mFromColumns,        <span class="hljs-comment">// Cursor columns to use</span>
             mToFields,           <span class="hljs-comment">// Layout fields to use</span>
             <span class="hljs-number">0</span>                    <span class="hljs-comment">// No flags</span>
     );
-<span class="hljs-comment">// 为View设置适配器</span>
+<span class="hljs-comment">// Sets the adapter for the view</span>
 mListView.setAdapter(mAdapter);
 ...
 <span class="hljs-comment">/*
- * 定义CursorLoader完成查询时候的回调
+ * Defines the callback that CursorLoader calls
+ * when it's finished its query
  */</span>
 <span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoadFinished</span><span class="hljs-params">(Loader&lt;Cursor&gt; loader, Cursor cursor)</span> </span>{
     ...
-
-     <span class="hljs-comment">/*
-      * 转移查询结果给适配器，并激发适配器更新前端的ListView数据
-      */</span>
+    <span class="hljs-comment">/*
+     * Moves the query results into the adapter, causing the
+     * ListView fronting this adapter to re-display
+     */</span>
     mAdapter.changeCursor(cursor);
 }
 </code></pre>
-<h2 id="delete-old-cursor-references">Delete Old Cursor References</h2>
+<h2 id="cursor">删除废旧的Cursor引用</h2>
 <p>当Cursor失效的时候，CursorLoader会被重置。这通常发生在Cursor相关的数据改变的时候。在重新执行查询操作之前，系统会执行你的<a href="3">onLoaderReset()</a>回调方法。在这个回调方法中，你应该删除当前Cursor上的所有数据，避免发生内存泄露。一旦onLoaderReset()执行结束，CursorLoader就会重新执行查询操作。</p>
 <p>例如:</p>
 <pre><code class="lang-java"><span class="hljs-comment">/*
- * CursorLoader被重置时调用。举个栗子，当提供者中的数据发生变动Cursor变得陈旧
- * 时会被调用。
+ * Invoked when the CursorLoader is being reset. For example, this is
+ * called if the data in the provider changes and the Cursor becomes stale.
  */</span>
 <span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onLoaderReset</span><span class="hljs-params">(Loader&lt;Cursor&gt; loader)</span> </span>{
 
     <span class="hljs-comment">/*
-     * 清除适配器里对Cursor的引用，可以防止内存泄漏。
+     * Clears out the adapter's reference to the Cursor.
+     * This prevents memory leaks.
      */</span>
     mAdapter.changeCursor(<span class="hljs-keyword">null</span>);
 }

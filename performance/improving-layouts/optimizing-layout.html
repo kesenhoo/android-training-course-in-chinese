@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>优化layout的层级 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>优化layout的层级 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="14.3.1" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="14.3.1" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,23 +5239,23 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_275">
+                    <section class="normal" id="section-gitbook_188">
                     
                         <h1 id="layout">优化layout的层级</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文:<a href="http://developer.android.com/training/improving-layouts/optimizing-layout.html" target="_blank">http://developer.android.com/training/improving-layouts/optimizing-layout.html</a></p>
 </blockquote>
-<p>一个常见的误区是，用最基础的 Layout 结构可以使 Layout 性能提高。然而，你的程序的每个组件和 Layout 都需要初始化、布局和绘制。例如，嵌套的 LinearLayout 可能会使得 View 的层级结构过深。此外，嵌套使用了 <code>layout_weight</code> 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如嵌套在 ListView 或 GridView 时。</p>
-<p>本课中，你将学习使用 <a href="http://developer.android.com/tools/help/hierarchy-viewer.html" target="_blank">Hierarchy Viewer</a>和<a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank">Layoutopt</a>来检查和优化 Layout。</p>
+<p>一个常见的误区是，用最基础的 Layout 结构可以提高 Layout 的 性能。然而，因为程序的每个组件和 Layout 都需要经过初始化、布局和绘制的过程，如果布局嵌套导致层级过深，上面的初始化，布局和绘制操作就更加耗时。例如，使用嵌套的 LinearLayout 可能会使得 View 的层级结构过深，此外，嵌套使用了 <code>layout_weight</code> 参数的 LinearLayout 的计算量会尤其大，因为每个子元素都需要被测量两次。这对需要多次重复 inflate 的 Layout 尤其需要注意，比如嵌套在 ListView 或 GridView 时。</p>
+<p>在本课中，你将学习使用 <a href="http://developer.android.com/tools/help/hierarchy-viewer.html" target="_blank">Hierarchy Viewer</a>和<a href="http://developer.android.com/tools/help/layoutopt.html" target="_blank">Layoutopt</a>来检查和优化 Layout。</p>
 <h2 id="-layout">检查 Layout</h2>
-<p>Android SDK 工具中有一个叫做 <a href="http://developer.android.com/tools/help/hierarchy-viewer.html" target="_blank">Hierarchy Viewer</a> 的工具，能够在程序运行时分析 Layout。你可以用这个工具找到 Layout 的性能瓶颈。</p>
+<p>Android SDK 工具箱中有一个叫做 <a href="http://developer.android.com/tools/help/hierarchy-viewer.html" target="_blank">Hierarchy Viewer</a> 的工具，能够在程序运行时分析 Layout。你可以用这个工具找到 Layout 的性能瓶颈。</p>
 <p>Hierarchy Viewer 会让你选择设备或者模拟器上正在运行的进程，然后显示其 Layout 的树型结构。每个块上的交通灯分别代表了它在测量、布局和绘画时的性能，帮你找出瓶颈部分。</p>
 <p>比如，下图是 ListView 中一个列表项的 Layout 。列表项里，左边放一个小位图，右边是两个层叠的文字。像这种需要被多次 inflate 的 Layout ，优化它们会有事半功倍的效果。</p>
 <p><img src="layout-listitem.png" alt=""></p>
 <p><code>hierarchyviewer</code> 这个工具在 <code>&lt;sdk&gt;/tools/</code> 中。当打开时，它显示一张可使用设备的列表，和它正在运行的组件。点击 <strong>Load View Hierarchy</strong> 来查看所选组件的层级。比如，下图就是前一个图中所示 Layout 的层级关系。</p>
 <p><img src="hierarchy-linearlayout.png" alt=""></p>
-<p>图中，你可以看到一个三层结构，其中右下角的 TextView 在布局的时候有问题。点击其中的项会显示每个步骤所花费的时间。这样，谁花了多长时间在什么哪个步骤上面，就清晰可见了。</p>
-<p><img src="http://developer.android.com/images/training/hierarchy-layouttimes.png" alt=""></p>
+<p>在上图中，你可以看到一个三层结构，其中右下角的 TextView 在布局的时候有问题。点击这个TextView可以看到每个步骤所花费的时间。</p>
+<p><img src="hierarchy-layouttimes.png" alt=""></p>
 <p>可以看到，渲染一个完整的列表项的时间就是：</p>
 <ul>
 <li>测量: 0.977ms</li>
@@ -5263,7 +5263,7 @@
 <li>绘制: 2.717ms</li>
 </ul>
 <h2 id="-layout">修正 Layout</h2>
-<p>上面的 Layout 由于有这个嵌套的 LinearLayout 导致性能太慢，可能的解决办法是将 Layout 层级扁平化————变浅变宽，而不是又窄又深。RelativeaLayout 作为根节点时就可以达到目的。所以，当换成基于 RelativeLayout 的设计时，你的 Layout 变成了两层。新的 Layout 变成这样：</p>
+<p>上面的 Layout 由于有这个嵌套的 LinearLayout 导致性能太慢，可能的解决办法是将 Layout 层级扁平化 - 变浅变宽，而不是又窄又深。RelativeaLayout 作为根节点时就可以达到目的。所以，当换成基于 RelativeLayout 的设计时，你的 Layout 变成了两层。新的 Layout 变成这样：</p>
 <p><img src="hierarchy-relativelayout.png" alt=""></p>
 <p>现在渲染列表项的时间：</p>
 <ul>
@@ -5279,11 +5279,11 @@
 </blockquote>
 <p>运行 <a href="http://tools.android.com/tips/lint" target="_blank">Lint</a> 工具来检查 Layout 可能的优化方法，是个很好的实践。Lint 已经取代了 Layoutopt 工具，它拥有更强大的功能。Lint 中包含的一些检测<a href="http://tools.android.com/tips/lint-checks" target="_blank">规则</a>有：</p>
 <ul>
-<li>使用compound drawable —— 用一个 drawable 替代一个包含 <code>ImageView</code> 和 <code>TextView</code> 的 <code>LinearLayout</code> 时会更有效率。</li>
-<li>合并根 frame —— 如果 <code>FrameLayout</code> 是 Layout 的根节点，并且没有使用 padding 或者背景等，那么用 merge 标签替代他们会稍微高效些。</li>
-<li>没用的子节点 —— 一个没有子节点或者背景的 Layout 应该被去掉，来获得更扁平的层级</li>
-<li>没用的父节点 —— 一个节点如果没有兄弟节点，并且它不是 <code>ScrollView</code> 或根节点，没有背景，这样的节点应该直接被子节点取代，来获得更扁平的层级</li>
-<li>太深的 Layout —— Layout 的嵌套层数太深对性能有很大影响。尝试使用更扁平的 Layout ，比如 <code>RelativeLayout</code> 或 <code>GridLayout</code> 来提高性能。一般最多不超过10层。</li>
+<li>使用compound drawable — 用一个compound drawable 替代一个包含 <code>ImageView</code> 和 <code>TextView</code> 的 <code>LinearLayout</code> 会更有效率。</li>
+<li>合并根 frame — 如果 <code>FrameLayout</code> 是 Layout 的根节点，并且没有使用 padding 或者背景等，那么用 merge 标签替代他们会稍微高效些。</li>
+<li>没用的子节点 — 一个没有子节点或者背景的 Layout 应该被去掉，来获得更扁平的层级</li>
+<li>没用的父节点 — 一个节点如果没有兄弟节点，并且它不是 <code>ScrollView</code> 或根节点，没有背景，这样的节点应该直接被子节点取代，来获得更扁平的层级</li>
+<li>太深的 Layout — Layout 的嵌套层数太深对性能有很大影响。尝试使用更扁平的 Layout ，比如 <code>RelativeLayout</code> 或 <code>GridLayout</code> 来提高性能。一般最多不超过10层。</li>
 </ul>
 <p>另一个使用 Lint 的好处就是，它内置于 Android Studio 中。Lint 在你导编译程序时自动运行。Android Studio 中，你可以为单独的 build variant 或者所有 variant 运行 lint。</p>
 <p>你也可以在 Android Studio 中管理检测选项，在 <strong>File &gt; Settings &gt; Project Settings</strong> 中。检测配置页面会显示支持的检测项目。</p>

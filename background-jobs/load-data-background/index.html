@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用CursorLoader在后台加载数据 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>使用CursorLoader在后台加载数据 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.2" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.2" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,26 +5239,26 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_114">
+                    <section class="normal" id="section-gitbook_25">
                     
                         <h1 id="cursorloader">使用CursorLoader在后台加载数据</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/load-data-background/index.html" target="_blank">http://developer.android.com/training/load-data-background/index.html</a></p>
 </blockquote>
-<p>从<a href="http://developer.android.com/reference/android/content/ContentProvider.html" target="_blank">ContentProvider</a>查询你需要显示的数据是比较耗时的。如果你在Activity中直接执行查询的操作，那么有可能导致Activity出现ANR的错误。即使没有发生ANR，用户也会看到一个令人烦恼的UI延迟。为了避免那些问题，你应该在另外一个线程中执行查询的操作，等待查询操作完成，然后再显示查询结果。</p>
-<p>通过<a href="http://developer.android.com/reference/android/support/v4/content/CursorLoader.html" target="_blank">CursorLoader</a>对象，你可以以一种简单的方式实现异步查询，查询结束时它会和Activity进行重新连接。
+<p>从<a href="http://developer.android.com/reference/android/content/ContentProvider.html" target="_blank">ContentProvider</a>查询你需要显示的数据是比较耗时的。如果你在Activity中直接执行查询的操作，那么有可能导致Activity出现ANR的错误。即使没有发生ANR，用户也容易感知到一个令人烦恼的UI卡顿。为了避免那些问题，你应该在另外一个线程中执行查询的操作，等待查询操作完成，然后再显示查询结果。</p>
+<p>通过<a href="http://developer.android.com/reference/android/support/v4/content/CursorLoader.html" target="_blank">CursorLoader</a>对象，你可以用一种简单的方式实现异步查询，查询结束时它会和Activity进行重新连接。
 CursorLoader不仅仅能够实现在后台查询数据，还能够在查询数据发生变化时自动执行重新查询的操作。</p>
 <p>这节课会介绍如何使用CursorLoader来执行一个后台查询数据的操作。在这节课中的演示代码使用的是<a href="http://developer.android.com/tools/support-library/features.html#v4" target="_blank">v4 Support Library</a>中的类。</p>
-<h2 id="">下载演示代码</h2>
+<h2 id="demos">Demos</h2>
 <p><strong> <a href="http://developer.android.com/shareables/training/ThreadSample.zip" target="_blank">ThreadSample</a> </strong></p>
 <h2 id="lessons">Lessons</h2>
 <ul>
-<li><p><a href="setup-loader.html">使用CursorLoader执行查询任务：Running a Query with a CursorLoader</a></p>
+<li><p><a href="setup-loader.html">使用CursorLoader执行查询任务</a></p>
 <p>学习如何使用CursorLoader在后台执行查询操作。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="handle-result.html">处理查询的结果：Handling the Results</a></p>
+<li><p><a href="handle-result.html">处理CursorLoader查询的结果</a></p>
 <p>学习如何处理从CursorLoader查询到的数据，以及在loader框架重置CursorLoader时如何解除当前Cursor的引用。</p>
 </li>
 </ul>

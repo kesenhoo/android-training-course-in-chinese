@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>缩放View | Android官方培训课程中文版(v0.9.4)</title>
+        <title>缩放View | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.4" data-basepath=".." data-revision="1433953637803">
+    <div class="book"  data-level="4.3.4" data-basepath=".." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,14 +5239,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_109">
+                    <section class="normal" id="section-gitbook_22">
                     
                         <h1 id="view">缩放View</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/zoom.html" target="_blank">http://developer.android.com/training/animation/zoom.html</a></p>
 </blockquote>
-<p>这节课示范怎样实现点击缩放动画，这对相册很有用，他能为相片从缩略图转换成原图并填充屏幕提供动画。</p>
-<p>下面展示了触摸缩放动画效果是什么样子，它将缩略图扩大并填充屏幕。</p>
+<p>这节课展示怎样实现点击缩放动画，这对相册很有用，他能为相片从缩略图转换成原图并填充屏幕提供动画。</p>
+<p>下面展示了触摸缩放动画的效果，它将缩略图扩大并填充屏幕。</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5259,14 +5259,14 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行 App 样例然后选择缩放的例子。查看下列文件中的代码实现：</p>
+<p>如果你想直接查看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行App样例然后选择缩放的例子。查看下列文件中的代码实现：</p>
 <ul>
-<li><code>src/TouchHighlightImageButton.java</code>（简单的helper类，当image button被按下它显示蓝色高亮）</li>
+<li><code>src/TouchHighlightImageButton.java</code>（简单的helper类，当Image Button被按下它显示蓝色高亮）</li>
 <li><code>src/ZoomActivity.java</code></li>
 <li><code>layout/activity_zoom.xml</code></li>
 </ul>
 <h2 id="view">创建View</h2>
-<p>为你想缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a> 和一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a> 来展示原图：</p>
+<p>为想要缩放的内容创建一大一小两个版本布局文件。下面的例子为可点击的缩略图新建了一个<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a>和一个<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>来展示原图：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
@@ -5305,7 +5305,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <span class="hljs-tag">&lt;/<span class="hljs-title">FrameLayout</span>&gt;</span>
 </code></pre>
 <h2 id="">设置缩放动画</h2>
-<p>一旦实现了布局，你需要设置触发缩放动画的事件handler。下面的例子为<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a>添加了一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>，当用户点击按钮时它执行放大动画。</p>
+<p>一旦实现了布局，我们需要设置触发缩放动画的事件handler。下面的例子为<a href="http://developer.android.com/reference/android/widget/ImageButton.html" target="_blank"><code>ImageButton</code></a>添加了一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>，当用户点击按钮时它执行放大动画。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ZoomActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> </span>{
     <span class="hljs-comment">// Hold a reference to the current animator,</span>
     <span class="hljs-comment">// so that it can be canceled mid-way.</span>
@@ -5339,15 +5339,15 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 }
 </code></pre>
 <h2 id="view">缩放View</h2>
-<p>你现在需要适时应用放大动画了。通常来说，你需要按边界来从小号View放大到大号View。下面的方法告诉你如何实现缩放动画：</p>
+<p>我们现在需要适时应用放大动画了。通常来说，我们需要按边界来从小号View放大到大号View。下面的方法展示了如何实现缩放动画：</p>
 <ol>
-<li><p>把高清图像资源设置到已经被隐藏的“放大版”的<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中。为表简单，下面的例子在 UI 线程中加载了一张大图。但是你需要在一个单独的线程中来加载以免阻塞 UI 线程，然后再回到 UI 线程中设置。理想状况下，图片不要大过屏幕尺寸。</p>
+<li><p>把高清图像资源设置到已经被隐藏的“放大版”的<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中。为表简单，下面的例子在UI线程中加载了一张大图。但是我们需要在一个单独的线程中来加载以免阻塞UI线程，然后再回到UI线程中设置。理想状况下，图片不要大过屏幕尺寸。</p>
 </li>
 <li><p>计算<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>开始和结束时的边界。</p>
 </li>
-<li><p>从起始边到结束边同步地动态改变四个位置和大小属性<a href="http://developer.android.com/reference/android/view/View.html#X" target="_blank"><code>X</code></a>，<a href="http://developer.android.com/reference/android/view/View.html#Y" target="_blank"><code>Y</code></a>（<a href="http://developer.android.com/reference/android/view/View.html#SCALE_X" target="_blank"><code>SCALE_X</code></a> 和 <a href="http://developer.android.com/reference/android/view/View.html#SCALE_Y" target="_blank"><code>SCALE_Y</code></a>）。这四个动画被加入到了<a href="http://developer.android.com/reference/android/animation/AnimatorSet.html" target="_blank"><code>AnimatorSet</code></a>，所以你可以让它们一起开始。</p>
+<li><p>从起始边到结束边同步地动态改变四个位置和大小属性<a href="http://developer.android.com/reference/android/view/View.html#X" target="_blank"><code>X</code></a>，<a href="http://developer.android.com/reference/android/view/View.html#Y" target="_blank"><code>Y</code></a>（<a href="http://developer.android.com/reference/android/view/View.html#SCALE_X" target="_blank"><code>SCALE_X</code></a> 和 <a href="http://developer.android.com/reference/android/view/View.html#SCALE_Y" target="_blank"><code>SCALE_Y</code></a>）。这四个动画被加入到了<a href="http://developer.android.com/reference/android/animation/AnimatorSet.html" target="_blank"><code>AnimatorSet</code></a>，所以我们可以让它们一起开始。</p>
 </li>
-<li><p>缩小则运行相同的动画，但是是在用户点击屏幕放大时的逆向效果。你可以在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中添加一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>来实现它。当点击时，<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>缩回到原来缩略图的大小，然后设置它的visibility为<a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>来隐藏。</p>
+<li><p>缩小则运行相同的动画，但是是在用户点击屏幕放大时的逆向效果。我们可以在<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>中添加一个<a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>View.OnClickListener</code></a>来实现它。当点击时，<a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>缩回到原来缩略图的大小，然后设置它的visibility为<a href="http://developer.android.com/reference/android/view/View.html#GONE" target="_blank"><code>GONE</code></a>来隐藏。</p>
 </li>
 </ol>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">zoomImageFromThumb</span><span class="hljs-params">(<span class="hljs-keyword">final</span> View thumbView, <span class="hljs-keyword">int</span> imageResId)</span> </span>{

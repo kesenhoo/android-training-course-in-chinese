@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>添加动画 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>添加动画 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3" data-basepath=".." data-revision="1433953637803">
+    <div class="book"  data-level="4.3" data-basepath=".." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,18 +5239,18 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_106">
+                    <section class="normal" id="section-gitbook_19">
                     
                         <h1 id="">添加动画</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/index.html" target="_blank">http://developer.android.com/training/animation/index.html</a></p>
 </blockquote>
-<p>动画为你 App 上将要发生的事件增加精细的视觉提示，并且能改进你 App 界面的思维模型。当界面改变其状态时，例如加载内容或新操作可用时，动画特别有帮助。动画也能使你的 App 外观更加优雅，提供给 App 一种更优质体验。</p>
-<p>但是记住：滥用动画或者在错误时机使用动画也是有害的，比如他们会造成延迟。这节课程告诉你如何应用常用动画类型来提升易用性，在不给用户用户增加烦恼的前提下提升 App 气质。</p>
+<p>动画可以为我们的App增加精细的视觉提示，并且能改进App界面的思维模型。当界面改变其状态时（例如加载内容或新操作可用时），动画特别有帮助。另外，动画也能让我们的App外观更加优雅，为用户提供一种更好的使用体验。</p>
+<p>但是记住：滥用动画或者在错误时机使用动画也是有害的，比如他们会造成延迟。本系列课程将会讲解如何应用常用动画类型来提升易用性。我们的目标是在不给用户用户增加烦恼的前提下提升App的“气质”。</p>
 <h2 id="lessons">Lessons</h2>
 <ul>
 <li><p><a href="crossfade.html">View间渐变</a></p>
-<p>学习在重叠 view 间的淡入淡出。这节课将展示你如何使用一个进度提示来渐变到包含文本信息的 view。</p>
+<p>学习在重叠View间的淡入淡出。作为一个例子，我们将会学习如何在一个进度条与一个包含了文本内容的View之间实现淡入淡出的效果。</p>
 </li>
 </ul>
 <ul>
@@ -5260,17 +5260,17 @@
 </ul>
 <ul>
 <li><p><a href="cardflip.html">展示Card翻转动画</a></p>
-<p>学习怎样实现两个view的翻转动画。</p>
+<p>学习怎样实现两个View之间的翻转动画。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="zoom.html">缩放View</a></p>
-<p>学习怎样通过触控放大视图。</p>
+<p>学习怎样通过触控放大一个View。</p>
 </li>
 </ul>
 <ul>
 <li><p><a href="layout.html">布局变更动画</a></p>
-<p>学习当你增加、移除或更新子 View 时怎样使用内置动画。</p>
+<p>学习在增加、移除或更新子View时，怎样使用内置的动画效果。</p>
 </li>
 </ul>
 

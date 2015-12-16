@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>建立请求队列 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>建立请求队列 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.7.2" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="5.7.2" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,22 +5239,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_193">
+                    <section class="normal" id="section-gitbook_106">
                     
-                        <h1 id="setting-up-a-requestqueue">建立请求队列(Setting Up a RequestQueue)</h1>
+                        <h1 id="requestqueue">建立请求队列（RequestQueue）</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/volley/requestqueue.html" target="_blank">http://developer.android.com/training/volley/requestqueue.html</a></p>
 </blockquote>
-<p>前一节课演示了如何使用<code>Volley.newRequestQueue</code>这一简便的方法来建立一个<code>RequestQueue</code>，这是利用了Volley默认的优势。这节课会介绍如何显式的建立一个RequestQueue，以便满足你自定义的需求。</p>
-<p>这节课同样会介绍一种推荐的实现方式：创建一个单例的RequestQueue，这使得RequestQueue能够持续保持在你的app的生命周期中。</p>
-<h2 id="1set-up-a-network-and-cache">1)Set Up a Network and Cache</h2>
-<p>一个RequestQueue需要两部分来支持它的工作：一部分是网络操作，用来传输请求，另外一个是用来处理缓存操作的Cache。在Volley的工具箱中包含了标准的实现方式：<code>DiskBasedCache</code>提供了每个文件与对应响应数据一一映射的缓存实现。 <code>BasicNetwork</code>提供了一个网络传输的实现，连接方式可以是<a href="http://developer.android.com/reference/android/net/http/AndroidHttpClient.html" target="_blank">AndroidHttpClient</a> 或者是 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>.</p>
-<p><code>BasicNetwork</code>是Volley默认的网络操作实现方式。一个BasicNetwork必须使用HTTP Client进行初始化。这个Client通常是AndroidHttpClient 或者 HttpURLConnection:</p>
+<p>前一节课演示了如何使用 <code>Volley.newRequestQueue</code> 这一简便的方法来建立一个<code>RequestQueue</code>，这是利用了 Volley 默认行为的优势。这节课会介绍如何显式地建立一个 <code>RequestQueue</code>，以便满足我们自定义的需求。</p>
+<p>这节课同样会介绍一种推荐的实现方式：创建一个单例的 <code>RequestQueue</code>，这使得 <code>RequestQueue</code> 能够持续保持在我们 app 的生命周期中。</p>
+<h2 id="">建立网络和缓存</h2>
+<p>一个 <code>RequestQueue</code> 需要两部分来支持它的工作：一部分是网络操作，用来传输请求，另外一个是用来处理缓存操作的 Cache。在 Volley 的工具箱中包含了标准的实现方式：<code>DiskBasedCache</code> 提供了每个文件与对应响应数据一一映射的缓存实现。 <code>BasicNetwork</code> 提供了一个基于 <a href="http://developer.android.com/reference/android/net/http/AndroidHttpClient.html" target="_blank">AndroidHttpClient</a> 或者 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a> 的网络传输。</p>
+<p><code>BasicNetwork</code> 是 Volley 默认的网络操作实现方式。一个 <code>BasicNetwork</code> 必须使用我们的 app 用于连接网络的 HTTP Client 进行初始化。这个 Client 通常是<a href="http://developer.android.com/reference/android/net/http/AndroidHttpClient.html" target="_blank">AndroidHttpClient</a> 或者 <a href="http://developer.android.com/reference/java/net/HttpURLConnection.html" target="_blank">HttpURLConnection</a>：</p>
 <ul>
-<li>对于app target API level低于API 9(Gingerbread)的使用AndroidHttpClient。在Gingerbread之前，HttpURLConnection是不可靠的。对于这个的细节，请参考<a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</li>
-<li>对于API Level 9以及以上的，使用HttpURLConnection。</li>
+<li>对于 app target API level 低于 API 9（Gingerbread）的使用 AndroidHttpClient。在 Gingerbread 之前，HttpURLConnection 是不可靠的。对于这个的细节，请参考 <a href="http://android-developers.blogspot.com/2011/09/androids-http-clients.html" target="_blank">Android&#39;s HTTP Clients</a>。</li>
+<li>对于 API Level 9 以及以上的，使用 HttpURLConnection。</li>
 </ul>
-<p>为了创建一个能够执行在所有Android版本上的应用，你可以通过检查系统版本选择合适的HTTP Client。例如：</p>
+<p>我们可以通过检查系统版本选择合适的 HTTP Client，从而创建一个能够运行在所有 Android 版本上的应用。例如：</p>
 <pre><code class="lang-java">HttpStack stack;
 ...
 <span class="hljs-comment">// If the device is running a version &gt;= Gingerbread...</span>
@@ -5265,7 +5265,7 @@
 }
 Network network = <span class="hljs-keyword">new</span> BasicNetwork(stack);
 </code></pre>
-<p>下面的代码片段演示了如何一步步建立一个RequestQueue:</p>
+<p>下面的代码片段演示了如何一步步建立一个 <code>RequestQueue</code>:</p>
 <pre><code class="lang-java">RequestQueue mRequestQueue;
 
 <span class="hljs-comment">// Instantiate the cache</span>
@@ -5301,12 +5301,13 @@ StringRequest stringRequest = <span class="hljs-keyword">new</span> StringReques
 mRequestQueue.add(stringRequest);
 ...
 </code></pre>
-<p>如果你仅仅是想做一个单次的请求并且不想要线程池一直保留，你可以通过使用在前面一课：<a href="simple.html">发送一个简单的请求(Sending a Simple Request)</a>文章中提到<code>Volley.newRequestQueue()</code>方法在任何需要的时刻创建RequestQueue，然后在你的响应回调里面执行<code>stop()</code>方法来停止操作。但是更通常的做法是创建一个RequestQueue并设置为一个单例。下面将演示这种做法。</p>
-<h2 id="2use-a-singleton-pattern">2)Use a Singleton Pattern</h2>
-<p>如果你的程序需要持续的使用网络，更加高效的方式应该是建立一个RequestQueue的单例，这样它能够持续保持在整个app的生命周期中。你可以通过多种方式来实现这个单例。推荐的方式是实现一个单例类，里面封装了RequestQueue对象与其他Volley的方法。另外一个方法是继承Application类，并在<code>Application.OnCreate()</code>方法里面建立RequestQueue。但是这个方法是不推荐的。因为一个static的单例能够以一种更加模块化的方式提供同样的功能。</p>
-<p>一个关键的概念是RequestQueue必须和Application context所关联的。而不是Activity的context。这确保了RequestQueue在你的app生命周期中一直存活，而不会因为activity的重新创建而重新创建RequestQueue。(例如，当用户旋转设备时)。</p>
-<p>下面是一个单例类，提供了RequestQueue与ImageLoader的功能：</p>
-<pre><code class="lang-java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> MySingleton mInstance;
+<p>如果我们仅仅是想做一个单次的请求并且不想要线程池一直保留，我们可以通过使用在前面一课：<a href="simple.html">发送一个简单的请求（Sending a Simple Request）</a>文章中提到的 <code>Volley.newRequestQueue()</code> 方法，在任何需要的时刻创建 <code>RequestQueue</code>，然后在我们的响应回调里面执行 <code>stop()</code> 方法来停止操作。但是更通常的做法是创建一个 <code>RequestQueue</code> 并设置为一个单例。下面部分将演示这种做法。</p>
+<h2 id="">使用单例模式</h2>
+<p>如果我们的应用需要持续地使用网络，更加高效的方式应该是建立一个 <code>RequestQueue</code> 的单例，这样它能够持续保持在整个 app 的生命周期中。我们可以通过多种方式来实现这个单例。推荐的方式是实现一个单例类，里面封装了 <code>RequestQueue</code> 对象与其它的 Volley 功能。另外一个方法是继承 <a href="http://developer.android.com/reference/android/app/Application.html" target="_blank"><code>Application</code></a> 类，并在 <code>Application.OnCreate()</code> 方法里面建立 <code>RequestQueue</code>。但是我们并不推荐这个方法，因为一个 static 的单例能够以一种更加模块化的方式提供同样的功能。</p>
+<p>一个关键的概念是 <code>RequestQueue</code> 必须使用 Application context 来实例化，而不是 Activity context。这确保了 <code>RequestQueue</code> 在我们 app 的生命周期中一直存活，而不会因为 activity 的重新创建而被重新创建(例如，当用户旋转设备时)。</p>
+<p>下面是一个单例类，提供了 <code>RequestQueue</code> 与 <code>ImageLoader</code> 功能：</p>
+<pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySingleton</span> </span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> MySingleton mInstance;
     <span class="hljs-keyword">private</span> RequestQueue mRequestQueue;
     <span class="hljs-keyword">private</span> ImageLoader mImageLoader;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Context mCtx;
@@ -5357,7 +5358,7 @@ mRequestQueue.add(stringRequest);
     }
 }
 </code></pre>
-<p>下面演示了利用单例类来执行RequestQueue的操作：</p>
+<p>下面演示了利用单例类来执行 <code>RequestQueue</code> 的操作：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// Get a RequestQueue</span>
 RequestQueue queue = MySingleton.getInstance(<span class="hljs-keyword">this</span>.getApplicationContext()).
     getRequestQueue();

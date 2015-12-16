@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>布局变更动画 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>布局变更动画 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.5" data-basepath=".." data-revision="1433953637803">
+    <div class="book"  data-level="4.3.5" data-basepath=".." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,17 +5239,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_107">
+                    <section class="normal" id="section-gitbook_20">
                     
                         <h1 id="">布局变更动画</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/layout.html" target="_blank">http://developer.android.com/training/animation/layout.html</a></p>
 </blockquote>
-<p>布局动画是一种预加载动画，系统在你每次改变的布局配置时运行它。你需要做的仅是在布局文件里设置属性告诉Android系统为你这些布局的变更应用动画。系统动画时为你默认执行的。</p>
+<p>布局动画是一种预加载动画，系统在每次改变布局配置时运行它。我们需要做的仅是在布局文件里设置属性告诉Android系统为这些布局的变更应用动画，然后系统的默认动画便会执行。</p>
 <blockquote>
-<p><strong>小贴士:</strong> 如果你想补充自定义布局动画，创建 <a href="http://developer.android.com/reference/android/animation/LayoutTransition.html" target="_blank"><code>LayoutTransition</code></a> 对象和然后用 <a href="http://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition)"> <code>setLayoutTransition()</code> </a> 方法把它加到布局中。</p>
+<p><strong>小贴士:</strong> 如果你想补充自定义布局动画，创建 <a href="http://developer.android.com/reference/android/animation/LayoutTransition.html" target="_blank"><code>LayoutTransition</code></a> 对象，然后用 <a href="http://developer.android.com/reference/android/view/ViewGroup.html#setLayoutTransition(android.animation.LayoutTransition)"> <code>setLayoutTransition()</code> </a> 方法把它加到布局中。</p>
 </blockquote>
-<p>下面是在一个list中添加一项的默认布局动画：</p>
+<p>下面的例子在一个list中添加一项的默认布局动画：</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
 scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
@@ -5262,21 +5262,21 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例并运行然后选择布局渐变的例子。查看下列文件中的代码实现：</p>
+<p>如果你想直接查看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a> App 样例并运行然后选择布局渐变的例子。查看下列文件中的代码实现：</p>
 <ul>
 <li><code>src/LayoutChangesActivity.java</code></li>
 <li><code>layout/activity_layout_changes.xml</code></li>
 <li><code>menu/activity_layout_changes.xml</code></li>
 </ul>
 <h2 id="">创建布局</h2>
-<p>在你activity的XML布局文件中，为你想开启动画的布局设置<code>android:animateLayoutChanges</code>属性为<code>true</code>。例如：</p>
+<p>在Activity的XML布局文件中，为想开启动画的布局设置<code>android:animateLayoutChanges</code>属性为<code>true</code>。例如：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:animateLayoutChanges</span>=<span class="hljs-value">"true"</span>
     <span class="hljs-attribute">...</span>
 /&gt;</span>
 </code></pre>
 <h2 id="">从布局中添加，更新或删除项目</h2>
-<p>现在，你需要做的就是添加，删除或更新布局里的项目，然后这些项目就会自动显示动画啦：</p>
+<p>现在，我们需要做的就是添加，删除或更新布局里的项目，然后这些项目就会自动显示动画：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">private</span> ViewGroup mContainerView;
 ...
 <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addItem</span><span class="hljs-params">()</span> </span>{

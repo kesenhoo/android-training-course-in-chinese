@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>管理设备的唤醒状态 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>管理设备的唤醒状态 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.3" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.3" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,23 +5239,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_120">
+                    <section class="normal" id="section-gitbook_32">
                     
                         <h1 id="">管理设备的唤醒状态</h1>
 <blockquote>
-<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a>,<a href="https://github.com/lttowq" target="_blank">lttowq</a> - 原文:<a href="http://developer.android.com/training/scheduling/index.html" target="_blank">http://developer.android.com/training/scheduling/index.html</a></p>
+<p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a>，<a href="https://github.com/lttowq" target="_blank">lttowq</a> - 原文:<a href="http://developer.android.com/training/scheduling/index.html" target="_blank">http://developer.android.com/training/scheduling/index.html</a></p>
 </blockquote>
 <p>当一个Android设备闲置时，首先它的屏幕将会变暗，然后关闭屏幕，最后关闭CPU。
 这样可以防止设备的电量被迅速消耗殆尽。但是，有时候也会存在一些特例：</p>
 <ul>
-<li><p>例如游戏或视频应用需要保持屏幕常亮；</p>
-</li>
-<li><p>其它应用也许不需要屏幕常亮，但或许会需要CPU保持运行，直到某个关键操作结束。</p>
-</li>
+<li>例如游戏或视频应用需要保持屏幕常亮；</li>
+<li>其它应用也许不需要屏幕常亮，但或许会需要CPU保持运行，直到某个关键操作结束。</li>
 </ul>
 <p>这节课描述如何在必要的时候保持设备唤醒，同时又不会过多消耗它的电量。</p>
-<h3 id="httpdeveloperandroidcomshareablestrainingschedulerzip"><a href="http://developer.android.com/shareables/training/Scheduler.zip" target="_blank">样例代码</a></h3>
-<h2 id="">课程</h2>
+<h2 id="demos">Demos</h2>
+<p><a href="http://developer.android.com/shareables/training/Scheduler.zip" target="_blank"><strong>Scheduler.zip</strong></a></p>
+<h2 id="lessons">Lessons</h2>
 <h3 id="wake-lockhtml"><a href="wake-lock.html">保持设备唤醒</a></h3>
 <p>学习如何在必要的时候保持屏幕和CPU唤醒，同时减少对电池寿命的影响。</p>
 <h3 id="alarmshtml"><a href="alarms.html">调度重复闹钟</a></h3>
@@ -5270,7 +5269,7 @@
         </div>
 
         
-        <a href="../../background-jobs/load-data-background/handle-result.html" class="navigation navigation-prev " aria-label="Previous page: 处理查询的结果"><i class="fa fa-angle-left"></i></a>
+        <a href="../../background-jobs/load-data-background/handle-result.html" class="navigation navigation-prev " aria-label="Previous page: 处理CursorLoader查询的结果"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../background-jobs/scheduling/wake-lock.html" class="navigation navigation-next " aria-label="Next page: 保持设备的唤醒"><i class="fa fa-angle-right"></i></a>

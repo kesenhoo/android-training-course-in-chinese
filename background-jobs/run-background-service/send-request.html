@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>发送工作任务到IntentService | Android官方培训课程中文版(v0.9.4)</title>
+        <title>发送工作任务到IntentService | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.1.2" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.1.2" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,35 +5239,37 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_116">
+                    <section class="normal" id="section-gitbook_30">
                     
                         <h1 id="">向后台服务发送任务请求</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/run-background-service/send-request.html" target="_blank">http://developer.android.com/training/run-background-service/send-request.html</a></p>
 </blockquote>
-<p>前一篇文章演示了如何创建一个IntentService类。这次会演示如何通过发送一个Intent来触发IntentService执行任务。这个Intent可以传递一些数据给IntentService。可以在Activity或者Fragment的任何时间点发送这个Intent。</p>
-<h2 id="work-requestintentservice">创建任务请求（Work Request）并发送到IntentService</h2>
-<p>为了创建一个任务请求并发送到IntentService。需要先创建一个explicit Intent，并将请求数据添加到intent，然后通过调用
-<a href="http://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent" target="_blank">startService()</a> ) 函数把工作请求数据发送到IntentService。</p>
+<p>前一篇文章演示了如何创建一个IntentService类。这次会演示如何通过发送一个Intent来触发IntentService执行任务。这个Intent可以传递一些数据给IntentService。我们可以在Activity或者Fragment的任何时间点发送这个Intent。</p>
+<h2 id="intentservice">创建任务请求并发送到IntentService</h2>
+<p>为了创建一个任务请求并发送到IntentService。需要先创建一个显式Intent，并将请求数据添加到intent中，然后通过调用
+<code>startService()</code> 方法把任务请求数据发送到IntentService。</p>
 <p>下面的是代码示例：</p>
 <ul>
-<li>创建一个新的显式的Intent用来启动IntentService。</li>
+<li>创建一个新的显式Intent用来启动IntentService。</li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-comment">/*
- * 创建一个新的Intent来启动RSSPullService，通过intent的"data"属性传入一个URI
+ * Creates a new Intent to start the RSSPullService
+ * IntentService. Passes a URI in the
+ * Intent's "data" field.
  */</span>
 mServiceIntent = <span class="hljs-keyword">new</span> Intent(getActivity(), RSSPullService.class);
 mServiceIntent.setData(Uri.parse(dataUrl));
 </code></pre>
 <!-- More -->
 <ul>
-<li>执行startService()</li>
+<li>执行<code>startService()</code></li>
 </ul>
-<pre><code class="lang-java"><span class="hljs-comment">// 启动IntentService</span>
+<pre><code class="lang-java"><span class="hljs-comment">// Starts the IntentService</span>
 getActivity().startService(mServiceIntent);
 </code></pre>
-<p>注意可以在Activity或者Fragment的任何位置发送任务请求。例如，如果你先获取用户输入,您可以从一个回调发送请求,响应按钮单击或类似的手势。</p>
-<p>一旦执行了startService()，IntentService在自己本身的<a href="http://developer.android.com/reference/android/app/IntentService.html#onHandleIntent(android.content.Intent" target="_blank">onHandleIntent()</a>)方法里面开始执行这个任务，然后停止。</p>
+<p>注意可以在Activity或者Fragment的任何位置发送任务请求。例如，如果你先获取用户输入，您可以从响应按钮单击或类似手势的回调方法里面发送任务请求。</p>
+<p>一旦执行了startService()，IntentService在自己本身的<code>onHandleIntent()</code>方法里面开始执行这个任务，任务结束之后，会自动停止这个Service。</p>
 <p>下一步是如何把工作任务的执行结果返回给发送任务的Activity或者Fragment。下节课会演示如何使用<a href="http://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BroadcastReceiver</a>来完成这个任务。</p>
 
                     

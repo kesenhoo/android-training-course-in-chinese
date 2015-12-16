@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用Volley执行网络数据传输 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>使用Volley执行网络数据传输 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.7" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="5.7" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,59 +5239,51 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_190">
+                    <section class="normal" id="section-gitbook_103">
                     
-                        <h1 id="volley">使用Volley传输网络数据</h1>
+                        <h1 id="-volley-">使用 Volley 传输网络数据</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/volley/index.html" target="_blank">http://developer.android.com/training/volley/index.html</a></p>
 </blockquote>
-<p><code>Volley</code> 是一个HTTP库，它能够帮助Android apps更方便的执行网络操作，最重要的是，它更快速高效。可以通过开源的 <a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">AOSP</a> 仓库获取到Volley 。</p>
+<p><code>Volley</code> 是一个 HTTP 库，它能够帮助 Android app 更方便地执行网络操作，最重要的是，它更快速高效。我们可以通过开源的 <a href="https://android.googlesource.com/platform/frameworks/volley" target="_blank">AOSP</a> 仓库获取到 Volley 。</p>
 <p><strong>YOU SHOULD ALSO SEE</strong></p>
-<p>使用Volley来编写一个app，请参考<a href="https://github.com/google/iosched" target="_blank">2013 Google I/O schedule app</a>. 另外需要特别关注下面2个部分：</p>
+<p>使用 Volley 来编写一个 app，请参考<a href="https://github.com/google/iosched" target="_blank">2013 Google I/O schedule app</a>。另外需要特别关注下面2个部分：</p>
 <ul>
 <li><a href="https://github.com/google/iosched/blob/master/android/src/main/java/com/google/android/apps/iosched/util/ImageLoader.java" target="_blank">ImageLoader</a></li>
 <li><a href="https://github.com/google/iosched/blob/master/android/src/main/java/com/google/android/apps/iosched/util/BitmapCache.java" target="_blank">BitmapCache</a></li>
 </ul>
-<p><strong> <a href="https://developers.google.com/events/io/sessions/325304728" target="_blank">VIDEO - Volley:Easy,Fast Networking for Android</a> </strong></p>
+<p><a href="https://developers.google.com/events/io/sessions/325304728" target="_blank"><strong>VIDEO - Volley: Easy,Fast Networking for Android</strong></a></p>
 <hr>
 <p>Volley 有如下的优点：</p>
 <ul>
 <li>自动调度网络请求。</li>
 <li>高并发网络连接。</li>
-<li>通过标准的HTTP的<a href="http://en.wikipedia.org/wiki/Cache_coherence%22" target="_blank">cache coherence</a>(高速缓存一致性)使得磁盘与内存缓存不可见(Transparent)。</li>
+<li>通过标准的 HTTP <a href="https://en.wikipedia.org/wiki/Cache_coherence" target="_blank">cache coherence</a>（高速缓存一致性）缓存磁盘和内存透明的响应。</li>
 <li>支持指定请求的优先级。</li>
-<li>支持取消已经发出的请求。你可以取消单个请求，或者指定取消请求队列中的一个区域。</li>
+<li>撤销请求 API。我们可以取消单个请求，或者指定取消请求队列中的一个区域。</li>
 <li>框架容易被定制，例如，定制重试或者回退功能。</li>
-<li>强大的指令(Strong ordering)可以使得异步加载网络数据并显示到UI的操作更加简单。</li>
-<li>包含了Debugging与tracing工具。</li>
+<li>强大的指令（Strong ordering）可以使得异步加载网络数据并正确地显示到 UI 的操作更加简单。</li>
+<li>包含了调试与追踪工具。</li>
 </ul>
-<p>Volley擅长执行用来显示UI的RPC操作， 例如获取搜索结果的数据。它轻松的整合了任何协议，并输出操作结果的数据，可以是raw strings，也可以是images，或者是JSON。通过提供内置你可能使用到得功能，Volley可以使得你免去重复编写样板代码，使你可以把关注点放在你的app的功能逻辑上。</p>
-<p>Volley不适合用来下载大的数据文件。因为Volley会在解析的过程中保留持有所有的响应数据在内存中。对于下载大量的数据操作，请考虑使用<a href="http://developer.android.com/reference/android/app/DownloadManager.html" target="_blank">DownloadManager</a>。</p>
-<p>Volley框架的核心代码是托管在AOSP仓库的<code>frameworks/volley</code>中，相关的工具放在<code>toolbox</code>下。把Volley添加到你的项目中的最简便的方法是Clone仓库然后把它设置为一个library project：</p>
-<ul>
-<li>通过下面的命令来Clone仓库：</li>
-</ul>
-<p><code>git clone https://android.googlesource.com/platform/frameworks/volley</code></p>
-<ul>
-<li>以一个Android library project的方式导入下载的源代码到你的项目中。(如果你是使用Eclipse，请参考<a href="http://developer.android.com/tools/projects/projects-eclipse.html" target="_blank">Managing Projects from Eclipse with ADT</a>)，或者编译成一个<code>.jar</code>文件。</li>
-</ul>
+<p>Volley 擅长执行用来显示 UI 的 RPC 类型操作，例如获取搜索结果的数据。它轻松的整合了任何协议，并输出操作结果的数据，可以是原始的字符串，也可以是图片，或者是 JSON。通过提供内置的我们可能使用到的功能，Volley 可以使得我们免去重复编写样板代码，使我们可以把关注点放在 app 的功能逻辑上。</p>
+<p>Volley 不适合用来下载大的数据文件。因为 Volley 会保持在解析的过程中所有的响应。对于下载大量的数据操作，请考虑使用 <a href="http://developer.android.com/reference/android/app/DownloadManager.html" target="_blank">DownloadManager</a>。</p>
+<p>Volley 框架的核心代码是托管在 AOSP 仓库的 <code>frameworks/volley</code> 中，相关的工具放在 <code>toolbox</code> 下。把 Volley 添加到项目中最简便的方法是 Clone 仓库，然后把它设置为一个 library project：</p>
+<ol>
+<li><p>通过下面的命令来Clone仓库：</p>
+<pre><code> git clone https://android.googlesource.com/platform/frameworks/volley
+</code></pre></li>
+<li><p>以一个 Android library project 的方式导入下载的源代码到你的项目中。(如果你使用 Eclipse，请参考 <a href="http://developer.android.com/tools/projects/projects-eclipse.html)">Managing Projects from Eclipse with ADT</a>，或者编译成一个 <code>.jar</code> 文件。</p>
+</li>
+</ol>
 <h2 id="lessons">Lessons</h2>
-<ul>
-<li><a href="simple.html"><strong>发送一个简单的网络请求(Sending a Simple Request)</strong></a></li>
-</ul>
-<p>学习如何通过Volley默认的行为发送一个简单的请求，以及如何取消一个请求。</p>
-<ul>
-<li><a href="request-queue.html"><strong>建立一个请求队列(Setting Up a RequestQueue)</strong></a></li>
-</ul>
-<p>学习如何建立一个请求队列，以及如何实现一个单例模式来创建一个请求队列，使RequestQueue能够持续保持在你的app的生命周期中。</p>
-<ul>
-<li><a href="request.html"><strong>生成一个标准的请求(Making a Standard Request)</strong></a></li>
-</ul>
-<p>学习如何使用Volley的out-of-the-box（可直接使用、无需配置）的请求类型(raw strings, images, and JSON)来发送一个请求。</p>
-<ul>
-<li><a href="request-custom.html"><strong>实现自定义的请求(Implementing a Custom Request)</strong></a></li>
-</ul>
-<p>学习如何实现一个自定义的请求</p>
+<p><a href="simple.html"><strong>发送一个简单的网络请求(Sending a Simple Request)</strong></a></p>
+<p>  学习如何通过 Volley 默认的行为发送一个简单的请求，以及如何取消一个请求。</p>
+<p><a href="request-queue.html"><strong>建立一个请求队列(Setting Up a RequestQueue)</strong></a></p>
+<p>  学习如何建立一个请求队列（<code>RequestQueue</code>），以及如何实现一个单例模式来创建一个请求队列，使 <code>RequestQueue</code> 能够持续保持在我们 app 的生命周期中。</p>
+<p><a href="request.html"><strong>生成一个标准的请求(Making a Standard Request)</strong></a></p>
+<p>  学习如何使用 Volley 的 out-of-the-box（可直接使用、无需配置）请求类型（原始字符串、图片和 JSON）来发送一个请求。</p>
+<p><a href="request-custom.html"><strong>实现自定义的请求(Implementing a Custom Request)</strong></a></p>
+<p>  学习如何实现一个自定义的请求。</p>
 
                     
                     </section>

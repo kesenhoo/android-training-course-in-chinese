@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>提升Layout的性能 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>提升Layout的性能 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="14.3" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="14.3" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,22 +5239,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_273">
+                    <section class="normal" id="section-gitbook_186">
                     
                         <h1 id="layout">提升Layout的性能</h1>
 <blockquote>
 <p>编写: <a href="https://github.com/allenlsy" target="_blank">allenlsy</a> - 原文: <a href="http://developer.android.com/training/improving-layouts/index.html" target="_blank">http://developer.android.com/training/improving-layouts/index.html</a></p>
 </blockquote>
-<p>Layout 是 Android 应用中直接影响用户体验的关键部分。如果实现的不好，你的 Layout 会导致程序非常占用内存并且 UI 缓慢。Android SDK 带有帮助你找到 Layout 性能问题的工具。结合本课内容使用它，你会用最小的内存空间实现流畅的 UI。</p>
-<h1 id="">课程</h1>
+<p>Layout 是 Android 应用中直接影响用户体验的关键部分。如果实现的不好，你的 Layout 会导致程序非常占用内存并且 UI 运行缓慢。Android SDK 带有帮助你找到 Layout 性能问题的工具。结合本课内容使用它，你将学会使用最小的内存空间实现流畅的 UI。</p>
+<h2 id="lessons">Lessons</h2>
 <h4 id="layoutoptimizing-layouthtml"><a href="optimizing-layout.html">优化Layout的层级</a></h4>
-<p>就像一个复杂的网页会减慢载入速度，你的Layout结构如果太复杂，也会造成性能问题。本节教你如何使用SDK自带工具来检查Layout并找到瓶颈。</p>
+<p>就像一个复杂的网页会减慢载入速度，你的Layout结构如果太复杂，也会造成性能问题。本节教你如何使用SDK自带工具来查看Layout并找到性能瓶颈。</p>
 <h4 id="includelayoutreuse-layoutshtml"><a href="reuse-layouts.html">使用<code>&lt;include/&gt;</code>标签重用Layout</a></h4>
-<p>如果你的程序的 UI 在不同地方重复使用某个 Layout，那本节教你如何创建高效的，可重用的 Layout 部件，并把它们“包含”到 UI Layout 中。</p>
+<p>如果你的程序的 UI 在不同地方重复使用某个 Layout，那本节将教你如何创建高效的，可重用的Layout部件，并把它们“包含”到其他 UI Layout 中。</p>
 <h4 id="loading-ondemandhtml"><a href="loading-ondemand.html">按需载入视图</a></h4>
-<p>除了简单的把一个 Layout 包含到另一个中，你可能还想在程序开始后，仅当你的 Layout 对用户可见时才开始载入。本节告诉你如何分步载入 Layout 来提高初始性能。</p>
+<p>除了简单的把一个 Layout 包含到另一个 Layout 中，你可能还想在程序开始之后，仅当你的 Layout 对用户可见时才开始载入。本节告诉你如何使用分步载入 Layout 来提高 Layout 的首次加载性能。</p>
 <h4 id="listviewsmooth-scrollinghtml"><a href="smooth-scrolling.html">优化ListView的滑动性能</a></h4>
-<p>如果你有一个每个列表项 (item) 都包含很多数据或者复杂数据的 ListView ，那么列表滚动的性能可能会降低。本节给你一些关于如何把滚动变得更流畅的提示。</p>
+<p>如果你有一个每个列表项 (item) 都包含很多数据或者复杂数据的 ListView ，那么列表滚动的性能很有可能会存在问题。本节会介绍给你一些如何优化滚动流畅度的技巧。</p>
 
                     
                     </section>

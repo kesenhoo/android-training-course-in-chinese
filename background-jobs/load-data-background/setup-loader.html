@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>使用CursorLoader执行查询任务 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>使用CursorLoader执行查询任务 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.2.1" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.2.1" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,15 +5239,15 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_112">
+                    <section class="normal" id="section-gitbook_26">
                     
                         <h1 id="cursorloader">使用CursorLoader执行查询任务</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/load-data-background/setup-loader.html" target="_blank">http://developer.android.com/training/load-data-background/setup-loader.html</a></p>
 </blockquote>
-<p>CursorLoader通过ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity 或者 FragmentActivity 能够在查询任务正在执行可以继续与用户进行其他的交互。</p>
+<p>CursorLoader通过ContentProvider在后台执行一个异步的查询操作，并且返回数据给调用它的Activity或者FragmentActivity。这使得Activity或者FragmentActivity能够在查询任务正在执行的同时继续与用户进行其他的交互操作。</p>
 <h2 id="cursorloaderactivity">定义使用CursorLoader的Activity</h2>
-<p>为了在Activity或者FragmentActivity中使用CursorLoader，它们需要实现<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html" target="_blank">LoaderCallbacks<Cursor></a>接口。CursorLoader会调用LoaderCallbacks<Cursor>定义的这些回调方法与这些类进行交互；这节课与下节课会详细介绍每一个回调方法。</p>
+<p>为了在Activity或者FragmentActivity中使用CursorLoader，它们需要实现<code>LoaderCallbacks&lt;Cursor&gt;</code>接口。CursorLoader会调用<code>LoaderCallbacks&lt;Cursor&gt;</code>定义的这些回调方法与Activity进行交互；这节课与下节课会详细介绍每一个回调方法。</p>
 <!-- More -->
 <p>例如，下面演示了FragmentActivity如何使用CursorLoader。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PhotoThumbnailFragment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FragmentActivity</span> <span class="hljs-keyword">implements</span>
@@ -5256,61 +5256,61 @@
 }
 </code></pre>
 <h2 id="">初始化查询</h2>
-<p>为了初始化查询，需要执行<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.html#initLoader(int, android.os.Bundle, android.support.v4.app.LoaderManager.LoaderCallbacks&lt;D" target="_blank">LoaderManager.initLoader()</a>)。这个方法可以初始化后台查询框架。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以触发这个方法在<code>onCreate()</code>或者<code>onCreateView()</code>。例如：</p>
-<pre><code class="lang-java"><span class="hljs-comment">// 标识一个特定的Loader加载器来使用这个组件</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> URL_LOADER = <span class="hljs-number">0</span>;
+<p>为了初始化查询，需要调用<code>LoaderManager.initLoader()</code>。这个方法可以初始化LoaderManager的后台查询框架。你可以在用户输入查询条件之后触发初始化的操作，如果你不需要用户输入数据作为查询条件，你可以在<code>onCreate()</code>或者<code>onCreateView()</code>里面触发这个方法。例如：</p>
+<pre><code class="lang-java"><span class="hljs-comment">// Identifies a particular Loader being used in this component</span>
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> URL_LOADER = <span class="hljs-number">0</span>;
+...
+<span class="hljs-comment">/* When the system is ready for the Fragment to appear, this displays
+ * the Fragment's View
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span><span class="hljs-params">(
+        LayoutInflater inflater,
+        ViewGroup viewGroup,
+        Bundle bundle)</span> </span>{
     ...
-     <span class="hljs-javadoc">/**
-       * 当系统已经准备好显示Fragment时，
-       * 这里显示Fragment的布局
-       */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> View <span class="hljs-title">onCreateView</span><span class="hljs-params">(
-            LayoutInflater inflater,
-            ViewGroup viewGroup,
-            Bundle bundle)</span> </span>{
-        ...
-        <span class="hljs-comment">/*
-         *初始化一个CursorLoader.  URL_LOADER 值最终会被传递到
-         *  onCreateLoader().
-         */</span>
-        getLoaderManager().initLoader(URL_LOADER, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">this</span>);
-        ...
-    }
+    <span class="hljs-comment">/*
+     * Initializes the CursorLoader. The URL_LOADER value is eventually passed
+     * to onCreateLoader().
+     */</span>
+    getLoaderManager().initLoader(URL_LOADER, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">this</span>);
+    ...
+}
 </code></pre>
 <blockquote>
 <p><strong>Note:</strong> <code>getLoaderManager()</code>仅仅是在Fragment类中可以直接访问。为了在FragmentActivity中获取到LoaderManager，需要执行<code>getSupportLoaderManager()</code>.</p>
 </blockquote>
 <h2 id="">开始查询</h2>
-<p>一旦后台任务被初始化好，它会执行你实现的回调方法<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onCreateLoader(int, android.os.Bundle" target="_blank">onCreateLoader()</a>)。为了启动查询任务，会在这个方法里面返回CursorLoader。你可以初始化一个空的CursorLoader然后使用它的方法来定义你的查询条件，或者你可以在初始化CursorLoader对象的时候就同时定义好查询条件：</p>
-<pre><code class="lang-java"><span class="hljs-javadoc">/**
- * 系统在完成Loader的初始化并且准备好查询的时候会回调这个方法。
- * 这个通常在initLoader()方法被调用发生。包含loaderID值的参数
- * 通过initLoader()方法的传递得到。
- */</span>
+<p>一旦后台任务被初始化好，它会执行你实现的回调方法<code>onCreateLoader()</code>。为了启动查询任务，会在这个方法里面返回CursorLoader。你可以初始化一个空的CursorLoader然后使用它的方法来定义你的查询条件，或者你可以在初始化CursorLoader对象的时候就同时定义好查询条件：</p>
+<pre><code class="lang-java"><span class="hljs-comment">/*
+* Callback that's invoked when the system has initialized the Loader and
+* is ready to start the query. This usually happens when initLoader() is
+* called. The loaderID argument contains the ID value passed to the
+* initLoader() call.
+*/</span>
 <span class="hljs-annotation">@Override</span>
 <span class="hljs-function"><span class="hljs-keyword">public</span> Loader&lt;Cursor&gt; <span class="hljs-title">onCreateLoader</span><span class="hljs-params">(<span class="hljs-keyword">int</span> loaderID, Bundle bundle)</span>
 </span>{
-     <span class="hljs-comment">/*
-      * 通过加载器ID执行创建加载器动作
-      */</span>
+    <span class="hljs-comment">/*
+     * Takes action based on the ID of the Loader that's being created
+     */</span>
     <span class="hljs-keyword">switch</span> (loaderID) {
         <span class="hljs-keyword">case</span> URL_LOADER:
             <span class="hljs-comment">// Returns a new CursorLoader</span>
             <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">CursorLoader</span><span class="hljs-params">(
-                        getActivity()</span>,   <span class="hljs-comment">// 父Activity上下文</span>
-                        mDataUrl,        <span class="hljs-comment">// 要查询的表</span>
-                        mProjection,     <span class="hljs-comment">// 要返回的Projection</span>
-                        <span class="hljs-keyword">null</span>,            <span class="hljs-comment">// 没有条件从句</span>
-                        <span class="hljs-keyword">null</span>,            <span class="hljs-comment">// 没有条件参数</span>
-                        <span class="hljs-keyword">null</span>             <span class="hljs-comment">// 默认排序</span>
+                        getActivity()</span>,   <span class="hljs-comment">// Parent activity context</span>
+                        mDataUrl,        <span class="hljs-comment">// Table to query</span>
+                        mProjection,     <span class="hljs-comment">// Projection to return</span>
+                        <span class="hljs-keyword">null</span>,            <span class="hljs-comment">// No selection clause</span>
+                        <span class="hljs-keyword">null</span>,            <span class="hljs-comment">// No selection arguments</span>
+                        <span class="hljs-keyword">null</span>             <span class="hljs-comment">// Default sort order</span>
         )</span>;
         <span class="hljs-keyword">default</span>:
-            <span class="hljs-comment">// 一个非法的id传入</span>
+            <span class="hljs-comment">// An invalid id was passed in</span>
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
     }
 }
 </code></pre>
-<p>一旦后台查询任务获取到了这个Loader对象，就开始在后台执行查询的任务。当查询完成之后，会执行<a href="file:///Users/hook/Desktop/docs/reference/android/support/v4/app/LoaderManager.LoaderCallbacks.html#onLoadFinished(android.support.v4.content.Loader&lt;D&gt;, D" target="_blank">onLoadFinished()</a>)这个回调函数，关于这些内容会在下一节讲到。</p>
+<p>一旦后台查询任务获取到了这个Loader对象，就开始在后台执行查询的任务。当查询完成之后，会执行<code>onLoadFinished()</code>这个回调函数，关于这些内容会在下一节讲到。</p>
 
                     
                     </section>
@@ -5324,7 +5324,7 @@
         <a href="../../background-jobs/load-data-background/index.html" class="navigation navigation-prev " aria-label="Previous page: 使用CursorLoader在后台加载数据"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../background-jobs/load-data-background/handle-result.html" class="navigation navigation-next " aria-label="Next page: 处理查询的结果"><i class="fa fa-angle-right"></i></a>
+        <a href="../../background-jobs/load-data-background/handle-result.html" class="navigation navigation-next " aria-label="Next page: 处理CursorLoader查询的结果"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

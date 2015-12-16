@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>制定重复定时的任务 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>制定重复定时的任务 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.3.2" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.3.2" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,17 +5239,12 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_119">
+                    <section class="normal" id="section-gitbook_31">
                     
                         <h1 id="">调度重复的闹钟</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/scheduling/alarms.html" target="_blank">http://developer.android.com/training/scheduling/alarms.html</a></p>
 </blockquote>
-<h3 id="">教学视频（需翻墙）：</h3>
-<ul>
-<li><a href="http://www.youtube.com/watch?v=yxW29JVXCqc" target="_blank">The App Clinic:Cricket</a></li>
-<li><a href="https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-VJS9WQlj9xM_ygPopZ-Qd" target="_blank">DevBytes:Efficient Data Transfers</a></li>
-</ul>
 <p>闹钟（基于<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>类）给予你一种在应用使用期之外执行与时间相关的操作的方法。你可以使用闹钟初始化一个长时间的操作，例如每天开启一次后台服务，下载当日的天气预报。</p>
 <p>闹钟具有如下特性：</p>
 <ul>
@@ -5263,9 +5258,9 @@
 </blockquote>
 <h2 id="">权衡利弊</h2>
 <p>重复闹钟的机制比较简单，没有太多的灵活性。它对于你的应用来说或许不是一种最好的选择，特别是当你想要触发网络操作的时候。设计不佳的闹钟会导致电量快速耗尽，而且会对服务端产生巨大的负荷。</p>
-<p>当我们从服务端同步数据时，往往会在应用不被使用的时候时触发某些操作。此时你可能希望使用重复闹钟。但是如果存储数据的服务端是由你控制的，使用<a href="https://developer.android.com/google/gcm/index.html" target="_blank">Google Cloud Messaging</a>（GCM）结合<a href="https://developer.android.com/training/sync-adapters/index.html" target="_blank">sync adapter</a>是一种更好解决方案。SyncAdapter提供的任务调度选项和<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>基本相同，但是它能提供更多的灵活性。比如：同步的触发可能基于一条“新数据”提示消息，而消息的产生可以基于服务器或设备（祥见<a href="../../../connectivity/sync-adapters/running-sync-adapter.html">执行Sync Adpater</a>），用户的操作（或者没有操作），每天的某一时刻等等。你可以观看本节课最开始提供的两端视频了解一下有关如何以及何时使用GCM和SyncAdapter的知识。</p>
+<p>当我们从服务端同步数据时，往往会在应用不被使用的时候时被唤醒触发执行某些操作。此时你可能希望使用重复闹钟。但是如果存储数据的服务端是由你控制的，使用<a href="https://developer.android.com/google/gcm/index.html" target="_blank">Google Cloud Messaging</a>（GCM）结合<a href="https://developer.android.com/training/sync-adapters/index.html" target="_blank">sync adapter</a>是一种更好解决方案。SyncAdapter提供的任务调度选项和<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>基本相同，但是它能提供更多的灵活性。比如：同步的触发可能基于一条“新数据”提示消息，而消息的产生可以基于服务器或设备，用户的操作（或者没有操作），每天的某一时刻等等。</p>
 <h3 id="">最佳实践方法</h3>
-<p>在设计重复闹钟过程中，你所做出的每一个决定都有可能影响到你的应用将会如何使用系统资源。例如，我们假想一个会从服务器同步数据的应用。同步操作基于的是时钟时间，具体来说，每一个应用的实例会在下午11十一点整进行同步，巨大的服务器负荷会导致服务器响应时间变长，甚至拒绝服务。因此在我们使用闹钟时，请牢记下面的最佳实践建议：</p>
+<p>在设计重复闹钟过程中，你所做出的每一个决定都有可能影响到你的应用将会如何使用系统资源。例如，我们假想一个会从服务器同步数据的应用。同步操作基于的是时钟时间，具体来说，每一个应用的实例会在下午十一点整进行同步，巨大的服务器负荷会导致服务器响应时间变长，甚至拒绝服务。因此在我们使用闹钟时，请牢记下面的最佳实践建议：</p>
 <ul>
 <li>对任何由重复闹钟触发的网络请求添加一定的随机性（抖动）：<ul>
 <li>在闹钟触发时做一些本地任务。“本地任务”指的是任何不需要访问服务器或者从服务器获取数据的任务；</li>
@@ -5275,10 +5270,10 @@
 <li>尽量让你的闹钟频率最小；</li>
 <li>如果不是必要的情况，不要唤醒设备（这一点与闹钟的类型有关，本节课后续部分会提到）；</li>
 <li>触发闹钟的时间不必过度精确；
-尽量使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>方法替代<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>方法。当你使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>方法时，Android系统会集中多个应用的重复闹钟同步请求，并一起触发它们。这可以减少系统将设备唤醒的总次数，以此减少电量消耗。从Android 4.4（API Level19）开始，所有的重复闹钟都将是非精确型的。注意虽然<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>是<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>的改进版本，它依然可能会导致每一个应用的实例在某一时间段内同时访问服务器，造成服务器负荷过重。因此如之前所述，对于网络请求，我们需要为闹钟的触发时机增加随机性。</li>
-<li>尽量避免让闹钟基于时钟时间。
-想要在某一个精确时刻触发重复闹钟是比较困难的。我们应该尽可能使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME" target="_blank">ELAPSED_REALTIME</a>。不同的闹钟类型会在本节课后半部分展开。</li>
+尽量使用<code>setInexactRepeating()</code>方法替代<code>setRepeating()</code>方法。当你使用<code>setInexactRepeating()</code>方法时，Android系统会集中多个应用的重复闹钟同步请求，并一起触发它们。这可以减少系统将设备唤醒的总次数，以此减少电量消耗。从Android 4.4（API Level19）开始，所有的重复闹钟都将是非精确型的。注意虽然<code>setInexactRepeating()</code>是<code>setRepeating()</code>的改进版本，它依然可能会导致每一个应用的实例在某一时间段内同时访问服务器，造成服务器负荷过重。因此如之前所述，对于网络请求，我们需要为闹钟的触发时机增加随机性。</li>
+<li>尽量避免让闹钟基于时钟时间。</li>
 </ul>
+<p>想要在某一个精确时刻触发重复闹钟是比较困难的。我们应该尽可能使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#ELAPSED_REALTIME" target="_blank">ELAPSED_REALTIME</a>。不同的闹钟类型会在本节课后半部分展开。</p>
 <h2 id="">设置重复闹钟</h2>
 <p>如上所述，对于定期执行的任务或者数据查询而言，使用重复闹钟是一个不错的选择。它具有下列属性：</p>
 <ul>
@@ -5353,11 +5348,11 @@ alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
         <span class="hljs-number">1000</span> * <span class="hljs-number">60</span> * <span class="hljs-number">20</span>, alarmIntent);
 </code></pre>
 <h3 id="">决定闹钟的精确度</h3>
-<p>如上所述，创建闹钟的第一步是要选择闹钟的类型，然后你需要决定闹钟的精确度。对于大多数应用而言，<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>会是一个正确的选择。当你使用该方法时，Android系统会集中多个应用的重复闹钟同步请求，并一起触发它们。这样可以减少电量的损耗。</p>
-<p>对于另一些实时性要求较高的应用——例如，闹钟需要精确地在上午8点半被激活，并且自此之后每隔1小时激活一次——那么可以使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>。不过你应该尽量避免使用精确的闹钟。</p>
-<p>使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setRepeating(int, long, long, android.app.PendingIntent)">setRepeating()</a>时，你可以制定一个自定义的时间间隔，但在使用<a href="https://developer.android.com/reference/android/app/AlarmManager.html#setInexactRepeating(int, long, long, android.app.PendingIntent)">setInexactRepeating()</a>时不支持这么做。此时你只能选择一些时间间隔常量，例如：<a href="https://developer.android.com/reference/android/app/AlarmManager.html#INTERVAL_FIFTEEN_MINUTES" target="_blank">INTERVAL_FIFTEEN_MINUTES</a> ，<a href="http://developer.android.com/reference/android/app/AlarmManager.html#INTERVAL_DAY" target="_blank">INTERVAL_DAY</a>等。完整的常量列表，可以查看<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>。</p>
+<p>如上所述，创建闹钟的第一步是要选择闹钟的类型，然后你需要决定闹钟的精确度。对于大多数应用而言，<code>setInexactRepeating()</code>会是一个正确的选择。当你使用该方法时，Android系统会集中多个应用的重复闹钟同步请求，并一起触发它们。这样可以减少电量的损耗。</p>
+<p>对于另一些实时性要求较高的应用——例如，闹钟需要精确地在上午8点半被激活，并且自此之后每隔1小时激活一次——那么可以使用<code>setRepeating()</code>。不过你应该尽量避免使用精确的闹钟。</p>
+<p>使用<code>setRepeating()</code>时，你可以制定一个自定义的时间间隔，但在使用<code>setInexactRepeating()</code>时不支持这么做。此时你只能选择一些时间间隔常量，例如：<a href="https://developer.android.com/reference/android/app/AlarmManager.html#INTERVAL_FIFTEEN_MINUTES" target="_blank">INTERVAL_FIFTEEN_MINUTES</a> ，<a href="http://developer.android.com/reference/android/app/AlarmManager.html#INTERVAL_DAY" target="_blank">INTERVAL_DAY</a>等。完整的常量列表，可以查看<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>。</p>
 <h3 id="">取消闹钟</h3>
-<p>你可能希望在应用中添加取消闹钟的功能。要取消闹钟，可以调用AlarmManager的<a href="https://developer.android.com/reference/android/app/AlarmManager.html#cancel(android.app.PendingIntent)">cancel()</a>方法，并把你不想激活的<a href="https://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>传递进去，例如：</p>
+<p>你可能希望在应用中添加取消闹钟的功能。要取消闹钟，可以调用AlarmManager的<code>cancel()</code>方法，并把你不想激活的<a href="https://developer.android.com/reference/android/app/PendingIntent.html" target="_blank">PendingIntent</a>传递进去，例如：</p>
 <pre><code class="lang-java"><span class="hljs-comment">// If the alarm has been set, cancel it.</span>
 <span class="hljs-keyword">if</span> (alarmMgr!= <span class="hljs-keyword">null</span>) {
     alarmMgr.cancel(alarmIntent);
@@ -5366,7 +5361,7 @@ alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
 <h3 id="">在设备启动后启用闹钟</h3>
 <p>默认情况下，所有的闹钟会在设备关闭时被取消。要防止闹钟被取消，你可以让你的应用在用户重启设备后自动重启一个重复闹钟。这样可以让<a href="https://developer.android.com/reference/android/app/AlarmManager.html" target="_blank">AlarmManager</a>继续执行它的工作，且不需要用户手动重启闹钟。</p>
 <p>具体步骤如下：</p>
-<p>1.在应用的Manifest文件中设置<a href="https://developer.android.com/reference/android/Manifest.permission.html#RECEIVE_BOOT_COMPLETED" target="_blank">RECEIVE_BOOT_CMPLETED</a>权限，这将允许你的应用接收系统启动完成后发出的<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT)COMPLETED</a>广播（只有在用户至少将你的应用启动了一次后，这样做才有效）：</p>
+<p>1.在应用的Manifest文件中设置<a href="https://developer.android.com/reference/android/Manifest.permission.html#RECEIVE_BOOT_COMPLETED" target="_blank">RECEIVE_BOOT_CMPLETED</a>权限，这将允许你的应用接收系统启动完成后发出的<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT_COMPLETED</a>广播（只有在用户至少将你的应用启动了一次后，这样做才有效）：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">uses-permission</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">"android.permission.RECEIVE_BOOT_COMPLETED"</span>/&gt;</span>
 </code></pre>
 <p>2.实现<a href="https://developer.android.com/reference/android/content/BroadcastReceiver.html" target="_blank">BoradcastReceiver</a>用于接收广播：</p>
@@ -5380,7 +5375,7 @@ alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
     }
 }
 </code></pre>
-<p>3.在你的Manifest文件中添加一个接收器，其Intent-Filter接收<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT)COMPLETED</a>这一Action：</p>
+<p>3.在你的Manifest文件中添加一个接收器，其Intent-Filter接收<a href="https://developer.android.com/reference/android/content/Intent.html#ACTION_BOOT_COMPLETED" target="_blank">ACTION_BOOT_COMPLETED</a>这一Action：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">receiver</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".SampleBootReceiver"</span>
         <span class="hljs-attribute">android:enabled</span>=<span class="hljs-value">"false"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">intent-filter</span>&gt;</span>

@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>展示Card翻转动画 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>展示Card翻转动画 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4.3.3" data-basepath=".." data-revision="1433953637803">
+    <div class="book"  data-level="4.3.3" data-basepath=".." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,13 +5239,13 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_104">
+                    <section class="normal" id="section-gitbook_17">
                     
                         <h1 id="card">展示Card翻转动画</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/XizhiXu" target="_blank">XizhiXu</a> - 原文:<a href="http://developer.android.com/training/animation/cardflip.html" target="_blank">http://developer.android.com/training/animation/cardflip.html</a></p>
 </blockquote>
-<p>这节课展示如何使用自定义 fragment 动画实现card翻转动画。通过展示一个模拟card翻转的动画实现 view 内容的card翻转效果。</p>
+<p>这节课展示如何使用自定义Fragment动画实现Card翻转动画。Card翻转动画通过模拟Card翻转的效果实现view内容的切换。</p>
 <p>下面是card翻转动画的样子：</p>
 <div style="
   background: transparent url(device_galaxynexus_blank_land_span8.png) no-repeat
@@ -5259,7 +5259,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 </div>
 
-<p>如果你想跳过看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行 App 样例然后选择card翻转例子。查看下列文件中的代码实现：</p>
+<p>如果你想直接查看整个例子，<a href="http://developer.android.com/shareables/training/Animations.zip" target="_blank">下载</a>并运行App样例然后选择Card翻转例子。查看下列文件中的代码实现：</p>
 <ul>
 <li><code>src/CardFlipActivity.java</code></li>
 <li><code>animator/card_flip_right_in.xml</code></li>
@@ -5270,7 +5270,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <li><code>layout/fragment_card_front.xml</code></li>
 </ul>
 <h2 id="animator">创建Animator</h2>
-<p>创建card翻转动画，你需要两个 animator 一个 让前面的card的右侧向左翻转渐出，一个让向右翻转渐入。你还需要两个 animator 让背面的card的右侧向左翻转渐入，一个让向右翻转渐入。</p>
+<p>创建Card翻转动画，我们需要两个Animator。一个让正面的card的右侧向左翻转渐出，一个让背面的Card向右翻转渐入。我们还需要两个 Animator让背面的card的右侧向左翻转渐入，一个让向右翻转渐入。</p>
 <p><strong>card_flip_left_in.xml</strong></p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">set</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- Before rotating, immediately set the alpha to 0. --&gt;</span>
@@ -5362,7 +5362,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 <span class="hljs-tag">&lt;/<span class="hljs-title">set</span>&gt;</span>
 </code></pre>
 <h2 id="view">创建View</h2>
-<p>card的每一面是一个独立包含你想要内容的布局，比如两屏文字，两张图片，或者任何view的组合。然后你将在应用动画的fragment里面用到这俩布局。下面的布局创建了展示文本card的一面：</p>
+<p>Card的每一面是一个独立的布局，比如两屏文字，两张图片，或者任何View的组合。然后我们将在应用动画的Fragment里面用到这两个布局。下面的布局创建了展示文本Card的一面：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">LinearLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
@@ -5390,7 +5390,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">LinearLayout</span>&gt;</span>
 </code></pre>
-<p>card另一面显示一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>：</p>
+<p>Card另一面显示一个 <a href="http://developer.android.com/reference/android/widget/ImageView.html" target="_blank"><code>ImageView</code></a>：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">ImageView</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span>
@@ -5399,7 +5399,7 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     <span class="hljs-attribute">android:contentDescription</span>=<span class="hljs-value">"@string/description_image_1"</span> /&gt;</span>
 </code></pre>
 <h2 id="fragment">创建Fragment</h2>
-<p>为card正反面创建fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> <code>onCreateView()</code> </a>方法中分别为每个framgent返回你之前创建的布局。在想要显示card的父activity中，你可以创建对应的 fragment 实例。下面的例子展示父activity内嵌套的fragment：</p>
+<p>为Card正反面创建Fragment，这些类从<a href="http://developer.android.com/reference/android/app/Fragment.html#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)"> <code>onCreateView()</code> </a>方法中分别为每个Framgent返回你之前创建的布局。在想要显示Card的父Activity中，我们可以创建对应的Fragment 实例。下面的例子展示父Activity内嵌套的Fragment：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardFlipActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
     ...
     <span class="hljs-javadoc">/**
@@ -5426,13 +5426,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
 }
 </code></pre>
 <h2 id="card">应用card翻转动画</h2>
-<p>现在，你需要在父activity中展示fragment。为做这件事，首先创建你activity的布局。下面例子创建了一个你可以在运行时添加fragment的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank"><code>FrameLayout</code></a>。</p>
+<p>现在，我们需要在父Activity中展示Fragment。为此，首先创建Activity的布局。下面例子创建了一个可以在运行时添加Fragment的 <a href="http://developer.android.com/reference/android/widget/FrameLayout.html" target="_blank"><code>FrameLayout</code></a>。</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">FrameLayout</span> <span class="hljs-attribute">xmlns:android</span>=<span class="hljs-value">"http://schemas.android.com/apk/res/android"</span>
     <span class="hljs-attribute">android:id</span>=<span class="hljs-value">"@+id/container"</span>
     <span class="hljs-attribute">android:layout_width</span>=<span class="hljs-value">"match_parent"</span>
     <span class="hljs-attribute">android:layout_height</span>=<span class="hljs-value">"match_parent"</span> /&gt;</span>
 </code></pre>
-<p>在activity代码中，把刚创建的布局设置成content view。当activity创建时展示一个默认的fragment是个不错的注意。所以下面的activity样例告诉你如何默认显示卡片正面：</p>
+<p>在Activity代码中，把先前创建的布局设置成其ContentVew。当Activity创建时展示一个默认的Fragment是个不错的注意。所以下面的Activity样例表明了如何默认显示卡片正面：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CardFlipActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
 
     <span class="hljs-annotation">@Override</span>
@@ -5450,13 +5450,13 @@ scroll top left; padding: 26px 68px 38px 72px; overflow: hidden;">
     ...
 }
 </code></pre>
-<p>既然现在显示了卡片的正面，你可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面，它需要做下面这些事情：</p>
+<p>既然现在显示了卡片的正面，我们可以在合适时机用翻转动画显示卡片背面了。创建一个方法来显示背面，它需要做下面这些事情：</p>
 <ul>
-<li><p>将fragment转换设置你刚做的自定义动画</p>
+<li><p>将Fragment转换设置我们刚做的自定义动画</p>
 </li>
-<li><p>用新fragment替换当前显示的fragment，并且应用你刚创建的动画到这个事件中。</p>
+<li><p>用新Fragment替换当前显示的Fragment，并且应用之前创建的动画到该事件中。</p>
 </li>
-<li><p>添加之前显示的fragment到fragment的back stack中，所以当用户摁 <em>Back</em> 键时，card会翻转回来。</p>
+<li><p>添加之前显示的Fragment到Fragment的回退栈（back stack）中，所以当用户按下 <em>Back</em> 键时，Card会翻转回来。</p>
 </li>
 </ul>
 <pre><code class="lang-java"><span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">flipCard</span><span class="hljs-params">()</span> </span>{

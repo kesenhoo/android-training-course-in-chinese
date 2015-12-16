@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>高效下载 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>传输数据时避免消耗大量电量 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.3" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="5.3" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,38 +5239,26 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_177">
+                    <section class="normal" id="section-gitbook_90">
                     
-                        <h1 id="">高效下载</h1>
+                        <h1 id="">传输数据时避免消耗大量电量</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a> - 原文:<a href="http://developer.android.com/training/efficient-downloads/index.html" target="_blank">http://developer.android.com/training/efficient-downloads/index.html</a></p>
 </blockquote>
 <p>在这一章，我们将学习最小化下载，网络连接，尤其是无线电连接对电量的影响。</p>
-<p>下面几节课会演示了如何使用缓存(caching)，轮询(polling)，预取(prefetching)等技术来计划与执行下载操作。
-我们还会学习无线电波的power-use属性配置是如何影响我们对于在何时，用什么，以何种方式来传输数据的选择。
-当然这些选择是为了最小化对电池寿命的影响。</p>
-<p><strong>你同样需要阅读</strong>
-<a href="performance/monitoring-device-state/index.html">Optimizing Battery Life</a></p>
-<h2 id="">课程列表</h2>
+<p>下面几节课会演示如何使用像缓存（caching）、轮询（polling）和预取（prefetching）这样的技术来调度与执行下载操作。我们还会学习无线电波的 power-use 属性配置是如何影响我们对于在何时，用什么，以何种方式来传输数据的选择。当然这些选择是为了最小化对电量的影响。</p>
+<p><strong>我们同样需要阅读</strong>
+<a href="performance/monitoring-device-state/index.html">优化电池使用时间</a></p>
+<h2 id="lesson">Lesson</h2>
+<p><a href="efficient-network-access.html"><strong>优化下载以高效地访问网络</strong></a></p>
+<p>  这节课介绍了无线电波状态机（wireless radio state machine），解释了 app 的连接模型（connectivity model）如何与它交互，以及如何最小化数据连接和使用预取（prefetching）和捆绑（bundling）来最小化数据传输对电池消耗的影响。</p>
+<p><a href="regular-update.html"><strong>最小化定期更新造成的影响</strong></a></p>
+<p>  这节课我们将了解如何调整刷新频率以最大程度减轻底层无线电波状态机的后台更新所造成的影响。</p>
+<p><a href="redundant-redundant.html"><strong>重复的下载是冗余的</strong></a></p>
+<p>  减少下载的最根本途径是只下载我们需要的内容。这节课介绍了消除冗余下载的一些最佳实践。</p>
 <ul>
-<li><p><a href="efficient-network-access.html"><strong>Optimizing Downloads for Efficient Network Access - 使用有效的网络连接方式来最优化下载</strong></a></p>
-<p>这节课介绍了无线广播状态机(wireless radio state machine), 解释了app的连接模型(connectivity model)如何与它交互, 以及如何最小化数据连接, 使用预取(prefetching)和捆绑(bundling)最小化数据传输对电池消耗的影响.</p>
-</li>
-</ul>
-<!-- more -->
-<ul>
-<li><p><a href="regular-update.html"><strong>Minimizing the Effect of Regular Updates - 优化常规更新操作的效果</strong></a></p>
-<p>这节课将我们将了解如何调整你的刷新频率以最大程度减轻对底层的无线广播状态机的后台刷新的影响.</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="redundant-redundant.html"><strong>Redundant Downloads are Redundant - 重复的下载是冗余的</strong></a></p>
-<p>减少下载的最根本途径是只下载你需要的内容. 这节课介绍了消除冗余下载的一些最佳实践.</p>
-</li>
-</ul>
-<ul>
-<li><p><a href="connectivity-patterns.html"><strong>Modifying your Download Patterns Based on the Connectivity Type - 根据网络连接类型来更改下载模式</strong></a></p>
-<p>不同连接类型都对电池电量的影响并不相同. 不仅仅是Wi-Fi比无线电波更省电, 不同的无线广播技术对电池也有不同的影响.</p>
+<li><p><a href="connectivity-patterns.html"><strong>根据网络连接类型来调整下载模式</strong></a></p>
+<p>不同连接类型对电池电量的影响并不相同。不仅仅是 Wi-Fi 比无线电波更省电，不同的无线电波技术对电量也有不同的影响。</p>
 </li>
 </ul>
 
@@ -5286,7 +5274,7 @@
         <a href="../../connectivity/network-ops/xml.html" class="navigation navigation-prev " aria-label="Previous page: 解析XML数据"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../connectivity/efficient-downloads/efficient-network-access.html" class="navigation navigation-next " aria-label="Next page: 为网络访问更加高效而优化下载"><i class="fa fa-angle-right"></i></a>
+        <a href="../../connectivity/efficient-downloads/efficient-network-access.html" class="navigation navigation-next " aria-label="Next page: 优化下载以高效地访问网络"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

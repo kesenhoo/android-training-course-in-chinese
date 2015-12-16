@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>保持设备的唤醒 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>保持设备的唤醒 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="13.3.1" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="13.3.1" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,16 +5239,16 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_121">
+                    <section class="normal" id="section-gitbook_33">
                     
                         <h1 id="">保持设备唤醒</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/scheduling/wakelock.html" target="_blank">http://developer.android.com/training/scheduling/wakelock.html</a></p>
 </blockquote>
-<p>为了避免电量过度消耗，Android设备会在被闲置之后迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者CPU并且保持它们的唤醒状态，直至一些任务被完成。</p>
-<p>想要做到这一点，所采取的方法依赖于应用的具体需求。但是，通常来说，你应该使用最轻量级的方法，减小其对系统资源的影响。在接下来的部分中，我们将会描述在设备默认的睡眠行为与应用的需求不相符合的情况下，你应该如何进行对应的处理。</p>
+<p>为了避免电量过度消耗，Android设备会在被闲置之后迅速进入睡眠状态。然而有时候应用会需要唤醒屏幕或者是唤醒CPU并且保持它们的唤醒状态，直至一些任务被完成。</p>
+<p>想要做到这一点，所采取的方法依赖于应用的具体需求。但是通常来说，我们应该使用最轻量级的方法，减小其对系统资源的影响。在接下来的部分中，我们将会描述在设备默认的睡眠行为与应用的需求不相符合的情况下，我们应该如何进行对应的处理。</p>
 <h2 id="">保持屏幕常亮</h2>
-<p>某些应用需要保持屏幕常亮，比如游戏与视频应用。最好的方式是在你的Activity中（且仅在Activity中，而不在Service或其他应用组件里）使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCREEN_ON</a>，例如：</p>
+<p>某些应用需要保持屏幕常亮，比如游戏与视频应用。最好的方式是在你的Activity中（且仅在Activity中，而不是在Service或其他应用组件里）使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCREEN_ON</a>属性，例如：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Activity</span> </span>{
   <span class="hljs-annotation">@Override</span>
   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> </span>{
@@ -5269,9 +5269,7 @@
 </code></pre>
 <p>使用<code>android:keepScreenOn=&quot;true&quot;</code>与使用<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a>等效。你可以选择最适合你的应用的方法。在Activity中通过代码设置常亮标识的优点在于：你可以通过代码动态清除这个标示，从而使屏幕可以关闭。</p>
 <blockquote>
-<p><strong>Notes</strong>：除非你不再希望正在运行的应用长时间点亮屏幕（例如：在一定时间无操作发生后，你想要将屏幕关闭），否则你是不需要清除<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a> 标识的。WindowManager会在应用进入后台或者返回前台时，正确管理屏幕的点亮或者关闭。但是如果你想要显式地清除这一标识，从而使得屏幕能够关闭，可以使用<a href="https://developer.android.com/reference/android/view/Window.html#clearFlags(int)">clearFlags()</a>：</p>
-<pre><code class="lang-java">getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON).
-</code></pre>
+<p><strong>Notes</strong>：除非你不再希望正在运行的应用长时间点亮屏幕（例如：在一定时间无操作发生后，你想要将屏幕关闭），否则你是不需要清除<a href="https://developer.android.com/reference/android/view/WindowManager.LayoutParams.html#FLAG_KEEP_SCREEN_ON" target="_blank">FLAG_KEEP_SCRRE_ON</a> 标识的。WindowManager会在应用进入后台或者返回前台时，正确管理屏幕的点亮或者关闭。但是如果你想要显式地清除这一标识，从而使得屏幕能够关闭，可以使用<code>getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)</code>方法。</p>
 </blockquote>
 <h2 id="cpu">保持CPU运行</h2>
 <p>如果你需要在设备睡眠之前，保持CPU运行来完成一些工作，你可以使用<a href="https://developer.android.com/reference/android/os/PowerManager.html" target="_blank">PowerManager</a>系统服务中的唤醒锁功能。唤醒锁允许应用控制设备的电源状态。</p>
@@ -5294,13 +5292,13 @@ Wakelock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
         <span class="hljs-string">"MyWakelockTag"</span>);
 wakeLock.acquire();
 </code></pre>
-<p>可以调用<a href="https://developer.android.com/reference/android/os/PowerManager.WakeLock.html#release()">wakelock.release()</a>来释放唤醒锁。当应用使用完毕时，应该释放该唤醒锁，以避免电量过度消耗。</p>
+<p>可以调用<code>wakelock.release()</code>来释放唤醒锁。当应用使用完毕时，应该释放该唤醒锁，以避免电量过度消耗。</p>
 <h3 id="wakefulbroadcastreceiver">使用WakefulBroadcastReceiver</h3>
-<p>你可以将BroadcastReceiver和Service结合使用，以此来管理后台任务的生命周期。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakefulBroadcastReceiver</a>是一种特殊的BroadcastReceiver，它关注于创建和管理应用的<a href="https://developer.android.com/reference/android/os/PowerManager.html#PARTIAL_WAKE_LOCK" target="_blank">PARTIAL_WAKE_LOCK</a>。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakefulBroadcastReceiver</a>会将任务交付给<a href="https://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>（一般会是一个<a href="https://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>），同时确保设备在此过程中不会进入睡眠状态。如果在该过程当中没有保持住唤醒锁，那么还没等任务完成，设备就有可能进入睡眠状态了。其结果就是：应用可能会在未来的某一个时间节点才把任务完成，这显然不是你所期望的。</p>
-<p>要使用<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakefulBroadcastReceiver</a>，首先在Manifest文件添加一个标签：</p>
+<p>你可以将BroadcastReceiver和Service结合使用，以此来管理后台任务的生命周期。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakefulBroadcastReceiver</a>是一种特殊的BroadcastReceiver，它专注于创建和管理应用的<a href="https://developer.android.com/reference/android/os/PowerManager.html#PARTIAL_WAKE_LOCK" target="_blank">PARTIAL_WAKE_LOCK</a>。WakefulBroadcastReceiver会将任务交付给<a href="https://developer.android.com/reference/android/app/Service.html" target="_blank">Service</a>（一般会是一个<a href="https://developer.android.com/reference/android/app/IntentService.html" target="_blank">IntentService</a>），同时确保设备在此过程中不会进入睡眠状态。如果在该过程当中没有保持住唤醒锁，那么还没等任务完成，设备就有可能进入睡眠状态了。其结果就是：应用可能会在未来的某一个时间节点才把任务完成，这显然不是你所期望的。</p>
+<p>要使用WakefulBroadcastReceiver，首先在Manifest文件添加一个标签：</p>
 <pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">receiver</span> <span class="hljs-attribute">android:name</span>=<span class="hljs-value">".MyWakefulReceiver"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">receiver</span>&gt;</span>
 </code></pre>
-<p>下面的代码通过<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent)">startWakefulService()</a>启动<code>MyIntentService</code>。该方法和<a href="https://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent)">startService()</a>类似，除了<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakeflBroadcastReceiver</a>会在Service启动后将唤醒锁保持住。传递给<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#startWakefulService(android.content.Context, android.content.Intent)">startWakefulService()</a>的Intent会携带有一个Extra数据，用来标识唤醒锁。</p>
+<p>下面的代码通过<code>startWakefulService()</code>启动<code>MyIntentService</code>。该方法和<code>startService()</code>类似，除了WakeflBroadcastReceiver会在Service启动后将唤醒锁保持住。传递给<code>startWakefulService()</code>的Intent会携带有一个Extra数据，用来标识唤醒锁。</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyWakefulReceiver</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WakefulBroadcastReceiver</span> </span>{
 
     <span class="hljs-annotation">@Override</span>
@@ -5313,7 +5311,7 @@ wakeLock.acquire();
     }
 }
 </code></pre>
-<p>当Service结束之后，它会调用<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent)">MyWakefulReceiver.completeWakefulIntent()</a>来释放唤醒锁。<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html#completeWakefulIntent(android.content.Intent)">completeWakefulIntent()</a>方法中的Intent参数是和<a href="https://developer.android.com/reference/android/support/v4/content/WakefulBroadcastReceiver.html" target="_blank">WakefulBroadcastReceiver</a>传递进来的Intent参数一致的：</p>
+<p>当Service结束之后，它会调用<code>MyWakefulReceiver.completeWakefulIntent()</code>来释放唤醒锁。<code>completeWakefulIntent()</code>方法中的Intent参数是和WakefulBroadcastReceiver传递进来的Intent参数一致的：</p>
 <pre><code class="lang-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyIntentService</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">IntentService</span> </span>{
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> NOTIFICATION_ID = <span class="hljs-number">1</span>;
     <span class="hljs-keyword">private</span> NotificationManager mNotificationManager;

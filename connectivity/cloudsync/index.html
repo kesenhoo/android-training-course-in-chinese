@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>云同步 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>云同步 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5.4" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="5.4" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,22 +5239,22 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_170">
+                    <section class="normal" id="section-gitbook_83">
                     
                         <h1 id="">云同步</h1>
 <blockquote>
 <p>编写:<a href="https://github.com/kesenhoo" target="_blank">kesenhoo</a>，<a href="https://github.com/jdneo" target="_blank">jdneo</a> - 原文:<a href="http://developer.android.com/training/cloudsync/index.html" target="_blank">http://developer.android.com/training/cloudsync/index.html</a></p>
 </blockquote>
-<p>通过为网络连接提供强大的API，Android Framework可以帮助你建立丰富的，具有云功能的App。这些App可以同步数据到远程服务器端，确保所有你的设备都能保持数据同步，并且重要的数据都能够备份在云端。</p>
-<p>本章节会介绍几种不同的策略来实现具有云功能的App。包括：使用你自己的后端网络应用进行数据云同步，以及使用云对数据进行备份，这样的话，当用户将你的app安装到一台新的设备上时，他们之前的使用数据就可以得到恢复了。</p>
+<p>通过为网络连接提供强大的 API，Android Framework 可以帮助我们建立丰富的、具有云功能的 App。这些 App 可以同步数据到远程服务器端，确保我们所有的设备都能保持数据同步，并且重要的数据都能够备份在云端。</p>
+<p>本章节会介绍几种不同的策略来实现具有云功能的 App。包括：使用我们自己的后端网络应用进行数据云同步，以及使用云对数据进行备份。这样的话，当用户将我们的 app 安装到一台新的设备上时，他们之前的使用数据就可以得到恢复了。</p>
 <h2 id="lessons">Lessons</h2>
 <ul>
 <li><p><a href="backupapi.html"><strong>使用备份API</strong></a></p>
-<p>学习如何将Backup API集成到你的应用中。通过Backup API可以将用户数据（比如配置信息，笔记，高分记录等）无缝地在多台设备上进行同步更新。</p>
+<p>学习如何将 Backup API 集成到应用中。通过 Backup API 可以将用户数据（比如配置信息、笔记、高分记录等）无缝地在多台设备上进行同步更新。</p>
 </li>
 </ul>
 <ul>
-<li><p><a href="gcm.html"><strong>使用Google Cloud Messaging</strong></a></p>
+<li><p><a href="gcm.html"><strong>使用Google Cloud Messaging（已废弃）</strong></a></p>
 <p>学习如何高效的发送多播消息，如何正确地响应接收到的Google Cloud Messaging (GCM) 消息，以及如何使用GCM消息与服务器进行高效同步。</p>
 </li>
 </ul>
@@ -5268,7 +5268,7 @@
         </div>
 
         
-        <a href="../../connectivity/efficient-downloads/connectivity-patterns.html" class="navigation navigation-prev " aria-label="Previous page: 根据网络类型改变下载模式"><i class="fa fa-angle-left"></i></a>
+        <a href="../../connectivity/efficient-downloads/connectivity-patterns.html" class="navigation navigation-prev " aria-label="Previous page: 根据网络连接类型来调整下载模式"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../connectivity/cloudsync/backupapi.html" class="navigation navigation-next " aria-label="Next page: 使用备份API"><i class="fa fa-angle-right"></i></a>

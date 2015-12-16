@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>处理控制器输入动作 | Android官方培训课程中文版(v0.9.4)</title>
+        <title>处理控制器输入动作 | Android官方培训课程中文版(v0.9.5)</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="12.3.1" data-basepath="../.." data-revision="1433953637803">
+    <div class="book"  data-level="12.3.1" data-basepath="../.." data-revision="1450108925473">
     
 
 <div class="book-summary">
@@ -1561,7 +1561,7 @@
                         
                             <b>5.2.2.</b>
                         
-                         管理网络
+                         管理网络的使用情况
                     </a>
                 
             
@@ -1598,7 +1598,7 @@
                         
                             <b>5.3.</b>
                         
-                         高效下载
+                         传输数据时避免消耗大量电量
                     </a>
                 
             
@@ -1615,7 +1615,7 @@
                         
                             <b>5.3.1.</b>
                         
-                         为网络访问更加高效而优化下载
+                         优化下载以高效地访问网络
                     </a>
                 
             
@@ -1631,7 +1631,7 @@
                         
                             <b>5.3.2.</b>
                         
-                         最小化更新操作的影响
+                         最小化定期更新造成的影响
                     </a>
                 
             
@@ -1647,7 +1647,7 @@
                         
                             <b>5.3.3.</b>
                         
-                         避免下载多余的数据
+                         重复的下载是冗余的
                     </a>
                 
             
@@ -1663,7 +1663,7 @@
                         
                             <b>5.3.4.</b>
                         
-                         根据网络类型改变下载模式
+                         根据网络连接类型来调整下载模式
                     </a>
                 
             
@@ -4347,7 +4347,7 @@
                         
                             <b>12.3.2.</b>
                         
-                         支持不同的Android系统版本
+                         在不同的 Android 系统版本支持控制器
                     </a>
                 
             
@@ -4509,7 +4509,7 @@
                         
                             <b>13.2.2.</b>
                         
-                         处理查询的结果
+                         处理CursorLoader查询的结果
                     </a>
                 
             
@@ -5231,7 +5231,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../" >Android官方培训课程中文版(v0.9.4)</a>
+        <a href="../../" >Android官方培训课程中文版(v0.9.5)</a>
     </h1>
 </div>
 
@@ -5239,7 +5239,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_232">
+                    <section class="normal" id="section-gitbook_145">
                     
                         <h1 id="">处理控制器输入动作</h1>
 <blockquote>
@@ -5279,6 +5279,7 @@
 <p><a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a>：描述方向按键（D-pad）和游戏按键事件的对象。按键事件伴随着一个表示特定按键触发的<em>按键码值(key code)</em>，如 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_DPAD_DOWN" target="_blank">DPAD_DOWN</a> 或者 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#KEYCODE_BUTTON_A" target="_blank">BUTTON_A</a>。我们可以通过调用 <a href="http://developer.android.com/reference/android/view/KeyEvent.html#getKeyCode()">getKeyCode()</a> 或者从按键事件回调方法（如 <a href="http://developer.android.com/reference/android/view/View.html#onKeyDown(int, android.view.KeyEvent)">onKeyDown()</a>）来获得按键码值。</p>
 <p><a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a>：描述摇杆和肩键运动的输入。动作事件伴随着一个动作码（action code）和一系列<em>坐标值</em>（<em>axis values</em>）。动作码表示出现变化的状态，例如摇动一个摇杆。坐标值描述了特定物理操控的位置和其它运动属性，例如 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 或者 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_RTRIGGER" target="_blank">AXIS_RTRIGGER</a>。我们可以通过调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAction()">getAction()</a> 来获得动作码，通过调用 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#getAxisValue(int)">getAxisValue()</a> 来获得坐标值。</p>
 <p>这节课主要介绍如何通过实现上述的 <a href="http://developer.android.com/reference/android/view/View.html" target="_blank">View</a> 回调方法与处理 <a href="http://developer.android.com/reference/android/view/KeyEvent.html" target="_blank">KeyEvent</a> 和 <a href="http://developer.android.com/reference/android/view/MotionEvent.html" target="_blank">MotionEvent</a> 对象，来处理常用控制器（游戏键盘按键、方向按键和摇杆）的输入。</p>
+<p>&lt;a name=&quot;input=&gt;</a></p>
 <h2 id="">验证游戏控制器是否已连接</h2>
 <p>在报告输入事件的时候，Android 不会区分游戏控制器事件与非游戏控制器事件。例如，一个触屏动作会产生一个表示触摸表面上 X 坐标的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a>，但是一个摇杆动作产生的 <a href="http://developer.android.com/reference/android/view/MotionEvent.html#AXIS_X" target="_blank">AXIS_X</a> 则表示摇杆水平移动的位置。如果我们的游戏关注游戏控制器的输入，那么我们应该首先检测相应的事件来源类型。</p>
 <p>通过调用 <a href="http://developer.android.com/reference/android/view/InputDevice.html#getSources()">getSources()</a> 来获得设备上支持的输入类型的位字段，来判断一个已连接的输入设备是不是一个游戏控制器。我们可以通过测试以查看下面的字段是否被设置：</p>
@@ -5656,7 +5657,7 @@
         <a href="../../input/game-controller/index.html" class="navigation navigation-prev " aria-label="Previous page: 支持游戏控制器"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../input/game-controller/compatibility.html" class="navigation navigation-next " aria-label="Next page: 支持不同的Android系统版本"><i class="fa fa-angle-right"></i></a>
+        <a href="../../input/game-controller/compatibility.html" class="navigation navigation-next " aria-label="Next page: 在不同的 Android 系统版本支持控制器"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
