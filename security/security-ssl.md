@@ -41,7 +41,7 @@ copyInputStreamToOutputStream(in, System.out);
 
 ## 服务器普通问题的验证
 
-假设从[getInputStream()](http://developer.android.com/reference/java/net/URLConnection.html#getInputStream()接受内容，会抛出一个异常：
+假设没有从[getInputStream()](http://developer.android.com/reference/java/net/URLConnection.html#getInputStream()收到内容，而是抛出了一个异常：
 
 ```java
 javax.net.ssl.SSLHandshakeException: java.security.cert.CertPathValidatorException: Trust anchor for certification path not found.
