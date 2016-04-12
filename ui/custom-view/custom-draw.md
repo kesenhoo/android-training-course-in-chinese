@@ -91,7 +91,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 上面的代码有三个重要的事情需要注意:
 
 * 计算的过程有把view的padding考虑进去。这个在后面会提到，这部分是view所控制的。
-* 帮助方法resolveSizeAndState()是用来创建最终的宽高值的。这个方法会通过比较view的需求大小与spec值，返回一个合适的View.MeasureSpec值，并传递到onMeasure方法中。
+* 帮助方法resolveSizeAndState()是用来创建最终的宽高值的。这个方法比较 view 的期望值与传递给 onMeasure 方法的 spec 值，然后返回一个合适的View.MeasureSpec值。
 * onMeasure()没有返回值。它通过调用setMeasuredDimension()来获取结果。调用这个方法是强制执行的，如果你遗漏了这个方法，会出现运行时异常。
 
 ## 绘图!
