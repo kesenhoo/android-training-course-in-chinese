@@ -173,7 +173,8 @@ Bundle appRestrictions = myRestrictionsMgr.getApplicationRestrictions();
 
 当你的 app 使用 [RestrictionsManager.getApplicationRestrictions()](http://developer.android.com/reference/android/content/RestrictionsManager.html#getApplicationRestrictions%28%29) 检查限制时，我们建议你检查企业管理员是否把键值对 [KEY_RESTRICTIONS_PENDING](http://developer.android.com/reference/android/os/UserManager.html#KEY_RESTRICTIONS_PENDING) 设置为 true。如果设置了，你应该阻止用户使用这个 app，并提示他们联系他们的企业管理员。然后，这个 app 应该继续正常运行，注册 [ACTION_APPLICATION_RESTRICTIONS_CHANGED](http://developer.android.com/reference/android/content/Intent.html#ACTION_APPLICATION_RESTRICTIONS_CHANGED) 广播。
 
-![](app_restrictions_diagram.png)
+![](https://github.com/zenlynn/android-training-course-in-chinese/blob/zenlynn-patch-2/enterprise/app_restrictions_diagram.png?raw=true)
+
 **Figure 1.** 在注册广播之前检查限制是否暂挂
 
 <!--Reading and applying restrictions-->
