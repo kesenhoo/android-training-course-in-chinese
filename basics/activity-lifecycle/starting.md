@@ -2,36 +2,40 @@
 
 > 编写:[kesenhoo](https://github.com/kesenhoo) - 原文:<http://developer.android.com/training/basics/activity-lifecycle/starting.html>
 
-不同于其他编程范式（程序从`main()`方法开始启动），Android系统根据生命周期的不同阶段唤起对应的回调函数来执行代码。系统存在启动与销毁一个activity的一套有序的回调函数。
+不同于使用 `main()` 方法启动应用的其他编程范例，Android 系统会通过调用对应于其生命周期中特定阶段的特定回调方法在 Activity 实例中启动代码。 有一系列可启动Activity的回调方法，以及一系列可分解Activity的回调方法。
 
-本课介绍生命周期中最重要的回调函数，并演示如何处理启动一个activity所涉及到的回调函数。
+本课程概述了最重要的生命周期方法，并向您展示如何处理创建Activity新实例的第一个生命周期回调。
 
-## 理解生命周期的回调
+## 了解生命周期回调
 
-在一个activity的生命周期中，系统会像金字塔模型一样去调用一系列的生命周期回调函数。Activity生命周期的每一个阶段就像金字塔中的台阶。当系统创建了一个新的activity实例，每一个回调函数会向上一阶移动activity状态。处在金字塔顶端意味着当前activity处在前台并处于用户可与其进行交互的状态。
+在Activity的生命周期中，系统会按类似于阶梯金字塔的顺序调用一组核心的生命周期方法。也就是说，Activity生命周期的每个阶段就是金字塔上的一阶。 当系统创建新Activity实例时，每个回调方法会将Activity状态向顶端移动一阶。金字塔的顶端是Activity在前台运行并且用户可以与其交互的时间点。
 
 <!-- more -->
 
-当用户退出这个activity时，为了回收该activity，系统会调用其它方法来向下一阶移动activity状态。在某些情况下，activity会隐藏在金字塔下等待(例如当用户切换到其他app),此时activity可以重新回到顶端(如果用户回到这个activity)并恢复用户离开时的状态。
+当用户开始离开Activity时，系统会调用其他方法在金字塔中将Activity状态下移，从而销毁Activity。在有些情况下，Activity将只在金字塔中部分下移并等待（比如，当用户切换到其他应用时），Activity可从该点开始移回顶端（如果用户返回到该Activity），并在用户停止的位置继续。
 
 ![basic-lifecycle](basic-lifecycle.png)
 
-**Figure 1.** 下面这张图讲解了activity的生命周期：*(这个金字塔模型要比之前Dev Guide里面的生命周期图更加容易理解，更加形象)*
+**图 1.**简化的Activity生命周期图示，以阶梯金字塔表示。此图示显示，对于用于将Activity朝顶端的“继续”状态移动一阶的每个回调，有一种将Activity下移一阶的回调方法。Activity还可以从“暂停”和“停止”状态回到继续状态。*
 
-根据activity的复杂度，也许不需要实现所有的生命周期方法。但了解每一个方法的回调时机并在其中填充相应功能，使得确保app能够像用户期望的那样执行是很有必要的。如何实现一个符合用户期待的app，我们需要注意下面几点：
+根据Activity的复杂程度，您可能不需要实现所有生命周期方法。但是，了解每个方法并实现确保您的应用按照用户期望的方式运行的方法非常重要。正确实现您的Activity生命周期方法可确保您的应用按照以下几种方式良好运行，包括：
 
-  * 使用app的时候，不会因为有来电通话或者切换到其他app而导致程序crash。
-  * 用户没有激活某个组件时不会消耗宝贵的系统资源。
-  * 离开app并且一段时间后返回，不会丢失用户的使用进度。
-  * 设备发生屏幕旋转时不会crash或者丢失用户的使用进度。
+* 如果用户在使用您的应用时接听来电或切换到另一个应用，它不会崩溃。
+* 在用户未主动使用它时不会消耗宝贵的系统资源。
+* 如果用户离开您的应用并稍后返回，不会丢失用户的进度。
+* 当屏幕在横向和纵向之间旋转时，不会崩溃或丢失用户的进度。
 
-下面的课程会介绍上图所示的几个生命状态。然而，其中只有三个状态是静态的，这三个状态下activity可以存在一段比较长的时间。*(其它几个状态会很快就切换掉，停留的时间比较短暂)*
+正如您将要在以下课程中要学习的，有Activity会在图 1 所示不同状态之间过渡的几种情况。但是，这些状态中只有三种可以是静态。 也就是说，Activity只能在三种状态之一下存在很长时间。
 
-  * **Resumed**：该状态下，activity处在前台，用户可以与它进行交互。(通常也被理解为"running" 状态)
-  * **Paused**：该状态下，activity的部分被另外一个activity所遮盖：另外的activity来到前台，但是半透明的，不会覆盖整个屏幕。被暂停的activity不再接受用户的输入且不再执行任何代码。
-  * **Stopped**：该状态下, activity完全被隐藏，对用户不可见。可以认为是在后台。当stopped, activity实例与它的所有状态信息（如成员变量等）都会被保留，但activity不能执行任何代码。
+  * **Resumed**：在这种状态下，Activity处于前台，且用户可以与其交互。（有时也称为“运行”状态。）
+  * **Paused**：在这种状态下，Activity被在前台中处于半透明状态或者未覆盖整个屏幕的另一个Activity—部分阻挡。暂停的Activity不会接收用户输入并且无法执行任何代码。
+  * **Stopped**：在这种状态下，Activity被完全隐藏并且对用户不可见；它被视为处于后台。停止时，Activity实例及其诸如成员变量等所有状态信息将保留，但它无法执行任何代码。
 
-其它状态 (**Created**与**Started**)都是短暂的，系统快速的执行那些回调函数并通过执行下一阶段的回调函数移动到下一个状态。也就是说，在系统调用<a href="http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)">onCreate()</a>, 之后会迅速调用<a href="http://developer.android.com/reference/android/app/Activity.html#onStart()">onStart()</a>, 之后再迅速执行<a href="http://developer.android.com/reference/android/app/Activity.html#onResume()">onResume()</a>。以上就是基本的activity生命周期。
+其他状态（“创建”和“开始”）是瞬态，
+
+其它状态 (**Created**与**Started**)都是短暂的瞬态，系统会通过调用下一个生命周期回调方法从这些状态快速移到下一个状态。 也就是说，在系统调用 [onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)) 之后，它会快速调用 [onStart()](http://developer.android.com/reference/android/app/Activity.html#onStart())，紧接着快速调用 [onResume()](http://developer.android.com/reference/android/app/Activity.html#onResume())。
+
+基本生命周期部分到此为止。现在，您将开始学习特定生命周期行为的一些知识。
 
 ## 指定程序首次启动的Activity
 
