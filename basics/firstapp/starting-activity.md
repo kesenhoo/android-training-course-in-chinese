@@ -6,11 +6,11 @@
 
 ## 响应Send(发送)按钮
 
-1 在Android Studio中打开res/layout目录下的activity_my.xml 文件.
+1 在Android Studio中打开res/layout目录下的content_my.xml 文件.
 
 2 为 Button 标签添加[android:onclick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性.
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 
 ```
@@ -166,9 +166,8 @@ Package name: com.mycompany.myfirstapp
 
 ![adt-new-activity](studio-new-activity.png)
 
-3 打开DisplayMessageActivity.java文件，此类已经实现了onCreate()方法，稍后需要更新此方法。另外还有一个onOptionsItemSelected()方法，用来处理action bar的点击行为。暂时保留这两个方法不变。
+3 打开DisplayMessageActivity.java文件，此类已经实现了onCreate()方法，稍后需要更新此方法。
 
-4 由于这个应用程序并不需要onCreateOptionsMenu()，直接删除这个方法。
 
 如果使用 Android Studio开发，现在已经可以点击Send按钮启动这个activity了，但显示的仍然是模板提供的默认内容"Hello world"，稍后修改显示自定义的文本内容。
 
@@ -184,7 +183,7 @@ Package name: com.mycompany.myfirstapp
 
 
 ```
-public class DisplayMessageActivity extends ActionBarActivity {
+public class DisplayMessageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -267,22 +266,16 @@ public class DisplayMessageActivity extends ActionBarActivity {
 
 1 编辑java/com.mycompany.myfirstapp目录下的DisplayMessageActivity.java文件.
 
-2 删除onCreate()方法中下面一行:
-
-```
-  setContentView(R.layout.activity_display_message);
-  ```
-
-3 得到intent 并赋值给本地变量.
+2 得到intent 并赋值给本地变量.
 
 ```
 Intent intent = getIntent();
 ```
-4 为Intent导入包.
+3 为Intent导入包.
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
-5 调用 getStringExtra()提取从 MyActivity 传递过来的消息.
+4 调用 getStringExtra()提取从 MyActivity 传递过来的消息.
 
 ```
 String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
@@ -291,24 +284,39 @@ String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
 
 ## 显示文本
 
-1 在onCreate() 方法中, 创建一个 TextView 对象.
+1 在res/layout目录下，编辑文件`content_display_message.xml`.
+
+2 为<RelativeLayout>标签添加id属性，你之后需要用这个id属性来调用这个对象.
+
+```
+< RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+...
+android:id="@+id/content">
+</RelativeLayout>
+```
+
+3 重新来编辑`DisplayMessageActivity.java`
+
+4 在`onCreate()`方法中创建一个对象`TextView`
 
 ```
 TextView textView = new TextView(this);
 ```
-2 设置文本字体大小和内容.
+
+5 用`setText()`来设置文本字体大小和内容.
 
 ```
 textView.setTextSize(40);
 textView.setText(message);
 ```
-3 通过调用activity的setContentView()把TextView作为activity布局的根视图.
+6 将`TextView`加入之前被标记为`R.id.content`的`RelativeLayout`中
 
 ```
-setContentView(textView);
+RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
+layout.addView(textView);
 ```
 
-4 为TextView 导入包.
+7 为TextView 导入包.
 
 在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
 
@@ -318,20 +326,31 @@ DisplayMessageActivity的完整onCreate()方法应该如下：
 
 ```
 @Override
-public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+protected void onCreate(Bundle savedInstanceState) {
+   super.onCreate(savedInstanceState);
+   setContentView(R.layout.activity_display_message);
+   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+   setSupportActionBar(toolbar);
 
-    // Get the message from the intent
-    Intent intent = getIntent();
-    String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
+   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+   fab.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View view) {
+           Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null)
+                   .show();
+       }
+   });
+   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    // Create the text view
-    TextView textView = new TextView(this);
-    textView.setTextSize(40);
-    textView.setText(message);
+   Intent intent = getIntent();
+   String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
+   TextView textView = new TextView(this);
+   textView.setTextSize(40);
+   textView.setText(message);
 
-    // Set the text view as the activity layout
-    setContentView(textView);
+   RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
+   layout.addView(textView);
 }```
 
 现在你可以运行app，在文本中输入信息，点击Send(发送)按钮，ok，现在就可以在第二Activity上看到发送过来信息了。如图：

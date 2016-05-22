@@ -20,7 +20,7 @@ Layouts是ViewGroup的子类，接下来的练习将使用[LinearLayout](http://
 
 ## 创建一个LinearLayout
 
-1 在Android Studio中，从res/layout目录打开activity_my.xml文件。上一节创建新项目时生成的BlankActivity，包含一个activity_my.xml文件，该文件根元素是一个包含TextView的RelativeLayout。
+1 在Android Studio中，从res/layout目录打开content_my.xml文件。上一节创建新项目时生成的BlankActivity，包含一个content_my.xml文件，该文件根元素是一个包含TextView的RelativeLayout。
 
 2 在**Preview**面板点击![image](as-hide-side.png)关闭右侧Preview面板，在Android Studio中，当打开布局文件时，可以看到一个Preview面板，点击这个面板中的标签，可利用WYSIWYG（所见即所得）工具在Design面板看到对应的图形化效果，但在本节直接操作XML文件即可。
 
@@ -35,15 +35,17 @@ Layouts是ViewGroup的子类，接下来的练习将使用[LinearLayout](http://
 
 修改后结果如下：
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-</LinearLayout>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_my">
 ```
 
 [LinearLayout](http://developer.android.com/reference/android/widget/LinearLayout.html)是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性`android:orientation`设定。LinearLayout里的子布局按照XML里定义的顺序显示在屏幕上。
@@ -66,7 +68,7 @@ res/layout/activity_my.xml
 
 代码如下：
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 ```xml
 <EditText android:id="@+id/edit_message"
@@ -106,8 +108,6 @@ res/layout/activity_my.xml
 
 3 再添加一个string名为 "button_send"，值为"Send".下面的内容将使用这个string来创建一个按钮.
 
-4 删除 "hello world" string这一行.
-
 下边就是修改好的`res/values/strings.xml`：
 
 ```xml
@@ -117,7 +117,6 @@ res/layout/activity_my.xml
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
 </resources>
 ```
 当你在用户界面定义一个文本的时候，你应该把每一个文本字符串列入资源文件。这样做的好处是：对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许您对不同语言本地化应用程序。
@@ -129,7 +128,7 @@ res/layout/activity_my.xml
 
 
 
-1 在 Android Studio里, 编辑 res/layout下的 activity_my.xml 文件.
+1 在 Android Studio里, 编辑 res/layout下的 content_my.xml 文件.
 
 2 在LinearLayout 内部, 在< EditText >标签之后定义一个< Button >标签.
 
@@ -139,22 +138,25 @@ res/layout/activity_my.xml
 
 此时的 LinearLayout 看起来应该是这样
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
-      <EditText android:id="@+id/edit_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
-      <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_send" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_my">
+        <EditText android:id="@+id/edit_message"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:hint="@string/edit_message" />
+        <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/button_send" />
 </LinearLayout>
 ```
 
@@ -176,11 +178,11 @@ res/layout/activity_my.xml
 
 为让 EditText充满剩余空间，做如下操作：
 
-1  在activity_my.xml文件里，设置EditText的layout_weight属性值为1 .
+1  在content_my.xml文件里，设置EditText的layout_weight属性值为1 .
 
 2  设置EditText的layout_width值为0dp.
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 ```xml
 <EditText
@@ -198,15 +200,18 @@ res/layout/activity_my.xml
 
 现在看一下完整的布局文件内容：
 
-res/layout/activity_my.xml
+res/layout/content_my.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+   android:orientation="horizontal"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   app:layout_behavior="@string/appbar_scrolling_view_behavior"
+   tools:showIn="@layout/activity_my">
     <EditText android:id="@+id/edit_message"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -225,8 +230,8 @@ res/layout/activity_my.xml
 + 或者使用命令行，进入你项目的根目录直接执行
 
 ```
-ant debug
-adb install bin/MyFirstApp-debug.apk
+$ ant debug
+adb install -r app/build/outputs/apk/app-debug.apk
 ```
 
 下一小节将学习有关如何对按钮做出相应，同时读取文本中的内容，启动另外一个Activity等。
