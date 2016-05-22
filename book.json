@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        "disqus",
+        "ga"
+    ],
+    "pluginsConfig": {
+        "disqus": {
+            "shortName": "kesenhoo"
+        },
+        "ga": {
+            "token": "UA-37679268-1"
+        }
+    }
+}
