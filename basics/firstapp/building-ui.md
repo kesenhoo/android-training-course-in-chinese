@@ -63,9 +63,7 @@ res/layout/content\_my.xml
 
 与其它 [View] 一样，我们需要定义 XML 里的某些属性来指定 [EditText] 的属性值。以下是应该在线性布局里指定的一些属性元素：
 
-1. 在 `activity_my.xml` 文件的 <[LinearLayout]> 标签内定义一个 <[EditText]> 标签，并设置 `id` 属性为 `@+id/edit_message`。
-
-<!-- TODO: 原文中为 `content_my.xml`，而非 `activity_my.xml`。请确认本教程中其他章节中的引用，确认后再决定是否更新。 -->
+1. 在 `content_my.xml` 文件的 <[LinearLayout]> 标签内定义一个 <[EditText]> 标签，并设置 `id` 属性为 `@+id/edit_message`。
 
 2. 设置 `layout_width` 和 `layout_height` 属性为 `wrap_content`。
 
@@ -73,7 +71,7 @@ res/layout/content\_my.xml
 
 代码如下：
 
-res/layout/content_my.xml
+res/layout/content\_my.xml
 
 ```xml
 <EditText android:id="@+id/edit_message"
@@ -191,7 +189,7 @@ res/layout/content\_my.xml
 
 这样设置对按钮来说很合适，但是对于文本框来说就不太好了，因为用户可能输入更长的文本内容。因此如果能够占满整个屏幕宽度会更好。[LinearLayout] 使用 *权重* 属性达到这个目，即 [android:layout_weight] 属性。
 
-权重的值指的是每个部件所占剩余空间的大小，该值与同级部件所占空间大小有关。这就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，即该酒中伏特加酒占三分之二。例如，我们定义一个权重为 2 的 View，另一个 View 的权重是 1，那么总数就是 3；这时第一个 View 占据 2/3 的空间，第二个占据 1/3 的空间。如果再加入第三个 View，权重设为 1，那么第一个 View（权重为 2 的）会占据 1/2 的空间，剩余的另外两个 View 各占 1/4。（请注意，使用权重的前提一般是给 View 的宽或者高的大小设置为 0dp，然后系统根据上面的权重规则来计算 View 应该占据的空间。但在很多情况下，如果给 View 设置了 match_parent 的属性，那么在计算权重时则不是通常的正比，而是反比。也就是说，权重值大的反而占据空间小）。
+权重的值指的是每个部件所占剩余空间的大小，该值与同级部件所占空间大小有关。这就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，即该酒中伏特加酒占三分之二。例如，我们定义一个权重为 2 的 View，另一个 View 的权重是 1，那么总数就是 3；这时第一个 View 占据 2/3 的空间，第二个占据 1/3 的空间。如果再加入第三个 View，权重设为 1，那么第一个 View（权重为 2 的）会占据 1/2 的空间，剩余的另外两个 View 各占 1/4。（请注意，使用权重的前提一般是给 View 的宽或者高的大小设置为 0dp，然后系统根据上面的权重规则来计算 View 应该占据的空间。但在很多情况下，如果给 View 设置了 match\_parent 的属性，那么在计算权重时则不是通常的正比，而是反比。也就是说，权重值大的反而占据空间小）。
 
 对于所有的 View 默认的权重是 0，如果只设置了一个 View 的权重大于 0，则该 View 将占据除去别的 View 本身占据的空间的所有剩余空间。因此这里设置 EditText 的权重为 1，使其能够占据除了按钮之外的所有空间。
 
