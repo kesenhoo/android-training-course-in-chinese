@@ -2,21 +2,21 @@
 
 > 编写：[yuanfentiank789](https://github.com/yuanfentiank789) - 原文：<http://developer.android.com/training/basics/firstapp/building-ui.html>
 
-在本小节里，我们将学习如何用 XML 创建一个带有文本输入框和按钮的界面，下一节课将学会使 APP 对按钮做出响应：按钮被按下时，文本框里的内容被发送到另外一个 Activity。
+在本小节里，我们将学习如何用 XML 创建一个带有文本输入框和按钮的界面。下一节课将学会使 APP 对按钮做出响应——按钮被按下时，文本框里的内容被发送到另外一个 Activity。
 
-Android 的图形用户界面是由多个 [View] 和 [ViewGroup] 构建出来的。[View] 是通用的 UI 窗体小组件，比如按钮（[Button]）或者文本框（[text field]），而 [ViewGroup] 是不可见的，是用于定义子 View 布局方式的容器，比如网格部件（grid）和垂直列表部件（vertical list）。
+Android 的图形用户界面由多个视图（[View]）和视图组（[ViewGroup]）构建而成。[View] 是通用的 UI 窗体小组件，如：按钮（[Button]）、文本框（[Text field]）；而 [ViewGroup] 则是用来定义子视图布局的不可见的容器，如：网格部件（grid）、垂直列表部件（vertical list）。
 
-Android 提供了一个对应于 [View] 和 [ViewGroup] 子类的一系列 XML 标签，我们可以在 XML 里使用层级视图元素创建自己的 UI。
+Android 提供了一系列对应于 [View] 和 [ViewGroup] 子类的 XML 标签，以便我们用 XML 创建自己的 UI。
 
-Layouts 是 [ViewGroup] 的子类，接下来的练习将使用 [LinearLayout]。
+Layouts 是 [ViewGroup] 的子类。我们将在接下来的教程中练习如何使用 [LinearLayout]。
 
 ![图 1: ViewGroup][figure_1_viewgroup]
 
-**图 1** 关于 ViewGroup 对象如何组织布局分支和包含其他 View 对象。
+**图 1** 关于 [ViewGroup] 对象如何组织布局分支和包含其他 [View] 对象。
 
 > **可选的布局文件**
 >
-> 在 XML 中定义界面布局而不是在运行时去动态生成布局是有多个原因的，其中最重要的一点是这样可以使得你为不同大小的屏幕创建不同的布局文件。例如，你可以创建两个版本的布局文件，告诉系统在小的屏幕上使用其中一个布局文件，在大的屏幕上使用另外一个布局文件。更多信息，请参考 [兼容不同的设备]。
+> 有很多理由使得我们选择在 XML 中定义界面布局，而不是在运行时动态生成布局。其中最重要的一点是——这可以让你为不同大小的屏幕创建不同的布局文件。例如，你可以创建两个版本的布局文件，告诉系统在小屏幕上使用其中一个布局文件，在大屏幕上使用另外一个布局文件。参见 [兼容不同的设备]。
 
 ## 创建一个 LinearLayout
 
@@ -26,7 +26,7 @@ Layouts 是 [ViewGroup] 的子类，接下来的练习将使用 [LinearLayout]�
 
 2. 在 **Preview** 面板点击 ![图标：隐藏][icon_hide] 关闭右侧 Preview 面板。
 
-   在 Android Studio 中，当打开布局文件时，可以看到一个 Preview 面板，点击这个面板中的标签，可利用 WYSIWYG（所见即所得）工具在 Design 面板看到对应的图形化效果，但在本节直接操作 XML 文件即可。
+   在 Android Studio 中打开布局文件时，可以看到一个 Preview 面板。点击这个面板中的标签，可利用 WYSIWYG（所见即所得）工具在 Design 面板看到对应的图形化效果。但在本节中，我们将学习如何直接修改 XML 文件。
 
 3. 删除 <[TextView]> 标签。
 
@@ -51,11 +51,11 @@ res/layout/content\_my.xml
     tools:showIn="@layout/activity_my">
 ```
 
-[LinearLayout] 是 [ViewGroup] 的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性 [android:orientation] 设定。[LinearLayout] 里的子布局按照 XML 里定义的顺序显示在屏幕上。
+[LinearLayout] 是 [ViewGroup] 的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性 [android:orientation] 决定。[LinearLayout] 里的子布局按照 XML 里定义的顺序显示在屏幕上。
 
-所有的 Views 都需要用到 [android:layout_width] 和 [android:layout_height] 这两个属性来设置自身的大小。
+所有的 Views 都会用到 [android:layout_width] 和 [android:layout_height] 这两个属性来设置自身的大小。
 
-由于 [LinearLayout] 是整个视图的根布局，所以其宽和高都应充满整个屏幕的，通过指定 width 和 height 属性为 `"match_parent"`。该值表示子 View 扩张自己 width 和 height 来 *匹配* 父控件的 width 和 height。
+由于 [LinearLayout] 是整个视图的根布局，所以通过指定 width 和 height 属性为 `"match_parent"` 可以使其宽度和高度充满整个屏幕。该值表示子 View 扩张自己宽度和高度来 *匹配* 父控件的宽度和高度。
 
 更多关于布局属性的内容，请参考 [布局向导]。
 
@@ -67,7 +67,7 @@ res/layout/content\_my.xml
 
 2. 设置 `layout_width` 和 `layout_height` 属性为 `wrap_content`。
 
-3. 设置 `hint` 属性为一个 string 值的引用 `edit_message`。
+3. 设置 `hint` 属性为一个名为 `edit_message` 的字符串。
 
 代码如下：
 
@@ -84,19 +84,19 @@ res/layout/content\_my.xml
 
 ### [android:id]
 
-这是定义 View 的唯一标识符。可以在程序代码中通过该标识符对对象进行引用，例如对这个对象进行读和修改的操作（在下一课里将会用到）。
+这是视图的唯一标识符。可以在程序代码中通过该标识符引用对象。例如对这个对象进行读和修改的操作（在下一课里将会用到）。
 
-当想从 XML 里引用资源对象的时候必须使用 `@` 符号。紧随 `@` 之后的是资源的类型（这里是 `id`），然后是资源的名字（这里使用的是 `edit_message`）。
+当需要从 XML 里引用资源对象时，必须使用 `@` 符号。紧随 `@` 之后的是资源的类型（这里是 `id`），然后是资源的名字（这里使用的是 `edit_message`）。
 
-`+` 号只是当你第一次定义一个资源 ID 的时候需要。这里是告诉 SDK 此资源 ID 需要被创建出来。在应用程序被编译之后，SDK 就可以直接使用 ID 值，edit_message 是在项目 `gen/R.java` 文件中创建一个新的标识符，这个标识符就和 [EditText] 关联起来了。一旦资源 ID 被创建了，其他资源如果引用这个 ID 就不再需要 `+` 号了。这里是唯一一个需要 `+` 号的属性。
+`+` 号只在第一次定义一个资源 ID 的时候需要。它是告诉 SDK——此资源 ID 需要被创建。在应用程序被编译之后，SDK 就可以直接使用这个 ID。edit_message 是在项目文件 `gen/R.java` 中创建一个新的标识符，这个标识符和 [EditText] 关联。一旦资源 ID 被创建了，其他资源如果引用这个 ID 就不再需要 `+` 号。
 
 ### [android:layout_width] 和 [android:layout_height]
 
-对于宽和高不建议指定具体的大小，使用 `"wrap_content"` 指定之后，这个视图将只占据内容大小的空间。如果你使用了 `"match_parent"`，这时 [EditText] 将会布满整个屏幕，因为它将适应父布局的大小。更多信息，请参考 [布局向导]。
+不建议指定宽度和高度的具体尺寸，应使用 `"wrap_content"`。因为这样可以保证视图只占据内容大小的空间。如果你使用了 `"match_parent"`，这时 [EditText] 将会布满整个屏幕，因为它将适应父布局的大小。参见 [布局向导]。
 
 ### [android:hint]
 
-当文本框为空的时候，会默认显示这个字符串。对于字符串 `"@string/edit_message"` 的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用 `+` 号。然而，由于你还没有定义字符串的值，所以在添加 `@string/edit_message` 的时候会出现编译错误。在下一节的教程中你将定义字符串资源，到时候就不会报错了。
+当文本框为空的时候，会默认显示这个字符串。对于字符串 `"@string/edit_message"` 的值所引用的资源应该定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用 `+` 号。当然，由于你现在还没有定义字符串，所以在添加 `@string/edit_message` 的时候会出现编译错误。在下一节的教程中你将学会如何定义字符串资源，到时候就不会报错了。
 
 > **资源对象**
 >
@@ -108,11 +108,13 @@ res/layout/content\_my.xml
 >
 > 参阅 [资源配备]。
 
+<!-- 这是一条看不见的分割线，用于分割上下两段引用 -->
+
 > **注**：该字符串资源与 ID 使用了相同的名称（`edit_message`）。然而，对于资源的引用是区分类型的（比如 `id` 和 `字符串`），因此，使用相同的名称不会引起冲突。
 
 ## 增加字符串资源
 
-默认情况下，你的 Android 项目包含一个字符串资源文件，`res/values/string.xml`。打开这个文件，为 `"edit_message"` 增加一个供使用的字符串定义，设置值为“Enter a message”。
+默认情况下，你的 Android 项目包含一个字符串资源文件，即 `res/values/string.xml`。打开这个文件，为 `"edit_message"` 增加一个定义，其值为“Enter a message”。
 
 1. 在 Android Studio 里，编辑 `res/values` 下的 `strings.xml` 文件。
 
@@ -120,7 +122,7 @@ res/layout/content\_my.xml
 
 3. 再添加一个名为 `"button_send"` 的字符串，值为“Send”。
 
-   下一节中将使用这个字符串创建一个按钮。
+   下一节中将使用这个字符串创建按钮。
 
 下边就是修改好的 `res/values/strings.xml`：
 
@@ -134,17 +136,17 @@ res/layout/content\_my.xml
 </resources>
 ```
 
-当你在用户界面定义一个文本的时候，你应该把每一个文本字符串列入资源文件。这样做的好处是：对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许您对不同语言本地化应用程序。
+当你在用户界面定义一个文本时，应该把每一个文本字符串列入资源文件。这样做的好处是：对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许你用不同语言本地化 APP。
 
-更多的于不同语言本字符串资源本地化的问题，请参考 [兼容不同的设备]。
+更多关于不同语言本字符串资源本地化的问题，请参考 [兼容不同的设备]。
 
 ## 添加一个按钮
 
 1. 在 Android Studio 里，编辑 `res/layout` 下的 `content_my.xml` 文件。
 
-2. 在 <[LinearLayout]> 内部，在 <[EditText]> 标签之后定义一个 <[Button]> 标签。
+2. 在 <[LinearLayout]> 内部的 <[EditText]> 标签之后定义一个 <[Button]> 标签。
 
-3. 设置按钮的 width 和 height 属性值为 `"wrap_content"` 以便让按钮的大小能完整显示其上的文本。
+3. 设置按钮的 width 和 height 属性值为 `"wrap_content"` 以便让按钮的大小能完整显示文字。
 
 4. 定义按钮的文本使用 [android:text] 属性，设置值为相似上一节中定义好的 `button_send` 字符串资源。
 
