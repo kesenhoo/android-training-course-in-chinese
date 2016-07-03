@@ -6,7 +6,7 @@
 
 Android的图形用户界面是由多个[View]和[ViewGroup]构建出来的。[View]是通用的UI窗体小组件，比如按钮([Button])或者文本框([text field])，而[ViewGroup]是不可见的，是用于定义子View布局方式的容器，比如网格部件(grid)和垂直列表部件(list)。
 
-Android提供了一个对应于[View]和[ViewGroup]子类的一系列XMl标签，我们可以在XML里使用层级视图元素创建自己的UI。
+Android提供了一个对应于[View]和[ViewGroup]子类的一系列XML标签，我们可以在XML里使用层级视图元素创建自己的UI。
 
 Layouts是ViewGroup的子类，接下来的练习将使用[LinearLayout]。
 
