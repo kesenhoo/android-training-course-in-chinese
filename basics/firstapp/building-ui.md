@@ -98,19 +98,15 @@ res/layout/content\_my.xml
 
 当文本框为空的时候，会默认显示这个字符串。对于字符串 `"@string/edit_message"` 的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用 `+` 号。然而，由于你还没有定义字符串的值，所以在添加 `@string/edit_message` 的时候会出现编译错误。在下一节的教程中你将定义字符串资源，到时候就不会报错了。
 
-<!-- TODO
-> **Resource Objects**
+> **资源对象**
 >
-> A resource object is a unique integer name that's associated with an app resource, such as a bitmap, layout file, or string.
+> 资源对象是与 APP 资源（如：位图、布局文件、字符串）关联的唯一整数。
 >
-> Every resource has a corresponding resource object defined in your project's `gen/R.java` file. You can use the object names in the `R` class to refer to your resources, such as when you need to specify a string value for the [android:hint] attribute. You can also create arbitrary resource IDs that you associate with a view using the [android:id] attribute, which allows you to reference that view from other code.
+> 在项目文件 `gen/R.java` 中，每个资源都有一个与之对应的资源对象。你可以使用 `R` 类中的对象名称代指资源（如：在指定 [android:hint] 属性时需要的字符串）。同时，也可以通过 [android:id] 属性随时为 View 创建资源 ID，以便在代码中引用这个 View。
 >
-> The SDK tools generate the `R.java` file each time you compile your app. You should never modify this file by hand.
+> 每次编译 APP 时，SDK 工具都会生成 `R.java` 文件。所以，请永远不要修改这个文件。
 >
-> For more information, read the guide to [Providing Resources].
-
-[Providing Resources]: //developer.android.com/guide/topics/resources/providing-resources.html
--->
+> 参阅 [资源配备]。
 
 > **注**：该字符串资源与 ID 使用了相同的名称（`edit_message`）。然而，对于资源的引用是区分类型的（比如 `id` 和 `字符串`），因此，使用相同的名称不会引起冲突。
 
@@ -274,10 +270,11 @@ res/layout/content\_my.xml
 [android:layout_height]: //developer.android.com/reference/android/view/View.html#attr_android:layout_height
 [android:layout_weight]: //developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html#weight
 [android:layout_width]:  //developer.android.com/reference/android/view/View.html#attr_android:layout_width
-[android:orientation]: //developer.android.com/reference/android/widget/LinearLayout.html#attr_android:orientation
+[android:orientation]:   //developer.android.com/reference/android/widget/LinearLayout.html#attr_android:orientation
 [android:text]: //developer.android.com/reference/android/widget/TextView.html#attr_android:text
-[text field]:   //developer.android.com/guide/topics/ui/controls/text.html
+[text field]:    //developer.android.com/guide/topics/ui/controls/text.html
 [布局向导]:      //developer.android.com/guide/topics/ui/declaring-layout.html
+[资源配备]:      //developer.android.com/guide/topics/resources/providing-resources.html
 [兼容不同的设备]: ../supporting-devices/index.html
 
 [figure_1_viewgroup]:        ./viewgroup.png
