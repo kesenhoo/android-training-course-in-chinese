@@ -84,7 +84,7 @@ res/layout/content_my.xml
 
 各属性说明:
 
-#### [android:id]
+### [android:id]
 
 这是定义 View 的唯一标识符。可以在程序代码中通过该标识符对对象进行引用，例如对这个对象进行读和修改的操作（在下一课里将会用到）。
 
@@ -92,11 +92,11 @@ res/layout/content_my.xml
 
 `+` 号只是当你第一次定义一个资源 ID 的时候需要。这里是告诉 SDK 此资源 ID 需要被创建出来。在应用程序被编译之后，SDK 就可以直接使用 ID 值，edit_message 是在项目 `gen/R.java` 文件中创建一个新的标识符，这个标识符就和 [EditText] 关联起来了。一旦资源 ID 被创建了，其他资源如果引用这个 ID 就不再需要 `+` 号了。这里是唯一一个需要 `+` 号的属性。
 
-#### [android:layout_width] 和 [android:layout_height]
+### [android:layout_width] 和 [android:layout_height]
 
 对于宽和高不建议指定具体的大小，使用 `"wrap_content"` 指定之后，这个视图将只占据内容大小的空间。如果你使用了 `"match_parent"`，这时 [EditText] 将会布满整个屏幕，因为它将适应父布局的大小。更多信息，请参考 [布局向导]。
 
-#### [android:hint]
+### [android:hint]
 
 当文本框为空的时候，会默认显示这个字符串。对于字符串 `"@string/edit_message"` 的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用 `+` 号。然而，由于你还没有定义字符串的值，所以在添加 `@string/edit_message` 的时候会出现编译错误。在下一节的教程中你将定义字符串资源，到时候就不会报错了。
 
