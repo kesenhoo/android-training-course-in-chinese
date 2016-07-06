@@ -28,11 +28,11 @@ Layouts 是 [ViewGroup] 的子类。我们将在接下来的教程中练习如�
 
    在 Android Studio 中打开布局文件时，可以看到一个 Preview 面板。点击这个面板中的标签，可利用 WYSIWYG（所见即所得）工具在 Design 面板看到对应的图形化效果。但在本节中，我们将学习如何直接修改 XML 文件。
 
-3. 删除 <[TextView]> 标签。
+3. 删除 [&lt;TextView&gt;] 标签。
 
-4. 把 <[RelativeLayout]> 标签改为 <[LinearLayout]>。
+4. 把 [&lt;RelativeLayout&gt;] 标签改为 [&lt;LinearLayout&gt;]。
 
-5. 为 <[LinearLayout]> 添加 [android:orientation] 属性并设置值为 `"horizontal"`。
+5. 为 [&lt;LinearLayout&gt;] 添加 [android:orientation] 属性并设置值为 `"horizontal"`。
 
 6. 去掉 `android:padding` 属性和 `tools:context` 属性。
 
@@ -51,7 +51,7 @@ res/layout/content\_my.xml
     tools:showIn="@layout/activity_my">
 ```
 
-[LinearLayout] 是 [ViewGroup] 的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性 [android:orientation] 决定。[LinearLayout] 里的子布局按照 XML 里定义的顺序显示在屏幕上。
+[LinearLayout] 是 [ViewGroup] 的子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性 [android:orientation] 决定。[LinearLayout] 里的子布局按照 XML 里定义的顺序显示在屏幕上。
 
 所有的 Views 都会用到 [android:layout_width] 和 [android:layout_height] 这两个属性来设置自身的大小。
 
@@ -63,7 +63,7 @@ res/layout/content\_my.xml
 
 与其它 [View] 一样，我们需要定义 XML 里的某些属性来指定 [EditText] 的属性值。以下是应该在线性布局里指定的一些属性元素：
 
-1. 在 `content_my.xml` 文件的 <[LinearLayout]> 标签内定义一个 <[EditText]> 标签，并设置 `id` 属性为 `@+id/edit_message`。
+1. 在 `content_my.xml` 文件的 [&lt;LinearLayout&gt;] 标签内定义一个 [&lt;EditText&gt;] 标签，并设置 `id` 属性为 `@+id/edit_message`。
 
 2. 设置 `layout_width` 和 `layout_height` 属性为 `wrap_content`。
 
@@ -108,7 +108,7 @@ res/layout/content\_my.xml
 >
 > 参阅 [资源配备]。
 
-<!-- 这是一条看不见的分割线，用于分割上下两段引用 -->
+<!-- 这是一条看不见的分割线，用于分割上下两段引用（Markdown 标记“>”） -->
 
 > **注**：该字符串资源与 ID 使用了相同的名称（`edit_message`）。然而，对于资源的引用是区分类型的（比如 `id` 和 `字符串`），因此，使用相同的名称不会引起冲突。
 
@@ -144,13 +144,13 @@ res/layout/content\_my.xml
 
 1. 在 Android Studio 里，编辑 `res/layout` 下的 `content_my.xml` 文件。
 
-2. 在 <[LinearLayout]> 内部的 <[EditText]> 标签之后定义一个 <[Button]> 标签。
+2. 在 [&lt;LinearLayout&gt;] 内部的 [&lt;EditText&gt;] 标签之后定义一个 [&lt;Button&gt;] 标签。
 
 3. 设置按钮的 width 和 height 属性值为 `"wrap_content"` 以便让按钮的大小能完整显示文字。
 
 4. 定义按钮的文本使用 [android:text] 属性，设置值为相似上一节中定义好的 `button_send` 字符串资源。
 
-此时的 <[LinearLayout]> 看起来应该是这样：
+此时的 [&lt;LinearLayout&gt;] 看起来应该是这样：
 
 res/layout/content\_my.xml
 
@@ -195,9 +195,9 @@ res/layout/content\_my.xml
 
 为让 [EditText] 充满剩余空间，做如下操作：
 
-1. 在 `content_my.xml` 文件里，设置 <[EditText]> 的 `layout_weight` 属性值为 `1`。
+1. 在 `content_my.xml` 文件里，设置 [&lt;EditText&gt;] 的 `layout_weight` 属性值为 `1`。
 
-2. 设置 <[EditText]> 的 `layout_width` 值为 `0dp`。
+2. 设置 [&lt;EditText&gt;] 的 `layout_width` 值为 `0dp`。
 
 res/layout/content\_my.xml
 
@@ -260,11 +260,19 @@ res/layout/content\_my.xml
 [下一节：启动另一个 Activity](./starting-activity.html)
 
 
+
 [Activity]: //developer.android.com/reference/android/app/Activity.html
 [Button]:   //developer.android.com/guide/topics/ui/controls/button.html
+[&lt;Button&gt;]: //developer.android.com/reference/android/widget/Button.html
 [EditText]: //developer.android.com/reference/android/widget/EditText.html
+[&lt;EditText&gt;]: //developer.android.com/reference/android/widget/EditText.html
 [Layout]:   //developer.android.com/guide/topics/ui/declaring-layout.html
 [LinearLayout]: //developer.android.com/reference/android/widget/LinearLayout.html
+[&lt;LinearLayout&gt;]: //developer.android.com/reference/android/widget/LinearLayout.html
+[RelativeLayout]: //developer.android.com/reference/android/widget/RelativeLayout.html
+[&lt;RelativeLayout&gt;]: //developer.android.com/reference/android/widget/RelativeLayout.html
+[TextView]: //developer.android.com/reference/android/widget/TextView.html
+[&lt;TextView&gt;]: //developer.android.com/reference/android/widget/TextView.html
 [ViewGroup]:    //developer.android.com/reference/android/view/ViewGroup.html
 [View]:         //developer.android.com/reference/android/view/View.html
 [android:hint]: //developer.android.com/reference/android/widget/TextView.html#attr_android:hint
