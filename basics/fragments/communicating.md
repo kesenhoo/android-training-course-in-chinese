@@ -1,14 +1,16 @@
-# Fragments之间的交互
+# Fragments 之间的交互
 
-> 编写：[fastcome1985](https://github.com/fastcome1985) - 原文：<https://developer.android.com/training/basics/fragments/communicating.html>
+> 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/communicating.html>
 
-* 为了重用 Fragment UI 组件，我们应该把每一个 Fragment 都构建成完全的自包含的、模块化的组件，定义他们自己的布局与行为。定义好这些模块化的 Fragment 后，就可以让他们关联 Activity，使他们与 Application 的逻辑结合起来，实现全局的复合的 UI。
+[fastcome1985]: https://github.com/fastcome1985
 
-* 通常 Fragment 之间可能会需要交互，比如基于用户事件改变 Fragment 的内容。所有 Fragment 之间的交互需要通过他们关联的 Activity，两个 Fragment 之间不应该直接交互。
+为了重用 Fragment UI 组件，我们应该把每一个 Fragment 都构建成完全的自包含的、模块化的组件，定义他们自己的布局与行为。定义好这些模块化的 Fragment 后，就可以让他们关联 Activity，使他们与 Application 的逻辑结合起来，实现全局的复合的 UI。
+
+通常 Fragment 之间可能会需要交互，比如基于用户事件改变 Fragment 的内容。所有 Fragment 之间的交互需要通过他们关联的 Activity，两个 Fragment 之间不应该直接交互。
 
 ## 定义一个接口
 
-* 为了让 Fragment 与 Activity 交互，可以在 Fragment 类中定义一个接口，并在 Activity 中实现。Fragment 在他们生命周期的 onAttach() 方法中获取接口的实现，然后调用接口的方法来与 Activity 交互。
+为了让 Fragment 与 Activity 交互，可以在 Fragment 类中定义一个接口，并在 Activity 中实现。Fragment 在他们生命周期的 onAttach() 方法中获取接口的实现，然后调用接口的方法来与 Activity 交互。
 
 下面是一个 Fragment 与 Activity 交互的例子：
 
@@ -39,9 +41,9 @@ public class HeadlinesFragment extends ListFragment {
 }
 ```
 
-* 现在 Fragment 就可以通过调用 `OnHeadlineSelectedListener` 接口实例的 `mCallback` 中的 `onArticleSelected()`（也可以是其它方法）方法与 Activity 传递消息。
+现在 Fragment 就可以通过调用 `OnHeadlineSelectedListener` 接口实例的 `mCallback` 中的 `onArticleSelected()`（也可以是其它方法）方法与 Activity 传递消息。
 
-* 举个例子，在 Fragment 中的下面的方法在用户点击列表条目时被调用，Fragment 用回调接口来传递事件给父 Activity。
+举个例子，在 Fragment 中的下面的方法在用户点击列表条目时被调用，Fragment 用回调接口来传递事件给父 Activity。
 
 ```java
  @Override
@@ -53,9 +55,9 @@ public class HeadlinesFragment extends ListFragment {
 
 ## 实现接口
 
-* 为了接收回调事件，宿主 Activity 必须实现在 Fragment 中定义的接口。
+为了接收回调事件，宿主 Activity 必须实现在 Fragment 中定义的接口。
 
-* 举个例子，下面的 Activity 实现了上面例子中的接口。
+举个例子，下面的 Activity 实现了上面例子中的接口。
 
 ```java
 public static class MainActivity extends Activity
@@ -69,12 +71,14 @@ public static class MainActivity extends Activity
 }
 ```
 
-
 ## 传消息给 Fragment
 
-* 宿主 Activity 通过 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)">findFragmentById()</a> 方法获取 [fragment](http://developer.android.com/reference/android/support/v4/app/Fragment.html) 的实例，然后直接调用 Fragment 的 public 方法来向 Fragment 传递消息。
+宿主 Activity 通过 [findFragmentById()] 方法获取 [Fragment] 的实例，然后直接调用 Fragment 的 public 方法来向 Fragment 传递消息。
 
-* 例如，假设上面所示的 Activity 可能包含另外一个 Fragment，这个 Fragment 用来展示从上面的回调方法中返回的指定的数据。在这种情况下，Activity 可以把从回调方法中接收到的信息传递给这个展示数据的 Fragment。
+[findFragmentById()]: http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)
+[Fragment]: http://developer.android.com/reference/android/support/v4/app/Fragment.html
+
+例如，假设上面所示的 Activity 可能包含另外一个 Fragment，这个 Fragment 用来展示从上面的回调方法中返回的指定的数据。在这种情况下，Activity 可以把从回调方法中接收到的信息传递给这个展示数据的 Fragment。
 
 ```java
 public static class MainActivity extends Activity

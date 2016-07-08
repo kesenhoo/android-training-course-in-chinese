@@ -1,6 +1,8 @@
 # 使用Fragment建立动态UI
 
-> 编写：[fastcome1985](https://github.com/fastcome1985) - 原文：<https://developer.android.com/training/basics/fragments/index.html>
+> 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/index.html>
+
+[fastcome1985]: https://github.com/fastcome1985
 
 为了在 Android 上为用户提供动态的、多窗口的交互体验，需要将 UI 组件和 Activity 操作封装成模块进行使用，这样我们就可以在 Activity 中对这些模块进行切入切出操作。可以用 [Fragment] 创建这些模块，Fragment 就像一个嵌套的 Activity，拥有自己的布局（Layout）并管理自己的生命周期。
 
