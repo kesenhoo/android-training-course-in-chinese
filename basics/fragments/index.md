@@ -14,7 +14,7 @@ Fragment 定义了自己的布局后，它可以在 Activity 中与其他 Fragme
 
 ## Lessons
 
-* [**创建一个 Fragment**]
+* [**创建 Fragment**]
 
   学习如何创建 Fragment，以及实现其生命周期内的基本功能。
 
@@ -29,6 +29,6 @@ Fragment 定义了自己的布局后，它可以在 Activity 中与其他 Fragme
 
 [Fragment]: //developer.android.com/intl/zh-cn/reference/android/app/Fragment.html
 [FragmentBasics.zip]: //developer.android.com/shareables/training/FragmentBasics.zip "FragmentBasics.zip"
-[**创建一个 Fragment**]: ./creating.html
+[**创建 Fragment**]: ./creating.html
 [**构建有弹性的 UI**]: ./fragment-ui.html
 [**与其他 Fragment 交互**]: ./communicating.html

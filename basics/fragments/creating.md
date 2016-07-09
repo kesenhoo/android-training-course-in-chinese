@@ -1,4 +1,4 @@
-# 创建一个 Fragment
+# 创建 Fragment
 
 > 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/creating.html>
 
@@ -6,7 +6,7 @@
 
 在开始之前，必须在项目中先引用 Support Library。如果你从未使用过 Support Library，可根据文档 [设置 Support Library] 在项目中使用 **v4** 库。当然，也可以使用包含 [APP Bar] 的 **v7 appcompat** 库。该库兼容 Android 2.1 (API level 7)，同时也包含了 [Fragment] API。
 
-## 创建一个 Fragment 类
+## 创建 Fragment 类
 
 首先从 [Fragment] 继承并创建 Fragment，然后在关键的生命周期方法中插入代码（就和在处理 [Activity] 时一样）。
 

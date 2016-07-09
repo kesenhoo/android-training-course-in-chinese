@@ -4,41 +4,41 @@
 
 [fastcome1985]: https://github.com/fastcome1985
 
-如果我们的 APP 设计成要支持范围广泛的屏幕尺寸时，在可利用的屏幕空间内，我们可以通过在不同的布局配置中重用 Fragment 来优化用户体验。
+在设计支持各种屏幕尺寸的应用时，你可以在不同的布局配置中重复使用 Fragment ，以便根据相应的屏幕空间提供更出色的用户体验。
 
-比如，一个手持设备可能适合一次只有一个 Fragment 的单面板用户交互。而在更大屏幕尺寸的平板电脑上，我们可能更想要两个 Fragment 并排在一起，用来向用户展示更多信息。
+例如，一次只显示一个 Fragment 可能就很适合手机这种单窗格界面，但在平板电脑上，你可能需要设置并列的 Fragment，因为平板电脑的屏幕尺寸较宽阔，可向用户显示更多信息。
 
 ![][fragments-screen-mock]
 
 [fragments-screen-mock]: ./fragments-screen-mock.png
 
-**图1：** 两个 Fragments，在同一个 Activity 不同屏幕尺寸中用不同的配置来展示。在大屏幕上，两个 Fragment 被并排放置，在手持设备上，一次只放置一个 Fragment，所以在用户导航中，两个 Fragment 必须进行替换。
+**图1：** 两个 Fragment，显示在不同尺寸屏幕上同一 Activity 的不同配置中。在较宽阔的屏幕上，两个 Fragment 可并列显示；在手机上，一次只能显示一个 Fragment，因此必须在用户导航时更换 Fragment。
 
-[FragmentManager] 类为在 Activity 运行时对 Fragment 进行添加，移除，替换等操作提供了方法，来实现动态的用户体验。
+利用 [FragmentManager] 类提供的方法，你可以在运行时添加、移除和替换 Activity 中的 Fragment，以便为用户提供一种动态体验。
 
 [FragmentManager]: https://developer.android.com/reference/android/support/v4/app/FragmentManager.html
 
-## 在 Activity 运行时添加 Fragment
+## 在运行时向 Activity 添加 Fragment
 
-比起用 `<fragment>` 标签在 Activity 的布局文件中定义 Fragment，就像 [上节课] 说的，我们还可以在 Activity 运行时动态添加 Fragment，如果打算在 Activity 的生命周期内替换 Fragment，这是必须的。
+你可以在 Activity 运行时向其添加 Fragment，而不用像 [上一课] 中介绍的那样，使用 `<fragment>` 元素在布局文件中为 Activity 定义 Fragment。如果你打算在 Activity 运行周期内更改 Fragment，就必须这样做。
 
-为了执行 Fragment 的增加或者移除操作，必须通过 [FragmentManager] 创建一个 [FragmentTransaction] 对象, FragmentTransaction 提供了用来增加、移除、替换以及其它一些操作的 API。
+要执行添加或移除 Fragment 等事务，你必须使用 [FragmentManager] 创建一个 [FragmentTransaction]，后者可提供用于执行添加、移除、替换以及其他 Fragment 事务的 API。
 
 [FragmentTransaction]: http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentTransaction.html
 
-如果我们的 Activity 允许 Fragment 移除或者替换，我们应该在 Activity 的 [onCreate()] 方法中添加初始化 Fragment(s)。
+如果 Activity 中的 Fragment 可以移除和替换，你应在调用 Activity 的 [onCreate()] 方法期间为 Activity 添加初始 Fragment(s)。
 
 [onCreate()]: http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)
 
-运用 Fragment（尤其是那些在运行时添加的）的一个很重要的规则就是在布局中必须有一个容器 [View]，Fragment 的 Layout 将会放在这个 View 里面。
+在处理 Fragment（特别是在运行时添加的 Fragment ）时，请谨记以下重要规则：必须在布局中为 Fragment 提供 [View] 容器，以便保存 Fragment 的布局。
 
 [View]: http://developer.android.com/reference/android/view/View.html
 
-下面的这个布局是 [上节课] 的一次只显示一个 Fragment 的布局的替代布局。为了替换 Fragment，这个 Activity 的布局包含了一个空的 [FrameLayout] 作为 Fragment 的容器。
+下面是 [上一课] 所示布局的替代布局，这种布局一次只会显示一个 Fragment。要用一个 Fragment 替换另一个 Fragment，Activity 的布局中需要包含一个作为 Fragment 容器的空 [FrameLayout]。
 
 [FrameLayout]: http://developer.android.com/reference/android/widget/FrameLayout.html
 
-注意文件名与上节课的布局一样，但是文件目录没有 `large` 标识， 所以这一布局将会在比 large 小的屏幕上被使用，因为该屏幕无法满足同时放置两个 Fragments。
+请注意，该文件名与上一课中布局文件的名称相同，但布局目录没有 `large` 这一限定符。因此，此布局会在设备屏幕小于“large”的情况下使用，原因是尺寸较小的屏幕不适合同时显示两个 Fragment。
 
 res/layout/news_articles.xml:
 
@@ -49,18 +49,18 @@ res/layout/news_articles.xml:
     android:layout_height="match_parent" />
 ```
 
-在 Activity 中，用 Support Library API 调用 [getSupportFragmentManager()] 方法获取 [FragmentManager] 对象，然后调用 [beginTransaction()] 方法创建一个 [FragmentTransaction] 对象，然后调用 [add()] 方法添加一个 Fragment。
+在 Activity 中，用 Support Library API 调用 [getSupportFragmentManager()] 以获取 [FragmentManager]，然后调用 [beginTransaction()] 创建 [FragmentTransaction]，然后调用 [add()] 添加 Fragment。
 
 [getSupportFragmentManager()]: http://developer.android.com/intl/zh-cn/reference/android/support/v4/app/FragmentActivity.html#getSupportFragmentManager%28%29
 [beginTransaction()]: http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#beginTransaction()
 [FragmentTransaction]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html
 [add()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)
 
-可以使用同一个 [FragmentTransaction] 进行多次 Fragment 事务。完成这些变化操作，准备开始执行改变时，必须调用 [commit()] 方法。
+你可以使用同一个 [FragmentTransaction] 对 Activity 执行多 Fragment 事务。当你准备好进行更改时，必须调用 [commit()]。
 
 [commit()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()
 
-下例显示了如何添加一个 Fragment 到之前的 Layout 中：
+例如，下面介绍了如何为上述布局添加 Fragment：
 
 ```java
 import android.os.Bundle;
@@ -98,25 +98,25 @@ public class MainActivity extends FragmentActivity {
 }
 ```
 
-因为 Fragment 是在 Activity 运行时被添加进来时（不是在 XML 布局中用 `<fragment>` 定义的），Activity 可以移除这个 Fragment 或者用另外一个来替换它。
+由于该 Fragment 已在运行时添加到 [FrameLayout] 容器中，而不是在 Activity 布局中通过 `<fragment>` 元素进行定义，因此该 Activity 可以移除和替换这个 Fragment。
 
-## 替换 Fragment
+## 用一个 Fragment 替换另一个 Fragment
 
-替换 Fragment 的过程类似于添加过程，只需要将 [add()] 方法替换为 [replace()] 方法。
+替换 Fragment 的步骤与添加 Fragment 的步骤相似，但需要调用 [replace()] 方法，而非 [add()]。
 
 [add()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#add(android.support.v4.app.Fragment,%20java.lang.String)
 [replace()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#replace(int,%20android.support.v4.app.Fragment)
 
-记住在执行 Fragment 事务时，如移除或者替换，我们经常要适当地让用户可以向后导航与“撤销”这次改变。为了让用户向后导航 Fragment 事务，我们必须在 [FragmentTransaction] 提交前调用 [addToBackStack()] 方法。
+请注意，当你执行替换或移除 Fragment 等 Fragment 事务时，最好能让用户向后导航和“撤消”所做更改。要通过 Fragment 事务允许用户向后导航，你必须调用 [addToBackStack()]，然后再执行 [FragmentTransaction]。
 
 [addToBackStack()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)
 
-> **Note：** 当移除或者替换一个 Fragment 并把它放入返回栈中时，被移除的 Fragment 的生命周期是 Stopped（不是 Destoryed）。当用户返回重新恢复这个 Fragment，它的生命周期是 Restarts。如果没有把 Fragment 放入返回栈中，那么当它被移除或者替换时，其生命周期是 Destoryed。
+> **注：** 当你移除或替换 Fragment 并向返回堆栈添加事务时，已移除的 Fragment 会停止（而不是销毁）。如果用户向后导航，还原该 Fragment，它会重新启动。如果你没有向返回堆栈添加事务，那么该 Fragment 在移除或替换时就会被销毁。
 
-下面是一个 Fragment 替换的例子：
+替换 Fragment 的示例：
 
 ```java
-// Create fragment and give it an argument specifying the article it should show
+// 创建 Fragment 并为其添加一个参数，用来指定应显示的文章
 ArticleFragment newFragment = new ArticleFragment();
 Bundle args = new Bundle();
 args.putInt(ArticleFragment.ARG_POSITION, position);
@@ -124,16 +124,16 @@ newFragment.setArguments(args);
 
 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack so the user can navigate back
+// 将 fragment_container View 中的内容替换为此 Fragment，
+// 然后将该事务添加到返回堆栈，以便用户可以向后导航
 transaction.replace(R.id.fragment_container, newFragment);
 transaction.addToBackStack(null);
 
-// Commit the transaction
+// 执行事务
 transaction.commit();
 ```
 
-[addToBackStack()] 方法提供了一个可选的 String 参数为事务指定了一个唯一的名字。除非打算用 [FragmentManager.BackStackEntry] API 来进行一些高级的 Fragments 操作，这个名字不是必须的。
+[addToBackStack()] 方法可接受可选的字符串参数，来为事务指定独一无二的名称。除非你打算使用 [FragmentManager.BackStackEntry] API 执行高级 Fragment 操作，否则无需使用此名称。
 
 [addToBackStack()]: http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#addToBackStack(java.lang.String)
 [FragmentManager.BackStackEntry]: http://developer.android.com/reference/android/support/v4/app/FragmentManager.BackStackEntry.html
