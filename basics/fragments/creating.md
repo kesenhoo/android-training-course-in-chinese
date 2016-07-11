@@ -22,7 +22,7 @@ public class ArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
         Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // 拉伸该 Fragment 的布局
         return inflater.inflate(R.layout.article_view, container, false);
     }
 }

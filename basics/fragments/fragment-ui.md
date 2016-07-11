@@ -2,7 +2,7 @@
 
 > 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/fragment-ui.html>
 
-在设计支持各种屏幕尺寸的应用时，你可以在不同的布局配置中重复使用 Fragment ，以便根据相应的屏幕空间提供更出色的用户体验。
+在设计支持各种屏幕尺寸的应用时，你可以在不同的布局配置中重复使用 Fragment，以便根据相应的屏幕空间提供更出色的用户体验。
 
 例如，一次只显示一个 Fragment 可能就很适合手机这种单窗格界面，但在平板电脑上，你可能需要设置并列的 Fragment，因为平板电脑的屏幕尺寸较宽阔，可向用户显示更多信息。
 
@@ -51,25 +51,23 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_articles);
 
-        // Check that the activity is using the layout version with
-        // the fragment_container FrameLayout
+        // 确认 Activity 使用的布局版本包含 fragment_container FrameLayout
         if (findViewById(R.id.fragment_container) != null) {
 
-            // However, if we're being restored from a previous state,
-            // then we don't need to do anything and should return or else
-            // we could end up with overlapping fragments.
+            // 不过，如果我们要从先前的状态还原，则无需执行任何操作而应返回，否则
+            // 就会得到重叠的 Fragment。
             if (savedInstanceState != null) {
                 return;
             }
 
-            // Create a new Fragment to be placed in the activity layout
+            // 创建一个要放入 Activity 布局中的新 Fragment
             HeadlinesFragment firstFragment = new HeadlinesFragment();
 
-            // In case this activity was started with special instructions from an
-            // Intent, pass the Intent's extras to the fragment as arguments
+            // 如果此 Activity 是通过 Intent 发出的特殊指令来启动的，
+            // 请将该 Intent 的 extras 以参数形式传递给该 Fragment
             firstFragment.setArguments(getIntent().getExtras());
 
-            // Add the fragment to the 'fragment_container' FrameLayout
+            // 将该 Fragment 添加到“fragment_container” FrameLayout 中
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, firstFragment).commit();
         }
