@@ -2,8 +2,6 @@
 
 > 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/communicating.html>
 
-[fastcome1985]: https://github.com/fastcome1985
-
 为了重用 Fragment UI 组件，你应该把每个 Fragment 都构建成完全自包含的、模块化的组件，即，定义它们自己的布局与行为。一旦你定义了这些可重用的 Fragment，你就可以通过应用程序逻辑让它们关联到 Activity，以实现整体的复合 UI。
 
 通常 Fragment 之间可能会需要交互，比如基于用户事件的内容变更。所有 Fragment 之间的交互应通过与之关联的 Activity 来完成。两个 Fragment 之间不应直接交互。
@@ -75,9 +73,6 @@ public static class MainActivity extends Activity
 
 宿主 Activity 通过 [findFragmentById()] 获取 [Fragment] 的实例，然后直接调用 Fragment 的 public 方法向 Fragment 传递消息。
 
-[findFragmentById()]: http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)
-[Fragment]: http://developer.android.com/reference/android/support/v4/app/Fragment.html
-
 例如，假设上面所示的 Activity 可能包含另一个 Fragment，该 Fragment 用于展示从上面的回调方法中返回的指定的数据。在这种情况下，Activity 可以把从回调方法中接收到的信息传递到这个展示数据的 Fragment。
 
 ```java
@@ -121,3 +116,9 @@ public static class MainActivity extends Activity
     }
 }
 ```
+
+
+[fastcome1985]: https://github.com/fastcome1985
+
+[findFragmentById()]: http://developer.android.com/reference/android/support/v4/app/FragmentManager.html#findFragmentById(int)
+[Fragment]: http://developer.android.com/reference/android/support/v4/app/Fragment.html

@@ -2,8 +2,6 @@
 
 > 编写：[fastcome1985] - 原文：<https://developer.android.com/training/basics/fragments/index.html>
 
-[fastcome1985]: https://github.com/fastcome1985
-
 为了在 Android 上为用户提供动态的、多窗口的交互体验，需要将 UI 组件和 Activity 操作封装成模块进行使用，这样我们就可以在 Activity 中对这些模块进行切入切出操作。可以用 [Fragment] 创建这些模块，Fragment 就像一个嵌套的 Activity，拥有自己的布局（Layout）并管理自己的生命周期。
 
 Fragment 定义了自己的布局后，它可以在 Activity 中与其他 Fragment 生成不同的组合，从而为不同的屏幕尺寸生成不同的布局（小屏幕一次也许只能显示一个 Fragment，大屏幕则可以显示更多）。
@@ -26,6 +24,8 @@ Fragment 定义了自己的布局后，它可以在 Activity 中与其他 Fragme
 
   学习如何在 Fragment 与 Activity 或多个 Fragment 间进行交互。
 
+
+[fastcome1985]: https://github.com/fastcome1985
 
 [Fragment]: //developer.android.com/intl/zh-cn/reference/android/app/Fragment.html
 [FragmentBasics.zip]: //developer.android.com/shareables/training/FragmentBasics.zip "FragmentBasics.zip"
