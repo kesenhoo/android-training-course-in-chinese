@@ -89,7 +89,7 @@ public class MainActivity extends FragmentActivity {
 
 [Support Library]: https://developer.android.com/tools/support-library/index.html
 [Fragment]: https://developer.android.com/reference/android/support/v4/app/Fragment.html
-[Support Library Setup]: https://developer.android.com/tools/support-library/setup.html
+[设置 Support Library]: https://developer.android.com/tools/support-library/setup.html
 [Action Bar]: http://developer.android.com/guide/topics/ui/actionbar.html
 [APP Bar]: https://developer.android.com/training/appbar/index.html
 [Activity]: https://developer.android.com/reference/android/app/Activity.html
