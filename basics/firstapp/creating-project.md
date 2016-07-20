@@ -31,7 +31,7 @@
 
 5\. 不要勾选其他选项 (TV, Wear, and Glass) ，点击 **Next**.
 
-6\. 在**Add an activity to *<template\>*** 窗口选择**Blank Activity**，点击 **Next**.
+6\. 在**Add an activity to *<template\>*** 窗口选择**Basic Activity**，点击 **Next**.
 
 7\. 在**Choose options for your new file** 窗口修改**Activity Name** 为*MyActivity*，修改 **Layout Name** 为*activity\_my*，**Title** 修改为*MyActivity*，**Menu Resource Name** 修改为*menu_my*。
 
