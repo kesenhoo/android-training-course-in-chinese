@@ -41,6 +41,6 @@
 当你声明一个权限后，系统的行为取决于权限是多么的敏感。如果权限不影响用户的隐私，系统将自动授予权限。如果权限可能授予对敏感用户信息的访问权限，则系统要求用户批准请求。有关不同类型的权限的更多信息，请参见“[Normal and Dangerous Permissions](Normal and Dangerous Permissions)”。
 
 作者 [@Goerver][1]
-2015 年 06月 15日
+2016 年 09月 4日
 
 [1]:http://www.flyfishonline.com
