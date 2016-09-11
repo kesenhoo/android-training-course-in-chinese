@@ -183,7 +183,7 @@ Services that cost you money: send SMS messages, directly call phone numbers
 继续阅读：
 * [意味着功能要求的权限](https://developer.android.com/guide/topics/manifest/uses-feature-element.html#permissions)
 
-* [<uses-permission>](https://developer.android.com/guide/topics/manifest/uses-permission-element.html)
+* [ uses-permission ](https://developer.android.com/guide/topics/manifest/uses-permission-element.html)
 
 * [Manifest.permission](https://developer.android.com/reference/android/Manifest.permission.html)
 
