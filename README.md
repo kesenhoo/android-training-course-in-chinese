@@ -39,17 +39,6 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 2. 在线阅读的文章底部留言，提出问题与修改意见，我们会及时处理。
 3. 写邮件给发起人：**[胡凯](http://hukai.me)**，邮箱是kesenhoo at gmail.com，邮件内容注明需要纠正的章节段落位置，并给出纠正的建议。
 
-你也可以选择加入QQ群和学习Training课程的小伙伴一起讨论交流：
-
-* Android Training基础群，适合刚接触Android Training课程的同学。
-    * 基础群(1)：**363415744**，已满
-    * 基础群(2)：**399077455**，已满
-    * 基础群(3)：**458929573**
-* Android Training进阶群：适合实际Android开发经验1-3年的同学。
-    * 进阶群(1)：**414115939**，已满
-    * 进阶群(2)：**386059229**
-* Android Training高级群：**399096506**，理论上Android开发经验至少3年以上，部分能力突出的也可以申请，请在申请入群的时候填写能力举证(例如，XXX公司Android高级开发/个人博客/Github账号等等)，未填写的不予通过，谢谢配合！
-
 ## 课程结构
 
 * [序言](http://hukai.me/android-training-course-in-chinese/index.html)
