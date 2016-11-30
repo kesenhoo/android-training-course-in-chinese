@@ -81,7 +81,7 @@ class PhotoDecodeRunnable implements Runnable {
 ...
 ```
 
-*PhotoTask*类还包含一个用于给[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)显示[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)的handler。虽然[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)和[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)ImageView</a>的引用在同一个对象中，但你不能把这个[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)分配给[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)去显示，因为它们并没有运行在UI线程中。
+*PhotoTask*类还包含一个用于显示[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)的[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)的引用。虽然[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)和[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)ImageView</a>的引用在同一个对象中，但你不能把这个[Bitmap](http://developer.android.com/reference/android/graphics/Bitmap.html)分配给[ImageView](http://developer.android.com/reference/android/widget/ImageView.html)去显示，因为它们并没有运行在UI线程中。
 
 这时，下一步应该发送这个状态给`PhotoTask`对象。
 
@@ -123,7 +123,7 @@ public class PhotoTask {
 ```
 
 ###转移数据到UI
-从*PhotoTask*对象那里，*PhotoManager*对象收到了一个状态码和一个*PhotoTask*对象的handler。因为状态码是*TASK_COMPLETE*，所以创建一个[Message](http://developer.android.com/reference/android/os/Message.html)应该包含状态和任务对象，然后把它发送给[Handler](http://developer.android.com/reference/android/os/Handler.html)：
+从*PhotoTask*对象那里，*PhotoManager*对象收到了一个状态码和一个*PhotoTask*对象的引用。因为状态码是*TASK_COMPLETE*，所以创建一个[Message](http://developer.android.com/reference/android/os/Message.html)应该包含状态和任务对象，然后把它发送给[Handler](http://developer.android.com/reference/android/os/Handler.html)：
 
 ```java
 public class PhotoManager {
