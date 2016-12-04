@@ -1,4 +1,4 @@
-# Android官方培训课程中文版(v0.9.6)
+# Android官方培训课程中文版(v0.9.7)
 
 ![Android Training](android_training.jpg)
 
@@ -16,6 +16,7 @@ Google Android团队在2012年的时候开设了**Android Training**板块 - <ht
 **<http://hukai.me/android-training-course-in-chinese/index.html>**
 
 ### 更新记录
+* v0.9.7 - 2016/11/04
 * v0.9.6 - 2016/05/22
 * v0.9.5 - 2015/12/15
 * v0.9.4 - 2015/06/11
