@@ -243,7 +243,6 @@ res/layout/content\_my.xml
 ```
 
 ## 运行应用
->>>>>>> 51f0b0ef7233fd58509a56bffbecf88563303364
 
 整个布局默认被应用于创建项目的时候 SDK 工具自动生成的 [Activity]，运行看下效果：
 
