@@ -234,6 +234,6 @@ $ ant debug
 adb install -r app/build/outputs/apk/app-debug.apk
 ```
 
-下一小节将学习有关如何对按钮做出相应，同时读取文本中的内容，启动另外一个Activity等。
+下一小节将学习有关如何对按钮做出响应，同时读取文本中的内容，启动另外一个Activity等。
 
 [下一节：启动另一个Activity](starting-activity.html)
