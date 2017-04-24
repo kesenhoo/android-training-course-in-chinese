@@ -31,8 +31,6 @@
   * **Paused**：在这种状态下，Activity被在前台中处于半透明状态或者未覆盖整个屏幕的另一个Activity—部分阻挡。暂停的Activity不会接收用户输入并且无法执行任何代码。
   * **Stopped**：在这种状态下，Activity被完全隐藏并且对用户不可见；它被视为处于后台。停止时，Activity实例及其诸如成员变量等所有状态信息将保留，但它无法执行任何代码。
 
-其他状态（“创建”和“开始”）是瞬态，
-
 其它状态 (**Created**与**Started**)都是短暂的瞬态，系统会通过调用下一个生命周期回调方法从这些状态快速移到下一个状态。 也就是说，在系统调用 [onCreate()](http://developer.android.com/reference/android/app/Activity.html#onCreate(android.os.Bundle)) 之后，它会快速调用 [onStart()](http://developer.android.com/reference/android/app/Activity.html#onStart())，紧接着快速调用 [onResume()](http://developer.android.com/reference/android/app/Activity.html#onResume())。
 
 基本生命周期部分到此为止。现在，您将开始学习特定生命周期行为的一些知识。
