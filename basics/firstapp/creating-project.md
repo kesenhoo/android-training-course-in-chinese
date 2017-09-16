@@ -15,15 +15,12 @@
 * 如果我们还没有用Android Studio打开项目，会看到欢迎页，点击**Start a new Android Studio project**。
 * 如果已经用Android Studio打开了项目，点击菜单中的File，选择New Project来创建一个新的项目。
 
-2\.  参照图1在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**。按照如图所示的值进行填写会使得后续的操作步骤不容易出差错。
+2\.在弹出的窗口（**Configure your new project**）中填入内容，点击**Next**。按照如下的值进行填写会使得后续的操作步骤不容易出差错。
 
-* **Application Name**此处填写想呈现给用户的应用名称，此处我们使用“My First App”。
-* **Company domain** 包名限定符，Android Studio会将这个限定符应用于每个新建的Android项目。
-* **Package Name**是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，我们可以独立地编辑该包名。
-* **Project location**操作系统存放项目的目录。
-
-![studio-setup-1](studio-setup-1.png)
-**图1** Configure your new project
+* **Application Name** 此处填写想呈现给用户的应用名称，此处我们使用“My First App”。
+* **Company domain** 包名限定符，Android Studio会将这个限定符应用于每个新建的Android项目，此处使用"example.com"。
+* **Package Name** 是应用的包命名空间（同Java的包的概念），该包名在同一Android系统上所有已安装的应用中具有唯一性，由包名限定符而定。
+* **Project location** 操作系统存放项目的路径。
 
 3\. 在**Select the form factors your app will run on**窗口勾选**Phone and Tablet**。
 
@@ -33,19 +30,19 @@
 
 6\. 在**Add an activity to Mobile** 窗口选择**Empty Activity**，点击 **Next**.
 
-7\. 在**Customize the Activity** 窗口修改**Activity Name** 为*MyActivity*，修改 **Layout Name** 为*activity\_my*。
+7\. 在**Customize the Activity** 窗口保持默认设置。
 
 8\. 点击**Finish**完成创建。
 
 刚创建的Android项目是一个基础的Hello World项目，包含一些默认文件，我们花一点时间看看最重要的部分：
 
-`app/res/layout/activity_my.xml`
+`app/res/layout/activity_main.xml`
 
 这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studio会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。
 
-`app/java/com.mycompany.myfirstapp/MyActivity.java`
+`app/java/com.example.myfirstapp/MainActivity.java`
 
-用Android Studio创建新项目完成后，可在Android Studio看到该文件对应的选项卡，选中该选项卡，可以看到刚创建的Activity类的定义。编译并运行该项目后，Activity启动并加载布局文件activity_my.xml，显示一条文本："Hello world!"
+用Android Studio创建新项目完成后，可在Android Studio看到该文件对应的选项卡，选中该选项卡，可以看到刚创建的Activity类的定义。编译并运行该项目后，Activity启动并加载布局文件activity_main.xml，显示一条文本："Hello world!"
 
 `app/manifest/AndroidManifest.xml`
 
