@@ -2,138 +2,98 @@
 
 > 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
-在完成上一课(建立简单的用户界面)后，我们已经拥有了显示一个activity（一个界面）的app（应用），该activity包含了一个文本字段和一个按钮。在这节课中，我们将添加一些新的代码到`MyActivity`中，当用户点击发送(Send)按钮时启动一个新的activity。
+在完成上一课(建立简单的用户界面)后，我们已经拥有了显示一个 activity（一个界面）的app（应用），该 activity 包含了一个文本字段和一个按钮。在这节课中，你将添加一些新的代码到`MyActivity`中，当用户点击发送(Send)按钮时启动一个新的activity。
+
+> 注意：本课程内容期待的运行环境为 Android Studio 2.3及以上
 
 ## 响应Send(发送)按钮
 
-1 在Android Studio中打开res/layout目录下的content_my.xml 文件.
+按以下步骤在`MainActivity.java`文件中新增一个方法，该方法会在我们点击 Send 按钮时触发：
 
-2 为 Button 标签添加[android:onclick](http://developer.android.com/reference/android/view/View.html#attr_android:onClick)属性.
+1.打开文件 `app/java/com.example.myfirstapp/MainActivity.java`，在其中添加一个 `sendMessage()` 方法存根（Method Stub）：
 
-res/layout/content_my.xml
+```java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 
-
-```
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/button_send"
-    android:onClick="sendMessage" />
-```
-
-`android:onclick`属性的值`"sendMessage"`即为用户点击屏幕按钮时触发方法的名字。
-
-3 打开java/com.mycompany.myfirstapp目录下MyActivity.java 文件.
-
-4 在MyActivity.java 中添加sendMessage() 函数：
-
-java/com.mycompany.myfirstapp/MyActivity.java
-
-```
-/** Called when the user clicks the Send button */
-public void sendMessage(View view) {
-    // Do something in response to button
+    /** 当用户点击 Send 按钮时调用该方法 */
+    public void sendMessage(View view) {
+        // 此处的代码会在点击 Send 按钮时执行
+    }
 }
-
 ```
 
-为使系统能够将该方法（你刚在MyActivity.java中添加的sendMessage方法）与在`android:onClick`属性中提供的方法名字匹配，它们的名字必须一致，特别需要注意的是，这个方法必须满足以下条件：
+这里可能会出现名为 "Cannot resolve symbol" 的报错，在方法参数 View 下面会出现一条红色的波浪线，这是因为 Android Studio 不能解析 `View` 类。将光标移动到 View 上，然后按下 Alt + Enter （Mac中为 Option + Return）组合键快速修复。（如果出现菜单，则选择 Import class）
 
-* 是public函数
+2.现在回到 `activity_main.xml` 文件，完成对 sendMessage() 方法的调用：
+    
+    1.在布局编辑器中选中 Buton 对象
+    
+    2.在 **Property** 面板中找到 *onClick* 属性，在下拉列表中选中 **sendMessage [MainActivity]** 
+
+完成这些操作后，当点击 Send 按钮时，系统会调用 sendMessage() 方法。
+
+为保证系统能将 sendMessage() 方法与 [android:onclick] 成功匹配，这个方法需要满足以下要求：
+
+* 方法的访问修饰符为 public
 * 无返回值
-* 参数唯一(为View类型,代表被点击的视图）
+* 只有一个 [View] 类型的参数（代表被点击的 View 对象）
 
 接下来，你可以在这个方法中编写读取文本内容，并将该内容传到另一个Activity的代码。
 
 ## 构建一个Intent
 
->[Intent](http://developer.android.com/reference/android/content/Intent.html)是在不同组件中(比如两个Activity)提供运行时绑定的对象。`Intent`代表一个应用"想去做什么事"，你可以用它做各种各样的任务，不过大部分的时候他们被用来启动另一个Activity。更详细的内容可以参考[Intents and Intent Filters](http://developer.android.com/guide/components/intents-filters.html)。
+[Intent] 是一个可以为不同组件在运行时提供链接的对象，例如为两个 Activity 提供链接。 [Intent] 代表一个 app “想要做某事的意向”，你可以使用它来完成各种各样的任务，不过在本节课程中，我们只使用 intent 来启动另一个 Activity。
 
-1 在MyActivity.java的`sendMessage()`方法中创建一个`Intent`并启动名为`DisplayMessageActivity`的Activity：
+在 `MainActivity.java` 文件中，添加一个 EXTRA_MESSAGE 常量并完善 sendMesage() 方法中的代码，如下所示：
 
-java/com.mycompany.myfirstapp/MyActivity.java
+```java
+public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
 
+    /** 当用户点击 Send 按钮时调用该方法 */
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.editText);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+}
 ```
-Intent intent = new Intent(this, DisplayMessageActivity.class);
-```
->**Note**：如果使用的是类似Android Studio的IDE，这里对`DisplayMessageActivity`的引用会报错，因为这个类还不存在；暂时先忽略这个错误，我们很快就要去创建这个类了。
 
-在这个Intent构造函数中有两个参数：
+Android Studio 可能会再次出现 "Cannot resolve symbol" 的错误，同样使用 Alt + Enter （Mac中为 Option + Return）组合键快速导入类，完成后这个类的导入项如下所示：
 
-* 第一个参数是[Context](http://developer.android.com/reference/android/content/Context.html)(之所以用`this`是因为当前[Activity](http://developer.android.com/reference/android/app/Activity.html)是`Context`的子类)
-
-* 接受系统发送[Intent](http://developer.android.com/reference/android/content/Intent.html)的应用组件的[Class](http://developer.android.com/reference/java/lang/Class.html)（在这个案例中，指将要被启动的activity）。
-
-Android Studio会提示导入[Intent](http://developer.android.com/reference/android/content/Intent.html)类。
-
-2 在文件开始处导入[Intent](http://developer.android.com/reference/android/content/Intent.html)类:
-
-java/com.mycompany.myfirstapp/MyActivity.java
-
-```
+```java
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 ```
 
- >**Tip:**在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return)
+不过对 `DisplayMessageActivity` 的引用仍然会报错，因为这个类还不存在；暂时先忽略这个错误，我们很快就会解决这个问题。
 
-3 在`sendMessage()`方法里用<a href="http://developer.android.com/reference/android/app/Activity.html#findViewById(int)">findViewById()</a>方法得到[EditText](http://developer.android.com/reference/android/widget/EditText.html)元素.
+以下是 sendMessage() 方法中要注意的几个地方：
 
-java/com.mycompany.myfirstapp/MyActivity.java
+1. Intent 构造方法中有两个参数：
 
-```
-public void sendMessage(View view) {
-  Intent intent = new Intent(this, DisplayMessageActivity.class);
-  EditText editText = (EditText) findViewById(R.id.edit_message);
-}
-```
+  * 第一个参数是 [Context] (之所以用`this`是因为 [Activity] 类是`Context`的子类)
 
-4 在文件开始处导入EditText类.
+  * 接受系统发送 [Intent] 的应用组件对应的 [Class]（在这个案例中，指将要被启动的activity）
 
-在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return)
+2. [putExtra()] 方法将从 EditText 中取到的值附加到 Intent 上。 Intent 可以以键-值对的方式携带数据，这些数据称为 *extras*。此处的键是一个 public 修饰的常量——EXTRA_MESSAGE，因为在另一个 Activity 中，我们需要以这个键来获取它对应的值。以应用包名为前缀来定义 intent extras 的键是一个很好的习惯，这使得 app 在与其他 app 交互的过程中能保证这个键的唯一性。
 
-5 把EditText的文本内容关联到一个本地 message 变量，并使用putExtra()方法把值传给intent.
-
-java/com.mycompany.myfirstapp/MyActivity.java
-
-```
-public void sendMessage(View view) {
-  Intent intent = new Intent(this, DisplayMessageActivity.class);
-  EditText editText = (EditText) findViewById(R.id.edit_message);
-  String message = editText.getText().toString();
-  intent.putExtra(EXTRA_MESSAGE, message);
-}
-```
-[Intent](http://developer.android.com/reference/android/content/Intent.html)可以携带称作 *extras* 的键-值对数据类型。 <a href="http://developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, android.os.Bundle)">putExtra()</a>方法把键名作为第一个参数，把值作为第二个参数。
-
-6 在MyActivity class,定义EXTRA_MESSAGE :
-
-java/com.mycompany.myfirstapp/MyActivity.java
-
-```
-public class MyActivity extends ActionBarActivity {
-    public final static String EXTRA_MESSAGE = "com.mycompany.myfirstapp.MESSAGE";
-    ...
-}
-```
-为让新启动的activity能查询extra数据。定义key为一个public型的常量，通常使用应用程序包名作为前缀来定义键是很好的做法，这样在应用程序与其他应用程序进行交互时仍可以确保键是唯一的。
-
-7 在sendMessage()函数里，调用startActivity()完成新activity的启动，现在完整的代码应该是下面这个样子：
-
-java/com.mycompany.myfirstapp/MyActivity.java
-
-```
-/** Called when the user clicks the Send button */
-public void sendMessage(View view) {
-    Intent intent = new Intent(this, DisplayMessageActivity.class);
-    EditText editText = (EditText) findViewById(R.id.edit_message);
-    String message = editText.getText().toString();
-    intent.putExtra(EXTRA_MESSAGE, message);
-    startActivity(intent);
-}
-```
-
-运行这个方法，系统收到我们的请求后会实例化在`Intent`中指定的`Activity`，现在需要创建一个`DisplayMessageActivity`类使程序能够执行起来。
-
+3. [startActivity()] 方法启动了 [Intent] 定义的 `DisplayMessageActivity` 的实例。现在我们需要新建一个 `DisplayMessageActivity` 类。
 
 ## 创建第二个Activity
 
@@ -358,3 +318,13 @@ protected void onCreate(Bundle savedInstanceState) {
 ![firstapp](firstapp.png)
 
 到此为止，已经创建好我们的第一个Android应用了！
+
+
+[android:onClick]: //developer.android.com/reference/android/view/View.html#attr_android:onClick
+[View]: //developer.android.com/reference/android/view/View.html
+[Intent]: //developer.android.com/reference/android/content/Intent.html
+[Context]: //developer.android.com/reference/android/content/Context.html
+[Activity]:  //developer.android.com/reference/android/app/Activity.html
+[Class]:  //developer.android.com/reference/java/lang/Class.html
+[putExtra()]:  //developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, java.lang.String)
+[startActivity()]:  //developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)
