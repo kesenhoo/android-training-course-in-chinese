@@ -1,6 +1,6 @@
 # 启动另一个Activity
 
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
+> 编写:[crazypudding](https://github.com/crazypudding) - 原文:<http://developer.android.com/training/basics/firstapp/starting-activity.html>
 
 在完成上一课(建立简单的用户界面)后，我们已经拥有了显示一个 activity（一个界面）的app（应用），该 activity 包含了一个文本字段和一个按钮。在这节课中，你将添加一些新的代码到`MyActivity`中，当用户点击发送(Send)按钮时启动一个新的activity。
 
@@ -87,13 +87,13 @@ import android.widget.EditText;
 
 1. Intent 构造方法中有两个参数：
 
-  * 第一个参数是 [Context] (之所以用`this`是因为 [Activity] 类是`Context`的子类)
+* 第一个参数是 [Context] (之所以用`this`是因为 [Activity] 类是`Context`的子类)
 
-  * 接受系统发送 [Intent] 的应用组件对应的 [Class]（在这个案例中，指将要被启动的activity）
+* 接受系统发送 [Intent] 的应用组件对应的 [Class]（在这个案例中，指将要被启动的activity）
 
-2. [putExtra\()] 方法将从 EditText 中取到的值附加到 Intent 上。 Intent 可以以键-值对的方式携带数据，这些数据称为 *extras*。此处的键是一个 public 修饰的常量——EXTRA_MESSAGE，因为在另一个 Activity 中，我们需要以这个键来获取它对应的值。以应用包名为前缀来定义 intent extras 的键是一个很好的习惯，这使得 app 在与其他 app 交互的过程中能保证这个键的唯一性。
+2. [putExtra()] 方法将从 EditText 中取到的值附加到 Intent 上。 Intent 可以以键-值对的方式携带数据，这些数据称为 *extras*。此处的键是一个 public 修饰的常量——EXTRA_MESSAGE，因为在另一个 Activity 中，我们需要以这个键来获取它对应的值。以应用包名为前缀来定义 intent extras 的键是一个很好的习惯，这使得 app 在与其他 app 交互的过程中能保证这个键的唯一性。
 
-3. [startActivity\()] 方法启动了 [Intent] 定义的 `DisplayMessageActivity` 的实例。现在我们需要新建一个 `DisplayMessageActivity` 类。
+3. [startActivity()] 方法启动了 [Intent] 定义的 `DisplayMessageActivity` 的实例。现在我们需要新建一个 `DisplayMessageActivity` 类。
 
 ## 创建第二个Activity
 
@@ -179,11 +179,12 @@ import android.widget.TextView;
 
 ## 运行 app
 
-现在点击工具栏中的 **Apply Changes** ![toolbar-apply-changes][figure_toolbar-apply-changes]按钮再次运行 app。运行成功之后，试着在 EditText 中输入文字信息如：“Hello world!”并点击 Send 按钮，你会看到信息已经显示在第二个 Activity 中了。如图：
+现在点击工具栏中的 **Apply Changes** ![toolbar-apply-changes](./toolbar-apply-changes.png)按钮再次运行 app。运行成功之后，试着在 EditText 中输入文字信息如：“Hello world!”并点击 Send 按钮，你会看到信息已经显示在第二个 Activity 中了。如图：
 
-![screenshot-activity2][figure_screenshot-activity2]
+![screenshot-activity](./screenshot-activity2.png)
 
 到此为止，已经创建好我们的第一个Android应用了！想要继续学习 Android 应用开发的基础知识，通过下面的链接进入到[下一课]吧。
+
 
 
 [android:onClick]: //developer.android.com/reference/android/view/View.html#attr_android:onClick
@@ -192,13 +193,10 @@ import android.widget.TextView;
 [Context]: //developer.android.com/reference/android/content/Context.html
 [Activity]:  //developer.android.com/reference/android/app/Activity.html
 [Class]:  //developer.android.com/reference/java/lang/Class.html
-[putExtra()]:  //developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, java.lang.String)
+[putExtra()]:  //developer.android.com/reference/android/content/Intent.html
 [startActivity()]:  //developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)
 [\<activity>]:  //developer.android.com/guide/topics/manifest/activity-element.html
 [app bar]: //developer.android.com/training/appbar/index.html
-[下一课]:  ../supporting-devices/index.md
-
-[figure_layout-editor-autoconnect-on]： ./layout-editor-autoconnect-on.png
+[下一课]:  ../supporting-devices/index.html
+[figure_layout-editor-autoconnect-on]:  ./layout-editor-autoconnect-on.png
 [figure_constraint-textview_2x]:        ./constraint-textview_2x.png
-[figure_toolbar-apply-changes]：         ./toolbar-apply-changes.png
-[figure_screenshot-activity2]:          ./screenshot-activity2.png
