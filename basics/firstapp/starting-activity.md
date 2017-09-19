@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-Android Studio 可能会再次出现 "Cannot resolve symbol" 的错误，同样使用 Alt + Enter （Mac中为 Option + Return）组合键快速导入类，完成后这个类的导入项如下所示：
+Android Studio 可能会再次出现 "Cannot resolve symbol" 的错误，同样使用 Alt + Enter （Mac中为 Option + Return）组合键快速导入类，完成后该类的导入项如下所示：
 
 ```java
 import android.content.Intent;
@@ -91,233 +91,99 @@ import android.widget.EditText;
 
   * 接受系统发送 [Intent] 的应用组件对应的 [Class]（在这个案例中，指将要被启动的activity）
 
-2. [putExtra()] 方法将从 EditText 中取到的值附加到 Intent 上。 Intent 可以以键-值对的方式携带数据，这些数据称为 *extras*。此处的键是一个 public 修饰的常量——EXTRA_MESSAGE，因为在另一个 Activity 中，我们需要以这个键来获取它对应的值。以应用包名为前缀来定义 intent extras 的键是一个很好的习惯，这使得 app 在与其他 app 交互的过程中能保证这个键的唯一性。
+2. [putExtra\()] 方法将从 EditText 中取到的值附加到 Intent 上。 Intent 可以以键-值对的方式携带数据，这些数据称为 *extras*。此处的键是一个 public 修饰的常量——EXTRA_MESSAGE，因为在另一个 Activity 中，我们需要以这个键来获取它对应的值。以应用包名为前缀来定义 intent extras 的键是一个很好的习惯，这使得 app 在与其他 app 交互的过程中能保证这个键的唯一性。
 
-3. [startActivity()] 方法启动了 [Intent] 定义的 `DisplayMessageActivity` 的实例。现在我们需要新建一个 `DisplayMessageActivity` 类。
+3. [startActivity\()] 方法启动了 [Intent] 定义的 `DisplayMessageActivity` 的实例。现在我们需要新建一个 `DisplayMessageActivity` 类。
 
 ## 创建第二个Activity
 
+1.在 **Project** 面板中，右击 **app** 文件夹，依次选择 `New > Activity > Empty Activity`。
 
-Activity所有子类都必须实现onCreate()方法。创建activity的实例时系统会调用该方式，此时必须用 setContentView()来定义Activity布局，以对Activity进行初始化。
+2.在弹出的 **Configure Activity** 面板中，将 *Activity Name* 的值修改为 "DispalyMessageActivity" ，其他属性保持默认然后点击 **finsh**。
 
+在这个过程中，Android Studio 自动完成了一下三件事：
 
+* 创建了一个名为 `DisplayMessageActivity.java` 的文件。
+* 创建一个相应的布局文件 `activity_display_message.xml`。
+* 在 `AndroidManifest.xml` 文件中为该文件添加了对应的 [\<activity>] 标签（没有这个标签将不能启动相应的 Activity）。
 
-### 使用Android Studio创建新的Activity
+如果现在运行 app 并点击第一个 Activity 中的 Send 按钮，app 会跳转到第二个 Activity（也就是刚新建的 DisplayMessageActivity）但是显示一片空白。这是因为新建的 Activity 默认使用模板提供的空白布局页（activity_display_message）。
 
-使用Android Studio创建的activity会实现一个默认的onCreate()方法.
+## 新增一个 TextView
 
+由于新建的 Activity 引用了一个空白的布局页，所以我们现在在这个布局页中添加一个 TextView 用来显示信息。
 
-1. 在Android Studio的java 目录, 选择包名 **com.mycompany.myfirstapp**,右键选择 **New > Activity > Blank Activity**.
+1.打开文件 `app/res/layout/activity_display_message.xml`。
 
-2. 在**Choose options**窗口，配置activity：
-<ul>
-<li><strong>Activity Name</strong>: DisplayMessageActivity
+2.打开自动连接功能，点击工具栏中的 **Turn On Autoconnect** ![layout-editor-autoconnect-on][figure_layout-editor-autoconnect-on]按钮。
 
-<li><strong>Layout Name</strong>: activity_display_message
+3.在 **Pallete** 面板中选中 TextView ，将它拖到布局中靠近父布局顶部并且大约水平居中的位置，当在布局中央会出现一条虚线时放下。这步操作后，ConstraintLayout 的自动连接功能(Autoconnect)为 TextView 新增了相应的约束使其水平居中。
 
-<li><strong>Title</strong>: My Message
+4.为 TextView 的顶部和父布局顶部新增一个约束，这时效果图如图1。
 
-<li><strong>Hierarchical Parent</strong>: com.mycompany.myfirstapp.MyActivity
+![constraint-textview_2x][figure_constraint-textview_2x]
 
-Package name: com.mycompany.myfirstapp
-</ul>
-点击 **Finish**.
+**图 1.** TextView 在布局中水平居中
 
+当然，也可以为 TextView 做一些样式调整。在 **Properties** 面板中展开 **TextAppearance** 选项改变其中一些属性的值，比如 *textSize* 和 *textColor*。
 
-![adt-new-activity](studio-new-activity.png)
+## 显示消息
 
-3 打开DisplayMessageActivity.java文件，此类已经实现了onCreate()方法，稍后需要更新此方法。
+现在我们来修改第二个 Activity，修改完成便可以接收第一个 Activity 发来的消息。
 
+1.在 `DisplayMessageActivity.java` 文件中，往 `onCreate()` 方法添加一下代码：
 
-如果使用 Android Studio开发，现在已经可以点击Send按钮启动这个activity了，但显示的仍然是模板提供的默认内容"Hello world"，稍后修改显示自定义的文本内容。
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_display_message);
+    
+    // 获取启动此 Activity 的 Intent 并从中取得附带的消息
+    Intent intent = getIntent();
+    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-
-
-### 使用命令行创建activity
-
-如果使用命令行工具创建activity，按如下步骤操作：
-
-1 在工程的src/目录下，紧挨着MyActivity.java创建一个新文件DisplayMessageActivity.java.
-
-2 写入如下代码：
-
-
-```
-public class DisplayMessageActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_message);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, new PlaceholderFragment()).commit();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() { }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                  Bundle savedInstanceState) {
-              View rootView = inflater.inflate(R.layout.fragment_display_message,
-                      container, false);
-              return rootView;
-        }
-    }
+    // 获取布局中 TextView 并为其设置文本信息
+    TextView textView = (TextView) findViewById(R.id.textView);
+    textView.setText(message);
 }
 ```
 
+2.利用组合键 Alt + Enter（Mac中为 Option + Return）导入需要的类。完成后该类的导入项如下：
 
-> **Note**:如果使用的IDE不是 Android Studio，工程中可能不会包含由`setContentView()`请求的`activity_display_message` layout，但这没关系，因为等下会修改这个方法。
-
-3 把新Activity的标题添加到strings.xml文件:
-
-```
-<resources>
-    ...
-    <string name="title_activity_display_message">My Message</string>
-</resources>
+```java
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.TextView;
 ```
 
-4 在 AndroidManifest.xml的Application 标签内为 DisplayMessageActivity添加 <activity\>标签，如下:
+## 添加向上导航（Up Navigation）
 
-```
-<application ... >
-    ...
-    <activity
-        android:name="com.mycompany.myfirstapp.DisplayMessageActivity"
-        android:label="@string/title_activity_display_message"
-        android:parentActivityName="com.mycompany.myfirstapp.MyActivity" >
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.mycompany.myfirstapp.MyActivity" />
-    </activity>
-</application>
-```
+我们应该为 app 中所有不是主要入口的页面添加导航，这样一来用户便可以通过 [app bar] 中的 Up 按钮返回到当前页面的逻辑父页面。
 
-`android:parentActivityName`属性声明了在应用程序中该Activity逻辑层面的父类Activity的名称。 系统使用此值来实现默认导航操作，比如在Android 4.1（API level 16）或者更高版本中的[Up navigation](http://developer.android.com/design/patterns/navigation.html)。 使用[Support Library](http://developer.android.com/tools/support-library/index.html)，如上所示的[`<meta-data>`](http://developer.android.com/guide/topics/manifest/meta-data-element.html)元素可以为安卓旧版本提供相同功能。
-
- >**Note**:我们的Android SDK应该已经包含了最新的Android Support Library，它包含在ADT插件中。但如果用的是别的IDE，则需要在[ Adding Platforms and Packages ](http://developer.android.com/sdk/installing/adding-packages.html)中安装。当Android Studio中使用模板时，Support Library会自动加入我们的工程中(在Android Dependencies中你以看到相应的JAR文件)。如果不使用Android Studio，就需要手动将Support Library添加到我们的工程中，参考[setting up the Support Library](http://developer.android.com/tools/support-library/setup.html)。
-
-
-
-## 接收Intent
-
-不管用户导航到哪，每个[Activity](http://developer.android.com/reference/android/app/Activity.html)都是通过[Intent](http://developer.android.com/reference/android/content/Intent.html)被调用的。我们可以通过调用<a href="http://developer.android.com/reference/android/app/Activity.html#getIntent()">getIntent()</a>来获取启动activity的[Intent](http://developer.android.com/reference/android/content/Intent.html)及其包含的数据。
-
-1 编辑java/com.mycompany.myfirstapp目录下的DisplayMessageActivity.java文件.
-
-2 得到intent 并赋值给本地变量.
-
-```
-Intent intent = getIntent();
-```
-3 为Intent导入包.
-
-在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
-
-4 调用 getStringExtra()提取从 MyActivity 传递过来的消息.
-
-```
-String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
+我们所需要做的就是在 [AndroidManifest.xml] 文件中为声明哪一个 Activity 是它的逻辑父项。打开清单文件，`app/Manifest/AndroidManifest.xml` ,在名为 DisplayMessageActivity 的 <activity> 标签中新增一下内容：
+    
+```XML
+<activity android:name=".DisplayMessageActivity"
+          android:parentActivityName=".MainActivity" >
+    <!-- meta-data 标签是为了兼容 API 15 及以下的设备 -->
+    <meta-data
+        android:name="android.support.PARENT_ACTIVITY"
+        android:value=".MainActivity" />
+</activity>
 ```
 
+现在 Android 系统已经自动在 DisplayMessageActivity 的 app bar 中添加了 Up 按钮。
 
-## 显示文本
+## 运行 app
 
-1 在res/layout目录下，编辑文件`content_display_message.xml`.
+现在点击工具栏中的 **Apply Changes** ![toolbar-apply-changes][figure_toolbar-apply-changes]按钮再次运行 app。运行成功之后，试着在 EditText 中输入文字信息如：“Hello world!”并点击 Send 按钮，你会看到信息已经显示在第二个 Activity 中了。如图：
 
-2 为<RelativeLayout>标签添加id属性，你之后需要用这个id属性来调用这个对象.
+![screenshot-activity2][figure_screenshot-activity2]
 
-```
-< RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-...
-android:id="@+id/content">
-</RelativeLayout>
-```
-
-3 重新来编辑`DisplayMessageActivity.java`
-
-4 在`onCreate()`方法中创建一个对象`TextView`
-
-```
-TextView textView = new TextView(this);
-```
-
-5 用`setText()`来设置文本字体大小和内容.
-
-```
-textView.setTextSize(40);
-textView.setText(message);
-```
-6 将`TextView`加入之前被标记为`R.id.content`的`RelativeLayout`中
-
-```
-RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-layout.addView(textView);
-```
-
-7 为TextView 导入包.
-
-在Android Studio中，按Alt + Enter 可以导入缺失的类(在Mac中使用option + return).
-
-DisplayMessageActivity的完整onCreate()方法应该如下：
-
-
-
-```
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-   super.onCreate(savedInstanceState);
-   setContentView(R.layout.activity_display_message);
-   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-   setSupportActionBar(toolbar);
-
-   FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-   fab.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View view) {
-           Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null)
-                   .show();
-       }
-   });
-   getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-   Intent intent = getIntent();
-   String message = intent.getStringExtra(MyActivity.EXTRA_MESSAGE);
-   TextView textView = new TextView(this);
-   textView.setTextSize(40);
-   textView.setText(message);
-
-   RelativeLayout layout = (RelativeLayout) findViewById(R.id.content);
-   layout.addView(textView);
-}```
-
-现在你可以运行app，在文本中输入信息，点击Send(发送)按钮，ok，现在就可以在第二Activity上看到发送过来信息了。如图：
-
-![firstapp](firstapp.png)
-
-到此为止，已经创建好我们的第一个Android应用了！
+到此为止，已经创建好我们的第一个Android应用了！想要继续学习 Android 应用开发的基础知识，通过下面的链接进入到[下一课]吧。
 
 
 [android:onClick]: //developer.android.com/reference/android/view/View.html#attr_android:onClick
@@ -327,4 +193,12 @@ protected void onCreate(Bundle savedInstanceState) {
 [Activity]:  //developer.android.com/reference/android/app/Activity.html
 [Class]:  //developer.android.com/reference/java/lang/Class.html
 [putExtra()]:  //developer.android.com/reference/android/content/Intent.html#putExtra(java.lang.String, java.lang.String)
-[startActivity()]:  //developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)
+[startActivity()]:  //developer.android.com/reference/android/app/Activity.html#startActivity(android.content.Intent)
+[\<activity>]:  //developer.android.com/guide/topics/manifest/activity-element.html
+[app bar]: //developer.android.com/training/appbar/index.html
+[下一课]:  ../supporting-devices/index.md
+
+[figure_layout-editor-autoconnect-on]： ./layout-editor-autoconnect-on.png
+[figure_constraint-textview_2x]:        ./constraint-textview_2x.png
+[figure_toolbar-apply-changes]：         ./toolbar-apply-changes.png
+[figure_screenshot-activity2]:          ./screenshot-activity2.png
