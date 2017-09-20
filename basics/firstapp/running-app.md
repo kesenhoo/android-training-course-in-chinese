@@ -44,7 +44,7 @@ $ chmod +x gradlew
 $ ./gradlew assembleDebug
 ```
 
-编译完成后在app/build/outputs/apk/目录生成apk。
+编译完成后在app/目录生成apk。
 
 > **Note:** chmod命令是给gradlew增加执行权限，只需要执行一次。
 
@@ -98,7 +98,7 @@ android avd
 3\. 执行如下命令：
 
 ```
-adb install app/build/outputs/MyFirstApp-debug.apk
+adb install app/build/outputs/apk/MyFirstApp-debug.apk
 ```
 4\. 在模拟器上找到MyFirstApp，并运行。
 
