@@ -1,239 +1,248 @@
 # 建立简单的用户界面
 
-> 编写:[yuanfentiank789](https://github.com/yuanfentiank789) - 原文:<http://developer.android.com/training/basics/firstapp/building-ui.html>
+> 编写：[crazypudding](https://github.com/crazypudding) - 原文：<http://developer.android.com/training/basics/firstapp/building-ui.html>
 
-    在本小节里，我们将学习如何用XML创建一个带有文本输入框和按钮的界面，下一节课将学会使app对按钮做出响应：按钮被按下时，文本框里的内容被发送到另外一个Activity。
+在本小节里，我们将学习使用Android Studio布局编辑器创建一个带有文本输入框和按钮的界面。下一节课将学会使 APP 对按钮做出响应——按钮被按下时，文本框里的内容被发送到另外一个 [Activity]。
 
+Android 的图形用户界面由多个 *视图*（[View]）和 *布局*（[ViewGroup]）构建而成。[View] 是通用的 UI 窗体小组件，如：按钮（[Button]）、文本框（[Text field]）；而 [ViewGroup] 则是用来控制子视图如何显示在屏幕上的不可见的容器，如：网格部件（grid）、垂直列表部件（vertical list）。
 
-Android的图形用户界面是由多个[View](http://developer.android.com/reference/android/view/View.html)和[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)构建出来的。[View](http://developer.android.com/reference/android/view/View.html)是通用的UI窗体小组件，比如按钮([Button](http://developer.android.com/guide/topics/ui/controls/button.html))或者文本框([text field](http://developer.android.com/guide/topics/ui/controls/text.html))，而[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)是不可见的，是用于定义子View布局方式的容器，比如网格部件(grid)和垂直列表部件(list)。
+![图 1: ViewGroup][figure_1_viewgroup]
 
-Android提供了一个对应于[View](http://developer.android.com/reference/android/view/View.html)和[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)子类的一系列XMl标签，我们可以在XML里使用层级视图元素创建自己的UI。
+**图 1** 关于 [ViewGroup] 对象如何组织布局分支和包含其他 [View] 对象。
 
-Layouts是ViewGroup的子类，接下来的练习将使用[LinearLayout](http://developer.android.com/reference/android/widget/LinearLayout.html)。
+Android 提供了一系列对应于 [View] 和 [ViewGroup] 子类的 XML 标签，大多数情况下，我们都会使用 XML 来定义自己的UI。不过这节课中我们不会练习 XML 语法，而是练习使用 Android Studio 的布局编辑器来创建布局，布局编辑器通过拖放 View 的方式可以更容易的创建一个布局。
 
-![viewgroup](viewgroup.png)
+## 打开布局编辑器
 
-**Figure 1.** 关于viewgroup对象如何组织布局分支和包含其他view对象。
+> **注意：** 下面的内容都假定我们使用Android Studio 2.3或2.3以上的版本并且通过[之前的课程]的内容创建了一个Android项目。
 
+开始之前，按照如下步骤设置好工作台：
 
-> 可选的布局文件：在XML中定义界面布局而不是在运行时去动态生成布局是有多个原因的，其中最重要的一点是这样可以使得你为不同大小的屏幕创建不同的布局文件。例如，你可以创建2个版本的布局文件，告诉系统在小的屏幕上使用其中一个布局文件，在大的屏幕上使用另外一个布局文件。更多信息，请参考[兼容不同的设备](../supporting-devices/index.html)
+1.在Android Studio 的 Project 面板中，打开文件 `app/res/layout/activity_main.xml`。
 
-## 创建一个LinearLayout
+2.为布局编辑器留出更多空间，通过选择 `View > Tool Windows > Project` 来关闭 **Project** 面板（或者点击 Android Studio 左侧的![window-project][figure_window-project]按钮）。
 
-1 在Android Studio中，从res/layout目录打开content_my.xml文件。上一节创建新项目时生成的BlankActivity，包含一个content_my.xml文件，该文件根元素是一个包含TextView的RelativeLayout。
+3.如果编辑器显示的是 XML 源码，点击左下角 **Design** 标签切换到 Design 模式。
 
-2 在**Preview**面板点击![image](as-hide-side.png)关闭右侧Preview面板，在Android Studio中，当打开布局文件时，可以看到一个Preview面板，点击这个面板中的标签，可利用WYSIWYG（所见即所得）工具在Design面板看到对应的图形化效果，但在本节直接操作XML文件即可。
+4.点击 **Show Blueprint** ![layout-editor-blueprint][figure_layout-editor-blueprint]只显示蓝图布局。
 
-3 删除 TextView 标签.
+5.在布局中显示 Constraints。将鼠标放在工具栏中 ![layout-editor-hide-constraints][figure_layout-editor-hide-constraints]按钮上会看到提示： **Hide Constraints**（当前为显示 Constraints）。
 
-4 把 RelativeLayout 标签改为 LinearLayout.
+6.关闭自动连接功能。将鼠标放在工具栏中 ![layout-editor-autoconnect-on][figure_layout-editor-autoconnect-on]按钮上会看到提示： **Turn On Autoconnect**（当前为关闭状态）。
 
-5 为< LinearLayout >添加 android:orientation 属性并设置值为 "horizontal".
+7.点击工具栏中 **Default Margins** ![layout-editor-margin][figure_layout-editor-margin]按钮并选择 **16**（稍后仍可以单独为每个 View 调整间距）。
 
-6 去掉android:padding 属性和tools:context 属性.
+8.点击工具栏中 **Device in Editor** ![layout-editor-device][figure_layout-editor-device]按钮并选择 **Pixel XL**。
 
+以上操作完成后，Android Studio窗口应该如下图2所示
 
-修改后结果如下：
+![图2_layout-editor_2x][figure_layout-editor_2x]
 
-res/layout/content_my.xml
+**图 2.** 显示 `activity_main.xml` 的布局编辑器
 
-```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_my">
-```
+左下角的 **Component Tree** 面板显示的是当前布局中所有 View 的层级结构。本例中，根 View 是一个 `ConstraintLayout`，其中只包含一个 `TextView` 对象。
 
-[LinearLayout](http://developer.android.com/reference/android/widget/LinearLayout.html)是[ViewGroup](http://developer.android.com/reference/android/view/ViewGroup.html)的一个子类，用于放置水平或者垂直方向的子视图部件，放置方向由属性`android:orientation`设定。LinearLayout里的子布局按照XML里定义的顺序显示在屏幕上。
+`ConstraintLayout` 根据每个 View 和与它平级的兄弟 View 以及父布局之间的约束来确定它的位置。通过这个方法，我们可以创建简单或者复杂但是层级结构扁平化的布局。这样一来，就避免了嵌套布局的出现（如图1展示的那样，一个 ViewGroup 嵌套另一个 ViewGroup），缩短了绘制
+ UI 的时间。
+ 
+例如，我们可以这样创建布局（如图3）：
 
-所有的Views都需要用到[android:layout_width](http://developer.android.com/reference/android/view/View.html#attr_android:layout_width)和[android:layout_height](http://developer.android.com/reference/android/view/View.html#attr_android:layout_height)这两个属性来设置自身的大小。
+* View A 距父布局顶部16dp
+* View A 距父布局左边缘16dp
+* View B 距 View A 右边16dp
+* View B 与 View A 顶部对齐
 
-由于LinearLayout是整个视图的根布局，所以其宽和高都应充满整个屏幕的，通过指定width 和 height属性为`"match_parent"`。该值表示子View扩张自己width和height来匹配父控件的width和height。
+![图3_traint-example_2x][figure_constraint-example_2x]
 
-更多关于[Layout](http://developer.android.com/guide/topics/ui/declaring-layout.html)属性的信息，请参照XML布局向导。
+**图 3.** `ConstraintLayout`中两个 View 的位置
+ 
+在本节后面的部分中，我们将实际建立一个类似的布局。
+ 
+## 添加一个文本框
 
-## 添加一个文本输入框
+1.首先，要删除布局中已经存在的 View，在 **Component Tree** 面板中选中并删除 **TextView**。
 
-与其它View一样，我们需要设置XML里的某些属性来指定EditText的属性值，以下是应该在线性布局里指定的一些属性元素：
+2.在左侧 **Palette** 面板的左半部分窗格中选中 **Text** 分类，从右半部分窗格中拖出 **Plain Text** 并把它放到编辑器中靠近布局顶部的地方。这是一个可以输入纯文本的 [EditText]
 
-1 在activity\_my.xml文件的 < LinearLayout > 标签内定义一个 < EditText > 标签，并设置id属性为@+id/edit_message.
+3.点击编辑器中的 View。可以看到，在每个角上都有一个方形的锚点，这是用来控制 View 的大小的；在每条边中间都有一个圆形锚点，这是用来添加约束的。
 
-2 设置layout_width和layout_height属性为 wrap_content.
+  为了更准确的控制这些锚点，可以通过工具栏中的缩放按钮来缩放虚拟 UI 界面。
+  
+4.按住 View 顶部的圆形锚点，将它拖动到父布局顶部，直到有吸附效果时放开。可以看到 View 和父布局顶部之间出现一条带箭头的细线，这就是一个约束——它指定 View 距离父布局顶部16dp（因为刚刚设置的默认值是16dp）。
 
-3 设置hint属性为一个string 值的引用edit_message.
+5.同样的，在 View 的左边和父布局的左边缘创建一个约束。
 
-代码如下：
+最终的效果应该如图4所示。
 
-res/layout/content_my.xml
+![图4_constraint-textbox_2x][figure_constraint-textbox_2x]
 
-```xml
-<EditText android:id="@+id/edit_message"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:hint="@string/edit_message" />
-```
-
-各属性说明:
-
-#### [android:id](http://developer.android.com/reference/android/view/View.html#attr_android:id)
-
-这是定义View的唯一标识符。可以在程序代码中通过该标识符对对象进行引用，例如对这个对象进行读和修改的操作(在下一课里将会用到)。
-
-当想从XML里引用资源对象的时候必须使用@符号。紧随@之后的是资源的类型(这里是`id`)，然后是资源的名字(这里使用的是`edit_message`)。
-
-+号只是当你第一次定义一个资源ID的时候需要。这里是告诉SDK此资源ID需要被创建出来。在应用程序被编译之后，SDK就可以直接使用ID值，edit_message是在项目`gen/R.java`文件中创建一个新的标识符，这个标识符就和[EditText](http://developer.android.com/reference/android/widget/EditText.html)关联起来了。一旦资源ID被创建了，其他资源如果引用这个ID就不再需要+号了。这里是唯一一个需要+号的属性。
-
-#### [android:layout_width](http://developer.android.com/reference/android/view/View.html#attr_android:layout_width) 和[android:layout_height](http://developer.android.com/reference/android/view/View.html#attr_android:layout_height)
-
-对于宽和高不建议指定具体的大小，使用`wrap_content`指定之后，这个视图将只占据内容大小的空间。如果你使用了`match_parent`，这时[EditText](http://developer.android.com/reference/android/widget/EditText.html)将会布满整个屏幕，因为它将适应父布局的大小。更多信息，请参考 [布局向导](http://developer.android.com/guide/topics/ui/declaring-layout.html)。
-
-#### [android:hint](http://developer.android.com/reference/android/widget/TextView.html#attr_android:hint)
-
-当文本框为空的时候,会默认显示这个字符串。对于字符串`@string/edit_message`的值所引用的资源应该是定义在单独的文件里，而不是直接使用字符串。因为使用的值是存在的资源，所以不需要使用+号。然而，由于你还没有定义字符串的值，所以在添加`@string/edit_message`时候会出现编译错误。下边你可以定义字符串资源值来去除这个错误。
-
-> **Note**: 该字符串资源与id使用了相同的名称（edit_message）。然而，对于资源的引用是区分类型的（比如id和字符串），因此，使用相同的名称不会引起冲突。
-
-## 增加字符串资源
-
-
-默认情况下，你的Android项目包含一个字符串资源文件，`res/values/string.xml`。打开这个文件，为`"edit_message"`增加一个供使用的字符串定义，设置值为"Enter a message."
-
-1 在Android Studio里，编辑 res/values 下的 strings.xml 文件.
-
-2 添加一个string名为"edit_message" ,值为 "Enter a message".
-
-3 再添加一个string名为 "button_send"，值为"Send".下面的内容将使用这个string来创建一个按钮.
-
-下边就是修改好的`res/values/strings.xml`：
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">My First App</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="action_settings">Settings</string>
-</resources>
-```
-当你在用户界面定义一个文本的时候，你应该把每一个文本字符串列入资源文件。这样做的好处是：对于所有字符串值，字符串资源能够单独的修改，在资源文件里你可以很容易的找到并且做出相应的修改。通过选择定义每个字符串，还允许您对不同语言本地化应用程序。
-
-
-更多的于不同语言本字符串资源本地化的问题，请参考[兼容不同的设备(Supporting Different Devices)](../supporting-devices/index.html) 。
+**图 4.** 文本框与父布局顶部和左边形成约束
 
 ## 添加一个按钮
 
+1.同样的，在 **Palette** 面板左侧部分选中 **Widgets** 分类，然后拖出 **Button** 并放到编辑器中靠近父布局右上角的地方。
 
+2.在 Button 的左侧与 EditText 右侧建立一个约束。
 
-1 在 Android Studio里, 编辑 res/layout下的 content_my.xml 文件.
+3.针对可显示文字的 View ，我们可以通过在每个 View 的文字基线之间建立约束从而使得它们水平对齐。在编辑器中选中一个 View ，这个被选中的 View 下方会出现一个 **Baseline Constraint** ![layout-editor-action-baseline][figure_layout-editor-action-baseline]按钮。例如选中本例中的 Button ，Button 里面会出现一个线状的锚点，将这个锚点拖放到 EditText 中的基线锚点上。
 
-2 在LinearLayout 内部, 在< EditText >标签之后定义一个< Button >标签.
+现在可以看到的效果如图5所示。
 
-3 设置Button的width 和 height 属性值为 "wrap_content" 以便让Button大小能完整显示其上的文本.
+![图5_constraint-button_2x][figure_constraint-button_2x]
 
-4 定义button的文本使用android:text 属性，设置其值为之前定义好的 button_send 字符串.
+**图 5.** Button 左侧和 EditText 右侧以及彼此的基线之间建立了约束
 
-此时的 LinearLayout 看起来应该是这样
+> **注意：** 我们也可以用 Button 顶部或底部的锚点建立约束从而达到水平对齐的目的，但是由于在 Button 内部是有一个 padding 值的，所以通过这种方式建立约束并不会真正实现水平对齐。
 
-res/layout/content_my.xml
+## 改变 UI 中显示的字符串
 
-```xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_my">
-        <EditText android:id="@+id/edit_message"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:hint="@string/edit_message" />
-        <Button
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="@string/button_send" />
-</LinearLayout>
-```
+点击工具栏中的 **Show Design** ![layout-editor-design][figure_layout-editor-design]按钮可以预览我们的 UI，可以看到 EditText 默认显示的字符串是 “Name”， Button 默认显示的字符串是 “Button”。接下来我们的目的就是修改这些字符串。
 
->**Note** 宽和高被设置为`"wrap_content"`，这时按钮占据的大小就是按钮里文本的大小。这个按钮不需要指定[android:id](http://developer.android.com/reference/android/view/View.html#attr_android:id)的属性，因为Activity代码中不会引用该Button。
+1.打开 **Project** 面板，然后打开文件 `app/res/values/strings.xml`。
 
-当前EditText和Button部件只是适应了他们各自内容的大小，如下图所示：
+  `strings.xml`是一个[字符串资源文件]，我们应该把 UI 布局中出现的字符串定义在这个文件中。相比于在布局或逻辑代码中硬编码，这样在一个文件集中管理所有的字符串更利于字符串的查找、修改甚至是本地化操作。
 
-![edittext_wrap](edittext_wrap.png)
+2.点击右上角的 **Open editor** 按钮可以打开 [**Translations Editor**]，在这个编辑器中不仅可以增加、修改默认字符串，还能很好的管理所有字符串的翻译版本。
 
-这样设置对按钮来说很合适，但是对于文本框来说就不太好了，因为用户可能输入更长的文本内容。因此如果能够占满整个屏幕宽度会更好。LinearLayout使用*权重*属性来达到这个目的，你可以使用[android:layout_weight](http://developer.android.com/reference/android/widget/LinearLayout.LayoutParams.html#weight)属性来设置。
+3.点击左上角 **Add Key** ![add-sign-green-icon][figure_add-sign-green-icon]按钮为 EditText 新增一个提示文字（hint text）：
 
-权重的值指的是每个部件所占剩余空间的大小，该值与同级部件所占空间大小有关。就类似于饮料的成分配方：“两份伏特加酒，一份咖啡利口酒”，即该酒中伏特加酒占三分之二。例如，我们设置一个View的权重是2，另一个View的权重是1，那么总数就是3，这时第一个View占据2/3的空间，第二个占据1/3的空间。如果你再加入第三个View，权重设为1，那么第一个View(权重为2的)会占据1/2的空间，剩余的另外两个View各占1/4。(请注意，使用权重的前提一般是给View的宽或者高的大小设置为0dp，然后系统根据上面的权重规则来计算View应该占据的空间。但是很多情况下，如果给View设置了match_parent的属性，那么上面计算权重时则不是通常的正比，而是反比，也就是权重值大的反而占据空间小)。
+  1.在 Key 那一栏填入 "edit_message" , 这就是这个字符串的 id。
+  
+  2.在 Default Value 那一栏填入 "Enter a message" ，这就是字符串的内容，会显示到 UI 中。
+  
+  3.点击 **OK**。
+  
+![图6_add-string_2x][figure_add-string_2x]
 
-对于所有的View默认的权重是0，如果只设置了一个View的权重大于0，则该View将占据除去别的View本身占据的空间的所有剩余空间。因此这里设置EditText的权重为1，使其能够占据除了按钮之外的所有空间。
+**图 6.** 新增字符串资源的对话框
 
+4.新增另一个字符串资源， Key 为 "button_send" ，Default Value 为 "Send"。
 
+现在可以通过点击标签栏的 **activity_main.xml** 返回布局文件通过以下步骤为每个 View 设置相应的字符串资源：
 
-## 让输入框充满整个屏幕的宽度
+1.在布局编辑器中选中 EditText 对象，如果在窗口右侧没有出现 **Propreties** 面板的话可以点击右边侧边栏中的 **Properities** ![window-properties][figure_window-properties]按钮。 **Propreties** 面板会显示选中对象的属性。
 
-为让 EditText充满剩余空间，做如下操作：
+2.在 **Propreties** 面板中找到 *hint* 属性，然后点击文本框右边的 **Pick a Resource** ![pick-resource][figure_pick-resource]按钮，在弹出的对话框中双击 **edit_message**。
 
-1  在content_my.xml文件里，设置EditText的layout_weight属性值为1 .
+3.同样在 EditText 的 **Propreties** 面板中删除 *text* 属性的值（当前值为 "Name"）。
 
-2  设置EditText的layout_width值为0dp.
+4.在布局编辑器中选中 Button 对象切换到 Button 对应的 **Propreties** 面板，将 Button 的 *text* 属性值更换成 id 为 "button_send" 的字符串资源。
 
-res/layout/content_my.xml
+## 让文本输入框大小灵活
 
-```xml
-<EditText
-    android:layout_weight="1"
-    android:layout_width="0dp"
-    ... />
-```
+为了创建一个可以适应不同大小的屏幕，我们需要调整 EditText，使得它可以在计算完 Button 的宽度和 Margin 间距之后，自行伸展至占有所有的剩余宽度。
 
-为了提升布局的效率，在设置权重的时候，应该把[EditText](http://developer.android.com/reference/android/widget/EditText.html)的宽度设为0dp。如果设置"wrap_content"作为宽度，系统需要自己去计算这个部件所占有的宽度，而此时的因为设置了权重，所以系统自动会占据剩余空间，EditText的宽度最终成了不起作用的属性。
+在继续之前，点击 **Show Blueprint** ![layout-editor-blueprint][figure_layout-editor-blueprint]按钮，我们依然在蓝图模式下工作。
 
+1.选择所有的 View 对象（选中其中一个，按住 Shift 并选中另一个），鼠标右击其中一个 View 对象，从菜单中选择 **Center Horizontally**。
+  
+  虽然我们的目标不是让所有的 View 对象水平居中，但是这种方法可以在这些 View 之间快速建立起一个*约束链*(constraint chain)。约束链是在两个或多个 View 对象之间形成的一个双向约束，它可以将这些 View 对象链接起来多为一个整体进行编排布局。不过这样会消除 View 对象之间水平方向的间距，所以后面需要手动更改。设置完约束链的效果如下图：
+  
+![图7_constraint-centered_2x][figure_constraint-centered_2x]
+  
+2.选中 Button 并打开相应的 **Propreties** 面板，将左右 margin 设置为16。
 
-设置权重后的效果图
+3.选中 EditText 并将 left margin 设置为16。
 
-![edittext_gravity](edittext_gravity.png)
+4.在 EditText 的 **Propreties** 面板中，点击图8中标示为1处的按钮（这是宽度指示符）直到出现 ![layout-width-match][figure_layout-width-match]为止，这表示我们已经将 EditText 的 *width* 属性设置为 **Match Constraints** 了。
+  
+  "Match Constraints"的意思是 View 的宽度受水平方向的约束和间距影响。因此，EditText 的宽度会伸展至占用所有剩余的水平空间（在计算完 Button 的宽度和 Margin 间距之后）。
+  
+![图8_properties-margin_2x][figure_properties-margin_2x]
 
-现在看一下完整的布局文件内容：
+**图 8.** 设置 width 属性值为 "Match Constraints"
 
-res/layout/content_my.xml
+目前为止，我们已经完成了本节课程中布局的所有内容。最终效果应该如图9所示。
+
+![图9_constraint-chain_2x][figure_constraint-chain_2x]
+
+**图 9.** EditText 占有所有剩余空间
+
+如果您的布局没有达到预期的效果，可以查看下面的完整代码进行对比（各属性出现的顺序不会影响布局的样式）。以下是完整代码：
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   xmlns:app="http://schemas.android.com/apk/res-auto"
-   xmlns:tools="http://schemas.android.com/tools"
-   android:orientation="horizontal"
-   android:layout_width="match_parent"
-   android:layout_height="match_parent"
-   app:layout_behavior="@string/appbar_scrolling_view_behavior"
-   tools:showIn="@layout/activity_my">
-    <EditText android:id="@+id/edit_message"
-        android:layout_weight="1"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myfirstapp.MainActivity">
+
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/edit_message" />
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/edit_message"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button"
+        android:layout_marginLeft="16dp" />
+
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_send" />
-</LinearLayout>```
-## 运行应用
-整个布局默认被应用于创建项目的时候SDK工具自动生成的Activity，运行看下效果:
-
-+ 在Android Studio里，点击工具栏里的Run按钮<img src="eclipse-run.png" />
-
-+ 或者使用命令行，进入你项目的根目录直接执行
-
-```
-$ ant debug
-adb install -r app/build/outputs/apk/app-debug.apk
+        android:text="@string/button_send"
+        app:layout_constraintBaseline_toBaselineOf="@+id/editText"
+        app:layout_constraintLeft_toRightOf="@+id/editText"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+</android.support.constraint.ConstraintLayout>
 ```
 
-下一小节将学习有关如何对按钮做出相应，同时读取文本中的内容，启动另外一个Activity等。
+想要了解更多关于 chain 的信息或者更多关于 *ConstraintLayout* 的使用方法，可以参考[Build a Responsive UI with ConstraintLayout]。
 
-[下一节：启动另一个Activity](starting-activity.html)
+## 运行我们的 app
+
+如果在上一课中已经将 app 安装在设备上了，只要点击工具栏中 **Apply Changes** ![toolbar-apply-changes][figure_toolbar-apply-changes]按钮就可以将最新的布局更新到手机上。或者点击 **Run** ![toolbar-run][figure_toolbar-run]按钮将 app 安装到手机上并运行。
+
+目前为止，当我们点击 Button 时仍然不会有任何反应，下一课中我们将完善 app，点击 Button 时会启动另一个 Activity。
+
+[下一节：启动另一个 Activity](./starting-activity.html)
+
+
+[Activity]: //developer.android.com/reference/android/app/Activity.html
+[Button]:   //developer.android.com/guide/topics/ui/controls/button.html
+[EditText]: //developer.android.com/reference/android/widget/EditText.html
+[Layout]:   //developer.android.com/guide/topics/ui/declaring-layout.html
+[TextView]: //developer.android.com/reference/android/widget/TextView.html
+[ViewGroup]:    //developer.android.com/reference/android/view/ViewGroup.html
+[View]:         //developer.android.com/reference/android/view/View.html
+[text field]:    //developer.android.com/guide/topics/ui/controls/text.html
+[**Translations Editor**]:  //developer.android.com/studio/write/translations-editor.html
+[Build a Responsive UI with ConstraintLayout]:  //developer.android.com/training/constraint-layout/index.html
+[之前的课程]:    ./creating-prokect.html
+[字符串资源文件]:  //developer.android.com/guide/topics/resources/string-resource.html
+
+[figure_1_viewgroup]:                     ./viewgroup.png
+[figure_window-project]:                  ./window-project.png
+[figure_layout-editor-blueprint]:         ./layout-editor-blueprint.png
+[figure_toolbar-run]:                     ./toolbar-run.png
+[figure_toolbar-apply-changes]:           ./toolbar-apply-changes.png
+[figure_window-project]:                  ./window-project.png
+[figure_layout-editor-blueprint]:         ./layout-editor-blueprint.png
+[figure_layout-editor-hide-constraints]:  ./layout-editor-hide-constraints.png
+[figure_layout-editor-autoconnect-on]:    ./layout-editor-autoconnect-on.png
+[figure_layout-editor-margin]:            ./layout-editor-margin.png
+[figure_layout-editor-device]:            ./layout-editor-device.png
+[figure_layout-editor_2x]:                ./layout-editor_2x.png
+[figure_constraint-example_2x]:           ./constraint-example_2x.png
+[figure_constraint-textbox_2x]:           ./constraint-textbox_2x.png
+[figure_layout-editor-action-baseline]:   ./layout-editor-action-baseline.png
+[figure_constraint-button_2x]:            ./constraint-button_2x.png
+[figure_layout-editor-design]:            ./layout-editor-design.png
+[figure_add-sign-green-icon]:             ./add-sign-green-icon.png
+[figure_add-string_2x]:                   ./add-string_2x.png
+[figure_window-properties]:               ./window-properties.png
+[figure_pick-resource]:                   ./pick-resource.png
+[figure_layout-editor-blueprint]:         ./layout-editor-blueprint.png
+[figure_constraint-centered_2x]:          ./constraint-centered_2x.png
+[figure_layout-width-match]:              ./layout-width-match.png
+[figure_properties-margin_2x]:            ./properties-margin_2x.png
+[figure_constraint-chain_2x]:             ./constraint-chain_2x.png

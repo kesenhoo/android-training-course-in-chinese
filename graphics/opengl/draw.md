@@ -1,14 +1,14 @@
-# 绘制形状
+# 绘制形状(Drawing Shapes)
 
 > 编写:[jdneo](https://github.com/jdneo) - 原文:<http://developer.android.com/training/graphics/opengl/draw.html>
 
-在定义了使用OpenGL绘制的形状之后，你可能希望绘制出它们。使用OpenGL ES 2.0绘制图形可能会比你想象当中更复杂一些，因为API中提供了大量对于图形渲染流程的控制。
+在定义了将要绘制的形状之后，你可能希望使用 OpenGL 绘制出它们。使用 OpenGL ES 2.0 绘制图形可能会比你想象当中更复杂一些，因为 API 中提供了大量对于图形渲染流程的控制。
 
-这节课将解释如何使用OpenGL ES 2.0接口画出在上一节课中定义的形状。
+这节课将解释如何使用 OpenGL ES 2.0 接口画出在上一节课中定义的形状。
 
-## 初始化形状
+## 初始化形状(Initialize Shapes)
 
-在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig)">onSurfaceCreated()</a>方法中初始化它们，这样做是出于内存和执行效率的考量。
+在你开始绘画之前，你需要初始化并加载你期望绘制的图形。除非你所使用的形状结构（原始坐标）在执行过程中发生了变化，不然的话你应该在渲染器的<a href="http://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer.html#onSurfaceCreated(javax.microedition.khronos.opengles.GL10, javax.microedition.khronos.egl.EGLConfig)"> onSurfaceCreated() </a>方法中初始化它们，这样做是出于内存和执行效率的考量。
 
 ```java
 public class MyGLRenderer implements GLSurfaceView.Renderer {
@@ -29,14 +29,14 @@ public class MyGLRenderer implements GLSurfaceView.Renderer {
 }
 ```
 
-### 画一个形状
+## 画一个形状(Draw a Shape)
 
-使用OpenGL ES 2.0画一个定义好的形状需要较多代码，因为你需要提供很多图形渲染流程的细节。具体而言，你必须定义如下几项：
-* 顶点着色器（Vertex Shader）：用来渲染形状顶点的OpenGL ES代码。
-* 片段着色器（Fragment Shader）：使用颜色或纹理渲染形状表面的OpenGL ES代码。
-* 程式（Program）：一个OpenGL ES对象，包含了你希望用来绘制一个或更多图形所要用到的着色器。
+使用 OpenGL ES 2.0 画一个定义好的形状需要较多代码，因为你需要提供很多图形渲染流程的细节。具体而言，你必须定义如下几项：
+* 顶点着色器（Vertex Shader）：用来渲染形状顶点的 OpenGL ES 代码。
+* 片段着色器（Fragment Shader）：使用颜色或纹理渲染形状表面的 OpenGL ES 代码。
+* 程式（Program）：一个 OpenGL ES 对象，包含了你希望用来绘制一个或更多图形所要用到的着色器。
 
-你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个OpenGL ES Program当中，并利用它来绘制形状。下面的代码在Triangle类中定义了基本的着色器，我们可以利用它们绘制出一个图形：
+你需要至少一个顶点着色器来绘制一个形状，以及一个片段着色器为该形状上色。这些着色器必须被编译然后添加到一个 OpenGL ES Program 当中，并利用它来绘制形状。下面的代码在 Triangle 类中定义了基本的着色器，我们可以利用它们绘制出一个图形：
 
 ```java
 public class Triangle {
@@ -58,7 +58,7 @@ public class Triangle {
 }
 ```
 
-着色器包含了OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在OpenGL环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：
+着色器包含了 OpenGL Shading Language（GLSL）代码，它必须先被编译然后才能在 OpenGL 环境中使用。要编译这些代码，需要在你的渲染器类中创建一个辅助方法：
 
 ```java
 public static int loadShader(int type, String shaderCode){
@@ -75,9 +75,9 @@ public static int loadShader(int type, String shaderCode){
 }
 ```
 
-为了绘制你的图形，你必须编译着色器代码，将它们添加至一个OpenGL ES Program对象中，然后执行链接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次。
+为了绘制你的图形，你必须编译着色器代码，将它们添加至一个 OpenGL ES Program 对象中，然后执行链接。在你的绘制对象的构造函数里做这些事情，这样上述步骤就只用执行一次。
 
-> **Note：**编译OpenGL ES着色器及链接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果在执行期间不知道着色器的内容，那么你应该在构建你的应用时，确保它们只被创建了一次，并且缓存以备后续使用。
+> **Note：**编译 OpenGL ES 着色器及链接操作对于CPU周期和处理时间而言，消耗是巨大的，所以你应该避免重复执行这些事情。如果在执行期间不知道着色器的内容，那么你应该在构建你的应用时，确保它们只被创建了一次，并且缓存以备后续使用。
 
 ```java
 public class Triangle() {

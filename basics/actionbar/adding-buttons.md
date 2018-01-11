@@ -129,7 +129,7 @@ public void onCreate(Bundle savedInstanceState) {
     setContentView(R.layout.activity_displaymessage);
 
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    // 如果你的minSdkVersion属性是11活更高, 应该这么用:
+    // 如果你的minSdkVersion属性是11或更高, 应该这么用:
     // getActionBar().setDisplayHomeAsUpEnabled(true);
 }
 ```
